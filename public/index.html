@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP 在线 · GESP C++ 一级真题智能题库</title>
+<link rel="stylesheet" href="/css/app.css">
+<style>
+.hero{background:linear-gradient(120deg,#b51d2a,#d92332);color:#fff;padding:46px 0 40px}
+.hero .wrap{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
+.hero-left{flex:1;min-width:300px}
+.hero h1{font-size:38px;font-weight:800;line-height:1.25;margin-bottom:14px}
+.hero h1 em{font-style:normal;color:#ffe08a}
+.hero p{font-size:16px;opacity:.92;margin-bottom:22px}
+.hero-feats{display:flex;gap:10px;flex-wrap:wrap}
+.hero-feats span{background:rgba(255,255,255,.16);padding:7px 14px;border-radius:20px;font-size:13px}
+.auth{width:340px;background:#fff;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.18);color:var(--ink);overflow:hidden}
+.auth-tabs{display:flex}
+.auth-tabs button{flex:1;padding:15px;border:none;background:#f5f6f7;font-size:15px;font-weight:600;color:var(--gray)}
+.auth-tabs button.on{background:#fff;color:var(--red)}
+.auth-body{padding:24px}
+.auth-body input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:6px;font-size:14px;margin-bottom:12px;outline:none}
+.auth-body input:focus{border-color:var(--red)}
+.auth-body .submit{width:100%;padding:12px;background:var(--red);color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:600;margin-top:4px}
+.auth-body .submit:hover{background:var(--red-d)}
+.auth-msg{font-size:12.5px;margin-bottom:10px;min-height:16px}
+.auth-msg.err{color:var(--red)}.auth-msg.ok{color:var(--green)}
+.auth-hint{font-size:11.5px;color:var(--gray);margin-top:12px;text-align:center}
+.subjects{padding:30px 0}
+.subj-head{font-size:16px;font-weight:700;margin-bottom:18px;color:var(--ink)}
+.subj-head b{color:var(--red)}
+.level{margin-bottom:22px}
+.level-tag{display:inline-block;color:#fff;font-size:13px;font-weight:700;padding:3px 12px;border-radius:3px;margin-bottom:12px}
+.lvl-1{background:var(--blue)}.lvl-2{background:var(--amber)}.lvl-3{background:var(--green)}
+.subj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.subj{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;transition:.15s}
+.subj.live{cursor:pointer}.subj.live:hover{border-color:var(--red);box-shadow:0 3px 12px rgba(217,35,50,.12);transform:translateY(-2px)}
+.subj .sn{font-weight:600}.subj .sn small{display:block;color:var(--gray);font-weight:400;font-size:11.5px;margin-top:2px}
+.subj.soon{opacity:.55}
+.subj .go{color:var(--red);font-weight:700}.subj .soon-tag{font-size:11px;color:var(--gray);background:#f0f2f5;padding:2px 8px;border-radius:10px}
+.feature-strip{background:#fff;border-top:1px solid var(--line);padding:30px 0}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.feat{text-align:center;padding:10px}
+.feat .ic{font-size:32px;margin-bottom:8px}
+.feat .ft{font-weight:700;margin-bottom:4px}
+.feat .fd{font-size:12.5px;color:var(--gray)}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap"><span>GESP 在线 · CCF 编程能力等级认证备考平台</span>
+  <span class="right"><span id="tb-user"></span></span></div></div>
+<header><div class="wrap hd">
+  <div class="logo" onclick="location.href='/'"><span class="mark">GESP 在线</span><span class="badge-sub">C++ 一级</span></div>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="hero-left">
+    <h1>超级智能题库<br><em>因你而变</em></h1>
+    <p>13 套官方真题 · 325 道单选判断 · 对照 CCF 官方大纲分章分节<br>注册即可刷题、自动生成错题本、追踪学习进度</p>
+    <div class="hero-feats"><span>📚 分类真题解析</span><span>📝 智能刷题自测</span><span>❌ 自动错题本</span><span>📈 学习进度追踪</span><span>⭐ 收藏夹</span></div>
+  </div>
+  <div class="auth">
+    <div class="auth-tabs"><button id="tab-login" class="on" onclick="switchTab('login')">登录</button><button id="tab-reg" onclick="switchTab('reg')">注册</button></div>
+    <div class="auth-body">
+      <div id="auth-msg" class="auth-msg"></div>
+      <input id="f-username" type="text" placeholder="用户名（2–24 字符）" autocomplete="username">
+      <input id="f-email" type="email" placeholder="邮箱（选填）" autocomplete="email" style="display:none">
+      <input id="f-password" type="password" placeholder="密码（至少 6 位）" autocomplete="current-password">
+      <button class="submit" id="auth-submit" onclick="doAuth()">登 录</button>
+      <div class="auth-hint">注册即同意以学习为目的使用本站真题资源</div>
+    </div>
+  </div>
+</div></section>
+
+<section class="subjects"><div class="wrap">
+  <div class="subj-head">请选择备考科目　<b>[ 已上线 GESP C++ 一级 ]</b></div>
+  <div class="level">
+    <span class="level-tag lvl-1">一级</span>
+    <div class="subj-grid">
+      <div class="subj live" onclick="enter()"><div class="sn">GESP C++ 一级<small>325 题 · 真题解析 + 刷题 + 错题本</small></div><span class="go">进入 ›</span></div>
+      <div class="subj soon"><div class="sn">GESP Python 一级<small>敬请期待</small></div><span class="soon-tag">即将上线</span></div>
+      <div class="subj soon"><div class="sn">GESP 图形化 一级<small>敬请期待</small></div><span class="soon-tag">即将上线</span></div>
+    </div>
+  </div>
+  <div class="level">
+    <span class="level-tag lvl-2">二级</span>
+    <div class="subj-grid">
+      <div class="subj soon"><div class="sn">GESP C++ 二级<small>敬请期待</small></div><span class="soon-tag">即将上线</span></div>
+      <div class="subj soon"><div class="sn">GESP Python 二级<small>敬请期待</small></div><span class="soon-tag">即将上线</span></div>
+    </div>
+  </div>
+  <div class="level">
+    <span class="level-tag lvl-3">三级及以上</span>
+    <div class="subj-grid">
+      <div class="subj soon"><div class="sn">GESP C++ 三~八级<small>敬请期待</small></div><span class="soon-tag">即将上线</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="feature-strip"><div class="wrap"><div class="feat-grid">
+  <div class="feat"><div class="ic">🗂️</div><div class="ft">分类真题解析</div><div class="fd">7 章 + 子节,对照官方大纲,逐题精讲</div></div>
+  <div class="feat"><div class="ic">🎯</div><div class="ft">智能刷题自测</div><div class="fd">按章/按节/随机组卷,即时判分讲解</div></div>
+  <div class="feat"><div class="ic">📕</div><div class="ft">自动错题本</div><div class="fd">答错自动收录,答对自动移出,反复巩固</div></div>
+  <div class="feat"><div class="ic">📊</div><div class="ft">学习进度追踪</div><div class="fd">各章正确率一目了然,薄弱点清晰</div></div>
+</div></div></section>
+
+<footer>GESP 在线 · 数据来源 13 套 GESP C++ 一级官方真题(2023.03–2026.03)· 仅供备考学习<br>本站为开源自部署项目,非 CCF 官方网站</footer>
+
+<script>
+const API = '';
+let mode = 'login';
+function switchTab(m){
+  mode = m;
+  document.getElementById('tab-login').classList.toggle('on', m==='login');
+  document.getElementById('tab-reg').classList.toggle('on', m==='reg');
+  document.getElementById('f-email').style.display = m==='reg' ? 'block':'none';
+  document.getElementById('auth-submit').textContent = m==='reg' ? '注 册':'登 录';
+  document.getElementById('f-password').setAttribute('autocomplete', m==='reg'?'new-password':'current-password');
+  msg('');
+}
+function msg(t,cls){const e=document.getElementById('auth-msg');e.textContent=t;e.className='auth-msg '+(cls||'');}
+async function doAuth(){
+  const username=document.getElementById('f-username').value.trim();
+  const password=document.getElementById('f-password').value;
+  const email=document.getElementById('f-email').value.trim();
+  if(!username||!password){msg('请填写用户名和密码','err');return;}
+  const btn=document.getElementById('auth-submit'); btn.disabled=true;
+  try{
+    const r=await fetch(API+'/api/auth/'+(mode==='reg'?'register':'login'),{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(mode==='reg'?{username,password,email}:{username,password})});
+    const d=await r.json();
+    if(!r.ok){msg(d.error||'操作失败','err');btn.disabled=false;return;}
+    localStorage.setItem('gesp_token',d.token);
+    localStorage.setItem('gesp_user',d.user.username);
+    msg('成功,正在进入…','ok');
+    setTimeout(()=>location.href='/app',400);
+  }catch(e){msg('网络错误,请稍后再试','err');btn.disabled=false;}
+}
+function enter(){
+  if(localStorage.getItem('gesp_token')) location.href='/app';
+  else { document.querySelector('.auth').scrollIntoView({behavior:'smooth'}); document.getElementById('f-username').focus(); }
+}
+// 已登录则提示
+(function(){
+  const u=localStorage.getItem('gesp_user');
+  if(u){ document.getElementById('tb-user').innerHTML=`已登录为 <b>${u}</b> · <a onclick="location.href='/app'" style="color:var(--red)">进入题库 ›</a> · <a onclick="logout()" style="color:#999">退出</a>`; }
+})();
+function logout(){localStorage.removeItem('gesp_token');localStorage.removeItem('gesp_user');location.reload();}
+document.getElementById('f-password').addEventListener('keydown',e=>{if(e.key==='Enter')doAuth();});
+</script>
+</body>
+</html>

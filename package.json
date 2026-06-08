@@ -1,0 +1,23 @@
+{
+  "name": "gesp-platform",
+  "version": "1.0.0",
+  "description": "GESP C++ 一级真题在线学习平台 —— 注册登录 / 刷题判分 / 错题本 / 进度追踪",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --env-file=.env server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["GESP", "C++", "题库", "express", "libsql", "turso"],
+  "license": "MIT",
+  "dependencies": {
+    "@libsql/client": "^0.17.3",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3"
+  }
+}
