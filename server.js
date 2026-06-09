@@ -282,6 +282,28 @@ app.get('/api/recommend', authRequired, wrap(async (req, res) => {
   });
 }));
 
+/* ===== 静态页面(干净 URL) ===== */
+app.get('/about',   (req, res) => res.sendFile(path.join(__dirname, 'public', 'about.html')));
+app.get('/terms',   (req, res) => res.sendFile(path.join(__dirname, 'public', 'terms.html')));
+app.get('/privacy', (req, res) => res.sendFile(path.join(__dirname, 'public', 'privacy.html')));
+
+/* ===== SEO: robots / sitemap(按部署域名动态生成) ===== */
+function siteBase(req){
+  const proto = String(req.headers['x-forwarded-proto'] || req.protocol || 'https').split(',')[0];
+  return proto + '://' + req.headers.host;
+}
+app.get('/robots.txt', (req, res) => {
+  const base = siteBase(req);
+  res.type('text/plain').send('User-agent: *\nAllow: /\n\nSitemap: ' + base + '/sitemap.xml\n');
+});
+app.get('/sitemap.xml', (req, res) => {
+  const base = siteBase(req);
+  const paths = ['/', '/app?level=1', '/app?level=6', '/app?level=7', '/app?level=8', '/about', '/terms', '/privacy'];
+  const today = new Date().toISOString().slice(0, 10);
+  const urls = paths.map(p => '  <url><loc>' + base + p.replace(/&/g, '&amp;') + '</loc><lastmod>' + today + '</lastmod></url>').join('\n');
+  res.type('application/xml').send('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + '\n</urlset>\n');
+});
+
 /* ===== 前端兜底 ===== */
 app.get('/app', (req, res) => res.sendFile(path.join(__dirname, 'public', 'app.html')));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));

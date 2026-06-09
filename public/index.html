@@ -3,61 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GESP 在线 · CCF GESP C++ 等级认证真题题库</title>
+<title>GESPPASS · GESP C++ 认证真题题库与备考平台</title>
+<meta name="description" content="GESPPASS — CCF GESP C++ 等级认证备考平台。1100 道历年真题逐题精解、AI 个性化推题、限时模考估分、自动错题本、打卡积分排行。免费注册即可开始刷题。">
+<meta name="keywords" content="GESP,GESP C++,GESP真题,GESP一级,GESP考级,信息学奥赛,CCF GESP,编程等级认证,GESPPASS">
+<meta name="theme-color" content="#d92332">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GESPPASS · GESP C++ 认证学习平台">
+<meta property="og:description" content="1100 道 GESP C++ 历年真题逐题精解 · AI 个性化推题 · 限时模考估分 · 自动错题本。陪你从第一行代码到八级认证。">
+<meta property="og:image" content="/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GESPPASS · GESP C++ 认证学习平台">
+<meta name="twitter:description" content="1100 道真题精解 · AI 推题 · 模考估分。从第一行代码到八级认证。">
+<meta name="twitter:image" content="/og.png">
 <link rel="stylesheet" href="/css/app.css">
 <style>
-.hero{background:linear-gradient(120deg,#b51d2a,#d92332);color:#fff;padding:46px 0 40px}
-.hero .wrap{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
+.hero{background:#fff;border-bottom:1px solid var(--line);padding:46px 0 42px}
+.hero .wrap{display:flex;gap:42px;align-items:center;flex-wrap:wrap}
 .hero-left{flex:1;min-width:300px}
-.hero h1{font-size:38px;font-weight:800;line-height:1.25;margin-bottom:14px}
-.hero h1 em{font-style:normal;color:#ffe08a}
-.hero p{font-size:16px;opacity:.92;margin-bottom:22px}
-.hero-feats{display:flex;gap:10px;flex-wrap:wrap}
-.hero-feats span{background:rgba(255,255,255,.16);padding:7px 14px;border-radius:20px;font-size:13px}
-.auth{width:340px;background:#fff;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.18);color:var(--ink);overflow:hidden}
+.brand-lock{display:flex;align-items:center;gap:11px;margin-bottom:20px}
+.brand-lock .bm{width:40px;height:40px;border-radius:11px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:23px;font-weight:800;box-shadow:0 3px 12px rgba(217,35,50,.32)}
+.brand-lock .bn{font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.brand-lock .bn .pass{color:var(--red)}
+.hero h1{font-size:40px;font-weight:800;line-height:1.18;letter-spacing:-.01em;margin-bottom:14px;color:var(--ink)}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero p{font-size:15.5px;color:var(--ink2);margin-bottom:22px;max-width:450px;line-height:1.75}
+.hero-stats{display:flex;gap:32px}
+.hs .v{font-family:var(--mono);font-size:27px;font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1}
+.hs .l{font-size:12px;color:var(--ink3);margin-top:4px}
+.auth{width:350px;background:#fff;border-radius:var(--r);box-shadow:0 10px 34px rgba(22,32,54,.12);border:1px solid var(--line);color:var(--ink);overflow:hidden}
 .auth-tabs{display:flex}
-.auth-tabs button{flex:1;padding:15px;border:none;background:#f5f6f7;font-size:15px;font-weight:600;color:var(--gray)}
-.auth-tabs button.on{background:#fff;color:var(--red)}
+.auth-tabs button{flex:1;padding:15px;border:none;background:#f7f9fc;font-size:15px;font-weight:600;color:var(--gray);border-bottom:1px solid var(--line)}
+.auth-tabs button.on{background:#fff;color:var(--red);border-bottom:2px solid var(--red)}
 .auth-body{padding:24px}
-.auth-body input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:6px;font-size:14px;margin-bottom:12px;outline:none}
-.auth-body input:focus{border-color:var(--red)}
-.auth-body .submit{width:100%;padding:12px;background:var(--red);color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:600;margin-top:4px}
+.auth-body input{width:100%;height:42px;padding:0 14px;border:1px solid var(--line);border-radius:9px;font-size:14px;margin-bottom:12px;outline:none;transition:.15s;background:#f7f9fc}
+.auth-body input:focus{border-color:var(--red);background:#fff;box-shadow:0 0 0 3px var(--red-l)}
+.auth-body .submit{width:100%;height:44px;background:var(--red);color:#fff;border:none;border-radius:9px;font-size:15px;font-weight:700;margin-top:4px;box-shadow:0 2px 10px rgba(217,35,50,.22);transition:.15s}
 .auth-body .submit:hover{background:var(--red-d)}
 .auth-msg{font-size:12.5px;margin-bottom:10px;min-height:16px}
-.auth-msg.err{color:var(--red)}.auth-msg.ok{color:var(--green)}
-.auth-hint{font-size:11.5px;color:var(--gray);margin-top:12px;text-align:center}
-.subjects{padding:30px 0}
-.subj-head{font-size:16px;font-weight:700;margin-bottom:18px;color:var(--ink)}
-.subj-head b{color:var(--red)}
-.level{margin-bottom:22px}
-.level-tag{display:inline-block;color:#fff;font-size:13px;font-weight:700;padding:3px 12px;border-radius:3px;margin-bottom:12px}
+.auth-msg.err{color:var(--red)}.auth-msg.ok{color:var(--teal-d)}
+.auth-hint{font-size:11.5px;color:var(--gray);margin-top:14px;text-align:center}
+.subjects{padding:36px 0}
+.subj-head{font-size:17px;font-weight:700;margin-bottom:20px;color:var(--ink)}
+.subj-head b{color:var(--red);font-weight:700}
+.level{margin-bottom:24px}
+.level-tag{display:inline-flex;align-items:center;color:#fff;font-size:12.5px;font-weight:700;padding:4px 13px;border-radius:7px;margin-bottom:13px}
 .lvl-1{background:var(--blue)}.lvl-2{background:var(--amber)}.lvl-3{background:var(--green)}
-.subj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
-.subj{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;transition:.15s}
-.subj.live{cursor:pointer}.subj.live:hover{border-color:var(--red);box-shadow:0 3px 12px rgba(217,35,50,.12);transform:translateY(-2px)}
-.subj .sn{font-weight:600}.subj .sn small{display:block;color:var(--gray);font-weight:400;font-size:11.5px;margin-top:2px}
-.subj.soon{opacity:.55}
-.subj .go{color:var(--red);font-weight:700}.subj .soon-tag{font-size:11px;color:var(--gray);background:#f0f2f5;padding:2px 8px;border-radius:10px}
-.feature-strip{background:#fff;border-top:1px solid var(--line);padding:30px 0}
-.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.subj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:13px}
+.subj{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:17px 19px;display:flex;align-items:center;justify-content:space-between;transition:.16s}
+.subj.live{cursor:pointer}.subj.live:hover{border-color:#f3b9bf;box-shadow:0 8px 22px rgba(217,35,50,.12);transform:translateY(-2px)}
+.subj .sn{font-weight:700;font-size:14.5px}.subj .sn small{display:block;color:var(--gray);font-weight:400;font-size:11.5px;margin-top:3px}
+.subj.soon{opacity:.62;background:#fafbfd;box-shadow:none}
+.subj .go{color:var(--red);font-weight:700}.subj .soon-tag{font-size:11px;color:var(--gray);background:#eef1f5;padding:3px 10px;border-radius:10px}
+.feature-strip{background:#fff;border-top:1px solid var(--line);padding:36px 0}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px}
 .feat{text-align:center;padding:10px}
-.feat .ic{font-size:32px;margin-bottom:8px}
-.feat .ft{font-weight:700;margin-bottom:4px}
-.feat .fd{font-size:12.5px;color:var(--gray)}
+.feat .ic{font-size:30px;margin-bottom:10px}
+.feat .ft{font-weight:700;margin-bottom:5px;font-size:15px}
+.feat .fd{font-size:12.5px;color:var(--gray);line-height:1.6}
+@media(max-width:560px){.hero h1{font-size:30px}.hero-stats{gap:24px}.auth{width:100%}}
 </style>
 </head>
 <body>
-<div class="topbar"><div class="wrap"><span>GESP 在线 · CCF 编程能力等级认证备考平台</span>
+<div class="topbar"><div class="wrap"><span>GESPPASS · CCF GESP C++ 等级认证备考平台</span>
   <span class="right"><span id="tb-user"></span></span></div></div>
 <header><div class="wrap hd">
-  <div class="logo" onclick="location.href='/'"><span class="mark">GESP 在线</span><span class="badge-sub">等级认证</span></div>
+  <div class="logo" onclick="location.href='/'"><span class="mark"><span class="gesp">GESP</span><span class="pass">PASS</span></span><span class="badge-sub">等级认证</span></div>
 </div></header>
 
 <section class="hero"><div class="wrap">
   <div class="hero-left">
-    <h1>超级智能题库<br><em>因你而变</em></h1>
-    <p>对照 CCF 官方大纲分章分节 · 历年真题刷题判分<br>注册即可刷题、自动生成错题本、追踪学习进度</p>
-    <div class="hero-feats"><span>📚 分类真题解析</span><span>🤖 AI 智能推题</span><span>📝 限时模考估分</span><span>❌ 自动错题本</span><span>🏆 打卡 · 积分 · 排行</span></div>
+    <div class="brand-lock"><div class="bm">✓</div><div class="bn">GESP<span class="pass">PASS</span></div></div>
+    <h1>从第一行代码<br>到 <em>八级认证</em></h1>
+    <p>对照 CCF 官方大纲分章分节 · 1100 道历年真题逐题精解 · AI 个性化推题 · 限时模考估分,陪你一路通关。</p>
+    <div class="hero-stats">
+      <div class="hs"><div class="v">1100</div><div class="l">逐题解析真题</div></div>
+      <div class="hs"><div class="v">8</div><div class="l">认证段位</div></div>
+      <div class="hs"><div class="v">13</div><div class="l">套官方真题</div></div>
+    </div>
   </div>
   <div class="auth">
     <div class="auth-tabs"><button id="tab-login" class="on" onclick="switchTab('login')">登录</button><button id="tab-reg" onclick="switchTab('reg')">注册</button></div>
@@ -85,19 +108,19 @@
   <div class="level">
     <span class="level-tag" style="background:#0ea5e9">六级</span>
     <div class="subj-grid">
-      <div class="subj live" onclick="enter(6)"><div class="sn">GESP C++ 六级<small>官方 8 章 · 真题解析 + 刷题 + 错题本</small></div><span class="go">进入 ›</span></div>
+      <div class="subj live" onclick="enter(6)"><div class="sn">GESP C++ 六级<small>官方 8 章 · 275 题 · 真题解析 + 刷题</small></div><span class="go">进入 ›</span></div>
     </div>
   </div>
   <div class="level">
     <span class="level-tag" style="background:#f59e0b">七级</span>
     <div class="subj-grid">
-      <div class="subj live" onclick="enter(7)"><div class="sn">GESP C++ 七级<small>官方 8 章 · 真题解析 + 刷题 + 错题本</small></div><span class="go">进入 ›</span></div>
+      <div class="subj live" onclick="enter(7)"><div class="sn">GESP C++ 七级<small>官方 8 章 · 250 题 · 真题解析 + 刷题</small></div><span class="go">进入 ›</span></div>
     </div>
   </div>
   <div class="level">
     <span class="level-tag" style="background:#7c3aed">八级</span>
     <div class="subj-grid">
-      <div class="subj live" onclick="enter(8)"><div class="sn">GESP C++ 八级<small>官方 9 章 · 真题录入中</small></div><span class="go">进入 ›</span></div>
+      <div class="subj live" onclick="enter(8)"><div class="sn">GESP C++ 八级<small>官方 9 章 · 250 题 · 真题解析 + 刷题</small></div><span class="go">进入 ›</span></div>
     </div>
   </div>
   <div class="level">
@@ -121,7 +144,11 @@
   <div class="feat"><div class="ic">🏆</div><div class="ft">打卡 · 积分 · 排行</div><div class="fd">每日打卡、积分升段、全站排行,坚持更有动力</div></div>
 </div></div></section>
 
-<footer>GESP 在线 · 数据来源 13 套 GESP C++ 一级官方真题(2023.03–2026.03)· 仅供备考学习<br>本站为开源自部署项目,非 CCF 官方网站</footer>
+<footer>
+  <div><span style="font-weight:700;color:var(--ink)">GESP<span style="color:var(--red)">PASS</span></span> · 数据来源 13 套 GESP C++ 官方真题（2023.03–2026.03）· 仅供备考学习</div>
+  <div style="margin-top:6px"><a href="/about">关于我们</a> · <a href="/terms">用户协议</a> · <a href="/privacy">隐私政策</a></div>
+  <div style="margin-top:6px">本站为独立第三方学习平台,非 CCF 官方网站</div>
+</footer>
 
 <script>
 const API = '';
@@ -150,7 +177,7 @@ async function doAuth(){
     if(!r.ok){msg(d.error||'操作失败','err');btn.disabled=false;return;}
     localStorage.setItem('gesp_token',d.token);
     localStorage.setItem('gesp_user',d.user.username);
-    msg('成功!请在下方选择级别进入','ok');
+    msg('成功!正在进入…','ok');
     setTimeout(()=>location.reload(),500);
   }catch(e){msg('网络错误,请稍后再试','err');btn.disabled=false;}
 }
@@ -158,17 +185,16 @@ function enter(level){
   if(localStorage.getItem('gesp_token')) location.href='/app?level='+(level||1);
   else { document.querySelector('.auth').scrollIntoView({behavior:'smooth'}); document.getElementById('f-username').focus(); }
 }
-// 已登录:隐藏登录框,改为欢迎面板
 (function(){
   const escH=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const u=localStorage.getItem('gesp_user');
   if(u){
-    document.getElementById('tb-user').innerHTML=`已登录为 <b>${escH(u)}</b> · <a onclick="logout()" style="color:#fff;opacity:.85">退出</a>`;
+    document.getElementById('tb-user').innerHTML=`已登录为 <b style="color:var(--ink)">${escH(u)}</b> · <a onclick="logout()" style="color:var(--red)">退出</a>`;
     const auth=document.querySelector('.auth');
-    if(auth) auth.innerHTML=`<div class="auth-body" style="text-align:center;padding:30px 24px">
-      <div style="font-size:42px;margin-bottom:10px">👋</div>
+    if(auth) auth.innerHTML=`<div class="auth-body" style="text-align:center;padding:34px 24px">
+      <div style="font-size:44px;margin-bottom:10px">👋</div>
       <div style="font-size:18px;font-weight:700;margin-bottom:6px">欢迎回来,${escH(u)}!</div>
-      <div style="color:var(--gray);font-size:13px;margin-bottom:20px">在下方选择备考级别即可继续学习</div>
+      <div style="color:var(--gray);font-size:13px;margin-bottom:22px">在下方选择备考级别即可继续学习</div>
       <button class="submit" onclick="document.querySelector('.subjects').scrollIntoView({behavior:'smooth'})">选择级别进入 ›</button>
       <div class="auth-hint"><a onclick="logout()" style="color:var(--gray)">退出登录</a></div></div>`;
   }
