@@ -1,0 +1,31 @@
+{
+  "name": "gesp-platform",
+  "version": "2.0.0",
+  "description": "GESP CCF 编程能力等级认证(C++)多级别在线学习平台 —— 一级~八级 / 注册登录 / 刷题判分 / 错题本 / 进度追踪",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --env-file=.env server.js",
+    "reseed": "node scripts/reseed.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "GESP",
+    "C++",
+    "题库",
+    "express",
+    "libsql",
+    "turso"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@libsql/client": "^0.17.3",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3"
+  }
+}
