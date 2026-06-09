@@ -1,4 +1,4 @@
-# GESP 在线 · C++ 一级真题学习平台
+# GESP 在线 · CCF 编程能力等级认证(C++)多级别学习平台
 
 一个**注册登录后才能访问**的全栈在线刷题系统:13 套 GESP C++ 一级官方真题(2023.03–2026.03)、共 **325 题**(195 单选 + 130 判断),对照 CCF 官方大纲分 7 章/子节。支持刷题判分、自动错题本、收藏夹、学习进度追踪。
 
@@ -108,8 +108,12 @@ gesp-platform/
 ├── src/
 │   ├── db.js            数据访问层(唯一接触数据库;libSQL 客户端 + 建表/种子/查询)
 │   └── auth.js          注册/登录/JWT/鉴权中间件
-├── public/              前端:index.html / app.html / js/app.js / css/app.css
-├── data/site_data.json  题库种子(325 题)
+├── public/              前端:index.html(门户/选级别) / app.html / js/app.js / css/app.css
+├── data/
+│   ├── levels.json      级别清单(含内容版本 version;加级别=加一行+丢一个数据文件)
+│   ├── site_data.json   一级题库(325 题)
+│   └── level8.json      八级题库(官方 9 章脚手架,真题录入中)
+├── scripts/reseed.js    手动强制重建题库内容(npm run reseed)
 ├── .env.example         环境变量模板(含 Turso 建库步骤)
 └── package.json
 ```
@@ -119,15 +123,16 @@ gesp-platform/
 | 方法 + 路径 | 作用 |
 |---|---|
 | `POST /api/auth/register` · `login` | 注册 / 登录,返回 {token, user} |
-| `GET /api/catalog` | 章节树 + 各级计数 + 套卷列表 |
+| `GET /api/levels` | 级别列表 + 各级题量/章数(门户用) |
+| `GET /api/catalog?level=N` | 某级别章节树 + 计数 + 套卷列表 |
 | `GET /api/sections/:sid/questions` | 某子节全部题(含答案+解析+历年分布) |
-| `GET /api/search?q=` | 全站搜索(<=80 条) |
+| `GET /api/search?q=&level=N` | 某级别内搜索(<=80 条) |
 | `POST /api/practice/start` | 组卷抽题({mode,id,count},**不含答案**) |
 | `POST /api/attempts` | 提交作答({qid,chosen}),服务端判分并更新错题本 |
 | `GET /api/attempts/recent` | 最近作答记录 |
 | `GET /api/wrongbook` · `POST /api/wrongbook/:qid/master` | 错题本 / 标记已掌握 |
 | `GET·POST·DELETE /api/bookmarks[/:qid]` | 收藏 |
-| `GET /api/progress` | 学习进度统计 |
+| `GET /api/progress?level=N` | 某级别学习进度统计 |
 
 ## 数据量大了之后:迁移到更稳/付费方案
 
@@ -142,10 +147,27 @@ gesp-platform/
 
 已内置:密码 bcrypt 哈希、JWT 鉴权、注册输入校验、SQL 全参数化、请求体大小限制。**建议补**:强随机 `JWT_SECRET` + 全程 HTTPS(Render 默认有);为 `/api/auth/*` 加登录/注册限流防爆破(如 express-rate-limit);收紧 CORS 到你的前端域名;可将 token 改为 httpOnly Cookie。
 
+## 多级别架构与数据更新
+
+**数据模型**:级别(level) → 章(chapter) → 节(section) → 题(question)。
+
+- 每个级别一个数据文件(`data/site_data.json`=一级、`data/level8.json`=八级),由 `data/levels.json` 清单驱动加载。
+- 章/节 id 入库时自动按级别加前缀(`L1:c1`、`L8:c1`)避免跨级冲突;qid 各级别自身唯一。
+- **加一个级别** = `levels.json` 的 `levels` 里加一行 `{level,name,file}` + 把数据文件丢进 `data/`,再把 `version` +1。
+
+**内容更新靠「版本号 + 重部署自动重载」**:
+
+- `levels.json` 里有 `version`。**每次改题库内容(加题 / 改解析 / 加级别)就把 version +1**。
+- 平台启动时比对「库里的内容版本」与「levels.json 的 version」:
+  - 不一致(或检测到旧表结构)→ **自动重建题库内容表并重新导入所有级别**;
+  - **用户数据(账号 / 答题 / 错题本 / 收藏)始终保留**。
+- 所以更新内容的标准流程:**改数据文件 → version +1 → 推 GitHub → Render 自动重部署**,数据自动生效,无需手动操作。
+- 需立即强制重载(不改 version):本地或设好 `TURSO_*` 后运行 `npm run reseed`。
+
+> 首次把这版多级别代码部署到**已有数据**的 Turso 上:重部署后启动会自动把旧表升级为多级别结构并载入八级,**账号和刷题进度不会丢**。
+
 ## 题库与解析现状
 
-325 题已**全部分类入库并标注答案**,可正常刷题判分。**逐题文字解析目前完成第 1 章(32 题)**,第 2–7 章解析按章补充中——未写解析的题前端显示「解析按章补写中」,不影响做题。
-
-**补充/修改解析**:解析存在 `data/site_data.json` 每题的 `explanation` 字段。改完后:
-- 本地(文件库):删 `data/gesp.db` 后重启,按新种子重新导入。
-- Turso:种子只在「库为空」时导入;库已有数据时应写个 `UPDATE questions SET explanation=? WHERE qid=?` 的小脚本批量更新(避免清库丢用户数据)。
+- **一级**:325 题全部分类入库并标注答案,正常刷题判分。逐题文字解析已完成第 1 章(32 题),2–7 章按章补充中(未写解析的题显示「解析按章补写中」,不影响做题)。
+- **八级**:官方 9 章结构已就绪(计数原理 / 排列与组合 / 杨辉三角 / 倍增法 / 代数与平面几何 / 图论算法 / 复杂度分析 / 算法优化 / 综合应用),**真题正逐套录入(单选+判断,含完整解析)**。
+- 其余级别(2–7)结构机制就绪,待真题录入。
