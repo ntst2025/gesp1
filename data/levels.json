@@ -1,0 +1,9 @@
+{
+  "levels": [
+    { "level": 1, "name": "C++ 一级", "file": "site_data.json" },
+    { "level": 6, "name": "C++ 六级", "file": "level6.json" },
+    { "level": 7, "name": "C++ 七级", "file": "level7.json" },
+    { "level": 8, "name": "C++ 八级", "file": "level8.json" }
+  ],
+  "version": 11
+}
