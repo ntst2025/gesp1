@@ -49,7 +49,14 @@ CREATE TABLE IF NOT EXISTS bookmarks(
   created_at TEXT NOT NULL DEFAULT (datetime('now')), PRIMARY KEY(user_id, qid)
 );
 CREATE TABLE IF NOT EXISTS meta(k TEXT PRIMARY KEY, v TEXT);
+CREATE TABLE IF NOT EXISTS mock_results(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL, level INTEGER NOT NULL, paper TEXT NOT NULL,
+  score INTEGER NOT NULL, total_score INTEGER NOT NULL, correct INTEGER NOT NULL, total_q INTEGER NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
 CREATE INDEX IF NOT EXISTS idx_attempts_user ON attempts(user_id, qid);
+CREATE INDEX IF NOT EXISTS idx_mock_paper ON mock_results(level, paper);
 `;
 // 内容表(levels/chapters/sections/questions)及其索引:只在 reseedAll 里(DROP 旧表之后)整体重建,
 // 保证索引一定建在含 level 列的新表上,避免旧 schema 残留导致 "no such column: level"。
@@ -192,6 +199,44 @@ const Q = {
   addBookmark: (uid, qid) => run('INSERT OR IGNORE INTO bookmarks(user_id,qid) VALUES(?,?)', [uid, qid]),
   delBookmark: (uid, qid) => run('DELETE FROM bookmarks WHERE user_id = ? AND qid = ?', [uid, qid]),
   bookmarkQids: (uid) => all('SELECT qid FROM bookmarks WHERE user_id = ? ORDER BY created_at DESC', [uid]),
+
+  // ---- 积分 / 排行 / 打卡(全局,跨级) ---- 积分:每条正确作答 单选+2、判断+1
+  leaderboard: (lim) => all(`
+    SELECT u.id, u.username,
+      COALESCE(SUM(CASE WHEN a.correct=1 THEN (CASE WHEN q.type='mc' THEN 2 ELSE 1 END) ELSE 0 END),0) points,
+      COUNT(a.id) attempts
+    FROM users u
+    LEFT JOIN attempts a ON a.user_id = u.id
+    LEFT JOIN questions q ON q.qid = a.qid
+    GROUP BY u.id HAVING attempts > 0
+    ORDER BY points DESC, attempts DESC LIMIT ?`, [lim]),
+  userPointsRow: (uid) => get(`
+    SELECT COALESCE(SUM(CASE WHEN a.correct=1 THEN (CASE WHEN q.type='mc' THEN 2 ELSE 1 END) ELSE 0 END),0) points,
+      COUNT(a.id) attempts, COALESCE(SUM(a.correct),0) correct
+    FROM attempts a JOIN questions q ON q.qid = a.qid WHERE a.user_id = ?`, [uid]),
+  attemptDates: (uid) => all("SELECT DISTINCT date(created_at) d FROM attempts WHERE user_id = ? ORDER BY d DESC", [uid]),
+
+  // ---- 模考(按整套真题) ----
+  questionsByPaper: (lv, paper) => all("SELECT * FROM questions WHERE level = ? AND paper = ? ORDER BY (type='tf'), num", [lv, paper]),
+  addMockResult: (uid, lv, paper, score, ts, correct, totq) =>
+    run("INSERT INTO mock_results(user_id,level,paper,score,total_score,correct,total_q) VALUES(?,?,?,?,?,?,?)", [uid, lv, paper, score, ts, correct, totq]),
+  mockBestForPaper: (lv, paper) => all("SELECT user_id, MAX(score) best FROM mock_results WHERE level = ? AND paper = ? GROUP BY user_id ORDER BY best DESC", [lv, paper]),
+  mockHistory: (uid) => all("SELECT level,paper,score,total_score,correct,total_q,created_at FROM mock_results WHERE user_id = ? ORDER BY created_at DESC LIMIT 30", [uid]),
+
+  // ---- 个性化推荐(按知识点/节统计 + 取题) ----
+  sectionStatsByLevel: (uid, lv) => all(`
+    WITH latest AS (
+      SELECT a.qid, a.correct, ROW_NUMBER() OVER (PARTITION BY a.qid ORDER BY a.id DESC) rn
+      FROM attempts a WHERE a.user_id = ?)
+    SELECT q.section_id, q.chapter_id, COUNT(*) answered, COALESCE(SUM(l.correct),0) correct
+    FROM latest l JOIN questions q ON q.qid = l.qid
+    WHERE l.rn = 1 AND q.level = ? GROUP BY q.section_id`, [uid, lv]),
+  seenQidsByLevel: (uid, lv) => all("SELECT DISTINCT a.qid FROM attempts a JOIN questions q ON q.qid=a.qid WHERE a.user_id = ? AND q.level = ?", [uid, lv]),
+  questionsBySectionIds: (sids) => {
+    if (!sids.length) return Promise.resolve([]);
+    const ph = sids.map(() => '?').join(',');
+    return all(`SELECT * FROM questions WHERE section_id IN (${ph})`, sids);
+  },
 };
 
 async function questionsByQids(qids) {

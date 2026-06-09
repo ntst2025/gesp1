@@ -69,15 +69,18 @@ let browsePage={};
 const sectionCache={};
 const C = ()=>document.getElementById('content');
 
-function setActiveTab(tab){ ['browse','practice','wrong','progress','mark'].forEach(t=>
-  document.getElementById('tab-'+t).classList.toggle('on',t===tab)); }
+function setActiveTab(tab){ ['browse','practice','recommend','mock','wrong','progress','rank','mark'].forEach(t=>{
+  const el=document.getElementById('tab-'+t); if(el) el.classList.toggle('on',t===tab); }); }
 
 async function go(tab){
   setActiveTab(tab); document.getElementById('q').value='';
   if(tab==='browse'){ view={tab:'browse',sub:'overview'}; await ensureCatalog(); renderBrowse(); }
   else if(tab==='practice'){ await ensureCatalog(); renderPracticeSetup(); }
+  else if(tab==='recommend'){ await ensureCatalog(); await renderRecommend(); }
+  else if(tab==='mock'){ await ensureCatalog(); await renderMock(); }
   else if(tab==='wrong'){ await renderWrong(); }
   else if(tab==='progress'){ await renderProgress(); }
+  else if(tab==='rank'){ await renderRank(); }
   else if(tab==='mark'){ await renderMark(); }
   window.scrollTo(0,0);
 }
@@ -233,7 +236,7 @@ async function startQuiz(){
   try{
     const d=await api('/api/practice/start',{method:'POST',body:JSON.stringify(quizCfg)});
     if(!d.questions.length){ C().innerHTML=`<div class="card"><div class="card-b empty"><div class="big">🤔</div>没有可练的题目${quizCfg.mode==='wrongbook'?'——你的错题本是空的,先去刷题吧!':''}<br><br><button class="btn solid" onclick="renderPracticeSetup()">返回</button></div></div>`; return; }
-    quiz={questions:d.questions,idx:0,results:[],correct:0}; renderQuiz();
+    quiz={questions:d.questions,idx:0,results:[],correct:0,kind:'practice'}; renderQuiz();
   }catch(e){ C().innerHTML=`<div class="empty">组卷失败：${esc(e.message)}</div>`; }
 }
 function renderQuiz(){
@@ -282,8 +285,8 @@ function finishQuiz(){
   const emoji=acc>=90?'🏆':acc>=70?'👍':acc>=50?'💪':'📖';
   C().innerHTML=`<div class="card"><div class="card-b summary"><div class="big" style="font-size:40px">${emoji}</div>
     <div class="ring">${c} / ${n}</div><div style="color:var(--gray);margin-bottom:6px">正确率 ${acc}%</div>
-    <div style="margin:20px 0;display:flex;gap:12px;justify-content:center">
-      <button class="btn solid" onclick="startQuiz()">再来一组</button>
+    <div style="margin:20px 0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn solid" onclick="${quiz.kind==='recommend'?'go(\'recommend\')':'startQuiz()'}">${quiz.kind==='recommend'?'🤖 再推一组':'再来一组'}</button>
       <button class="btn" onclick="renderPracticeSetup()">换个范围</button>
       ${n-c>0?'<button class="btn teal" onclick="go(\'wrong\')">看错题本</button>':''}</div>
     <div style="color:var(--gray);font-size:12.5px">本次做题记录已保存,可在「我的进度」查看</div></div></div>`;
@@ -308,20 +311,24 @@ async function masterQ(qid,idx){ try{ await api('/api/wrongbook/'+qid+'/master',
 /* ===================== 我的进度 ===================== */
 async function renderProgress(){
   C().innerHTML='<div class="empty"><div class="big">⏳</div>统计中…</div>';
-  const d=await api('/api/progress?level='+LEVEL);
+  const [d,st]=await Promise.all([api('/api/progress?level='+LEVEL), api('/api/stats/me')]);
   const rows=d.by_chapter.map(c=>{
     const acc=c.answered?Math.round(c.correct/c.answered*100):0;
     const cov=Math.round(c.answered/c.total*100);
     return `<div class="prog-row"><span class="pname">第${short(c.id).slice(1)}章 ${c.name}</span>
       <div class="pbar"><span class="done" style="width:${cov}%"></span></div>
       <span class="pval">已做 ${c.answered}/${c.total} · 正确率 ${c.answered?acc+'%':'—'}</span></div>`;}).join('');
-  C().innerHTML=`<div class="card"><div class="card-h">📊 我的学习进度</div><div class="card-b">
+  C().innerHTML=`<div class="card"><div class="card-h">📊 我的学习进度<span class="sub">${st.tier_icon} ${st.tier} · ${st.points} 积分 · 连续打卡 ${st.streak} 天</span></div><div class="card-b">
     <div class="stat-cards">
       <div class="stat-card"><div class="num">${d.answered}</div><div class="lab">已做题数 / ${d.total_questions}</div></div>
       <div class="stat-card teal"><div class="num">${d.accuracy}%</div><div class="lab">累计正确率</div></div>
       <div class="stat-card blue"><div class="num">${d.attempts}</div><div class="lab">总作答次数</div></div>
       <div class="stat-card amber"><div class="num">${d.wrongbook_count}</div><div class="lab">错题本待巩固</div></div>
-    </div></div></div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn solid" onclick="go('recommend')">🤖 智能推题(攻克薄弱点)</button>
+      <button class="btn teal" onclick="go('mock')">📝 来一套限时模考</button></div>
+    </div></div>
     <div class="card"><div class="card-h">各章覆盖与正确率<span class="sub">进度条＝已做覆盖率</span></div><div class="card-b">${rows}
       <div class="notice" style="margin-top:14px">覆盖率＝本章已作答的不同题目占比;正确率按每题最近一次作答计算。多刷多练,数字会动起来 📈</div></div></div>
     <div style="text-align:center;margin-bottom:16px"><button class="btn solid" onclick="go('practice')">🎯 继续刷题</button></div>`;
@@ -336,6 +343,150 @@ async function renderMark(){
   C().innerHTML=`<div class="card"><div class="card-h">⭐ 我的收藏<span class="sub">共 ${d.questions.length} 题</span></div><div class="card-b">
     <div class="qtools"><span class="cnt">点 ★ 可取消收藏</span><span class="btn" onclick="expandAll(true)">展开全部</span><span class="btn gray" onclick="expandAll(false)">收起全部</span></div>
     <div id="qlist">${qhtml}</div></div></div>`;
+}
+
+/* ===================== 🤖 AI 智能推题 ===================== */
+let REC_QUESTIONS=[];
+async function renderRecommend(){
+  C().innerHTML='<div class="empty"><div class="big">🤖</div>正在分析你的错题与各知识点掌握度…</div>';
+  const d=await api('/api/recommend?level='+LEVEL);
+  REC_QUESTIONS=d.questions;
+  const wp=d.weak_points.map(w=>{
+    const tag = w.wrong>0 ? `<span style="color:var(--red);font-weight:600">错 ${w.wrong} 题</span>`
+      : (w.answered>0 ? `正确率 ${w.accuracy}%` : '<span style="color:#aaa">未练习</span>');
+    return `<div class="wp-row"><span class="wp-name">${esc(w.chapter)} · ${esc(w.name)}</span>
+      <span class="wp-stat">已做 ${w.answered}/${w.total} · ${tag}</span></div>`;
+  }).join('');
+  const intro = d.personalized
+    ? `系统根据你的<b>错题分布</b>与<b>各知识点掌握度</b>,锁定了下面 ${d.weak_points.length} 个最薄弱的知识点,并精选 <b>${d.set_size}</b> 道针对性真题（含 <b>${d.from_wrongbook}</b> 道你做错过的）为你强化。`
+    : `你在本级别还没有足够的作答数据。先做一组打基础,系统会据此为你<b>个性化</b>推送最薄弱知识点的题目。`;
+  C().innerHTML=`<div class="card"><div class="card-h">🤖 AI 个性化推题<span class="sub">${CATALOG.level_name} · ${d.personalized?'已按你的数据生成':'通用入门组'}</span></div>
+    <div class="card-b">
+      <div class="ai-intro">${intro}</div>
+      ${d.weak_points.length?`<div class="wp-box"><div class="wp-title">📌 为你重点突破的知识点</div>${wp}</div>`:''}
+      <div style="margin-top:18px;text-align:center">
+        <button class="btn solid" style="padding:12px 30px;font-size:15px" ${d.set_size?'':'disabled'} onclick="startRecommended()">🎯 开始个性化练习（${d.set_size} 题）›</button></div>
+      <div class="notice" style="margin-top:14px">练得越多,推荐越准。做错的题会自动进错题本,并在下次优先推送给你。</div>
+    </div></div>`;
+}
+function startRecommended(){
+  if(!REC_QUESTIONS.length)return;
+  quiz={questions:REC_QUESTIONS.slice(),idx:0,results:[],correct:0,kind:'recommend'}; renderQuiz(); window.scrollTo(0,0);
+}
+
+/* ===================== 📝 限时模考 ===================== */
+let MOCK=null;
+async function renderMock(){
+  C().innerHTML='<div class="empty"><div class="big">📝</div>加载真题套卷…</div>';
+  const d=await api('/api/mock/papers?level='+LEVEL);
+  const papers=d.papers.filter(p=>p.total>0);
+  const best={}; d.history.forEach(h=>{ if(Number(h.level)===Number(LEVEL)){ if(best[h.paper]==null||h.score>best[h.paper])best[h.paper]=h.score; } });
+  const rows=papers.map(p=>{
+    const b=best[p.paper];
+    return `<tr class="clk" onclick="startMock('${p.paper}')">
+      <td class="sec-name"><span class="sid">${papFull(p.paper)}</span></td>
+      <td class="num">单选${p.mc}+判断${p.tf}</td><td class="num">${p.total*2} 分</td>
+      <td class="num">${b!=null?`<b style="color:var(--teal)">${b} 分</b>`:'<span style="color:#bbb">未考</span>'}</td>
+      <td class="num"><span class="go" style="color:var(--red);font-weight:700">开始 ›</span></td></tr>`;}).join('');
+  let hist=''; if(d.history.length){ hist=`<div class="card"><div class="card-h">📜 最近模考记录</div><div class="card-b"><table>
+    <thead><tr><th>套卷</th><th class="num">得分</th><th class="num">答对</th><th class="num">时间</th></tr></thead><tbody>${
+    d.history.slice(0,10).map(h=>`<tr><td class="sec-name">L${h.level} ${papFull(h.paper)}</td><td class="num"><b>${h.score}</b>/${h.total_score}</td><td class="num">${h.correct}/${h.total_q}</td><td class="num" style="color:#888;font-size:12px">${(h.created_at||'').slice(5,16)}</td></tr>`).join('')
+    }</tbody></table></div></div>`; }
+  C().innerHTML=`<div class="card"><div class="card-h">📝 限时模考 · ${CATALOG.level_name}<span class="sub">整套真题客观题 · 限时 40 分钟</span></div>
+    <div class="card-b">
+      <div class="notice" style="margin-bottom:14px">选一套历年真题进入限时模考,交卷后自动算分(每题 2 分)、给出排名与逐题解析。模考成绩同样计入你的进度与错题本。</div>
+      ${rows?`<table><thead><tr><th>真题套卷</th><th class="num">题量</th><th class="num">满分</th><th class="num">我的最佳</th><th class="num"></th></tr></thead><tbody>${rows}</tbody></table>`:'<div class="empty">本级别暂无可模考的整套真题</div>'}
+    </div></div>${hist}`;
+}
+async function startMock(paper){
+  C().innerHTML='<div class="empty"><div class="big">⏳</div>组卷中…</div>';
+  try{
+    const d=await api('/api/mock/start',{method:'POST',body:JSON.stringify({level:Number(LEVEL),paper})});
+    MOCK={level:Number(LEVEL),paper,questions:d.questions,answers:{},remain:d.duration_sec,timer:null,submitted:false};
+    renderMockExam(); MOCK.timer=setInterval(tickMock,1000);
+  }catch(e){ C().innerHTML=`<div class="empty">组卷失败：${esc(e.message)}</div>`; }
+}
+function renderMockExam(){
+  const qs=MOCK.questions;
+  const items=qs.map((q,i)=>{
+    const isMC=q.type==='mc';
+    const opts = isMC
+      ? ['A','B','C','D'].filter(k=>q.options[k]!=null).map(k=>`<div class="opt sel ${MOCK.answers[q.qid]===k?'pick':''}" onclick="pickMock('${q.qid}','${k}',this)"><span class="ok">${k}</span><span>${hlInline(q.options[k])}</span></div>`).join('')
+      : [['√','正确'],['×','错误']].map(([v,t])=>`<div class="opt sel ${MOCK.answers[q.qid]===v?'pick':''}" onclick="pickMock('${q.qid}','${v}',this)"><span class="ok">${v}</span><span>${t}</span></div>`).join('');
+    return `<div class="mq" id="mq-${i}"><div class="mq-h"><span class="qtype type-${q.type}">${isMC?'单选':'判断'}</span> <b>第 ${i+1} 题</b> <span class="q-src">(${papFull(q.paper)} · 原第${q.num}题)</span></div>
+      <div class="q-stem">${hlInline(q.stem)}</div>${q.code?`<pre class="q-code">${hl(q.code)}</pre>`:''}<div class="q-opts">${opts}</div></div>`;
+  }).join('');
+  C().innerHTML=`<div class="mock-bar"><span class="mb-t">📝 ${papFull(MOCK.paper)} 模考</span><span class="mock-timer" id="mocktimer">--:--</span><span class="mock-prog" id="mockprog">已答 0/${qs.length}</span><button class="btn solid" onclick="submitMock(false)">交卷</button></div>
+    <div class="card"><div class="card-b"><div id="mqlist">${items}</div>
+      <div style="text-align:center;margin-top:16px"><button class="btn solid" style="padding:12px 36px;font-size:15px" onclick="submitMock(false)">提交试卷 ›</button>
+      <button class="btn gray" style="margin-left:10px" onclick="quitMock()">放弃</button></div></div></div>`;
+  updateMockProg(); window.scrollTo(0,0);
+}
+function pickMock(qid,val,el){ if(MOCK.submitted)return; MOCK.answers[qid]=val;
+  el.parentElement.querySelectorAll('.opt').forEach(o=>o.classList.remove('pick')); el.classList.add('pick'); updateMockProg(); }
+function updateMockProg(){ const e=document.getElementById('mockprog'); if(e)e.textContent=`已答 ${Object.keys(MOCK.answers).length}/${MOCK.questions.length}`; }
+function tickMock(){ if(!MOCK)return; MOCK.remain--; const m=Math.floor(MOCK.remain/60),s=MOCK.remain%60;
+  const e=document.getElementById('mocktimer'); if(e){ e.textContent=`${m}:${String(s).padStart(2,'0')}`; if(MOCK.remain<=120)e.classList.add('warn'); }
+  if(MOCK.remain<=0) submitMock(true); }
+function quitMock(){ if(MOCK&&MOCK.timer)clearInterval(MOCK.timer); MOCK=null; renderMock(); }
+async function submitMock(auto){
+  if(!MOCK||MOCK.submitted)return;
+  const un=MOCK.questions.length-Object.keys(MOCK.answers).length;
+  if(!auto && un>0 && !confirm(`还有 ${un} 题未作答,确定交卷?`))return;
+  MOCK.submitted=true; if(MOCK.timer)clearInterval(MOCK.timer);
+  C().innerHTML='<div class="empty"><div class="big">⏳</div>判分中…</div>';
+  try{ const d=await api('/api/mock/submit',{method:'POST',body:JSON.stringify({level:MOCK.level,paper:MOCK.paper,answers:MOCK.answers})}); renderMockResult(d); }
+  catch(e){ C().innerHTML=`<div class="empty">交卷失败：${esc(e.message)}</div>`; }
+}
+function renderMockResult(d){
+  const pct=d.total_score?Math.round(d.score/d.total_score*100):0; const emoji=pct>=85?'🏆':pct>=60?'👍':pct>=40?'💪':'📖';
+  const details=d.details.map((q,i)=>{
+    const isMC=q.type==='mc';
+    const optsHtml = isMC?'<div class="q-opts">'+['A','B','C','D'].filter(k=>q.options[k]!=null).map(k=>{
+        let cls=''; if(k===q.answer)cls='correct show'; else if(k===q.your&&!q.correct)cls='wrongpick';
+        return `<div class="opt ${cls}"><span class="ok">${k}</span><span>${hlInline(q.options[k])}</span></div>`;}).join('')+'</div>':'';
+    const e=q.explanation?esc(q.explanation):'<span class="todo">本题暂未提供解析</span>';
+    return `<div class="q open" id="q${i}"><div class="q-head"><span class="qtype type-${q.type}">${isMC?'单选':'判断'}</span>
+      <span class="q-src">第${i+1}题</span> <span style="margin-left:auto;font-weight:600" class="${q.correct?'fb-ok':'fb-no'}">${q.correct?'✓ 正确':'✗ 你答'+(q.your||'未答')+' / 应'+q.answer}</span></div>
+      <div class="q-body"><div class="q-stem">${hlInline(q.stem)}</div>${q.code?`<pre class="q-code">${hl(q.code)}</pre>`:''}${optsHtml}
+      <div class="ans show"><div class="a-line">正确答案：<span class="ansv">${q.answer}</span></div><div class="exp">${e}</div></div></div></div>`;
+  }).join('');
+  C().innerHTML=`<div class="card"><div class="card-b summary"><div class="big" style="font-size:40px">${emoji}</div>
+    <div class="ring">${d.score} / ${d.total_score}</div>
+    <div style="color:var(--gray);margin-bottom:4px">答对 ${d.correct}/${d.total_q} · 单选 ${d.mc_correct}/${d.mc_total} · 判断 ${d.tf_correct}/${d.tf_total}</div>
+    <div style="margin:8px 0 16px"><span class="rank-badge">本套排名 ${d.rank} / ${d.takers}</span></div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn solid" onclick="go('mock')">再考一套</button>
+      ${d.correct<d.total_q?'<button class="btn teal" onclick="go(\'wrong\')">看错题本</button>':''}
+      <button class="btn" onclick="go('recommend')">🤖 针对性练习</button></div>
+    <div style="color:var(--gray);font-size:12px;margin-top:10px">满分为客观题(选择+判断,每题 2 分);编程题不在本平台模考范围。成绩已计入进度与错题本。</div></div></div>
+    <div class="card"><div class="card-h">📋 逐题解析<span class="sub">共 ${d.details.length} 题</span></div><div class="card-b"><div id="qlist">${details}</div></div></div>`;
+  MOCK=null; window.scrollTo(0,0);
+}
+
+/* ===================== 🏆 排行榜 + 打卡积分 ===================== */
+async function renderRank(){
+  C().innerHTML='<div class="empty"><div class="big">🏆</div>加载成就与排行…</div>';
+  const [st,lb]=await Promise.all([api('/api/stats/me'),api('/api/leaderboard')]);
+  const rows=lb.top.map(u=>`<div class="lb-row ${u.me?'me':''}">
+    <span class="lb-rank ${u.rank<=3?'top':''}">${u.rank<=3?['🥇','🥈','🥉'][u.rank-1]:u.rank}</span>
+    <span class="lb-name">${esc(u.username)}${u.me?' · 我':''}</span>
+    <span class="lb-tier">${u.icon} ${u.tier}</span><span class="lb-pts">${u.points} 分</span></div>`).join('');
+  const checkin = st.today_done ? `<div class="ci ci-done">✅ 今日已打卡 · 连续 ${st.streak} 天,继续保持!</div>`
+    : `<div class="ci ci-todo">📅 今天还没练习——做一道题即可自动打卡</div>`;
+  C().innerHTML=`<div class="card"><div class="card-h">🏆 我的成就</div><div class="card-b">
+    <div class="ach-grid">
+      <div class="ach-card"><div class="ach-ic">${st.tier_icon}</div><div class="ach-v">${st.tier}</div><div class="ach-l">当前段位</div></div>
+      <div class="ach-card amber"><div class="ach-v">${st.points}</div><div class="ach-l">积分</div></div>
+      <div class="ach-card teal"><div class="ach-v">${st.streak}</div><div class="ach-l">连续打卡(天)</div></div>
+      <div class="ach-card blue"><div class="ach-v">${st.streak_total}</div><div class="ach-l">累计打卡(天)</div></div>
+    </div>
+    ${checkin}
+    ${st.next_at?`<div class="lvl-progress"><div class="lp-bar"><span style="width:${Math.min(100,Math.round(st.points/st.next_at*100))}%"></span></div><div class="lp-txt">距下一段位还需 <b>${st.to_next}</b> 分</div></div>`:'<div class="lp-txt" style="text-align:center;margin-top:12px">已达最高段位 👑 宗师</div>'}
+    <div class="notice" style="margin-top:10px">积分规则:答对单选 +2、判断 +1;每天做题即自动打卡。</div></div></div>
+  <div class="card"><div class="card-h">🏆 积分排行榜<span class="sub">全站 Top ${lb.top.length}</span></div><div class="card-b">
+    ${lb.me.rank?'':`<div class="ai-intro">你还没上榜,做几道题就能进入排行榜啦!当前 ${lb.me.points} 分。</div>`}
+    <div class="lb">${rows||'<div class="empty">暂无排行数据,快来抢第一!</div>'}</div></div></div>`;
 }
 
 /* ===================== 搜索 ===================== */

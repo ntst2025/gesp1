@@ -57,7 +57,7 @@
   <div class="hero-left">
     <h1>超级智能题库<br><em>因你而变</em></h1>
     <p>对照 CCF 官方大纲分章分节 · 历年真题刷题判分<br>注册即可刷题、自动生成错题本、追踪学习进度</p>
-    <div class="hero-feats"><span>📚 分类真题解析</span><span>📝 智能刷题自测</span><span>❌ 自动错题本</span><span>📈 学习进度追踪</span><span>⭐ 收藏夹</span></div>
+    <div class="hero-feats"><span>📚 分类真题解析</span><span>🤖 AI 智能推题</span><span>📝 限时模考估分</span><span>❌ 自动错题本</span><span>🏆 打卡 · 积分 · 排行</span></div>
   </div>
   <div class="auth">
     <div class="auth-tabs"><button id="tab-login" class="on" onclick="switchTab('login')">登录</button><button id="tab-reg" onclick="switchTab('reg')">注册</button></div>
@@ -115,10 +115,10 @@
 </div></section>
 
 <section class="feature-strip"><div class="wrap"><div class="feat-grid">
-  <div class="feat"><div class="ic">🗂️</div><div class="ft">分类真题解析</div><div class="fd">7 章 + 子节,对照官方大纲,逐题精讲</div></div>
-  <div class="feat"><div class="ic">🎯</div><div class="ft">智能刷题自测</div><div class="fd">按章/按节/随机组卷,即时判分讲解</div></div>
+  <div class="feat"><div class="ic">🤖</div><div class="ft">AI 个性化推题</div><div class="fd">分析你的错题与掌握度,精准推送薄弱知识点真题</div></div>
+  <div class="feat"><div class="ic">📝</div><div class="ft">限时模考估分</div><div class="fd">整套真题限时作答,自动算分、排名、逐题解析</div></div>
   <div class="feat"><div class="ic">📕</div><div class="ft">自动错题本</div><div class="fd">答错自动收录,答对自动移出,反复巩固</div></div>
-  <div class="feat"><div class="ic">📊</div><div class="ft">学习进度追踪</div><div class="fd">各章正确率一目了然,薄弱点清晰</div></div>
+  <div class="feat"><div class="ic">🏆</div><div class="ft">打卡 · 积分 · 排行</div><div class="fd">每日打卡、积分升段、全站排行,坚持更有动力</div></div>
 </div></div></section>
 
 <footer>GESP 在线 · 数据来源 13 套 GESP C++ 一级官方真题(2023.03–2026.03)· 仅供备考学习<br>本站为开源自部署项目,非 CCF 官方网站</footer>
@@ -158,10 +158,20 @@ function enter(level){
   if(localStorage.getItem('gesp_token')) location.href='/app?level='+(level||1);
   else { document.querySelector('.auth').scrollIntoView({behavior:'smooth'}); document.getElementById('f-username').focus(); }
 }
-// 已登录则提示
+// 已登录:隐藏登录框,改为欢迎面板
 (function(){
+  const escH=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const u=localStorage.getItem('gesp_user');
-  if(u){ document.getElementById('tb-user').innerHTML=`已登录为 <b>${u}</b> · <a onclick="document.querySelector('.subjects').scrollIntoView({behavior:'smooth'})" style="color:var(--red)">选择级别进入 ›</a> · <a onclick="logout()" style="color:#999">退出</a>`; }
+  if(u){
+    document.getElementById('tb-user').innerHTML=`已登录为 <b>${escH(u)}</b> · <a onclick="logout()" style="color:#fff;opacity:.85">退出</a>`;
+    const auth=document.querySelector('.auth');
+    if(auth) auth.innerHTML=`<div class="auth-body" style="text-align:center;padding:30px 24px">
+      <div style="font-size:42px;margin-bottom:10px">👋</div>
+      <div style="font-size:18px;font-weight:700;margin-bottom:6px">欢迎回来,${escH(u)}!</div>
+      <div style="color:var(--gray);font-size:13px;margin-bottom:20px">在下方选择备考级别即可继续学习</div>
+      <button class="submit" onclick="document.querySelector('.subjects').scrollIntoView({behavior:'smooth'})">选择级别进入 ›</button>
+      <div class="auth-hint"><a onclick="logout()" style="color:var(--gray)">退出登录</a></div></div>`;
+  }
 })();
 function logout(){localStorage.removeItem('gesp_token');localStorage.removeItem('gesp_user');location.reload();}
 document.getElementById('f-password').addEventListener('keydown',e=>{if(e.key==='Enter')doAuth();});

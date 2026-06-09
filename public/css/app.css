@@ -180,3 +180,63 @@ tr.clk:hover{background:var(--red-l)}
 .hl-kw{color:#79c0ff}.hl-ty{color:#ff7b72}.hl-str{color:#a5d6ff}.hl-cm{color:#8b949e;font-style:italic}.hl-num{color:#f0a070}
 
 footer{text-align:center;color:var(--gray);font-size:12px;padding:24px 0 40px;line-height:1.8}
+
+/* ===== 8 标签导航:不换行,过窄时横向滚动 ===== */
+nav.tabs .wrap{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav.tabs .wrap::-webkit-scrollbar{display:none}
+nav.tabs a{padding:0 15px;white-space:nowrap;flex:0 0 auto;font-size:14px}
+
+/* ===== 🤖 智能推题 ===== */
+.ai-intro{background:var(--teal-l);border-left:3px solid var(--teal);border-radius:6px;padding:12px 15px;font-size:13.5px;line-height:1.7;color:#2c3e50}
+.ai-intro b{color:var(--teal-d)}
+.wp-box{margin-top:16px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.wp-title{background:#fafbfc;padding:10px 14px;font-weight:700;font-size:13.5px;border-bottom:1px solid var(--line)}
+.wp-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #f1f3f5;font-size:13.5px}
+.wp-row:last-child{border-bottom:none}
+.wp-name{font-weight:600;color:var(--ink)}
+.wp-stat{color:var(--gray);font-size:12.5px;white-space:nowrap}
+
+/* ===== 📝 限时模考 ===== */
+.mock-bar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;background:var(--red);color:#fff;
+  padding:10px 16px;border-radius:8px;margin-bottom:14px;box-shadow:0 3px 10px rgba(217,35,50,.25);flex-wrap:wrap}
+.mock-bar .mb-t{font-weight:700}
+.mock-timer{font-variant-numeric:tabular-nums;font-weight:800;font-size:18px;background:rgba(255,255,255,.18);padding:3px 12px;border-radius:6px;min-width:64px;text-align:center}
+.mock-timer.warn{background:#fff;color:var(--red);animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.55}}
+.mock-prog{font-size:13px;opacity:.95}
+.mock-bar .btn{margin-left:auto;background:#fff;color:var(--red);border-color:#fff;font-weight:700}
+.mq{padding:16px 0;border-bottom:1px dashed var(--line)}
+.mq:last-child{border-bottom:none}
+.mq-h{margin-bottom:9px;font-size:13.5px;color:var(--ink)}
+.mq-h b{color:var(--red)}
+.fb-ok{color:var(--green)}
+.fb-no{color:var(--red)}
+.rank-badge{display:inline-block;background:var(--amber);color:#fff;font-weight:700;padding:5px 16px;border-radius:18px;font-size:14px}
+
+/* ===== 🏆 成就 + 打卡 + 排行榜 ===== */
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+.ach-card{background:#fafbfc;border:1px solid var(--line);border-radius:10px;padding:16px 10px;text-align:center}
+.ach-card.amber{background:#fff8ec;border-color:#f5d99a}
+.ach-card.teal{background:var(--teal-l);border-color:#bfe6dd}
+.ach-card.blue{background:#eaf4fb;border-color:#bcdcf2}
+.ach-ic{font-size:30px;line-height:1}
+.ach-v{font-size:24px;font-weight:800;color:var(--ink);margin-top:4px}
+.ach-card .ach-v{font-size:26px}
+.ach-l{font-size:12px;color:var(--gray);margin-top:3px}
+.ci{margin-top:14px;text-align:center;padding:11px;border-radius:8px;font-size:14px;font-weight:600}
+.ci-done{background:var(--teal-l);color:var(--teal-d)}
+.ci-todo{background:#fff8ec;color:#a87617}
+.lvl-progress{margin-top:14px}
+.lp-bar{height:12px;background:#eef1f4;border-radius:6px;overflow:hidden}
+.lp-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--amber),var(--red));border-radius:6px;transition:width .5s}
+.lp-txt{text-align:center;font-size:12.5px;color:var(--gray);margin-top:7px}
+.lp-txt b{color:var(--red);font-size:14px}
+.lb{display:flex;flex-direction:column;gap:1px}
+.lb-row{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:7px;font-size:14px}
+.lb-row:nth-child(odd){background:#fafbfc}
+.lb-row.me{background:var(--red-l);outline:1px solid #f3b9bf}
+.lb-rank{width:30px;text-align:center;font-weight:800;color:var(--gray);font-size:15px;flex:0 0 auto}
+.lb-rank.top{font-size:19px}
+.lb-name{font-weight:600;color:var(--ink);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb-tier{font-size:12.5px;color:var(--gray);white-space:nowrap}
+.lb-pts{font-weight:800;color:var(--red);min-width:60px;text-align:right;white-space:nowrap}
