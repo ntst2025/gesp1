@@ -3,6 +3,7 @@
 const TOKEN = localStorage.getItem('gesp_token');
 const USER  = localStorage.getItem('gesp_user') || '同学';
 if (!TOKEN) location.href = '/';
+const LEVEL = new URLSearchParams(location.search).get('level') || '1';
 function logout(){ localStorage.removeItem('gesp_token'); localStorage.removeItem('gesp_user'); location.href='/'; }
 
 async function api(path, opts={}){
@@ -19,6 +20,7 @@ const PALETTE = ['#d92332','#3498db','#e67e22','#9b59b6','#16a085','#1abc9c','#f
 const REQ_CLS = {'了解':'req-low','熟悉':'req-mid','掌握':'req-high'};
 let PAPERS = [];
 function esc(s){return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function short(id){return String(id).split(':').pop();}  // 'L1:c1'->'c1', 'L8:1.1'->'1.1'
 function papLabel(p){const [y,m]=p.split('-');return y.slice(2)+'.'+parseInt(m);}
 function papFull(p){const [y,m]=p.split('-');return y+'年'+parseInt(m)+'月';}
 function hl(code){
@@ -83,7 +85,7 @@ async function go(tab){
 async function ensureCatalog(){
   if(CATALOG) return CATALOG;
   C().innerHTML='<div class="empty"><div class="big">⏳</div>加载题库中…</div>';
-  CATALOG=await api('/api/catalog'); PAPERS=CATALOG.meta.papers; return CATALOG;
+  CATALOG=await api('/api/catalog?level='+LEVEL); PAPERS=CATALOG.meta.papers; document.querySelectorAll('.badge-sub').forEach(e=>{e.textContent=CATALOG.level_name;}); return CATALOG;
 }
 
 /* ===================== 题库浏览 ===================== */
@@ -94,7 +96,7 @@ function renderSidebar(){
   const rows=CATALOG.chapters.map(c=>{
     const act=(view.cid===c.id)?'active':'';
     return `<div class="nav-item ${act}" onclick="goBrowse('chapter','${c.id}')">
-      <span class="ni-name"><span class="caret">▶</span><span class="ch">第${c.id.slice(1)}章</span> ${c.name}</span>
+      <span class="ni-name"><span class="caret">▶</span><span class="ch">第${short(c.id).slice(1)}章</span> ${c.name}</span>
       <span class="ni-x"><span class="badge ${REQ_CLS[c.req]}" style="transform:scale(.86)">${c.req}</span></span>
       <span class="ni-x ni-kp">${c.kp}</span><span class="ni-x ni-q">${c.count}</span></div>`;}).join('');
   const ov=view.sub==='overview'?'active':'';
@@ -106,7 +108,7 @@ function renderSidebar(){
 function renderBrowse(){ // overview
   const items=CATALOG.chapters.map((c,i)=>({name:c.name,value:c.count,color:PALETTE[i%PALETTE.length]}));
   const rows=CATALOG.chapters.map(c=>`<tr class="clk" onclick="goBrowse('chapter','${c.id}')">
-    <td class="sec-name"><span class="sid">第${c.id.slice(1)}章</span>${c.name}</td>
+    <td class="sec-name"><span class="sid">第${short(c.id).slice(1)}章</span>${c.name}</td>
     <td class="num">${badge(c.req)}</td><td class="num t-kp">${c.kp}</td><td class="num t-q">${c.count}</td></tr>`).join('');
   const main=`<div class="card"><div class="card-h">历年真题 · 各章分布<span class="sub">单位：真题数量</span></div><div class="card-b">${pie(items)}</div></div>
     <div class="card"><div class="card-h">分章真题一览</div>
@@ -128,19 +130,19 @@ async function goBrowse(sub,cid,sid){
 }
 function renderChapter(cid){
   const c=CATALOG.chapters.find(x=>x.id===cid); const secs=c.sections.filter(s=>s.count>0);
-  const items=secs.map((s,i)=>({name:s.id+' '+s.name,value:s.count,color:PALETTE[i%PALETTE.length]}));
+  const items=secs.map((s,i)=>({name:short(s.id)+' '+s.name,value:s.count,color:PALETTE[i%PALETTE.length]}));
   const rows=secs.map(s=>`<tr class="clk" onclick="goBrowse('section','${cid}','${s.id}')">
-    <td class="sec-name"><span class="sid">${s.id}</span>${s.name}</td>
+    <td class="sec-name"><span class="sid">${short(s.id)}</span>${s.name}</td>
     <td class="num">${badge(s.req)}</td><td class="num">${stars(s.difficulty)}</td>
     <td class="num t-q">${s.count}</td><td class="num" style="color:#888">${s.mc}/${s.tf}</td></tr>`).join('');
-  const main=`<div class="crumb"><a onclick="goBrowse('overview')">首页</a> › <span>第${cid.slice(1)}章 ${c.name}</span></div>
-    <div class="card"><div class="card-h">第${cid.slice(1)}章　${c.name}</div><div class="card-b"><div class="stats">
+  const main=`<div class="crumb"><a onclick="goBrowse('overview')">首页</a> › <span>第${short(cid).slice(1)}章 ${c.name}</span></div>
+    <div class="card"><div class="card-h">第${short(cid).slice(1)}章　${c.name}</div><div class="card-b"><div class="stats">
       <div class="stat"><span class="lab">被考次数</span><span class="val red">${c.count}</span><span class="lab">题</span></div>
       <div class="stat"><span class="lab">题型构成</span><span class="val">单选 ${c.mc} / 判断 ${c.tf}</span></div>
       <div class="stat"><span class="lab">被考频率</span>${freqB(c.freq)}</div>
       <div class="stat"><span class="lab">知识难度</span>${stars(c.difficulty)}</div>
       <div class="stat"><span class="lab">考试要求</span>${badge(c.req)}</div></div></div></div>
-    <div class="card"><div class="chart-title">第${cid.slice(1)}章 历年真题 · 子节分布</div><div class="chart-sub">单位：真题数量</div><div class="card-b">${pie(items)}</div></div>
+    <div class="card"><div class="chart-title">第${short(cid).slice(1)}章 历年真题 · 子节分布</div><div class="chart-sub">单位：真题数量</div><div class="card-b">${pie(items)}</div></div>
     <div class="card"><div class="card-h">本章知识子节</div>
     <table><thead><tr><th>子节</th><th class="num">要求</th><th class="num">难度</th><th class="num">真题</th><th class="num">选/判</th></tr></thead><tbody>${rows}</tbody></table></div>`;
   C().innerHTML=browseLayout(main); renderSidebar();
@@ -155,8 +157,8 @@ function renderSection(cid,sid,data){
   let pager=''; if(pages>1){ pager='<div class="pager">'+`<button ${pg===0?'disabled':''} onclick="setBrowsePage('${key}',${pg-1})">‹</button>`;
     for(let i=0;i<pages;i++)pager+=`<button class="${i===pg?'on':''}" onclick="setBrowsePage('${key}',${i})">${i+1}</button>`;
     pager+=`<button ${pg===pages-1?'disabled':''} onclick="setBrowsePage('${key}',${pg+1})">›</button></div>`; }
-  const main=`<div class="crumb"><a onclick="goBrowse('overview')">首页</a> › <a onclick="goBrowse('chapter','${cid}')">第${cid.slice(1)}章 ${c.name}</a> › <span>${s.id} ${s.name}</span></div>
-    <div class="card"><div class="card-h">${s.id}　${s.name}</div><div class="card-b"><div class="stats">
+  const main=`<div class="crumb"><a onclick="goBrowse('overview')">首页</a> › <a onclick="goBrowse('chapter','${cid}')">第${short(cid).slice(1)}章 ${c.name}</a> › <span>${short(s.id)} ${s.name}</span></div>
+    <div class="card"><div class="card-h">${short(s.id)}　${s.name}</div><div class="card-b"><div class="stats">
       <div class="stat"><span class="lab">被考次数</span><span class="val red">${s.count}</span><span class="lab">题</span></div>
       <div class="stat"><span class="lab">题型</span><span class="val">单选 ${s.mc} / 判断 ${s.tf}</span></div>
       <div class="stat"><span class="lab">被考频率</span>${freqB(s.freq)}</div>
@@ -205,10 +207,10 @@ async function toggleStar(qid,idx){
 }
 
 /* ===================== 刷题自测 ===================== */
-let quizCfg={mode:'random',id:null,count:10};
+let quizCfg={mode:'random',id:null,count:10,level:LEVEL};
 let quiz=null;
 function renderPracticeSetup(){
-  const chapterChips=CATALOG.chapters.map(c=>`<span class="chip" data-mode="chapter" data-id="${c.id}" onclick="pickScope(this)">第${c.id.slice(1)}章 ${c.name}<span style="opacity:.6">(${c.count})</span></span>`).join('');
+  const chapterChips=CATALOG.chapters.map(c=>`<span class="chip" data-mode="chapter" data-id="${c.id}" onclick="pickScope(this)">第${short(c.id).slice(1)}章 ${c.name}<span style="opacity:.6">(${c.count})</span></span>`).join('');
   C().innerHTML=`<div class="card"><div class="card-h">🎯 刷题自测 · 组卷</div><div class="card-b quiz-setup">
     <div><div class="field-label">出题范围</div><div class="opt-group">
       <span class="chip on" data-mode="random" onclick="pickScope(this)">全部随机</span>
@@ -306,11 +308,11 @@ async function masterQ(qid,idx){ try{ await api('/api/wrongbook/'+qid+'/master',
 /* ===================== 我的进度 ===================== */
 async function renderProgress(){
   C().innerHTML='<div class="empty"><div class="big">⏳</div>统计中…</div>';
-  const d=await api('/api/progress');
+  const d=await api('/api/progress?level='+LEVEL);
   const rows=d.by_chapter.map(c=>{
     const acc=c.answered?Math.round(c.correct/c.answered*100):0;
     const cov=Math.round(c.answered/c.total*100);
-    return `<div class="prog-row"><span class="pname">第${c.id.slice(1)}章 ${c.name}</span>
+    return `<div class="prog-row"><span class="pname">第${short(c.id).slice(1)}章 ${c.name}</span>
       <div class="pbar"><span class="done" style="width:${cov}%"></span></div>
       <span class="pval">已做 ${c.answered}/${c.total} · 正确率 ${c.answered?acc+'%':'—'}</span></div>`;}).join('');
   C().innerHTML=`<div class="card"><div class="card-h">📊 我的学习进度</div><div class="card-b">
@@ -339,7 +341,7 @@ async function renderMark(){
 /* ===================== 搜索 ===================== */
 async function doSearch(kw){ kw=(kw||'').trim(); if(!kw)return;
   setActiveTab(''); C().innerHTML='<div class="empty"><div class="big">🔍</div>搜索中…</div>';
-  try{ const d=await api('/api/search?q='+encodeURIComponent(kw));
+  try{ const d=await api('/api/search?q='+encodeURIComponent(kw)+'&level='+LEVEL);
     const qhtml=d.questions.map((q,i)=>qCard(q,i,{review:true})).join('');
     C().innerHTML=`<div class="card"><div class="card-h">搜索结果<span class="sub">命中 ${d.count} 题${d.count>=80?'(显示前80)':''}</span></div>
       <div class="card-b">${d.count?'<div class="qtools"><span class="btn" onclick="expandAll(true)">展开全部</span><span class="btn gray" onclick="expandAll(false)">收起全部</span></div><div id="qlist">'+qhtml+'</div>':'<div class="empty">未找到匹配「'+esc(kw)+'」的真题</div>'}</div></div>`;
