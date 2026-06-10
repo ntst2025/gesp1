@@ -46,18 +46,40 @@ function stars(n){ let h=''; for(let i=1;i<=5;i++){ if(n>=i)h+='★'; else if(n>
 function badge(req){return `<span class="badge ${REQ_CLS[req]||''}">${req}</span>`;}
 function freqB(f){return `<span class="b-freq freq-${f}">${f}</span>`;}
 
+function shade(hex,pct){ hex=String(hex).replace('#',''); if(hex.length===3)hex=hex.split('').map(c=>c+c).join('');
+  let r=parseInt(hex.slice(0,2),16),g=parseInt(hex.slice(2,4),16),b=parseInt(hex.slice(4,6),16); const f=pct/100;
+  const adj=c=> pct>0 ? c+(255-c)*f : c*(1+f); const h=c=>Math.max(0,Math.min(255,Math.round(adj(c)))).toString(16).padStart(2,'0');
+  return '#'+h(r)+h(g)+h(b); }
+let _pieN=0;
 function pie(items){
   items=items.filter(d=>d.value>0);
-  const total=items.reduce((a,b)=>a+b.value,0)||1; const cx=90,cy=90,r=80; let a0=-Math.PI/2,paths='';
-  items.forEach((d,i)=>{ const ang=d.value/total*Math.PI*2,a1=a0+ang;
-    const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
-    const large=ang>Math.PI?1:0,color=d.color||PALETTE[i%PALETTE.length];
-    if(items.length===1)paths+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${color}"/>`;
-    else paths+=`<path d="M${cx},${cy} L${x0.toFixed(2)},${y0.toFixed(2)} A${r},${r} 0 ${large} 1 ${x1.toFixed(2)},${y1.toFixed(2)} Z" fill="${color}" stroke="#fff" stroke-width="1.5"/>`;
-    a0=a1; });
-  const legend=items.map((d,i)=>{const color=d.color||PALETTE[i%PALETTE.length];const pct=(d.value/total*100).toFixed(0);
-    return `<div class="lg"><span class="sw" style="background:${color}"></span><span class="lg-n">${esc(d.name)}</span><span class="lg-v">${d.value} · ${pct}%</span></div>`;}).join('');
-  return `<div class="chart-wrap"><svg width="180" height="180" viewBox="0 0 180 180">${paths}</svg><div class="legend">${legend}</div></div>`;
+  const total=items.reduce((a,b)=>a+b.value,0)||1, uid='pc'+(_pieN++);
+  const cx=104,cy=96,rx=90,ry=68,depth=17;
+  const pt=(a,dy)=>[(cx+rx*Math.cos(a)).toFixed(2),(cy+ry*Math.sin(a)+(dy||0)).toFixed(2)];
+  let a0=-Math.PI/2; const sl=items.map((d,i)=>{const ang=d.value/total*2*Math.PI,a1=a0+ang,c=d.color||PALETTE[i%PALETTE.length];const o={a0,a1,c,i};a0=a1;return o;});
+  const wedge=(s,dy)=>{const[x0,y0]=pt(s.a0,dy),[x1,y1]=pt(s.a1,dy),lg=(s.a1-s.a0)>Math.PI?1:0;return `M${cx},${(cy+(dy||0)).toFixed(2)} L${x0},${y0} A${rx},${ry} 0 ${lg} 1 ${x1},${y1} Z`;};
+  let defs=`<filter id="${uid}sh" x="-25%" y="-20%" width="150%" height="165%"><feDropShadow dx="0" dy="7" stdDeviation="6" flood-color="#161b33" flood-opacity="0.20"/></filter>`
+    +`<radialGradient id="${uid}gl" cx="36%" cy="24%" r="80%"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset="42%" stop-color="#fff" stop-opacity=".09"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient>`;
+  sl.forEach(s=>{ defs+=`<linearGradient id="${uid}g${s.i}" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="${shade(s.c,18)}"/><stop offset="1" stop-color="${shade(s.c,-6)}"/></linearGradient>`; });
+  let body;
+  if(sl.length===1){
+    const c=sl[0].c;
+    body=`<ellipse cx="${cx}" cy="${cy+depth}" rx="${rx}" ry="${ry}" fill="${shade(c,-28)}"/>`
+      +`<path d="M${cx-rx},${cy} a${rx},${ry} 0 0 0 ${2*rx},0 l0,${depth} a${rx},${ry} 0 0 1 ${-2*rx},0 Z" fill="${shade(c,-20)}"/>`
+      +`<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="url(#${uid}g0)"/>`;
+  } else {
+    const base=sl.map(s=>`<path d="${wedge(s,depth)}" fill="${shade(s.c,-28)}"/>`).join('');
+    let walls=''; sl.forEach(s=>{const f0=Math.max(s.a0,0),f1=Math.min(s.a1,Math.PI); if(f1>f0){const[x0,y0]=pt(f0,0),[x1,y1]=pt(f1,0),[bx1,by1]=pt(f1,depth),[bx0,by0]=pt(f0,depth),lg=(f1-f0)>Math.PI?1:0;
+      walls+=`<path d="M${x0},${y0} A${rx},${ry} 0 ${lg} 1 ${x1},${y1} L${bx1},${by1} A${rx},${ry} 0 ${lg} 0 ${bx0},${by0} Z" fill="${shade(s.c,-19)}"/>`;}});
+    const top=sl.map(s=>`<path d="${wedge(s,0)}" fill="url(#${uid}g${s.i})" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>`).join('');
+    body=base+walls+top;
+  }
+  const W=2*cx,H=cy+ry+depth+10;
+  const gloss=`<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="url(#${uid}gl)" pointer-events="none"/>`;
+  const svg=`<svg class="pie3d" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><defs>${defs}</defs><g filter="url(#${uid}sh)">${body}</g>${gloss}</svg>`;
+  const legend=sl.map(s=>{const pct=(items[s.i].value/total*100).toFixed(0);
+    return `<span class="lg-n"><i class="sw" style="background:${s.c}"></i>${esc(items[s.i].name)}</span><span class="lg-v"><b>${items[s.i].value}</b><em>${pct}%</em></span>`;}).join('');
+  return `<div class="chart-wrap">${svg}<div class="legend">${legend}</div></div>`;
 }
 function bar(byPaper){
   const W=720,H=240,padL=34,padB=42,padT=16,padR=10;
@@ -108,8 +130,8 @@ function browseLayout(mainHtml){
 function renderSidebar(){
   const rows=CATALOG.chapters.map(c=>{
     const act=(view.cid===c.id)?'active':'';
-    return `<div class="nav-item ${act}" onclick="goBrowse('chapter','${c.id}')">
-      <span class="ni-name"><span class="caret">▶</span><span class="ch">第${short(c.id).slice(1)}章</span> ${c.name}</span>
+    return `<div class="nav-item ${act}" title="第${short(c.id).slice(1)}章 ${esc(c.name)}" onclick="goBrowse('chapter','${c.id}')">
+      <span class="ni-name"><span class="caret">▶</span><span class="ch">第${short(c.id).slice(1)}章</span><span class="ni-nm">${c.name}</span></span>
       <span class="ni-x"><span class="badge ${REQ_CLS[c.req]}" style="transform:scale(.86)">${c.req}</span></span>
       <span class="ni-x ni-kp">${c.kp}</span><span class="ni-x ni-q">${c.count}</span></div>`;}).join('');
   const ov=view.sub==='overview'?'active':'';
@@ -126,7 +148,7 @@ function renderBrowse(){ // overview
   const main=`<div class="card"><div class="card-h">历年真题 · 各章分布<span class="sub">单位：真题数量</span></div><div class="card-b">${pie(items)}</div></div>
     <div class="card"><div class="card-h">分章真题一览</div>
     <table><thead><tr><th>章节</th><th class="num">要求</th><th class="num">知识点</th><th class="num">真题</th></tr></thead><tbody>${rows}</tbody></table>
-    <div class="notice">第 1 章已逐题精解(32 题);第 2–7 章真题已对照大纲分类入库、标注答案,解析按章补充中。子节归类第 1 章为人工核定,其余为自动归类。</div></div>`;
+    <div class="notice">真题已对照 CCF GESP 大纲按知识点归类并标注答案;解析一级最完整,其余级别按章持续补充中。知识点归类由程序依题面与代码自动判定,个别题以题目本身为准。</div></div>`;
   C().innerHTML=browseLayout(main); renderSidebar();
 }
 async function goBrowse(sub,cid,sid){

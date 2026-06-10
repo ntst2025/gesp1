@@ -22,36 +22,20 @@
  },
  "chapters": [
   {
-   "id": "y2023",
-   "name": "2023 年真题",
-   "req": null,
+   "id": "c1",
+   "name": "进制与数据",
+   "req": "熟悉",
    "freq": null,
    "difficulty": 2.5,
+   "kp": 1,
    "sections": [
     {
-     "id": "2023-06",
-     "name": "2023 年 6 月",
-     "req": null,
+     "id": "1.1",
+     "name": "进制与编码",
+     "req": "熟悉",
      "freq": null,
      "difficulty": 2.5,
      "questions": [
-      {
-       "qid": "3-2023-06-mc-1",
-       "paper": "2023-06",
-       "type": "mc",
-       "num": 1,
-       "answer": "D",
-       "stem": "高级语言编写的程序需要经过以下（ ）操作，可以生成在计算机上运行的 可执行代码。",
-       "code": "",
-       "options": {
-        "A": "编辑",
-        "B": "保存",
-        "C": "调试",
-        "D": "编译"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
       {
        "qid": "3-2023-06-mc-2",
        "paper": "2023-06",
@@ -87,74 +71,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2023-06-mc-4",
-       "paper": "2023-06",
-       "type": "mc",
-       "num": 4,
-       "answer": "D",
-       "stem": "以下哪个不是 C++语言中的运算符？（ ）",
-       "code": "",
-       "options": {
-        "A": "&",
-        "B": "&&",
-        "C": "*",
-        "D": "**"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-06-mc-5",
-       "paper": "2023-06",
-       "type": "mc",
-       "num": 5,
-       "answer": "C",
-       "stem": "如果字符串定义为 char str[] = \"Hello\";，则字符数组 str 的长度为（ ）。",
-       "code": "",
-       "options": {
-        "A": "0",
-        "B": "5",
-        "C": "6",
-        "D": "7"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-06-mc-6",
-       "paper": "2023-06",
-       "type": "mc",
-       "num": 6,
-       "answer": "A",
-       "stem": "一个数组定义为 double array[3];，则这个数组占用内存的大小为（ ）。",
-       "code": "",
-       "options": {
-        "A": "24",
-        "B": "12",
-        "C": "6",
-        "D": "3"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-06-mc-7",
-       "paper": "2023-06",
-       "type": "mc",
-       "num": 7,
-       "answer": "B",
-       "stem": "以下数组定义，符合 C++语言语法的是（ ）。",
-       "code": "",
-       "options": {
-        "A": "int a[];",
-        "B": "int b['3'];",
-        "C": "int c[3.0];",
-        "D": "int[3] d;"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2023-06-mc-8",
        "paper": "2023-06",
        "type": "mc",
@@ -172,23 +88,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2023-06-mc-9",
-       "paper": "2023-06",
-       "type": "mc",
-       "num": 9,
-       "answer": "C",
-       "stem": "下列关于 C++语言中数组的叙述，不正确的是（ ）。",
-       "code": "",
-       "options": {
-        "A": "数组必须先定义后使用。",
-        "B": "数组的所有元素在内存中是连续存放的。",
-        "C": "除了字符数组，在定义数组时“[]”内必须有常数。",
-        "D": "不能对数组赋值，但可以对数组的每个基础类型的元素赋值。"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2023-06-mc-10",
        "paper": "2023-06",
        "type": "mc",
@@ -201,6 +100,925 @@
         "B": "右移 3 位，再左移 3 位。",
         "C": "按位或 7，再按位与-8。",
         "D": "按位异或 7，再按位异或 7。"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-06-tf-3",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "数据编码方式只有原码、反码、补码三种。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-06-tf-8",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "计算机中存储的数据都是二进制形式。因此，在使用 C++语言编写程序时， 将所有十进制数改写为相同数值的二进制数，会使得程序运行效率更高。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-mc-3",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 3,
+       "answer": "C",
+       "stem": "已知大写字符 'A' 的ASCII编码的十六进制表示为 0x41 ，则字符 'L' 的ASCII编码的十六进制表示为（ ）。",
+       "code": "",
+       "options": {
+        "A": "4A",
+        "B": "4B",
+        "C": "4C",
+        "D": "52"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-mc-8",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 8,
+       "answer": "C",
+       "stem": "下列关于进制的叙述，正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "只有十进制和二进制能够用来表示小数，八进制和十六进制不可以。",
+        "B": "常用的进制包括二进制、八进制、十进制、十六进制，其他进制在日常生活中很少使用。",
+        "C": "对任意正整数，其二进制表示不会比它的十进制表示更短。",
+        "D": "正整数的八进制表示中，每一位可能出现的最大数字是8。"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-tf-1",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 1,
+       "answer": "×",
+       "stem": "二进制数 101.101 在十进制下是 5.005。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-tf-2",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "在C++语言中，位运算符也有类似“先乘除、后加减”的优先级规则。因此，使用时应注意合理使用括号。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-tf-3",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "字符常量 '3' 的值和 int 类型常量 3 的值是相同的，只是占用的字节数不同。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-12-mc-2",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 2,
+       "answer": "D",
+       "stem": "在下列编码中，不能够和二进制\"1101 1101\"相等的是( )。",
+       "code": "",
+       "options": {
+        "A": "（221）10进制",
+        "B": "（335）8进制",
+        "C": "（dd）16进制",
+        "D": "（5d）16进制"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-mc-1",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 1,
+       "answer": "D",
+       "stem": "整数-5的16位补码表示是( )。",
+       "code": "",
+       "options": {
+        "A": "1005",
+        "B": "1006",
+        "C": "FFFA",
+        "D": "FFFB"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-mc-2",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 2,
+       "answer": "C",
+       "stem": "如果16位短整数 -2 的二进制是\"FFFE\"，则短整数 -4 的十六进制是( )。",
+       "code": "",
+       "options": {
+        "A": "FF04",
+        "B": "FFFA",
+        "C": "FFFC",
+        "D": "FFFH"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-tf-1",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 1,
+       "answer": "×",
+       "stem": "任意整数 a 的二进制反码与补码都有1位不同。 ( )",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-mc-5",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 5,
+       "answer": "C",
+       "stem": "二进制数101.11对应的十进制数是（ ）。",
+       "code": "",
+       "options": {
+        "A": "6.5",
+        "B": "5.5",
+        "C": "5.75",
+        "D": "5.25"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-tf-2",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "整数-6的16位补码可用十六进制表示为FFFA。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-tf-3",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 3,
+       "answer": "√",
+       "stem": "补码的优点是可以将减法运算转化为加法运算，从而简化计算机的硬件设计。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-09-mc-2",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 2,
+       "answer": "C",
+       "stem": "关于计算机中的编码，下列说法中正确的是（）",
+       "code": "",
+       "options": {
+        "A": "机器数的形式值和真值是一致的",
+        "B": "原码就是符号位加上真值",
+        "C": "机器数是带符号的",
+        "D": "[-1]=[1000 0001]原=[1111 1111]反"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-09-mc-3",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 3,
+       "answer": "A",
+       "stem": "8进制数3703转换成16进制数是（）",
+       "code": "",
+       "options": {
+        "A": "7C3",
+        "B": "7A3",
+        "C": "7B3",
+        "D": "7D3"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-09-mc-4",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 4,
+       "answer": "D",
+       "stem": "0.8125变成二进制是（ ）。",
+       "code": "",
+       "options": {
+        "A": "0.1110",
+        "B": "0.1 1111 1011 1101",
+        "C": "0.1 1111 1011 1100",
+        "D": "0.1101"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-09-tf-1",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "+1和-1的原码进行1+（-1）计算的结果是-2 。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-09-tf-9",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "16进制数 AB ，表示成2进制数是 10101011 。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-09-tf-10",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 10,
+       "answer": "×",
+       "stem": "def (十六进制) = 103231 (五进制)。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-mc-1",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 1,
+       "answer": "B",
+       "stem": "下列二进制表示的十进制数值分别是（ ）",
+       "code": "[10000011]原=（ ）\n[10000011]补=（ ）",
+       "options": {
+        "A": "-125，-3",
+        "B": "-3, -125",
+        "C": "-3，-3",
+        "D": "-125，-125"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-mc-2",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 2,
+       "answer": "D",
+       "stem": "关于计算机中的编码，下列说法中错误的是（）",
+       "code": "",
+       "options": {
+        "A": "对于无符号数，原码就是真值",
+        "B": "正数的反码是其本身",
+        "C": "负数的反码和补码是不一样的",
+        "D": "负数的反码，在其原码的基础上, 各个位取反"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-mc-3",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 3,
+       "answer": "A",
+       "stem": "16进制数B2025转换成8进制数是（）",
+       "code": "",
+       "options": {
+        "A": "2620045",
+        "B": "2004526",
+        "C": "729125",
+        "D": "2420045"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-mc-4",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 4,
+       "answer": "A",
+       "stem": "625.625变成二进制是（ ）。",
+       "code": "",
+       "options": {
+        "A": "1001110001.101",
+        "B": "101.101",
+        "C": "101.1001110001",
+        "D": "1001110001.1101"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-mc-6",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 6,
+       "answer": "B",
+       "stem": "补码1111 1101进行运算1111 1101>>1以后得到的结果是（）",
+       "code": "",
+       "options": {
+        "A": "1111 1100",
+        "B": "-2",
+        "C": "1111 1101",
+        "D": "1111 1010"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-mc-8",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 8,
+       "answer": "A",
+       "stem": "a|10（a与10都是10进制，且二进制表示最高位为1）运算的结果是（ ）。",
+       "code": "",
+       "options": {
+        "A": "使a的二进制表示从右往左的第二位为1",
+        "B": "使a的二进制表示从右往左的第一位为0",
+        "C": "使a的二进制表示从右往左第二位为0",
+        "D": "使a的二进制表示最高位为0"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-tf-1",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "为了简化计算机基本运算电路，使加减法都只需要通过加法电路实现，也就是让减去一个正数或加上一个负 数这样的运算可以用加上一个正数来代替。于是改变负数存储的形式，存储成一种可以直接当成正数来相加的形 式，这种形式就是补码。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-tf-2",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "使用原码进行的计算， 2+(-1) 的结果是 -3",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-tf-4",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "10 进制数 63，在转换成二进制的计算过程中，产生了如下的式子： 按照从前往后的顺序，获得 63 的二进制值是 111111",
+       "code": "63/2=31 余 1\n31/2=15 余 1\n15/2=7 余 1\n7/2=3   余 1\n3/2=1   余 1\n1/2=0   余 1",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-tf-10",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "CCF(十六进制) = 12363(七进制)",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-mc-2",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 2,
+       "answer": "B",
+       "stem": "UTF-8 编码规则如下： 1 字节：0xxxxxxx 2 字节：110xxxxx 10xxxxxx 3 字节：1110xxxx 10xxxxxx 10xxxxxx 4 字节：11110xxx 10xxxxxx 10xxxxxx 10xxxxxx 以下哪个字节序列是合法的 UTF-8 编码（ ）",
+       "code": "",
+       "options": {
+        "A": "0xC0 0x80",
+        "B": "0xF0 0x90 0x80 0x80",
+        "C": "0x80 0x80 0x80",
+        "D": "0xFF 0xFE 0xFD"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-mc-3",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 3,
+       "answer": "A",
+       "stem": "在 8 位二进制原码表示中，八进制数 -5 的二进制形式是什么（ ）",
+       "code": "",
+       "options": {
+        "A": "10000101",
+        "B": "11111010",
+        "C": "11111011",
+        "D": "00000101"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-mc-4",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 4,
+       "answer": "A",
+       "stem": "十进制数 111.111 的二进制表示可以是下面的（ ）。",
+       "code": "",
+       "options": {
+        "A": "1101111.0001110001",
+        "B": "1101110.1001110001",
+        "C": "1101111.1001110001",
+        "D": "1101111.0011110001"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-mc-5",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 5,
+       "answer": "B",
+       "stem": "在C++中，补码的主要作用是（）",
+       "code": "",
+       "options": {
+        "A": "提高浮点数的精度",
+        "B": "简化整数的加减法运算",
+        "C": "增加整数的表示范围",
+        "D": "优化内存分配"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-mc-6",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 6,
+       "answer": "A",
+       "stem": "在C++中，一个8位有符号整数（使用补码表示）的范围是（）",
+       "code": "",
+       "options": {
+        "A": "-128 到 127",
+        "B": "-127 到 128",
+        "C": "-256 到 255",
+        "D": "0 到 255"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-tf-6",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "若将 个正整数化为 进制数，在此 进制数中，我们将数字 1 的个数是偶数的这类 进制数称为 A 类数， 一 二 二 二 否则就称其为 B 类数。 例如： (13) 10 =(1101) 2 ，其中 1 的个数为 3则称此数为 B 类数； (10) 10 =(1010) 2 ，其中 1 的个数为 2，称此数为 A 类数； 判断（2025）10化为 进制后，1的个数为偶数个，因此2025为A类数。 二",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-tf-8",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 8,
+       "answer": "√",
+       "stem": "两个13进制的数A和B，在10进制下分别表 10和11。（A+B）13=（18）13，也就是说13进制数A加上13进 示 制数B，和是13进制数18。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-tf-9",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "k 进制，逢 k 进第 位， 进百位， 进千位； 二",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-tf-10",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 10,
+       "answer": "×",
+       "stem": "CCF( 九进制) = 21AC( 三进制)(不区分 写) 十 十 大 小",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-mc-1",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 1,
+       "answer": "A",
+       "stem": "8位二进制原码能表示的最小整数是：（ ）",
+       "code": "",
+       "options": {
+        "A": "-127",
+        "B": "-128",
+        "C": "-255",
+        "D": "-256"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-mc-3",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 3,
+       "answer": "A",
+       "stem": "补码 1011 1011 对应的真值是( )",
+       "code": "",
+       "options": {
+        "A": "-69",
+        "B": "-59",
+        "C": "-68",
+        "D": "-58"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-mc-4",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 4,
+       "answer": "A",
+       "stem": "若X的8位补码为 0000 1010，则 X/2 的补码是（ ）。",
+       "code": "",
+       "options": {
+        "A": "0000 0101",
+        "B": "1000 0101",
+        "C": "0000 0101 或 1000 0101",
+        "D": "算术右移后结果取决于符号位"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-mc-5",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 5,
+       "answer": "A",
+       "stem": "二进制数 1101.101 对应的十进制数是( )",
+       "code": "",
+       "options": {
+        "A": "13.625",
+        "B": "12.75",
+        "C": "11.875",
+        "D": "14.5"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-mc-7",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 7,
+       "answer": "A",
+       "stem": "进制数 35.6 对应的 进制数是( ) 八 十",
+       "code": "",
+       "options": {
+        "A": "29.75",
+        "B": "28.5",
+        "C": "27.625",
+        "D": "30.25"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-mc-8",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 8,
+       "answer": "B",
+       "stem": "进制数 1010 | 1100 的结果是（ ） 二",
+       "code": "",
+       "options": {
+        "A": "1000",
+        "B": "1110",
+        "C": "1010",
+        "D": "1100"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-mc-9",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 9,
+       "answer": "A",
+       "stem": "以下哪个位运算可以交换两个变量的值（ 需临时变量）( ) 无",
+       "code": "",
+       "options": {
+        "A": "a = a ^ b; b = a ^ b; a = a ^ b;",
+        "B": "a = a & b; b = a | b; a = a & b;",
+        "C": "a = a | b; b = a ^ b; a = a ^ b;",
+        "D": "a = ~a; b = ~b; a = ~a;"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-mc-1",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 1,
+       "answer": "B",
+       "stem": "请将二进制数 ，转换为等值的10进制数（ ）",
+       "code": "",
+       "options": {
+        "A": "14.25",
+        "B": "13.625",
+        "C": "13.5",
+        "D": "14.5"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-mc-8",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 8,
+       "answer": "A",
+       "stem": "在一个特定的计算机系统中，假如 unsigned int 类型需要占用2个字节的存储空间（每个字节有8位）， 则 unsigned int 可以表示的数据范围是（ ）",
+       "code": "",
+       "options": {
+        "A": "0 ~ 65535",
+        "B": "0 ~ 65536",
+        "C": "-65536 ~ 65535",
+        "D": "0 ~ 32767"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-mc-10",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 10,
+       "answer": "A",
+       "stem": "a & b | (c ^ d) ，其中 a = 3, b = 7, c = 15, d = 4 ，计算结果是（ ）",
+       "code": "",
+       "options": {
+        "A": "十进制11",
+        "B": "二进制11",
+        "C": "八进制11",
+        "D": "十六进制11"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-tf-5",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 5,
+       "answer": "×",
+       "stem": "位运算符 & 、 | 、 ^ 、 ~ 的优先级高于算术运算符 + 、 - 、 * 、 / 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-tf-9",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "给定一个正整数 a ，当需要计算 -a 的补码时，有这样一个计算技巧：将 a 的二进制形式从右往左扫 描，遇到第一个 1 之后，将找到的第一个 1 左边的所有位都取反，能得到 -a 的补码。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-mc-5",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 5,
+       "answer": "D",
+       "stem": "8 位二进制下，十进制数-15 的补码是（ ）。",
+       "code": "",
+       "options": {
+        "A": "11110000",
+        "B": "10001111",
+        "C": "10010000",
+        "D": "11110001"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-mc-6",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 6,
+       "answer": "B",
+       "stem": "三进制数 转换成十进制是：（ ）。",
+       "code": "",
+       "options": {
+        "A": "63",
+        "B": "65",
+        "C": "67",
+        "D": "69"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-mc-7",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 7,
+       "answer": "B",
+       "stem": "二进制数 10110101 是某数的 8 位补码，该数的十进制是（ ）。",
+       "code": "",
+       "options": {
+        "A": "-73",
+        "B": "-75",
+        "C": "-77",
+        "D": "75"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-mc-8",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 8,
+       "answer": "D",
+       "stem": "已知 unsigned char c = 0x0F; （十六进制 0F = 二进制 00001111 ），执行 c = c << 3; 后， c 的 十进制值是：（ ）。",
+       "code": "",
+       "options": {
+        "A": "64",
+        "B": "72",
+        "C": "80",
+        "D": "120"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-mc-9",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 9,
+       "answer": "B",
+       "stem": "补码的情况下，关于按位取反运算，用笔计算的情况下，以下说法错误的是：（ ）",
+       "code": "",
+       "options": {
+        "A": "~5 的结果是 -6（ int 类型，32 位）",
+        "B": "~0 的结果是 0（ int 类型，32 位）",
+        "C": "~(-3) 的结果是 2（ int 类型，32 位）",
+        "D": "~8 的结果是 -9（ int 类型，32 位）"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-tf-6",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "已知大写字符 A 的ASCII编码的十六进制表示为 0x41 ，计算字符 m 的ASCII编码的八进制表示为 155 （八进制）。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-tf-7",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "在 C++ 位运算中，各种不同的运算符有优先级的区分，使用括号能够解决优先级的问题。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-tf-10",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "如果 a 为 int 类型的变量，且 a 的二进制最低位为 0 ，则表达式 ((a & 3 & 1) == 0) 的值为 true 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c2",
+   "name": "运算与流程控制",
+   "req": "熟悉",
+   "freq": null,
+   "difficulty": 2.5,
+   "kp": 1,
+   "sections": [
+    {
+     "id": "2.1",
+     "name": "运算与流程结构",
+     "req": "熟悉",
+     "freq": null,
+     "difficulty": 2.5,
+     "questions": [
+      {
+       "qid": "3-2023-06-mc-4",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 4,
+       "answer": "D",
+       "stem": "以下哪个不是 C++语言中的运算符？（ ）",
+       "code": "",
+       "options": {
+        "A": "&",
+        "B": "&&",
+        "C": "*",
+        "D": "**"
        },
        "explanation": "",
        "difficulty": 2.5
@@ -240,18 +1058,462 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2023-06-mc-13",
+       "qid": "3-2023-06-tf-9",
        "paper": "2023-06",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "在 C++语言中，表达式(0xf == 015)的值为 true。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-06-tf-10",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "如果 a 为 int 类型的变量，且表达式((a | 3) == 3)的值为 true，则说 明 a 在从 0 到 3 之间（可能为 0、可能为 3）。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-mc-4",
+       "paper": "2023-09",
        "type": "mc",
-       "num": 13,
+       "num": 4,
        "answer": "B",
-       "stem": "在下列代码的横线处填写（ ），可以使得输出是“24 12”。",
+       "stem": "以下哪个不是C++语言中的运算符？（ ）",
        "code": "",
        "options": {
-        "A": "a = a ^ b",
-        "B": "b = a ^ b",
-        "C": "a = a + b",
-        "D": "b = a + b"
+        "A": "~",
+        "B": "~~",
+        "C": "<",
+        "D": "<<"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-mc-10",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 10,
+       "answer": "A",
+       "stem": "如果 a 是 int 类型的变量，下列哪个表达式的值一定为 true ？（ ）",
+       "code": "",
+       "options": {
+        "A": "a + 1000 - 1000 == a",
+        "B": "a * 2 / 2 == a",
+        "C": "(a & 1) == 1",
+        "D": "(a | 1) == a + 1"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-mc-11",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 11,
+       "answer": "B",
+       "stem": "如果 a 和 b 均为 int 类型的变量，下列表达式不能正确判断“ a 等于 b ”的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "((a >= b) && (a <= b))",
+        "B": "((a >> 1) == (b >> 1))",
+        "C": "((a + b) == (a + a))",
+        "D": "((a ^ b) == 0)"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-tf-9",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "在C++语言中，表达式 (0xff == 255) 的值为 true 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-tf-10",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "如果 a 为 int 类型的变量，且表达式 ((a & 1) == 0) 的值为 true ，则说明 a 是偶数。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-12-tf-10",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "任何一个while循环都可以转化为等价的for循环（ ）。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-tf-10",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "任何一个 for 循环都可以转化为等价的 while 循环（ ）。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-tf-7",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "如果 为 int 类型的变量，且表达式 ((a | 3) == 3) 的值为 true ，则说明 在从0到3之间（可能为0、可 能为3）。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-mc-15",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 15,
+       "answer": "C",
+       "stem": "有 n 个正整数，假设一个正整数是美丽数字当且仅当该正整数是 9 的倍数但不是 8 的倍数。下面的程序是 编写计算 n 个正整数中美丽数字的数量，横线处应该填入的是（）",
+       "code": "for (int i = 1; i <= n; i++) {\ncin >> a;\n__________________________\ncnt++;\n}",
+       "options": {
+        "A": "if (a % 9 != 0 && a % 8 != 0)",
+        "B": "if (a % 9 == 0 & a % 8 == 0)",
+        "C": "if (a % 9 == 0 && a % 8 != 0)",
+        "D": "if (a % 9 == 0 & a % 8 != 0)"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-tf-4",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 4,
+       "answer": "√",
+       "stem": "C++语句 cout<<(n%15==0? \"YES\":\"NO\"); 能够判断 个整数能否被3和5同时整除 一",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-tf-7",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "该段程序将 n 不停地除以 2，并输出此时的商和余数，直到 n=0 为 。 止",
+       "code": "long long n;\ncin >> n;\nwhile(n != 0) {\ncout << n/2 << ' ' << n%2 << '\\n';\nn /= 2;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-mc-2",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 2,
+       "answer": "C",
+       "stem": "下列C++表达式的结果为 true 的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "(5 <= 5) && (7 < 5)",
+        "B": "!(10 > 5)",
+        "C": "(10 != 10) || (5 >= 3)",
+        "D": "(5 == 3) && (4 > 2)"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-mc-4",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 4,
+       "answer": "B",
+       "stem": "执 以下C++代码后，变量 sum 的值是（ ）。 行",
+       "code": "int sum = 0;\nfor (int i = 1; i <= 5; i += 2) {\nsum += i;\nint sum=0;\n}",
+       "options": {
+        "A": "6",
+        "B": "9",
+        "C": "15",
+        "D": "死循环"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-mc-8",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 8,
+       "answer": "D",
+       "stem": "以下C++代码 count++ 执 的次数是（ ）。 行",
+       "code": "int i = 10;\nint count=0;\nwhile (i > 0) {\ni -= 3;\ncontinue;\ncount++;\n}",
+       "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "0"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-mc-9",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 9,
+       "answer": "A",
+       "stem": "以下C++代码段的输出是（ ）。",
+       "code": "for (int i = 0; i < 4; i++) {\nfor (int j = 0; j <= i; j++) {\ncout << j;\n}\ncout << \"#\";\n}",
+       "options": {
+        "A": "0#01#012#0123#",
+        "B": "1#12#123#1234#",
+        "C": "0#1#2#3#",
+        "D": "0#01#012#01243#"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-mc-11",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 11,
+       "answer": "D",
+       "stem": "关于以下代码的说法正确的是（ ）。",
+       "code": "int reversed = 0;\nwhile (x != 0) {\nint digit = x % 10;\nx /= 10;\nreversed = reversed * 10 + digit;\n}",
+       "options": {
+        "A": "能够反转任何位数的整数",
+        "B": "能够反转的最大位数正整数是 2147483647",
+        "C": "能够反转的最大位数正整数是 2147483648",
+        "D": "能够反转的最大位数正整数是 1463847412"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-tf-1",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 1,
+       "answer": "×",
+       "stem": "表达式 sizeof('a') 的结果总是 1 ，因为 'a' 是一个字符。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-tf-3",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 3,
+       "answer": "√",
+       "stem": "do { ... } while (false); 循环体内的语句至少会被执行一次。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-tf-4",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 4,
+       "answer": "√",
+       "stem": "在C++中， ++i 是一个左值表达式，而 i++ 是一个右值表达式。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-tf-8",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "表达式 a > b ? a : b = 10; 一定是合法的C++代码。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-mc-3",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 3,
+       "answer": "D",
+       "stem": "下列代码段执行后，变量 sum 的值是（ ）",
+       "code": "{\nint sum = 0;\nfor (int i = 1; i <= 10; i++) {\nif (i % 3 == 8>>2)\ncontinue;\nsum += i;\n}\n}",
+       "options": {
+        "A": "12",
+        "B": "17",
+        "C": "33",
+        "D": "40"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-mc-4",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 4,
+       "answer": "B",
+       "stem": "执行以下程序段，输出值是（ ）",
+       "code": "int x = 5;\nif (x == 3 >> 2) x = 8 >> 3;\ncout << x << endl;",
+       "options": {
+        "A": "0",
+        "B": "5",
+        "C": "120",
+        "D": "1"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-mc-11",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 11,
+       "answer": "C",
+       "stem": "整型变量 x 的初始值为 10 ，以下代码的输出结果是（ ）",
+       "code": "int t = x--;\nt -= x;\ncout << t << endl;",
+       "options": {
+        "A": "0",
+        "B": "-1",
+        "C": "1",
+        "D": "死循环"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-tf-8",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "在 C++ 中， ++ 和 -- 运算符只能用于整型变量，不能用于浮点数变量。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-tf-10",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 10,
+       "answer": "×",
+       "stem": "以下代码中， Hello 将被输出5次。",
+       "code": "for (int i = 0; i < 5; i++);\n{\ncout << \"Hello\" << endl;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-tf-5",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "下面流程图的功能是计算 5 对 2 取余数，输出结果为 1。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-tf-9",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "在C++语言中，表达式 ((0xf0 + 0x15) == 255) 的值为 true 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c3",
+   "name": "数组",
+   "req": "掌握",
+   "freq": null,
+   "difficulty": 2.5,
+   "kp": 1,
+   "sections": [
+    {
+     "id": "3.1",
+     "name": "一维数组",
+     "req": "掌握",
+     "freq": null,
+     "difficulty": 2.5,
+     "questions": [
+      {
+       "qid": "3-2023-06-mc-6",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 6,
+       "answer": "A",
+       "stem": "一个数组定义为 double array[3];，则这个数组占用内存的大小为（ ）。",
+       "code": "",
+       "options": {
+        "A": "24",
+        "B": "12",
+        "C": "6",
+        "D": "3"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-06-mc-7",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 7,
+       "answer": "B",
+       "stem": "以下数组定义，符合 C++语言语法的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "int a[];",
+        "B": "int b['3'];",
+        "C": "int c[3.0];",
+        "D": "int[3] d;"
        },
        "explanation": "",
        "difficulty": 2.5
@@ -291,60 +1553,12 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2023-06-tf-1",
-       "paper": "2023-06",
-       "type": "tf",
-       "num": 1,
-       "answer": "×",
-       "stem": "一个算法可以用不同的形式来描述，但要求描述比较规范，因此不能用自然 语言描述。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-06-tf-2",
-       "paper": "2023-06",
-       "type": "tf",
-       "num": 2,
-       "answer": "×",
-       "stem": "域名是由一串用点分隔的名字来标识互联网上一个计算机或计算机组的名称， CCF 编程能力等级认证官方网站的域名是 gesp.ccf.org.cn，其中顶级域名是 gesp。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-06-tf-3",
-       "paper": "2023-06",
-       "type": "tf",
-       "num": 3,
-       "answer": "×",
-       "stem": "数据编码方式只有原码、反码、补码三种。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2023-06-tf-4",
        "paper": "2023-06",
        "type": "tf",
        "num": 4,
        "answer": "×",
        "stem": "在 C++语言中，长度为 n 的数组，合理的下标范围是从 0 到 n，包括 0 和 n。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-06-tf-5",
-       "paper": "2023-06",
-       "type": "tf",
-       "num": 5,
-       "answer": "√",
-       "stem": "字符常量'\\0'常用来表示字符串结束，它和字符常量'0'是不同的。",
        "code": "",
        "options": {},
        "explanation": "",
@@ -371,119 +1585,6 @@
        "stem": "在 C++语言中，数组被定义时，它的大小就确定了。",
        "code": "",
        "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-06-tf-8",
-       "paper": "2023-06",
-       "type": "tf",
-       "num": 8,
-       "answer": "×",
-       "stem": "计算机中存储的数据都是二进制形式。因此，在使用 C++语言编写程序时， 将所有十进制数改写为相同数值的二进制数，会使得程序运行效率更高。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-06-tf-9",
-       "paper": "2023-06",
-       "type": "tf",
-       "num": 9,
-       "answer": "×",
-       "stem": "在 C++语言中，表达式(0xf == 015)的值为 true。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-06-tf-10",
-       "paper": "2023-06",
-       "type": "tf",
-       "num": 10,
-       "answer": "√",
-       "stem": "如果 a 为 int 类型的变量，且表达式((a | 3) == 3)的值为 true，则说 明 a 在从 0 到 3 之间（可能为 0、可能为 3）。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      }
-     ]
-    },
-    {
-     "id": "2023-09",
-     "name": "2023 年 9 月",
-     "req": null,
-     "freq": null,
-     "difficulty": 2.5,
-     "questions": [
-      {
-       "qid": "3-2023-09-mc-1",
-       "paper": "2023-09",
-       "type": "mc",
-       "num": 1,
-       "answer": "B",
-       "stem": "人们所使用的手机上安装的App通常指的是（ ）。",
-       "code": "",
-       "options": {
-        "A": "一款操作系统",
-        "B": "一款应用软件",
-        "C": "一种通话设备",
-        "D": "以上都不对"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-09-mc-2",
-       "paper": "2023-09",
-       "type": "mc",
-       "num": 2,
-       "answer": "B",
-       "stem": "下列流程图的输出结果是？（ ）",
-       "code": "",
-       "options": {
-        "A": "60",
-        "B": "20",
-        "C": "5",
-        "D": "1"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-09-mc-3",
-       "paper": "2023-09",
-       "type": "mc",
-       "num": 3,
-       "answer": "C",
-       "stem": "已知大写字符 'A' 的ASCII编码的十六进制表示为 0x41 ，则字符 'L' 的ASCII编码的十六进制表示为（ ）。",
-       "code": "",
-       "options": {
-        "A": "4A",
-        "B": "4B",
-        "C": "4C",
-        "D": "52"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-09-mc-4",
-       "paper": "2023-09",
-       "type": "mc",
-       "num": 4,
-       "answer": "B",
-       "stem": "以下哪个不是C++语言中的运算符？（ ）",
-       "code": "",
-       "options": {
-        "A": "~",
-        "B": "~~",
-        "C": "<",
-        "D": "<<"
-       },
        "explanation": "",
        "difficulty": 2.5
       },
@@ -539,23 +1640,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2023-09-mc-8",
-       "paper": "2023-09",
-       "type": "mc",
-       "num": 8,
-       "answer": "C",
-       "stem": "下列关于进制的叙述，正确的是（ ）。",
-       "code": "",
-       "options": {
-        "A": "只有十进制和二进制能够用来表示小数，八进制和十六进制不可以。",
-        "B": "常用的进制包括二进制、八进制、十进制、十六进制，其他进制在日常生活中很少使用。",
-        "C": "对任意正整数，其二进制表示不会比它的十进制表示更短。",
-        "D": "正整数的八进制表示中，每一位可能出现的最大数字是8。"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2023-09-mc-9",
        "paper": "2023-09",
        "type": "mc",
@@ -568,74 +1652,6 @@
         "B": "不能定义 -1 个元素的数组。",
         "C": "数组下标越界访问会产生编译错误。",
         "D": "程序运行时发生数组下标的越界访问，程序依然可能正常结束。"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-09-mc-10",
-       "paper": "2023-09",
-       "type": "mc",
-       "num": 10,
-       "answer": "A",
-       "stem": "如果 a 是 int 类型的变量，下列哪个表达式的值一定为 true ？（ ）",
-       "code": "",
-       "options": {
-        "A": "a + 1000 - 1000 == a",
-        "B": "a * 2 / 2 == a",
-        "C": "(a & 1) == 1",
-        "D": "(a | 1) == a + 1"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-09-mc-11",
-       "paper": "2023-09",
-       "type": "mc",
-       "num": 11,
-       "answer": "B",
-       "stem": "如果 a 和 b 均为 int 类型的变量，下列表达式不能正确判断“ a 等于 b ”的是（ ）。",
-       "code": "",
-       "options": {
-        "A": "((a >= b) && (a <= b))",
-        "B": "((a >> 1) == (b >> 1))",
-        "C": "((a + b) == (a + a))",
-        "D": "((a ^ b) == 0)"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-09-mc-12",
-       "paper": "2023-09",
-       "type": "mc",
-       "num": 12,
-       "answer": "D",
-       "stem": "如果 a 为 char 类型的变量，下列哪个表达式可以正确判断“a是大写字母”？（ ）",
-       "code": "",
-       "options": {
-        "A": "a - 'A' <= 26",
-        "B": "'A' <= a <= 'Z'",
-        "C": "'A' <= 'a' <= 'Z'",
-        "D": "('A' <= a) && (a <= 'Z')"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-09-mc-13",
-       "paper": "2023-09",
-       "type": "mc",
-       "num": 13,
-       "answer": "B",
-       "stem": "在下列代码的横线处填写（ ），可以使得输出是“20 10”。",
-       "code": "",
-       "options": {
-        "A": "a = a >> 8; b = a & 0xff",
-        "B": "b = a >> 8; a = a & 0xff;",
-        "C": "a = b; b = a & 0xff;",
-        "D": "b = a; a = b;"
        },
        "explanation": "",
        "difficulty": 2.5
@@ -658,77 +1674,12 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2023-09-mc-15",
-       "paper": "2023-09",
-       "type": "mc",
-       "num": 15,
-       "answer": "B",
-       "stem": "在下列代码的输出是（ ）。",
-       "code": "",
-       "options": {
-        "A": "15",
-        "B": "28",
-        "C": "45",
-        "D": "55"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-09-tf-1",
-       "paper": "2023-09",
-       "type": "tf",
-       "num": 1,
-       "answer": "×",
-       "stem": "二进制数 101.101 在十进制下是 5.005。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-09-tf-2",
-       "paper": "2023-09",
-       "type": "tf",
-       "num": 2,
-       "answer": "√",
-       "stem": "在C++语言中，位运算符也有类似“先乘除、后加减”的优先级规则。因此，使用时应注意合理使用括号。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-09-tf-3",
-       "paper": "2023-09",
-       "type": "tf",
-       "num": 3,
-       "answer": "×",
-       "stem": "字符常量 '3' 的值和 int 类型常量 3 的值是相同的，只是占用的字节数不同。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2023-09-tf-4",
        "paper": "2023-09",
        "type": "tf",
        "num": 4,
        "answer": "×",
        "stem": "在C++语言中，长度为 的数组，访问下标为 的元素会引起编译错误。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-09-tf-5",
-       "paper": "2023-09",
-       "type": "tf",
-       "num": 5,
-       "answer": "√",
-       "stem": "在C++语言中，所有 int 类型的值，经过若干次左移操作（ << ）后，它们的值总会变为 0 。",
        "code": "",
        "options": {},
        "explanation": "",
@@ -759,51 +1710,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2023-09-tf-8",
-       "paper": "2023-09",
-       "type": "tf",
-       "num": 8,
-       "answer": "×",
-       "stem": "著名的哥德巴赫猜想：任一大于2的偶数都可写成两个素数之和。我们可以通过枚举法来证明它。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-09-tf-9",
-       "paper": "2023-09",
-       "type": "tf",
-       "num": 9,
-       "answer": "√",
-       "stem": "在C++语言中，表达式 (0xff == 255) 的值为 true 。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-09-tf-10",
-       "paper": "2023-09",
-       "type": "tf",
-       "num": 10,
-       "answer": "√",
-       "stem": "如果 a 为 int 类型的变量，且表达式 ((a & 1) == 0) 的值为 true ，则说明 a 是偶数。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      }
-     ]
-    },
-    {
-     "id": "2023-12",
-     "name": "2023 年 12 月",
-     "req": null,
-     "freq": null,
-     "difficulty": 2.5,
-     "questions": [
-      {
        "qid": "3-2023-12-mc-1",
        "paper": "2023-12",
        "type": "mc",
@@ -821,18 +1727,538 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2023-12-mc-2",
+       "qid": "3-2023-12-mc-9",
        "paper": "2023-12",
        "type": "mc",
-       "num": 2,
-       "answer": "D",
-       "stem": "在下列编码中，不能够和二进制\"1101 1101\"相等的是( )。",
+       "num": 9,
+       "answer": "C",
+       "stem": "下面C++代码用于统计每种字符出现的次数，当输出为3时，横线上不能填入的代码是（ ）。",
        "code": "",
        "options": {
-        "A": "（221）10进制",
-        "B": "（335）8进制",
-        "C": "（dd）16进制",
-        "D": "（5d）16进制"
+        "A": "str[i]=='o'",
+        "B": "str[i]=='a'+14",
+        "C": "str[i]==115",
+        "D": "str[i]==111"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-mc-6",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 6,
+       "answer": "C",
+       "stem": "下面C++代码执行后数组中大于0的数的特征是（ ）。",
+       "code": "int main()\n{\nint a[20],i;\nfor(i = 0; i < 20; i++)\na[i] = i+1;\nfor(int i = 0; i < 20; i++)\nif((a[i]%2)&&(a[i]%3))\na[i] = 0;\nfor(i = 0; i < 20; i++)\nif(a[i])\ncout << a[i] << \" \";\ncout << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "2的倍数",
+        "B": "3的倍数",
+        "C": "能被2或3整除的数",
+        "D": "能被2和3同时整除的数"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-mc-7",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 7,
+       "answer": "A",
+       "stem": "执行下面C++代码后输出的第一个数是（ ）。",
+       "code": "int main()\n{\nint a[20],i;\nfor(i = 0; i < 20; i++)\na[i] = i+1;\nfor( ; i > 0; i--)\ncout << a[i-1] << \" \";\ncout << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "20",
+        "B": "19",
+        "C": "1",
+        "D": "不确定"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-mc-11",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 11,
+       "answer": "D",
+       "stem": "下面C++程序执行的结果是（ ）。",
+       "code": "int main()\n{\nint a[20],i;\nint cnt=0;\nfor(i = 0; i < 20; i++)\na[i] = i+1;\nfor( ; i > 1; i--)\nif((a[i-1]+a[i-2])%3)\ncnt++;\ncout << cnt << endl;\ncout << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "5",
+        "B": "6",
+        "C": "10",
+        "D": "12"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-tf-8",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 8,
+       "answer": "√",
+       "stem": "对定义的数组 int a[7]={2,0,2,4,3,1,6} ，可以用简单循环就找到其中最小的整数。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-mc-4",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 4,
+       "answer": "C",
+       "stem": "下列代码将十进制转化成八进制，则横线上应填入（ ）。",
+       "code": "#include <iostream>\nusing namespace   std;\nvoid decimal2octal(int decimal) {\nint oct_number[100];\nint i = 0;\nwhile (decimal > 0) {\n__________________________     //在此处填入代码\n}\nfor (int j = i - 1; j >= 0; j--) {\ncout << oct_number[j];\n}\ncout << endl;\n}",
+       "options": {
+        "A": "oct_number[i] = decimal % 8; decimal /= 8;",
+        "B": "oct_number[i] = decimal / 8; decimal %/= 8;",
+        "C": "oct_number[i++] = decimal % 8; decimal /= 8;",
+        "D": "oct_number[i++] = decimal / 8; decimal %= 8;"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-mc-10",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 10,
+       "answer": "B",
+       "stem": "在下列代码的横线处填写( )，可以使得输出是“7”。",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint array[5] = {3，7，5，2，4};\nint max = 0;\nfor(int i=0; i<5; i++)\nif(______________) // 在此处填入代码\nmax = array[i];\ncout << max << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "max > array[i]",
+        "B": "max < array[i]",
+        "C": "max = array[i]",
+        "D": "以上均不对"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-mc-11",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 11,
+       "answer": "A",
+       "stem": "小杨在做数学题，题目要求找出从1到35中能被7整除的数字，即[7, 14, 21, 28, 35]，则横线处应填入哪个代 码？（ ）",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint arr[35];\nint count = 0;\nfor (int i = 1; i <= 35; i++) {\nif (i % 7 == 0)\n__________________________   // 在此处填入代码\n}\nfor (int i = 0; i < count; i++)\ncout << arr[i] << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "arr[count++] = i;",
+        "B": "arr[i] = count++;",
+        "C": "arr[i] = count;",
+        "D": "arr[count] = count++;"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-mc-13",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 13,
+       "answer": "B",
+       "stem": "某小学男子篮球队招募新成员，要求加入球队的成员身高在135厘米以上（不含135厘米）。本次报名的人 员有10人，他们的身高分别是125、127、136、134、137、138、126、135、140、145。完善以下代码，求出本次球 队能够招募到新成员的人数？（ ）",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint arr[10] = {125, 127, 136, 134, 137, 138, 126, 135, 140, 145};\nint count = 0;\nfor(int i=0; i<10; i++)\n__________________________    // 在此处填入代码\ncout << count << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "count = arr[i]>135? 1: 0;",
+        "B": "count += arr[i]>135? 1: 0;",
+        "C": "count++;",
+        "D": "以上都不对"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-tf-5",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 5,
+       "answer": "×",
+       "stem": "数组的所有元素在内存中可以不连续存放。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-tf-6",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 6,
+       "answer": "×",
+       "stem": "C++中可以对数组和数组的每个基础类型的元素赋值。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-tf-9",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "执行下面C++代码后，输出的结果不可能是89781。（ ）",
+       "code": "#include <iostream>\n#include <cstdlib> // 为了使用 rand() 和 srand()\n#include <ctime>    // 为了使用 time()\nusing namespace std;\nint main() {\n// 设置随机种子\nsrand(time(NULL));\nint i = 1;\nint s[5];\nwhile(i <= 5)\n{\nint a = rand() % 10;\nif(a % 3 == (i + 1) % 3)\ns[i++] = a;\n}\nfor(int i = 1; i <= 5; i++)\ncout << s[i];\ncout << endl;\nreturn 0;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-09-mc-13",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 13,
+       "answer": "D",
+       "stem": "下面的程序中，会输出（ ）。",
+       "code": "int a[10]={1,2,3,4,5,6,7,8,9,10};\ncout<<a[10]<<endl;",
+       "options": {
+        "A": "1",
+        "B": "0",
+        "C": "10",
+        "D": "不确定的值"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-09-tf-7",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 7,
+       "answer": "×",
+       "stem": "下列程序将输出 1 。（ ）",
+       "code": "int a[10]={1};\ncout<<a[1]<<endl;",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-mc-12",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 12,
+       "answer": "D",
+       "stem": "以下代码的功能是将数组中的奇数和偶数分别放在数组的前半部分和后半部分,横线处应该填入的是（）",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint arr[] = {1, 2, 3, 4, 5};\nint left = 0, right = 4;\nwhile (left < right) {\nwhile (arr[left] % 2 == 1 && left < right) left++;\n————————————————————————————————————————————————————\nif (left < right) {\nswap(arr[left], arr[right]);\n}\n}\nfor (int i = 0; i < 5; i++) {\ncout << arr[i] << \" \";\n}\nreturn 0;\n}",
+       "options": {
+        "A": "while (arr[left] % 2 == 0 && left < right) right--;",
+        "B": "while (arr[right] % 2 == 0 && left < right) left--;",
+        "C": "while (arr[right] % 2 != 0 && left < right) right--;",
+        "D": "while (arr[right] % 2 == 0 && left < right) right--;"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-mc-10",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 10,
+       "answer": "D",
+       "stem": "如何正确定义 个长度为5的整型数组( ) 一",
+       "code": "",
+       "options": {
+        "A": "int array = new int[5];",
+        "B": "array int[5];",
+        "C": "int[] array = {1,2,3,4,5};",
+        "D": "int array[5];"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-mc-3",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 3,
+       "answer": "D",
+       "stem": "以下关于C++数组的说法，错误的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "数组的下标通常从 0 开始。",
+        "B": "int arr[5]; 声明了 个包含5个整数的数组。 一",
+        "C": "数组的 必须在编译时确定，不能使 变量定义 。 大 小 用 大 小",
+        "D": "可以通过 arr[5] 来访问 int arr[5]; 数组的最后 个元素。 一"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-mc-6",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 6,
+       "answer": "B",
+       "stem": "执 以下C++代码后，数组 arr 的内容是（ ）。 行",
+       "code": "int arr[4] = {1, 2, 3};\narr[3] = arr[0] + arr[2];",
+       "options": {
+        "A": "{1, 2, 3, 3}",
+        "B": "{1, 2, 3, 4}",
+        "C": "{1, 2, 3, 5}",
+        "D": "{1, 2, 3, 6}"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-mc-14",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 14,
+       "answer": "C",
+       "stem": "以下C++代码中存在几处错误（ ）。",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\nconst int SIZE = 5;\nint arr[SIZE];\nfor (int i = 0; i <= SIZE; i++) {\narr[i] = i * 2;\n}\ncout << arr[SIZE] << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "0处",
+        "B": "1处",
+        "C": "2处",
+        "D": "3处"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-mc-2",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 2,
+       "answer": "C",
+       "stem": "以下关于标准 C++ 一维数组的描述，哪一项是错误的？（ ）",
+       "code": "",
+       "options": {
+        "A": "数组的下标从0开始",
+        "B": "数组在内存中是连续存放的",
+        "C": "数组的长度只能在运行时才能确定",
+        "D": "可以在程序中修改数组某个元素的值"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-mc-6",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 6,
+       "answer": "D",
+       "stem": "以下代码是一个程序的部分代码，能够正确执行，输出的结果是（ ）",
+       "code": "int arr[5] = {1, 2, 3, 4, 5};\nint p = arr[1];\ncout << (p + 2) << endl;",
+       "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-mc-9",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 9,
+       "answer": "A",
+       "stem": "以下代码执行后，数组 arr 的内容是（ ）",
+       "code": "int arr[6] = {1, 2, 3, 4, 5, 6};\nfor (int i = 0; i < 6; i += 2) {\narr[i] = arr[i] + arr[i+1];\narr[i+1] = arr[i] - arr[i+1];\narr[i] = arr[i] - arr[i+1];\n}",
+       "options": {
+        "A": "{2,1,4,3,6,5}",
+        "B": "{1,2,3,4,5,6}",
+        "C": "{3,1,4,2,5,3}",
+        "D": "{1,3,2,5,4,6}"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-mc-13",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 13,
+       "answer": "B",
+       "stem": "以下代码运行后， sum 的结果是（ ）",
+       "code": "int arr[5] = {2, 4, 6, 8, 10};\nint sum = 0;\nfor (int i = 0; i < 5; i++) {\nswitch (arr[i] % (1|2)) {\ncase 0: sum += 1; break;\ncase 1: sum += 2; break;\ncase 2: sum += 3; break;\n}\n}",
+       "options": {
+        "A": "10",
+        "B": "11",
+        "C": "14",
+        "D": "15"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-tf-1",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "在 C++ 中，数组名不能改变，数组名不能被赋值。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-tf-6",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "在 C++ 中， int a[] = {1, 2, 3, 4, 5}; 可以定义一个包含 5 个元素的整型数组。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-tf-7",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "C++ 表达式 z = a > b ? x : y 等同于： 以下代码执行后，输出将会是 2 。",
+       "code": "if (a > b) {\nz = x;\n} else {\nz = y;\n}\nint main() {\nint arr[5] = {1, 2, 3, 4, 5};\ncout << arr[3 > 2 ? 1 : 2] << endl;\nreturn 0;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-mc-11",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 11,
+       "answer": "B",
+       "stem": "执行以下代码后，输出结果是：（ ）。",
+       "code": "int arr[] = {5, 10, 15, 20, 25, 30};\nint count = sizeof(arr) / sizeof(arr[0]);\ncout << count;",
+       "options": {
+        "A": "4",
+        "B": "6",
+        "C": "24",
+        "D": "30"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-tf-1",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 1,
+       "answer": "×",
+       "stem": "定义 int arr[5] = {1,2,3}; ，则 arr[3] 的值为 0， arr[5] 是合法下标。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-tf-2",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 2,
+       "answer": "×",
+       "stem": "定义 double arr[10]; ，未手动初始化时，数组中所有元素的默认值为 0.0。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-tf-3",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 3,
+       "answer": "√",
+       "stem": "定义 int arr[] = {1,2,3}; ，则 sizeof(arr) 的结果为 12（ int 占 4 字节）。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c4",
+   "name": "字符串",
+   "req": "掌握",
+   "freq": null,
+   "difficulty": 2.5,
+   "kp": 1,
+   "sections": [
+    {
+     "id": "4.1",
+     "name": "字符串处理",
+     "req": "掌握",
+     "freq": null,
+     "difficulty": 2.5,
+     "questions": [
+      {
+       "qid": "3-2023-06-mc-5",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 5,
+       "answer": "C",
+       "stem": "如果字符串定义为 char str[] = \"Hello\";，则字符数组 str 的长度为（ ）。",
+       "code": "",
+       "options": {
+        "A": "0",
+        "B": "5",
+        "C": "6",
+        "D": "7"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-06-mc-9",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 9,
+       "answer": "C",
+       "stem": "下列关于 C++语言中数组的叙述，不正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "数组必须先定义后使用。",
+        "B": "数组的所有元素在内存中是连续存放的。",
+        "C": "除了字符数组，在定义数组时“[]”内必须有常数。",
+        "D": "不能对数组赋值，但可以对数组的每个基础类型的元素赋值。"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-06-tf-5",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "字符常量'\\0'常用来表示字符串结束，它和字符常量'0'是不同的。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-mc-12",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 12,
+       "answer": "D",
+       "stem": "如果 a 为 char 类型的变量，下列哪个表达式可以正确判断“a是大写字母”？（ ）",
+       "code": "",
+       "options": {
+        "A": "a - 'A' <= 26",
+        "B": "'A' <= a <= 'Z'",
+        "C": "'A' <= 'a' <= 'Z'",
+        "D": "('A' <= a) && (a <= 'Z')"
        },
        "explanation": "",
        "difficulty": 2.5
@@ -851,6 +2277,1285 @@
         "C": "string str(\"GESP\"); cout<<str[1]<<str[2]<<str[3]<<str[4]<<endl;",
         "D": "string str{\"GESP\"}; cout<<str<<endl;"
        },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-12-mc-13",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 13,
+       "answer": "A",
+       "stem": "C++代码用于抽取字符串中的电话号码。约定：电话号码全部是数字，数字之间没有其他符号如连字符或 空格等。代码中变量strSrc仅仅是示例，可以包含更多字符。下面有关代码说法，正确的说法是（ ）。",
+       "code": "",
+       "options": {
+        "A": "代码将换行输出各个含有数字的电话号码。",
+        "B": "代码将不换行输出各个含有数字的电话号码，号码中间没有分隔。",
+        "C": "代码将不换行输出各个含有数字的电话号码，号码中间有分隔。",
+        "D": "不能够输出数字电话号码。"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-mc-5",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 5,
+       "answer": "C",
+       "stem": "已知字符 '0' 的ASCII编码的十进制表示为48，则执行下面C++代码后，输出是（ ）。",
+       "code": "int main()\n{\nstring s=\"316\";\nint n=s.length();\nint x=0;\nfor(int i = 0; i < n; i++)\nx += s[i];\ncout << x << endl;\ncout << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "10",
+        "B": "58",
+        "C": "154",
+        "D": "316"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-mc-8",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 8,
+       "answer": "C",
+       "stem": "在下列代码的横线处填写（ ），可以使得输出是 GESP IS INTERESTING 。",
+       "code": "int main()\n{\nstring str=\"gEsP is Interesting\";\nint x = str.length();\nfor(int i = 0; i < x; i++)\nif ((str[i]>='a') && (str[i]<='z'))\n________________________;\ncout << str << endl;\ncout << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "str[i]+='a'-'A'",
+        "B": "str[i]+=20",
+        "C": "str[i]+='A'-'a'",
+        "D": "无法实现"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-mc-9",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 9,
+       "answer": "C",
+       "stem": "假设英文句子由若干词构成。下面C++代码统计输出的词数是（ ）。",
+       "code": "int main()\n{\nstring str=\"gEsP is Interesting     !\";\nint x = str.length();\nint nwords = 0;\nfor(int i = 0; i < x; i++)\nif (str[i]==' '){\nnwords++;\nwhile(str[++i]==' ') ;\n}\ncout << nwords << endl;\ncout << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-mc-12",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 12,
+       "answer": "A",
+       "stem": "定义字符数组 char str[20] = {'G', 'E', 'S', 'P'}; ，则 str 的字符串长度为（ ）。",
+       "code": "",
+       "options": {
+        "A": "4",
+        "B": "5",
+        "C": "19",
+        "D": "20"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-tf-6",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "执行下面C++代码后将输出 2 。（ ）",
+       "code": "int main()\n{\nstring str=\"gEsP is Interesting\";\nint x = str.find(\"s\");\ncout << x << endl;\ncout << endl;\nreturn 0;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-tf-7",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 7,
+       "answer": "×",
+       "stem": "在C++语言中，字符数组被定义时，它的大小可以调整。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-mc-9",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 9,
+       "answer": "C",
+       "stem": "如果字符串定义为 char str[] = \"GESP\"; ，则字符数组 str 的长度为( )。",
+       "code": "",
+       "options": {
+        "A": "0",
+        "B": "4",
+        "C": "5",
+        "D": "6"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-mc-12",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 12,
+       "answer": "C",
+       "stem": "已知字符 '0' 的ASCII编码的十进制表示为48，则执行下面C++代码后，输出是( )。",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\nstring s = \"0629\";\nint n = s.length();\nint x = 0;\nfor(int i = 0; i < n; i++)\nx += s[i];\ncout << x << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "17",
+        "B": "158",
+        "C": "209",
+        "D": "316"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-mc-15",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 15,
+       "answer": "A",
+       "stem": "如果执行下面C++代码后，输出的结果是“gesp ccf org cn ”，则横线上应填入哪个代码？（ ）",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\nstring str = \"gesp.ccf.org.cn\";\nstring delimiter = \".\";\nstring result=\"\";\nstring token;\nsize_t found = str.find(delimiter);\nwhile (found != string::npos) {\ntoken = str.substr(0, found);\nresult += token;\nresult += \" \";\n__________________________ // 在此处填入代码\nfound = str.find(delimiter);\n}\n//最后一部分\nresult += str;\nresult += \" \";\ncout << result << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "str = str.substr(found + delimiter.length(), str.length() - 1);",
+        "B": "str = str.substr(found, str.length() );",
+        "C": "str = str.substr(found, str.length() -1);",
+        "D": "以上都不对"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-tf-4",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "字符常量'\\0'常用来表示字符串结束，和字符常量'0'相同。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-09-mc-15",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 15,
+       "answer": "B",
+       "stem": "下列程序输出的是（）",
+       "code": "string str = \"Hello,CHAD\";\ncout << str.find(\"A\") << '\\n';",
+       "options": {
+        "A": "9",
+        "B": "8",
+        "C": "7",
+        "D": "6"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-09-tf-6",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "下列程序输出的是 3 。（ ）",
+       "code": "string str=\"CHADai\";\nsize_t pos = str.find('D');\ncout<<pos<<endl;",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-mc-7",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 7,
+       "answer": "C",
+       "stem": "下列代码输出的是",
+       "code": "string s=\"1234@@chenadai\";\nstring str=\"12345\";\ns.replace(1,5,str);\ncout<<s<<endl;",
+       "options": {
+        "A": "12345",
+        "B": "2345@",
+        "C": "112345chenadai",
+        "D": "12345chenadai"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-mc-9",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 9,
+       "answer": "A",
+       "stem": "下列程序输出的是（ ）",
+       "code": "string ch=\"hello\";\nif(ch[5]==NULL)\n{\ncout<<\"right\"<<endl;\n}\nelse if (ch[5]=='\\0')\n{\ncout<<\"wrong\"<<endl;\n}\nelse\n{\ncout<<\"hello\"<<endl;\n}",
+       "options": {
+        "A": "right",
+        "B": "wrong",
+        "C": "hello",
+        "D": "不能正确执行"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-mc-10",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 10,
+       "answer": "D",
+       "stem": "下列程序中，假设一个字符占用的内存空间是1，下列程序中，ch占用的内存空间是 ( )",
+       "code": "char ch[] = \"hello world\";\nsize_t ret=strlen(ch);\ncout<<ret<<endl;",
+       "options": {
+        "A": "11",
+        "B": "10",
+        "C": "13",
+        "D": "12"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-tf-6",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "下列可执行程序段中，最后 pos 的值是 4",
+       "code": "string str=\"chenADai\";\nint pos = str.find('D');\n--pos&11;",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-tf-7",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 7,
+       "answer": "×",
+       "stem": "该段程序将不能正确执行",
+       "code": "string ch=\"chen\";\ncout<<ch[4]<<endl;",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-mc-1",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 1,
+       "answer": "D",
+       "stem": "Base64 编码将每3字节的输入数据编码为 4 字节的输出数据。如果输入数据长度不是 3 的倍数，会用 = 号填 充。在Base64编码中，如果输入字符串的长度为10字节，编码后的字符串长度是多少（ ）",
+       "code": "",
+       "options": {
+        "A": "12 字节",
+        "B": "13 字节",
+        "C": "14 字节",
+        "D": "16 字节"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-mc-13",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 13,
+       "answer": "B",
+       "stem": "下面程序最后能够得到 HelloC++ 的是（）",
+       "code": "int main() {\nstring str = \"HelloWorld\";\n___________________\ncout << str;\nreturn 0;\n}",
+       "options": {
+        "A": "1 str.replace(0, 5, \"C++\");",
+        "B": "1 str.replace(5, 5, \"C++\");",
+        "C": "1 str.replace(1, 5, \"C++\");",
+        "D": "1 str.replace(4, 5, \"C++\");"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-mc-14",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 14,
+       "answer": "D",
+       "stem": "想要得到字符串 world ,下面程序横线处应该填入的是（）",
+       "code": "#include <iostream>\n#include <string>\nusing namespace std;\nint main() {\nstring str = \"HelloC++\";\n_________________\n_________________\nreturn 0;\n}",
+       "options": {
+        "A": "1 str.insert(4, \"World\"); 2 cout << str.substr(4, 4);",
+        "B": "1 cout << str.substr(5, 5);",
+        "C": "1 str.insert(\"World\"); 2 cout << str.substr(5, 5);",
+        "D": "1 str.insert(5, \"World\"); 2 cout << str.substr(5, 5);"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-mc-13",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 13,
+       "answer": "D",
+       "stem": "C++代码 string s = \"GESP考试\"; ，s占据的字节数是（）",
+       "code": "",
+       "options": {
+        "A": "10",
+        "B": "8",
+        "C": "8或10",
+        "D": "取决于计算机采用什么编码"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-mc-14",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 14,
+       "answer": "C",
+       "stem": "C++语句 string s=\"Gesp Test\"; 执行s.rfind(\"e\")以后,输出的是（）",
+       "code": "",
+       "options": {
+        "A": "1",
+        "B": "2",
+        "C": "6",
+        "D": "3"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-mc-15",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 15,
+       "answer": "C",
+       "stem": "字符串\"Gesp考试\",字符数是（ ）",
+       "code": "",
+       "options": {
+        "A": "10",
+        "B": "8",
+        "C": "6",
+        "D": "字符数多少取决于编码"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-tf-1",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 1,
+       "answer": "×",
+       "stem": "C++中 string 的 == 运算符比较的是字符串的内存地址，而非内容",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-tf-2",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "string 的 substr(1, 3) 返回从下标1开始的3个字符的子串。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-tf-4",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 4,
+       "answer": "√",
+       "stem": "string(\"hello\") == \"hello\" 的比较结果为true。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-tf-7",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 7,
+       "answer": "×",
+       "stem": "string 的 substr(2, 10) 在字符串长度不足时会抛出异常。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-mc-15",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 15,
+       "answer": "D",
+       "stem": "以下关于C++中 string 类和字符数组( char[] )的说法，错误的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "string 对象可以使用 = 进行赋值，而字符数组需要使用 strcpy 。",
+        "B": "string 对象的长度可以使用 length() 成员函数获取，而字符数组需要使用 strlen() 函数。",
+        "C": "string 对象在内存中是动态分配空间的，因此可以自动处理字符串长度的变化。",
+        "D": "string 对象和字符数组都可以使用 == 运算符来直接比较两个字符串的内容是否相同。"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-mc-5",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 5,
+       "answer": "B",
+       "stem": "已知字符串 s = \"C++ Programming\" ，下列程序运行的结果是（ ）",
+       "code": "cout << (int)(s.length() | 3) << endl;",
+       "options": {
+        "A": "14",
+        "B": "15",
+        "C": "16",
+        "D": "17"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-mc-15",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 15,
+       "answer": "D",
+       "stem": "如果字符串 s 的值是 GESP ，以下代码 s 的最后结果是（ ）",
+       "code": "for (int i = 0; i < s.length(); i++) {\ns[i] = toupper(s[i] + i);\n}",
+       "options": {
+        "A": "GESP",
+        "B": "HFTR",
+        "C": "hesp",
+        "D": "GFUS"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-mc-3",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 3,
+       "answer": "C",
+       "stem": "关于下列正确的程序段，说法正确的是（ ）。",
+       "code": "char str1[] = \"Hello\";\nchar str2[] ={'H','e','l','l','0'};",
+       "options": {
+        "A": "字符数组 str1 和 str2 完全相同。",
+        "B": "1 cout<<str1<<endl; 2 cout<<str2<<endl; 这段程序多次执行将输出不同的结果。",
+        "C": "字符数组 str1 和 str2 不相等。",
+        "D": "这两个赋值方式完全相同。"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-mc-10",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 10,
+       "answer": "A",
+       "stem": "执行以下 C++ 代码后， sub 的值是（ ）。",
+       "code": "string str = \"GESP2026\";\nstring sub = str.substr(4, 2);",
+       "options": {
+        "A": "20",
+        "B": "02",
+        "C": "2026",
+        "D": "026"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-mc-12",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 12,
+       "answer": "B",
+       "stem": "执行以下代码后，输出结果是：（ ）。",
+       "code": "char s[10] = \"abcde\";\nint a = sizeof(s) / sizeof(s[0]);\nint b = strlen(s);\ncout << a - b;",
+       "options": {
+        "A": "4",
+        "B": "5",
+        "C": "6",
+        "D": "10"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-mc-15",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 15,
+       "answer": "D",
+       "stem": "模拟 “字符串加密”：规则为 “每个字符 ASCII 码 + 3，若超过 z (122) 则从 a 重新开始”，以下代码中正确 的条件判断是：（ ）",
+       "code": "for (int i = 0; i < str.length(); i++) {\n// 需补充条件：\n_______________________\nelse {\nstr[i] += 3;\n}\n}",
+       "options": {
+        "A": "if (str[i]> 122) str[i] = str[i] + 3 - 26;",
+        "B": "if (str[i] > 122) str[i] = str[i] - 26;",
+        "C": "if (str[i] + 3 > 122) str[i] = str[i] - 26;",
+        "D": "if (str[i] + 3 > 'z') str[i] = 'a' + (str[i] + 3 - 'z') - 1;"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c5",
+   "name": "函数与递归",
+   "req": "掌握",
+   "freq": null,
+   "difficulty": 2.5,
+   "kp": 2,
+   "sections": [
+    {
+     "id": "5.1",
+     "name": "函数与参数",
+     "req": "掌握",
+     "freq": null,
+     "difficulty": 2.5,
+     "questions": [
+      {
+       "qid": "3-2024-03-mc-3",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 3,
+       "answer": "C",
+       "stem": "下面C++代码执行后的输出是( )。",
+       "code": "int main()\n{\ncout << (3|16) << endl;\ncout << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "3",
+        "B": "16",
+        "C": "19",
+        "D": "48"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-03-tf-3",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "下面C++代码可以计算1到100的累加和，采用的是穷举法。",
+       "code": "int main()\n{\nint i,sum=0;\nfor(int i = 1; i <= 100 ; i++)\nsum += i;\ncout << sum << endl;\ncout << endl;\nreturn 0;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-mc-7",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 7,
+       "answer": "C",
+       "stem": "下列代码的输出结果是（ ）。",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint a = 12;\nint result = a >> 2;\ncout << result << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "12",
+        "B": "6",
+        "C": "3",
+        "D": "1"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-06-mc-8",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 8,
+       "answer": "C",
+       "stem": "下列代码的输出结果是（ ）。",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint a = 5;\nint b = 10;\na = a ^ b;\nb = a ^ b;\na = a ^ b;\ncout << \"a = \" << a << \", b = \" << b << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "a = 5, b = 10",
+        "B": "a = 5, b = 5",
+        "C": "a = 10, b = 5",
+        "D": "a = 10, b = 10"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-09-mc-1",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 1,
+       "answer": "B",
+       "stem": "下列代码中，输出结果是（ ）",
+       "code": "#include<iostream>\nusing namespace std;\nint main()\n{\ndouble a=0.9;\ndouble b=1.0;\nif(((b-a)==0.1))\n{\ncout<<\"Equal\"<<endl;\n}\nelse\n{\ncout<<\"Not equal\"<<endl;\n}\n}",
+       "options": {
+        "A": "Equal",
+        "B": "Not equal",
+        "C": "程序不能正确执行",
+        "D": "没有输出"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-09-mc-7",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 7,
+       "answer": "C",
+       "stem": "下列代码实现的是（ ）",
+       "code": "void Swap(int &a, int &b) {\nif (a != b) {\na ^= b;\nb ^= a;\na ^= b;\n}\n}",
+       "options": {
+        "A": "a和b的异或",
+        "B": "a和b的同或",
+        "C": "a和b的值交换",
+        "D": "a和b的高低位互换"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-mc-8",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 8,
+       "answer": "A",
+       "stem": "下列程序的作用是（）",
+       "code": "int main() {\nint decimal = 25;\ncout << oct << decimal;\nreturn 0;\n}",
+       "options": {
+        "A": "将十进制数转换成八进制数",
+        "B": "将八进制数转换成十进制数",
+        "C": "将二进制数转换成八进制数",
+        "D": "将八进制数转换成16进制数"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-mc-9",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 9,
+       "answer": "C",
+       "stem": "下面程序是将十进制转十六进制，横线处应该填入的是（）",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint decimal = 255;\n——————————————————\nreturn 0;\n}",
+       "options": {
+        "A": "cout << oct << decimal;",
+        "B": "cout << decimal << decimal;",
+        "C": "cout << hex << decimal;",
+        "D": "不能正确执行"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-mc-10",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 10,
+       "answer": "D",
+       "stem": "以下代码的说法正确的是什么( )",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint a = 0b1101;\nint b = 0b1011;\ncout << (a ^ b);\nreturn 0;\n}",
+       "options": {
+        "A": "进行的是整体异或运算",
+        "B": "进行的是按位同或运算",
+        "C": "进行的是按位与运算",
+        "D": "进行的是按位异或运算"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-03-tf-2",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "这段程序进 的是判断 个从键盘输 的字符的ASCII 是否是奇数，若是，输出 YES，否则，输出 NO 行 一 入",
+       "code": "int main()\n{\nchar x;\nscanf(\"%c\", &x);\nint ASCII = (int)x;\ncout << (x & 1 ? \"YES\" : \"NO\") << '\\n';\nreturn 0;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-mc-11",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 11,
+       "answer": "B",
+       "stem": "以下程序使 枚举法（穷举法）求解满 条件的三位数，横线处应该填 的是（） 用 足 入",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint count = 0;\nfor (int i = 100; i <= 999; i++) {\nint a = i / 100;\n————————————————————\nint c = i % 10;\nif (a * a + b * b == c * c) {\ncount++;\n}\n}\ncout << count << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "int b = (i / 10) / 10;",
+        "B": "int b = (i / 10) % 10;",
+        "C": "int b = (i % 10) / 10;",
+        "D": "int b = (i % 10) % 10;"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-mc-12",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 12,
+       "answer": "B",
+       "stem": "以下程序模拟了一个简单的小球反弹过程，横线处应该填入的是（）",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint height = 10;\nint distance = 0;\nfor (int i = 1; i <= 5; i++) { // 模拟5次落地\n——————————————————————\nheight /= 2;\ndistance += height;\n}\ncout << distance << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "distance += height/2;",
+        "B": "distance += height;",
+        "C": "distance += height*2;",
+        "D": "distance += height+1;"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-tf-10",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "函数声明 double f(); 返回 int 时，会自动转换为 double",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-mc-7",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 7,
+       "answer": "B",
+       "stem": "以下关于C++函数的描述，正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "函数必须要有参数。",
+        "B": "函数通过 return 语句只能返回 个值。但是可以通过很多间接的 式返回多个值。 一 方",
+        "C": "main 函数可以被其他函数调 。 用",
+        "D": "函数的定义可以直接嵌套，即 个函数内部可以真正定义另 个函数。 一 一"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-mc-10",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 10,
+       "answer": "C",
+       "stem": "以下关于C++变量作用域的说法，错误的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "在 for 循环语句中声明的变量，其作用域仅限于该循环体内。",
+        "B": "在函数内部声明的变量（局部变量），仅在函数内部有效。",
+        "C": "在所有函数外部声明的变量，在整个程序中都有效。",
+        "D": "不同函数中的局部变量可以同名，它们代表不同的内存单元"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-mc-13",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 13,
+       "answer": "D",
+       "stem": "以下关于C++函数的说法，正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "函数参数传递只有值传递一种方式。",
+        "B": "函数的形参在函数调用结束后依然占用内存空间",
+        "C": "没有返回值的函数必须声明为 void 类型，且不能包含 return 语句",
+        "D": "C++11 及之后标准要求函数必须显式声明返回类型，不允许默认返回 int"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-mc-7",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 7,
+       "answer": "D",
+       "stem": "以下关于 C++ 求最小值函数 min() 的描述，不正确的是（ ）",
+       "code": "",
+       "options": {
+        "A": "函数必须返回一个值",
+        "B": "该函数可以嵌套调用",
+        "C": "调用 min(5) 是错误的，不能通过编译",
+        "D": "调用 min() （不传任何参数）可以通过编译，结果为 0"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-12-mc-14",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 14,
+       "answer": "A",
+       "stem": "以下关于 C++ 中 abs() 函数的描述，正确的是（ ）",
+       "code": "",
+       "options": {
+        "A": "abs() 函数可用于计算 int 类型整数的绝对值，头文件为 <cmath> 或 <cstdlib>",
+        "B": "调用 abs(3.14) 可以四舍五入得到 3",
+        "C": "abs(-1, -2) 的返回值是 1",
+        "D": "若传入负数浮点数， abs() 会自动截断小数部分后返回整数绝对值"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      }
+     ]
+    },
+    {
+     "id": "5.2",
+     "name": "递归",
+     "req": "掌握",
+     "freq": null,
+     "difficulty": 2.5,
+     "questions": [
+      {
+       "qid": "3-2024-09-mc-12",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 12,
+       "answer": "C",
+       "stem": "关于一维数组，下列程序能够正确执行的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "1 int a[10]; 2 int sum=0; 3 for(int i=0;i<=10;i++) { 4 sum=sum+a[i]; 5 }",
+        "B": "1 int a[10]={1,2,3,4,5,6,7,8,9,10}; 2 int sum=0; 3 for(int i=0;i<=10;i++) { 4 sum=sum+a[i]; 5 }",
+        "C": "1 int a[10]={1,2,3,4,5,6,7,8,9,10}; 2 int sum=0; 3 for(int i=0;i<10;i++) { 4 um=sum+a[i]; 5 }",
+        "D": "1 int a[10]={0}; 2 int sum=0; 3 for(int i=0;i<=10;i++) { 4 sum=sum+a[i]; 5 }"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-mc-12",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 12,
+       "answer": "C",
+       "stem": "想要计算从数字n到数字m之间（包含n和m）有多少个数字d出现，下列程序哪个能够实现（ ）。",
+       "code": "",
+       "options": {
+        "A": "1 int n,m,res,d; 2 cin >> n >> m>>d; 3 for(int i = n+1; i <= m; i++){ 4 int temp = i; 5 while(temp){ 6 if(temp % 10 == d) res++; 7 temp /= 10; 8 } 9 } 10 cout << res << endl; 11 return 0;",
+        "B": "1 int n,m,res,d; 2 cin >> n >> m>>d; 3 for(int i = n; i <= m; i++){ 4 int temp = i; 5 while(temp){ 6 if(temp % 10 = d) res++; 7 temp /= 10; 8 } 9 } 10 cout << res << endl; 11 return 0;",
+        "C": "1 int n,m,res=0,d; 2 cin >> n >> m>>d; 3 for(int i = n; i <= m; i++){ 4 int temp = i; 5 while(temp){ 6 if(temp % 10 == d) res++; 7 temp /= 10; 8 } 9 } 10 cout << res << endl; 11 return 0;",
+        "D": "1 int n,m,res=0,d; 2 cin >> n >> m>>d; 3 for(int i = n; i <= m; i++){ 4 while(temp){ 5 if(temp % 10 == d) res++; 6 temp /= 10; 7 } 8 } 9 cout << res << endl; 10 return 0;"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-mc-13",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 13,
+       "answer": "D",
+       "stem": "兔子五元一只，鸡三元一只，小鸭子一元三只，现在你有一百元要买一百只，兔子、鸡、鸭子，问兔子、 鸡、鸭子各买多少只，每种必须至少一只，下列哪个程序能实现。（ ）。",
+       "code": "",
+       "options": {
+        "A": "1 for(int i = 0; i <= 100; i++){ 2 for(int j = 0; j <= 100; j++){ 3 for(int k = 0; k <= 100; k++){ 4 if(i + j + k == 100 && 25 * i + 10 * j + k == 300) 5 cout << i << \" \" << j << \" \" << k << endl; 6 } 7 } 8 }",
+        "B": "1 for(int i = 0; i <= 100; i++){ 2 for(int j = 0; j <= 100; j++){ 3 for(int k = 0; k <= 100; k++){ 4 if(i + j + k == 100 && 20 * i + 10 * j + k == 300) 5 cout << i << \" \" << j << \" \" << k << endl; 6 } 7 } 8 }",
+        "C": "1 for(int i = 0; i <= 20; i++){ 2 for(int j = 0; j <= 34; j++){ 3 for(int k = 0; k <= 20; k++){ 4 if(i + j + k == 100 && 15 * i + 9 * j + k == 300) 5 cout << i << \" \" << j << \" \" << k << endl; 6 } 7 } 8 }",
+        "D": "1 for(int i = 0; i <= 100; i++){ 2 for(int j = 0; j <= 100; j++){ 3 for(int k = 0; k <= 100; k++){ 4 if(i + j + k == 100 && 15 * i + 9 * j + k == 300) 5 cout << i << \" \" << j << \" \" << k << endl; 6 } 7 } 8 }"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-mc-14",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 14,
+       "answer": "C",
+       "stem": "求小于等于N的素数的方法中，有一种方法是将所有从2到它本身减1的数都除一遍，如果不能整除，就是素 数。下列哪个程序，体现了这种方法（）",
+       "code": "",
+       "options": {
+        "A": "1 if(N >= 3){ 2 cout<<2<<endl; 3 for(int i = 2;i <= N;i ++){ 4 for(int j = 2;j < i;j ++){ 5 if(i % j != 0){ 6 flag = 1; 7 } 8 } 9 if(flag == 0){ 10 cout<<i<<endl; 11 } 12 flag = 0; 13 } 14 }",
+        "B": "1 if(N >= 2){ 2 for(int i = 3;i <= N;i ++){ 3 for(int j = 2;j < i;j ++){ 4 if(i % j == 0){ 5 flag = 1; 6 } 7 } 8 if(flag == 0){ 9 cout<<i<<endl; 10 } 11 flag = 0; 12 } 13 }",
+        "C": "1 if(N >= 2){ 2 cout<<2<<endl; 3 for(int i = 3;i <= N;i ++){ 4 for(int j = 2;j < i;j ++){ 5 if(i % j == 0){ 6 flag = 1; 7 } 8 } 9 if(flag == 0){ 10 cout<<i<<endl; 11 } 12 flag = 0; 13 } 14 }",
+        "D": "1 if(N >= 2){ 2 cout<<2<<endl; 3 for(int i = 3;i <= N;i ++){ 4 for(int j = 2;j < i;j ++){ 5 if(i % j == 0){ 6 flag = 1; 7 } 8 } 9 if(flag == 0){ 10 cout<<i<<endl; 11 } 12 } 13 }"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-mc-5",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 5,
+       "answer": "B",
+       "stem": "要正确定义 个返回两个整数中较 值的函数 max ，应该使 （ ）。 一 大 用",
+       "code": "",
+       "options": {
+        "A": "void max(int a, int b) { return a > b ? a : b; }",
+        "B": "int max(int a, int b) { if (a > b) return a; else return b; }",
+        "C": "int max(a, b) { if (a > b) return a; else return b; }",
+        "D": "void max(a, b) { cout << (a > b ? a : b); }"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c6",
+   "name": "排序",
+   "req": "掌握",
+   "freq": null,
+   "difficulty": 2.5,
+   "kp": 1,
+   "sections": [
+    {
+     "id": "6.1",
+     "name": "排序算法",
+     "req": "掌握",
+     "freq": null,
+     "difficulty": 2.5,
+     "questions": [
+      {
+       "qid": "3-2025-06-tf-5",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 5,
+       "answer": "×",
+       "stem": "sort 可以直接用于排序 set 中的元素。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c7",
+   "name": "查找",
+   "req": "掌握",
+   "freq": null,
+   "difficulty": 2.5,
+   "kp": 1,
+   "sections": [
+    {
+     "id": "7.1",
+     "name": "查找算法",
+     "req": "掌握",
+     "freq": null,
+     "difficulty": 2.5,
+     "questions": [
+      {
+       "qid": "3-2025-03-mc-11",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 11,
+       "answer": "D",
+       "stem": "下面枚举法查找最大值索引程序中，横线处应该填写的是（）",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint arr[] = {3, 7, 2, 9, 5};\nint maxIndex = 0;\nfor (int i = 1; i < 5; i++) {\n————————————————————————————————\n{\nmaxIndex = i;\n}\n}\ncout << maxIndex;\nreturn 0;\n}",
+       "options": {
+        "A": "if (arr[maxIndex] > arr[i])",
+        "B": "if (arr[i]-1 > arr[maxIndex])",
+        "C": "if (arr[i]+1 > arr[maxIndex])",
+        "D": "if (arr[i] > arr[maxIndex])"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-mc-12",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 12,
+       "answer": "C",
+       "stem": "以下C++代码试图查找数组中的最大值，划线处应填入（ ）。",
+       "code": "#include <iostream>\nusing namespace std;\nint findMax(int arr[], int size) {\nint maxVal = ________; // 划线处\nfor (int i = 1; i < size; i++) {\nif (arr[i] > maxVal) {\nmaxVal = arr[i];\n}\n}\nreturn maxVal;\n}",
+       "options": {
+        "A": "0",
+        "B": "arr[-1]",
+        "C": "arr[0]",
+        "D": "size"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-09-tf-9",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "#include \"file.h\" 和 #include <file.h> 在编译器查找头文件时的搜索策略是完全相同的。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c8",
+   "name": "高精度与数论",
+   "req": "掌握",
+   "freq": null,
+   "difficulty": 2.5,
+   "kp": 1,
+   "sections": [
+    {
+     "id": "8.1",
+     "name": "高精度与数论",
+     "req": "掌握",
+     "freq": null,
+     "difficulty": 2.5,
+     "questions": [
+      {
+       "qid": "3-2023-09-tf-8",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "著名的哥德巴赫猜想：任一大于2的偶数都可写成两个素数之和。我们可以通过枚举法来证明它。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2024-12-tf-9",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "自然界中，最小的素数是 2",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2025-06-mc-6",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 6,
+       "answer": "B",
+       "stem": "补码加法中，若符 位⽆进位⽽次⾼位有进位，则说明（ ）",
+       "code": "",
+       "options": {
+        "A": "结果正确",
+        "B": "发生上溢",
+        "C": "发生下溢",
+        "D": "结果符号位错误"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2026-03-mc-13",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 13,
+       "answer": "C",
+       "stem": "以下问题中，最不适合用枚举法解决的是：（ ）",
+       "code": "",
+       "options": {
+        "A": "找出 1~100 之间所有能被 7 整除的数",
+        "B": "找出 100~200 之间的所有质数",
+        "C": "计算 1+2+3+…+1000 的和",
+        "D": "找出三位数中个位、十位、百位数字之和等于 10 的数"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c9",
+   "name": "综合应用",
+   "req": "掌握",
+   "freq": null,
+   "difficulty": 2.5,
+   "kp": 1,
+   "sections": [
+    {
+     "id": "9.1",
+     "name": "综合应用（跨题型）",
+     "req": "掌握",
+     "freq": null,
+     "difficulty": 2.5,
+     "questions": [
+      {
+       "qid": "3-2023-06-mc-1",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 1,
+       "answer": "D",
+       "stem": "高级语言编写的程序需要经过以下（ ）操作，可以生成在计算机上运行的 可执行代码。",
+       "code": "",
+       "options": {
+        "A": "编辑",
+        "B": "保存",
+        "C": "调试",
+        "D": "编译"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-06-mc-13",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 13,
+       "answer": "B",
+       "stem": "在下列代码的横线处填写（ ），可以使得输出是“24 12”。",
+       "code": "",
+       "options": {
+        "A": "a = a ^ b",
+        "B": "b = a ^ b",
+        "C": "a = a + b",
+        "D": "b = a + b"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-06-tf-1",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 1,
+       "answer": "×",
+       "stem": "一个算法可以用不同的形式来描述，但要求描述比较规范，因此不能用自然 语言描述。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-06-tf-2",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 2,
+       "answer": "×",
+       "stem": "域名是由一串用点分隔的名字来标识互联网上一个计算机或计算机组的名称， CCF 编程能力等级认证官方网站的域名是 gesp.ccf.org.cn，其中顶级域名是 gesp。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-mc-1",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 1,
+       "answer": "B",
+       "stem": "人们所使用的手机上安装的App通常指的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "一款操作系统",
+        "B": "一款应用软件",
+        "C": "一种通话设备",
+        "D": "以上都不对"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-mc-2",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 2,
+       "answer": "B",
+       "stem": "下列流程图的输出结果是？（ ）",
+       "code": "",
+       "options": {
+        "A": "60",
+        "B": "20",
+        "C": "5",
+        "D": "1"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-mc-13",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 13,
+       "answer": "B",
+       "stem": "在下列代码的横线处填写（ ），可以使得输出是“20 10”。",
+       "code": "",
+       "options": {
+        "A": "a = a >> 8; b = a & 0xff",
+        "B": "b = a >> 8; a = a & 0xff;",
+        "C": "a = b; b = a & 0xff;",
+        "D": "b = a; a = b;"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-mc-15",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 15,
+       "answer": "B",
+       "stem": "在下列代码的输出是（ ）。",
+       "code": "",
+       "options": {
+        "A": "15",
+        "B": "28",
+        "C": "45",
+        "D": "55"
+       },
+       "explanation": "",
+       "difficulty": 2.5
+      },
+      {
+       "qid": "3-2023-09-tf-5",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "在C++语言中，所有 int 类型的值，经过若干次左移操作（ << ）后，它们的值总会变为 0 。",
+       "code": "",
+       "options": {},
        "explanation": "",
        "difficulty": 2.5
       },
@@ -940,23 +3645,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2023-12-mc-9",
-       "paper": "2023-12",
-       "type": "mc",
-       "num": 9,
-       "answer": "C",
-       "stem": "下面C++代码用于统计每种字符出现的次数，当输出为3时，横线上不能填入的代码是（ ）。",
-       "code": "",
-       "options": {
-        "A": "str[i]=='o'",
-        "B": "str[i]=='a'+14",
-        "C": "str[i]==115",
-        "D": "str[i]==111"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2023-12-mc-10",
        "paper": "2023-12",
        "type": "mc",
@@ -1003,23 +3691,6 @@
         "B": "1",
         "C": "2",
         "D": "1.50"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2023-12-mc-13",
-       "paper": "2023-12",
-       "type": "mc",
-       "num": 13,
-       "answer": "A",
-       "stem": "C++代码用于抽取字符串中的电话号码。约定：电话号码全部是数字，数字之间没有其他符号如连字符或 空格等。代码中变量strSrc仅仅是示例，可以包含更多字符。下面有关代码说法，正确的说法是（ ）。",
-       "code": "",
-       "options": {
-        "A": "代码将换行输出各个含有数字的电话号码。",
-        "B": "代码将不换行输出各个含有数字的电话号码，号码中间没有分隔。",
-        "C": "代码将不换行输出各个含有数字的电话号码，号码中间有分隔。",
-        "D": "不能够输出数字电话号码。"
        },
        "explanation": "",
        "difficulty": 2.5
@@ -1167,87 +3838,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2023-12-tf-10",
-       "paper": "2023-12",
-       "type": "tf",
-       "num": 10,
-       "answer": "√",
-       "stem": "任何一个while循环都可以转化为等价的for循环（ ）。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "y2024",
-   "name": "2024 年真题",
-   "req": null,
-   "freq": null,
-   "difficulty": 2.5,
-   "sections": [
-    {
-     "id": "2024-03",
-     "name": "2024 年 3 月",
-     "req": null,
-     "freq": null,
-     "difficulty": 2.5,
-     "questions": [
-      {
-       "qid": "3-2024-03-mc-1",
-       "paper": "2024-03",
-       "type": "mc",
-       "num": 1,
-       "answer": "D",
-       "stem": "整数-5的16位补码表示是( )。",
-       "code": "",
-       "options": {
-        "A": "1005",
-        "B": "1006",
-        "C": "FFFA",
-        "D": "FFFB"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-03-mc-2",
-       "paper": "2024-03",
-       "type": "mc",
-       "num": 2,
-       "answer": "C",
-       "stem": "如果16位短整数 -2 的二进制是\"FFFE\"，则短整数 -4 的十六进制是( )。",
-       "code": "",
-       "options": {
-        "A": "FF04",
-        "B": "FFFA",
-        "C": "FFFC",
-        "D": "FFFH"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-03-mc-3",
-       "paper": "2024-03",
-       "type": "mc",
-       "num": 3,
-       "answer": "C",
-       "stem": "下面C++代码执行后的输出是( )。",
-       "code": "int main()\n{\ncout << (3|16) << endl;\ncout << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "3",
-        "B": "16",
-        "C": "19",
-        "D": "48"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2024-03-mc-4",
        "paper": "2024-03",
        "type": "mc",
@@ -1265,91 +3855,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2024-03-mc-5",
-       "paper": "2024-03",
-       "type": "mc",
-       "num": 5,
-       "answer": "C",
-       "stem": "已知字符 '0' 的ASCII编码的十进制表示为48，则执行下面C++代码后，输出是（ ）。",
-       "code": "int main()\n{\nstring s=\"316\";\nint n=s.length();\nint x=0;\nfor(int i = 0; i < n; i++)\nx += s[i];\ncout << x << endl;\ncout << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "10",
-        "B": "58",
-        "C": "154",
-        "D": "316"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-03-mc-6",
-       "paper": "2024-03",
-       "type": "mc",
-       "num": 6,
-       "answer": "C",
-       "stem": "下面C++代码执行后数组中大于0的数的特征是（ ）。",
-       "code": "int main()\n{\nint a[20],i;\nfor(i = 0; i < 20; i++)\na[i] = i+1;\nfor(int i = 0; i < 20; i++)\nif((a[i]%2)&&(a[i]%3))\na[i] = 0;\nfor(i = 0; i < 20; i++)\nif(a[i])\ncout << a[i] << \" \";\ncout << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "2的倍数",
-        "B": "3的倍数",
-        "C": "能被2或3整除的数",
-        "D": "能被2和3同时整除的数"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-03-mc-7",
-       "paper": "2024-03",
-       "type": "mc",
-       "num": 7,
-       "answer": "A",
-       "stem": "执行下面C++代码后输出的第一个数是（ ）。",
-       "code": "int main()\n{\nint a[20],i;\nfor(i = 0; i < 20; i++)\na[i] = i+1;\nfor( ; i > 0; i--)\ncout << a[i-1] << \" \";\ncout << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "20",
-        "B": "19",
-        "C": "1",
-        "D": "不确定"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-03-mc-8",
-       "paper": "2024-03",
-       "type": "mc",
-       "num": 8,
-       "answer": "C",
-       "stem": "在下列代码的横线处填写（ ），可以使得输出是 GESP IS INTERESTING 。",
-       "code": "int main()\n{\nstring str=\"gEsP is Interesting\";\nint x = str.length();\nfor(int i = 0; i < x; i++)\nif ((str[i]>='a') && (str[i]<='z'))\n________________________;\ncout << str << endl;\ncout << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "str[i]+='a'-'A'",
-        "B": "str[i]+=20",
-        "C": "str[i]+='A'-'a'",
-        "D": "无法实现"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-03-mc-9",
-       "paper": "2024-03",
-       "type": "mc",
-       "num": 9,
-       "answer": "C",
-       "stem": "假设英文句子由若干词构成。下面C++代码统计输出的词数是（ ）。",
-       "code": "int main()\n{\nstring str=\"gEsP is Interesting     !\";\nint x = str.length();\nint nwords = 0;\nfor(int i = 0; i < x; i++)\nif (str[i]==' '){\nnwords++;\nwhile(str[++i]==' ') ;\n}\ncout << nwords << endl;\ncout << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "1",
-        "B": "2",
-        "C": "3",
-        "D": "4"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2024-03-mc-10",
        "paper": "2024-03",
        "type": "mc",
@@ -1362,40 +3867,6 @@
         "B": "075",
         "C": "0x70",
         "D": "0x60"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-03-mc-11",
-       "paper": "2024-03",
-       "type": "mc",
-       "num": 11,
-       "answer": "D",
-       "stem": "下面C++程序执行的结果是（ ）。",
-       "code": "int main()\n{\nint a[20],i;\nint cnt=0;\nfor(i = 0; i < 20; i++)\na[i] = i+1;\nfor( ; i > 1; i--)\nif((a[i-1]+a[i-2])%3)\ncnt++;\ncout << cnt << endl;\ncout << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "5",
-        "B": "6",
-        "C": "10",
-        "D": "12"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-03-mc-12",
-       "paper": "2024-03",
-       "type": "mc",
-       "num": 12,
-       "answer": "A",
-       "stem": "定义字符数组 char str[20] = {'G', 'E', 'S', 'P'}; ，则 str 的字符串长度为（ ）。",
-       "code": "",
-       "options": {
-        "A": "4",
-        "B": "5",
-        "C": "19",
-        "D": "20"
        },
        "explanation": "",
        "difficulty": 2.5
@@ -1452,18 +3923,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2024-03-tf-1",
-       "paper": "2024-03",
-       "type": "tf",
-       "num": 1,
-       "answer": "×",
-       "stem": "任意整数 a 的二进制反码与补码都有1位不同。 ( )",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2024-03-tf-2",
        "paper": "2024-03",
        "type": "tf",
@@ -1471,18 +3930,6 @@
        "answer": "×",
        "stem": "对整型变量 int a = 3 ，执行C++代码 a<<2 将把2输出到 a 中。( )",
        "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-03-tf-3",
-       "paper": "2024-03",
-       "type": "tf",
-       "num": 3,
-       "answer": "×",
-       "stem": "下面C++代码可以计算1到100的累加和，采用的是穷举法。",
-       "code": "int main()\n{\nint i,sum=0;\nfor(int i = 1; i <= 100 ; i++)\nsum += i;\ncout << sum << endl;\ncout << endl;\nreturn 0;\n}",
        "options": {},
        "explanation": "",
        "difficulty": 2.5
@@ -1512,42 +3959,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2024-03-tf-6",
-       "paper": "2024-03",
-       "type": "tf",
-       "num": 6,
-       "answer": "√",
-       "stem": "执行下面C++代码后将输出 2 。（ ）",
-       "code": "int main()\n{\nstring str=\"gEsP is Interesting\";\nint x = str.find(\"s\");\ncout << x << endl;\ncout << endl;\nreturn 0;\n}",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-03-tf-7",
-       "paper": "2024-03",
-       "type": "tf",
-       "num": 7,
-       "answer": "×",
-       "stem": "在C++语言中，字符数组被定义时，它的大小可以调整。（ ）",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-03-tf-8",
-       "paper": "2024-03",
-       "type": "tf",
-       "num": 8,
-       "answer": "√",
-       "stem": "对定义的数组 int a[7]={2,0,2,4,3,1,6} ，可以用简单循环就找到其中最小的整数。（ ）",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2024-03-tf-9",
        "paper": "2024-03",
        "type": "tf",
@@ -1559,27 +3970,6 @@
        "explanation": "",
        "difficulty": 2.5
       },
-      {
-       "qid": "3-2024-03-tf-10",
-       "paper": "2024-03",
-       "type": "tf",
-       "num": 10,
-       "answer": "√",
-       "stem": "任何一个 for 循环都可以转化为等价的 while 循环（ ）。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      }
-     ]
-    },
-    {
-     "id": "2024-06",
-     "name": "2024 年 6 月",
-     "req": null,
-     "freq": null,
-     "difficulty": 2.5,
-     "questions": [
       {
        "qid": "3-2024-06-mc-1",
        "paper": "2024-06",
@@ -1632,40 +4022,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2024-06-mc-4",
-       "paper": "2024-06",
-       "type": "mc",
-       "num": 4,
-       "answer": "C",
-       "stem": "下列代码将十进制转化成八进制，则横线上应填入（ ）。",
-       "code": "#include <iostream>\nusing namespace   std;\nvoid decimal2octal(int decimal) {\nint oct_number[100];\nint i = 0;\nwhile (decimal > 0) {\n__________________________     //在此处填入代码\n}\nfor (int j = i - 1; j >= 0; j--) {\ncout << oct_number[j];\n}\ncout << endl;\n}",
-       "options": {
-        "A": "oct_number[i] = decimal % 8; decimal /= 8;",
-        "B": "oct_number[i] = decimal / 8; decimal %/= 8;",
-        "C": "oct_number[i++] = decimal % 8; decimal /= 8;",
-        "D": "oct_number[i++] = decimal / 8; decimal %= 8;"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-06-mc-5",
-       "paper": "2024-06",
-       "type": "mc",
-       "num": 5,
-       "answer": "C",
-       "stem": "二进制数101.11对应的十进制数是（ ）。",
-       "code": "",
-       "options": {
-        "A": "6.5",
-        "B": "5.5",
-        "C": "5.75",
-        "D": "5.25"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2024-06-mc-6",
        "paper": "2024-06",
        "type": "mc",
@@ -1678,125 +4034,6 @@
         "B": "10",
         "C": "20",
         "D": "30"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-06-mc-7",
-       "paper": "2024-06",
-       "type": "mc",
-       "num": 7,
-       "answer": "C",
-       "stem": "下列代码的输出结果是（ ）。",
-       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint a = 12;\nint result = a >> 2;\ncout << result << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "12",
-        "B": "6",
-        "C": "3",
-        "D": "1"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-06-mc-8",
-       "paper": "2024-06",
-       "type": "mc",
-       "num": 8,
-       "answer": "C",
-       "stem": "下列代码的输出结果是（ ）。",
-       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint a = 5;\nint b = 10;\na = a ^ b;\nb = a ^ b;\na = a ^ b;\ncout << \"a = \" << a << \", b = \" << b << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "a = 5, b = 10",
-        "B": "a = 5, b = 5",
-        "C": "a = 10, b = 5",
-        "D": "a = 10, b = 10"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-06-mc-9",
-       "paper": "2024-06",
-       "type": "mc",
-       "num": 9,
-       "answer": "C",
-       "stem": "如果字符串定义为 char str[] = \"GESP\"; ，则字符数组 str 的长度为( )。",
-       "code": "",
-       "options": {
-        "A": "0",
-        "B": "4",
-        "C": "5",
-        "D": "6"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-06-mc-10",
-       "paper": "2024-06",
-       "type": "mc",
-       "num": 10,
-       "answer": "B",
-       "stem": "在下列代码的横线处填写( )，可以使得输出是“7”。",
-       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint array[5] = {3，7，5，2，4};\nint max = 0;\nfor(int i=0; i<5; i++)\nif(______________) // 在此处填入代码\nmax = array[i];\ncout << max << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "max > array[i]",
-        "B": "max < array[i]",
-        "C": "max = array[i]",
-        "D": "以上均不对"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-06-mc-11",
-       "paper": "2024-06",
-       "type": "mc",
-       "num": 11,
-       "answer": "A",
-       "stem": "小杨在做数学题，题目要求找出从1到35中能被7整除的数字，即[7, 14, 21, 28, 35]，则横线处应填入哪个代 码？（ ）",
-       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint arr[35];\nint count = 0;\nfor (int i = 1; i <= 35; i++) {\nif (i % 7 == 0)\n__________________________   // 在此处填入代码\n}\nfor (int i = 0; i < count; i++)\ncout << arr[i] << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "arr[count++] = i;",
-        "B": "arr[i] = count++;",
-        "C": "arr[i] = count;",
-        "D": "arr[count] = count++;"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-06-mc-12",
-       "paper": "2024-06",
-       "type": "mc",
-       "num": 12,
-       "answer": "C",
-       "stem": "已知字符 '0' 的ASCII编码的十进制表示为48，则执行下面C++代码后，输出是( )。",
-       "code": "#include <iostream>\nusing namespace std;\nint main() {\nstring s = \"0629\";\nint n = s.length();\nint x = 0;\nfor(int i = 0; i < n; i++)\nx += s[i];\ncout << x << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "17",
-        "B": "158",
-        "C": "209",
-        "D": "316"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-06-mc-13",
-       "paper": "2024-06",
-       "type": "mc",
-       "num": 13,
-       "answer": "B",
-       "stem": "某小学男子篮球队招募新成员，要求加入球队的成员身高在135厘米以上（不含135厘米）。本次报名的人 员有10人，他们的身高分别是125、127、136、134、137、138、126、135、140、145。完善以下代码，求出本次球 队能够招募到新成员的人数？（ ）",
-       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint arr[10] = {125, 127, 136, 134, 137, 138, 126, 135, 140, 145};\nint count = 0;\nfor(int i=0; i<10; i++)\n__________________________    // 在此处填入代码\ncout << count << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "count = arr[i]>135? 1: 0;",
-        "B": "count += arr[i]>135? 1: 0;",
-        "C": "count++;",
-        "D": "以上都不对"
        },
        "explanation": "",
        "difficulty": 2.5
@@ -1819,101 +4056,12 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2024-06-mc-15",
-       "paper": "2024-06",
-       "type": "mc",
-       "num": 15,
-       "answer": "A",
-       "stem": "如果执行下面C++代码后，输出的结果是“gesp ccf org cn ”，则横线上应填入哪个代码？（ ）",
-       "code": "#include <iostream>\nusing namespace std;\nint main() {\nstring str = \"gesp.ccf.org.cn\";\nstring delimiter = \".\";\nstring result=\"\";\nstring token;\nsize_t found = str.find(delimiter);\nwhile (found != string::npos) {\ntoken = str.substr(0, found);\nresult += token;\nresult += \" \";\n__________________________ // 在此处填入代码\nfound = str.find(delimiter);\n}\n//最后一部分\nresult += str;\nresult += \" \";\ncout << result << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "str = str.substr(found + delimiter.length(), str.length() - 1);",
-        "B": "str = str.substr(found, str.length() );",
-        "C": "str = str.substr(found, str.length() -1);",
-        "D": "以上都不对"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2024-06-tf-1",
        "paper": "2024-06",
        "type": "tf",
        "num": 1,
        "answer": "√",
        "stem": "GESP测试是对认证者的编程能力进行等级认证，同一级别的能力基本上与编程语言无关。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-06-tf-2",
-       "paper": "2024-06",
-       "type": "tf",
-       "num": 2,
-       "answer": "√",
-       "stem": "整数-6的16位补码可用十六进制表示为FFFA。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-06-tf-3",
-       "paper": "2024-06",
-       "type": "tf",
-       "num": 3,
-       "answer": "√",
-       "stem": "补码的优点是可以将减法运算转化为加法运算，从而简化计算机的硬件设计。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-06-tf-4",
-       "paper": "2024-06",
-       "type": "tf",
-       "num": 4,
-       "answer": "×",
-       "stem": "字符常量'\\0'常用来表示字符串结束，和字符常量'0'相同。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-06-tf-5",
-       "paper": "2024-06",
-       "type": "tf",
-       "num": 5,
-       "answer": "×",
-       "stem": "数组的所有元素在内存中可以不连续存放。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-06-tf-6",
-       "paper": "2024-06",
-       "type": "tf",
-       "num": 6,
-       "answer": "×",
-       "stem": "C++中可以对数组和数组的每个基础类型的元素赋值。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-06-tf-7",
-       "paper": "2024-06",
-       "type": "tf",
-       "num": 7,
-       "answer": "√",
-       "stem": "如果 为 int 类型的变量，且表达式 ((a | 3) == 3) 的值为 true ，则说明 在从0到3之间（可能为0、可 能为3）。",
        "code": "",
        "options": {},
        "explanation": "",
@@ -1932,18 +4080,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2024-06-tf-9",
-       "paper": "2024-06",
-       "type": "tf",
-       "num": 9,
-       "answer": "√",
-       "stem": "执行下面C++代码后，输出的结果不可能是89781。（ ）",
-       "code": "#include <iostream>\n#include <cstdlib> // 为了使用 rand() 和 srand()\n#include <ctime>    // 为了使用 time()\nusing namespace std;\nint main() {\n// 设置随机种子\nsrand(time(NULL));\nint i = 1;\nint s[5];\nwhile(i <= 5)\n{\nint a = rand() % 10;\nif(a % 3 == (i + 1) % 3)\ns[i++] = a;\n}\nfor(int i = 1; i <= 5; i++)\ncout << s[i];\ncout << endl;\nreturn 0;\n}",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2024-06-tf-10",
        "paper": "2024-06",
        "type": "tf",
@@ -1952,83 +4088,6 @@
        "stem": "把整数3025从中剪开分为30和25两个数，此时再将这两数之和平方，计算结果又等于原数。(30 + 25) × (30 + 25) = 55 × 55 = 3025，这样的数叫“雷劈数”。可以使用枚举的方法求出所有符合这样条件的四位数。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      }
-     ]
-    },
-    {
-     "id": "2024-09",
-     "name": "2024 年 9 月",
-     "req": null,
-     "freq": null,
-     "difficulty": 2.5,
-     "questions": [
-      {
-       "qid": "3-2024-09-mc-1",
-       "paper": "2024-09",
-       "type": "mc",
-       "num": 1,
-       "answer": "B",
-       "stem": "下列代码中，输出结果是（ ）",
-       "code": "#include<iostream>\nusing namespace std;\nint main()\n{\ndouble a=0.9;\ndouble b=1.0;\nif(((b-a)==0.1))\n{\ncout<<\"Equal\"<<endl;\n}\nelse\n{\ncout<<\"Not equal\"<<endl;\n}\n}",
-       "options": {
-        "A": "Equal",
-        "B": "Not equal",
-        "C": "程序不能正确执行",
-        "D": "没有输出"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-09-mc-2",
-       "paper": "2024-09",
-       "type": "mc",
-       "num": 2,
-       "answer": "C",
-       "stem": "关于计算机中的编码，下列说法中正确的是（）",
-       "code": "",
-       "options": {
-        "A": "机器数的形式值和真值是一致的",
-        "B": "原码就是符号位加上真值",
-        "C": "机器数是带符号的",
-        "D": "[-1]=[1000 0001]原=[1111 1111]反"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-09-mc-3",
-       "paper": "2024-09",
-       "type": "mc",
-       "num": 3,
-       "answer": "A",
-       "stem": "8进制数3703转换成16进制数是（）",
-       "code": "",
-       "options": {
-        "A": "7C3",
-        "B": "7A3",
-        "C": "7B3",
-        "D": "7D3"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-09-mc-4",
-       "paper": "2024-09",
-       "type": "mc",
-       "num": 4,
-       "answer": "D",
-       "stem": "0.8125变成二进制是（ ）。",
-       "code": "",
-       "options": {
-        "A": "0.1110",
-        "B": "0.1 1111 1011 1101",
-        "C": "0.1 1111 1011 1100",
-        "D": "0.1101"
-       },
        "explanation": "",
        "difficulty": 2.5
       },
@@ -2062,23 +4121,6 @@
         "B": "(2>>2)和(1>>1)的值是一样的",
         "C": "(11^00)和(1^0)的值是一样的",
         "D": "(~0的输出值是1)"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-09-mc-7",
-       "paper": "2024-09",
-       "type": "mc",
-       "num": 7,
-       "answer": "C",
-       "stem": "下列代码实现的是（ ）",
-       "code": "void Swap(int &a, int &b) {\nif (a != b) {\na ^= b;\nb ^= a;\na ^= b;\n}\n}",
-       "options": {
-        "A": "a和b的异或",
-        "B": "a和b的同或",
-        "C": "a和b的值交换",
-        "D": "a和b的高低位互换"
        },
        "explanation": "",
        "difficulty": 2.5
@@ -2152,40 +4194,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2024-09-mc-12",
-       "paper": "2024-09",
-       "type": "mc",
-       "num": 12,
-       "answer": "C",
-       "stem": "关于一维数组，下列程序能够正确执行的是（ ）。",
-       "code": "",
-       "options": {
-        "A": "1 int a[10]; 2 int sum=0; 3 for(int i=0;i<=10;i++) { 4 sum=sum+a[i]; 5 }",
-        "B": "1 int a[10]={1,2,3,4,5,6,7,8,9,10}; 2 int sum=0; 3 for(int i=0;i<=10;i++) { 4 sum=sum+a[i]; 5 }",
-        "C": "1 int a[10]={1,2,3,4,5,6,7,8,9,10}; 2 int sum=0; 3 for(int i=0;i<10;i++) { 4 um=sum+a[i]; 5 }",
-        "D": "1 int a[10]={0}; 2 int sum=0; 3 for(int i=0;i<=10;i++) { 4 sum=sum+a[i]; 5 }"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-09-mc-13",
-       "paper": "2024-09",
-       "type": "mc",
-       "num": 13,
-       "answer": "D",
-       "stem": "下面的程序中，会输出（ ）。",
-       "code": "int a[10]={1,2,3,4,5,6,7,8,9,10};\ncout<<a[10]<<endl;",
-       "options": {
-        "A": "1",
-        "B": "0",
-        "C": "10",
-        "D": "不确定的值"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2024-09-mc-14",
        "paper": "2024-09",
        "type": "mc",
@@ -2199,35 +4207,6 @@
         "C": "C",
         "D": "D"
        },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-09-mc-15",
-       "paper": "2024-09",
-       "type": "mc",
-       "num": 15,
-       "answer": "B",
-       "stem": "下列程序输出的是（）",
-       "code": "string str = \"Hello,CHAD\";\ncout << str.find(\"A\") << '\\n';",
-       "options": {
-        "A": "9",
-        "B": "8",
-        "C": "7",
-        "D": "6"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-09-tf-1",
-       "paper": "2024-09",
-       "type": "tf",
-       "num": 1,
-       "answer": "√",
-       "stem": "+1和-1的原码进行1+（-1）计算的结果是-2 。（ ）",
-       "code": "",
-       "options": {},
        "explanation": "",
        "difficulty": 2.5
       },
@@ -2280,30 +4259,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2024-09-tf-6",
-       "paper": "2024-09",
-       "type": "tf",
-       "num": 6,
-       "answer": "√",
-       "stem": "下列程序输出的是 3 。（ ）",
-       "code": "string str=\"CHADai\";\nsize_t pos = str.find('D');\ncout<<pos<<endl;",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-09-tf-7",
-       "paper": "2024-09",
-       "type": "tf",
-       "num": 7,
-       "answer": "×",
-       "stem": "下列程序将输出 1 。（ ）",
-       "code": "int a[10]={1};\ncout<<a[1]<<endl;",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2024-09-tf-8",
        "paper": "2024-09",
        "type": "tf",
@@ -2312,107 +4267,6 @@
        "stem": "下列程序将输出 A 。（ ）",
        "code": "int a=65;\ncout<<(char)a<<endl;",
        "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-09-tf-9",
-       "paper": "2024-09",
-       "type": "tf",
-       "num": 9,
-       "answer": "√",
-       "stem": "16进制数 AB ，表示成2进制数是 10101011 。（ ）",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-09-tf-10",
-       "paper": "2024-09",
-       "type": "tf",
-       "num": 10,
-       "answer": "×",
-       "stem": "def (十六进制) = 103231 (五进制)。（ ）",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      }
-     ]
-    },
-    {
-     "id": "2024-12",
-     "name": "2024 年 12 月",
-     "req": null,
-     "freq": null,
-     "difficulty": 2.5,
-     "questions": [
-      {
-       "qid": "3-2024-12-mc-1",
-       "paper": "2024-12",
-       "type": "mc",
-       "num": 1,
-       "answer": "B",
-       "stem": "下列二进制表示的十进制数值分别是（ ）",
-       "code": "[10000011]原=（ ）\n[10000011]补=（ ）",
-       "options": {
-        "A": "-125，-3",
-        "B": "-3, -125",
-        "C": "-3，-3",
-        "D": "-125，-125"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-mc-2",
-       "paper": "2024-12",
-       "type": "mc",
-       "num": 2,
-       "answer": "D",
-       "stem": "关于计算机中的编码，下列说法中错误的是（）",
-       "code": "",
-       "options": {
-        "A": "对于无符号数，原码就是真值",
-        "B": "正数的反码是其本身",
-        "C": "负数的反码和补码是不一样的",
-        "D": "负数的反码，在其原码的基础上, 各个位取反"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-mc-3",
-       "paper": "2024-12",
-       "type": "mc",
-       "num": 3,
-       "answer": "A",
-       "stem": "16进制数B2025转换成8进制数是（）",
-       "code": "",
-       "options": {
-        "A": "2620045",
-        "B": "2004526",
-        "C": "729125",
-        "D": "2420045"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-mc-4",
-       "paper": "2024-12",
-       "type": "mc",
-       "num": 4,
-       "answer": "A",
-       "stem": "625.625变成二进制是（ ）。",
-       "code": "",
-       "options": {
-        "A": "1001110001.101",
-        "B": "101.101",
-        "C": "101.1001110001",
-        "D": "1001110001.1101"
-       },
        "explanation": "",
        "difficulty": 2.5
       },
@@ -2429,91 +4283,6 @@
         "B": "5|3==8",
         "C": "5||3==11",
         "D": "5&3==0001"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-mc-6",
-       "paper": "2024-12",
-       "type": "mc",
-       "num": 6,
-       "answer": "B",
-       "stem": "补码1111 1101进行运算1111 1101>>1以后得到的结果是（）",
-       "code": "",
-       "options": {
-        "A": "1111 1100",
-        "B": "-2",
-        "C": "1111 1101",
-        "D": "1111 1010"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-mc-7",
-       "paper": "2024-12",
-       "type": "mc",
-       "num": 7,
-       "answer": "C",
-       "stem": "下列代码输出的是",
-       "code": "string s=\"1234@@chenadai\";\nstring str=\"12345\";\ns.replace(1,5,str);\ncout<<s<<endl;",
-       "options": {
-        "A": "12345",
-        "B": "2345@",
-        "C": "112345chenadai",
-        "D": "12345chenadai"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-mc-8",
-       "paper": "2024-12",
-       "type": "mc",
-       "num": 8,
-       "answer": "A",
-       "stem": "a|10（a与10都是10进制，且二进制表示最高位为1）运算的结果是（ ）。",
-       "code": "",
-       "options": {
-        "A": "使a的二进制表示从右往左的第二位为1",
-        "B": "使a的二进制表示从右往左的第一位为0",
-        "C": "使a的二进制表示从右往左第二位为0",
-        "D": "使a的二进制表示最高位为0"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-mc-9",
-       "paper": "2024-12",
-       "type": "mc",
-       "num": 9,
-       "answer": "A",
-       "stem": "下列程序输出的是（ ）",
-       "code": "string ch=\"hello\";\nif(ch[5]==NULL)\n{\ncout<<\"right\"<<endl;\n}\nelse if (ch[5]=='\\0')\n{\ncout<<\"wrong\"<<endl;\n}\nelse\n{\ncout<<\"hello\"<<endl;\n}",
-       "options": {
-        "A": "right",
-        "B": "wrong",
-        "C": "hello",
-        "D": "不能正确执行"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-mc-10",
-       "paper": "2024-12",
-       "type": "mc",
-       "num": 10,
-       "answer": "D",
-       "stem": "下列程序中，假设一个字符占用的内存空间是1，下列程序中，ch占用的内存空间是 ( )",
-       "code": "char ch[] = \"hello world\";\nsize_t ret=strlen(ch);\ncout<<ret<<endl;",
-       "options": {
-        "A": "11",
-        "B": "10",
-        "C": "13",
-        "D": "12"
        },
        "explanation": "",
        "difficulty": 2.5
@@ -2536,57 +4305,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2024-12-mc-12",
-       "paper": "2024-12",
-       "type": "mc",
-       "num": 12,
-       "answer": "C",
-       "stem": "想要计算从数字n到数字m之间（包含n和m）有多少个数字d出现，下列程序哪个能够实现（ ）。",
-       "code": "",
-       "options": {
-        "A": "1 int n,m,res,d; 2 cin >> n >> m>>d; 3 for(int i = n+1; i <= m; i++){ 4 int temp = i; 5 while(temp){ 6 if(temp % 10 == d) res++; 7 temp /= 10; 8 } 9 } 10 cout << res << endl; 11 return 0;",
-        "B": "1 int n,m,res,d; 2 cin >> n >> m>>d; 3 for(int i = n; i <= m; i++){ 4 int temp = i; 5 while(temp){ 6 if(temp % 10 = d) res++; 7 temp /= 10; 8 } 9 } 10 cout << res << endl; 11 return 0;",
-        "C": "1 int n,m,res=0,d; 2 cin >> n >> m>>d; 3 for(int i = n; i <= m; i++){ 4 int temp = i; 5 while(temp){ 6 if(temp % 10 == d) res++; 7 temp /= 10; 8 } 9 } 10 cout << res << endl; 11 return 0;",
-        "D": "1 int n,m,res=0,d; 2 cin >> n >> m>>d; 3 for(int i = n; i <= m; i++){ 4 while(temp){ 5 if(temp % 10 == d) res++; 6 temp /= 10; 7 } 8 } 9 cout << res << endl; 10 return 0;"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-mc-13",
-       "paper": "2024-12",
-       "type": "mc",
-       "num": 13,
-       "answer": "D",
-       "stem": "兔子五元一只，鸡三元一只，小鸭子一元三只，现在你有一百元要买一百只，兔子、鸡、鸭子，问兔子、 鸡、鸭子各买多少只，每种必须至少一只，下列哪个程序能实现。（ ）。",
-       "code": "",
-       "options": {
-        "A": "1 for(int i = 0; i <= 100; i++){ 2 for(int j = 0; j <= 100; j++){ 3 for(int k = 0; k <= 100; k++){ 4 if(i + j + k == 100 && 25 * i + 10 * j + k == 300) 5 cout << i << \" \" << j << \" \" << k << endl; 6 } 7 } 8 }",
-        "B": "1 for(int i = 0; i <= 100; i++){ 2 for(int j = 0; j <= 100; j++){ 3 for(int k = 0; k <= 100; k++){ 4 if(i + j + k == 100 && 20 * i + 10 * j + k == 300) 5 cout << i << \" \" << j << \" \" << k << endl; 6 } 7 } 8 }",
-        "C": "1 for(int i = 0; i <= 20; i++){ 2 for(int j = 0; j <= 34; j++){ 3 for(int k = 0; k <= 20; k++){ 4 if(i + j + k == 100 && 15 * i + 9 * j + k == 300) 5 cout << i << \" \" << j << \" \" << k << endl; 6 } 7 } 8 }",
-        "D": "1 for(int i = 0; i <= 100; i++){ 2 for(int j = 0; j <= 100; j++){ 3 for(int k = 0; k <= 100; k++){ 4 if(i + j + k == 100 && 15 * i + 9 * j + k == 300) 5 cout << i << \" \" << j << \" \" << k << endl; 6 } 7 } 8 }"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-mc-14",
-       "paper": "2024-12",
-       "type": "mc",
-       "num": 14,
-       "answer": "C",
-       "stem": "求小于等于N的素数的方法中，有一种方法是将所有从2到它本身减1的数都除一遍，如果不能整除，就是素 数。下列哪个程序，体现了这种方法（）",
-       "code": "",
-       "options": {
-        "A": "1 if(N >= 3){ 2 cout<<2<<endl; 3 for(int i = 2;i <= N;i ++){ 4 for(int j = 2;j < i;j ++){ 5 if(i % j != 0){ 6 flag = 1; 7 } 8 } 9 if(flag == 0){ 10 cout<<i<<endl; 11 } 12 flag = 0; 13 } 14 }",
-        "B": "1 if(N >= 2){ 2 for(int i = 3;i <= N;i ++){ 3 for(int j = 2;j < i;j ++){ 4 if(i % j == 0){ 5 flag = 1; 6 } 7 } 8 if(flag == 0){ 9 cout<<i<<endl; 10 } 11 flag = 0; 12 } 13 }",
-        "C": "1 if(N >= 2){ 2 cout<<2<<endl; 3 for(int i = 3;i <= N;i ++){ 4 for(int j = 2;j < i;j ++){ 5 if(i % j == 0){ 6 flag = 1; 7 } 8 } 9 if(flag == 0){ 10 cout<<i<<endl; 11 } 12 flag = 0; 13 } 14 }",
-        "D": "1 if(N >= 2){ 2 cout<<2<<endl; 3 for(int i = 3;i <= N;i ++){ 4 for(int j = 2;j < i;j ++){ 5 if(i % j == 0){ 6 flag = 1; 7 } 8 } 9 if(flag == 0){ 10 cout<<i<<endl; 11 } 12 } 13 }"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2024-12-mc-15",
        "paper": "2024-12",
        "type": "mc",
@@ -2604,30 +4322,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2024-12-tf-1",
-       "paper": "2024-12",
-       "type": "tf",
-       "num": 1,
-       "answer": "√",
-       "stem": "为了简化计算机基本运算电路，使加减法都只需要通过加法电路实现，也就是让减去一个正数或加上一个负 数这样的运算可以用加上一个正数来代替。于是改变负数存储的形式，存储成一种可以直接当成正数来相加的形 式，这种形式就是补码。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-tf-2",
-       "paper": "2024-12",
-       "type": "tf",
-       "num": 2,
-       "answer": "√",
-       "stem": "使用原码进行的计算， 2+(-1) 的结果是 -3",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2024-12-tf-3",
        "paper": "2024-12",
        "type": "tf",
@@ -2635,18 +4329,6 @@
        "answer": "√",
        "stem": "反码计算加减法：加法与减法结果都是正确的，只是解决不了 -0 的问题",
        "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-tf-4",
-       "paper": "2024-12",
-       "type": "tf",
-       "num": 4,
-       "answer": "×",
-       "stem": "10 进制数 63，在转换成二进制的计算过程中，产生了如下的式子： 按照从前往后的顺序，获得 63 的二进制值是 111111",
-       "code": "63/2=31 余 1\n31/2=15 余 1\n15/2=7 余 1\n7/2=3   余 1\n3/2=1   余 1\n1/2=0   余 1",
        "options": {},
        "explanation": "",
        "difficulty": 2.5
@@ -2664,30 +4346,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2024-12-tf-6",
-       "paper": "2024-12",
-       "type": "tf",
-       "num": 6,
-       "answer": "√",
-       "stem": "下列可执行程序段中，最后 pos 的值是 4",
-       "code": "string str=\"chenADai\";\nint pos = str.find('D');\n--pos&11;",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-tf-7",
-       "paper": "2024-12",
-       "type": "tf",
-       "num": 7,
-       "answer": "×",
-       "stem": "该段程序将不能正确执行",
-       "code": "string ch=\"chen\";\ncout<<ch[4]<<endl;",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2024-12-tf-8",
        "paper": "2024-12",
        "type": "tf",
@@ -2696,150 +4354,6 @@
        "stem": "将输出 97",
        "code": "char a='A';\na=a+32;\ncout<<(int)a<<endl;",
        "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-tf-9",
-       "paper": "2024-12",
-       "type": "tf",
-       "num": 9,
-       "answer": "√",
-       "stem": "自然界中，最小的素数是 2",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2024-12-tf-10",
-       "paper": "2024-12",
-       "type": "tf",
-       "num": 10,
-       "answer": "√",
-       "stem": "CCF(十六进制) = 12363(七进制)",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "y2025",
-   "name": "2025 年真题",
-   "req": null,
-   "freq": null,
-   "difficulty": 2.5,
-   "sections": [
-    {
-     "id": "2025-03",
-     "name": "2025 年 3 月",
-     "req": null,
-     "freq": null,
-     "difficulty": 2.5,
-     "questions": [
-      {
-       "qid": "3-2025-03-mc-1",
-       "paper": "2025-03",
-       "type": "mc",
-       "num": 1,
-       "answer": "D",
-       "stem": "Base64 编码将每3字节的输入数据编码为 4 字节的输出数据。如果输入数据长度不是 3 的倍数，会用 = 号填 充。在Base64编码中，如果输入字符串的长度为10字节，编码后的字符串长度是多少（ ）",
-       "code": "",
-       "options": {
-        "A": "12 字节",
-        "B": "13 字节",
-        "C": "14 字节",
-        "D": "16 字节"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-mc-2",
-       "paper": "2025-03",
-       "type": "mc",
-       "num": 2,
-       "answer": "B",
-       "stem": "UTF-8 编码规则如下： 1 字节：0xxxxxxx 2 字节：110xxxxx 10xxxxxx 3 字节：1110xxxx 10xxxxxx 10xxxxxx 4 字节：11110xxx 10xxxxxx 10xxxxxx 10xxxxxx 以下哪个字节序列是合法的 UTF-8 编码（ ）",
-       "code": "",
-       "options": {
-        "A": "0xC0 0x80",
-        "B": "0xF0 0x90 0x80 0x80",
-        "C": "0x80 0x80 0x80",
-        "D": "0xFF 0xFE 0xFD"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-mc-3",
-       "paper": "2025-03",
-       "type": "mc",
-       "num": 3,
-       "answer": "A",
-       "stem": "在 8 位二进制原码表示中，八进制数 -5 的二进制形式是什么（ ）",
-       "code": "",
-       "options": {
-        "A": "10000101",
-        "B": "11111010",
-        "C": "11111011",
-        "D": "00000101"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-mc-4",
-       "paper": "2025-03",
-       "type": "mc",
-       "num": 4,
-       "answer": "A",
-       "stem": "十进制数 111.111 的二进制表示可以是下面的（ ）。",
-       "code": "",
-       "options": {
-        "A": "1101111.0001110001",
-        "B": "1101110.1001110001",
-        "C": "1101111.1001110001",
-        "D": "1101111.0011110001"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-mc-5",
-       "paper": "2025-03",
-       "type": "mc",
-       "num": 5,
-       "answer": "B",
-       "stem": "在C++中，补码的主要作用是（）",
-       "code": "",
-       "options": {
-        "A": "提高浮点数的精度",
-        "B": "简化整数的加减法运算",
-        "C": "增加整数的表示范围",
-        "D": "优化内存分配"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-mc-6",
-       "paper": "2025-03",
-       "type": "mc",
-       "num": 6,
-       "answer": "A",
-       "stem": "在C++中，一个8位有符号整数（使用补码表示）的范围是（）",
-       "code": "",
-       "options": {
-        "A": "-128 到 127",
-        "B": "-127 到 128",
-        "C": "-256 到 255",
-        "D": "0 到 255"
-       },
        "explanation": "",
        "difficulty": 2.5
       },
@@ -2861,142 +4375,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2025-03-mc-8",
-       "paper": "2025-03",
-       "type": "mc",
-       "num": 8,
-       "answer": "A",
-       "stem": "下列程序的作用是（）",
-       "code": "int main() {\nint decimal = 25;\ncout << oct << decimal;\nreturn 0;\n}",
-       "options": {
-        "A": "将十进制数转换成八进制数",
-        "B": "将八进制数转换成十进制数",
-        "C": "将二进制数转换成八进制数",
-        "D": "将八进制数转换成16进制数"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-mc-9",
-       "paper": "2025-03",
-       "type": "mc",
-       "num": 9,
-       "answer": "C",
-       "stem": "下面程序是将十进制转十六进制，横线处应该填入的是（）",
-       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint decimal = 255;\n——————————————————\nreturn 0;\n}",
-       "options": {
-        "A": "cout << oct << decimal;",
-        "B": "cout << decimal << decimal;",
-        "C": "cout << hex << decimal;",
-        "D": "不能正确执行"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-mc-10",
-       "paper": "2025-03",
-       "type": "mc",
-       "num": 10,
-       "answer": "D",
-       "stem": "以下代码的说法正确的是什么( )",
-       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint a = 0b1101;\nint b = 0b1011;\ncout << (a ^ b);\nreturn 0;\n}",
-       "options": {
-        "A": "进行的是整体异或运算",
-        "B": "进行的是按位同或运算",
-        "C": "进行的是按位与运算",
-        "D": "进行的是按位异或运算"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-mc-11",
-       "paper": "2025-03",
-       "type": "mc",
-       "num": 11,
-       "answer": "D",
-       "stem": "下面枚举法查找最大值索引程序中，横线处应该填写的是（）",
-       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint arr[] = {3, 7, 2, 9, 5};\nint maxIndex = 0;\nfor (int i = 1; i < 5; i++) {\n————————————————————————————————\n{\nmaxIndex = i;\n}\n}\ncout << maxIndex;\nreturn 0;\n}",
-       "options": {
-        "A": "if (arr[maxIndex] > arr[i])",
-        "B": "if (arr[i]-1 > arr[maxIndex])",
-        "C": "if (arr[i]+1 > arr[maxIndex])",
-        "D": "if (arr[i] > arr[maxIndex])"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-mc-12",
-       "paper": "2025-03",
-       "type": "mc",
-       "num": 12,
-       "answer": "D",
-       "stem": "以下代码的功能是将数组中的奇数和偶数分别放在数组的前半部分和后半部分,横线处应该填入的是（）",
-       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint arr[] = {1, 2, 3, 4, 5};\nint left = 0, right = 4;\nwhile (left < right) {\nwhile (arr[left] % 2 == 1 && left < right) left++;\n————————————————————————————————————————————————————\nif (left < right) {\nswap(arr[left], arr[right]);\n}\n}\nfor (int i = 0; i < 5; i++) {\ncout << arr[i] << \" \";\n}\nreturn 0;\n}",
-       "options": {
-        "A": "while (arr[left] % 2 == 0 && left < right) right--;",
-        "B": "while (arr[right] % 2 == 0 && left < right) left--;",
-        "C": "while (arr[right] % 2 != 0 && left < right) right--;",
-        "D": "while (arr[right] % 2 == 0 && left < right) right--;"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-mc-13",
-       "paper": "2025-03",
-       "type": "mc",
-       "num": 13,
-       "answer": "B",
-       "stem": "下面程序最后能够得到 HelloC++ 的是（）",
-       "code": "int main() {\nstring str = \"HelloWorld\";\n___________________\ncout << str;\nreturn 0;\n}",
-       "options": {
-        "A": "1 str.replace(0, 5, \"C++\");",
-        "B": "1 str.replace(5, 5, \"C++\");",
-        "C": "1 str.replace(1, 5, \"C++\");",
-        "D": "1 str.replace(4, 5, \"C++\");"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-mc-14",
-       "paper": "2025-03",
-       "type": "mc",
-       "num": 14,
-       "answer": "D",
-       "stem": "想要得到字符串 world ,下面程序横线处应该填入的是（）",
-       "code": "#include <iostream>\n#include <string>\nusing namespace std;\nint main() {\nstring str = \"HelloC++\";\n_________________\n_________________\nreturn 0;\n}",
-       "options": {
-        "A": "1 str.insert(4, \"World\"); 2 cout << str.substr(4, 4);",
-        "B": "1 cout << str.substr(5, 5);",
-        "C": "1 str.insert(\"World\"); 2 cout << str.substr(5, 5);",
-        "D": "1 str.insert(5, \"World\"); 2 cout << str.substr(5, 5);"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-mc-15",
-       "paper": "2025-03",
-       "type": "mc",
-       "num": 15,
-       "answer": "C",
-       "stem": "有 n 个正整数，假设一个正整数是美丽数字当且仅当该正整数是 9 的倍数但不是 8 的倍数。下面的程序是 编写计算 n 个正整数中美丽数字的数量，横线处应该填入的是（）",
-       "code": "for (int i = 1; i <= n; i++) {\ncin >> a;\n__________________________\ncnt++;\n}",
-       "options": {
-        "A": "if (a % 9 != 0 && a % 8 != 0)",
-        "B": "if (a % 9 == 0 & a % 8 == 0)",
-        "C": "if (a % 9 == 0 && a % 8 != 0)",
-        "D": "if (a % 9 == 0 & a % 8 != 0)"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2025-03-tf-1",
        "paper": "2025-03",
        "type": "tf",
@@ -3004,18 +4382,6 @@
        "answer": "×",
        "stem": "判断一个三角形是否成立的条件只有:任意两边长度之和大于第三条边的长度",
        "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-tf-2",
-       "paper": "2025-03",
-       "type": "tf",
-       "num": 2,
-       "answer": "√",
-       "stem": "这段程序进 的是判断 个从键盘输 的字符的ASCII 是否是奇数，若是，输出 YES，否则，输出 NO 行 一 入",
-       "code": "int main()\n{\nchar x;\nscanf(\"%c\", &x);\nint ASCII = (int)x;\ncout << (x & 1 ? \"YES\" : \"NO\") << '\\n';\nreturn 0;\n}",
        "options": {},
        "explanation": "",
        "difficulty": 2.5
@@ -3033,18 +4399,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2025-03-tf-4",
-       "paper": "2025-03",
-       "type": "tf",
-       "num": 4,
-       "answer": "√",
-       "stem": "C++语句 cout<<(n%15==0? \"YES\":\"NO\"); 能够判断 个整数能否被3和5同时整除 一",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2025-03-tf-5",
        "paper": "2025-03",
        "type": "tf",
@@ -3053,92 +4407,6 @@
        "stem": "有n个同学，从中抽取任意个 数来参加学校组织的 合唱，共有2的n次幂个 法 人 大 方",
        "code": "",
        "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-tf-6",
-       "paper": "2025-03",
-       "type": "tf",
-       "num": 6,
-       "answer": "√",
-       "stem": "若将 个正整数化为 进制数，在此 进制数中，我们将数字 1 的个数是偶数的这类 进制数称为 A 类数， 一 二 二 二 否则就称其为 B 类数。 例如： (13) 10 =(1101) 2 ，其中 1 的个数为 3则称此数为 B 类数； (10) 10 =(1010) 2 ，其中 1 的个数为 2，称此数为 A 类数； 判断（2025）10化为 进制后，1的个数为偶数个，因此2025为A类数。 二",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-tf-7",
-       "paper": "2025-03",
-       "type": "tf",
-       "num": 7,
-       "answer": "√",
-       "stem": "该段程序将 n 不停地除以 2，并输出此时的商和余数，直到 n=0 为 。 止",
-       "code": "long long n;\ncin >> n;\nwhile(n != 0) {\ncout << n/2 << ' ' << n%2 << '\\n';\nn /= 2;\n}",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-tf-8",
-       "paper": "2025-03",
-       "type": "tf",
-       "num": 8,
-       "answer": "√",
-       "stem": "两个13进制的数A和B，在10进制下分别表 10和11。（A+B）13=（18）13，也就是说13进制数A加上13进 示 制数B，和是13进制数18。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-tf-9",
-       "paper": "2025-03",
-       "type": "tf",
-       "num": 9,
-       "answer": "×",
-       "stem": "k 进制，逢 k 进第 位， 进百位， 进千位； 二",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-03-tf-10",
-       "paper": "2025-03",
-       "type": "tf",
-       "num": 10,
-       "answer": "×",
-       "stem": "CCF( 九进制) = 21AC( 三进制)(不区分 写) 十 十 大 小",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      }
-     ]
-    },
-    {
-     "id": "2025-06",
-     "name": "2025 年 6 月",
-     "req": null,
-     "freq": null,
-     "difficulty": 2.5,
-     "questions": [
-      {
-       "qid": "3-2025-06-mc-1",
-       "paper": "2025-06",
-       "type": "mc",
-       "num": 1,
-       "answer": "A",
-       "stem": "8位二进制原码能表示的最小整数是：（ ）",
-       "code": "",
-       "options": {
-        "A": "-127",
-        "B": "-128",
-        "C": "-255",
-        "D": "-256"
-       },
        "explanation": "",
        "difficulty": 2.5
       },
@@ -3160,251 +4428,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2025-06-mc-3",
-       "paper": "2025-06",
-       "type": "mc",
-       "num": 3,
-       "answer": "A",
-       "stem": "补码 1011 1011 对应的真值是( )",
-       "code": "",
-       "options": {
-        "A": "-69",
-        "B": "-59",
-        "C": "-68",
-        "D": "-58"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-mc-4",
-       "paper": "2025-06",
-       "type": "mc",
-       "num": 4,
-       "answer": "A",
-       "stem": "若X的8位补码为 0000 1010，则 X/2 的补码是（ ）。",
-       "code": "",
-       "options": {
-        "A": "0000 0101",
-        "B": "1000 0101",
-        "C": "0000 0101 或 1000 0101",
-        "D": "算术右移后结果取决于符号位"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-mc-5",
-       "paper": "2025-06",
-       "type": "mc",
-       "num": 5,
-       "answer": "A",
-       "stem": "二进制数 1101.101 对应的十进制数是( )",
-       "code": "",
-       "options": {
-        "A": "13.625",
-        "B": "12.75",
-        "C": "11.875",
-        "D": "14.5"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-mc-6",
-       "paper": "2025-06",
-       "type": "mc",
-       "num": 6,
-       "answer": "B",
-       "stem": "补码加法中，若符 位⽆进位⽽次⾼位有进位，则说明（ ）",
-       "code": "",
-       "options": {
-        "A": "结果正确",
-        "B": "发生上溢",
-        "C": "发生下溢",
-        "D": "结果符号位错误"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-mc-7",
-       "paper": "2025-06",
-       "type": "mc",
-       "num": 7,
-       "answer": "A",
-       "stem": "进制数 35.6 对应的 进制数是( ) 八 十",
-       "code": "",
-       "options": {
-        "A": "29.75",
-        "B": "28.5",
-        "C": "27.625",
-        "D": "30.25"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-mc-8",
-       "paper": "2025-06",
-       "type": "mc",
-       "num": 8,
-       "answer": "B",
-       "stem": "进制数 1010 | 1100 的结果是（ ） 二",
-       "code": "",
-       "options": {
-        "A": "1000",
-        "B": "1110",
-        "C": "1010",
-        "D": "1100"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-mc-9",
-       "paper": "2025-06",
-       "type": "mc",
-       "num": 9,
-       "answer": "A",
-       "stem": "以下哪个位运算可以交换两个变量的值（ 需临时变量）( ) 无",
-       "code": "",
-       "options": {
-        "A": "a = a ^ b; b = a ^ b; a = a ^ b;",
-        "B": "a = a & b; b = a | b; a = a & b;",
-        "C": "a = a | b; b = a ^ b; a = a ^ b;",
-        "D": "a = ~a; b = ~b; a = ~a;"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-mc-10",
-       "paper": "2025-06",
-       "type": "mc",
-       "num": 10,
-       "answer": "D",
-       "stem": "如何正确定义 个长度为5的整型数组( ) 一",
-       "code": "",
-       "options": {
-        "A": "int array = new int[5];",
-        "B": "array int[5];",
-        "C": "int[] array = {1,2,3,4,5};",
-        "D": "int array[5];"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-mc-11",
-       "paper": "2025-06",
-       "type": "mc",
-       "num": 11,
-       "answer": "B",
-       "stem": "以下程序使 枚举法（穷举法）求解满 条件的三位数，横线处应该填 的是（） 用 足 入",
-       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint count = 0;\nfor (int i = 100; i <= 999; i++) {\nint a = i / 100;\n————————————————————\nint c = i % 10;\nif (a * a + b * b == c * c) {\ncount++;\n}\n}\ncout << count << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "int b = (i / 10) / 10;",
-        "B": "int b = (i / 10) % 10;",
-        "C": "int b = (i % 10) / 10;",
-        "D": "int b = (i % 10) % 10;"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-mc-12",
-       "paper": "2025-06",
-       "type": "mc",
-       "num": 12,
-       "answer": "B",
-       "stem": "以下程序模拟了一个简单的小球反弹过程，横线处应该填入的是（）",
-       "code": "#include <iostream>\nusing namespace std;\nint main() {\nint height = 10;\nint distance = 0;\nfor (int i = 1; i <= 5; i++) { // 模拟5次落地\n——————————————————————\nheight /= 2;\ndistance += height;\n}\ncout << distance << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "distance += height/2;",
-        "B": "distance += height;",
-        "C": "distance += height*2;",
-        "D": "distance += height+1;"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-mc-13",
-       "paper": "2025-06",
-       "type": "mc",
-       "num": 13,
-       "answer": "D",
-       "stem": "C++代码 string s = \"GESP考试\"; ，s占据的字节数是（）",
-       "code": "",
-       "options": {
-        "A": "10",
-        "B": "8",
-        "C": "8或10",
-        "D": "取决于计算机采用什么编码"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-mc-14",
-       "paper": "2025-06",
-       "type": "mc",
-       "num": 14,
-       "answer": "C",
-       "stem": "C++语句 string s=\"Gesp Test\"; 执行s.rfind(\"e\")以后,输出的是（）",
-       "code": "",
-       "options": {
-        "A": "1",
-        "B": "2",
-        "C": "6",
-        "D": "3"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-mc-15",
-       "paper": "2025-06",
-       "type": "mc",
-       "num": 15,
-       "answer": "C",
-       "stem": "字符串\"Gesp考试\",字符数是（ ）",
-       "code": "",
-       "options": {
-        "A": "10",
-        "B": "8",
-        "C": "6",
-        "D": "字符数多少取决于编码"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-tf-1",
-       "paper": "2025-06",
-       "type": "tf",
-       "num": 1,
-       "answer": "×",
-       "stem": "C++中 string 的 == 运算符比较的是字符串的内存地址，而非内容",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-tf-2",
-       "paper": "2025-06",
-       "type": "tf",
-       "num": 2,
-       "answer": "√",
-       "stem": "string 的 substr(1, 3) 返回从下标1开始的3个字符的子串。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2025-06-tf-3",
        "paper": "2025-06",
        "type": "tf",
@@ -3417,48 +4440,12 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2025-06-tf-4",
-       "paper": "2025-06",
-       "type": "tf",
-       "num": 4,
-       "answer": "√",
-       "stem": "string(\"hello\") == \"hello\" 的比较结果为true。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-tf-5",
-       "paper": "2025-06",
-       "type": "tf",
-       "num": 5,
-       "answer": "×",
-       "stem": "sort 可以直接用于排序 set 中的元素。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2025-06-tf-6",
        "paper": "2025-06",
        "type": "tf",
        "num": 6,
        "answer": "√",
        "stem": "(x & 1) == 0 可以判断整数 x 是否为偶数。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-06-tf-7",
-       "paper": "2025-06",
-       "type": "tf",
-       "num": 7,
-       "answer": "×",
-       "stem": "string 的 substr(2, 10) 在字符串长度不足时会抛出异常。",
        "code": "",
        "options": {},
        "explanation": "",
@@ -3489,27 +4476,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2025-06-tf-10",
-       "paper": "2025-06",
-       "type": "tf",
-       "num": 10,
-       "answer": "√",
-       "stem": "函数声明 double f(); 返回 int 时，会自动转换为 double",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      }
-     ]
-    },
-    {
-     "id": "2025-09",
-     "name": "2025 年 9 月",
-     "req": null,
-     "freq": null,
-     "difficulty": 2.5,
-     "questions": [
-      {
        "qid": "3-2025-09-mc-1",
        "paper": "2025-09",
        "type": "mc",
@@ -3527,286 +4493,12 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2025-09-mc-2",
-       "paper": "2025-09",
-       "type": "mc",
-       "num": 2,
-       "answer": "C",
-       "stem": "下列C++表达式的结果为 true 的是（ ）。",
-       "code": "",
-       "options": {
-        "A": "(5 <= 5) && (7 < 5)",
-        "B": "!(10 > 5)",
-        "C": "(10 != 10) || (5 >= 3)",
-        "D": "(5 == 3) && (4 > 2)"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-mc-3",
-       "paper": "2025-09",
-       "type": "mc",
-       "num": 3,
-       "answer": "D",
-       "stem": "以下关于C++数组的说法，错误的是（ ）。",
-       "code": "",
-       "options": {
-        "A": "数组的下标通常从 0 开始。",
-        "B": "int arr[5]; 声明了 个包含5个整数的数组。 一",
-        "C": "数组的 必须在编译时确定，不能使 变量定义 。 大 小 用 大 小",
-        "D": "可以通过 arr[5] 来访问 int arr[5]; 数组的最后 个元素。 一"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-mc-4",
-       "paper": "2025-09",
-       "type": "mc",
-       "num": 4,
-       "answer": "B",
-       "stem": "执 以下C++代码后，变量 sum 的值是（ ）。 行",
-       "code": "int sum = 0;\nfor (int i = 1; i <= 5; i += 2) {\nsum += i;\nint sum=0;\n}",
-       "options": {
-        "A": "6",
-        "B": "9",
-        "C": "15",
-        "D": "死循环"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-mc-5",
-       "paper": "2025-09",
-       "type": "mc",
-       "num": 5,
-       "answer": "B",
-       "stem": "要正确定义 个返回两个整数中较 值的函数 max ，应该使 （ ）。 一 大 用",
-       "code": "",
-       "options": {
-        "A": "void max(int a, int b) { return a > b ? a : b; }",
-        "B": "int max(int a, int b) { if (a > b) return a; else return b; }",
-        "C": "int max(a, b) { if (a > b) return a; else return b; }",
-        "D": "void max(a, b) { cout << (a > b ? a : b); }"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-mc-6",
-       "paper": "2025-09",
-       "type": "mc",
-       "num": 6,
-       "answer": "B",
-       "stem": "执 以下C++代码后，数组 arr 的内容是（ ）。 行",
-       "code": "int arr[4] = {1, 2, 3};\narr[3] = arr[0] + arr[2];",
-       "options": {
-        "A": "{1, 2, 3, 3}",
-        "B": "{1, 2, 3, 4}",
-        "C": "{1, 2, 3, 5}",
-        "D": "{1, 2, 3, 6}"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-mc-7",
-       "paper": "2025-09",
-       "type": "mc",
-       "num": 7,
-       "answer": "B",
-       "stem": "以下关于C++函数的描述，正确的是（ ）。",
-       "code": "",
-       "options": {
-        "A": "函数必须要有参数。",
-        "B": "函数通过 return 语句只能返回 个值。但是可以通过很多间接的 式返回多个值。 一 方",
-        "C": "main 函数可以被其他函数调 。 用",
-        "D": "函数的定义可以直接嵌套，即 个函数内部可以真正定义另 个函数。 一 一"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-mc-8",
-       "paper": "2025-09",
-       "type": "mc",
-       "num": 8,
-       "answer": "D",
-       "stem": "以下C++代码 count++ 执 的次数是（ ）。 行",
-       "code": "int i = 10;\nint count=0;\nwhile (i > 0) {\ni -= 3;\ncontinue;\ncount++;\n}",
-       "options": {
-        "A": "2",
-        "B": "3",
-        "C": "4",
-        "D": "0"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-mc-9",
-       "paper": "2025-09",
-       "type": "mc",
-       "num": 9,
-       "answer": "A",
-       "stem": "以下C++代码段的输出是（ ）。",
-       "code": "for (int i = 0; i < 4; i++) {\nfor (int j = 0; j <= i; j++) {\ncout << j;\n}\ncout << \"#\";\n}",
-       "options": {
-        "A": "0#01#012#0123#",
-        "B": "1#12#123#1234#",
-        "C": "0#1#2#3#",
-        "D": "0#01#012#01243#"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-mc-10",
-       "paper": "2025-09",
-       "type": "mc",
-       "num": 10,
-       "answer": "C",
-       "stem": "以下关于C++变量作用域的说法，错误的是（ ）。",
-       "code": "",
-       "options": {
-        "A": "在 for 循环语句中声明的变量，其作用域仅限于该循环体内。",
-        "B": "在函数内部声明的变量（局部变量），仅在函数内部有效。",
-        "C": "在所有函数外部声明的变量，在整个程序中都有效。",
-        "D": "不同函数中的局部变量可以同名，它们代表不同的内存单元"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-mc-11",
-       "paper": "2025-09",
-       "type": "mc",
-       "num": 11,
-       "answer": "D",
-       "stem": "关于以下代码的说法正确的是（ ）。",
-       "code": "int reversed = 0;\nwhile (x != 0) {\nint digit = x % 10;\nx /= 10;\nreversed = reversed * 10 + digit;\n}",
-       "options": {
-        "A": "能够反转任何位数的整数",
-        "B": "能够反转的最大位数正整数是 2147483647",
-        "C": "能够反转的最大位数正整数是 2147483648",
-        "D": "能够反转的最大位数正整数是 1463847412"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-mc-12",
-       "paper": "2025-09",
-       "type": "mc",
-       "num": 12,
-       "answer": "C",
-       "stem": "以下C++代码试图查找数组中的最大值，划线处应填入（ ）。",
-       "code": "#include <iostream>\nusing namespace std;\nint findMax(int arr[], int size) {\nint maxVal = ________; // 划线处\nfor (int i = 1; i < size; i++) {\nif (arr[i] > maxVal) {\nmaxVal = arr[i];\n}\n}\nreturn maxVal;\n}",
-       "options": {
-        "A": "0",
-        "B": "arr[-1]",
-        "C": "arr[0]",
-        "D": "size"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-mc-13",
-       "paper": "2025-09",
-       "type": "mc",
-       "num": 13,
-       "answer": "D",
-       "stem": "以下关于C++函数的说法，正确的是（ ）。",
-       "code": "",
-       "options": {
-        "A": "函数参数传递只有值传递一种方式。",
-        "B": "函数的形参在函数调用结束后依然占用内存空间",
-        "C": "没有返回值的函数必须声明为 void 类型，且不能包含 return 语句",
-        "D": "C++11 及之后标准要求函数必须显式声明返回类型，不允许默认返回 int"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-mc-14",
-       "paper": "2025-09",
-       "type": "mc",
-       "num": 14,
-       "answer": "C",
-       "stem": "以下C++代码中存在几处错误（ ）。",
-       "code": "#include <iostream>\nusing namespace std;\nint main() {\nconst int SIZE = 5;\nint arr[SIZE];\nfor (int i = 0; i <= SIZE; i++) {\narr[i] = i * 2;\n}\ncout << arr[SIZE] << endl;\nreturn 0;\n}",
-       "options": {
-        "A": "0处",
-        "B": "1处",
-        "C": "2处",
-        "D": "3处"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-mc-15",
-       "paper": "2025-09",
-       "type": "mc",
-       "num": 15,
-       "answer": "D",
-       "stem": "以下关于C++中 string 类和字符数组( char[] )的说法，错误的是（ ）。",
-       "code": "",
-       "options": {
-        "A": "string 对象可以使用 = 进行赋值，而字符数组需要使用 strcpy 。",
-        "B": "string 对象的长度可以使用 length() 成员函数获取，而字符数组需要使用 strlen() 函数。",
-        "C": "string 对象在内存中是动态分配空间的，因此可以自动处理字符串长度的变化。",
-        "D": "string 对象和字符数组都可以使用 == 运算符来直接比较两个字符串的内容是否相同。"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-tf-1",
-       "paper": "2025-09",
-       "type": "tf",
-       "num": 1,
-       "answer": "×",
-       "stem": "表达式 sizeof('a') 的结果总是 1 ，因为 'a' 是一个字符。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2025-09-tf-2",
        "paper": "2025-09",
        "type": "tf",
        "num": 2,
        "answer": "√",
        "stem": "在C++中，所有全局变量如果没有显式初始化，都会被自动初始化为0。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-tf-3",
-       "paper": "2025-09",
-       "type": "tf",
-       "num": 3,
-       "answer": "√",
-       "stem": "do { ... } while (false); 循环体内的语句至少会被执行一次。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-tf-4",
-       "paper": "2025-09",
-       "type": "tf",
-       "num": 4,
-       "answer": "√",
-       "stem": "在C++中， ++i 是一个左值表达式，而 i++ 是一个右值表达式。",
        "code": "",
        "options": {},
        "explanation": "",
@@ -3849,30 +4541,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2025-09-tf-8",
-       "paper": "2025-09",
-       "type": "tf",
-       "num": 8,
-       "answer": "×",
-       "stem": "表达式 a > b ? a : b = 10; 一定是合法的C++代码。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-09-tf-9",
-       "paper": "2025-09",
-       "type": "tf",
-       "num": 9,
-       "answer": "×",
-       "stem": "#include \"file.h\" 和 #include <file.h> 在编译器查找头文件时的搜索策略是完全相同的。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2025-09-tf-10",
        "paper": "2025-09",
        "type": "tf",
@@ -3881,202 +4549,6 @@
        "stem": "在同一个作用域内， extern 声明的变量可以多次定义。",
        "code": "",
        "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      }
-     ]
-    },
-    {
-     "id": "2025-12",
-     "name": "2025 年 12 月",
-     "req": null,
-     "freq": null,
-     "difficulty": 2.5,
-     "questions": [
-      {
-       "qid": "3-2025-12-mc-1",
-       "paper": "2025-12",
-       "type": "mc",
-       "num": 1,
-       "answer": "B",
-       "stem": "请将二进制数 ，转换为等值的10进制数（ ）",
-       "code": "",
-       "options": {
-        "A": "14.25",
-        "B": "13.625",
-        "C": "13.5",
-        "D": "14.5"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-mc-2",
-       "paper": "2025-12",
-       "type": "mc",
-       "num": 2,
-       "answer": "C",
-       "stem": "以下关于标准 C++ 一维数组的描述，哪一项是错误的？（ ）",
-       "code": "",
-       "options": {
-        "A": "数组的下标从0开始",
-        "B": "数组在内存中是连续存放的",
-        "C": "数组的长度只能在运行时才能确定",
-        "D": "可以在程序中修改数组某个元素的值"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-mc-3",
-       "paper": "2025-12",
-       "type": "mc",
-       "num": 3,
-       "answer": "D",
-       "stem": "下列代码段执行后，变量 sum 的值是（ ）",
-       "code": "{\nint sum = 0;\nfor (int i = 1; i <= 10; i++) {\nif (i % 3 == 8>>2)\ncontinue;\nsum += i;\n}\n}",
-       "options": {
-        "A": "12",
-        "B": "17",
-        "C": "33",
-        "D": "40"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-mc-4",
-       "paper": "2025-12",
-       "type": "mc",
-       "num": 4,
-       "answer": "B",
-       "stem": "执行以下程序段，输出值是（ ）",
-       "code": "int x = 5;\nif (x == 3 >> 2) x = 8 >> 3;\ncout << x << endl;",
-       "options": {
-        "A": "0",
-        "B": "5",
-        "C": "120",
-        "D": "1"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-mc-5",
-       "paper": "2025-12",
-       "type": "mc",
-       "num": 5,
-       "answer": "B",
-       "stem": "已知字符串 s = \"C++ Programming\" ，下列程序运行的结果是（ ）",
-       "code": "cout << (int)(s.length() | 3) << endl;",
-       "options": {
-        "A": "14",
-        "B": "15",
-        "C": "16",
-        "D": "17"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-mc-6",
-       "paper": "2025-12",
-       "type": "mc",
-       "num": 6,
-       "answer": "D",
-       "stem": "以下代码是一个程序的部分代码，能够正确执行，输出的结果是（ ）",
-       "code": "int arr[5] = {1, 2, 3, 4, 5};\nint p = arr[1];\ncout << (p + 2) << endl;",
-       "options": {
-        "A": "1",
-        "B": "2",
-        "C": "3",
-        "D": "4"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-mc-7",
-       "paper": "2025-12",
-       "type": "mc",
-       "num": 7,
-       "answer": "D",
-       "stem": "以下关于 C++ 求最小值函数 min() 的描述，不正确的是（ ）",
-       "code": "",
-       "options": {
-        "A": "函数必须返回一个值",
-        "B": "该函数可以嵌套调用",
-        "C": "调用 min(5) 是错误的，不能通过编译",
-        "D": "调用 min() （不传任何参数）可以通过编译，结果为 0"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-mc-8",
-       "paper": "2025-12",
-       "type": "mc",
-       "num": 8,
-       "answer": "A",
-       "stem": "在一个特定的计算机系统中，假如 unsigned int 类型需要占用2个字节的存储空间（每个字节有8位）， 则 unsigned int 可以表示的数据范围是（ ）",
-       "code": "",
-       "options": {
-        "A": "0 ~ 65535",
-        "B": "0 ~ 65536",
-        "C": "-65536 ~ 65535",
-        "D": "0 ~ 32767"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-mc-9",
-       "paper": "2025-12",
-       "type": "mc",
-       "num": 9,
-       "answer": "A",
-       "stem": "以下代码执行后，数组 arr 的内容是（ ）",
-       "code": "int arr[6] = {1, 2, 3, 4, 5, 6};\nfor (int i = 0; i < 6; i += 2) {\narr[i] = arr[i] + arr[i+1];\narr[i+1] = arr[i] - arr[i+1];\narr[i] = arr[i] - arr[i+1];\n}",
-       "options": {
-        "A": "{2,1,4,3,6,5}",
-        "B": "{1,2,3,4,5,6}",
-        "C": "{3,1,4,2,5,3}",
-        "D": "{1,3,2,5,4,6}"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-mc-10",
-       "paper": "2025-12",
-       "type": "mc",
-       "num": 10,
-       "answer": "A",
-       "stem": "a & b | (c ^ d) ，其中 a = 3, b = 7, c = 15, d = 4 ，计算结果是（ ）",
-       "code": "",
-       "options": {
-        "A": "十进制11",
-        "B": "二进制11",
-        "C": "八进制11",
-        "D": "十六进制11"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-mc-11",
-       "paper": "2025-12",
-       "type": "mc",
-       "num": 11,
-       "answer": "C",
-       "stem": "整型变量 x 的初始值为 10 ，以下代码的输出结果是（ ）",
-       "code": "int t = x--;\nt -= x;\ncout << t << endl;",
-       "options": {
-        "A": "0",
-        "B": "-1",
-        "C": "1",
-        "D": "死循环"
-       },
        "explanation": "",
        "difficulty": 2.5
       },
@@ -4094,69 +4566,6 @@
         "C": "不及格",
         "D": "没有输出"
        },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-mc-13",
-       "paper": "2025-12",
-       "type": "mc",
-       "num": 13,
-       "answer": "B",
-       "stem": "以下代码运行后， sum 的结果是（ ）",
-       "code": "int arr[5] = {2, 4, 6, 8, 10};\nint sum = 0;\nfor (int i = 0; i < 5; i++) {\nswitch (arr[i] % (1|2)) {\ncase 0: sum += 1; break;\ncase 1: sum += 2; break;\ncase 2: sum += 3; break;\n}\n}",
-       "options": {
-        "A": "10",
-        "B": "11",
-        "C": "14",
-        "D": "15"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-mc-14",
-       "paper": "2025-12",
-       "type": "mc",
-       "num": 14,
-       "answer": "A",
-       "stem": "以下关于 C++ 中 abs() 函数的描述，正确的是（ ）",
-       "code": "",
-       "options": {
-        "A": "abs() 函数可用于计算 int 类型整数的绝对值，头文件为 <cmath> 或 <cstdlib>",
-        "B": "调用 abs(3.14) 可以四舍五入得到 3",
-        "C": "abs(-1, -2) 的返回值是 1",
-        "D": "若传入负数浮点数， abs() 会自动截断小数部分后返回整数绝对值"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-mc-15",
-       "paper": "2025-12",
-       "type": "mc",
-       "num": 15,
-       "answer": "D",
-       "stem": "如果字符串 s 的值是 GESP ，以下代码 s 的最后结果是（ ）",
-       "code": "for (int i = 0; i < s.length(); i++) {\ns[i] = toupper(s[i] + i);\n}",
-       "options": {
-        "A": "GESP",
-        "B": "HFTR",
-        "C": "hesp",
-        "D": "GFUS"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-tf-1",
-       "paper": "2025-12",
-       "type": "tf",
-       "num": 1,
-       "answer": "√",
-       "stem": "在 C++ 中，数组名不能改变，数组名不能被赋值。",
-       "code": "",
-       "options": {},
        "explanation": "",
        "difficulty": 2.5
       },
@@ -4197,96 +4606,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2025-12-tf-5",
-       "paper": "2025-12",
-       "type": "tf",
-       "num": 5,
-       "answer": "×",
-       "stem": "位运算符 & 、 | 、 ^ 、 ~ 的优先级高于算术运算符 + 、 - 、 * 、 / 。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-tf-6",
-       "paper": "2025-12",
-       "type": "tf",
-       "num": 6,
-       "answer": "√",
-       "stem": "在 C++ 中， int a[] = {1, 2, 3, 4, 5}; 可以定义一个包含 5 个元素的整型数组。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-tf-7",
-       "paper": "2025-12",
-       "type": "tf",
-       "num": 7,
-       "answer": "√",
-       "stem": "C++ 表达式 z = a > b ? x : y 等同于： 以下代码执行后，输出将会是 2 。",
-       "code": "if (a > b) {\nz = x;\n} else {\nz = y;\n}\nint main() {\nint arr[5] = {1, 2, 3, 4, 5};\ncout << arr[3 > 2 ? 1 : 2] << endl;\nreturn 0;\n}",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-tf-8",
-       "paper": "2025-12",
-       "type": "tf",
-       "num": 8,
-       "answer": "×",
-       "stem": "在 C++ 中， ++ 和 -- 运算符只能用于整型变量，不能用于浮点数变量。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-tf-9",
-       "paper": "2025-12",
-       "type": "tf",
-       "num": 9,
-       "answer": "√",
-       "stem": "给定一个正整数 a ，当需要计算 -a 的补码时，有这样一个计算技巧：将 a 的二进制形式从右往左扫 描，遇到第一个 1 之后，将找到的第一个 1 左边的所有位都取反，能得到 -a 的补码。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2025-12-tf-10",
-       "paper": "2025-12",
-       "type": "tf",
-       "num": 10,
-       "answer": "×",
-       "stem": "以下代码中， Hello 将被输出5次。",
-       "code": "for (int i = 0; i < 5; i++);\n{\ncout << \"Hello\" << endl;\n}",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "y2026",
-   "name": "2026 年真题",
-   "req": null,
-   "freq": null,
-   "difficulty": 2.5,
-   "sections": [
-    {
-     "id": "2026-03",
-     "name": "2026 年 3 月",
-     "req": null,
-     "freq": null,
-     "difficulty": 2.5,
-     "questions": [
-      {
        "qid": "3-2026-03-mc-1",
        "paper": "2026-03",
        "type": "mc",
@@ -4321,23 +4640,6 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2026-03-mc-3",
-       "paper": "2026-03",
-       "type": "mc",
-       "num": 3,
-       "answer": "C",
-       "stem": "关于下列正确的程序段，说法正确的是（ ）。",
-       "code": "char str1[] = \"Hello\";\nchar str2[] ={'H','e','l','l','0'};",
-       "options": {
-        "A": "字符数组 str1 和 str2 完全相同。",
-        "B": "1 cout<<str1<<endl; 2 cout<<str2<<endl; 这段程序多次执行将输出不同的结果。",
-        "C": "字符数组 str1 和 str2 不相等。",
-        "D": "这两个赋值方式完全相同。"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2026-03-mc-4",
        "paper": "2026-03",
        "type": "mc",
@@ -4350,159 +4652,6 @@
         "B": "22",
         "C": "21",
         "D": "20"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-mc-5",
-       "paper": "2026-03",
-       "type": "mc",
-       "num": 5,
-       "answer": "D",
-       "stem": "8 位二进制下，十进制数-15 的补码是（ ）。",
-       "code": "",
-       "options": {
-        "A": "11110000",
-        "B": "10001111",
-        "C": "10010000",
-        "D": "11110001"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-mc-6",
-       "paper": "2026-03",
-       "type": "mc",
-       "num": 6,
-       "answer": "B",
-       "stem": "三进制数 转换成十进制是：（ ）。",
-       "code": "",
-       "options": {
-        "A": "63",
-        "B": "65",
-        "C": "67",
-        "D": "69"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-mc-7",
-       "paper": "2026-03",
-       "type": "mc",
-       "num": 7,
-       "answer": "B",
-       "stem": "二进制数 10110101 是某数的 8 位补码，该数的十进制是（ ）。",
-       "code": "",
-       "options": {
-        "A": "-73",
-        "B": "-75",
-        "C": "-77",
-        "D": "75"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-mc-8",
-       "paper": "2026-03",
-       "type": "mc",
-       "num": 8,
-       "answer": "D",
-       "stem": "已知 unsigned char c = 0x0F; （十六进制 0F = 二进制 00001111 ），执行 c = c << 3; 后， c 的 十进制值是：（ ）。",
-       "code": "",
-       "options": {
-        "A": "64",
-        "B": "72",
-        "C": "80",
-        "D": "120"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-mc-9",
-       "paper": "2026-03",
-       "type": "mc",
-       "num": 9,
-       "answer": "B",
-       "stem": "补码的情况下，关于按位取反运算，用笔计算的情况下，以下说法错误的是：（ ）",
-       "code": "",
-       "options": {
-        "A": "~5 的结果是 -6（ int 类型，32 位）",
-        "B": "~0 的结果是 0（ int 类型，32 位）",
-        "C": "~(-3) 的结果是 2（ int 类型，32 位）",
-        "D": "~8 的结果是 -9（ int 类型，32 位）"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-mc-10",
-       "paper": "2026-03",
-       "type": "mc",
-       "num": 10,
-       "answer": "A",
-       "stem": "执行以下 C++ 代码后， sub 的值是（ ）。",
-       "code": "string str = \"GESP2026\";\nstring sub = str.substr(4, 2);",
-       "options": {
-        "A": "20",
-        "B": "02",
-        "C": "2026",
-        "D": "026"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-mc-11",
-       "paper": "2026-03",
-       "type": "mc",
-       "num": 11,
-       "answer": "B",
-       "stem": "执行以下代码后，输出结果是：（ ）。",
-       "code": "int arr[] = {5, 10, 15, 20, 25, 30};\nint count = sizeof(arr) / sizeof(arr[0]);\ncout << count;",
-       "options": {
-        "A": "4",
-        "B": "6",
-        "C": "24",
-        "D": "30"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-mc-12",
-       "paper": "2026-03",
-       "type": "mc",
-       "num": 12,
-       "answer": "B",
-       "stem": "执行以下代码后，输出结果是：（ ）。",
-       "code": "char s[10] = \"abcde\";\nint a = sizeof(s) / sizeof(s[0]);\nint b = strlen(s);\ncout << a - b;",
-       "options": {
-        "A": "4",
-        "B": "5",
-        "C": "6",
-        "D": "10"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-mc-13",
-       "paper": "2026-03",
-       "type": "mc",
-       "num": 13,
-       "answer": "C",
-       "stem": "以下问题中，最不适合用枚举法解决的是：（ ）",
-       "code": "",
-       "options": {
-        "A": "找出 1~100 之间所有能被 7 整除的数",
-        "B": "找出 100~200 之间的所有质数",
-        "C": "计算 1+2+3+…+1000 的和",
-        "D": "找出三位数中个位、十位、百位数字之和等于 10 的数"
        },
        "explanation": "",
        "difficulty": 2.5
@@ -4525,101 +4674,12 @@
        "difficulty": 2.5
       },
       {
-       "qid": "3-2026-03-mc-15",
-       "paper": "2026-03",
-       "type": "mc",
-       "num": 15,
-       "answer": "D",
-       "stem": "模拟 “字符串加密”：规则为 “每个字符 ASCII 码 + 3，若超过 z (122) 则从 a 重新开始”，以下代码中正确 的条件判断是：（ ）",
-       "code": "for (int i = 0; i < str.length(); i++) {\n// 需补充条件：\n_______________________\nelse {\nstr[i] += 3;\n}\n}",
-       "options": {
-        "A": "if (str[i]> 122) str[i] = str[i] + 3 - 26;",
-        "B": "if (str[i] > 122) str[i] = str[i] - 26;",
-        "C": "if (str[i] + 3 > 122) str[i] = str[i] - 26;",
-        "D": "if (str[i] + 3 > 'z') str[i] = 'a' + (str[i] + 3 - 'z') - 1;"
-       },
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-tf-1",
-       "paper": "2026-03",
-       "type": "tf",
-       "num": 1,
-       "answer": "×",
-       "stem": "定义 int arr[5] = {1,2,3}; ，则 arr[3] 的值为 0， arr[5] 是合法下标。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-tf-2",
-       "paper": "2026-03",
-       "type": "tf",
-       "num": 2,
-       "answer": "×",
-       "stem": "定义 double arr[10]; ，未手动初始化时，数组中所有元素的默认值为 0.0。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-tf-3",
-       "paper": "2026-03",
-       "type": "tf",
-       "num": 3,
-       "answer": "√",
-       "stem": "定义 int arr[] = {1,2,3}; ，则 sizeof(arr) 的结果为 12（ int 占 4 字节）。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
        "qid": "3-2026-03-tf-4",
        "paper": "2026-03",
        "type": "tf",
        "num": 4,
        "answer": "√",
        "stem": "下面的流程图是用来求 1+2+3+…+10 的和。 请判断：这个流程图的逻辑正确还是错误？",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-tf-5",
-       "paper": "2026-03",
-       "type": "tf",
-       "num": 5,
-       "answer": "√",
-       "stem": "下面流程图的功能是计算 5 对 2 取余数，输出结果为 1。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-tf-6",
-       "paper": "2026-03",
-       "type": "tf",
-       "num": 6,
-       "answer": "√",
-       "stem": "已知大写字符 A 的ASCII编码的十六进制表示为 0x41 ，计算字符 m 的ASCII编码的八进制表示为 155 （八进制）。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-tf-7",
-       "paper": "2026-03",
-       "type": "tf",
-       "num": 7,
-       "answer": "√",
-       "stem": "在 C++ 位运算中，各种不同的运算符有优先级的区分，使用括号能够解决优先级的问题。",
        "code": "",
        "options": {},
        "explanation": "",
@@ -4633,30 +4693,6 @@
        "answer": "×",
        "stem": "由于在 0~255 范围内， char 类型和 int 类型可以互换，因此在这里 x 和 y 相等。",
        "code": "char x='1';\nint y=1;",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-tf-9",
-       "paper": "2026-03",
-       "type": "tf",
-       "num": 9,
-       "answer": "×",
-       "stem": "在C++语言中，表达式 ((0xf0 + 0x15) == 255) 的值为 true 。",
-       "code": "",
-       "options": {},
-       "explanation": "",
-       "difficulty": 2.5
-      },
-      {
-       "qid": "3-2026-03-tf-10",
-       "paper": "2026-03",
-       "type": "tf",
-       "num": 10,
-       "answer": "√",
-       "stem": "如果 a 为 int 类型的变量，且 a 的二进制最低位为 0 ，则表达式 ((a & 3 & 1) == 0) 的值为 true 。",
-       "code": "",
        "options": {},
        "explanation": "",
        "difficulty": 2.5
