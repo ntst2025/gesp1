@@ -24,7 +24,7 @@
       "name": "计数原理",
       "req": "掌握",
       "freq": "中频",
-      "difficulty": 4.0,
+      "difficulty": 4,
       "count": 19,
       "mc": 17,
       "tf": 2,
@@ -46,7 +46,7 @@
           "name": "加法原理",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 15,
           "mc": 13,
           "tf": 2,
@@ -76,7 +76,7 @@
                 "D": "6"
               },
               "explanation": "分类计数，用加法原理（不是乘法原理）。走 A→C→B 有 2 种（高铁/飞机），走 A→D→B 有 3 种（船/高铁/飞机），互斥相加 2+3=5，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-mc-13",
@@ -93,7 +93,7 @@
                 "D": "42"
               },
               "explanation": "统计 1≤a,b,h≤10 且 (a+b)·h=20 的方案数。h 只能取 1,2,4,5,10：对应 a+b=20/10/5/4/2，在 [1,10]+[1,10] 内的方案数分别为 1,9,4,3,1，合计 1+9+4+3+1=18，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-mc-14",
@@ -110,7 +110,7 @@
                 "D": "100"
               },
               "explanation": "统计 0≤x,y,z≤10 且 x+y+z=15 的解数。无上限解数 C(17,2)=136；减去某变量≥11 的情形 3×C(6,2)=45（无重叠），得 136−45=91，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-6",
@@ -126,8 +126,8 @@
                 "C": "564",
                 "D": "602"
               },
-              "explanation": "用补集：统计不含数字 6 的个数再相减。按位计数可得含 6 的数共 544 个，选 A。",
-              "difficulty": 4.0
+              "explanation": "用补集：先数 1~2024 里不含数字 6 的，再用总数减。0~1999 段——千位只能是 0 或 1（2 种），百、十、个位各从 0~9 去掉 6 后有 9 种，共 2×9×9×9=1458 个；2000~2024 段共 25 个，去掉含 6 的 2006、2016 两个，剩 23 个；两段合计 1481，再扣掉不在 1~2024 内的 0，得 1480 个不含 6。所以含 6 的 = 2024−1480 = 544，选 A。",
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-15",
@@ -144,7 +144,7 @@
                 "D": "711"
               },
               "explanation": "统计 0≤x,y,z≤10 且 x+y+z≤15 的三元组个数。按 sum=0..15 累加（受 ≤10 上限约束）合计 711，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-mc-4",
@@ -161,7 +161,7 @@
                 "D": "17"
               },
               "explanation": "分类计数，加法原理：10+5+2=17，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-mc-10",
@@ -177,8 +177,8 @@
                 "C": "816",
                 "D": "4096"
               },
-              "explanation": "在 x≤y≤z 且 3x≤15、x+2y≤15、x+y+z≤15 约束下枚举三元组计数，结果为 174，选 A。",
-              "difficulty": 4.0
+              "explanation": "这三重循环在数满足 0≤x≤y≤z 且 x+y+z≤15 的三元组个数（代码里的 3x≤15、x+2y≤15 在 x≤y≤z 时会被 x+y+z≤15 自动保证，属于冗余约束）。也就是把 0~15 每个“和”拆成至多 3 个非降部分的方案总数，逐一枚举得 174 个，选 A。",
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-tf-6",
@@ -190,7 +190,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。枚举 2a+5b+7c=27 的非负整数解，按 c=0,1,2,3 统计得 3+3+1+1=8 种组合。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-2",
@@ -207,7 +207,7 @@
                 "D": "4"
               },
               "explanation": "按座位图枚举满足「每组同排相邻、两组前后相邻至少一对」的方案，结果为 7，选 C。（本题原含座位图）",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-5",
@@ -224,7 +224,7 @@
                 "D": "603"
               },
               "explanation": "用补集法按位统计：不含数字 5 的数有 1422 个，2025−1422=603 个含 5，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-9",
@@ -241,7 +241,7 @@
                 "D": "(nl + nr) ^ 2 == n2"
               },
               "explanation": "「神奇数字」定义为：平方数 n² 拆分两段之和等于 n（类似卡普雷卡性质），即 nl + nr == n，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-1",
@@ -258,7 +258,7 @@
                 "D": "7"
               },
               "explanation": "在 {1,2,3,4} 的全部 16 个子集中，和 <5 的有 7 个（含空集），故和≥5 的有 16−7=9 种，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-9",
@@ -274,8 +274,8 @@
                 "C": "174",
                 "D": "3375"
               },
-              "explanation": "在 1≤x≤y≤z 且 3x≤15、x+2y≤15、x+y+z≤15 约束下枚举三元组并计数，结果为 102，选 B。",
-              "difficulty": 4.0
+              "explanation": "与上一类相同，只是 x 从 1 起，数的是 1≤x≤y≤z 且 x+y+z≤15 的三元组个数（即三个数都≥1）。逐一枚举得 102 个，选 B。",
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-13",
@@ -292,7 +292,7 @@
                 "D": "333"
               },
               "explanation": "按 3 位（000~999）看：选 5 所在的 1 位 C(3,1)=3，该位为 5，其余 2 位各取 0~9 中非 5 的 9 种，3×9×9=243，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-tf-1",
@@ -303,8 +303,8 @@
               "stem": "若一项任务可用两种互斥方案完成：方案 A 有 m 种做法、方案 B 有 n 种做法，则总做法数为 m + n。",
               "code": "",
               "options": {},
-              "explanation": "正确，这是分类计数的加法原理。",
-              "difficulty": 4.0
+              "explanation": "正确，这是分类计数的加法原理。因为两种方案互斥、不会同时采用，完成任务时只走其中一种，所以把各自的做法数直接相加得 m+n（区别于“分步都要做完”时用的乘法原理）。",
+              "difficulty": 4
             }
           ]
         },
@@ -313,7 +313,7 @@
           "name": "乘法原理",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 4,
           "mc": 4,
           "tf": 0,
@@ -338,8 +338,8 @@
                 "C": "63",
                 "D": "108"
               },
-              "explanation": "乘法原理：4×3×3×3=108，选 D。",
-              "difficulty": 4.0
+              "explanation": "乘法原理：做一道菜要依次定下肉类、切法、配菜、辣度四步，每步的选择相互独立，所以方案数相乘 4×3×3×3=108，选 D。（注意这是分步完成、用乘法，而不是“几选一”的加法。）",
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-mc-1",
@@ -356,7 +356,7 @@
                 "D": "1,460,000"
               },
               "explanation": "第 5 位 10 种。前 4 位：① 全数字 10⁴=10000；② 恰 1 位字母：位置 4 选 1×字母 24×其余 3 位数字 10³ = 4×24×1000=96000。前 4 位合计 106000；×第 5 位 10 = 1,060,000，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-1",
@@ -373,7 +373,7 @@
                 "D": "360"
               },
               "explanation": "先选两种电器（C(4,2)=6 对），再乘各自型号数求和：4·6+4·3+4·5+6·3+6·5+3·5=24+12+20+18+30+15=119，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-1",
@@ -390,7 +390,7 @@
                 "D": "8,640,000"
               },
               "explanation": "选哪 2 位为奇数 C(4,2)=6；奇数位各 5 种(1,3,5,7,9)、偶数位各 5 种(0,2,4,6,8)；2 个字母各 24 种。6×5²×5²×24²=6×625×576=2,160,000，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             }
           ]
         }
@@ -401,7 +401,7 @@
       "name": "排列与组合",
       "req": "掌握",
       "freq": "中频",
-      "difficulty": 4.0,
+      "difficulty": 4,
       "count": 29,
       "mc": 18,
       "tf": 11,
@@ -425,7 +425,7 @@
           "name": "排列",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 21,
           "mc": 11,
           "tf": 10,
@@ -456,7 +456,7 @@
                 "D": "120"
               },
               "explanation": "第 1 位只能从其余 4 人中选，有 4 种；其余 4 个位置全排列 4!=24。总数 4×24=96，选 C。（等价于 5!−4!=120−24=96）",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-tf-2",
@@ -468,7 +468,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。3 次中蓝球可出现 0/1/2 个：红红红(1)、含 1 蓝(3)、含 2 蓝(3)，共 1+3+3=7 种。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-mc-2",
@@ -485,7 +485,7 @@
                 "D": "3628800"
               },
               "explanation": "多重集排列：10!/(2!·3!·5!)=3628800/1440=2520，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-tf-2",
@@ -497,7 +497,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。每次取后放回，3 次中每次都可能红或蓝，共 2³=8 种颜色顺序（注意「放回」与不放回不同）。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-1",
@@ -514,7 +514,7 @@
                 "D": "12"
               },
               "explanation": "5 人选 3 排列共 5×4×3=60 种；其中 A 在队首的有 4×3=12 种；60−12=48，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-3",
@@ -531,7 +531,7 @@
                 "D": "100"
               },
               "explanation": "首位不能为 0：首位 5 种；第二位从剩余 5 个数（含 0）中选 5 种；第三位 4 种。5×5×4=100，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-tf-1",
@@ -543,7 +543,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。把 AB 视作一个整体与其余 3 人共 4 个单位全排列 4!=24，AB 内部 2 种，24×2=48。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-tf-3",
@@ -555,7 +555,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。每次取后放回，每次结果为红或蓝，3 次共 2³=8 种颜色顺序。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-mc-7",
@@ -572,7 +572,7 @@
                 "D": "swap(a[begin]+1,a[i]); pailie(begin+1,end,a); swap(a[i],a[begin+1]);"
               },
               "explanation": "全排列回溯：把 a[i] 换到 begin 位，递归排 begin+1..end，再换回（回溯）。正确为 C；B 未推进 begin 会死递归，A/D 下标错误。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-mc-8",
@@ -589,7 +589,7 @@
                 "D": "180"
               },
               "explanation": "5 个不同元素的全排列共 5!=120 个，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-mc-2",
@@ -606,7 +606,7 @@
                 "D": "60"
               },
               "explanation": "整体法：每家捆成一块，块内排列 3!·3!·2!·2!=144；4 个家庭块绕带主座圆桌的就座方案为 60 种；144×60=8640，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-tf-4",
@@ -618,7 +618,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。5 个红球形成 6 个空位，从中选 4 个放互不相邻的蓝球 C(6,4)=15。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-tf-10",
@@ -630,7 +630,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。四个职务互不相同，是排列问题，应为 A(32,4)=32×31×30×29，而非组合 C(32,4)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-1",
@@ -647,7 +647,7 @@
                 "D": "15"
               },
               "explanation": "卷别由座位决定，问题即 6 名不同学生排入 6 个不同座位的全排列 6!=720，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-2",
@@ -664,7 +664,7 @@
                 "D": "2"
               },
               "explanation": "必须男女交替，两种模式（男女男女男女 / 女男女男女男），每种 3!·3!=36，合计 72，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-tf-4",
@@ -676,7 +676,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。「两侧都有红球」要求蓝球既不相邻也不在两端，5 个红球之间恰有 4 个内部空位，4 个蓝球只能各占一个，方案唯一（1 种），不是 15。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-tf-10",
@@ -688,7 +688,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。班长 28 选、学习委员 27 选，副班长 30 选、组织委员 29 选，乘积 28·27·30·29 恰等于 30·29·28·27=P(30,4)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-tf-4",
@@ -700,7 +700,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。多重集排列 9!/(4!·3!·2!)=362880/288=1260。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-tf-10",
@@ -712,7 +712,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。两个职位有性别限制，需按男生人数、女生人数分别计数后相乘，不能直接用 32×31。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-10",
@@ -729,7 +729,7 @@
                 "D": "240"
               },
               "explanation": "甲乙捆绑为一个整体，5 个单位全排列 5!×2=240；其中丙在排头的有 4!×2=48；240−48=192，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-12",
@@ -746,7 +746,7 @@
                 "D": "96"
               },
               "explanation": "末位为偶(0/2/4)。末位=0：前四位为 {1,2,3,4} 全排列 4!=24；末位=2 或 4（2 种）：首位非 0 且非末位有 3 种，其余 3 位 3!=6，共 3×6×2=36。合计 24+36=60，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             }
           ]
         },
@@ -755,7 +755,7 @@
           "name": "组合",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 8,
           "mc": 7,
           "tf": 1,
@@ -783,7 +783,7 @@
                 "D": "60"
               },
               "explanation": "先选 2 个「对号入座」的位置 C(5,2)=10；其余 3 个必须全部错位（错位排列 D₃=2）；10×2=20，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-tf-7",
@@ -795,7 +795,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。允许空组时为 C(n+k−1,k−1)（隔板法）；C(n−1,k−1) 是「每组至少 1 个」的方案数。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-mc-9",
@@ -812,7 +812,7 @@
                 "D": "((((c - 1) ^ c) + 1) >> 1)"
               },
               "explanation": "(c−1)^c 得到「最低置位及其右侧全 1」的掩码；+1 进位得最低位的两倍；>>1 即得最低位的 1（lowbit）。选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-10",
@@ -829,7 +829,7 @@
                 "D": "10"
               },
               "explanation": "ch[x][y][z] 统计从 (0,0,0) 到 (x,y,z) 的单调路径数（多重组合数）= (x+y+z)!/(x!y!z!)。ch[1][2][3]=6!/(1!·2!·3!)=720/12=60，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-2",
@@ -846,7 +846,7 @@
                 "D": "16"
               },
               "explanation": "每张照片的组合数 = 相框2 × 头饰(2×2) × 位置2 = 16 种；从 16 种中取 4 种互不相同且无序，C(16,4)=1820，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-3",
@@ -863,7 +863,7 @@
                 "D": "11025"
               },
               "explanation": "先选队长、副队长（有序）共 15×14=210 种；再从余下 13 人选 2 名宣传委员且至少 1 女。用「总组合 − 全男组合」按队长副队长的性别情况分类计数，合计 12012，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-1",
@@ -880,7 +880,7 @@
                 "D": "288"
               },
               "explanation": "总数 C(14,3)=364，减去全男 C(8,3)=56 与全女 C(6,3)=20：364−56−20=288，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-4",
@@ -897,7 +897,7 @@
                 "D": "84"
               },
               "explanation": "总数 C(9,3)=84，减去全是物理书 C(4,3)=4：84−4=80，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             }
           ]
         }
@@ -908,7 +908,7 @@
       "name": "杨辉三角",
       "req": "掌握",
       "freq": "中频",
-      "difficulty": 4.0,
+      "difficulty": 4,
       "count": 12,
       "mc": 8,
       "tf": 4,
@@ -931,7 +931,7 @@
           "name": "杨辉三角的定义与实现",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 12,
           "mc": 8,
           "tf": 4,
@@ -957,7 +957,7 @@
               "code": "",
               "options": {},
               "explanation": "正确，杨辉三角确为二项式系数的几何排列，出自杨辉《详解九章算法》。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-mc-13",
@@ -974,7 +974,7 @@
                 "D": "3024"
               },
               "explanation": "递推 a[x][y]=a[x−1][y]+a[x][y−1] 且边界全为 1，正是杨辉三角/组合数：a[m][n]=C(m+n,n)=C(9,4)=126，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-12",
@@ -991,7 +991,7 @@
                 "D": "8"
               },
               "explanation": "x¹y⁹ 项系数为 C(10,1)=C(10,9)=10，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-mc-9",
@@ -1008,7 +1008,7 @@
                 "D": "a[i][j] = a[i-1][j-1] + a[i][j];"
               },
               "explanation": "杨辉三角递推：每个内部元素 = 上一行左上 + 上一行正上，即 a[i][j]=a[i−1][j−1]+a[i−1][j]，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-mc-7",
@@ -1025,7 +1025,7 @@
                 "D": "120"
               },
               "explanation": "x³y³ 项系数为 C(6,3)=20，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-tf-8",
@@ -1037,7 +1037,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。杨辉三角的行/项常用 1 开始编号（第 n 行第 m 项为 C(n−1,m−1)），与 (a+b)ⁿ 中 a^(n−m)b^m 的系数 C(n,m) 存在编号偏移，二者不直接相等。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-14",
@@ -1054,7 +1054,7 @@
                 "D": "a[j + 1] += a[j]"
               },
               "explanation": "一维滚动求杨辉三角，从右向左更新避免覆盖：a[j] = a[j] + a[j−1]，即 a[j] += a[j−1]，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-6",
@@ -1071,7 +1071,7 @@
                 "D": "15"
               },
               "explanation": "x²y⁴ 项系数为 C(6,4)=C(6,2)=15，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-4",
@@ -1088,7 +1088,7 @@
                 "D": "1792"
               },
               "explanation": "x³y⁵ 项系数为 C(8,5)·(−2)⁵ = 56×(−32) = −1792，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-tf-5",
@@ -1100,7 +1100,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。第 n 行即二项式系数 C(n,0)+C(n,1)+…+C(n,n)=2ⁿ。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-2",
@@ -1117,7 +1117,7 @@
                 "D": "4096"
               },
               "explanation": "第 n 行各数之和 = 2ⁿ，第 10 行为 2¹⁰=1024，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-tf-2",
@@ -1129,7 +1129,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。令 a=b=1 即得 C(n,0)+…+C(n,n)=2ⁿ。",
-              "difficulty": 4.0
+              "difficulty": 4
             }
           ]
         }
@@ -1140,7 +1140,7 @@
       "name": "倍增法",
       "req": "掌握",
       "freq": "中频",
-      "difficulty": 4.0,
+      "difficulty": 4,
       "count": 3,
       "mc": 2,
       "tf": 1,
@@ -1156,7 +1156,7 @@
           "name": "倍增的概念与复杂度",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 3,
           "mc": 2,
           "tf": 1,
@@ -1180,7 +1180,7 @@
                 "D": "O(log(n)×a)"
               },
               "explanation": "这是快速幂（倍增思想）。每次把指数 n 折半，T(n)=T(n/2)+O(1)，解得 O(log n)，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-3",
@@ -1197,7 +1197,7 @@
                 "D": "O(1)"
               },
               "explanation": "快速幂每次将指数 e 右移一位（折半），循环约 log₂e 次，复杂度 O(log e)，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-tf-7",
@@ -1209,7 +1209,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。ST 表预处理 O(n log n)，每次区间最值查询 O(1)。",
-              "difficulty": 4.0
+              "difficulty": 4
             }
           ]
         }
@@ -1220,7 +1220,7 @@
       "name": "代数与平面几何",
       "req": "掌握",
       "freq": "中频",
-      "difficulty": 4.0,
+      "difficulty": 4,
       "count": 17,
       "mc": 9,
       "tf": 8,
@@ -1244,7 +1244,7 @@
           "name": "一元/二元一次方程",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 4,
           "mc": 2,
           "tf": 2,
@@ -1269,7 +1269,7 @@
                 "D": "(ya - yb) / (xb - xa)"
               },
               "explanation": "斜率 = Δy/Δx = (ya−yb)/(xa−xb)，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-tf-10",
@@ -1281,7 +1281,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。判别式应为 a²−4b（此处 c=b）；而 C++ 中 a^2 是按位异或，不是平方，正确写法是 a*a-4*b。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-tf-8",
@@ -1293,7 +1293,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。开口向上的二次函数顶点横坐标 x=−a/2（此处二次项系数为 1），即 -a/2.0。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-6",
@@ -1310,7 +1310,7 @@
                 "D": "b * 4 - a * a"
               },
               "explanation": "有实根 ⟺ 判别式 a²−4b ≥ 0 ⟺ 4b ≤ a²，即 4*b <= a*a，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             }
           ]
         },
@@ -1319,7 +1319,7 @@
           "name": "平面几何与面积",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 13,
           "mc": 7,
           "tf": 6,
@@ -1350,7 +1350,7 @@
                 "D": "sqrt(a * a + b * b - 2 * a * b * cos(theta))"
               },
               "explanation": "以 a 为底、对应高 h=b·sin(theta)，面积 S=½·a·h=½·a·b·sin(theta)，选 A。（D 是余弦定理求第三边，C 误用了 cos）",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-mc-14",
@@ -1367,7 +1367,7 @@
                 "D": "22"
               },
               "explanation": "枚举 1≤a≤b≤c 且 a+b+c≤30、满足 a²+b²=c²（勾股数）的组数。符合的有 (3,4,5)、(5,12,13)、(6,8,10) 共 3 组，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-tf-7",
@@ -1379,7 +1379,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。整数相除会截断小数，(a+b)*h 为奇数时 /2 会丢掉 0.5，结果不准确。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-mc-7",
@@ -1396,7 +1396,7 @@
                 "D": "a + b + sqrt(a * a + b * b - 2 * a * b * cos(theta))"
               },
               "explanation": "周长 = a + b + 第三边，第三边由余弦定理 √(a²+b²−2ab·cos(theta)) 求得，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-mc-9",
@@ -1413,7 +1413,7 @@
                 "D": "r * r * (t - sin(t)) / 2"
               },
               "explanation": "弓形面积 = 扇形面积 − 三角形面积 = ½r²t − ½r²sin(t) = ½r²(t−sin(t))，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-tf-7",
@@ -1425,7 +1425,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。这是海伦公式的等价变形：S=√(s(s−a)(s−b)(s−c))（s 为半周长），整理后即该表达式。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-tf-4",
@@ -1437,7 +1437,7 @@
               "code": "",
               "options": {},
               "explanation": "正确，勾股定理：斜边 = √(a²+b²)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-tf-8",
@@ -1449,7 +1449,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。a/2.0*b = a·b/2，即直角三角形面积 ½·a·b（用 2.0 保证浮点除法）。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-6",
@@ -1466,7 +1466,7 @@
                 "D": "r * sin(theta / 2) * 2"
               },
               "explanation": "弦长 = 2·r·sin(θ/2)（等腰三角形半角关系），即 r*sin(theta/2)*2，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-tf-8",
@@ -1478,7 +1478,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。该表达式（余弦定理）求出的是第三条边长，周长还需加上 a 与 b，应为 a+b+√(a²+b²−2ab·cosθ)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-tf-8",
@@ -1490,7 +1490,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。扇形周长 = 两条半径 2r + 弧长 r·theta = (2+theta)·r。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-7",
@@ -1507,7 +1507,7 @@
                 "D": "abs(x1 - x2) + abs(y1 - y2)"
               },
               "explanation": "距离 = √(Δx²+Δy²)。A 用 ^ 是按位异或非平方；C 漏开方；D 是曼哈顿距离。正确为 B（pow 求平方再 sqrt）。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-14",
@@ -1524,7 +1524,7 @@
                 "D": "fabs((x2-x1)/(y2-y1)-(x3-x1)/(y3-y1)) < 1e-8"
               },
               "explanation": "三点共线 ⟺ 向量叉积为 0。浮点比较应取叉积绝对值与误差比较，且用乘法避免除零：fabs(叉积)<1e-8，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             }
           ]
         }
@@ -1535,7 +1535,7 @@
       "name": "图论算法及综合应用",
       "req": "掌握",
       "freq": "中频",
-      "difficulty": 4.0,
+      "difficulty": 4,
       "count": 44,
       "mc": 28,
       "tf": 16,
@@ -1559,7 +1559,7 @@
           "name": "最小生成树(Kruskal/Prim)",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 13,
           "mc": 8,
           "tf": 5,
@@ -1588,7 +1588,7 @@
                 "D": "最小生成树可能不存在。"
               },
               "explanation": "n 个顶点的树有 n−1 条边，但题目未保证图连通；不连通时不存在生成树，故选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-mc-6",
@@ -1605,7 +1605,7 @@
                 "D": "n 个顶点的无向图，生成树包含 n−1 条边。"
               },
               "explanation": "A、B 正确；C 是 Cayley 公式，正确。D 错在「无向图」未必连通，不连通则没有生成树；只有连通图的生成树才含 n−1 条边。错误项为 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-tf-6",
@@ -1617,7 +1617,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。朴素 Prim 为 O(v²)，二叉堆优化为 O(e·log v)，并不存在 O(v×e) 这一标准结论。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-mc-10",
@@ -1634,7 +1634,7 @@
                 "D": "uParent <= vParent"
               },
               "explanation": "Kruskal 按边权从小到大，若一条边的两端点不在同一集合（uParent != vParent）则加入并合并，避免成环，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-mc-11",
@@ -1651,7 +1651,7 @@
                 "D": "graph[u][v] != 0 && key[v] > graph[u][v]"
               },
               "explanation": "Prim 每轮选 key 最小的 u，再用 u 的邻边松弛：需该边存在（graph[u][v]!=0）且能让 key[v] 更小，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-4",
@@ -1668,7 +1668,7 @@
                 "D": "n 个顶点、n−1 条边的无向图，它本身就是自己的生成树。"
               },
               "explanation": "A、B 正确；C 正确（n−1 条边若连通即树本身、不连通则无生成树，都不会有多棵）。D 错误：n 个顶点 n−1 条边若不连通（含环），它本身不是树，不能作为自己的生成树。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-tf-7",
@@ -1679,8 +1679,8 @@
               "stem": "n 个顶点的无向完全图，有 n^(n−2) 棵生成树。",
               "code": "",
               "options": {},
-              "explanation": "正确，这是凯莱（Cayley）公式。",
-              "difficulty": 4.0
+              "explanation": "正确，这是凯莱（Cayley）公式：n 个有标号顶点的完全图，恰好有 n^(n−2) 棵不同的生成树。",
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-14",
@@ -1697,7 +1697,7 @@
                 "D": "graph[u][v] != 0 && key[v] > graph[u][v]"
               },
               "explanation": "Prim 用刚选入的 u 松弛邻边：该边须存在（graph[u][v]!=0）且能让 key[v] 更小，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-15",
@@ -1714,7 +1714,7 @@
                 "D": "只有当 e 是当前最小边时才能舍弃。"
               },
               "explanation": "两端点已连通，选入会形成环，违反生成树无环性质，故一定舍弃，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-13",
@@ -1731,7 +1731,7 @@
                 "D": "!inMST[v] && minEdge[v] > 0"
               },
               "explanation": "用新加入的 u 松弛邻边：须存在边（graph[u][v]≠0）、对端不在 MST、且能让 minEdge[v] 更小，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-tf-4",
@@ -1743,7 +1743,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。即使存在相等边权，只要它们不造成生成树选择的歧义，MST 仍可能唯一，故不必各不相同。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-tf-8",
@@ -1755,7 +1755,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。任意生成树都恰含 n−1 条边，加常数后每棵生成树总权都增加 (n−1)·C，相对大小不变，故 MST 不变。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-tf-9",
@@ -1767,7 +1767,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。最小生成树的总权值是唯一确定的（即便具体树结构可能不同），两种算法结果总权相同。",
-              "difficulty": 4.0
+              "difficulty": 4
             }
           ]
         },
@@ -1776,7 +1776,7 @@
           "name": "最短路径(Dijkstra/Floyd)",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 14,
           "mc": 13,
           "tf": 1,
@@ -1807,7 +1807,7 @@
                 "D": "13"
               },
               "explanation": "路径比较：0-3 直达=100；0-1-3=1+15=16；0-2-3=7+6=13；0-1-2-3=1+5+6=12，最短为 12，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-tf-5",
@@ -1819,7 +1819,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。朴素 Dijkstra 为 O(v²)，用优先队列（堆）优化后约为 O((v+e)·log v)，即 O(e+v·log v)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-mc-12",
@@ -1836,7 +1836,7 @@
                 "D": "dis[j] < minn && cheak[j] != 0"
               },
               "explanation": "Dijkstra 每轮在「未确定」(cheak==0) 的顶点中挑 dis 最小者，故条件为 dis[j] < minn && cheak[j]==0，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-mc-13",
@@ -1853,7 +1853,7 @@
                 "D": "map[i][j] < map[i][k] - map[k][j]"
               },
               "explanation": "Floyd 松弛：若经过中转点 k 更短（map[i][j] > map[i][k]+map[k][j]）则更新，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-mc-12",
@@ -1870,7 +1870,7 @@
                 "D": "if (dis[e->in] > min + e->len) dis[e->in] = min + e->len;"
               },
               "explanation": "用刚确定的顶点（当前最短 min）去松弛它的出边终点 out：若 min+边长 更小则更新 dis[out]，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-12",
@@ -1887,7 +1887,7 @@
                 "D": "map[k][j] = map[i][j] - map[i][k]"
               },
               "explanation": "Floyd：若经中转点 k 更短，则更新 map[i][j] = map[i][k]+map[k][j]，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-15",
@@ -1904,7 +1904,7 @@
                 "D": "12"
               },
               "explanation": "路径比较：0-3=10；0-1-2-3=5+1+3=9；0-2-3=8+3=11；0-1-3=5+7=12。最短为 9，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-15",
@@ -1921,7 +1921,7 @@
                 "D": "9"
               },
               "explanation": "路径 0-2-1-3 = 5+1+3 = 9 最短（0-1-3=11，0-2-3=12），选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-5",
@@ -1938,7 +1938,7 @@
                 "D": "dis[j] > graph[u][j]"
               },
               "explanation": "松弛：若经 u 到 j 更短（dis[j] > dis[u]+graph[u][j]）则更新，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-6",
@@ -1955,7 +1955,7 @@
                 "D": "O(V·E)"
               },
               "explanation": "堆优化 Dijkstra 每条边可能入堆、每次堆操作 O(log V)，整体 O((V+E)·log V)，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-7",
@@ -1972,7 +1972,7 @@
                 "D": "无法确定，取决于图的具体边数"
               },
               "explanation": "简单路径不重复经过顶点，最多经过全部 n 个顶点，即最多 n−1 条边，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-8",
@@ -1989,7 +1989,7 @@
                 "D": "可能在某些负权图中陷入死循环"
               },
               "explanation": "dist 已是最短路，满足三角不等式，Floyd 的松弛条件 dist[i][k]+dist[k][j]<dist[i][j] 永不成立，值不会改变，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-9",
@@ -2006,7 +2006,7 @@
                 "D": "Dijkstra 每一步必定从未访问节点中选取距离起点最远的节点松弛。"
               },
               "explanation": "A 错（Dijkstra 不能处理负权边）；C 错（无向图可转双向边用单源算法）；D 错（应选最近而非最远）。B 正确：Floyd 允许负权边、不允许负权环。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-11",
@@ -2023,7 +2023,7 @@
                 "D": "dist[i][j] == INF"
               },
               "explanation": "松弛需同时满足：两段路径均可达（!=INF，避免溢出）且经 k 中转更短，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             }
           ]
         },
@@ -2032,7 +2032,7 @@
           "name": "图论综合应用",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 17,
           "mc": 7,
           "tf": 10,
@@ -2063,7 +2063,7 @@
                 "D": "n×(n−1)/2"
               },
               "explanation": "邻接矩阵的行、列下标都是 0~n−1，故矩阵大小为 n×n。有向图不能像无向图那样减半，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-mc-12",
@@ -2080,7 +2080,7 @@
                 "D": "边集：0→0(自环), 0→1, 1→3, 3→2, 2→3"
               },
               "explanation": "edge.next 指向同一起点的下一条边，node.first 指向该点第一条边。逐点展开：0→1；1→2→（next）3；2→3；3→0。即边集 {0→1,1→2,1→3,2→3,3→0}，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-tf-4",
@@ -2092,7 +2092,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。有向图中 (x,y) 与 (y,x) 是两条不同的边，故有 N×(N−1) 条边（无向完全图才是 N×(N−1)/2）。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-tf-8",
@@ -2104,7 +2104,7 @@
               "code": "",
               "options": {},
               "explanation": "错误，深度优先搜索（DFS）同样可以判断连通性。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-mc-5",
@@ -2121,7 +2121,7 @@
                 "D": "e"
               },
               "explanation": "无向图每条边在邻接表中两个端点处各存一个边节点，故边节点共 2e 个，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-tf-4",
@@ -2133,7 +2133,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。无向完全图任意两点间一条边，共 C(N,2)=N×(N−1)/2 条；N×(N−1) 是有向完全图的边数。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-tf-8",
@@ -2145,7 +2145,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。从任一顶点 DFS，若能遍历到所有顶点则连通，DFS、BFS 都可用于判断连通性。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-tf-10",
@@ -2157,7 +2157,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。DFS 与 BFS 判断连通性的时间复杂度相同，均为 O(V+E)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-mc-2",
@@ -2174,7 +2174,7 @@
                 "D": "n×(n−1)/2"
               },
               "explanation": "邻接矩阵行列下标均为 0~n−1，大小为 n×n，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-mc-4",
@@ -2191,7 +2191,7 @@
                 "D": "e"
               },
               "explanation": "有向图出边表中，每条有向边只在其起点处存一个边节点，共 e 个，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-tf-9",
@@ -2203,7 +2203,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。从任一顶点 BFS 能遍历到所有顶点即连通。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-4",
@@ -2220,7 +2220,7 @@
                 "D": "顶点数等于边数的有向图，一定不是强连通的。"
               },
               "explanation": "B、C 正确。A 错误：树确实是有向无环图（DAG），但反过来 DAG 不一定是树（如一个节点有多个父节点的 DAG）。D 一般成立（强连通至少需 n 条边构成环结构）。错误项为 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-tf-9",
@@ -2232,7 +2232,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。BFS 遍历时若遇到已访问且非父节点的邻接点即存在环。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-tf-9",
@@ -2244,7 +2244,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。邻接表下 DFS 访问每个顶点和每条边各一次。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-4",
@@ -2261,7 +2261,7 @@
                 "D": "把树的每个节点指向其子节点，可将树转换为有向无环图。"
               },
               "explanation": "A、C、D 正确。B 错误：有向图存在（弱连通意义下的）生成树并不意味着强连通，例如一条有向链有生成树却不强连通。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-tf-7",
@@ -2273,7 +2273,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。度数之和 3×4+2×2=16=2×8，满足握手定理，且该度数序列可被简单图实现。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-tf-6",
@@ -2285,7 +2285,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。欧拉回路还要求图连通（边构成的部分连通）；度数全偶但不连通时不存在欧拉回路。",
-              "difficulty": 4.0
+              "difficulty": 4
             }
           ]
         }
@@ -2296,7 +2296,7 @@
       "name": "算法时间与空间效率分析",
       "req": "掌握",
       "freq": "中频",
-      "difficulty": 4.0,
+      "difficulty": 4,
       "count": 42,
       "mc": 28,
       "tf": 14,
@@ -2320,7 +2320,7 @@
           "name": "复杂度分析方法",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 1,
           "mc": 0,
           "tf": 1,
@@ -2338,7 +2338,7 @@
               "code": "",
               "options": {},
               "explanation": "正确，DP 总复杂度 ≈ 状态数 × 单次转移复杂度。",
-              "difficulty": 4.0
+              "difficulty": 4
             }
           ]
         },
@@ -2347,7 +2347,7 @@
           "name": "各类算法复杂度",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 41,
           "mc": 28,
           "tf": 13,
@@ -2379,7 +2379,7 @@
                 "D": "O(n²)"
               },
               "explanation": "遍历需访问每个结点恰好一次，与树形态无关，时间复杂度 O(n)，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-mc-9",
@@ -2396,7 +2396,7 @@
                 "D": "O(m×log(n))"
               },
               "explanation": "这是辗转相除法（gcd）。每次取模规模快速下降，最坏情况（相邻斐波那契数）循环次数与其在斐波那契数列中的位置成正比，整体为 O(log n)，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-mc-11",
@@ -2413,7 +2413,7 @@
                 "D": "O(m×(n−m))"
               },
               "explanation": "在算组合数 C[n][m]，用递归 + 记忆化。被实际访问到的二维状态个数约为 n·m−m·m=m·(n−m)，每个状态 O(1)，故 O(m×(n−m))，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-tf-9",
@@ -2425,7 +2425,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。最好情况是要找的元素恰为根结点，一次命中，复杂度 O(1)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-mc-8",
@@ -2442,7 +2442,7 @@
                 "D": "O(log n)、O(n)"
               },
               "explanation": "最好情况：要找的恰是根，一次命中 O(1)；最差情况：树退化为链，需查遍 n 个结点 O(n)。选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-mc-10",
@@ -2459,7 +2459,7 @@
                 "D": "O(1)"
               },
               "explanation": "朴素递归求斐波那契，调用次数随 n 指数增长，增长率为黄金比 φ=(√5+1)/2，故为 O(φⁿ)，比 O(2ⁿ) 更紧，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-mc-11",
@@ -2476,7 +2476,7 @@
                 "D": "O(m × (n−m))"
               },
               "explanation": "未做记忆化的递归求组合数，递归调用次数与最终结果 C(n,m) 同阶，故为 O(C(n,m))，选 C。（对比：加记忆化后为 O(m×(n−m))）",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-mc-12",
@@ -2493,7 +2493,7 @@
                 "D": "O(n²)"
               },
               "explanation": "这是线性筛（欧拉筛），每个合数只被其最小质因子筛掉一次，总体 O(n)，选 A。（埃氏筛才是 O(n log log n)）",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-tf-9",
@@ -2505,7 +2505,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。随机构造的二叉排序树期望高度为 O(log N)，平均查找复杂度即 O(log N)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-4",
@@ -2522,7 +2522,7 @@
                 "D": "O(log(V+E))"
               },
               "explanation": "邻接表存储下 DFS 需访问每个顶点和每条边各一次，复杂度 O(V+E)，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-13",
@@ -2539,7 +2539,7 @@
                 "D": "O(N²)"
               },
               "explanation": "这是埃氏筛（埃拉托斯特尼筛）。对每个质数 p 标记其倍数，调和级数求和得 O(N·log log N)，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-14",
@@ -2556,7 +2556,7 @@
                 "D": "O(1)"
               },
               "explanation": "辗转相除法（gcd），最差为相邻斐波那契数，递归次数与 log n 同阶，O(log n)，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-tf-6",
@@ -2568,7 +2568,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。最差情况树退化为链，需查遍 N 个结点，复杂度为 O(N)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-mc-5",
@@ -2585,7 +2585,7 @@
                 "D": "O(2ⁿ)"
               },
               "explanation": "释放需遍历访问每个结点一次，O(n)，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-mc-14",
@@ -2602,7 +2602,7 @@
                 "D": "O(log n)"
               },
               "explanation": "归并排序：递归 T(n)=2T(n/2)+O(n)，由主定理得 O(n log n)，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-mc-15",
@@ -2619,7 +2619,7 @@
                 "D": "O(n log n)"
               },
               "explanation": "朴素递归斐波那契调用次数指数增长，增长率为黄金比 φ，复杂度 O(φⁿ)，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-tf-4",
@@ -2631,7 +2631,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。查找路径从根到目标，比较次数不超过树高，平均复杂度与树高同阶。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-mc-13",
@@ -2648,7 +2648,7 @@
                 "D": "O((v+e) log v)"
               },
               "explanation": "朴素 Dijkstra 每轮 O(v) 找最小、共 v 轮即 O(v²)，松弛总计 O(e)，整体 O(v²)，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-mc-15",
@@ -2665,7 +2665,7 @@
                 "D": "O(n log n)"
               },
               "explanation": "快速排序平均时间复杂度为 O(n log n)（每层 O(n)、约 log n 层），选 D。（最差退化为 O(n²)）",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-tf-3",
@@ -2677,7 +2677,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。快排平均 O(n log n)、最差 O(n²)；归并恒为 O(n log n) 但需 O(n) 辅助空间。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-7",
@@ -2694,7 +2694,7 @@
                 "D": "无法确定。"
               },
               "explanation": "「平衡二叉树」只要求左右子树高度差有界，同样 n 个节点可有不同高度（如 AVL 与完全平衡不一定相同），无法由 n 唯一确定，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-10",
@@ -2711,7 +2711,7 @@
                 "D": "O(√N·log N)"
               },
               "explanation": "外层 n 到 √N（因 n²<N）共 O(√N) 次，内层遍历 n² 的各位数字 O(log N)，整体 O(√N·log N)，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-13",
@@ -2728,7 +2728,7 @@
                 "D": "O(n²·log n)"
               },
               "explanation": "Floyd 三重 n 层循环，时间复杂度 O(n³)，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-15",
@@ -2745,7 +2745,7 @@
                 "D": "O(n³)"
               },
               "explanation": "外层 n 行、内层最多 n 次更新，共 O(n²)，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-tf-7",
@@ -2757,7 +2757,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。平衡二叉树高度为 O(log n)，查找最差也是 O(log n)，而非 O(n)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-7",
@@ -2774,7 +2774,7 @@
                 "D": "O(n²)"
               },
               "explanation": "BFS 需访问每个结点一次，复杂度 O(n)，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-9",
@@ -2791,7 +2791,7 @@
                 "D": "O(n²)"
               },
               "explanation": "外层循环 n 次，每次 count_digit 遍历该数的各位数字 O(log n)，整体 O(n·log n)，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-11",
@@ -2808,7 +2808,7 @@
                 "D": "O(n·√n)"
               },
               "explanation": "外层 v 到 √(n/4)=O(√n)，内层 u 到约 O(√n)，每次 gcd 为 O(log n)，整体约 O(n·log n)，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-14",
@@ -2825,7 +2825,7 @@
                 "D": "O(log n)"
               },
               "explanation": "对每个元素在 tail 数组上二分查找插入位置 O(log n)，共 n 个元素，整体 O(n·log n)，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-tf-3",
@@ -2837,7 +2837,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。归并排序无论最好最差都是 O(n log n)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-7",
@@ -2854,7 +2854,7 @@
                 "D": "O(v·e)"
               },
               "explanation": "邻接表下 BFS 需访问所有顶点和所有边，时间复杂度 O(v+e)，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-10",
@@ -2871,7 +2871,7 @@
                 "D": "O(n²)"
               },
               "explanation": "欧拉筛保证每个合数只被其最小质因子筛去一次，整体为 O(n)，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-11",
@@ -2888,7 +2888,7 @@
                 "D": "O(v·e)"
               },
               "explanation": "朴素 Dijkstra 每轮 O(v) 找最小、共 v 轮即 O(v²)，松弛累计 O(e)，总体 O(v²)，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-12",
@@ -2905,7 +2905,7 @@
                 "D": "O(n·log n)"
               },
               "explanation": "外层 v 到 O(√n)、内层 u 到 O(√n)、每次 gcd 为 O(log n)，整体约 O(n·log n)，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-tf-3",
@@ -2917,7 +2917,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。这并非所有排序的共性：归并排序、堆排序的最差时间复杂度为 O(n log n)，故笼统说排序最差为 O(n²) 不成立。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-tf-9",
@@ -2929,7 +2929,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。朴素实现为 O(v²)，但用堆（优先队列）优化后为 O((v+e)·log v)，故并非「一定」是 O(v²)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-9",
@@ -2946,7 +2946,7 @@
                 "D": "O(n²)"
               },
               "explanation": "内层 j 满足 j²≤i 即 j 到 √i，外层 i 从 1 到 n，总计 Σ√i ≈ O(n·√n)，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-tf-3",
@@ -2957,8 +2957,8 @@
               "stem": "快速排序和归并排序的平均时间复杂度都是 O(n log n)，但快速排序不稳定，归并排序稳定。",
               "code": "",
               "options": {},
-              "explanation": "正确。",
-              "difficulty": 4.0
+              "explanation": "三处都对。快排和归并的平均时间复杂度都是 O(n log n)。稳定性上的区别在于：快排在分区时会把相等的元素交换到基准两侧，可能打乱它们原来的先后顺序，所以不稳定；归并排序在合并两段时，遇到相等元素总是先取左段的，保持了原有相对次序，所以稳定。",
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-tf-6",
@@ -2970,7 +2970,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。对稠密图（e≈v²），堆优化为 O((v+e)log v)≈O(v² log v)，反而比朴素 O(v²) 更慢。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-tf-8",
@@ -2982,7 +2982,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。快排最坏是 O(n²)（非 O(n log n)）；随机化只能让退化极少发生，并不能「完全避免」。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-tf-5",
@@ -2994,7 +2994,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。快速排序最坏情况（如每次划分极不平衡）退化为 O(n²)，并非恒为 O(n log n)。",
-              "difficulty": 4.0
+              "difficulty": 4
             }
           ]
         }
@@ -3005,7 +3005,7 @@
       "name": "算法优化",
       "req": "掌握",
       "freq": "中频",
-      "difficulty": 4.0,
+      "difficulty": 4,
       "count": 1,
       "mc": 0,
       "tf": 1,
@@ -3020,7 +3020,7 @@
           "name": "算法优化与数学优化",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 1,
           "mc": 0,
           "tf": 1,
@@ -3038,7 +3038,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。直接套用求和公式只需常数次运算 O(1)（相较逐项累加的 O(n)，这是用数学公式做的算法优化）。",
-              "difficulty": 4.0
+              "difficulty": 4
             }
           ]
         }
@@ -3049,7 +3049,7 @@
       "name": "综合应用(跨级复习)",
       "req": "掌握",
       "freq": "中频",
-      "difficulty": 4.0,
+      "difficulty": 4,
       "count": 83,
       "mc": 40,
       "tf": 43,
@@ -3073,7 +3073,7 @@
           "name": "低年级知识点综合",
           "req": "掌握",
           "freq": "中频",
-          "difficulty": 4.0,
+          "difficulty": 4,
           "count": 83,
           "mc": 40,
           "tf": 43,
@@ -3105,7 +3105,7 @@
                 "D": "void QuickSort(int **a, int n, int m);"
               },
               "explanation": "二维数组作参数时只传首地址，编译器需要知道除第一维外的各维长度才能定位元素。只有 A 给出了第二维长度 10，合法；B/C 缺第二维长度非法；D 的 int** 与二维数组类型不兼容。选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-mc-3",
@@ -3122,7 +3122,7 @@
                 "D": "类的构造函数可以为虚函数。"
               },
               "explanation": "A、B 正确。析构函数可为虚函数（支持用基类指针 delete 派生对象），C 正确。但构造对象时必须指定确切的类，无法用基类名构造派生对象，构造函数不能为虚函数，D 错误。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-mc-15",
@@ -3139,7 +3139,7 @@
                 "D": "dis[i+1][j+1] = min(dis[i][j+1] + h[i][j+1], dis[i+1][j] + v[i+1][j]);"
               },
               "explanation": "最终返回 dis[y][x]，而循环枚举范围是 i<y、j<x，故第 10 行计算的应是 dis[i+1][j+1]，排除 A、B。竖直方向（第一维）转移用 v 数组（与第 5 行一致），故纵向项用 v、横向项用 h，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-tf-1",
@@ -3151,7 +3151,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。x*2-4=0; 左边是表达式不是变量，既非赋值也非合法语句，无法通过编译。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-tf-5",
@@ -3163,7 +3163,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。极端构造：把元素逐一放入并用 if-else 返回其位置，即得无冲突哈希函数（虽效率低）。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2023-12-tf-10",
@@ -3175,7 +3175,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。y=x² 在 [0,+∞) 上单调递增，可对 x 二分逼近其平方根。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-mc-3",
@@ -3192,7 +3192,7 @@
                 "D": "int a[2][] = {{1, 2, 3}, {4, 5, 6}};"
               },
               "explanation": "二维数组除第一维外必须给出各维长度。A、D 缺第二维长度非法；C 每行初始值多于列数非法；B 第二维已给出、第一维由初始化推断，是四者中唯一合法的，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-mc-4",
@@ -3209,7 +3209,7 @@
                 "D": "用一个对象初始化另一个对象时，会自动调用拷贝构造函数。"
               },
               "explanation": "若不写拷贝构造函数，编译器会自动生成默认版本，不会报错，A 错误。B、C、D 都是会触发拷贝构造的正确情形。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-tf-1",
@@ -3221,7 +3221,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。该语句按逗号运算符解析为「a;（b = (b, a)）」，即 b 被赋为 a，a 不变，并不会交换。交换应写 swap(a,b) 或借助临时变量。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-tf-3",
@@ -3233,7 +3233,7 @@
               "code": "",
               "options": {},
               "explanation": "正确，孙子定理（中国剩余定理 CRT）确出自《孙子算经》，是中国数学史上的成就。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-tf-5",
@@ -3245,7 +3245,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。若元素全部冲突到同一项，链表长度可达 n，最差查找为 O(n)，并非 O(1)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-03-tf-10",
@@ -3257,7 +3257,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。指数/对数在该范围单调，可对结果二分逼近 log x（x≥1 时 log x≥0），故可行。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-2",
@@ -3274,7 +3274,7 @@
                 "D": "11112"
               },
               "explanation": "先转十进制：2×49+3×7+5=124；再转 3 进制：124=81+27+9+6+1，即 (11121)₃，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-5",
@@ -3291,7 +3291,7 @@
                 "D": "1/3"
               },
               "explanation": "在「已知其中一个是女孩」的设定下，另一个孩子的性别相互独立，为男孩的概率为 1/2，选 C。（官方答案）",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-7",
@@ -3308,7 +3308,7 @@
                 "D": "4.75"
               },
               "explanation": "整数部分 100₂=4；小数部分 .001₂=1/8=0.125；合计 4.125，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-8",
@@ -3325,7 +3325,7 @@
                 "D": "void BubbleSort(char[,] a, int n);"
               },
               "explanation": "二维数组作参数必须给出第二维长度。A 缺、C 缺第二维长度非法；D 语法错误；B 给出第二维 20，合法，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-9",
@@ -3342,7 +3342,7 @@
                 "D": "所有 C++ 运算符均可以重载。"
               },
               "explanation": "A、B 是函数重载的合法情形，C 不同类可同名，均正确。D 错误：少数运算符（如 :: 、. 、.* 、?: 、sizeof）不能重载。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-10",
@@ -3359,7 +3359,7 @@
                 "D": "相邻的两个质数不一定是互质数。"
               },
               "explanation": "A 正确（质数与小于它的所有数互质）；B、C 正确。D 错误：任意两个不同质数都互质，相邻质数自然也一定互质，「不一定」说法错误。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-mc-11",
@@ -3376,7 +3376,7 @@
                 "D": "3"
               },
               "explanation": "二叉树中「有 2 个子节点的结点数」= 叶子数 − 1。设其为 x，则叶子 x+1，再加单子节点结点，总数 ≥ 2x+1=10 ⇒ x≤4（取 x=4：4 个双子+5 叶+1 单子=10），至多 4，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-tf-2",
@@ -3388,7 +3388,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。这是不借助临时变量的交换：b 变为原 a，a 变为原 b（在不溢出/不丢精度时成立）。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-tf-7",
@@ -3400,7 +3400,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。一个类只能有一个析构函数（无参数、不能重载）。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-tf-8",
@@ -3412,7 +3412,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。两者按值查找都需顺序遍历，均为 O(n)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-06-tf-9",
@@ -3424,7 +3424,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。子哈希表内部仍可能发生冲突，无法保证一定无冲突。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-mc-1",
@@ -3441,7 +3441,7 @@
                 "D": "struct 中成员的默认访问权限为 private。"
               },
               "explanation": "A、B、C 均正确。D 错误：struct 中成员的默认访问权限是 public（这是 struct 与 class 的主要区别）。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-mc-6",
@@ -3458,7 +3458,7 @@
                 "D": "1/2ⁿ"
               },
               "explanation": "以每个点为半圆起点，恰好覆盖其余 n−1 点的概率为 1/2^(n−1)，n 个点对应互斥事件求和得 n/2^(n−1)，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-tf-1",
@@ -3470,7 +3470,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。'3' 的 ASCII 是 51，51 & 1 = 1，结果是整数 1（类型 int），并非字符 '1'（其 ASCII 为 49）。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-tf-2",
@@ -3482,7 +3482,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。可以定义全局变量，位于所有函数之外。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-tf-3",
@@ -3494,7 +3494,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。冒泡排序是稳定排序（相等元素不交换，相对次序不变）。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-tf-5",
@@ -3506,7 +3506,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。cos 的参数是弧度，cos(60 弧度)≈−0.952，并非 0.5；cos(60°)=0.5 需写成 cos(60*PI/180)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-tf-6",
@@ -3518,7 +3518,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。5+5+5+5+7=27 用 5 枚；穷举可知 4 枚无法凑出 27，故最少 5 枚。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-09-tf-10",
@@ -3530,7 +3530,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。无论被问者诚实与否，「另一人会指的方向」经两次取反后必定指向诚实国方向，故取相反即为去说谎国的路，问法成立。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-mc-3",
@@ -3547,7 +3547,7 @@
                 "D": "抽象类必须被至少一个类继承，否则会编译错误。"
               },
               "explanation": "A（多继承）、B、C 均正确。D 错误：抽象类即使不被继承也能正常编译，只是不能被实例化。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-mc-5",
@@ -3564,7 +3564,7 @@
                 "D": "void Bubble(int * a[20], int n);"
               },
               "explanation": "二维数组作参数等价于「指向长度为 N 的数组的指针」。C 的 int (*a)[20] 正是此形式，合法；A、B 缺第二维长度；D 是「指针数组」，类型不符。选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-mc-8",
@@ -3581,7 +3581,7 @@
                 "D": "动态规划方法通常能够列出递推公式。"
               },
               "explanation": "A、C、D 正确。B 错误：加记忆化的递归实现与递推同阶，并非「总是不低于」，该说法过于绝对。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-mc-11",
@@ -3598,7 +3598,7 @@
                 "D": "dp[i+1][j+1] = MAX(dp[i][j+1], dp[i+1][j]) + 1"
               },
               "explanation": "LCS 中当 str1[i]≠str2[j] 时，dp[i+1][j+1] 取「去掉一个字符」两种状态的较大值 MAX(dp[i][j+1], dp[i+1][j])，不加 1，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-mc-14",
@@ -3615,7 +3615,7 @@
                 "D": "l <= r ；a + pivot + 1, n - pivot"
               },
               "explanation": "双指针向中间逼近，循环条件 l<r；右段从 pivot 后一位开始、长度 n−pivot−1。选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-tf-1",
@@ -3627,7 +3627,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。字符相加按 ASCII 整数运算：51+53=104，结果是 int 类型的 104，既不是 '8' 也不是 char。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-tf-2",
@@ -3639,7 +3639,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。函数内定义的（局部）结构体作用域仅限该函数。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-tf-4",
@@ -3651,7 +3651,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。静态二维数组 int a[m][n] 按行优先整体连续存储，第一维（各行）也是连续的。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-tf-5",
@@ -3663,7 +3663,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。log 是自然对数 ln，ln(1000)≈6.91；值约为 3 的是以 10 为底的 log10(1000)=3。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2024-12-tf-7",
@@ -3675,7 +3675,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。取模哈希中不同的 x 完全可能同余（如 x 与 x+p），无法保证不碰撞。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-3",
@@ -3692,7 +3692,7 @@
                 "D": "类的析构函数可以被声明为 private。"
               },
               "explanation": "A、C、D 正确。B 错误：析构函数「可以」声明为虚函数（用于多态删除），但并非「必须」。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-8",
@@ -3709,7 +3709,7 @@
                 "D": "倍增法在搜索未知长度的有序数组时，通过动态倍增/减半步长快速定位目标范围。"
               },
               "explanation": "A、C、D 正确。B 错误：分治分出的子问题并不强制「相互独立」，子问题之间可以有重叠（重叠时即与动态规划思想结合），「必须相互独立」过于绝对。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-mc-11",
@@ -3726,7 +3726,7 @@
                 "D": "n * primes[i] <= MAXN ；primes[i] > n"
               },
               "explanation": "线性筛：内层条件 n*primes[i] <= MAXN（含等号，覆盖到 MAXN）；当 n % primes[i]==0 时 break（保证每个合数只被最小质因子筛一次），选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-tf-1",
@@ -3738,7 +3738,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。'5' 的 ASCII 为 53，53−3.0=50.0；类型确为 double，但值是 50.0 不是 2.0。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-tf-2",
@@ -3750,7 +3750,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。友元函数可访问类的私有成员。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-tf-3",
@@ -3762,7 +3762,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。插入排序对相等元素不改变相对次序，是稳定排序。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-tf-5",
@@ -3774,7 +3774,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。pow 返回 double，结果是 32.0（类型 double），并非 int。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-03-tf-6",
@@ -3786,7 +3786,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。C 虽无语言级虚函数，但可用「结构体 + 函数指针表」手动模拟虚函数机制，故并非「无法实现」。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-3",
@@ -3803,7 +3803,7 @@
                 "D": "class MyClass; 定义了一个类 MyClass。"
               },
               "explanation": "A、B、C 均定义了对象（内置类型变量、指针也是对象）。D 错误：class MyClass; 是类的「前向声明」而非「定义」。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-5",
@@ -3820,7 +3820,7 @@
                 "D": "3/4"
               },
               "explanation": "两孩共 4 种等概率组合，儿女双全（一男一女）有「男女」「女男」2 种，概率 2/4=1/2，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-8",
@@ -3837,7 +3837,7 @@
                 "D": "对很多问题，递推与递归实现动态规划的时间复杂度相当。"
               },
               "explanation": "A、C、D 正确。B 错误：DP 复杂度通常为「状态数 × 单次转移复杂度」，不只是状态个数。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-12",
@@ -3854,7 +3854,7 @@
                 "D": "swap(a[l], a[j]) ；j"
               },
               "explanation": "以 a[l] 为基准，双指针结束后 j 指向「不大于基准的最后位置」，将基准换到 a[j] 并返回 j，选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-mc-13",
@@ -3871,7 +3871,7 @@
                 "D": "dp[i] = max(dp[i], dp[j] + 1)"
               },
               "explanation": "LIS 状态转移：以 i 结尾的最长上升子序列长度 dp[i]=max(dp[i], dp[j]+1)（j<i 且 nums[j]<nums[i]），选 D。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-tf-1",
@@ -3883,7 +3883,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。9=1001₂、12=1100₂，按位或得 1101₂=13，整数运算结果类型为 int。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-tf-2",
@@ -3895,7 +3895,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。数组越界是未定义行为，可能崩溃、可能读到脏数据、也可能看似正常，并非「总是」报错退出。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-tf-5",
@@ -3907,7 +3907,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。log 是自然对数 ln，ln(8)≈2.08；值为 3 的是 log2(8)。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-06-tf-6",
@@ -3919,7 +3919,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。C 可用「结构体嵌套 / 组合」等方式模拟继承关系，并非无法实现。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-3",
@@ -3936,7 +3936,7 @@
                 "D": "如果一个类包含纯虚函数，则不能用它定义对象。"
               },
               "explanation": "A、B、D 正确。C 错误：抽象类（含纯虚函数）同样可以拥有成员变量，只是不能被实例化。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-5",
@@ -3953,7 +3953,7 @@
                 "D": "7/8"
               },
               "explanation": "3 个孩子共 8 种等概率组合，全同性别（全男/全女）有 2 种，故儿女双全概率 = 1−2/8 = 3/4，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-8",
@@ -3970,7 +3970,7 @@
                 "D": "对很多问题，递推与递归实现动态规划的时间复杂度相当。"
               },
               "explanation": "B、C、D 正确。A 的说法不准确：动态规划适用于具有「最优子结构」且子问题重叠的问题，并非笼统地「能解决大部分多阶段决策问题」，作为绝对论断不成立，为错误项。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-mc-13",
@@ -3987,7 +3987,7 @@
                 "D": "arr, left, mid + 1 ；arr, mid + 1, right + 1"
               },
               "explanation": "合并部分以 i=left、j=mid 分别遍历 [left,mid) 与 [mid,right)，故两段递归应为 (left,mid) 与 (mid,right)，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-tf-1",
@@ -3999,7 +3999,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。'9' 的 ASCII 为 57，57 ^ 3 = 58，结果是整数 58（不是字符串 '999'）。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-tf-2",
@@ -4011,7 +4011,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。arr 大小为 5（下标 0~4），访问 arr[5] 越界，是未定义行为，并不安全。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-tf-5",
@@ -4023,7 +4023,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。x*x 在 int 下可能整数溢出（如 x 较大时），导致 sqrt(x*x) 与 |x| 不符，故「总是」不成立。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-09-tf-6",
@@ -4035,7 +4035,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。C 语言没有运算符重载机制，也无法以同样的运算符语法重定义其行为。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-2",
@@ -4052,7 +4052,7 @@
                 "D": "merge_sort(a, mid - 1, right)"
               },
               "explanation": "左半已递归 [left,mid]，右半应为 [mid+1,right]，即 merge_sort(a, mid+1, right)，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-6",
@@ -4069,7 +4069,7 @@
                 "D": "dp[i][j] = max(dp[i-1][j], dp[i][j-1]) + 1;"
               },
               "explanation": "字符不等时，dp[i][j] 取「去掉 a 末字符」或「去掉 b 末字符」两状态的较大者，不加 1，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-8",
@@ -4086,7 +4086,7 @@
                 "D": "编译错误"
               },
               "explanation": "b 是 a 的引用（别名），对 b 赋值即修改 a，故 a 变为 20，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-10",
@@ -4103,7 +4103,7 @@
                 "D": "i % primes[j] != 0"
               },
               "explanation": "当 i 能被 primes[j] 整除时 break，确保后续合数留给更小质因子去筛，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-11",
@@ -4120,7 +4120,7 @@
                 "D": "派生类对象销毁时，先调用基类的析构函数，再调用派生类自己的析构函数。"
               },
               "explanation": "A 错（private 不可被派生类访问）；B 错（私有继承后变为 private）；D 错（析构顺序相反：先派生类后基类）。C 正确：构造先基类后派生类。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-12",
@@ -4137,7 +4137,7 @@
                 "D": "15"
               },
               "explanation": "f(1)=1,f(2)=2,f(3)=3；f(4)=3+2+2=7；f(5)=7+3+4=14；f(6)=f(5)+f(4)+2·f(3)=14+7+6=27，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-mc-14",
@@ -4154,7 +4154,7 @@
                 "D": "11"
               },
               "explanation": "x -= x & -x 每次清除最低位的 1，循环次数 = x 二进制中 1 的个数。2023=11111100111₂ 含 9 个 1，输出 9，选 C。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-tf-2",
@@ -4166,7 +4166,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。引用是别名，初始化后绑定关系不可更改。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-tf-4",
@@ -4178,7 +4178,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。sqrt 返回 double，结果为 2.0。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-tf-7",
@@ -4190,7 +4190,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。前者是卡特兰数 Catalan(n)，后者是贝尔数 Bell(n)，二者一般不相等（如 n=3 时 5≠5… n=4 时 14≠15）。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-tf-9",
@@ -4202,7 +4202,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。构造函数可重载（多个），但析构函数只能有一个。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2025-12-tf-10",
@@ -4214,7 +4214,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。滚动数组只保留相邻两行，丢失了完整的转移信息，无法回溯还原具体的 LCS 序列（只能得到长度）。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-5",
@@ -4231,7 +4231,7 @@
                 "D": "元素 2 一定是元素 1 的父节点"
               },
               "explanation": "先序首元素为根，故根为 3，右子树含 {4,5}。在 BST 中 4<5，右子树里 4、5 只能成父子（4 为根则 5 为其右孩子，或 5 为根则 4 为其左孩子），不可能是兄弟，选 B。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-mc-15",
@@ -4248,7 +4248,7 @@
                 "D": "16 8 8 8 4 1"
               },
               "explanation": "sizeof(a)=4×4=16；指针 p、p+1、q+1 都是 8 字节；(p+1)−p=1（指针算术单位为所指类型），(q+1)−q=1，输出 16 8 8 8 1 1，选 A。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-tf-1",
@@ -4260,7 +4260,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。static 成员被该类型所有对象共享，存储在静态区，不计入单个对象的大小（sizeof）。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-tf-3",
@@ -4272,7 +4272,7 @@
               "code": "",
               "options": {},
               "explanation": "正确。常量左值引用可以绑定到右值（临时量），也可绑定左值。",
-              "difficulty": 4.0
+              "difficulty": 4
             },
             {
               "qid": "8-2026-03-tf-10",
@@ -4284,7 +4284,7 @@
               "code": "",
               "options": {},
               "explanation": "错误。多数情况下两者复杂度同阶，但「总是相同」过于绝对：记忆化可能只访问部分状态、且常数开销不同，并不必然完全一致。",
-              "difficulty": 4.0
+              "difficulty": 4
             }
           ]
         }

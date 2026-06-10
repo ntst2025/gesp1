@@ -136,6 +136,14 @@
 @media(max-width:860px){.hero .wrap,.frow,.frow.flip,.pg-grid,.start .wrap{grid-template-columns:1fr;gap:30px}.frow.flip .ftext{order:0}.hero h1{font-size:35px}.lv-grid{grid-template-columns:repeat(2,1fr)}.nav2 .links a{display:none}}
 @media(max-width:560px){.lv-grid{grid-template-columns:1fr 1fr}.statline{flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.avatar-pick{margin-bottom:12px}
+.ap-label{font-size:13px;color:var(--gray,#6b7280);margin:2px 2px 8px;display:flex;align-items:center;gap:6px}
+.ap-label #ap-current{font-size:20px;line-height:1}
+.ap-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+.ap{font-size:20px;line-height:1;height:38px;border:1.5px solid #e6e8ef;background:#fff;border-radius:10px;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;transition:.15s;-webkit-tap-highlight-color:transparent}
+.ap:hover{border-color:#c3c8d6;transform:translateY(-1px)}
+.ap.on{border-color:var(--pass-d,#ef3b57);background:#fff4f6;box-shadow:0 0 0 2px rgba(239,59,87,.12)}
+@media(max-width:380px){.ap-grid{grid-template-columns:repeat(6,1fr)}}
 </style>
 </head>
 <body>
@@ -194,7 +202,28 @@
     <div class="auth-tabs"><button id="tab-login" class="on" onclick="switchTab('login')">登录</button><button id="tab-reg" onclick="switchTab('reg')">注册</button></div>
     <div class="auth-body">
       <div id="auth-msg" class="auth-msg"></div>
-      <input id="f-username" type="text" placeholder="用户名（2–24 字符）" autocomplete="username">
+      <div id="avatar-pick" class="avatar-pick" style="display:none">
+        <div class="ap-label">选个头像 <span id="ap-current">🦊</span></div>
+        <div class="ap-grid" id="ap-grid">
+          <button type="button" class="ap on" data-av="🦊">🦊</button>
+          <button type="button" class="ap" data-av="🐼">🐼</button>
+          <button type="button" class="ap" data-av="🐯">🐯</button>
+          <button type="button" class="ap" data-av="🦁">🦁</button>
+          <button type="button" class="ap" data-av="🐱">🐱</button>
+          <button type="button" class="ap" data-av="🐶">🐶</button>
+          <button type="button" class="ap" data-av="🐰">🐰</button>
+          <button type="button" class="ap" data-av="🐻">🐻</button>
+          <button type="button" class="ap" data-av="🐨">🐨</button>
+          <button type="button" class="ap" data-av="🐹">🐹</button>
+          <button type="button" class="ap" data-av="🦄">🦄</button>
+          <button type="button" class="ap" data-av="🐸">🐸</button>
+          <button type="button" class="ap" data-av="🐵">🐵</button>
+          <button type="button" class="ap" data-av="🐧">🐧</button>
+          <button type="button" class="ap" data-av="🦉">🦉</button>
+          <button type="button" class="ap" data-av="🐢">🐢</button>
+        </div>
+      </div>
+      <input id="f-username" type="text" placeholder="昵称（支持中文，2–24 字）" autocomplete="username" maxlength="24">
       <input id="f-email" type="email" placeholder="邮箱（选填）" autocomplete="email" style="display:none">
       <input id="f-password" type="password" placeholder="密码（至少 6 位）" autocomplete="current-password">
       <button class="submit" id="auth-submit" onclick="doAuth()">登 录</button>
@@ -288,11 +317,15 @@
     </div>
     <div class="pcard">
       <div class="pcard-t"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v3a4 4 0 0 1-8 0z"/><path d="M8 5H5.5a2.5 2.5 0 0 0 2.5 3M16 5h2.5a2.5 2.5 0 0 1-2.5 3"/><path d="M10 11h4M9.5 19h5M12 11v3"/></svg>本周排行榜</div>
-      <div class="lrow"><span class="rk gold">1</span><span class="nm">编程小王子</span><span class="pt">1280</span></div>
-      <div class="lrow"><span class="rk silver">2</span><span class="nm">代码小达人</span><span class="pt">1150</span></div>
-      <div class="lrow"><span class="rk bronze">3</span><span class="nm">循环侠</span><span class="pt">990</span></div>
-      <div class="lrow"><span class="rk">4</span><span class="nm">指针菜鸟</span><span class="pt">910</span></div>
-      <div class="lrow me"><span class="rk">7</span><span class="nm">你</span><span class="pt">820</span></div>
+      <div class="lrow"><span class="rk gold">1</span><span class="nm">🦊 编程小王子</span><span class="pt">1280</span></div>
+      <div class="lrow"><span class="rk silver">2</span><span class="nm">🐼 代码键盘侠</span><span class="pt">1150</span></div>
+      <div class="lrow"><span class="rk bronze">3</span><span class="nm">🐯 循环不打烊</span><span class="pt">990</span></div>
+      <div class="lrow"><span class="rk">4</span><span class="nm">🦁 二叉树观察员</span><span class="pt">935</span></div>
+      <div class="lrow"><span class="rk">5</span><span class="nm">🐱 指针没指空</span><span class="pt">905</span></div>
+      <div class="lrow"><span class="rk">6</span><span class="nm">🐻 递归不打草稿</span><span class="pt">860</span></div>
+      <div class="lrow me"><span class="rk">7</span><span class="nm">😎 你</span><span class="pt">820</span></div>
+      <div class="lrow"><span class="rk">8</span><span class="nm">🐰 摸鱼也能AC</span><span class="pt">790</span></div>
+      <div class="lrow"><span class="rk">9</span><span class="nm">🐨 数组越界君</span><span class="pt">760</span></div>
     </div>
   </div>
 </div></section>
@@ -305,17 +338,19 @@
 
 <script>
 const API='';let mode='login';
-function switchTab(m){mode=m;document.getElementById('tab-login').classList.toggle('on',m==='login');document.getElementById('tab-reg').classList.toggle('on',m==='reg');document.getElementById('f-email').style.display=m==='reg'?'block':'none';document.getElementById('auth-submit').textContent=m==='reg'?'注 册':'登 录';document.getElementById('f-password').setAttribute('autocomplete',m==='reg'?'new-password':'current-password');msg('');}
+function switchTab(m){mode=m;document.getElementById('tab-login').classList.toggle('on',m==='login');document.getElementById('tab-reg').classList.toggle('on',m==='reg');document.getElementById('f-email').style.display=m==='reg'?'block':'none';document.getElementById('avatar-pick').style.display=m==='reg'?'block':'none';document.getElementById('auth-submit').textContent=m==='reg'?'注 册':'登 录';document.getElementById('f-password').setAttribute('autocomplete',m==='reg'?'new-password':'current-password');msg('');}
+let pickedAvatar='🦊';
+document.getElementById('ap-grid').addEventListener('click',e=>{const b=e.target.closest('.ap');if(!b)return;pickedAvatar=b.dataset.av;document.querySelectorAll('#ap-grid .ap').forEach(x=>x.classList.toggle('on',x===b));document.getElementById('ap-current').textContent=pickedAvatar;});
 function msg(t,cls){const e=document.getElementById('auth-msg');e.textContent=t;e.className='auth-msg '+(cls||'');}
 async function doAuth(){
   const username=document.getElementById('f-username').value.trim();const password=document.getElementById('f-password').value;const email=document.getElementById('f-email').value.trim();
-  if(!username||!password){msg('请填写用户名和密码','err');return;}
+  if(!username||!password){msg('请填写昵称和密码','err');return;}
   const btn=document.getElementById('auth-submit');btn.disabled=true;
   try{
-    const r=await fetch(API+'/api/auth/'+(mode==='reg'?'register':'login'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(mode==='reg'?{username,password,email}:{username,password})});
+    const r=await fetch(API+'/api/auth/'+(mode==='reg'?'register':'login'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(mode==='reg'?{username,password,email,avatar:pickedAvatar}:{username,password})});
     const d=await r.json();
     if(!r.ok){msg(d.error||'操作失败','err');btn.disabled=false;return;}
-    localStorage.setItem('gesp_token',d.token);localStorage.setItem('gesp_user',d.user.username);
+    localStorage.setItem('gesp_token',d.token);localStorage.setItem('gesp_user',d.user.username);if(d.user.avatar)localStorage.setItem('gesp_avatar',d.user.avatar);
     msg('成功!正在进入…','ok');setTimeout(()=>location.reload(),500);
   }catch(e){msg('网络错误,请稍后再试','err');btn.disabled=false;}
 }

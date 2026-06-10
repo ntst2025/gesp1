@@ -12,7 +12,7 @@
 <body>
 <div class="topbar"><div class="wrap">
   <span>GESPPASS · CCF GESP C++ 等级认证</span>
-  <span class="right usermenu"><span>👤 <span class="uname" id="uname">…</span></span><a class="logout" onclick="location.href='/'">切换级别</a><a class="logout" onclick="logout()">退出登录</a></span>
+  <span class="right usermenu"><span><span id="uavatar">👤</span> <span class="uname" id="uname">…</span> <span id="vipbadge"></span></span><a class="logout vip-link" id="vip-entry" onclick="go('upgrade')">开通 VIP</a><a class="logout" onclick="location.href='/'">切换级别</a><a class="logout" onclick="logout()">退出登录</a></span>
 </div></div>
 <header><div class="wrap hd">
   <div class="logo" onclick="go('browse')"><span class="mark"><span class="gesp">GESP</span><span class="pass">PASS</span></span><span class="badge-sub">…</span></div>

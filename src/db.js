@@ -55,6 +55,20 @@ CREATE TABLE IF NOT EXISTS mock_results(
   score INTEGER NOT NULL, total_score INTEGER NOT NULL, correct INTEGER NOT NULL, total_q INTEGER NOT NULL,
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
+CREATE TABLE IF NOT EXISTS question_overrides(
+  qid TEXT PRIMARY KEY,
+  answer TEXT, stem TEXT, code TEXT, options_json TEXT, explanation TEXT, difficulty REAL,
+  updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE TABLE IF NOT EXISTS redeem_codes(
+  code TEXT PRIMARY KEY,
+  tier TEXT NOT NULL DEFAULT 'vip',
+  days INTEGER NOT NULL DEFAULT 0,
+  batch TEXT,
+  status TEXT NOT NULL DEFAULT 'unused',
+  used_by INTEGER, used_at TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
 CREATE INDEX IF NOT EXISTS idx_attempts_user ON attempts(user_id, qid);
 CREATE INDEX IF NOT EXISTS idx_mock_paper ON mock_results(level, paper);
 `;
@@ -120,13 +134,33 @@ async function reseedAll(manifest) {
   await client.executeMultiple('DROP TABLE IF EXISTS questions; DROP TABLE IF EXISTS sections; DROP TABLE IF EXISTS chapters; DROP TABLE IF EXISTS levels;');
   await client.executeMultiple(CONTENT_SCHEMA);
   const n = await loadAllLevels(manifest);
+  await applyAllOverrides();   // 重灌后把后台对题目的修改重新覆盖回去(编辑不丢失)
   console.log('[db] content rebuilt:', n, 'questions across levels');
   return n;
+}
+
+// 把 question_overrides 里的修改应用到 questions 表(仅覆盖非空字段)
+async function applyAllOverrides() {
+  let rows = [];
+  try { rows = await all('SELECT * FROM question_overrides'); } catch (e) { return 0; }
+  let cnt = 0;
+  for (const o of rows) {
+    const sets = [], args = [];
+    for (const f of ['answer', 'stem', 'code', 'options_json', 'explanation', 'difficulty']) {
+      if (o[f] !== null && o[f] !== undefined) { sets.push(`${f} = ?`); args.push(o[f]); }
+    }
+    if (sets.length) { args.push(o.qid); await run(`UPDATE questions SET ${sets.join(', ')} WHERE qid = ?`, args); cnt++; }
+  }
+  return cnt;
 }
 
 // 启动:建表 + 必要时自动迁移/更新内容
 async function initDb() {
   await client.executeMultiple(USER_SCHEMA);
+  // 迁移:为老库补充 avatar 列(已存在则忽略报错)
+  try { await run("ALTER TABLE users ADD COLUMN avatar TEXT"); } catch (e) { /* 列已存在 */ }
+  try { await run("ALTER TABLE users ADD COLUMN tier TEXT DEFAULT 'free'"); } catch (e) { /* 列已存在 */ }
+  try { await run("ALTER TABLE users ADD COLUMN vip_until TEXT"); } catch (e) { /* 列已存在 */ }
   const manifest = readManifest();
   const wantVer = String(manifest.version || 1);
   let schemaOld = false, curVer = null;
@@ -145,9 +179,10 @@ async function initDb() {
 // ---- 查询集合 ----
 const Q = {
   // users
-  createUser: (u, e, h) => run('INSERT INTO users(username,email,password_hash) VALUES(?,?,?)', [u, e, h]),
+  createUser: (u, e, h, av) => run('INSERT INTO users(username,email,password_hash,avatar) VALUES(?,?,?,?)', [u, e, h, av || null]),
   userByName: (u) => get('SELECT * FROM users WHERE username = ?', [u]),
-  userById: (id) => get('SELECT id,username,email,created_at FROM users WHERE id = ?', [id]),
+  userById: (id) => get('SELECT id,username,email,avatar,tier,vip_until,created_at FROM users WHERE id = ?', [id]),
+  setTier: (id, tier, until) => run('UPDATE users SET tier = ?, vip_until = ? WHERE id = ?', [tier, until, id]),
 
   // levels
   levelsList: () => all(`SELECT l.level, l.name, l.ord,
@@ -202,7 +237,7 @@ const Q = {
 
   // ---- 积分 / 排行 / 打卡(全局,跨级) ---- 积分:每条正确作答 单选+2、判断+1
   leaderboard: (lim) => all(`
-    SELECT u.id, u.username,
+    SELECT u.id, u.username, u.avatar,
       COALESCE(SUM(CASE WHEN a.correct=1 THEN (CASE WHEN q.type='mc' THEN 2 ELSE 1 END) ELSE 0 END),0) points,
       COUNT(a.id) attempts
     FROM users u
@@ -223,6 +258,49 @@ const Q = {
     run("INSERT INTO mock_results(user_id,level,paper,score,total_score,correct,total_q) VALUES(?,?,?,?,?,?,?)", [uid, lv, paper, score, ts, correct, totq]),
   mockBestForPaper: (lv, paper) => all("SELECT user_id, MAX(score) best FROM mock_results WHERE level = ? AND paper = ? GROUP BY user_id ORDER BY best DESC", [lv, paper]),
   mockHistory: (uid) => all("SELECT level,paper,score,total_score,correct,total_q,created_at FROM mock_results WHERE user_id = ? ORDER BY created_at DESC LIMIT 30", [uid]),
+  mockCountForLevel: (uid, lv) => get('SELECT COUNT(*) c FROM mock_results WHERE user_id = ? AND level = ?', [uid, lv]),
+
+  // ===== 管理后台 · 题目编辑 =====
+  questionsForAdmin: (lv) => all(`SELECT q.qid,q.level,q.chapter_id,q.section_id,q.type,q.paper,q.num,q.answer,q.difficulty,
+      (CASE WHEN q.explanation IS NOT NULL AND q.explanation <> '' THEN 1 ELSE 0 END) has_exp,
+      (CASE WHEN o.qid IS NOT NULL THEN 1 ELSE 0 END) overridden
+    FROM questions q LEFT JOIN question_overrides o ON o.qid = q.qid
+    WHERE q.level = ? ORDER BY q.section_id, q.ord`, [lv]),
+  updateQuestion: (qid, p) => run(`UPDATE questions SET
+      answer=COALESCE(?,answer), stem=COALESCE(?,stem), code=COALESCE(?,code),
+      options_json=COALESCE(?,options_json), explanation=COALESCE(?,explanation), difficulty=COALESCE(?,difficulty)
+    WHERE qid=?`, [p.answer ?? null, p.stem ?? null, p.code ?? null, p.options_json ?? null, p.explanation ?? null, p.difficulty ?? null, qid]),
+  setQuestionOverride: (qid, p) => run(`INSERT INTO question_overrides(qid,answer,stem,code,options_json,explanation,difficulty,updated_at)
+      VALUES(?,?,?,?,?,?,?,datetime('now'))
+      ON CONFLICT(qid) DO UPDATE SET
+        answer=COALESCE(excluded.answer,question_overrides.answer),
+        stem=COALESCE(excluded.stem,question_overrides.stem),
+        code=COALESCE(excluded.code,question_overrides.code),
+        options_json=COALESCE(excluded.options_json,question_overrides.options_json),
+        explanation=COALESCE(excluded.explanation,question_overrides.explanation),
+        difficulty=COALESCE(excluded.difficulty,question_overrides.difficulty),
+        updated_at=datetime('now')`,
+    [qid, p.answer ?? null, p.stem ?? null, p.code ?? null, p.options_json ?? null, p.explanation ?? null, p.difficulty ?? null]),
+  delQuestionOverride: (qid) => run('DELETE FROM question_overrides WHERE qid = ?', [qid]),
+
+  // ===== 管理后台 · 用户 =====
+  adminListUsers: (like, lim) => all(`SELECT u.id,u.username,u.avatar,u.email,u.tier,u.vip_until,u.created_at,
+      COALESCE(SUM(CASE WHEN a.correct=1 THEN (CASE WHEN q.type='mc' THEN 2 ELSE 1 END) ELSE 0 END),0) points,
+      COUNT(a.id) attempts
+    FROM users u LEFT JOIN attempts a ON a.user_id=u.id LEFT JOIN questions q ON q.qid=a.qid
+    WHERE u.username LIKE ? GROUP BY u.id ORDER BY u.created_at DESC LIMIT ?`, [like, lim]),
+  adminUserDetail: (uid) => get(`SELECT
+      (SELECT COUNT(*) FROM attempts WHERE user_id=?) attempts,
+      (SELECT COUNT(*) FROM mock_results WHERE user_id=?) mocks,
+      (SELECT COUNT(*) FROM wrongbook WHERE user_id=? AND mastered=0) wrongs`, [uid, uid, uid]),
+
+  // ===== 管理后台 · 兑换码 =====
+  createCode: (code, tier, days, batch) => run('INSERT INTO redeem_codes(code,tier,days,batch) VALUES(?,?,?,?)', [code, tier, days, batch || null]),
+  listCodes: (lim) => all(`SELECT c.code,c.tier,c.days,c.batch,c.status,c.used_by,c.used_at,c.created_at,u.username used_name
+    FROM redeem_codes c LEFT JOIN users u ON u.id=c.used_by ORDER BY c.created_at DESC LIMIT ?`, [lim]),
+  getCode: (code) => get('SELECT * FROM redeem_codes WHERE code = ?', [code]),
+  useCode: (code, uid) => run("UPDATE redeem_codes SET status='used', used_by=?, used_at=datetime('now') WHERE code=? AND status='unused'", [uid, code]),
+  disableCode: (code) => run("UPDATE redeem_codes SET status='disabled' WHERE code=? AND status='unused'", [code]),
 
   // ---- 个性化推荐(按知识点/节统计 + 取题) ----
   sectionStatsByLevel: (uid, lv) => all(`
@@ -257,4 +335,25 @@ function shapeQuestion(row, { withAnswer = true } = {}) {
   return out;
 }
 
-module.exports = { client, Q, initDb, reseedAll, loadAllLevels, questionsByQids, shapeQuestion, DB_PATH };
+async function deleteUserCascade(uid) {
+  for (const t of ['attempts', 'wrongbook', 'bookmarks', 'mock_results']) await run(`DELETE FROM ${t} WHERE user_id = ?`, [uid]);
+  await run('DELETE FROM users WHERE id = ?', [uid]);
+}
+async function adminStats() {
+  const one = async (sql, a = []) => Number(((await get(sql, a)) || {}).c || 0);
+  const users = await one('SELECT COUNT(*) c FROM users');
+  const vip = await one("SELECT COUNT(*) c FROM users WHERE tier='vip' AND (vip_until IS NULL OR vip_until > datetime('now'))");
+  const attempts = await one('SELECT COUNT(*) c FROM attempts');
+  const mocks = await one('SELECT COUNT(*) c FROM mock_results');
+  const byLevel = await all("SELECT level, COUNT(*) c, SUM(CASE WHEN explanation<>'' THEN 1 ELSE 0 END) exp FROM questions GROUP BY level ORDER BY level");
+  const codes = await all('SELECT status, COUNT(*) c FROM redeem_codes GROUP BY status');
+  const recent = await all('SELECT id,username,avatar,tier,created_at FROM users ORDER BY created_at DESC LIMIT 8');
+  return {
+    users, vip, free: Math.max(0, users - vip), attempts, mocks,
+    levels: byLevel.map(r => ({ level: Number(r.level), count: Number(r.c), exp: Number(r.exp || 0) })),
+    codes: Object.fromEntries(codes.map(r => [r.status, Number(r.c)])),
+    recent: recent.map(r => ({ id: Number(r.id), username: r.username, avatar: r.avatar, tier: r.tier, created_at: r.created_at })),
+  };
+}
+
+module.exports = { client, Q, initDb, reseedAll, loadAllLevels, questionsByQids, shapeQuestion, deleteUserCascade, adminStats, applyAllOverrides, DB_PATH };

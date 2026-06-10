@@ -2,8 +2,8 @@
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
-const { Q, initDb, questionsByQids, shapeQuestion } = require('./src/db');
-const { register, login, authRequired } = require('./src/auth');
+const { Q, initDb, questionsByQids, shapeQuestion, deleteUserCascade, adminStats } = require('./src/db');
+const { register, login, authRequired, signAdminToken, adminRequired } = require('./src/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,7 +21,18 @@ const LV = req => Number(req.query.level) || 1;
 /* ===== 认证 ===== */
 app.post('/api/auth/register', wrap(async (req, res) => res.json(await register(req.body || {}))));
 app.post('/api/auth/login',    wrap(async (req, res) => res.json(await login(req.body || {}))));
-app.get('/api/auth/me', authRequired, (req, res) => res.json({ user: req.user }));
+app.get('/api/auth/me', authRequired, (req, res) => res.json({ user: { ...req.user, vip: vipActive(req.user) } }));
+
+// 管理员手动开通/取消 VIP(线下收款后手动发放;需在环境变量 ADMIN_KEY 配置一个随机密钥)
+app.post('/api/admin/set-tier', adminRequired, wrap(async (req, res) => {
+  const { username, tier = 'vip', days } = req.body || {};
+  const u = await Q.userByName((username || '').trim());
+  if (!u) return res.status(404).json({ error: '用户不存在' });
+  const isVip = tier === 'vip';
+  const until = (isVip && days && Number(days) > 0) ? new Date(Date.now() + Number(days) * 86400000).toISOString() : null;
+  await Q.setTier(u.id, isVip ? 'vip' : 'free', isVip ? until : null);
+  res.json({ ok: true, username: u.username, tier: isVip ? 'vip' : 'free', vip_until: until });
+}));
 
 /* ===== 级别列表(门户/级别切换用) ===== */
 app.get('/api/levels', authRequired, wrap(async (req, res) => {
@@ -67,7 +78,7 @@ app.get('/api/sections/:sid/questions', authRequired, wrap(async (req, res) => {
   const by_paper = {};
   rows.forEach(r => { by_paper[r.paper] = (by_paper[r.paper] || 0) + 1; });
   const marked = new Set(marks.map(b => b.qid));
-  res.json({ questions: rows.map(r => ({ ...shapeQuestion(r), bookmarked: marked.has(r.qid) })), by_paper });
+  res.json({ questions: rows.map(r => { const q = { ...shapeQuestion(r), bookmarked: marked.has(r.qid) }; if (expLocked(r.level, req.user)) { q.explanation = ''; q.locked = true; } return q; }), by_paper });
 }));
 
 // 搜索(按级别)
@@ -76,7 +87,7 @@ app.get('/api/search', authRequired, wrap(async (req, res) => {
   if (!kw) return res.json({ questions: [], count: 0 });
   const like = '%' + kw.replace(/[%_]/g, m => '\\' + m) + '%';
   const rows = await Q.search(like, LV(req));
-  res.json({ questions: rows.map(r => shapeQuestion(r)), count: rows.length });
+  res.json({ questions: rows.map(r => { const q = shapeQuestion(r); if (expLocked(r.level, req.user)) { q.explanation = ''; q.locked = true; } return q; }), count: rows.length });
 }));
 
 /* ===== 做题 / 判分 ===== */
@@ -101,7 +112,8 @@ app.post('/api/attempts', authRequired, wrap(async (req, res) => {
   await Q.addAttempt(req.user.id, qid, String(chosen ?? ''), correct);
   if (correct) await Q.clearWrongOnCorrect(req.user.id, qid);
   else         await Q.upsertWrong(req.user.id, qid);
-  res.json({ correct: !!correct, answer: row.answer, explanation: row.explanation });
+  const locked = expLocked(row.level, req.user);
+  res.json({ correct: !!correct, answer: row.answer, explanation: locked ? '' : row.explanation, locked });
 }));
 
 app.get('/api/attempts/recent', authRequired, wrap(async (req, res) => {
@@ -158,6 +170,14 @@ function tierOf(points) {
   for (const [min, name, icon] of tiers) if (points >= min) return { name, icon, min };
   return { name: '入门', icon: '🌱', min: 0 };
 }
+// ===== 会员(免费 / VIP)=====
+function vipActive(u) {
+  if (!u || u.tier !== 'vip') return false;
+  if (!u.vip_until) return true;            // 永久 VIP
+  return new Date(u.vip_until).getTime() > Date.now();
+}
+// 免费用户:一级解析全开;六级及以上解析为 VIP 专享(题目与答案仍可见)
+function expLocked(level, user) { return !vipActive(user) && Number(level) !== 1; }
 function streakOf(dateRows) {
   const set = new Set(dateRows.map(r => r.d));
   const total = set.size;
@@ -182,12 +202,35 @@ app.get('/api/stats/me', authRequired, wrap(async (req, res) => {
     streak: st.current, streak_total: st.total, today_done: st.today,
   });
 }));
+// 平台初期的「示例对手」——让本周排行榜更有竞争氛围(真人会按积分插入其中并逐步超越)
+const DEMO_RIVALS = [
+  { username: '编程小王子',   avatar: '🦊', points: 1280, attempts: 156 },
+  { username: '代码键盘侠',   avatar: '🐼', points: 1150, attempts: 138 },
+  { username: '循环不打烊',   avatar: '🐯', points: 990,  attempts: 121 },
+  { username: '二叉树观察员', avatar: '🦁', points: 935,  attempts: 110 },
+  { username: '指针没指空',   avatar: '🐱', points: 905,  attempts: 104 },
+  { username: '递归不打草稿', avatar: '🐻', points: 860,  attempts: 98  },
+  { username: '摸鱼也能AC',   avatar: '🐰', points: 790,  attempts: 90  },
+  { username: '数组越界君',   avatar: '🐨', points: 760,  attempts: 85  },
+  { username: '变量起名废',   avatar: '🐹', points: 720,  attempts: 80  },
+  { username: '一遍过选手',   avatar: '🦄', points: 690,  attempts: 74  },
+  { username: '调试到天亮',   avatar: '🐸', points: 655,  attempts: 69  },
+  { username: '栈里有乾坤',   avatar: '🐵', points: 610,  attempts: 63  },
+];
 app.get('/api/leaderboard', authRequired, wrap(async (req, res) => {
-  const rows = await Q.leaderboard(50);
-  const top = rows.map((r, i) => { const t = tierOf(N(r.points)); return { rank: i + 1, username: r.username, points: N(r.points), attempts: N(r.attempts), tier: t.name, icon: t.icon, me: r.id === req.user.id }; });
-  let me = top.find(x => x.me);
-  if (!me) { const pr = await Q.userPointsRow(req.user.id); const t = tierOf(N(pr.points)); me = { rank: null, username: req.user.username, points: N(pr.points), tier: t.name, icon: t.icon, me: true }; }
-  res.json({ top, me });
+  const real = await Q.leaderboard(50);
+  const merged = [
+    ...real.map(r => ({ id: r.id, username: r.username, avatar: r.avatar || '🦊', points: N(r.points), attempts: N(r.attempts), me: r.id === req.user.id })),
+    ...DEMO_RIVALS.map(d => ({ id: null, username: d.username, avatar: d.avatar, points: d.points, attempts: d.attempts, me: false })),
+  ];
+  // 确保当前用户始终在榜(即便还没答题)
+  if (!merged.some(x => x.me)) {
+    const pr = await Q.userPointsRow(req.user.id);
+    merged.push({ id: req.user.id, username: req.user.username, avatar: req.user.avatar || '🦊', points: N(pr.points), attempts: N(pr.attempts), me: true });
+  }
+  merged.sort((a, b) => b.points - a.points || b.attempts - a.attempts);
+  const top = merged.map((u, i) => { const t = tierOf(u.points); return { rank: i + 1, username: u.username, avatar: u.avatar, points: u.points, attempts: u.attempts, tier: t.name, icon: t.icon, me: u.me }; });
+  res.json({ top: top.slice(0, 50), me: top.find(x => x.me) });
 }));
 
 app.get('/api/activity', authRequired, wrap(async (req, res) => {
@@ -209,10 +252,15 @@ app.get('/api/mock/papers', authRequired, wrap(async (req, res) => {
 }));
 app.post('/api/mock/start', authRequired, wrap(async (req, res) => {
   const { level = 1, paper } = req.body || {};
-  const rows = await Q.questionsByPaper(Number(level) || 1, paper);
+  const lv = Number(level) || 1;
+  if (!vipActive(req.user)) {
+    const done = N((await Q.mockCountForLevel(req.user.id, lv)).c);
+    if (done >= 1) return res.status(403).json({ error: '免费版每个级别可体验 1 套模考,开通 VIP 解锁全部套卷与无限次模考', vip_required: true });
+  }
+  const rows = await Q.questionsByPaper(lv, paper);
   if (!rows.length) return res.status(404).json({ error: '未找到该套真题' });
   const mc = rows.filter(r => r.type === 'mc').length, tf = rows.filter(r => r.type === 'tf').length;
-  res.json({ level: Number(level) || 1, paper, mc, tf, total: rows.length, duration_sec: 40 * 60,
+  res.json({ level: lv, paper, mc, tf, total: rows.length, duration_sec: 40 * 60,
     questions: rows.map(r => shapeQuestion(r, { withAnswer: false })) });
 }));
 app.post('/api/mock/submit', authRequired, wrap(async (req, res) => {
@@ -232,8 +280,9 @@ app.post('/api/mock/submit', authRequired, wrap(async (req, res) => {
       await Q.addAttempt(req.user.id, r.qid, String(chosen), ok);
       if (ok) await Q.clearWrongOnCorrect(req.user.id, r.qid); else await Q.upsertWrong(req.user.id, r.qid);
     }
+    const _locked = expLocked(r.level, req.user);
     details.push({ qid: r.qid, type: r.type, num: r.num, correct: !!ok, your: chosen == null ? '' : String(chosen),
-      answer: r.answer, explanation: r.explanation, stem: r.stem, code: r.code, options: JSON.parse(r.options_json || '{}') });
+      answer: r.answer, explanation: _locked ? '' : r.explanation, locked: _locked, stem: r.stem, code: r.code, options: JSON.parse(r.options_json || '{}') });
   }
   const total_q = rows.length, total_score = (mc_total + tf_total) * 2, score = correct * 2;
   await Q.addMockResult(req.user.id, lv, paper, score, total_score, correct, total_q);
@@ -287,6 +336,99 @@ app.get('/api/recommend', authRequired, wrap(async (req, res) => {
   });
 }));
 
+/* ===== 用户:兑换码激活 VIP ===== */
+app.post('/api/redeem', authRequired, wrap(async (req, res) => {
+  const code = String((req.body && req.body.code) || '').trim().toUpperCase();
+  if (!code) return res.status(400).json({ error: '请输入兑换码' });
+  const c = await Q.getCode(code);
+  if (!c) return res.status(404).json({ error: '兑换码不存在' });
+  if (c.status === 'used') return res.status(409).json({ error: '该兑换码已被使用' });
+  if (c.status === 'disabled') return res.status(409).json({ error: '该兑换码已失效' });
+  const r = await Q.useCode(code, req.user.id);            // 原子占用:仅 unused 可成功
+  if (!r || N(r.rowsAffected) === 0) return res.status(409).json({ error: '该兑换码刚刚已被使用' });
+  const days = N(c.days);
+  const until = days > 0 ? new Date(Date.now() + days * 86400000).toISOString() : null;
+  await Q.setTier(req.user.id, 'vip', until);
+  res.json({ ok: true, tier: 'vip', vip_until: until, days });
+}));
+
+/* ===================== 管理后台 API ===================== */
+app.post('/api/admin/login', wrap(async (req, res) => {
+  if (!process.env.ADMIN_KEY) return res.status(403).json({ error: '后台未启用:请在服务器环境变量中配置 ADMIN_KEY' });
+  if (((req.body && req.body.key) || '') !== process.env.ADMIN_KEY) return res.status(401).json({ error: '管理员密钥错误' });
+  res.json({ token: signAdminToken() });
+}));
+app.get('/api/admin/stats', adminRequired, wrap(async (req, res) => res.json(await adminStats())));
+
+// --- 题目 ---
+app.get('/api/admin/questions', adminRequired, wrap(async (req, res) => {
+  res.json({ questions: await Q.questionsForAdmin(N(req.query.level) || 1) });
+}));
+app.get('/api/admin/question/:qid', adminRequired, wrap(async (req, res) => {
+  const r = await Q.questionByQid(req.params.qid);
+  if (!r) return res.status(404).json({ error: '题目不存在' });
+  res.json({ question: { ...shapeQuestion(r), answer: r.answer, explanation: r.explanation, ord: r.ord } });
+}));
+app.put('/api/admin/question/:qid', adminRequired, wrap(async (req, res) => {
+  const qid = req.params.qid, b = req.body || {};
+  if (!(await Q.questionByQid(qid))) return res.status(404).json({ error: '题目不存在' });
+  const patch = {
+    answer: b.answer != null ? String(b.answer) : null,
+    stem: b.stem != null ? String(b.stem) : null,
+    code: b.code != null ? String(b.code) : null,
+    options_json: b.options != null ? JSON.stringify(b.options) : null,
+    explanation: b.explanation != null ? String(b.explanation) : null,
+    difficulty: b.difficulty != null ? Number(b.difficulty) : null,
+  };
+  await Q.updateQuestion(qid, patch);      // 立即生效
+  await Q.setQuestionOverride(qid, patch); // 记录覆盖,重灌不丢
+  res.json({ ok: true });
+}));
+app.post('/api/admin/question/:qid/reset', adminRequired, wrap(async (req, res) => {
+  await Q.delQuestionOverride(req.params.qid);
+  res.json({ ok: true, note: '已移除后台覆盖;该题将在下次内容更新(版本号变化)时恢复为原始题库内容' });
+}));
+
+// --- 用户 ---
+app.get('/api/admin/users', adminRequired, wrap(async (req, res) => {
+  const like = '%' + String(req.query.q || '').replace(/[%_]/g, m => '\\' + m) + '%';
+  res.json({ users: await Q.adminListUsers(like, Math.min(200, N(req.query.limit) || 100)) });
+}));
+app.get('/api/admin/users/:id', adminRequired, wrap(async (req, res) => {
+  res.json({ detail: await Q.adminUserDetail(N(req.params.id)) });
+}));
+app.delete('/api/admin/users/:id', adminRequired, wrap(async (req, res) => {
+  await deleteUserCascade(N(req.params.id));
+  res.json({ ok: true });
+}));
+
+// --- 兑换码 ---
+function genCode() {
+  const cs = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';   // 去掉易混 I O 0 1
+  let s = ''; for (let i = 0; i < 12; i++) s += cs[Math.floor(Math.random() * cs.length)];
+  return 'GESP-' + s.slice(0, 4) + '-' + s.slice(4, 8) + '-' + s.slice(8, 12);
+}
+app.get('/api/admin/codes', adminRequired, wrap(async (req, res) => {
+  res.json({ codes: await Q.listCodes(Math.min(500, N(req.query.limit) || 200)) });
+}));
+app.post('/api/admin/codes', adminRequired, wrap(async (req, res) => {
+  const b = req.body || {};
+  const qty = Math.max(1, Math.min(200, N(b.qty) || 1));
+  const days = Math.max(0, N(b.days) || 0);     // 0 = 永久
+  const batch = (b.batch || '').toString().slice(0, 40) || null;
+  const made = [];
+  for (let i = 0; i < qty; i++) {
+    let code, ok = false;
+    for (let t = 0; t < 5 && !ok; t++) { code = genCode(); try { await Q.createCode(code, 'vip', days, batch); ok = true; } catch (e) { /* 撞码重试 */ } }
+    if (ok) made.push(code);
+  }
+  res.json({ ok: true, created: made.length, days, codes: made });
+}));
+app.post('/api/admin/codes/:code/disable', adminRequired, wrap(async (req, res) => {
+  await Q.disableCode(req.params.code);
+  res.json({ ok: true });
+}));
+
 /* ===== SEO + 法务页(干净 URL) ===== */
 function siteBase(req){ const proto=(req.headers['x-forwarded-proto']||req.protocol||'https').split(',')[0]; return proto+'://'+req.headers.host; }
 app.get('/sitemap.xml',(req,res)=>{
@@ -303,6 +445,7 @@ app.get('/privacy',(req,res)=>res.sendFile(path.join(__dirname,'public','privacy
 
 /* ===== 前端兜底 ===== */
 app.get('/app', (req, res) => res.sendFile(path.join(__dirname, 'public', 'app.html')));
+app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'public', 'admin.html')));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
 /* ===== 启动 ===== */

@@ -2,9 +2,17 @@
 /* ===================== 鉴权 + API ===================== */
 const TOKEN = localStorage.getItem('gesp_token');
 const USER  = localStorage.getItem('gesp_user') || '同学';
+const AVATAR = localStorage.getItem('gesp_avatar') || '🦊';
 if (!TOKEN) location.href = '/';
 const LEVEL = new URLSearchParams(location.search).get('level') || '1';
-function logout(){ localStorage.removeItem('gesp_token'); localStorage.removeItem('gesp_user'); location.href='/'; }
+function logout(){ localStorage.removeItem('gesp_token'); localStorage.removeItem('gesp_user'); localStorage.removeItem('gesp_avatar'); location.href='/'; }
+let IS_VIP=false;
+function lockBox(){ return `<div class="exp vip-lock">🔒 本题详细解析为 <b>VIP 专享</b> · 一级解析全部免费<a class="vip-cta" onclick="event.stopPropagation();go('upgrade')">开通 VIP 解锁全部解析 ›</a></div>`; }
+function updateVipUI(){
+  const b=document.getElementById('vipbadge'); if(b) b.innerHTML = IS_VIP ? '<span class="vip-tag">👑 VIP</span>' : '';
+  const e=document.getElementById('vip-entry'); if(e) e.style.display = IS_VIP ? 'none' : '';
+}
+async function loadMe(){ try{ const d=await api('/api/auth/me'); IS_VIP=!!(d.user&&d.user.vip); updateVipUI(); }catch(e){} }
 function toast(msg,type){let w=document.getElementById('toast-wrap');if(!w){w=document.createElement('div');w.className='toast-wrap';w.id='toast-wrap';document.body.appendChild(w);}const t=document.createElement('div');t.className='toast'+(type?(' '+type):'');t.textContent=msg;w.appendChild(t);setTimeout(()=>{t.style.transition='.3s';t.style.opacity='0';t.style.transform='translateY(8px)';setTimeout(()=>t.remove(),320);},2600);}
 
 async function api(path, opts={}){
@@ -83,6 +91,7 @@ async function go(tab){
   else if(tab==='progress'){ await renderProgress(); }
   else if(tab==='rank'){ await renderRank(); }
   else if(tab==='mark'){ await renderMark(); }
+  else if(tab==='upgrade'){ setActiveTab(''); renderUpgrade(); }
   window.scrollTo(0,0);
 }
 
@@ -184,7 +193,7 @@ function qCard(q,idx,opts={}){
   if(isMC) optsHtml='<div class="q-opts">'+['A','B','C','D'].filter(k=>q.options[k]!=null).map(k=>
     `<div class="opt ${k===q.answer?'correct':''}"><span class="ok">${k}</span><span>${hlInline(q.options[k])}</span></div>`).join('')+'</div>';
   const code=q.code?`<pre class="q-code">${hl(q.code)}</pre>`:'';
-  let exp; if(q.explanation){ let e=esc(q.explanation).replace(/💡(.*)$/,'<span class="tip">💡$1</span>'); exp=`<div class="exp">${e}</div>`; }
+  let exp; if(q.locked){ exp=lockBox(); } else if(q.explanation){ let e=esc(q.explanation).replace(/💡(.*)$/,'<span class="tip">💡$1</span>'); exp=`<div class="exp">${e}</div>`; }
   else exp='<div class="exp todo">解析待补充(本题已分类入库,解析按章补写中)</div>';
   const star=`<span class="q-star ${q.bookmarked?'on':''}" id="star${idx}" title="收藏" onclick="event.stopPropagation();toggleStar('${q.qid}',${idx})">${q.bookmarked?'★':'☆'}</span>`;
   const masterBtn=opts.wrong?`<span class="btn teal" style="margin-left:auto" onclick="event.stopPropagation();masterQ('${q.qid}',${idx})">✓ 已掌握</span>`:'';
@@ -272,11 +281,11 @@ async function submitAns(){
     document.querySelectorAll('#quizopts .opt').forEach(o=>{ o.classList.remove('sel','pick'); o.onclick=null;
       if(o.dataset.val===d.answer)o.classList.add('correct','show');
       else if(o.dataset.val===quiz.picked)o.classList.add('wrongpick'); });
-    let e=d.explanation?esc(d.explanation).replace(/💡(.*)$/,'<span class="tip">💡$1</span>'):'<span class="todo">本题暂未提供解析(已分类入库,解析按章补写中)</span>';
+    const expHtml=d.locked?lockBox():`<div class="exp">${d.explanation?esc(d.explanation).replace(/💡(.*)$/,'<span class="tip">💡$1</span>'):'<span class="todo">本题暂未提供解析(已分类入库,解析按章补写中)</span>'}</div>`;
     const last=quiz.idx>=quiz.questions.length-1;
     document.getElementById('quizfb').innerHTML=
       `<div class="fb ${d.correct?'ok':'no'}">${d.correct?'✓ 回答正确':'✗ 回答错误,正确答案：'+d.answer}</div>
-       <div class="ans show"><div class="exp">${e}</div></div>`;
+       <div class="ans show">${expHtml}</div>`;
     document.getElementById('submitbtn').outerHTML=`<button class="btn solid" onclick="${last?'finishQuiz()':'nextQ()'}">${last?'查看结果 ›':'下一题 ›'}</button>`;
   }catch(err){ toast(err.message,'err'); quiz.answered=false; document.getElementById('submitbtn').disabled=false; }
 }
@@ -405,7 +414,7 @@ async function startMock(paper){
     const d=await api('/api/mock/start',{method:'POST',body:JSON.stringify({level:Number(LEVEL),paper})});
     MOCK={level:Number(LEVEL),paper,questions:d.questions,answers:{},remain:d.duration_sec,timer:null,submitted:false};
     renderMockExam(); MOCK.timer=setInterval(tickMock,1000);
-  }catch(e){ C().innerHTML=`<div class="empty">组卷失败：${esc(e.message)}</div>`; }
+  }catch(e){ if(/VIP/.test(e.message)){ toast(e.message,'err'); go('upgrade'); } else C().innerHTML=`<div class="empty">组卷失败：${esc(e.message)}</div>`; }
 }
 function renderMockExam(){
   const qs=MOCK.questions;
@@ -446,11 +455,11 @@ function renderMockResult(d){
     const optsHtml = isMC?'<div class="q-opts">'+['A','B','C','D'].filter(k=>q.options[k]!=null).map(k=>{
         let cls=''; if(k===q.answer)cls='correct show'; else if(k===q.your&&!q.correct)cls='wrongpick';
         return `<div class="opt ${cls}"><span class="ok">${k}</span><span>${hlInline(q.options[k])}</span></div>`;}).join('')+'</div>':'';
-    const e=q.explanation?esc(q.explanation):'<span class="todo">本题暂未提供解析</span>';
+    const expBox=q.locked?lockBox():`<div class="exp">${q.explanation?esc(q.explanation):'<span class="todo">本题暂未提供解析</span>'}</div>`;
     return `<div class="q open" id="q${i}"><div class="q-head"><span class="qtype type-${q.type}">${isMC?'单选':'判断'}</span>
       <span class="q-src">第${i+1}题</span> <span style="margin-left:auto;font-weight:600" class="${q.correct?'fb-ok':'fb-no'}">${q.correct?'✓ 正确':'✗ 你答'+(q.your||'未答')+' / 应'+q.answer}</span></div>
       <div class="q-body"><div class="q-stem">${hlInline(q.stem)}</div>${q.code?`<pre class="q-code">${hl(q.code)}</pre>`:''}${optsHtml}
-      <div class="ans show"><div class="a-line">正确答案：<span class="ansv">${q.answer}</span></div><div class="exp">${e}</div></div></div></div>`;
+      <div class="ans show"><div class="a-line">正确答案：<span class="ansv">${q.answer}</span></div>${expBox}</div></div></div>`;
   }).join('');
   C().innerHTML=`<div class="card"><div class="card-b summary"><div class="big" style="font-size:40px">${emoji}</div>
     <div class="ring">${d.score} / ${d.total_score}</div>
@@ -476,7 +485,7 @@ async function renderRank(){
   const heat=`<div class="card"><div class="card-h">🔥 活跃度<span class="sub">最近 13 周 · 连续 ${st.streak} 天</span></div><div class="card-b"><div class="heat">${cells.join('')}</div><div class="heat-legend">少 <i style="background:#eaecf3"></i><i style="background:#bde8d8"></i><i style="background:#7ed9b4"></i><i style="background:#35c191"></i><i style="background:var(--pass-d)"></i> 多</div></div></div>`;
   const rows=lb.top.map(u=>`<div class="lb-row ${u.me?'me':''}">
     <span class="lb-rank ${u.rank<=3?['r1','r2','r3'][u.rank-1]:''}">${u.rank}</span>
-    <span class="lb-name">${esc(u.username)}${u.me?' · 我':''}</span>
+    <span class="lb-name"><span class="lb-av">${u.avatar||'🐱'}</span> ${esc(u.username)}${u.me?' · 我':''}</span>
     <span class="lb-tier">${u.icon} ${u.tier}</span><span class="lb-pts">${u.points} 分</span></div>`).join('');
   const checkin = st.today_done ? `<div class="ci ci-done">✅ 今日已打卡 · 连续 ${st.streak} 天,继续保持!</div>`
     : `<div class="ci ci-todo">📅 今天还没练习——做一道题即可自动打卡</div>`;
@@ -507,6 +516,64 @@ async function doSearch(kw){ kw=(kw||'').trim(); if(!kw)return;
   window.scrollTo(0,0);
 }
 
+function renderUpgrade(){
+  const vipNow = IS_VIP ? '<div class="ci ci-done" style="margin-bottom:14px">👑 你已是 VIP 会员，全部级别解析与无限模考已解锁，感谢支持！</div>' : '';
+  C().innerHTML=`
+  <div class="card"><div class="card-h">👑 开通 VIP · 解锁全部级别解析</div><div class="card-b">
+    ${vipNow}
+    <div class="plan-grid">
+      <div class="plan">
+        <div class="plan-t">免费版</div>
+        <div class="plan-p">¥0</div>
+        <ul class="plan-f">
+          <li>✓ 一级全部真题 + 全部逐题解析</li>
+          <li>✓ 六 / 七 / 八级题目与答案</li>
+          <li>✓ 错题本 · 收藏 · 进度 · 排行榜</li>
+          <li class="muted">○ 每个级别可体验 1 套模考</li>
+          <li class="muted">✗ 六级及以上详细解析</li>
+        </ul>
+      </div>
+      <div class="plan hot">
+        <div class="plan-badge">推荐</div>
+        <div class="plan-t">VIP 会员</div>
+        <div class="plan-p">¥199<span>/年</span></div>
+        <div class="plan-sub">约 ¥39/月 · ¥99/季</div>
+        <ul class="plan-f">
+          <li>✓ <b>全部级别</b>全部逐题解析</li>
+          <li>✓ 全部历年真题 <b>无限次</b>计时模考</li>
+          <li>✓ 错题本 · 收藏 · 进度 · 排行榜</li>
+          <li>✓ 考后解析 48 小时内抢先看</li>
+          <li>✓ 去除推广位</li>
+        </ul>
+        <button class="btn solid" style="width:100%;margin-top:6px" onclick="howToVip()">立即开通 ›</button>
+      </div>
+    </div>
+    <div class="notice" style="margin-top:14px">一级解析始终免费——先免费体验解析质量，满意再开通解锁六 / 七 / 八级。</div>
+  </div></div>
+  <div class="card"><div class="card-h">🎟️ 已有兑换码？</div><div class="card-b">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <input id="redeem-code" placeholder="GESP-XXXX-XXXX-XXXX" style="flex:1;min-width:200px;padding:9px 11px;border:1px solid #e6e8ef;border-radius:8px;font-size:14px;text-transform:uppercase">
+      <button class="btn solid" onclick="redeemCode()">立即兑换</button>
+    </div>
+    <div id="redeem-msg" class="notice" style="margin-top:10px;display:none"></div>
+  </div></div>`;
+  window.scrollTo(0,0);
+}
+function howToVip(){ toast('开通通道即将上线；当前可用兑换码开通，或通过页脚邮箱联系（支付宝/微信转账后为你手动开通）','ok'); }
+async function redeemCode(){
+  const code=(document.getElementById('redeem-code').value||'').trim();
+  const m=document.getElementById('redeem-msg'); if(!code)return;
+  try{
+    const d=await api('/api/redeem',{method:'POST',body:JSON.stringify({code})});
+    IS_VIP=true; updateVipUI();
+    m.style.display='block'; m.style.color='#16a34a';
+    m.textContent='🎉 兑换成功！VIP 已开通'+(d.vip_until?('，有效期至 '+d.vip_until.slice(0,10)):'（永久）')+'，全部级别解析与无限模考已解锁。';
+    toast('VIP 已开通 👑'); setTimeout(()=>renderUpgrade(),1300);
+  }catch(e){ m.style.display='block'; m.style.color='#dc2626'; m.textContent='兑换失败：'+e.message; }
+}
+
 /* ===================== 启动 ===================== */
 document.getElementById('uname').textContent=USER;
+var _uav=document.getElementById('uavatar'); if(_uav) _uav.textContent=AVATAR;
+loadMe();
 go('browse');
