@@ -51,7 +51,7 @@
         "C": "内存",
         "D": "光盘"
        },
-       "explanation": "",
+       "explanation": "光盘靠激光读写盘面凹坑来存储数据，属于光学存储，与磁性无关，故强磁场不影响它。硬盘是典型磁存储介质，强磁场会破坏数据。（U 盘、内存是半导体存储，原理上也不受磁影响，本题取最典型的光学介质——光盘。）",
        "difficulty": 2.0
       },
       {
@@ -68,7 +68,7 @@
         "C": "int 类型变量的取值范围不是无限的",
         "D": "char 类型的变量有 256 种取值"
        },
-       "explanation": "",
+       "explanation": "不正确的是 A：double 在 C++ 中固定占 8 字节，大小不会「浮动」。其余都对——bool 占 1 字节、int 取值范围有限（如 32 位约 ±21 亿）、char 占 1 字节共 2⁸=256 种取值。",
        "difficulty": 2.0
       },
       {
@@ -80,7 +80,7 @@
        "stem": "明明和笑笑在“小庙会”上分别抽到一个 4GB 和 4096MB 的 U 盘，容量大的 盘是笑笑的（ ）。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。4GB = 4×1024MB = 4096MB，两个 U 盘容量其实相同，不存在「容量大的是笑笑的」。",
        "difficulty": 2.0
       },
       {
@@ -280,7 +280,7 @@
        "stem": "IPv4 的地址通常用“点分十进制”的表示形式，形如（a.b.c.d），其中 a、b、c、d 都是 1~255 之间的十进制整数（ ）。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。IPv4 点分十进制每段取值是 0~255（共 256 个值），不是 1~255——0 也合法（如 0.0.0.0）。",
        "difficulty": 2.0
       },
       {
@@ -425,7 +425,7 @@
         "C": "-=",
         "D": "!="
        },
-       "explanation": "",
+       "explanation": "\\= 不是运算符（反斜杠不构成复合赋值）。/=、-=、!= 分别是除后赋值、减后赋值、不等于，都是合法运算符，故选 A。",
        "difficulty": 2.0
       },
       {
@@ -442,7 +442,7 @@
         "C": "(a + b + c + d) / 4.0",
         "D": "(a + b + c + d) % 4.0"
        },
-       "explanation": "",
+       "explanation": "要得到带小数的平均值必须用浮点除法：/ 4.0 会先把整数和提升为 double 再除，结果精确；/ 4 是整数除法会截断小数；% 是取余，更不对。故选 C。",
        "difficulty": 2.0
       },
       {
@@ -459,7 +459,7 @@
         "C": "(a == 0) && (b == 0)",
         "D": "(a == 0) - (b == 0) == 0"
        },
-       "explanation": "",
+       "explanation": "(!a)||(!b) 表示「a 为 0 或 b 为 0」（当 x 为 0 时 !x 为真），正确。B 的 a==b==0 会先算 a==b 再与 0 比较，语义错误；C 是「且」不是「或」；D 的表达式也不等价。故选 A。",
        "difficulty": 2.0
       },
       {
@@ -471,7 +471,7 @@
        "stem": "C++语言中>=是运算符，但=>不是。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。>= 是合法的关系运算符，而 => 在 C++ 中不是任何运算符。",
        "difficulty": 2.0
       },
       {
@@ -483,7 +483,7 @@
        "stem": "表达式(10.0 / 2)的计算结果为 5.0，且结果类型为 double。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。10.0 是 double，10.0/2 按浮点运算得 5.0，且只要有一个操作数是 double，结果类型就是 double。",
        "difficulty": 2.0
       },
       {
@@ -1168,7 +1168,7 @@
         "C": "b = 'a'++;",
         "D": "b = a++;"
        },
-       "explanation": "",
+       "explanation": "'a'++ 不合法——自增运算符要求操作数是可修改的变量（左值），而 'a' 是字面常量，不能自增。A、B、D 都是对变量或合法表达式赋值，语法正确，故选 C。",
        "difficulty": 2.0
       },
       {
@@ -1185,7 +1185,7 @@
         "C": "a = 1 + a;",
         "D": "++a;"
        },
-       "explanation": "",
+       "explanation": "B 的「a + 1」只是计算了一个表达式、并没有赋值回 a，所以 a 不变。其余 a=a+1、1+a 都赋了值、++a 是自增，都会让字符 '2' 按 ASCII 加 1 变成 '3'，故选 B。",
        "difficulty": 2.0
       },
       {
@@ -1202,7 +1202,7 @@
         "C": "'a' <= a <= 'z'",
         "D": "a >= 'a' && a <= 'z'"
        },
-       "explanation": "",
+       "explanation": "判断小写字母要同时卡上下界：a >= 'a' && a <= 'z'。C++ 不支持 'a'<=a<='z' 这种连写（会被拆成两步比较，先得 bool 再比较，逻辑错误），故 A、C 错；B 只判了上界、漏了下界。故选 D。",
        "difficulty": 2.0
       },
       {
@@ -1212,14 +1212,14 @@
        "num": 14,
        "answer": "D",
        "stem": "在下列代码的横线处填写（），可以使得输出是5。",
-       "code": "",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\n    int cnt = 0;\n    for (char ch = '1'; ch <= '9'; ch++)\n        if (________) // 在此处填入代码\n            cnt++;\n    cout << cnt << endl;\n    return 0;\n}",
        "options": {
         "A": "ch < '5'",
         "B": "ch >= 5",
         "C": "ch >= '4'",
         "D": "ch % 2 == 1"
        },
-       "explanation": "",
+       "explanation": "循环让 ch 从字符 '1' 到 '9'（共 9 个）。填 D「ch % 2 == 1」筛出 ASCII 为奇数的字符，即 '1''3''5''7''9' 共 5 个，cnt=5。（A「ch<'5'」得 4；B「ch>=5」中 ch 的 ASCII 都≥5，得 9；C「ch>='4'」得 6。）故选 D。",
        "difficulty": 2.0
       },
       {
@@ -1231,7 +1231,7 @@
        "stem": "如果 a 是 int 类型的变量，而且值为 1，则表达式'a'的值为'1'。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。'a' 是字符字面量，其值固定为字符 a 的 ASCII 码（97），与变量 a 当前取值无关，不会因为 a==1 就变成 '1'。",
        "difficulty": 2.0
       },
       {
@@ -1243,7 +1243,7 @@
        "stem": "如果 a 为 char 类型的变量，且取值为小写字母，则执行语句 a = a - 'a' + 'A';后，a 的值会变为与原值对应的大写字母。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。a-'a' 得到该小写字母在字母表中的序号，再 +'A' 即得到对应大写字母（大小写字母的 ASCII 差值固定为 32）。",
        "difficulty": 2.0
       },
       {
@@ -1694,7 +1694,7 @@
        "stem": "在 C++语言中，一个程序不能有多个 main 函数。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。一个 C++ 程序只能有一个 main 函数，作为程序唯一的执行入口。",
        "difficulty": 2.0
       },
       {
@@ -1780,7 +1780,7 @@
        "type": "mc",
        "num": 2,
        "answer": "C",
-       "stem": "下列流程图，属于计算机的哪种程序结构？（ ）。",
+       "stem": "下列流程图，属于计算机的哪种程序结构？（ ）。 〔流程图：开始 →【是否按下空格键？】判断 →「是」小猫移动 100 步 /「否」小猫颜色特效增加 25 → 结束〕",
        "code": "",
        "options": {
         "A": "顺序结构",
@@ -1788,7 +1788,7 @@
         "C": "分支结构",
         "D": "数据结构"
        },
-       "explanation": "",
+       "explanation": "流程图中出现「是否按下空格键？」的判断框，并据此走「是 / 否」两条不同路径，这正是分支结构的特征。顺序结构没有判断、循环结构会回流重复执行，都不符合，故选 C。",
        "difficulty": 2.0
       },
       {
@@ -1800,7 +1800,7 @@
        "stem": "while 语句的循环体至少会执行一次。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。while 先判断条件再执行，若条件一开始就为假，循环体一次都不执行。「至少执行一次」的是 do-while。",
        "difficulty": 2.0
       },
       {
@@ -3818,7 +3818,7 @@
         "C": "变量名必须为合法标识符",
         "D": "合法标识符可以以数字开始"
        },
-       "explanation": "",
+       "explanation": "不正确的是 D：合法标识符只能以字母或下划线开头，不能以数字开头（如 2a 非法）。A/B/C 都是变量的正确规则。",
        "difficulty": 2.0
       },
       {
@@ -3835,7 +3835,7 @@
         "C": "else",
         "D": "case"
        },
-       "explanation": "",
+       "explanation": "max 不是关键字，只是一个普通标识符（常用作变量名或函数名）。return、else、case 都是 C++ 的关键字，故选 B。",
        "difficulty": 2.0
       },
       {
@@ -3852,7 +3852,7 @@
         "C": "9",
         "D": "12"
        },
-       "explanation": "",
+       "explanation": "a -= 3 等价于 a = a - 3，即 9 - 3 = 6，故选 B。",
        "difficulty": 2.0
       },
       {
@@ -3862,14 +3862,14 @@
        "num": 13,
        "answer": "C",
        "stem": "在下列代码的横线处填写（），使得输出是`50 10`。",
-       "code": "",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\n    int a = 10, b = 50;\n    ________; // 在此处填入代码\n    b -= a;\n    a += b;\n    cout << a << \" \" << b << endl;\n    return 0;\n}",
        "options": {
         "A": "a -= b",
         "B": "a += b",
         "C": "a = b - a",
         "D": "a = b"
        },
-       "explanation": "",
+       "explanation": "初始 a=10、b=50。代入选项 C「a = b - a」逐句模拟：a=50-10=40 → b-=a 得 b=10 → a+=b 得 a=50，输出「50 10」，正确。（A 得「50 90」、B 得「50 -10」、D 得「50 0」，均不符。）故选 C。",
        "difficulty": 2.0
       },
       {
@@ -3879,14 +3879,14 @@
        "num": 15,
        "answer": "C",
        "stem": "执行以下 C++语言程序后，输出结果是（）。",
-       "code": "",
+       "code": "#include <iostream>\nusing namespace std;\nint main() {\n    int n = 17;\n    bool isprime = true;\n    for (int i = 2; i <= n; i++)\n        if (n % i == 0)\n            isprime = false;\n    cout << isprime << endl;\n    return 0;\n}",
        "options": {
         "A": "false",
         "B": "true",
         "C": "0",
         "D": "1"
        },
-       "explanation": "",
+       "explanation": "这里有两个坑：① 循环条件写成 i<=n，当 i 取到 n 时 n%n==0，会把 isprime 误置为 false——所以即使 17 是素数结果也是 false（正确写法应 i<n 或 i<=√n）。② cout 输出 bool 时按整数打印，false 显示为 0 而不是「false」。两点叠加，输出 0，故选 C。",
        "difficulty": 2.0
       },
       {
@@ -3898,7 +3898,7 @@
        "stem": "在 C++语言中，标识符中可以有下划线_，但不能以下划线_开头。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。标识符可以以下划线开头（如 _name 是合法标识符），所以「不能以下划线开头」的说法不成立。",
        "difficulty": 2.0
       },
       {
@@ -3910,7 +3910,7 @@
        "stem": "在 if ... else 语句中，else 子句可以嵌套 if ... else 语句，但 if 子句 不可以，因为会造成二义性。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。if 子句同样可以嵌套 if...else；用大括号 {} 或「else 就近匹配最近的 if」规则即可避免二义性，并非「if 子句不可以」。",
        "difficulty": 2.0
       },
       {
