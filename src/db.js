@@ -215,6 +215,7 @@ const Q = {
       COUNT(a.id) attempts, COALESCE(SUM(a.correct),0) correct
     FROM attempts a JOIN questions q ON q.qid = a.qid WHERE a.user_id = ?`, [uid]),
   attemptDates: (uid) => all("SELECT DISTINCT date(created_at) d FROM attempts WHERE user_id = ? ORDER BY d DESC", [uid]),
+  activityByDate: (uid) => all("SELECT date(created_at) d, COUNT(*) c FROM attempts WHERE user_id = ? GROUP BY date(created_at)", [uid]),
 
   // ---- 模考(按整套真题) ----
   questionsByPaper: (lv, paper) => all("SELECT * FROM questions WHERE level = ? AND paper = ? ORDER BY (type='tf'), num", [lv, paper]),

@@ -5,6 +5,7 @@ const USER  = localStorage.getItem('gesp_user') || '同学';
 if (!TOKEN) location.href = '/';
 const LEVEL = new URLSearchParams(location.search).get('level') || '1';
 function logout(){ localStorage.removeItem('gesp_token'); localStorage.removeItem('gesp_user'); location.href='/'; }
+function toast(msg,type){let w=document.getElementById('toast-wrap');if(!w){w=document.createElement('div');w.className='toast-wrap';w.id='toast-wrap';document.body.appendChild(w);}const t=document.createElement('div');t.className='toast'+(type?(' '+type):'');t.textContent=msg;w.appendChild(t);setTimeout(()=>{t.style.transition='.3s';t.style.opacity='0';t.style.transform='translateY(8px)';setTimeout(()=>t.remove(),320);},2600);}
 
 async function api(path, opts={}){
   const r = await fetch(path, { ...opts,
@@ -13,14 +14,6 @@ async function api(path, opts={}){
   const d = await r.json().catch(()=>({}));
   if (!r.ok) throw new Error(d.error || '请求失败');
   return d;
-}
-
-/* ===================== Toast 轻提示 ===================== */
-function toast(msg,type){
-  let w=document.getElementById('toast-wrap');
-  if(!w){ w=document.createElement('div'); w.id='toast-wrap'; w.className='toast-wrap'; document.body.appendChild(w); }
-  const t=document.createElement('div'); t.className='toast'+(type?' '+type:''); t.textContent=msg; w.appendChild(t);
-  setTimeout(()=>{ t.style.transition='.3s'; t.style.opacity='0'; setTimeout(()=>t.remove(),300); },2600);
 }
 
 /* ===================== 通用 helper ===================== */
@@ -356,7 +349,7 @@ async function renderMark(){
 /* ===================== 🤖 AI 智能推题 ===================== */
 let REC_QUESTIONS=[];
 async function renderRecommend(){
-  C().innerHTML='<div class="empty"><div class="spinner"></div>正在分析你的错题与各知识点掌握度…</div>';
+  C().innerHTML='<div class="empty"><div class="big">🤖</div>正在分析你的错题与各知识点掌握度…</div>';
   const d=await api('/api/recommend?level='+LEVEL);
   REC_QUESTIONS=d.questions;
   const wp=d.weak_points.map(w=>{
@@ -385,7 +378,7 @@ function startRecommended(){
 /* ===================== 📝 限时模考 ===================== */
 let MOCK=null;
 async function renderMock(){
-  C().innerHTML='<div class="empty"><div class="spinner"></div>加载真题套卷…</div>';
+  C().innerHTML='<div class="empty"><div class="big">📝</div>加载真题套卷…</div>';
   const d=await api('/api/mock/papers?level='+LEVEL);
   const papers=d.papers.filter(p=>p.total>0);
   const best={}; d.history.forEach(h=>{ if(Number(h.level)===Number(LEVEL)){ if(best[h.paper]==null||h.score>best[h.paper])best[h.paper]=h.score; } });
@@ -476,15 +469,20 @@ function renderMockResult(d){
 async function renderRank(){
   C().innerHTML='<div class="empty"><div class="spinner"></div>加载成就与排行…</div>';
   const [st,lb]=await Promise.all([api('/api/stats/me'),api('/api/leaderboard')]);
+  let act=[];try{act=(await api('/api/activity')).days||[];}catch(e){}
+  const cmap={};act.forEach(x=>cmap[x.d]=x.c);
+  const cells=[];const today=new Date();
+  for(let i=90;i>=0;i--){const dt=new Date(today);dt.setDate(today.getDate()-i);const ds=dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');const c=cmap[ds]||0;const cl=c===0?'':c<=1?'l1':c<=2?'l2':c<=4?'l3':'l4';cells.push('<i class="'+cl+'"></i>');}
+  const heat=`<div class="card"><div class="card-h">🔥 活跃度<span class="sub">最近 13 周 · 连续 ${st.streak} 天</span></div><div class="card-b"><div class="heat">${cells.join('')}</div><div class="heat-legend">少 <i style="background:#eaecf3"></i><i style="background:#bde8d8"></i><i style="background:#7ed9b4"></i><i style="background:#35c191"></i><i style="background:var(--pass-d)"></i> 多</div></div></div>`;
   const rows=lb.top.map(u=>`<div class="lb-row ${u.me?'me':''}">
-    <span class="lb-rank ${u.rank<=3?'top':''}">${u.rank<=3?['🥇','🥈','🥉'][u.rank-1]:u.rank}</span>
+    <span class="lb-rank ${u.rank<=3?['r1','r2','r3'][u.rank-1]:''}">${u.rank}</span>
     <span class="lb-name">${esc(u.username)}${u.me?' · 我':''}</span>
     <span class="lb-tier">${u.icon} ${u.tier}</span><span class="lb-pts">${u.points} 分</span></div>`).join('');
   const checkin = st.today_done ? `<div class="ci ci-done">✅ 今日已打卡 · 连续 ${st.streak} 天,继续保持!</div>`
     : `<div class="ci ci-todo">📅 今天还没练习——做一道题即可自动打卡</div>`;
   C().innerHTML=`<div class="card"><div class="card-h">🏆 我的成就</div><div class="card-b">
     <div class="ach-grid">
-      <div class="ach-card"><div class="ach-ic">${st.tier_icon}</div><div class="ach-v" style="font-size:19px;margin-top:7px">${st.tier}</div><div class="ach-l">当前段位</div></div>
+      <div class="ach-card"><div class="ach-ic">${st.tier_icon}</div><div class="ach-v">${st.tier}</div><div class="ach-l">当前段位</div></div>
       <div class="ach-card amber"><div class="ach-ic">💎</div><div class="ach-v">${st.points}</div><div class="ach-l">积分</div></div>
       <div class="ach-card teal"><div class="ach-ic">🔥</div><div class="ach-v">${st.streak}</div><div class="ach-l">连续打卡(天)</div></div>
       <div class="ach-card blue"><div class="ach-ic">📅</div><div class="ach-v">${st.streak_total}</div><div class="ach-l">累计打卡(天)</div></div>
@@ -492,6 +490,7 @@ async function renderRank(){
     ${checkin}
     ${st.next_at?`<div class="lvl-progress"><div class="lp-bar"><span style="width:${Math.min(100,Math.round(st.points/st.next_at*100))}%"></span></div><div class="lp-txt">距下一段位还需 <b>${st.to_next}</b> 分</div></div>`:'<div class="lp-txt" style="text-align:center;margin-top:12px">已达最高段位 👑 宗师</div>'}
     <div class="notice" style="margin-top:10px">积分规则:答对单选 +2、判断 +1;每天做题即自动打卡。</div></div></div>
+  ${heat}
   <div class="card"><div class="card-h">🏆 积分排行榜<span class="sub">全站 Top ${lb.top.length}</span></div><div class="card-b">
     ${lb.me.rank?'':`<div class="ai-intro">你还没上榜,做几道题就能进入排行榜啦!当前 ${lb.me.points} 分。</div>`}
     <div class="lb">${rows||'<div class="empty">暂无排行数据,快来抢第一!</div>'}</div></div></div>`;
@@ -499,7 +498,7 @@ async function renderRank(){
 
 /* ===================== 搜索 ===================== */
 async function doSearch(kw){ kw=(kw||'').trim(); if(!kw)return;
-  setActiveTab(''); C().innerHTML='<div class="empty"><div class="spinner"></div>搜索中…</div>';
+  setActiveTab(''); C().innerHTML='<div class="empty"><div class="big">🔍</div>搜索中…</div>';
   try{ const d=await api('/api/search?q='+encodeURIComponent(kw)+'&level='+LEVEL);
     const qhtml=d.questions.map((q,i)=>qCard(q,i,{review:true})).join('');
     C().innerHTML=`<div class="card"><div class="card-h">搜索结果<span class="sub">命中 ${d.count} 题${d.count>=80?'(显示前80)':''}</span></div>

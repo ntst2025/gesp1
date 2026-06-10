@@ -190,6 +190,11 @@ app.get('/api/leaderboard', authRequired, wrap(async (req, res) => {
   res.json({ top, me });
 }));
 
+app.get('/api/activity', authRequired, wrap(async (req, res) => {
+  const rows = await Q.activityByDate(req.user.id);
+  res.json({ days: rows.map(r => ({ d: r.d, c: N(r.c) })) });
+}));
+
 /* ===== 限时模考(整套真题 · 客观题) ===== */
 app.get('/api/mock/papers', authRequired, wrap(async (req, res) => {
   const lv = LV(req);
@@ -282,27 +287,19 @@ app.get('/api/recommend', authRequired, wrap(async (req, res) => {
   });
 }));
 
-/* ===== 静态页面(干净 URL) ===== */
-app.get('/about',   (req, res) => res.sendFile(path.join(__dirname, 'public', 'about.html')));
-app.get('/terms',   (req, res) => res.sendFile(path.join(__dirname, 'public', 'terms.html')));
-app.get('/privacy', (req, res) => res.sendFile(path.join(__dirname, 'public', 'privacy.html')));
-
-/* ===== SEO: robots / sitemap(按部署域名动态生成) ===== */
-function siteBase(req){
-  const proto = String(req.headers['x-forwarded-proto'] || req.protocol || 'https').split(',')[0];
-  return proto + '://' + req.headers.host;
-}
-app.get('/robots.txt', (req, res) => {
-  const base = siteBase(req);
-  res.type('text/plain').send('User-agent: *\nAllow: /\n\nSitemap: ' + base + '/sitemap.xml\n');
+/* ===== SEO + 法务页(干净 URL) ===== */
+function siteBase(req){ const proto=(req.headers['x-forwarded-proto']||req.protocol||'https').split(',')[0]; return proto+'://'+req.headers.host; }
+app.get('/sitemap.xml',(req,res)=>{
+  const b=siteBase(req);
+  const urls=['/','/app?level=1','/app?level=6','/app?level=7','/app?level=8','/about','/terms','/privacy'];
+  const xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+
+    urls.map(u=>`  <url><loc>${b}${u.replace(/&/g,'&amp;')}</loc></url>`).join('\n')+'\n</urlset>';
+  res.type('application/xml').send(xml);
 });
-app.get('/sitemap.xml', (req, res) => {
-  const base = siteBase(req);
-  const paths = ['/', '/app?level=1', '/app?level=6', '/app?level=7', '/app?level=8', '/about', '/terms', '/privacy'];
-  const today = new Date().toISOString().slice(0, 10);
-  const urls = paths.map(p => '  <url><loc>' + base + p.replace(/&/g, '&amp;') + '</loc><lastmod>' + today + '</lastmod></url>').join('\n');
-  res.type('application/xml').send('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + '\n</urlset>\n');
-});
+app.get('/robots.txt',(req,res)=>{ res.type('text/plain').send(`User-agent: *\nAllow: /\nSitemap: ${siteBase(req)}/sitemap.xml\n`); });
+app.get('/about',(req,res)=>res.sendFile(path.join(__dirname,'public','about.html')));
+app.get('/terms',(req,res)=>res.sendFile(path.join(__dirname,'public','terms.html')));
+app.get('/privacy',(req,res)=>res.sendFile(path.join(__dirname,'public','privacy.html')));
 
 /* ===== 前端兜底 ===== */
 app.get('/app', (req, res) => res.sendFile(path.join(__dirname, 'public', 'app.html')));
