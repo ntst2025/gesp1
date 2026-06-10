@@ -517,20 +517,20 @@ async function doSearch(kw){ kw=(kw||'').trim(); if(!kw)return;
 }
 
 function renderUpgrade(){
-  const vipNow = IS_VIP ? '<div class="ci ci-done" style="margin-bottom:14px">👑 你已是 VIP 会员，全部级别解析与无限模考已解锁，感谢支持！</div>' : '';
+  const vipNow = IS_VIP ? '<div class="ci ci-done" style="margin-bottom:14px">👑 你已是 VIP 会员，二级至八级全部逐题精解已解锁，感谢支持！</div>' : '';
   C().innerHTML=`
-  <div class="card"><div class="card-h">👑 开通 VIP · 解锁全部级别解析</div><div class="card-b">
+  <div class="card"><div class="card-h">👑 开通 VIP · 解锁全部级别逐题精解</div><div class="card-b">
     ${vipNow}
     <div class="plan-grid">
       <div class="plan">
         <div class="plan-t">免费版</div>
         <div class="plan-p">¥0</div>
         <ul class="plan-f">
-          <li>✓ 一级全部真题 + 全部逐题解析</li>
-          <li>✓ 六 / 七 / 八级题目与答案</li>
-          <li>✓ 错题本 · 收藏 · 进度 · 排行榜</li>
-          <li class="muted">○ 每个级别可体验 1 套模考</li>
-          <li class="muted">✗ 六级及以上详细解析</li>
+          <li>✓ <b>一级至八级</b>全部历年真题（题目 + 答案）</li>
+          <li>✓ 全部级别 <b>无限次</b> 计时模考</li>
+          <li>✓ 一级全部逐题精解</li>
+          <li>✓ 错题本 · 收藏 · 进度 · 排行榜 · AI 推荐</li>
+          <li class="muted">✗ 二级及以上详细解析</li>
         </ul>
       </div>
       <div class="plan hot">
@@ -539,16 +539,16 @@ function renderUpgrade(){
         <div class="plan-p">¥199<span>/年</span></div>
         <div class="plan-sub">约 ¥39/月 · ¥99/季</div>
         <ul class="plan-f">
-          <li>✓ <b>全部级别</b>全部逐题解析</li>
-          <li>✓ 全部历年真题 <b>无限次</b>计时模考</li>
-          <li>✓ 错题本 · 收藏 · 进度 · 排行榜</li>
+          <li>✓ 免费版<b>全部</b>功能</li>
+          <li>✓ <b>二级至八级</b>全部逐题精解</li>
           <li>✓ 考后解析 48 小时内抢先看</li>
+          <li>✓ 后续增值服务优先体验</li>
           <li>✓ 去除推广位</li>
         </ul>
         <button class="btn solid" style="width:100%;margin-top:6px" onclick="howToVip()">立即开通 ›</button>
       </div>
     </div>
-    <div class="notice" style="margin-top:14px">一级解析始终免费——先免费体验解析质量，满意再开通解锁六 / 七 / 八级。</div>
+    <div class="notice" style="margin-top:14px">真题与模考全部免费、不限级别——一级解析也免费，满意再开通解锁二级至八级全部精解。</div>
   </div></div>
   <div class="card"><div class="card-h">🎟️ 已有兑换码？</div><div class="card-b">
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
@@ -567,7 +567,7 @@ async function redeemCode(){
     const d=await api('/api/redeem',{method:'POST',body:JSON.stringify({code})});
     IS_VIP=true; updateVipUI();
     m.style.display='block'; m.style.color='#16a34a';
-    m.textContent='🎉 兑换成功！VIP 已开通'+(d.vip_until?('，有效期至 '+d.vip_until.slice(0,10)):'（永久）')+'，全部级别解析与无限模考已解锁。';
+    m.textContent='🎉 兑换成功！VIP 已开通'+(d.vip_until?('，有效期至 '+d.vip_until.slice(0,10)):'（永久）')+'，二级至八级全部精解已解锁。';
     toast('VIP 已开通 👑'); setTimeout(()=>renderUpgrade(),1300);
   }catch(e){ m.style.display='block'; m.style.color='#dc2626'; m.textContent='兑换失败：'+e.message; }
 }

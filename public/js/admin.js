@@ -55,7 +55,7 @@ let QData=[];
 async function renderQ(){
   V().innerHTML=`<h1 class="page-h">📚 题目管理</h1>
   <div class="toolbar">
-    <select id="q-level" onchange="loadQ()"><option value="1">C++ 一级</option><option value="6">C++ 六级</option><option value="7">C++ 七级</option><option value="8">C++ 八级</option></select>
+    <select id="q-level" onchange="loadQ()"><option value="1">C++ 一级</option><option value="2">C++ 二级</option><option value="3">C++ 三级</option><option value="4">C++ 四级</option><option value="5">C++ 五级</option><option value="6">C++ 六级</option><option value="7">C++ 七级</option><option value="8">C++ 八级</option></select>
     <input id="q-search" placeholder="搜索 qid / 卷次 / 题号" oninput="filterQ()" style="flex:1;min-width:200px">
     <span class="muted" id="q-count"></span>
   </div>

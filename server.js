@@ -78,7 +78,7 @@ app.get('/api/sections/:sid/questions', authRequired, wrap(async (req, res) => {
   const by_paper = {};
   rows.forEach(r => { by_paper[r.paper] = (by_paper[r.paper] || 0) + 1; });
   const marked = new Set(marks.map(b => b.qid));
-  res.json({ questions: rows.map(r => { const q = { ...shapeQuestion(r), bookmarked: marked.has(r.qid) }; if (expLocked(r.level, req.user)) { q.explanation = ''; q.locked = true; } return q; }), by_paper });
+  res.json({ questions: rows.map(r => { const q = { ...shapeQuestion(r), bookmarked: marked.has(r.qid) }; if (expLocked(r.level, req.user) && r.explanation) { q.explanation = ''; q.locked = true; } return q; }), by_paper });
 }));
 
 // 搜索(按级别)
@@ -87,7 +87,7 @@ app.get('/api/search', authRequired, wrap(async (req, res) => {
   if (!kw) return res.json({ questions: [], count: 0 });
   const like = '%' + kw.replace(/[%_]/g, m => '\\' + m) + '%';
   const rows = await Q.search(like, LV(req));
-  res.json({ questions: rows.map(r => { const q = shapeQuestion(r); if (expLocked(r.level, req.user)) { q.explanation = ''; q.locked = true; } return q; }), count: rows.length });
+  res.json({ questions: rows.map(r => { const q = shapeQuestion(r); if (expLocked(r.level, req.user) && r.explanation) { q.explanation = ''; q.locked = true; } return q; }), count: rows.length });
 }));
 
 /* ===== 做题 / 判分 ===== */
@@ -112,7 +112,7 @@ app.post('/api/attempts', authRequired, wrap(async (req, res) => {
   await Q.addAttempt(req.user.id, qid, String(chosen ?? ''), correct);
   if (correct) await Q.clearWrongOnCorrect(req.user.id, qid);
   else         await Q.upsertWrong(req.user.id, qid);
-  const locked = expLocked(row.level, req.user);
+  const locked = expLocked(row.level, req.user) && !!row.explanation;
   res.json({ correct: !!correct, answer: row.answer, explanation: locked ? '' : row.explanation, locked });
 }));
 
@@ -253,10 +253,6 @@ app.get('/api/mock/papers', authRequired, wrap(async (req, res) => {
 app.post('/api/mock/start', authRequired, wrap(async (req, res) => {
   const { level = 1, paper } = req.body || {};
   const lv = Number(level) || 1;
-  if (!vipActive(req.user)) {
-    const done = N((await Q.mockCountForLevel(req.user.id, lv)).c);
-    if (done >= 1) return res.status(403).json({ error: '免费版每个级别可体验 1 套模考,开通 VIP 解锁全部套卷与无限次模考', vip_required: true });
-  }
   const rows = await Q.questionsByPaper(lv, paper);
   if (!rows.length) return res.status(404).json({ error: '未找到该套真题' });
   const mc = rows.filter(r => r.type === 'mc').length, tf = rows.filter(r => r.type === 'tf').length;
@@ -280,7 +276,7 @@ app.post('/api/mock/submit', authRequired, wrap(async (req, res) => {
       await Q.addAttempt(req.user.id, r.qid, String(chosen), ok);
       if (ok) await Q.clearWrongOnCorrect(req.user.id, r.qid); else await Q.upsertWrong(req.user.id, r.qid);
     }
-    const _locked = expLocked(r.level, req.user);
+    const _locked = expLocked(r.level, req.user) && !!r.explanation;
     details.push({ qid: r.qid, type: r.type, num: r.num, correct: !!ok, your: chosen == null ? '' : String(chosen),
       answer: r.answer, explanation: _locked ? '' : r.explanation, locked: _locked, stem: r.stem, code: r.code, options: JSON.parse(r.options_json || '{}') });
   }
@@ -433,7 +429,7 @@ app.post('/api/admin/codes/:code/disable', adminRequired, wrap(async (req, res) 
 function siteBase(req){ const proto=(req.headers['x-forwarded-proto']||req.protocol||'https').split(',')[0]; return proto+'://'+req.headers.host; }
 app.get('/sitemap.xml',(req,res)=>{
   const b=siteBase(req);
-  const urls=['/','/app?level=1','/app?level=6','/app?level=7','/app?level=8','/about','/terms','/privacy'];
+  const urls=['/','/app?level=1','/app?level=2','/app?level=3','/app?level=4','/app?level=5','/app?level=6','/app?level=7','/app?level=8','/about','/terms','/privacy'];
   const xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+
     urls.map(u=>`  <url><loc>${b}${u.replace(/&/g,'&amp;')}</loc></url>`).join('\n')+'\n</urlset>';
   res.type('application/xml').send(xml);

@@ -1,0 +1,4669 @@
+{
+ "meta": {
+  "title": "C++ 四级",
+  "level": 4,
+  "papers": [
+   "2023-06",
+   "2023-09",
+   "2023-12",
+   "2024-03",
+   "2024-06",
+   "2024-09",
+   "2024-12",
+   "2025-03",
+   "2025-06",
+   "2025-09",
+   "2025-12",
+   "2026-03"
+  ],
+  "total": 300,
+  "mc": 180,
+  "tf": 120
+ },
+ "chapters": [
+  {
+   "id": "y2023",
+   "name": "2023 年真题",
+   "req": null,
+   "freq": null,
+   "difficulty": 3.0,
+   "sections": [
+    {
+     "id": "2023-06",
+     "name": "2023 年 6 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.0,
+     "questions": [
+      {
+       "qid": "4-2023-06-mc-1",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 1,
+       "answer": "D",
+       "stem": "高级语言编写的程序需要经过以下（ ）操作，可以生成在计算机上运行的 可执行代码。",
+       "code": "",
+       "options": {
+        "A": "编辑",
+        "B": "保存",
+        "C": "调试",
+        "D": "编译"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-mc-2",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 2,
+       "answer": "C",
+       "stem": "排序算法是稳定的（Stable Sorting），就是指排序算法可以保证，在待排 序数据中有两个相等记录的关键字 R 和 S（R 出现在 S 之前），在排序后的列表 中 R 也一定在 S 前。下面关于排序稳定性的描述，正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "冒泡排序是不稳定的。",
+        "B": "插入排序是不稳定的。",
+        "C": "选择排序是不稳定的。",
+        "D": "以上都不正确。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-mc-3",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 3,
+       "answer": "C",
+       "stem": "下列关于 C++语言中指针的叙述，不正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "指针变量中存储的是内存地址。",
+        "B": "定义指针变量时必须指定其指向的类型。",
+        "C": "指针变量只能指向基本类型变量，不能指向指针变量。",
+        "D": "指针变量指向的内存地址不一定能够合法访问。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-mc-4",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 4,
+       "answer": "D",
+       "stem": "下列关于 C++语言中数组的叙述，不正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "一维数组在内存中一定是连续存放的。",
+        "B": "二维数组是一维数组的一维数组。",
+        "C": "二维数组中的每个一维数组在内存中都是连续存放的。",
+        "D": "二维数组在内存中可以不是连续存放的。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-mc-5",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 5,
+       "answer": "A",
+       "stem": "下列关于 C++语言中函数的叙述，正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "函数必须有名字。",
+        "B": "函数必须有参数。",
+        "C": "函数必须有返回值。",
+        "D": "函数定义必须写在函数调用前。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-mc-6",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 6,
+       "answer": "D",
+       "stem": "下列关于 C++语言中变量的叙述，正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "变量定义后可以一直使用。",
+        "B": "两个变量的变量名不能是相同的。",
+        "C": "两个变量的变量名可以相同，但它们的类型必须是不同的。",
+        "D": "两个变量的变量名可以相同，但它们的作用域必须是不同的。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-mc-7",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 7,
+       "answer": "D",
+       "stem": "一个二维数组定义为 double array[3][10];，则这个二维数组占用内存的 大小为（ ）。",
+       "code": "",
+       "options": {
+        "A": "30",
+        "B": "60",
+        "C": "120",
+        "D": "240"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-mc-8",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 8,
+       "answer": "B",
+       "stem": "一个变量定义为 int *p = nullptr;，则下列说法正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "该指针变量的类型为 int。",
+        "B": "该指针变量指向的类型为 int。",
+        "C": "该指针变量指向的内存地址是随机的。",
+        "D": "访问该指针变量指向的内存会出现编译错误。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-mc-9",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 9,
+       "answer": "C",
+       "stem": "一个二维数组定义为 int array[5][3];，则 array[1][2]和 array[2][1] 在内存中的位置相差多少字节？（ ）",
+       "code": "",
+       "options": {
+        "A": "2 字节。",
+        "B": "4 字节。",
+        "C": "8 字节。",
+        "D": "无法确定。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-mc-10",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 10,
+       "answer": "C",
+       "stem": "如果 a 为 int 类型的变量，且 a 的值为 6，则执行 a &= 3;之后，a 的值会 是（ ）。",
+       "code": "",
+       "options": {
+        "A": "3",
+        "B": "9",
+        "C": "2",
+        "D": "7"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-mc-11",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 11,
+       "answer": "A",
+       "stem": "一个数组定义为 int a[5] = {1, 2, 3, 4, 5};，一个指针定义为 int * p = &a[2];，则执行 a[1] = *p;后，数组 a 中的值会变为（ ）。",
+       "code": "",
+       "options": {
+        "A": "{1, 3, 3, 4, 5}",
+        "B": "{2, 2, 3, 4, 5}",
+        "C": "{1, 2, 2, 4, 5}",
+        "D": "{1, 2, 3, 4, 5}"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-mc-12",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 12,
+       "answer": "A",
+       "stem": "以下哪个函数声明在调用时可以传递二维数组的名字作为参数？（ ）",
+       "code": "",
+       "options": {
+        "A": "void BubbleSort(int a[][4]);",
+        "B": "void BubbleSort(int a[3][]);",
+        "C": "void BubbleSort(int a[][]);",
+        "D": "void BubbleSort(int ** a);"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-mc-13",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 13,
+       "answer": "B",
+       "stem": "在下列代码的横线处填写（ ），可以使得输出是“20 10”。",
+       "code": "",
+       "options": {
+        "A": "int x, int y",
+        "B": "int * x, int * y",
+        "C": "int a, int b",
+        "D": "int & a, int & b"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-mc-14",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 14,
+       "answer": "D",
+       "stem": "执行以下 C++语言程序后，输出结果是（ ）。",
+       "code": "",
+       "options": {
+        "A": "3",
+        "B": "30",
+        "C": "33",
+        "D": "无法确定。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-mc-15",
+       "paper": "2023-06",
+       "type": "mc",
+       "num": 15,
+       "answer": "A",
+       "stem": "在下列代码的横线处填写（ ），完成对有 n 个 int 类型元素的数组 array 由小到大排序。",
+       "code": "",
+       "options": {
+        "A": "array[min] > array[j]",
+        "B": "array[min] > array[i]",
+        "C": "min > array[j]",
+        "D": "min > array[i]"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-tf-1",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 1,
+       "answer": "×",
+       "stem": "域名是由一串用点分隔的名字来标识互联网上一个计算机或计算机组的名称， CCF 编程能力等级认证官方网站的域名是 gesp.ccf.org.cn，其中顶级域名是 gesp。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-tf-2",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "数列 1, 1, 2, 3, 5, 8 ... 是以意大利数学家列昂纳多·斐波那契命名的 数列，从第三个数开始，每个数是前面两项之和。如果计算该数列的第 n 项（其 中 n>3）fib(n)，我们采用如下方法：① 令 fib(1)=fib(2)=1 ②用循环 for i=3 to n 分别计算 f(i) ③输出 fib(n)。这体现了递推的编程思想。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-tf-3",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "在 C++语言中，函数的参数默认以引用传递方式进行传递。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-tf-4",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "在 C++语言中，可以定义四维数组，但在解决实际问题时不可能用到，因为 世界是三维的。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-tf-5",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "在 C++语言中，一个函数没有被调用时，它的参数不占用内存。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-tf-6",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 6,
+       "answer": "×",
+       "stem": "在 C++语言中，如果一个函数可能抛出异常，那么一定要在 try 子句里调用 这个函数。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-tf-7",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 7,
+       "answer": "×",
+       "stem": "如果希望记录 10 个最长为 99 字节的字符串，可以将字符串数组定义为 char s[100][10];。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-tf-8",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "字符常量'0'和'\\0'是等价的。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-tf-9",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": ">=和>>=都是 C++语言的运算符。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-06-tf-10",
+       "paper": "2023-06",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "由于文件重定向操作，程序员在使用 C++语言编写程序时无法确定通过 cout 输出的内容是否会被输出到屏幕上。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      }
+     ]
+    },
+    {
+     "id": "2023-09",
+     "name": "2023 年 9 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.0,
+     "questions": [
+      {
+       "qid": "4-2023-09-mc-1",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 1,
+       "answer": "B",
+       "stem": "人们所使用的手机上安装的App通常指的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "一款操作系统",
+        "B": "一款应用软件",
+        "C": "一种通话设备",
+        "D": "以上都不对"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-mc-2",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 2,
+       "answer": "A",
+       "stem": "下列流程图的输出结果是？( )",
+       "code": "",
+       "options": {
+        "A": "9",
+        "B": "7",
+        "C": "5",
+        "D": "11"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-mc-3",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 3,
+       "answer": "C",
+       "stem": "对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。",
+       "code": "",
+       "options": {
+        "A": "O(n)",
+        "B": "O(n log n)",
+        "C": "O(n²)",
+        "D": "以上都不正确"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-mc-4",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 4,
+       "answer": "D",
+       "stem": "下列关于C++语言中指针的叙述，不正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "可以定义指向 int 类型的指针。",
+        "B": "可以定义指向自定义结构体类型的指针。",
+        "C": "自定义结构体类型可以包含指针类型的元素。",
+        "D": "不能定义指向void类型的指针，那没有意义。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-mc-5",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 5,
+       "answer": "D",
+       "stem": "下列关于C++语言中数组的叙述，不正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "一维数组可以用来表示数列。",
+        "B": "二维数组可以用来表示矩阵。",
+        "C": "三维数组可以用来表示空间中物体的形状。",
+        "D": "世界是三维的，所以定义四维数组没有意义。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-mc-6",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 6,
+       "answer": "B",
+       "stem": "下列关于C++语言中函数的叙述，正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "函数调用前必须定义。",
+        "B": "函数调用时必须提供足够的实际参数。",
+        "C": "函数定义前必须声明。",
+        "D": "函数声明只能写在函数调用前。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-mc-7",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 7,
+       "answer": "A",
+       "stem": "下列关于C++语言中函数的叙述，不正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "两个函数的声明可以相同。",
+        "B": "两个函数的局部变量可以重名。",
+        "C": "两个函数的参数可以重名。",
+        "D": "两个函数可以重名。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-mc-8",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 8,
+       "answer": "B",
+       "stem": "一个二维数组定义为 char array[3][10]; ，则这个二维数组占用内存的大小为（ ）。",
+       "code": "",
+       "options": {
+        "A": "10",
+        "B": "30",
+        "C": "32",
+        "D": "48"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-mc-9",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 9,
+       "answer": "B",
+       "stem": "如果 n 为 int 类型的变量，一个指针变量定义为 int *p = &n; ，则下列说法正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "指针变量 p 的值与变量 n 是相同的。",
+        "B": "指针变量 p 的值与变量 n 的地址是相同的。",
+        "C": "指针变量 p 指向的值为 'n' 。",
+        "D": "指针变量 p 指向的值与变量 n 的地址是相同的。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-mc-10",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 10,
+       "answer": "C",
+       "stem": "一个三维数组定义为 long long array[6][6][6]; ，则 array[1][2][3] 和 array[3][2][1] 在内存中的 位置相差多少字节？（ ）",
+       "code": "",
+       "options": {
+        "A": "70字节",
+        "B": "198字节",
+        "C": "560字节",
+        "D": "无法确定"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-mc-11",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 11,
+       "answer": "C",
+       "stem": "如果 a 为 int 类型的变量，且 a 的值为6，则执行 a = ~a; 之后， a 的值会是（ ）。",
+       "code": "",
+       "options": {
+        "A": "-6",
+        "B": "6",
+        "C": "-7",
+        "D": "7"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-mc-12",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 12,
+       "answer": "A",
+       "stem": "一个数组定义为 int a[5] = {1, 2, 3, 4, 5}; ，一个指针定义为 int * p = &a[2]; ，则执行 *p = a[1]; 后，数组a中的值会变为（ ）。",
+       "code": "",
+       "options": {
+        "A": "{1, 2, 2, 4, 5}",
+        "B": "{1, 3, 3, 4, 5}",
+        "C": "{1, 2, 3, 3, 5}",
+        "D": "{1, 2, 4, 4, 5}"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-mc-13",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 13,
+       "answer": "A",
+       "stem": "下列关于C++语言中异常处理的叙述，正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "一个 try 子句可以有多个 catch 子句与之对应。",
+        "B": "如果 try 子句在执行时发生异常，就一定会进入某一个 catch 子句执行。",
+        "C": "如果 try 子句中没有可能发生异常的语句，会产生编译错误。",
+        "D": "catch 子句处理异常后，会重新执行与之对应的 try 子句。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-mc-14",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 14,
+       "answer": "D",
+       "stem": "执行以下C++语言程序后，输出结果是（ ）。",
+       "code": "",
+       "options": {
+        "A": "0",
+        "B": "5",
+        "C": "55",
+        "D": "无法确定。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-mc-15",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 15,
+       "answer": "C",
+       "stem": "在下列代码的横线处填写（ ），完成对有 n 个 int 类型元素的数组 array 由小到大排序。",
+       "code": "",
+       "options": {
+        "A": "int j = 1; j < n; j++",
+        "B": "int j = 0; j < n; j++",
+        "C": "int j = 0; j < i - 1; j++",
+        "D": "int j = 0; j < i; j++"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-tf-1",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 1,
+       "answer": "×",
+       "stem": "在C++语言中，指针变量在逻辑上指向另一个变量在内存中的位置，指针变量本身不占用内存。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-tf-2",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "对 个元素的数组执行插入排序算法，通常的时间复杂度是 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-tf-3",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 3,
+       "answer": "√",
+       "stem": "在C++语言中，每个变量都有其作用域。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-tf-4",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "在C++语言中，在函数调用时，通过引用传递的参数不会复制实际参数，因此不会额外占用内存。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-tf-5",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "在C++语言中，可以通过定义结构体，定义一个新的数据类型。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-tf-6",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "在C++语言中，可以定义结构体类型的数组变量，定义结构体时也可以包含数组成员。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-tf-7",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "如果希望记录10个最长为99字节的字符串，可以将字符串数组定义为 char s[10][100]; 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-tf-8",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "一个可能抛出异常的函数，调用它的位置没有在 try 子句中，会引起编译错误。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-tf-9",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "== 和 := 都是C++语言的运算符。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-09-tf-10",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "通过使用文件重定向操作，可以将程序中输出到 cout 的内容输出到文件中，这是常用的记录程序运行日志 的方法之一。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      }
+     ]
+    },
+    {
+     "id": "2023-12",
+     "name": "2023 年 12 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.0,
+     "questions": [
+      {
+       "qid": "4-2023-12-mc-1",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 1,
+       "answer": "A",
+       "stem": "下面有关函数参数的说法，正确的是( )。",
+       "code": "",
+       "options": {
+        "A": "函数参数传递时，主函数当中采用值传递方式将参数传递给子函数时，若子函数将参数值改变，主函数当中 的参数值不变。",
+        "B": "函数参数传递时，主函数当中采用值传递方式将参数传递给子函数时，若子函数将参数值改变，主函数当中 的参数值将随子函数一样改变而改变。",
+        "C": "函数参数传递时，主函数如果将参数的地址传递给子函数，若子函数将参数值改变，主函数当中的参数值将 不改变。",
+        "D": "函数参数传递可以不满足子函数的参数个数要求。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-mc-2",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 2,
+       "answer": "B",
+       "stem": "下面C++代码执行后，输出的是( )。",
+       "code": "",
+       "options": {
+        "A": "chen",
+        "B": "c",
+        "C": "chen a dai",
+        "D": "dai"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-mc-3",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 3,
+       "answer": "D",
+       "stem": "下面C++代码最后执行后输出是( )。",
+       "code": "",
+       "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-mc-4",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 4,
+       "answer": "C",
+       "stem": "下面C++代码执行后的结果是( )。",
+       "code": "",
+       "options": {
+        "A": "1 2 3 / 4 5 6 / 7 8 9",
+        "B": "1 2 3 4 5 6 7 8 9",
+        "C": "3 2 1 / 6 5 4 / 9 8 7",
+        "D": "9 8 7 6 5 4 3 2 1"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-mc-5",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 5,
+       "answer": "C",
+       "stem": "下面C++代码执行后输出是（ ）。",
+       "code": "",
+       "options": {
+        "A": "1,2,3",
+        "B": "1",
+        "C": "2",
+        "D": "3"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-mc-6",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 6,
+       "answer": "C",
+       "stem": "如果变量x的地址是0x6ffe14,下面C++代码执行以后输出的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "0x6ffe11",
+        "B": "0x6ffe14",
+        "C": "0x6ffe18",
+        "D": "0x6ffe15"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-mc-7",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 7,
+       "answer": "A",
+       "stem": "在C++中,执行下面代码后，输出的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "400",
+        "B": "200",
+        "C": "20",
+        "D": "100"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-mc-8",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 8,
+       "answer": "B",
+       "stem": "下列C++语句执行以后结果是true的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "3&&false",
+        "B": "5&&2",
+        "C": "101&&000",
+        "D": "4&true"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-mc-9",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 9,
+       "answer": "A",
+       "stem": "在如下的C++代码中实现了对字符串中出现的26个字母的个数统计，横线处应填入是（ ）。",
+       "code": "",
+       "options": {
+        "A": "alpha[i]=alpha[i-1]+1;",
+        "B": "alpha[i]=alpha[i]+1;",
+        "C": "alpha[i+1]=alpha[i]+1;",
+        "D": "alpha[i-1]=alpha[i]+1;"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-mc-10",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 10,
+       "answer": "A",
+       "stem": "下面C++代码执行后生成的文件其字节数为（ ）。",
+       "code": "",
+       "options": {
+        "A": "10",
+        "B": "16",
+        "C": "40",
+        "D": "24"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-mc-11",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 11,
+       "answer": "D",
+       "stem": "下列C++代码输入 1,2,3,4 ，执行后，将输出的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "1#4#",
+        "B": "1#3#",
+        "C": "1#2#3#4#",
+        "D": "1#2#3#4"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-mc-12",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 12,
+       "answer": "A",
+       "stem": "以下C++代码用于实现每个整数对应的因数，如输入 12 ，则输出 1 2 3 4 6 12 ；如输入 18 ，则输出 1 2 3 6 9 18 。横线处应填入代码是（ ）。",
+       "code": "",
+       "options": {
+        "A": "if(n%i==0)",
+        "B": "if(n/i==0)",
+        "C": "if(n%i!=0)",
+        "D": "if(n/i!=0)"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-mc-13",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 13,
+       "answer": "C",
+       "stem": "某公司新出了 款 驾驶的 汽车，通过声控智能驾驶系统，乘客只要告诉汽车 的地，车 就能 动 一 无 人 小 目 子 自 选择 条优化路线，告诉乘客后驶达那 。请问下 哪项不是驾驶系统完成选路所必须的。（ ） 一 里 面",
+       "code": "",
+       "options": {
+        "A": "麦克风",
+        "B": "扬声器",
+        "C": "油量表",
+        "D": "传感器"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-mc-14",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 14,
+       "answer": "B",
+       "stem": "现代计算机是指电 计算机，它所基于的是（ ）体系结构。 子",
+       "code": "",
+       "options": {
+        "A": "艾伦·图灵",
+        "B": "冯·诺依曼",
+        "C": "阿塔纳索夫",
+        "D": "埃克特-莫克利"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-mc-15",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 15,
+       "answer": "B",
+       "stem": "输 个正整数N（N>=7)，想找出它所有相邻的因数对， 如，输 12，因数对有(1,2)、(2,3)、(3.4) 。下 哪段代码找不到所有的因数对?()",
+       "code": "",
+       "options": {
+        "A": "for(i=1;i<N;i++) if(!(N%i) && !(N%(i+1))) printf(\"(%d,%d)\\n\", i, i+1);",
+        "B": "for(i=2;i<N;i++) if(!(N%i) && !(N%(i+1))) printf(\"(%d,%d)\\n\", i, i+1);",
+        "C": "for(i=2;i<N/2;i++) if(!(N%(i-1)) && !(N%i)) printf(\"(%d,%d)\\n\", i-1, i);",
+        "D": "for(i=1;i<N/2;i++) if(!(N%i) && !(N%(i+1))) printf(\"(%d,%d)\\n\", i, i+1);"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-tf-1",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "C++的内置函数 sort() 持数组的局部排序。例如 int a={10,9,8,7,6,5,4,3,2,1} ，可以 支 用 sort(a,a+5) ,排序成 {6,7,8,9,10,5,4,3,2,1} 。( )",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-tf-2",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "递归法求 的阶乘，时间复杂度是 。 用",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-tf-3",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "[(1,2)*2]*3 在C++中是合法的表达式。( )",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-tf-4",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "在下 的C++代码中，将对1.txt 件写 hello 。( ) 面 文 入",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-tf-5",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 5,
+       "answer": "×",
+       "stem": "本 件 1.txt 第1 由 01234 共5个字符组成其间没有空格，当 C++代码正常打开 件成功并执 如下 文 文 行 用 文 行 代码以后，第1 长度为5（ ） 行",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-tf-6",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "执行C++代码 cout<<(5||2); 后将输出 1 。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-tf-7",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "在C++中，两个字符串相加的运算符为+相当于字符串的合并运算。下面C++代码执行后，将输出 chenadai 。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-tf-8",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 8,
+       "answer": "√",
+       "stem": "C++内置函数 sort() 可以对整数、浮点数、字符数组进行从大到小，从小到大，局部排序。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-tf-9",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "小杨最近在准备考GESP，他用的Dev C++来练习和运行程序，所以Dev C++也是一个小型操作系统。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2023-12-tf-10",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "任何一个while循环都可以转化为等价的for循环（ ）。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "y2024",
+   "name": "2024 年真题",
+   "req": null,
+   "freq": null,
+   "difficulty": 3.0,
+   "sections": [
+    {
+     "id": "2024-03",
+     "name": "2024 年 3 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.0,
+     "questions": [
+      {
+       "qid": "4-2024-03-mc-1",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 1,
+       "answer": "C",
+       "stem": "若函数声明为 int f(int &x){ x+=3; return x; } ，则对声明的变量 int a=3 ，下面哪个调用能够改 变 a 的值( )。",
+       "code": "",
+       "options": {
+        "A": "f(&a) ;",
+        "B": "f(*a) ;",
+        "C": "f(a) ;",
+        "D": "f(a-3) ;"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-mc-2",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 2,
+       "answer": "C",
+       "stem": "下面C++代码执行后，输出的是( )。",
+       "code": "int main()\n{\nint x[]={2, 0, 2, 4};\nchar geSP[]=\"Grade Examination of SP\";\ncout << geSP[sizeof(x)] << endl;\ncout << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "G",
+        "B": "e",
+        "C": "n",
+        "D": "P"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-mc-3",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 3,
+       "answer": "D",
+       "stem": "下面C++代码执行后输出是( )。",
+       "code": "int foo(float *f)\n{\nreturn int(*f*2);\n}\nint main()\n{\nfloat fnum[10]={1.1};\nfnum[1]=foo(fnum);\ncout << fnum[0]+fnum[1] << endl;\ncout << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "1",
+        "B": "1.1",
+        "C": "3",
+        "D": "3.1"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-mc-4",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 4,
+       "answer": "D",
+       "stem": "对二维数组 int arr[3][16]; ，则 arr[1] 占用内存的大小为（ ）字节。",
+       "code": "",
+       "options": {
+        "A": "4",
+        "B": "16",
+        "C": "48",
+        "D": "64"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-mc-5",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 5,
+       "answer": "C",
+       "stem": "对二维数组 int arr[3][16]; ，若 arr 的地址是 0x28cbc0 ，则 arr[1] 的值是（ ）。",
+       "code": "",
+       "options": {
+        "A": "0x28cbc4",
+        "B": "0x28cbd0",
+        "C": "0x28cc00",
+        "D": "不确定"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-mc-6",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 6,
+       "answer": "C",
+       "stem": "下面C++代码执行后输出是（ ）。",
+       "code": "int main()\n{\nchar *p=\"I love GESP!\";\ncout << p+5 << endl;\ncout << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "e",
+        "B": "I lov",
+        "C": "e GESP!",
+        "D": "GESP!"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-mc-7",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 7,
+       "answer": "D",
+       "stem": "下面C++代码执行以后输出的是（ ）。",
+       "code": "int rc=5;\nint main()\n{\nint rc;\ncout << ++rc << endl;\ncout << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "0",
+        "B": "1",
+        "C": "6",
+        "D": "不确定"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-mc-8",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 8,
+       "answer": "A",
+       "stem": "下面C++函数中采用的算法是（ ）。",
+       "code": "int fib(int n)\n{\nint i, f[n]={0, 1};\nfor(int i=2; i<=n; i++)\nf[i]=f[i-1]+f[i-2];\nreturn f[n];\n}",
+       "options": {
+        "A": "递推",
+        "B": "递归",
+        "C": "迭代",
+        "D": "循环"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-mc-9",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 9,
+       "answer": "C",
+       "stem": "插入排序在最好情况下的时间复杂度是（ ）。",
+       "code": "",
+       "options": {
+        "A": "O(1)",
+        "B": "O(N/2)",
+        "C": "O(N)",
+        "D": "O(N²)"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-mc-10",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 10,
+       "answer": "B",
+       "stem": "在如下的C++代码执行后，设第11和12行的输出地址值分别为 X 和 Y ，则下面正确的是（ ）。",
+       "code": "struct pass{\nint no;\nchar name[20];\nint level;\n};\nint main()\n{\nstruct pass XiaoYang;\ncout << \"&XiaoYang=\" << &XiaoYang << endl;   //第11行\ncout << \"&(XiaoYang.no)=\" << &(XiaoYang.no) << endl; //第12行\ncout << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "X>Y",
+        "B": "X==Y",
+        "C": "X<Y",
+        "D": "不确定"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-mc-11",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 11,
+       "answer": "C",
+       "stem": "如果文件 1.txt 中的内容如下，则执行下面C++代码时，注释了 #### 那行代码所输出的 x 的值为（ ）。",
+       "code": "50 2024 3.16 I\nlove\nGESP!\nint main()\n{\nifstream fin;\nstring line;\nint x;\nfin.open(\"1.txt\",ios::in);\nfor (int i=0; i< 2; i++){\nfin >> line;\ncout << line << endl;\n}\nfin>>x;\ncout << x << endl; //####\ncout << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "5",
+        "B": "2024",
+        "C": "3",
+        "D": "0"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-mc-12",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 12,
+       "answer": "C",
+       "stem": "执行下列C++代码时输出中的第2行是（ ）。",
+       "code": "int main()\n{\nchar *s[]={(char*)\"2024\",(char*)\"3.16\",(char*)\"GESP\"};\nfor (int i=0; i< 2; i++){\ncout << *s+i << endl;\n}\ncout << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "2024",
+        "B": "3.16",
+        "C": "024",
+        "D": "3"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-mc-13",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 13,
+       "answer": "B",
+       "stem": "C++语言中下面哪个关键字能够限定对象的作用域（ ）。",
+       "code": "",
+       "options": {
+        "A": "extern",
+        "B": "static",
+        "C": "inline",
+        "D": "public"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-mc-14",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 14,
+       "answer": "C",
+       "stem": "小杨的父母最近刚刚给他买了一块华为手表，他说手表上跑的是鸿蒙，这个鸿蒙是（ ）。",
+       "code": "",
+       "options": {
+        "A": "小程序",
+        "B": "计时器",
+        "C": "操作系统",
+        "D": "神话人物"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-mc-15",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 15,
+       "answer": "C",
+       "stem": "中国计算机学会（CCF）在2024年1月27日的颁奖典礼上颁布了王选奖，王选先生的重大贡献是（ ）。",
+       "code": "",
+       "options": {
+        "A": "制造自动驾驶汽车",
+        "B": "创立培训学校",
+        "C": "发明汉字激光照排系统",
+        "D": "成立方正公司"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-tf-1",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "对 int a[]={2,0,2,4,3,1,6} ，执行第一趟选择排序处理后 a 中数据变为 {0,2,2,4,3,1,6} 。( )",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-tf-2",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "如果待排序数据不能都装进内存，需要使用外排序算法。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-tf-3",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "定义变量 int a=5 , 则 cout << &++a 会输出 6 。( )",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-tf-4",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 4,
+       "answer": "√",
+       "stem": "两个函数之间可以使用全局变量来传递数据。 ( )",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-tf-5",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 5,
+       "answer": "×",
+       "stem": "定义数组 int a[2024][3][16]={2,0,2,4,3,1,6} ，则 cout << a[2023][2][15] 的结果不确定。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-tf-6",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 6,
+       "answer": "×",
+       "stem": "在C++语言中，函数的参数为指针时，可以在函数内部修改该参数的值。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-tf-7",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 7,
+       "answer": "×",
+       "stem": "在C++语言中 try 子句里抛出的结构体等类型的异常无法被 catch 捕获。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-tf-8",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "C++语言中 cout << 9^2 << endl; 会输出81。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-tf-9",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "小杨今年春节回奶奶家了，奶奶家的数字电视要设置ip地址并接入到WIFI盒子才能收看节目，那这个WIFI盒 子具有路由器的功能。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-03-tf-10",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "任何一个 for 循环都可以转化为等价的 while 循环（ ）。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      }
+     ]
+    },
+    {
+     "id": "2024-06",
+     "name": "2024 年 6 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.0,
+     "questions": [
+      {
+       "qid": "4-2024-06-mc-1",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 1,
+       "answer": "B",
+       "stem": "下列代码中，输出结果是（ ）",
+       "code": "",
+       "options": {
+        "A": "12 24 24 12",
+        "B": "24 12 12 24",
+        "C": "12 12 24 24",
+        "D": "24 24 12 12"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-mc-2",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 2,
+       "answer": "B",
+       "stem": "下面函数不能正常执行的是（）",
+       "code": "",
+       "options": {
+        "A": "int func(){…} int main(){…}",
+        "B": "int main(){ func(); } int func(){…}",
+        "C": "int func(){…} int main(){ func(); }",
+        "D": "int func(); int main(){ func(); } int func(){…}"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-mc-3",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 3,
+       "answer": "B",
+       "stem": "下面程序输出的是（）",
+       "code": "",
+       "options": {
+        "A": "2 2 3 9",
+        "B": "2 10 3 9",
+        "C": "2 10 11 121",
+        "D": "2 10 3 100"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-mc-4",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 4,
+       "answer": "D",
+       "stem": "假设变量 a 的地址是0x6ffe14，下面程序的输出是（ ）。",
+       "code": "",
+       "options": {
+        "A": "10",
+        "B": "0x6ffe14",
+        "C": "0x6ffe15",
+        "D": "0x6ffe18"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-mc-5",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 5,
+       "answer": "B",
+       "stem": "如果下列程序输出的地址是 0x6ffe00 ，则 cout<<a+1<<endl; 输出的是（）",
+       "code": "",
+       "options": {
+        "A": "0x6ffe04",
+        "B": "0x6ffe0C",
+        "C": "0x6ffe08",
+        "D": "0x6ffe00"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-mc-6",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 6,
+       "answer": "D",
+       "stem": "C++中，关于文件路径说法错误的是（）",
+       "code": "",
+       "options": {
+        "A": "\"GESP.txt\"：指定与当前工作目录中的程序文件相同目录中的 GESP.txt 文件",
+        "B": "\"../data/GESP.txt\"：指定与当前工作目录中的程序文件上一级目录下的 data 目录中的 GESP.txt 文件",
+        "C": "\"./data/GESP.txt\"：指定与当前工作目录中的程序文件同级目录下的 data 目录中的 GESP.txt 文件",
+        "D": "\"GESP.txt\"是绝对路径"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-mc-7",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 7,
+       "answer": "D",
+       "stem": "关于直接插入排序，下列说法错误的是（）",
+       "code": "",
+       "options": {
+        "A": "插入排序的最好情况是数组已经有序，此时只需要进行 次比较，时间复杂度为",
+        "B": "最坏情况是数组逆序排序，此时需要进行 次比较以及 次赋值操作（插入）",
+        "C": "平均来说插入排序算法的复杂度为",
+        "D": "空间复杂度上，直接插入法是就地排序，空间复杂度为"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-mc-8",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 8,
+       "answer": "A",
+       "stem": "下列程序横线处，应该输入的是 （ ）。",
+       "code": "",
+       "options": {
+        "A": "swap(a[j],a[j+1]);",
+        "B": "swap(a[j-1],a[j]);",
+        "C": "swap(a[j-1],a[j+1]);",
+        "D": "swap(&a[j-1],&a[j+1]);"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-mc-9",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 9,
+       "answer": "A",
+       "stem": "下面关于递推的说法不正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "递推表现为自己调用自己",
+        "B": "递推是从简单问题出发，一步步的向前发展，最终求得问题。是正向的",
+        "C": "递推中，问题的n要求是在计算中确定，不要求计算前就知道n",
+        "D": "斐波那契数列可以用递推实现求解"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-mc-10",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 10,
+       "answer": "B",
+       "stem": "关于几种排序算法的说法，下面说法错误的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "选择排序不是一个稳定的排序算法",
+        "B": "冒泡排序算法不是一种稳定的排序算法",
+        "C": "`插入排序是一种稳定的排序算法",
+        "D": "如果排序前2个相等的数在序列中的前后位置顺序和排序后它们2个的前后位置顺序相同，则称为一种稳定的 排序算法"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-mc-11",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 11,
+       "answer": "A",
+       "stem": "数组{45,66,23,1,10,97,52,88,5,33}进行从小到大冒泡排序过程中，第一遍冒泡过后的序列是（ ）。",
+       "code": "",
+       "options": {
+        "A": "{45,23,1,10,66,52,88,5,33,97}",
+        "B": "{45,66,1,23,10,97,52,88,5,33}",
+        "C": "{45,66,23,1,10,52,88,5,33,97}",
+        "D": "{45,66,23,1,10,97,52,88,33,5}"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-mc-12",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 12,
+       "answer": "D",
+       "stem": "下面的排序算法程序中，横线处应该填入的是（ ）。",
+       "code": "int a[8]={ 2,3, 4, 5, 6,2,3,1};\nfor (int i=1;i<8;i++)\n{\nint key = a[i];\nint j=i-1;\nwhile(a[j]>key && j>=0)\n{\n________;\nj -= 1;\n}\na[j + 1]= key;\n}",
+       "options": {
+        "A": "a[j]=a[j-1];",
+        "B": "a[j]=a[j+1];",
+        "C": "a[j+1]=a[j-1];",
+        "D": "a[j+1]=a[j];"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-mc-13",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 13,
+       "answer": "A",
+       "stem": "下面的程序中，如果输入 10 0 ，会输出（ ）。",
+       "code": "",
+       "options": {
+        "A": "Division by zero condition!",
+        "B": "0",
+        "C": "10",
+        "D": "100"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-mc-14",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 14,
+       "answer": "B",
+       "stem": "10条直线，最多可以把平面分为多少个区域（ ）。",
+       "code": "",
+       "options": {
+        "A": "55",
+        "B": "56",
+        "C": "54",
+        "D": "58"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-mc-15",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 15,
+       "answer": "D",
+       "stem": "下面程序中，如果语句 cout<<p<<endl; 输出的是 0x6ffe00 ，则 cout<<++p<<endl; 输出的是（）",
+       "code": "int x[10][10][10]={{0}};\nint *p;\np=&x[0][0][0];\ncout<<p<<endl;\ncout<<++p<<endl;",
+       "options": {
+        "A": "0x6ffe0c",
+        "B": "0x6ffe09",
+        "C": "0x6ffe06",
+        "D": "0x6ffe04"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-tf-1",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 1,
+       "answer": "×",
+       "stem": "int& a 和 &a 是一样的，都是取 a 的地址。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-tf-2",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "以下代码不能够正确执行。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-tf-3",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 3,
+       "answer": "√",
+       "stem": "引用是一个指针常量。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-tf-4",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 4,
+       "answer": "√",
+       "stem": "下面程序两个输出结果是一样的。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-tf-5",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 5,
+       "answer": "×",
+       "stem": "函数不可以调用自己。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-tf-6",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "函数参数传递过程中，如果传常量值、常量引用和常量指针都是不能被修改的，它们可以防止函数对实参的 值或地址进行修改。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-tf-7",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "下面代码输出的值等于0。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-tf-8",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 8,
+       "answer": "√",
+       "stem": "在下面这个程序里， a[i][j] 和一个普通的整型变量一样使用。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-tf-9",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "一个一维数组，至少含有一个自然数N，是一个合法的数列。可以在一维数组末尾加入一个自然数M，M不 能超过一维数组末尾元素的一半，形成一个新的合法的一维数组，如果N=6，那么可以有6个不同的合法数组。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-06-tf-10",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "插入排序算法中，平均时间复杂度是 ，最坏的情况逆序情况下，达到最大时间复杂度。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      }
+     ]
+    },
+    {
+     "id": "2024-09",
+     "name": "2024 年 9 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.0,
+     "questions": [
+      {
+       "qid": "4-2024-09-mc-1",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 1,
+       "answer": "A",
+       "stem": "在 C++ 中，（ ）正确定义了一个返回整数值并接受两个整数参数的函数。",
+       "code": "",
+       "options": {
+        "A": "int add(int a, int b) { return a + b; }",
+        "B": "void add(int a, int b) { return a + b; }",
+        "C": "int add(a, b) { return a + b; }",
+        "D": "void add(int a, int b) { return a - b; }"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-mc-2",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 2,
+       "answer": "B",
+       "stem": "在C++中，形参与实参的关系描述正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "形参在函数调用时指定，实参在函数定义时传递",
+        "B": "形参在函数定义时指定，实参在函数调用时传递",
+        "C": "形参和实参可以互换",
+        "D": "形参和实参必须是完全相同的类型，不能有任何差异。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-mc-3",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 3,
+       "answer": "A",
+       "stem": "运行以下代码，屏幕上将输出（ ）。",
+       "code": "#include <iostream>\nusing namespace std;\nint var = 100;\nvoid function() {\nint var = 200;\ncout << var << \" \";\ncout << ::var << \" \";\n}\nint main() {\ncout << var << \" \";\nfunction();\nvar += 100;\ncout << var << \" \";\nreturn 0;\n}",
+       "options": {
+        "A": "100 200 100 200",
+        "B": "100 200 100 300",
+        "C": "100 200 200 200",
+        "D": "100 200 200 300"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-mc-4",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 4,
+       "answer": "B",
+       "stem": "运行下面代码，屏幕上输出是（ ）。",
+       "code": "int arr[3] = {24, 9, 7};\nint* p = arr;\np++;\ncout << *p << endl;",
+       "options": {
+        "A": "24",
+        "B": "9",
+        "C": "7",
+        "D": "不确定"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-mc-5",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 5,
+       "answer": "D",
+       "stem": "运行下面代码片段的结果是（ ）。",
+       "code": "int x = 20;\nint y = 24;\nint* p = &x;\nint* q = &y;\np = q;",
+       "options": {
+        "A": "将 赋值为24",
+        "B": "将 赋值为20",
+        "C": "将 指向 的地址",
+        "D": "将 指向 的地址"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-mc-6",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 6,
+       "answer": "A",
+       "stem": "在 C++ 中，（ ）正确定义一个名为 student 的结构体，其中包含一个 name 字符数组和一个 age 整数？",
+       "code": "",
+       "options": {
+        "A": "struct student { char name[20]; int age; };",
+        "B": "student struct { char name[20]; int age; };",
+        "C": "student struct { string name; int age; };",
+        "D": "struct student { char[20] name; int age; };"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-mc-7",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 7,
+       "answer": "B",
+       "stem": "在 C++ 中，（ ）正确声明了一个 3 行 4 列的二维数组。",
+       "code": "",
+       "options": {
+        "A": "int arr[3, 4];",
+        "B": "int arr[3][4];",
+        "C": "int arr[4][3];",
+        "D": "int arr(3, 4);"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-mc-8",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 8,
+       "answer": "D",
+       "stem": "一个二维数组定义为 int arr[3][4]; （假设一个int变量占4个字节），则 int arr[0] 占用（ ）个字节 的内存。",
+       "code": "",
+       "options": {
+        "A": "3",
+        "B": "4",
+        "C": "12",
+        "D": "16"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-mc-9",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 9,
+       "answer": "A",
+       "stem": "下面代码采用递推算法来实现整数 的阶乘（ ），则横线上应填写（ ）。",
+       "code": "int factorial(int n) {\nint result = 1;\nfor (int i = 2; i <= n; i++) {\n________________________________       // 在此处填入代码\n}\nreturn result;\n}",
+       "options": {
+        "A": "result *= i;",
+        "B": "result += i;",
+        "C": "result *= result;",
+        "D": "result += result;"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-mc-10",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 10,
+       "answer": "B",
+       "stem": "在排序算法中，稳定性指的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "排序后数据不会丢失",
+        "B": "排序后相同元素的相对顺序保持不变",
+        "C": "排序后数据不会被修改",
+        "D": "排序后数据的时间复杂度不变"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-mc-11",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 11,
+       "answer": "C",
+       "stem": "下面代码实现了冒泡排序函数，则横线上应填写（ ）。",
+       "code": "//交换数组arr的第i个元素和第j个元素\nvoid swap(vector<int> &arr, int i, int j) {\nint tmp = arr[i];\narr[i] = arr[j];\narr[j] = tmp;\n}\nint bubble_sort(vector<int> &arr) {\nfor (int i = arr.size() - 1; i > 0; i--) {\nbool flag = false; // 标志位\n________________________________ {    // 在此处填入代码\nif (arr[j] > arr[j + 1]) {\nswap(arr, i, j);\nflag = true;\n}\n}\nif (!flag)\nbreak; // 此轮“冒泡”未交换任何元素\n}\n}",
+       "options": {
+        "A": "for (int j = 0; j < arr.size() - 1; j++)",
+        "B": "for (int j = arr.size() - 1; j > 0; j--)",
+        "C": "for (int j = 0; j < i; j++)",
+        "D": "for (int j = i-1; j <=0; j--)"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-mc-12",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 12,
+       "answer": "A",
+       "stem": "上一题算法的时间复杂度为（ ）。",
+       "code": "",
+       "options": {
+        "A": "O(n²)",
+        "B": "O(2ⁿ)",
+        "C": "O(1)",
+        "D": "O(n)"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-mc-13",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 13,
+       "answer": "A",
+       "stem": "下面代码实现了插入排序函数（升序），则横线上应填写（ ）。",
+       "code": "void insertion_sort(vector<int> &nums) {\nfor (int i = 1; i < nums.size(); i++) {\nint base = nums[i], j = i - 1;\n________________________________ {    // 在此处填入代码\nnums[j + 1] = nums[j];\nj--;\n}\nnums[j + 1] = base;\n}\n}",
+       "options": {
+        "A": "while (j >= 0 && nums[j] > base)",
+        "B": "while (j > 0 && nums[j] > base)",
+        "C": "while (j >= 0 && nums[j] < base)",
+        "D": "while (j > 0 && nums[j] < base)"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-mc-14",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 14,
+       "answer": "A",
+       "stem": "小杨用文件重定向实现在 log.txt 文件中输出日志，则下面横线上应填写（ ）。",
+       "code": "#include <iostream>\n#include <fstream>\n#include <string>\nusing namespace std;\nint main() {\nofstream log_file(\"log.txt\");\nstreambuf* original_cout = cout.rdbuf();\ncout.rdbuf(log_file.rdbuf());\n___________________________________      // 在此处填入代码\ncout.rdbuf(original_cout);   // 恢复原始的标准输出缓冲区\nreturn 0;\n}",
+       "options": {
+        "A": "cout << \"This output will go to the log file.\" << endl;",
+        "B": "log_file << \"This output will go to the log file.\" << endl;",
+        "C": "cout >> \"This output will go to the log file.\" >> endl;",
+        "D": "log_file >> \"This output will go to the log file.\" >> endl;"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-mc-15",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 15,
+       "answer": "C",
+       "stem": "运行下面的代码，屏幕上将输出（ ）。",
+       "code": "#include <iostream>\nusing namespace std;\nint divide(int a, int b) {\nif (b == 0) {\nthrow runtime_error(\"division by zero error \");\n}\nreturn a / b;\n}\nint main() {\nint x = 10;\nint y = 0; // 设为 0 会导致除零错误\ntry {\nint result = divide(x, y);\ncout << \"result: \" << result << endl;\n} catch (const runtime_error& e) {\ncout << \"caught an exception: \" << e.what() << endl;\n}\nreturn 0;\n}",
+       "options": {
+        "A": "division by zero error result: caught an exception:",
+        "B": "result: caught an exception: division by zero error",
+        "C": "caught an exception: division by zero error",
+        "D": "division by zero error caught an exception: division by zero error"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-tf-1",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "代码 int a = 10; int* p = &a; 可以正确定义指针和初始化指针。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-tf-2",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "在 C++ 中，引 传递允许函数修改传递给它的参数的值。 用",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-tf-3",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "指针的 与其所指向的变量的数据类型的 相同。 大 小 大 小",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-tf-4",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "维数组的 的 的必须在定义时确定，列的 可以动态变化。 二 行 大 小 大 小",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-tf-5",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "递推算法通过逐步求解当前状态和前 个或 个状态之间的关系来解决问题。 一 几",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-tf-6",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 6,
+       "answer": "×",
+       "stem": "选择排序是稳定的排序算法。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-tf-7",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 7,
+       "answer": "×",
+       "stem": "插 排序的时间复杂度总是 冒泡排序低。 入 比",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-tf-8",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "在 C++ 中，如果没有捕获到异常（没有匹配的 catch 块），程序会继续执 不会终 。 行 而 止",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-tf-9",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "以下代码 递推法求斐波那契数列的第 项，时间复杂度为指数级。 用",
+       "code": "int fibonacci(int n) {\nif (n == 0) return 0;\nif (n == 1) return 1;\nint f0 = 0; // F(0)\nint f1 = 1; // F(1)\nint current;\nfor (int i = 2; i <= n; i++) {\ncurrent = f0+ f1; // F(n) = F(n-1) + F(n-2)\nf0 = f1;\nf1 = current;\n}\nreturn current;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-09-tf-10",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "执 下 C++代码后，输出的是20。 行 面",
+       "code": "int point(int* p){\nreturn *p * 2;\n}\nint main() {\nint a = 10;\nint* p = &a;\n*p = point(p);\ncout << *p << endl;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      }
+     ]
+    },
+    {
+     "id": "2024-12",
+     "name": "2024 年 12 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.0,
+     "questions": [
+      {
+       "qid": "4-2024-12-mc-1",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 1,
+       "answer": "A",
+       "stem": "下面的语句中，（ ）正确定义了一个计算浮点数 的平方( )的函数,并成功调用该函数。",
+       "code": "",
+       "options": {
+        "A": "1 float square(float x) { 2 return x * x; 3 } 4 float area = square(2);",
+        "B": "1 square(float x) { 2 return x * x; 3 } 4 float area = square(2);",
+        "C": "1 void square(float x) { 2 return x * x; 3 } 4 area = square(2.0);",
+        "D": "1 void square(float x) { 2 x * x; 3 return; 4 } 5 area = square(2);"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-mc-2",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 2,
+       "answer": "B",
+       "stem": "下面代码的描述中，正确的是（ ）。",
+       "code": "void n_chars(char c, int n) {\nwhile (n-- > 0)\ncout << c;\n}\nchar my_char = 'w';\nint times = 5;\nn_chars(my_char, times);",
+       "options": {
+        "A": "代码执行结束后， times 的值为0",
+        "B": "n 是形参， times 是实参",
+        "C": "n 是实参， times 是形参",
+        "D": "代码最后一行换成 n_chars(times, my_char); 也可以"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-mc-3",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 3,
+       "answer": "B",
+       "stem": "给定以下代码， 执行上述代码后，变量 a 的值为（ ）。",
+       "code": "void func(int& x) {\nx = x * 2;\n}\nint a = 5;\nfunc(a);",
+       "options": {
+        "A": "5",
+        "B": "10",
+        "C": "15",
+        "D": "20"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-mc-4",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 4,
+       "answer": "B",
+       "stem": "运行下面代码，屏幕上输出是（ ）。",
+       "code": "double* p_arr = new double [3];\np_arr[0] = 0.2;\np_arr[1] = 0.5;\np_arr[2] = 0.8;\np_arr += 1;\ncout << p_arr[0] << endl;\np_arr -= 1;\ndelete p_arr;",
+       "options": {
+        "A": "0.2",
+        "B": "0.5",
+        "C": "1.2",
+        "D": "1.5"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-mc-5",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 5,
+       "answer": "D",
+       "stem": "运行下面代码片段后， x 和 *p 的结果分别是（ ）。",
+       "code": "int x = 20;\nint* p = &x;\n*p = *p + 2；",
+       "options": {
+        "A": "20 20",
+        "B": "20 22",
+        "C": "22 20",
+        "D": "22 22"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-mc-6",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 6,
+       "answer": "D",
+       "stem": "下面的描述中，（ ）不能正确定义一个名为 Student 的结构体以及一个包含20个元素的结构数组。",
+       "code": "",
+       "options": {
+        "A": "1 struct Student { 2 string name; 3 int age; 4 float score; 5 }; 6 struct Student students[20];",
+        "B": "1 struct Student { 2 string name; 3 int age; 4 float score; 5 }; 6 Student students[20];",
+        "C": "1 struct Student { 2 string name; 3 int age; 4 float score; 5 }; 6 Student* students = new Student[20];",
+        "D": "1 struct Student { 2 string name; 3 int age; 4 float score; 5 }; 6 Student students = new Student[20];"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-mc-7",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 7,
+       "answer": "D",
+       "stem": "假定整型是32位，对一个 行 列的二维整数数组 array ,假设数组第一个元素在内存中的地址为 0x7ffee4065820 ，则第2行第2个元素的地址 &array[1][1] 为（ ）。",
+       "code": "int array[2][3] = {\n{0, 1, 2},\n{3, 4, 5}\n};",
+       "options": {
+        "A": "0x7ffee4065824",
+        "B": "0x7ffee4065828",
+        "C": "0x7ffee406582c",
+        "D": "0x7ffee4065830"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-mc-8",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 8,
+       "answer": "D",
+       "stem": "下面（ ）正确定义二维数组。",
+       "code": "",
+       "options": {
+        "A": "int a[3][];",
+        "B": "int a[][];",
+        "C": "int a[][4];",
+        "D": "int a[][2] = {{1,2},{1,2},{3,4}};"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-mc-9",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 9,
+       "answer": "A",
+       "stem": "下面代码采用递推算法来计算斐波那契数列 ，则横线上应填写（ ）。",
+       "code": "int fib(int n) {\nif (n == 0 || n == 1)\nreturn n;\nint f1 = 0;\nint f2 = 1;\nint result = 0;\nfor (int i = 2; i <= n; i++) {\n________________________________   // 在此处填入代码\n}\nreturn result;\n}",
+       "options": {
+        "A": "1 result = f1 + f2; 2 f1 = f2; 3 f2 = result;",
+        "B": "1 result += f1 + f2; 2 f1 = f2; 3 f2 = result;",
+        "C": "1 result += f1 + f2; 2 f2 = result; 3 f1 = f2;",
+        "D": "1 result = f1 + f2; 2 f2 = result; 3 f1 = f2;"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-mc-10",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 10,
+       "answer": "C",
+       "stem": "下面关于排序算法（冒泡排序、插入排序和选择排序）的描述中，不正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "冒泡排序基于元素交换实现，需借助临时变量，共涉及 个单元操作；而插入排序基于元素赋值实现，仅需 个单元操作。因此冒泡排序的计算开销通常比插入排序更高。",
+        "B": "选择排序在任何情况下的时间复杂度都为 。",
+        "C": "冒泡排序在任何情况下的时间复杂度都为 。",
+        "D": "如果给定数据部分有序，插入排序通常比选择排序效率更高。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-mc-11",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 11,
+       "answer": "B",
+       "stem": "冒泡排序的第一轮操作是从左到右遍历数组，通过两两比较相邻元素，将当前最大的元素移动到末尾。给 定数组 arr[]={4, 1, 3, 1, 5, 2} ，执行第一轮冒泡排序后数组 arr 中的内容为（ ）。",
+       "code": "",
+       "options": {
+        "A": "1, 4, 3, 1, 5, 2",
+        "B": "1, 3, 1, 4, 2, 5",
+        "C": "1, 4, 3, 1, 2, 5",
+        "D": "4, 1, 3, 1, 5, 2"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-mc-12",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 12,
+       "answer": "B",
+       "stem": "给定如下代码，其时间复杂度为（ ）。",
+       "code": "int cellRecur(int n) {\nif (n == 1)\nreturn 1;\nreturn cellRecur(n - 1) + cellRecur(n - 1) + 1;\n}",
+       "options": {
+        "A": "O(n²)",
+        "B": "O(2ⁿ)",
+        "C": "O(1)",
+        "D": "O(n)"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-mc-13",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 13,
+       "answer": "A",
+       "stem": "下面代码实现了插入排序函数，则横线上应填写（ ）。",
+       "code": "void insertion_sort(vector<int> &nums) {\nfor (int i = 1; i < nums.size(); i++) {\n________________________________ {    // 在此处填入代码\nwhile (j >= 0 && nums[j] > base)\nnums[j + 1] = nums[j];\nj--;\n}\nnums[j + 1] = base;\n}\n}",
+       "options": {
+        "A": "int base = nums[i], j = i - 1;",
+        "B": "int base = nums[i], j = i;",
+        "C": "int base = nums[0], j = i - 1;",
+        "D": "int base = nums[0], j = i;"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-mc-14",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 14,
+       "answer": "C",
+       "stem": "下面哪种方式不能实现将字符串\"Welcome to GESP!\"输出重定向到文件 log.txt （ ）。",
+       "code": "",
+       "options": {
+        "A": "1 freopen(\"log.txt\", \"w\", stdout); 2 cout << \"Welcome to GESP!\" << endl; 3 fclose(stdout);",
+        "B": "1 std::ofstream outFile(\"log.txt\"); 2 outFile << \"Welcome to GESP!\" << endl; 3 outFile.close();",
+        "C": "1 std::ofstream outFile(\"log.txt\"); 2 cout << \"Welcome to GESP!\" << endl; 3 outFile.close();",
+        "D": "1 ofstream log_file(\"log.txt\"); 2 streambuf* org_cout = cout.rdbuf(); 3 cout.rdbuf(log_file.rdbuf()); 4 cout << \"This output will go to the log file.\" << endl; 5 cout.rdbuf(oorg_cout);"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-mc-15",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 15,
+       "answer": "A",
+       "stem": "运行下面的代码，将出现什么情况？（ ）",
+       "code": "double hmean(double a, double b) {\nif (a == -b )\nthrow runtime_error(\"Runtime error occurred\");\nreturn 2.0*a*b/(a + b);\n}\nint main() {\ndouble x = 10;\ndouble y = -10;\ntry {\nint result = hmean(x, y);\ncout << \"hmean: \" << result << endl;\n}\ncatch (const runtime_error& e) {\ncout << \"Caught: \" << e.what() << endl;\n} catch (...) {\ncout << \"Caught an unknown exception.\" << endl;\n}\nreturn 0;\n}",
+       "options": {
+        "A": "屏幕上输出 Caught: Runtime error occurred",
+        "B": "屏幕上输出 Caught an unknown exception",
+        "C": "程序调用 std::terminate()",
+        "D": "编译错误"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-tf-1",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 1,
+       "answer": "×",
+       "stem": "在 C++ 中，下面代码可以正确定义指针和初始化指针。",
+       "code": "int* ptr;\n*ptr = 10;",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-tf-2",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 2,
+       "answer": "×",
+       "stem": "一个函数必须在调用之前既声明又定义。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-tf-3",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "函数参数可以通过值传递、引用传递和指针传递，这样函数内对参数的修改可以直接修改传入变量的值。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-tf-4",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "int arr[3][] 是一个正确的二维数组的声明。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-tf-5",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "递推是一种通过已知的初始值和递推公式，逐步求解目标值的算法。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-tf-6",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "某算法的递推关系式为 （ 为正整数）及 ，则该算法的时间复杂度为 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-tf-7",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "冒泡排序的平均时间复杂度为 ，但最优情况下为 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-tf-8",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 8,
+       "answer": "√",
+       "stem": "冒泡排序和插入排序都是稳定的排序算法。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-tf-9",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "选择排序是稳定的排序算法。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2024-12-tf-10",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 10,
+       "answer": "×",
+       "stem": "在 C++语言中，如果一个函数可能抛出异常，那么一定要在try 子句里调用这个函数。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "y2025",
+   "name": "2025 年真题",
+   "req": null,
+   "freq": null,
+   "difficulty": 3.0,
+   "sections": [
+    {
+     "id": "2025-03",
+     "name": "2025 年 3 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.0,
+     "questions": [
+      {
+       "qid": "4-2025-03-mc-1",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 1,
+       "answer": "A",
+       "stem": "关于下述代码，说法错误的是（ ）。",
+       "code": "int multiply(int x, int y);\nint main() {\nint a = 4;\nint b = 5;\nint result = multiply(a, b);\nstd::cout << \"The result is: \" << result << std::endl;\nreturn 0;\n}\nint multiply(int x, int y) {\nreturn x * y;\n}",
+       "options": {
+        "A": "函数 multiply 的定义应该放到函数 main 之前。",
+        "B": "函数声明 int multiply(int x, int y); 中明确指定了函数 multiply() 的返回值为整数类型。",
+        "C": "在 main 函数中，函数 multiply 通过 multiply(a, b) 被调用，其中 a 和 b 是定义在 main 函数中的变 量，它们作为实参传递给了 multiply 函数的形参 x 和 y 。",
+        "D": "运行上述代码，将输出 The result is: 20 。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-mc-2",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 2,
+       "answer": "B",
+       "stem": "执行下述代码将输出（ ）。",
+       "code": "int x = 10;\nvoid func() { int x = 20; std::cout << x; }\nint main() {\nfunc();\nstd::cout << x;\nreturn 0;\n}",
+       "options": {
+        "A": "2020",
+        "B": "2010",
+        "C": "1010",
+        "D": "编译错误"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-mc-3",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 3,
+       "answer": "B",
+       "stem": "执行下述代码后，变量 a 的值为（ ）。",
+       "code": "int a = 10;\nint* p = &a;\n*p = 20",
+       "options": {
+        "A": "10",
+        "B": "20",
+        "C": "随机值",
+        "D": "编译错误"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-mc-4",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 4,
+       "answer": "D",
+       "stem": "以下哪种参数传递方式可以避免拷贝大型对象？",
+       "code": "",
+       "options": {
+        "A": "只能用值传递",
+        "B": "只能用引用传递",
+        "C": "只能用指针传递",
+        "D": "引用传递和指针传递均可"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-mc-5",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 5,
+       "answer": "D",
+       "stem": "执行下述代码，将输出（ ）。",
+       "code": "void swap(int a, int &b) {\nint temp = a;\na = b;\nb = temp;\n}\nint main() {\nint x = 1, y = 2;\nswap(x, y);\nstd::cout << x << y;\nreturn 0;\n}",
+       "options": {
+        "A": "12",
+        "B": "21",
+        "C": "22",
+        "D": "11"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-mc-6",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 6,
+       "answer": "C",
+       "stem": "下面的描述中，（ ）正确定义一个名为 Person 的结构体并正确初始化了一个 Person 结构体的变量 p 。",
+       "code": "",
+       "options": {
+        "A": "1 struct Person { 2 string name; 3 int age; 4 }; 5 Person p(\"Yang\", 10);",
+        "B": "1 struct Person { 2 string name, 3 int age; 4 }; 5 Person p; 6 p.name = \"Yang\"; 7 p.age = 10;",
+        "C": "1 struct Person { 2 string name; 3 int age; 4 }; 5 Person p = { \"Yang\", 10 };",
+        "D": "1 struct Person { 2 string name; 3 int age; 4 }; 5 Person p = new Person(\"Yang\", 10);"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-mc-7",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 7,
+       "answer": "D",
+       "stem": "给定如下代码， 下面描述错误的是（ ）。",
+       "code": "struct Person {\nstd::string name;\nint age;\nstruct Address {\nstd::string street;\nstd::string city;\n};\nAddress address;\n};",
+       "options": {
+        "A": "结构 Person 内嵌套结构 Address",
+        "B": "Person 有一个 Address 类型的 address 成员",
+        "C": "一个 Person 类型的变量 p 的 address 的初始化可以写成： p.address.street = \"123 Main St\"; p.address.city = \"Anytown\";",
+        "D": "结构的嵌套可以减少命名冲突，因此可以不必控制嵌套层次"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-mc-8",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 8,
+       "answer": "D",
+       "stem": "假设 int arr[2][3] = {{1,2,3},{4,5,6}}; ，则 arr[1][2] 的值是（ ）。",
+       "code": "",
+       "options": {
+        "A": "2",
+        "B": "3",
+        "C": "5",
+        "D": "6"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-mc-9",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 9,
+       "answer": "B",
+       "stem": "下面（ ）正确定义了二维数组。",
+       "code": "",
+       "options": {
+        "A": "int arr[3,4];",
+        "B": "int arr[3][4];",
+        "C": "int arr(3,4);",
+        "D": "int a[3-4];"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-mc-10",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 10,
+       "answer": "B",
+       "stem": "小杨正在爬楼梯，需要爬 阶才能到达楼顶。如果每次可以爬 个或 个台阶，下面代码采用递推算法来计算 一共有多少种不同的方法可以爬到楼顶，则横线上应填写（ ）。",
+       "code": "int f(int n) {\nif (n == 1 || n == 2)\nreturn n;\nint f1 = 1;\nint f2 = 2;\nint res = 0;\nfor (int i = 3; i <= n; i++) {\n________________________________   // 在此处填入代码\n}\nreturn res;\n}",
+       "options": {
+        "A": "1 res += f1 + f2; 2 f1 = f2; 3 f2 = res;",
+        "B": "1 res = f1 + f2; 2 f1 = f2; 3 f2 = res;",
+        "C": "1 res += f1 + f2; 2 f2 = res; 3 f1 = f2;",
+        "D": "1 res = f1 + f2; 2 f2 = res; 3 f1 = f2;"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-mc-11",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 11,
+       "answer": "B",
+       "stem": "给定如下算法，其时间复杂度为（ ）。",
+       "code": "bool f(int arr[], int n, int target) {\nfor (int i = 0; i < (1 << n); i++) {\nint sum = 0;\nfor (int j = 0; j < n; j++) {\nif (i & (1 << j)) {\nsum += arr[j];\n}\n}\nif (sum == target) return true;\n}\nreturn false;\n}",
+       "options": {
+        "A": "O(n²)",
+        "B": "O(n × 2ⁿ)",
+        "C": "O(1)",
+        "D": "O(n³)"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-mc-12",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 12,
+       "answer": "B",
+       "stem": "下面关于排序稳定性的描述，正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "稳定性指算法的时间复杂度恒定",
+        "B": "稳定排序保证相同元素的相对顺序不变",
+        "C": "选择排序是稳定排序",
+        "D": "插入排序不是稳定排序"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-mc-13",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 13,
+       "answer": "A",
+       "stem": "对数组 arr[]={5, 3, 8, 1} 进行升序排序，执行第一轮冒泡排序后数组 arr 中的内容为（ ）。",
+       "code": "",
+       "options": {
+        "A": "3, 5, 1, 8",
+        "B": "3, 1, 5, 8",
+        "C": "3, 5, 8, 1",
+        "D": "5, 3, 8, 1"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-mc-14",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 14,
+       "answer": "A",
+       "stem": "运行下面的代码，将出现（ ）。",
+       "code": "double hmean(double a, double b) {\nif (a == -b )\nthrow runtime_error(\"Runtime error occurred.\");\nreturn 2.0*a*b/(a + b);\n}\nint main() {\ndouble x = 10;\ndouble y = -10;\ntry {\nint result = hmean(x, y);\ncout << \"hmean: \" << result << endl;\n}\ncatch (const runtime_error& e) {\ncout << \"Caught: \" << e.what() << endl;\n} catch (...) {\ncout << \"Caught an unknown exception.\" << endl;\n}\nreturn 0;\n}",
+       "options": {
+        "A": "屏幕上输出 Caught: Runtime error occurred.",
+        "B": "屏幕上输出 Caught an unknown exception.",
+        "C": "程序调用 std::terminate()",
+        "D": "编译错误"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-mc-15",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 15,
+       "answer": "C",
+       "stem": "下面哪种方式不能实现将字符串 \"Happy Spring!\" 输出重定向到文件 log.txt （ ）。",
+       "code": "",
+       "options": {
+        "A": "1 freopen(\"log.txt\", \"w\", stdout); 2 cout << \"Happy Spring!\" << endl; 3 fclose(stdout);",
+        "B": "1 std::ofstream outFile(\"log.txt\"); 2 outFile << \"Happy Spring!\" << endl; 3 outFile.close();",
+        "C": "1 std::ofstream outFile(\"log.txt\"); 2 cout << \"Happy Spring!\" << endl; 3 outFile.close();",
+        "D": "1 ofstream log_file(\"log.txt\"); 2 streambuf* org_cout = cout.rdbuf(); 3 cout.rdbuf(log_file.rdbuf()); 4 cout << \"Happy Spring!\" << endl; 5 cout.rdbuf(org_cout);"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-tf-1",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "函数是C++中的核心概念，用于封装可重用的代码块。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-tf-2",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 2,
+       "answer": "×",
+       "stem": "在C++中，函数的返回类型可以省略，默认为 int 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-tf-3",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 3,
+       "answer": "√",
+       "stem": "结构体的成员默认是 public 访问权限。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-tf-4",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "假设整数数组 arr[4]= {0, 1, 2, 3}; 的第一个元素在内存中的地址为 0x7ffee4065820 , 经过 int* p = arr; p += 1; 后，指针 p 的值是1。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-tf-5",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 5,
+       "answer": "×",
+       "stem": "二维数组作为函数参数时，必须显式指定所有维度的大小。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-tf-6",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "递推是一种通过已知的初始值和递推公式，逐步求解目标值的算法。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-tf-7",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "考虑最坏情况下冒泡排序算法的时间复杂度， 为待排序数字的数目为 的复杂度，则其递推关系式为 ， 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-tf-8",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "插入排序在最好情况（已有序）下的时间复杂度是 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-tf-9",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "对数组 arr[]={4, 3, 1, 5, 2} 进行升序排序，执行第一轮选择排序后数组arr中的内容是 {1, 4, 3, 5, 2} 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-03-tf-10",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "未捕获异常会调用std::terminate终止程序。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      }
+     ]
+    },
+    {
+     "id": "2025-06",
+     "name": "2025 年 6 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.0,
+     "questions": [
+      {
+       "qid": "4-2025-06-mc-1",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 1,
+       "answer": "A",
+       "stem": "在C++中，声明一个指向整型变量的指针的正确语法是（ ）。",
+       "code": "",
+       "options": {
+        "A": "int* ptr;",
+        "B": "*int ptr;",
+        "C": "int ptr*;",
+        "D": "ptr int;"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-mc-2",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 2,
+       "answer": "D",
+       "stem": "下面的函数接收一个 行 列的二维数组并输出其中元素，则横线上不能填写（ ）。",
+       "code": "void printArray(________) {\nfor (int i = 0; i < 3; ++i)\nfor (int j = 0; j < 4; ++j)\nstd::cout << arr[i][j] << \" \";\n}",
+       "options": {
+        "A": "int arr[3][4]",
+        "B": "int arr[][4]",
+        "C": "int (*arr)[4]",
+        "D": "int** arr"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-mc-3",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 3,
+       "answer": "D",
+       "stem": "在C++中， int arr[3][4] 和 int* arr = new int[12] 均可模拟一个 行 列的二维数组。关于这两种方 式，下面说法错误的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "int arr[3][4] 在栈上分配空间，适合数组较小的情况；",
+        "B": "int* arr = new int[12] 在堆上分配空间，数组较大时也适用；",
+        "C": "这两种方式申请的内存空间都是连续的。",
+        "D": "这两种方式申请的内存都能自动释放。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-mc-4",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 4,
+       "answer": "B",
+       "stem": "关于以下 C++代码，说法正确的是（ ）。",
+       "code": "int main() {\ngreet();\nreturn 0;\n}\nvoid greet() {\ncout << \"Hello!\" << endl;\n}",
+       "options": {
+        "A": "正确编译并输出 Hello!",
+        "B": "编译错误：找不到函数 greet()",
+        "C": "编译警告但可以运 行",
+        "D": "链接错误"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-mc-5",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 5,
+       "answer": "C",
+       "stem": "在C++中，如果希望通过函数修改传 的结构体对象的内容，应该使 哪种参数传递 式？ 入 用 方",
+       "code": "",
+       "options": {
+        "A": "值传递或引 传递 用",
+        "B": "值传递或指针传递",
+        "C": "引 传递或指针传递 用",
+        "D": "仅指针传递"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-mc-6",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 6,
+       "answer": "B",
+       "stem": "以下哪个选项正确描述了C++中形参和实参的区别？",
+       "code": "",
+       "options": {
+        "A": "形参是函数调 时传递给函数的具体值，实参是函数定义中声明的变量。 用",
+        "B": "形参是函数定义中声明的变量，实参是函数调 时传递给函数的具体值。 用",
+        "C": "形参和实参在函数调 时是完全相同的。 用",
+        "D": "形参只在函数内部可见，实参在函数外部可见。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-mc-7",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 7,
+       "answer": "C",
+       "stem": "运 如下代码会输出（ ）。 行",
+       "code": "int value = 100;\nvoid print1() {\nint value = 50;\ncout << value << \" \";\ncout << ::value << \" \";\n}\nvoid print2() {\ncout << value << \" \";\n}\nprint1();\nprint2();",
+       "options": {
+        "A": "100 100 100",
+        "B": "50 50 50",
+        "C": "50 100 100",
+        "D": "50 50 100"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-mc-8",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 8,
+       "answer": "B",
+       "stem": "小杨在整理一副扑克牌的所有红心扑克牌，使其从小到大排列。他的做法是：最开始抓到第1张扑克牌被认 为已经排好序；然后抓第2张扑克牌，将其插入至有序部分的正确位置；不断循环步骤，每次将新抓到扑克牌插入至 有序部分，直至抓完所有扑克牌，这样抓牌结束时就完成了扑克牌的排序。小杨这种整理扑克牌的方式与（ ）排序 的方式最接近。",
+       "code": "",
+       "options": {
+        "A": "冒泡排序",
+        "B": "插入排序",
+        "C": "选择排序",
+        "D": "直接排序"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-mc-9",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 9,
+       "answer": "C",
+       "stem": "以下哪种情况是使用插入排序的合适场景？",
+       "code": "",
+       "options": {
+        "A": "数据量非常大，且乱序严重",
+        "B": "希望获得稳定排序，但不要求实时性",
+        "C": "数据几乎有序，只需少量调整",
+        "D": "想在交换次数最少的前提下排好大数组"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-mc-10",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 10,
+       "answer": "B",
+       "stem": "以下关于递推算法基本思想的描述，正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "递推算法通过将问题分解为相互独立的子问题来解决。",
+        "B": "递推算法从已知的基础情况出发，通过某种关系逐步推导出更大规模问题的解。",
+        "C": "递推算法通常用于穷举所有可能的解决方案。",
+        "D": "递推算法适用于在每一步做出局部最优选择以达到全局最优。"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-mc-11",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 11,
+       "answer": "B",
+       "stem": "给定如下算法，其时间复杂度为（ ）。",
+       "code": "bool f(int arr[], int n, int target) {\nfor (int i = 0; i < n; i++) {\nint sum = 0;\nfor (int j = 0; j < n; j++) {\nif (i & (1 << j)) {\nsum += arr[j];\n}\n}\nif (sum == target) return true;\n}\nreturn false;\n}",
+       "options": {
+        "A": "O(n)",
+        "B": "O(n²)",
+        "C": "O(n³)",
+        "D": "O(2ⁿ)"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-mc-12",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 12,
+       "answer": "D",
+       "stem": "下述斐波那契数列计算的时间复杂度是（ ）。",
+       "code": "int fibonacci(int n) {\nif (n == 0) return 0;\nif (n == 1) return 1;\nreturn fibonacci(n - 1) + fibonacci(n - 2);\n}",
+       "options": {
+        "A": "O(n)",
+        "B": "O(n²)",
+        "C": "O(n³)",
+        "D": "O(2ⁿ)"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-mc-13",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 13,
+       "answer": "C",
+       "stem": "关于下 C++ 程序的描述，（ ）最准确。 面",
+       "code": "ifstream in(\"data.txt\");\nstring line;\nwhile (getline(in, line)) {\ncout << line << endl;\n}",
+       "options": {
+        "A": "将从标准输 读取每 ，并输出到屏幕 入 行",
+        "B": "程序 法运 ，因为 getline 只能读取 cin 无 行",
+        "C": "将 data.txt 中的每 读取并输出到屏幕 一 行",
+        "D": "程序将创建 data.txt 并写 默认 本 入 文"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-mc-14",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 14,
+       "answer": "B",
+       "stem": "在C++中，异常处理机制（try-catch块）的主要 的是( )。 目",
+       "code": "",
+       "options": {
+        "A": "提 程序的运 速度。 高 行",
+        "B": "在程序发 运 时错误时，提供 种结构化的错误处理 式。 生 行 一 方",
+        "C": "确保程序在编译时没有错误。",
+        "D": "减少程序的内存占 。 用"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-mc-15",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 15,
+       "answer": "B",
+       "stem": "为了提 冒泡排序的效率，如果某轮“冒泡”中没有执 任何交换操作，说明数组已经完成排序，可直接返 高 行 回结果，则两条横线上分别应该填写（ ）。",
+       "code": "void bubbleSortWithFlag(vector<int> &nums) {\nfor (int i = nums.size() - 1; i > 0; i--) {\nbool flag;\n________________    // 在此处填入代码\nfor (int j = 0; j < i; j++) {\nif (nums[j] > nums[j + 1]) {\nswap(nums[j], nums[j + 1]);\n___________________________             // 在此处填入代码\n}\n}\nif (!flag)\nbreak;\n}\n}",
+       "options": {
+        "A": "1 flag = false; 2 flag = false;",
+        "B": "1 flag = false; 2 flag = true;",
+        "C": "1 flag = true; 2 flag = false;",
+        "D": "1 flag = true; 2 flag = true;"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-tf-1",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "下 C++代码正确声明了 个返回 int 类型、接受两个 int 参数的函数。 面 一",
+       "code": "int add(int, int);",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-tf-2",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 2,
+       "answer": "×",
+       "stem": "下 C++代码的输出是 15 。 面",
+       "code": "void foo(int x) {\nx += 5;\n}\nint main() {\nint a = 10;\nfoo(a);\ncout << a << endl;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-tf-3",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "下 c++代码在 个结构体中 定义了别的结构体。这种结构嵌套定义的 式语法不正确。 面 一 又 方",
+       "code": "#include <string>\n#include <vector>\nusing namespace std;\nstruct Library {\nstruct Book {\nstruct Author {\nstring name;\nint birthYear;\n};\nstring title;\nint year;\nAuthor author;\n};\nstring name;\nvector<Book> books;\n};",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-tf-4",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 4,
+       "answer": "√",
+       "stem": "在C++中，相比于值传递，使用引用传递作的优点可以直接操作和修改原始变量，避免数据拷贝，提高效 率。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-tf-5",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 5,
+       "answer": "×",
+       "stem": "下面这段代码不合法，因为每一行都必须显式初始化 个元素。 int arr[2][3] = {{1, 2}, {3}};",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-tf-6",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 6,
+       "answer": "×",
+       "stem": "以下程序中使用了递推方式计算阶乘（ ），计算结果正确。",
+       "code": "int factorial(int n) {\nint res = 1;\nfor (int i = 0; i < n; ++i) {\nres *= i;\n}\nreturn res;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-tf-7",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "无论初始数组是否有序，选择排序都执行 次比较",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-tf-8",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 8,
+       "answer": "√",
+       "stem": "以下C++代码，尝试对有 n 个整数的数组 arr 进行排序。这个代码实现了选择排序算法。",
+       "code": "for (int i = 0; i < n - 1; ++i) {\nint minIndex = i;\nfor (int j = i + 1; j < n; ++j) {\nif (arr[j] < arr[minIndex])\nminIndex = j;\n}\nif (minIndex != i)\nswap(arr[i], arr[minIndex]);\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-tf-9",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "如果一个异常在 try 块中抛出但没有任何 catch 匹配，它将在编译时报错。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-06-tf-10",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "下面C++代码实现将 Hello 写入 data.txt 。",
+       "code": "ofstream out(\"data.txt\");\nout << \"Hello\";\nout.close();",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      }
+     ]
+    },
+    {
+     "id": "2025-09",
+     "name": "2025 年 9 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.0,
+     "questions": [
+      {
+       "qid": "4-2025-09-mc-1",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 1,
+       "answer": "B",
+       "stem": "运行下面程序后变量 a 的值是（ ）。",
+       "code": "int a = 42;\nint* p = &a;\n*p = *p + 1;",
+       "options": {
+        "A": "42",
+        "B": "43",
+        "C": "编译错误",
+        "D": "不确定"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-mc-2",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 2,
+       "answer": "C",
+       "stem": "以下关于数组的描述中，（ ）是错误的。",
+       "code": "",
+       "options": {
+        "A": "数组名是一个指针常量",
+        "B": "随机访问数组的元素方便快捷",
+        "C": "数组可以像指针一样进行自增操作",
+        "D": "sizeof(arr) 返回的是整个数组 arr 占用的字节数"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-mc-3",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 3,
+       "answer": "D",
+       "stem": "给定如下定义的数组 arr ，则 *(*(arr + 1) + 2) 的值是（ ）。",
+       "code": "int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};",
+       "options": {
+        "A": "2",
+        "B": "5",
+        "C": "4",
+        "D": "6"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-mc-4",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 4,
+       "answer": "A",
+       "stem": "下面这段代码会输出（ ）。",
+       "code": "int add(int a, int b = 1); // 函数声明\nint main() {\ncout << add(2) << \" \" << add(2, 3);\nreturn 0;\n}\nint add(int a, int b) { // 函数定义\nreturn a + b;\n}",
+       "options": {
+        "A": "3 5",
+        "B": "编译失败：定义处少了默认参数",
+        "C": "运行错误",
+        "D": "链接失败：未定义引用"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-mc-5",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 5,
+       "answer": "D",
+       "stem": "下面这段代码会输出（ ）。",
+       "code": "int x = 5;\nvoid foo() {\nint x = 10;\ncout << x << \" \";\n}\nvoid bar() {\ncout << x << \" \";\n}\nint main() {\nfoo();\nbar();\n}",
+       "options": {
+        "A": "5 5",
+        "B": "10 10",
+        "C": "5 10",
+        "D": "10 5"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-mc-6",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 6,
+       "answer": "C",
+       "stem": "下面程序运行的结果是（ ）。",
+       "code": "void increaseA(int x) {\nx++;\n}\nvoid increaseB(int* p) {\n(*p)++;\n}\nint main() {\nint a = 5;\nincreaseA(a);\ncout << a << \" \";\nincreaseB(&a);\ncout << a;\n}",
+       "options": {
+        "A": "6 7",
+        "B": "6 6",
+        "C": "5 6",
+        "D": "5 5"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-mc-7",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 7,
+       "answer": "B",
+       "stem": "关于结构体初始化，以下哪个选项中正确的是（ ）。",
+       "code": "struct Point {int x,y;};",
+       "options": {
+        "A": "Point p = (1,2);",
+        "B": "Point p = {1,2};",
+        "C": "Point p = new {1,2};",
+        "D": "Point p = <1,2>;"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-mc-8",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 8,
+       "answer": "B",
+       "stem": "运 如下代码会输出（ ）。 行",
+       "code": "struct Cat {\nstring name;\nint age;\n};\nvoid birthday(Cat& c) {\nc.age++;\n}\nint main() {\nCat kitty{\"Mimi\", 2};\nbirthday(kitty);\ncout << kitty.name << \" \" << kitty.age;\n}",
+       "options": {
+        "A": "Mimi 2",
+        "B": "Mimi 3",
+        "C": "kitty 3",
+        "D": "kitty 2"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-mc-9",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 9,
+       "answer": "C",
+       "stem": "关于排序算法的稳定性，以下说法错误的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "稳定的排序算法不改变相等元素的相对位置",
+        "B": "冒泡排序是稳定的排序算法",
+        "C": "选择排序是稳定的排序算法",
+        "D": "插 排序是稳定的排序算法 入"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-mc-10",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 10,
+       "answer": "A",
+       "stem": "下 代码试图实现选择排序，使其能对数组 nums 排序为升序，则横线上应分别填写（ ）。 面",
+       "code": "void selectionSort(vector<int>& nums) {\nint n = nums.size();\nfor (int i = 0; i < n - 1; ++i) {\nint minIndex = i;\nfor (int j = i + 1; j < n; ++j) {\nif ( __________ ) {     // 在此处填入代码\nminIndex = j;\n}\n}\n____________________; // 在此处填入代码\n}\n}",
+       "options": {
+        "A": "1 nums[j] < nums[minIndex] 2 swap(nums[i], nums[minIndex])",
+        "B": "1 nums[j] > nums[minIndex] 2 swap(nums[i], nums[minIndex])",
+        "C": "1 nums[j] <= nums[minIndex] 2 swap(nums[j], nums[minIndex])",
+        "D": "1 nums[j] <= nums[minIndex] 2 swap(nums[i], nums[j])"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-mc-11",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 11,
+       "answer": "A",
+       "stem": "下面程序实现插入排序（升序排序），则横线上应分别填写（ ）。",
+       "code": "void insertionSort(int arr[], int n) {\nfor (int i = 1; i < n; i++) {\nint key = arr[i];\nint j = i - 1;\nwhile ( j >= 0 && ____________________ ) { // 在此处填入代码\narr[j + 1] = arr[j];\nj--;\n}\n____________________; // 在此处填入代码\n}\n}",
+       "options": {
+        "A": "1 arr[j] > key 2 arr[j + 1] = key",
+        "B": "1 arr[j] < key 2 arr[j + 1] = key",
+        "C": "1 arr[j] > key 2 arr[j] = key",
+        "D": "1 arr[j] < key 2 arr[j] = key"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-mc-12",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 12,
+       "answer": "B",
+       "stem": "关于插入排序的时间复杂度，下列说法正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "最好情况和最坏情况的时间复杂度都是",
+        "B": "最好情况是 ，最坏情况是",
+        "C": "最好情况是 ，最坏情况是",
+        "D": "最好情况是 ，最坏情况是"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-mc-13",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 13,
+       "answer": "B",
+       "stem": "小杨正在爬楼梯，需要 阶才能到达楼顶，每次可以爬 阶或 阶，求小杨有多少种不同的方法可以爬到 楼顶，横线上应填写（ ）。",
+       "code": "int climbStairs(int n) {\nif (n <= 2) return n;\nint prev2 = 1;\nint prev1 = 2;\nint current = 0;\nfor (int i = 3; i <= n; ++i) {\n________________    // 在此处填入代码\n}\nreturn current;\n}",
+       "options": {
+        "A": "1 prev2 = prev1; 2 prev1 = current; 3 current = prev1 + prev2;",
+        "B": "1 current = prev1 + prev2; 2 prev2 = prev1; 3 prev1 = current;",
+        "C": "1 current = prev1 + prev2; 2 prev1 = current; 3 prev2 = prev1;",
+        "D": "1 prev1 = current; 2 prev2 = prev1; 3 current = prev1 + prev2;"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-mc-14",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 14,
+       "answer": "C",
+       "stem": "假设有 个班级的成绩单，存储在 个长度为 n 的数组 scores 中，每个元素是 个学 的分数。 师 一 一 一 生 老 想要找出 所有满 scores[i] + scores[j] + scores[k] == 300 的三元组，其中 i < j < k。下 代码实现该功 足 面 能，请问其时间复杂度是（ ）。",
+       "code": "int cnt = 0;\nfor (int i = 0; i < n; i++) {\nfor (int j = i + 1; j < n; j++) {\nfor (int k = j + 1; k < n; k++) {\nif (scores[i] + scores[j] + scores[k] == 300) {\ncnt++;\n}\n}\n}\n}",
+       "options": {
+        "A": "O(n)",
+        "B": "O(n²)",
+        "C": "O(n³)",
+        "D": "O(2ⁿ)"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-mc-15",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 15,
+       "answer": "D",
+       "stem": "关于异常处理，以下说法错误的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "try 块中的代码可能会抛出异常",
+        "B": "catch 块可以有多个，处理不同类型的异常",
+        "C": "throw 语句用于抛出异常",
+        "D": "所有异常都必须被捕获，否则程序会崩溃"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-tf-1",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 1,
+       "answer": "×",
+       "stem": "以下代码能正确初始化指针。",
+       "code": "int a = 5;\nint *p = a;",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-tf-2",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 2,
+       "answer": "×",
+       "stem": "执行下面C++代码将输出 11 。",
+       "code": "int x = 10;\nvoid f() {\nint x = x + 1;\ncout << x << endl;\n}\nint main() {\nf();\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-tf-3",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 3,
+       "answer": "√",
+       "stem": "以下C++代码合法。",
+       "code": "struct Student {\nstring name;\nint age;\nfloat score;\n};\nStudent* students = new Student[20];",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-tf-4",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 4,
+       "answer": "√",
+       "stem": "执行下面C++代码将输出 10 。",
+       "code": "void func(int* p) {\n*p = 10;\n}\nint main() {\nint a = 5;\nfunc(&a);\ncout << a << endl;\nreturn 0;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-tf-5",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 5,
+       "answer": "×",
+       "stem": "下面代码将二维数组 arr 传递给函数 f ，函数内部用 arr[i][j] 访问元素，函数参数声明为 int arr[] [4] 是错误的。",
+       "code": "void f(int arr[][4], int rows) {\n// 访问 arr[i][j]\n}\nint main() {\nint arr[3][4] = { /* 初始化 */ };\nf(arr, 3);\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-tf-6",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "递推是在给定初始条件下，已知前一项（或前几项）求后一项的过程。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-tf-7",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "虽然插入排序的时间复杂度为 ，但由于单元操作相对较少，因此在小数据量的排序任务中非常受欢 迎。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-tf-8",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "对整数数组 {4, 1, 3, 1, 5, 2} 进行冒泡排序（将最大元素放到最后），执行一轮之后是 {4, 1, 3, 1, 2, 5} 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-tf-9",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "以下代码只能捕获 int 类型异常。",
+       "code": "int main() {\ntry {\nthrow 42;\n} catch (...) {\ncout << \"Caught\" << endl;\n}\nreturn 0;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-09-tf-10",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 10,
+       "answer": "×",
+       "stem": "以下代码将 Hello 写入文件 data.txt 。",
+       "code": "ofstream file(\"data.txt\");\ncout<<\"Hello\"<< endl;\nfile.close();",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      }
+     ]
+    },
+    {
+     "id": "2025-12",
+     "name": "2025 年 12 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.0,
+     "questions": [
+      {
+       "qid": "4-2025-12-mc-1",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 1,
+       "answer": "C",
+       "stem": "小杨想让指针 p 指向整数变量 x ，正确写法是（ ）。",
+       "code": "",
+       "options": {
+        "A": "1 int p = &x;",
+        "B": "1 int *p = x;",
+        "C": "1 int *p = &x;",
+        "D": "1 p = *x;"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-mc-2",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 2,
+       "answer": "C",
+       "stem": "小杨写了如下的指针接力程序，程序执行完后变量 a 、 *p1 和 *p2 的值分别是（ ）。",
+       "code": "int a = 5;\nint* p1 = &a;\nint* p2 = p1;\n*p2 = 10;",
+       "options": {
+        "A": "5 10 10",
+        "B": "5 10 15",
+        "C": "10 10 10",
+        "D": "5 5 10"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-mc-3",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 3,
+       "answer": "B",
+       "stem": "小杨用一个二维数组表示棋盘，其中 1 表示有棋子，0 表示没有棋子。他想知道第 2 行 第 3 列有没有棋子， 可采用的代码是：（ ）。",
+       "code": "int a[3][4] = {\n{1, 0, 1, 0},\n{0, 1, 0, 1},\n{1, 1, 0, 0}\n};",
+       "options": {
+        "A": "cout << a[1, 2] << endl;",
+        "B": "cout << a[1][2] << endl;",
+        "C": "cout << a(1, 2) << endl;",
+        "D": "cout << a{1}{2} << endl;"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-mc-4",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 4,
+       "answer": "D",
+       "stem": "执行完下面的代码后， *(p + 5) 和 arr[1][1] 的值分别是（ ）。",
+       "code": "int arr[3][4] = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};\nint* p = &arr[0][0];",
+       "options": {
+        "A": "5 6",
+        "B": "6 5",
+        "C": "5 5",
+        "D": "6 6"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-mc-5",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 5,
+       "answer": "B",
+       "stem": "执行完下面的代码后， sum 的值是（ ）。",
+       "code": "int arr[2][3][2] = {\n{{1,2}, {3,4}, {5,6}},\n{{7,8}, {9,10}, {11,12}}\n};\nint sum = 0;\nfor(int i = 0; i < 2; i++)\nfor(int j = 0; j < 3; j++)\nfor(int k = 0; k < 2; k++)\nif((i+j+k) % 2 == 0)\nsum += arr[i][j][k];",
+       "options": {
+        "A": "36",
+        "B": "39",
+        "C": "78",
+        "D": "30"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-mc-6",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 6,
+       "answer": "A",
+       "stem": "执行完下面的代码后，输出是（ ）。",
+       "code": "int a = 1;\nvoid test() {\nint a = 2;\n{\nint a = 3;\na++;\n}\na++;\ncout << a << \" \";\n}\nint main() {\ntest();\ncout << a;\nreturn 0;\n}",
+       "options": {
+        "A": "3 1",
+        "B": "4 1",
+        "C": "3 2",
+        "D": "4 2"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-mc-7",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 7,
+       "answer": "C",
+       "stem": "执行完下面的代码后， a 、 b 和 c 的值分别是（ ）。",
+       "code": "void byValue(int x) { x = 100; }\nvoid byRef(int& x) { x = 200; }\nvoid byPointer(int* x) { *x = 300; }\nint main() {\nint a = 1, b = 2, c = 3;\nbyValue(a);\nbyRef(b);\nbyPointer(&c);\nreturn 0;\n}",
+       "options": {
+        "A": "100 200 300",
+        "B": "1 2 3",
+        "C": "1 200 300",
+        "D": "1 2 300"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-mc-8",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 8,
+       "answer": "A",
+       "stem": "运行如下代码会输出（ ）。",
+       "code": "struct Point {\nint x, y;\n};\nstruct Rectangle {\nPoint topLeft;\nPoint bottomRight;\n};\nint main() {\nRectangle rect = {{10, 10}, {20, 20}};\nrect.topLeft.x = 5;\nPoint* p = &rect.bottomRight;\np->y = 5;\ncout << rect.topLeft.x + rect.bottomRight.y;\nreturn 0;\n}",
+       "options": {
+        "A": "10",
+        "B": "30",
+        "C": "15",
+        "D": "20"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-mc-9",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 9,
+       "answer": "B",
+       "stem": "给定函数 climbStairs(int n) 的定义如下，则 climbStairs(5) 的返回的值是（ ）。",
+       "code": "int climbStairs(int n) {\nif(n <= 2) return n;\nint a = 1, b = 2;\nfor(int i = 3; i <= n; i++) {\nint temp = a + b;\na = b;\nb = temp;\n}\nreturn b;\n}",
+       "options": {
+        "A": "5",
+        "B": "8",
+        "C": "13",
+        "D": "10"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-mc-10",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 10,
+       "answer": "B",
+       "stem": "对如下4个扑克牌进行排序， 使用某排序算法按value排序后，结果为: {3,'D'}, {3,'B'}, {5,'A'}, {5,'C'} ，则这个排序算法是稳定的吗？",
+       "code": "struct Card {\nint value;\nchar suit;   // 花色\n};\nCard cards[4] = {{5,'A'}, {3,'B'}, {5,'C'}, {3,'D'}};",
+       "options": {
+        "A": "稳定，因为相同 value 的元素相对顺序保持不变",
+        "B": "不稳定，因为 {3,'D'} 出现在 {3,'B'} 之前",
+        "C": "无法判断",
+        "D": "稳定，因为结果是有序的"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-mc-11",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 11,
+       "answer": "B",
+       "stem": "下面的函数 selectTopK() 实现从 n 个学生中选出前 k 名成绩最好的学生颁发奖学金（不需要对所有 学生完全排序，只需要找出前 k 名），则横线上应填写（ ）。",
+       "code": "struct Student {\nstring name;\nint score;\n};\nvoid selectTopK(Student students[], int n, int k) {\nfor (int i = 0; i < k; i++) {\nint maxIdx = i;\nfor (____________________) {    // 在此处填入代码\nif (students[j].score > students[maxIdx].score) {\nmaxIdx = j;\n}\n}\nif (maxIdx != i) {\nStudent temp = students[i];\nstudents[i] = students[maxIdx];\nstudents[maxIdx] = temp;\n}\n}\n}",
+       "options": {
+        "A": "int j = 0; j < n; j++",
+        "B": "int j = i + 1; j < n; j++",
+        "C": "int j = i; j < n; j++",
+        "D": "int j = 1; j <= n; j++"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-mc-12",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 12,
+       "answer": "A",
+       "stem": "某游戏的排行榜系统需要实时更新玩家分数。每次只有一个玩家的分数发生变化，排行榜已经是按分数降 序排列的。现在需要将更新后的玩家调整到正确位置。下面的函数 updateRanking() 要实现上述功能，则两处横 线上应分别填写（ ）。",
+       "code": "struct Player {\nstring name;\nint score;\n};\n// 玩家索引playerIdx的分数刚刚更新，需要调整位置\nvoid updateRanking(Player players[], int size, int playerIdx) {\nPlayer updatedPlayer = players[playerIdx];\nif (playerIdx > 0 && updatedPlayer.score > players[playerIdx - 1].score) {\nint i = playerIdx;\nwhile (____________________) { // 在此处填入代码\nplayers[i] = players[i - 1];\ni--;\n}\nplayers[i] = updatedPlayer;\n}\nelse if (playerIdx < size - 1 && updatedPlayer.score < players[playerIdx + 1].score) {\nint i = playerIdx;\nwhile (____________________) { // 在此处填入代码\nplayers[i] = players[i + 1];\ni++;\n}\nplayers[i] = updatedPlayer;\n}\n}",
+       "options": {
+        "A": "1 i > 0 && updatedPlayer.score > players[i - 1].score 2 i < size - 1 && updatedPlayer.score < players[i + 1].score",
+        "B": "1 i < size - 1 && updatedPlayer.score < players[i + 1].score 2 i > 0 && updatedPlayer.score > players[i - 1].score",
+        "C": "1 i > 0 && updatedPlayer.score < players[i - 1].score 2 i < size - 1 && updatedPlayer.score < players[i + 1].score",
+        "D": "1 i > 0 && updatedPlayer.score < players[i - 1].score 2 i < size - 1 && updatedPlayer.score > players[i + 1].score"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-mc-13",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 13,
+       "answer": "B",
+       "stem": "给定如下算法，其时间复杂度为（ ）。",
+       "code": "bool f(int arr[], int n, int target) {\nfor (int i = 0; i < n; i++) {\nint sum = 0;\nfor (int j = 0; j < n; j++) {\nif (i & (1 << j)) {\nsum += arr[j];\n}\n}\nif (sum == target) return true;\n}\nreturn false;\n}",
+       "options": {
+        "A": "O(n)",
+        "B": "O(n²)",
+        "C": "O(n³)",
+        "D": "O(2ⁿ)"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-mc-14",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 14,
+       "answer": "D",
+       "stem": "执行下面 C++ 程序，会输出（ ）。",
+       "code": "int main() {\nofstream fout(\"test.txt\");\nfout << \"Happy\" << endl;\nfout << \"New Year\";\nfout.close();\nifstream fin(\"test.txt\");\nstring s1, s2;\nfin >> s1;\ngetline(fin, s2);\nfin.close();\ncout << s1 << \"|\" << s2;\nreturn 0;\n}",
+       "options": {
+        "A": "Happy|New Year",
+        "B": "Happy| New Year",
+        "C": "HappyNew Year|",
+        "D": "Happy|"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-mc-15",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 15,
+       "answer": "B",
+       "stem": "执行下面C++代码，会输出( )。",
+       "code": "int divide(int a, int b) {\nif(b == 0) throw \"Division by zero\";\nreturn a / b;\n}\nint main() {\nint result = 0;\ntry {\nresult = divide(10, 0);\ncout << \"A\";\n}\ncatch(const char* msg) {\ncout << \"B\";\nresult = -1;\n}\ncout << result;\nreturn 0;\n}",
+       "options": {
+        "A": "A0",
+        "B": "B-1",
+        "C": "A10",
+        "D": "程序崩溃"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-tf-1",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "小杨正在调试他的温度传感器程序，其中变量 x 保存当前温度。下面这段代码运行后，变量 x 的值变成 了 8。",
+       "code": "int x = 5;\nint *p = &x;\n*p = *p + 3;",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-tf-2",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 2,
+       "answer": "×",
+       "stem": "一个结构体不能包含另一个结构体。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-tf-3",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 3,
+       "answer": "√",
+       "stem": "在 C++ 中，定义如下二维数组： int a[3][4]; ，数组 a 在内存中是按行优先连续存放的，即 a[0] [0] 、 a[0][1] 、 a[0][2] 、 a[0][3] 在内存中是连续的。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-tf-4",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 4,
+       "answer": "√",
+       "stem": "执行下面程序后，变量 a 的值会变成 15 。",
+       "code": "void add(int &x){\nx += 10;\n}\nint a = 5;\nadd(a);",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-tf-5",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 5,
+       "answer": "×",
+       "stem": "执行下面的C++代码，会输出 8 ，因为两个指针地址相差 8 个字节（假设 int 占 4 字节）。",
+       "code": "int arr[5] = {1, 2, 3, 4, 5};\nint* p1 = arr;\nint* p2 = arr + 2;\ncout << p2 - p1;    // 输出结果",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-tf-6",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "考虑用如下递推方式计算斐波那契数列，时间复杂度是 。",
+       "code": "int n = 10;\nint f[20];\nf[0] = 0;\nf[1] = 1;\nfor (int i = 2; i <= n; i++)\nf[i] = f[i - 1] + f[i - 2];",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-tf-7",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "冒泡排序和插入排序都是稳定排序算法。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-tf-8",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "下面这段代码实现了选择排序算法。",
+       "code": "void sort(int a[], int n) {\nfor (int i = 1; i < n; i++) {\nint x = a[i];\nint j = i - 1;\nwhile (j >= 0 && a[j] > x) {\na[j + 1] = a[j];\nj--;\n}\na[j + 1] = x;\n}\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-tf-9",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "下面代码可以正常编译并输出 10 。",
+       "code": "#include <iostream>\nusing namespace std;\nint calculate(int x, int y = 10);\nint main() {\ncout << calculate(5);    // 调用1\nreturn 0;\n}\nint calculate(int x, int y) {\nreturn x * y;\n}\nint calculate(int x) {   // 重载函数\nreturn x * 2;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2025-12-tf-10",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "执行下面代码会输出 100 。",
+       "code": "int main() {\nofstream fout(\"data.txt\");\nfout << 10 << \" \" << 20 << endl;\nfout << 30 << \" \" << 40;\nfout.close();\nifstream fin(\"data.txt\");\nint a, b, c, d;\nfin >> a >> b >> c >> d;\nfin.close();\ncout << a + b + c + d;\nreturn 0;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "y2026",
+   "name": "2026 年真题",
+   "req": null,
+   "freq": null,
+   "difficulty": 3.0,
+   "sections": [
+    {
+     "id": "2026-03",
+     "name": "2026 年 3 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.0,
+     "questions": [
+      {
+       "qid": "4-2026-03-mc-1",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 1,
+       "answer": "B",
+       "stem": "执行下面程序后，输出为（ ）。",
+       "code": "int f(int x = 2){\nreturn x * 3;\n}\nint main(){\ncout << f() << \" \" << f(4);\n}",
+       "options": {
+        "A": "2 12",
+        "B": "6 12",
+        "C": "6 4",
+        "D": "12 6"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-mc-2",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 2,
+       "answer": "B",
+       "stem": "执行下面代码后，输出为（ ）。",
+       "code": "int main() {\nint a = 5;\nint* p = &a;\nint** q = &p;\n**q += 7;\ncout << a << \" \" << *p;\n}",
+       "options": {
+        "A": "5 5",
+        "B": "12 12",
+        "C": "12 5",
+        "D": "5 12"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-mc-3",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 3,
+       "answer": "B",
+       "stem": "已知： 则表达式 *(*(p + 2) + 1) 的值为（ ）。",
+       "code": "int a[3][4] = {\n{1,2,3,4},\n{5,6,7,8},\n{9,10,11,12}\n};\nint (*p)[4] = a;",
+       "options": {
+        "A": "6",
+        "B": "10",
+        "C": "9",
+        "D": "11"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-mc-4",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 4,
+       "answer": "B",
+       "stem": "执 下 程序后，输出为（ ）。 行 面",
+       "code": "void fun(int a, int &b, int *c){\na += 1;\nb += 2;\n*c += 3;\n}\nint main(){\nint x = 1, y = 1, z = 1;\nfun(x, y, &z);\ncout << x << \" \" << y << \" \" << z;\n}",
+       "options": {
+        "A": "2 3 4",
+        "B": "1 3 4",
+        "C": "2 1 4",
+        "D": "1 1 1"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-mc-5",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 5,
+       "answer": "A",
+       "stem": "执 下 程序后输出为（ ）。 行 面",
+       "code": "int x = 3;\nvoid f(int& x){\nx += 2;\n}\nint main(){\nint x = 10;\nf(x);\ncout << x << \" \" << ::x;\n}",
+       "options": {
+        "A": "12 3",
+        "B": "10 5",
+        "C": "12 5",
+        "D": "10 3"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-mc-6",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 6,
+       "answer": "B",
+       "stem": "下列关于结构体初始化的写法，正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "1 struct Point { int x, y; }; 2 3 Point p = (1,2);",
+        "B": "1 struct Point { int x, y; }; 2 3 Point p = {1,2};",
+        "C": "1 struct Point { int x, y; }; 2 3 Point p = new Point(1,2);",
+        "D": "1 struct Point { int x, y; }; 2 3 Point p = <1,2>;"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-mc-7",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 7,
+       "answer": "B",
+       "stem": "执行下面代码后输出为（ ）。",
+       "code": "struct S { int a; int b; };\nvoid g(S s){ s.a += 10; }\nvoid h(S& s){ s.b += 10; }\nint main(){\nS s{1,2};\ng(s);\nh(s);\ncout << s.a << \" \" << s.b;\n}",
+       "options": {
+        "A": "11 12",
+        "B": "1 12",
+        "C": "11 2",
+        "D": "1 2"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-mc-8",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 8,
+       "answer": "B",
+       "stem": "关于递推算法的描述，正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "递推表现为函数自己调用自己",
+        "B": "递推从已知初值出发，利用递推关系逐步推出后续结果",
+        "C": "递推只能用于指数复杂度问题",
+        "D": "递推一定需要回溯"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-mc-9",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 9,
+       "answer": "B",
+       "stem": "执行 climb(6) 的返回值为（ ）。",
+       "code": "int climb(int n){\nif(n <= 2) return n;\nint a = 1, b = 2, c = 0;\nfor(int i = 3; i <= n; i++){\nc = a + b;\na = b;\nb = c;\n}\nreturn c;\n}",
+       "options": {
+        "A": "8",
+        "B": "13",
+        "C": "5",
+        "D": "10"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-mc-10",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 10,
+       "answer": "B",
+       "stem": "某排序算法对如下数据排序（按 score 升序），则下面关于该排序算法稳定性的描述中，说法正确的是（ ）。 初始： (90,'A'), (90,'B'), (80,'C'), (90,'D') 排序后： (80,'C'), (90,'A'), (90,'B'), (90,'D')",
+       "code": "",
+       "options": {
+        "A": "不稳定，因为出现了相同分数",
+        "B": "稳定，因为相同 score 的相对顺序保持为 A 在 B 前、B 在 D 前",
+        "C": "不稳定，因为 C 跑到前面了",
+        "D": "无法判断"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-mc-11",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 11,
+       "answer": "B",
+       "stem": "下面代码试图把数组按升序进行“插入排序”，横线处应填写（ ）。",
+       "code": "void ins(int a[], int n){\nfor(int i = 1; i < n; i++){\nint key = a[i];\nint j = i-1;\nwhile(j >= 0 && __________){\na[j+1] = a[j];\nj--;\n}\na[j+1] = key;\n}\n}",
+       "options": {
+        "A": "a[j] < key",
+        "B": "a[j] > key",
+        "C": "a[j+1] > key",
+        "D": "a[j] == key"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-mc-12",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 12,
+       "answer": "C",
+       "stem": "下列代码段的时间复杂度为（ ）。",
+       "code": "int cnt=0;\nfor(int i=0; i<n; i++){\nfor(int j=0; j<n; j++){\nif( (i+j) % 3 == 0) cnt++;\n}\n}",
+       "options": {
+        "A": "O(n)",
+        "B": "O(n log n)",
+        "C": "O(n²)",
+        "D": "O(2ⁿ)"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-mc-13",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 13,
+       "answer": "B",
+       "stem": "下面哪种方式不能实现将字符串 Welcome to 2026! 输出重定向到文件 log.txt （ ）。",
+       "code": "",
+       "options": {
+        "A": "1 freopen(\"log.txt\", \"w\", stdout); 2 cout << \"Welcome to 2026!\" << endl; 3 fclose(stdout);",
+        "B": "1 std::ofstream outFile(\"log.txt\"); 2 cout << \"Welcome to 2026!\" << endl; 3 outFile.close();",
+        "C": "1 ofstream log_file(\"log.txt\"); 2 streambuf* org_cout = cout.rdbuf(); 3 cout.rdbuf(log_file.rdbuf()); 4 cout << \"Welcome to 2026!\" << endl; 5 cout.rdbuf(org_cout);",
+        "D": "1 std::ofstream outFile(\"log.txt\"); 2 outFile << \"Welcome to 2026!\" << endl; 3 outFile.close();"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-mc-14",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 14,
+       "answer": "B",
+       "stem": "执行下面程序，输出结果是（ ）。",
+       "code": "int divi(int a,int b){\nif(b==0) throw 0;\nreturn a/b;\n}\nint main(){\ntry{\ncout << divi(10,0);\n}catch(const char* msg){\ncout << \"A\";\n}catch(int){\ncout << \"B\";\n}\n}",
+       "options": {
+        "A": "A",
+        "B": "B",
+        "C": "程序崩溃",
+        "D": "无输出"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-mc-15",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 15,
+       "answer": "A",
+       "stem": "下列函数实现排行榜中单个元素的位置调整（类似插入排序的相邻搬移）。当某玩家分数增加，需将其向 前移动时， while 循环的条件应为（ ）。",
+       "code": "struct Player{ int score; };\nvoid up(Player players[], int n, int idx){\nPlayer cur = players[idx];\nint i = idx;\nwhile( ____________________ ){\nplayers[i] = players[i-1];\ni--;\n}\nplayers[i] = cur;\n}",
+       "options": {
+        "A": "i > 0 && cur.score > players[i-1].score",
+        "B": "i > 0 && cur.score < players[i-1].score",
+        "C": "i < n-1 && cur.score > players[i+1].score",
+        "D": "i < n-1 && cur.score < players[i+1].score"
+       },
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-tf-1",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "下面代码执行结束时，变量 a 的值变成 15。",
+       "code": "void add10(int &x) { x += 10; }\nint main() {\nint a = 5;\nadd10(a);\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-tf-2",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "引用一旦绑定某个变量，就不能再绑定其他变量。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-tf-3",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "执行下面代码，输出结果为 5 。",
+       "code": "int main() {\nint a[2][3];\ncout << &a[1][2] - &a[0][1] << endl;\nreturn 0;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-tf-4",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "下面程序可以正常编译并输出 10 。",
+       "code": "int calc(int x, int y = 10);\nint calc(int x) { return x * 2; }\nint calc(int x, int y) { return x * y; }\nint main() {\ncout << calc(5);\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-tf-5",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "下面程序执行后输出 2010 。",
+       "code": "int x = 10;\nvoid f() { int x = 20; cout << x; }\nint main() {\nf();\ncout << x;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-tf-6",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 6,
+       "answer": "×",
+       "stem": "在 C++ 中，如果声明了一个指针变量但没有显式初始化，该指针会自动被初始化为 nullptr 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-tf-7",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "下面代码没有语法错误。",
+       "code": "struct GameCharacter {\nstring name;\nint level;\nfloat position_x;\nfloat position_y;\nstruct Equipment {\nstring weapon;\nint attack_bonus;\nint defense_bonus;\n} equipment;\nstruct Skill {\nstring name;\nint damage;\n} skills[8];\nint skill_count;\n};",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-tf-8",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "下 程序能够把 Hello 写 data.txt 件中。 面 入 文",
+       "code": "ofstream fout(\"data.txt\");\ncout << \"Hello\";\nfout.close();",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-tf-9",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "由于选择排序和插 排序的时间复杂度均为 ，在任何实际场景下两者的性能表现 乎相同，可以互相 入 几 替代。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      },
+      {
+       "qid": "4-2026-03-tf-10",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 10,
+       "answer": "×",
+       "stem": "下 递推 式计算斐波那契数列第 n 项的程序，时间复杂度是 。 面 用 方",
+       "code": "int fib(int n) {\nif (n <= 1) return n;\nint f0 = 0, f1 = 1, cur = 0;\nfor (int i = 2; i <= n; i++) {\ncur = f0 + f1;\nf0 = f1;\nf1 = cur;\n}\nreturn cur;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.0
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

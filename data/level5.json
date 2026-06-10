@@ -1,0 +1,4284 @@
+{
+ "meta": {
+  "title": "C++ 五级",
+  "level": 5,
+  "papers": [
+   "2023-09",
+   "2023-12",
+   "2024-03",
+   "2024-06",
+   "2024-09",
+   "2024-12",
+   "2025-03",
+   "2025-06",
+   "2025-09",
+   "2025-12",
+   "2026-03"
+  ],
+  "total": 275,
+  "mc": 165,
+  "tf": 110
+ },
+ "chapters": [
+  {
+   "id": "y2023",
+   "name": "2023 年真题",
+   "req": null,
+   "freq": null,
+   "difficulty": 3.5,
+   "sections": [
+    {
+     "id": "2023-09",
+     "name": "2023 年 9 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.5,
+     "questions": [
+      {
+       "qid": "5-2023-09-mc-1",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 1,
+       "answer": "A",
+       "stem": "近年来，线上授课变得普遍，很多有助于改善教学效果的设备也逐渐流行，其中包括比较常用的手写板，那 么它属于哪类设备？（ ）。",
+       "code": "",
+       "options": {
+        "A": "输入",
+        "B": "输出",
+        "C": "控制",
+        "D": "记录"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-mc-2",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 2,
+       "answer": "D",
+       "stem": "如果 a 和 b 均为 int 类型的变量，且 b 的值不为 0 ，那么下列能正确判断“ a 是 b 的3倍”的表达式是（ ）。",
+       "code": "",
+       "options": {
+        "A": "(a >> 3 == b)",
+        "B": "(a - b) % 3 == 0",
+        "C": "(a / b == 3)",
+        "D": "(a == 3 * b)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-mc-3",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 3,
+       "answer": "C",
+       "stem": "如果变量 a 和 b 分别为 double 类型和 int 类型，则表达式 (a = 6, b = 3 * (7 + 8) / 2, b += a) 的 计算结果为（ ）。",
+       "code": "",
+       "options": {
+        "A": "6",
+        "B": "21",
+        "C": "28",
+        "D": "不确定"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-mc-4",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 4,
+       "answer": "C",
+       "stem": "有关下面C++代码说法错误的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "sumA() 用循环方式求从 1 到 N 之和， sumB() 用递归方式求从 1 到 N 之和。",
+        "B": "默认情况下，如果输入正整数 1000 ，能实现求从 1 到 1000 之和。",
+        "C": "默认情况下，如果输入正整数 100000 ，能实现求从 1 到 100000 之和。",
+        "D": "一般说来， sumA() 的效率高于 sumB() 。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-mc-5",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 5,
+       "answer": "A",
+       "stem": "下面C++代码以递归方式实现字符串反序，横线处应填上代码是（ ）。",
+       "code": "",
+       "options": {
+        "A": "sIn[sIn.length() - 1] + sReverse(sIn.substr(0, sIn.length() - 1));",
+        "B": "sIn[0] + sReverse(sIn.substr(1, sIn.length() - 1));",
+        "C": "sReverse(sIn.substr(0, sIn.length() - 1)) + sIn[sIn.length() - 1];",
+        "D": "sReverse(sIn.substr(1, sIn.length() - 1)) + sIn[sIn.length() - 1];"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-mc-6",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 6,
+       "answer": "B",
+       "stem": "印度古老的汉诺塔传说：创世时有三根金刚柱，其中一柱从下往上按照大小顺序摞着64片黄金圆盘，当圆盘 逐一从一柱借助另外一柱全部移动到另外一柱时，宇宙毁灭。移动规则：在小圆盘上不能放大圆盘，在三根柱子之 间一次只能移动一个圆盘。下面的C++代码以递归方式实现汉诺塔，横线处应填入代码是（ ）。",
+       "code": "",
+       "options": {
+        "A": "Hanoi(B, C, A, N - 2)",
+        "B": "Hanoi(B, A, C, N - 1)",
+        "C": "Hanoi(A, B, C, N - 2)",
+        "D": "Hanoi(C, B, A, N - 1)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-mc-7",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 7,
+       "answer": "A",
+       "stem": "根据下面C++代码的注释，两个横线处应分别填入（ ）。",
+       "code": "",
+       "options": {
+        "A": "compare 和 isOdd(lstA[i])",
+        "B": "compare(x1,y1) 和 isOdd",
+        "C": "compare 和 isOdd",
+        "D": "compare(x1,y1) 和 isOdd(lstA[i])"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-mc-8",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 8,
+       "answer": "C",
+       "stem": "有关下面代码正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "checkNum() 函数定义错误。",
+        "B": "将 isEven 作为 checkNum() 参数将导致错误。",
+        "C": "执行后将输出 1 。",
+        "D": "运行时触发异常。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-mc-9",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 9,
+       "answer": "C",
+       "stem": "有关下面C++代码正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "checkNum() 函数定义错误。",
+        "B": "输出行 A 的语句将导致编译错误。",
+        "C": "输出行 B 的语句将导致编译错误。",
+        "D": "该代码没有编译错误。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-mc-10",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 10,
+       "answer": "D",
+       "stem": "下面代码执行后的输出是（ ）。",
+       "code": "",
+       "options": {
+        "A": "4#3#2#2#4",
+        "B": "4#3#2#2#1#5",
+        "C": "4#3#2#1#2#4",
+        "D": "4#3#2#1#2#5"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-mc-11",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 11,
+       "answer": "B",
+       "stem": "下面代码中的 isPrimeA() 和 isPrimeB() 都用于判断参数 N 是否素数，有关其时间复杂度的正确说法是 （ ）。",
+       "code": "",
+       "options": {
+        "A": "isPrimeA() 的最坏时间复杂度是 ， isPrimeB() 的最坏时间复杂度是 ， isPrimeB() 优于 isPrimeA() 。",
+        "B": "isPrimeA() 的最坏时间复杂度是 ， isPrimeB() 的最坏时间复杂度是 ， isPrimeB() 优于 isPrimeA() 。",
+        "C": "isPrimeA() 的最坏时间复杂度是 ， isPrimeB() 的最坏时间复杂度是 ， isPrimeA() 优于 isPrimeB() 。",
+        "D": "isPrimeA() 的最坏时间复杂度是 ， isPrimeB() 的最坏时间复杂度是 ， isPrimeA() 优于 isPrimeB()"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-mc-12",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 12,
+       "answer": "C",
+       "stem": "下面代码用于归并排序，其中 merge() 函数被调用次数为（ ）。",
+       "code": "",
+       "options": {
+        "A": "0",
+        "B": "1",
+        "C": "6",
+        "D": "7"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-mc-13",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 13,
+       "answer": "B",
+       "stem": "在上题的归并排序算法中， mergeSort(listData, start, middle); 和 mergeSort(listData, middle + 1, end); 涉及到的算法为（ ）。",
+       "code": "",
+       "options": {
+        "A": "搜索算法",
+        "B": "分治算法",
+        "C": "贪心算法",
+        "D": "递推算法"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-mc-14",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 14,
+       "answer": "A",
+       "stem": "归并排序算法的基本思想是（ ）。",
+       "code": "",
+       "options": {
+        "A": "将数组分成两个子数组，分别排序后再合并。",
+        "B": "随机选择一个元素作为枢轴，将数组划分为两个部分。",
+        "C": "从数组的最后一个元素开始，依次与前一个元素比较并交换位置。",
+        "D": "比较相邻的两个元素，如果顺序错误就交换位置。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-mc-15",
+       "paper": "2023-09",
+       "type": "mc",
+       "num": 15,
+       "answer": "C",
+       "stem": "有关下面代码的说法正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "上述代码构成单向链表。",
+        "B": "上述代码构成双向链表。",
+        "C": "上述代码构成循环链表。",
+        "D": "上述代码构成指针链表。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-tf-1",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "TCP/IP的传输层的两个不同的协议分别是UDP和TCP。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-tf-2",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 2,
+       "answer": "×",
+       "stem": "在特殊情况下流程图中可以出现三角框和圆形框。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-tf-3",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "找出自然数 N 以内的所有质数，常用算法有埃氏筛法和线性筛法，其中埃氏筛法效率更高。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-tf-4",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "在C++中，可以使用二分法查找链表中的元素。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-tf-5",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "在C++中，通过恰当的实现，可以将链表首尾相接，形成循环链表。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-tf-6",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "贪心算法的解可能不是最优解。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-tf-7",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 7,
+       "answer": "×",
+       "stem": "一般说来，冒泡排序算法优于归并排序。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-tf-8",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 8,
+       "answer": "√",
+       "stem": "C++语言中的 qsort 库函数是不稳定排序。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-tf-9",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "质数的判定和筛法的目的并不相同，质数判定旨在判断特定的正整数是否为质数，而质数筛法意在筛选出范 围内的所有质数。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-09-tf-10",
+       "paper": "2023-09",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "下面的C++代码执行后将输出 0 5 1 6 2 3 4 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      }
+     ]
+    },
+    {
+     "id": "2023-12",
+     "name": "2023 年 12 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.5,
+     "questions": [
+      {
+       "qid": "5-2023-12-mc-1",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 1,
+       "answer": "C",
+       "stem": "下面C++代码用于求斐波那契数列，该数列第1、2项为1，以后各项均是前两项之和。下面有关说法错误的 是( )。",
+       "code": "",
+       "options": {
+        "A": "fiboA( ) 用递归方式， fiboB() 循环方式",
+        "B": "fiboA( ) 更加符合斐波那契数列的数学定义，直观易于理解，而 fiboB() 需要将数学定义转换为计算机程 序实现",
+        "C": "fiboA( ) 不仅仅更加符合数学定义，直观易于理解，且因代码量较少执行效率更高",
+        "D": "fiboB( ) 虽然代码量有所增加，但其执行效率更高"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-mc-2",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 2,
+       "answer": "C",
+       "stem": "下面C++代码以递归方式实现合并排序，并假设 merge (int T[], int R[], int s, int m, int t) 函 数将有序（同样排序规则）的T[s..m]和T[m+1..t]归并到R[s..t]中。横线处应填上代码是( )。",
+       "code": "",
+       "options": {
+        "A": "mergeSort(SList, T2, s, m,len), mergeSort(SList, T2, m,t,len)",
+        "B": "mergeSort(SList, T2, s, m-1,len), mergeSort(SList, T2, m+1,t,len)",
+        "C": "mergeSort(SList, T2, s, m,len), mergeSort(SList, T2, m+1,t,len)",
+        "D": "mergeSort(SList, T2, s, m-1,len), mergeSort(SList, T2, m-1,t,len)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-mc-3",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 3,
+       "answer": "D",
+       "stem": "阅读下 的C++代码，执 后其输出是( )。 面 行",
+       "code": "",
+       "options": {
+        "A": "1->120<===>2->120",
+        "B": "1->120<===>1->120",
+        "C": "1->120<===>1->2->3->4->5->120",
+        "D": "1->120<===>2->3->4->5->6->120"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-mc-4",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 4,
+       "answer": "A",
+       "stem": "下 的C++ 于对 lstA 排序，使得偶数在前奇数在后，横线处应填 ( )。 面 用 入",
+       "code": "",
+       "options": {
+        "A": "!isEven(lstA[j]) && isEven(lstA[j+1])",
+        "B": "isEven(lstA[j]) && !isEven(lstA[j+1])",
+        "C": "lstA[j] > lstA[j+1]",
+        "D": "lstA[j] < lstA[j+1]"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-mc-5",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 5,
+       "answer": "B",
+       "stem": "下面的C++代码用于将字符串保存到带头节点的双向链表中，并对重复的串计数，然后将最新访问的串的节 点放在链头便于查找。横线处应填入代码是（ ）。",
+       "code": "",
+       "options": {
+        "A": "if(pHead) {p->next = pHead->next, pHead->next->prev = p;}",
+        "B": "if(pHead->next) {p->next = pHead->next, pHead->next->prev = p;}",
+        "C": "p->next = pHead->next, pHead->next->prev = p;",
+        "D": "触发异常，不能对空指针进行操作。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-mc-6",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 6,
+       "answer": "A",
+       "stem": "有关下面C++代码说法正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "如果 x 小于10， rc 值也不会超过20",
+        "B": "foo 可能无限递归",
+        "C": "foo 可以求出 x 和 y 的最大公共质因子",
+        "D": "foo 能够求出 x 和 y 的最小公倍数"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-mc-7",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 7,
+       "answer": "C",
+       "stem": "下面的C++代码实现对list的快速排序，有关说法，错误的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "qSort(less) + qSort(greater) + (vector<int>)pivot",
+        "B": "(vector<int>)pivot + (qSort(less) + qSort(greater))",
+        "C": "(qSort(less) + (vector<int>)pivot + qSort(greater))",
+        "D": "qSort(less) + pivot + qSort(greater)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-mc-8",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 8,
+       "answer": "B",
+       "stem": "下面C++代码中的 isPrimeA() 和 isPrimeB() 都用于判断参数N是否素数，有关其时间复杂度的正确说 法是（ ）。",
+       "code": "",
+       "options": {
+        "A": "isPrimeA( ) 的最坏时间复杂度是 ， isPrimeB( ) 的最坏时间复杂度是 ， isPrimeA() 优 于 isPrimeB()",
+        "B": "isPrimeA() 的最坏时间复杂度是 ， isPrimeB( ) 的最坏时间复杂度是 ， isPrimeB() 绝大 多数情况下优于 isPrimeA()",
+        "C": "isPrimeA() 的最坏时间复杂度是 ， isPrimeB( ) 的最坏时间复杂度是 ， isPrimeA( ) 优于 isPrimeB( )",
+        "D": "isPrimeA() 的最坏时间复杂度是 ， isPrimeB( ) 的最坏时间复杂度是 ， isPrimeA() 优于 isPrimeB( )"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-mc-9",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 9,
+       "answer": "D",
+       "stem": "下面C++代码用于有序 list 的二分查找，有关说法错误的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "代码采用二分法实现有序 list 的查找",
+        "B": "代码采用分治算法实现有序 list 的查找",
+        "C": "代码采用递归方式实现有序 list 的查找",
+        "D": "代码采用动态规划算法实现有序 list 的查找"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-mc-10",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 10,
+       "answer": "B",
+       "stem": "在上题的 _binarySearch 算法中，如果 lst 中有 N 个元素，其时间复杂度是（ ）。",
+       "code": "",
+       "options": {
+        "A": "O(N)",
+        "B": "O(log N)",
+        "C": "O(N log N)",
+        "D": "O(N²)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-mc-11",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 11,
+       "answer": "D",
+       "stem": "下面的C++代码使用数组模拟整数加法，可以处理超出大整数范围的加法运算。横线处应填入代码是（ ）。",
+       "code": "",
+       "options": {
+        "A": "c.push_back(t % 10), t = t % 10;",
+        "B": "c.push_back(t / 10), t = t % 10;",
+        "C": "c.push_back(t / 10), t = t / 10;",
+        "D": "c.push_back(t % 10), t = t / 10;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-mc-12",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 12,
+       "answer": "B",
+       "stem": "有关下面C++代码的说法正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "上述代码构成单向链表",
+        "B": "上述代码构成双向链表",
+        "C": "上述代码构成循环链表",
+        "D": "上述代码构成指针链表"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-mc-13",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 13,
+       "answer": "B",
+       "stem": "通讯卫星在通信网络系统中主要起到（）的作用。",
+       "code": "",
+       "options": {
+        "A": "信息过滤",
+        "B": "信号中继",
+        "C": "避免攻击",
+        "D": "数据加密"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-mc-14",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 14,
+       "answer": "C",
+       "stem": "小杨想编写一个判断任意输入的整数N是否为素数的程序，下面哪个方法不合适？（ ）",
+       "code": "",
+       "options": {
+        "A": "埃氏筛法",
+        "B": "线性筛法",
+        "C": "二分答案",
+        "D": "枚举法"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-mc-15",
+       "paper": "2023-12",
+       "type": "mc",
+       "num": 15,
+       "answer": "B",
+       "stem": "下面的排序算法都要处理多趟数据，哪种排序算法不能保证在下一趟处理时从待处理数据中选出最大或最 小的数据？（ ）",
+       "code": "",
+       "options": {
+        "A": "选择排序",
+        "B": "快速排序",
+        "C": "堆排序",
+        "D": "冒泡排序"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-tf-1",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "归并排序的时间复杂度是 。( )",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-tf-2",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 2,
+       "answer": "×",
+       "stem": "小杨在生日聚会时拿一块H*W的巧克力招待来的K个小朋友，保证每位小朋友至少能获得一块相同大小的巧 克力。那么小杨想分出来最大边长的巧克力可以使用二分法。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-tf-3",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "以下C++代码能以递归方式实现斐波那契数列，该数列第1、2项为1，以后各项均是前两项之和。( )",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-tf-4",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 4,
+       "answer": "√",
+       "stem": "贪心算法可以达到局部最优，但可能不是全局最优解。( )",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-tf-5",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "小杨设计了一个拆数程序，它能够将任意的非质数自然数N转换成若干个质数的乘积，这个程序是可以设计 出来的。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-tf-6",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "插入排序有时比快速排序时间复杂度更低。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-tf-7",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 7,
+       "answer": "×",
+       "stem": "下面的C++代码能实现十进制正整数N转换为八进制并输出。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-tf-8",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 8,
+       "answer": "√",
+       "stem": "对数组 int arr[] = {2, 6, 3, 5, 4, 8, 1, 0, 9, 10} 执行 sort(arr, arr+10) ，则执行后 arr 中的数据调整为 {0, 1, 2, 3, 4, 5, 6, 8,9, 10} 。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-tf-9",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "小杨想写一个程序来算出正整数N有多少个因数，经过思考他写出了一个重复没有超过N/2次的循环就能够算 出来了。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2023-12-tf-10",
+       "paper": "2023-12",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "同样的整数序列分别保存在单链表和双向链中，这两种链表上的简单冒泡排序的复杂度相同。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "y2024",
+   "name": "2024 年真题",
+   "req": null,
+   "freq": null,
+   "difficulty": 3.5,
+   "sections": [
+    {
+     "id": "2024-03",
+     "name": "2024 年 3 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.5,
+     "questions": [
+      {
+       "qid": "5-2024-03-mc-1",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 1,
+       "answer": "B",
+       "stem": "唯一分解定理描述的内容是（ ）？",
+       "code": "",
+       "options": {
+        "A": "任意整数都可以分解为素数的乘积",
+        "B": "每个合数都可以唯一分解为一系列素数的乘积",
+        "C": "两个不同的整数可以分解为相同的素数乘积",
+        "D": "以上都不对"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-mc-2",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 2,
+       "answer": "A",
+       "stem": "贪心算法的核心思想是（ ）？",
+       "code": "",
+       "options": {
+        "A": "在每一步选择中都做当前状态下的最优选择",
+        "B": "在每一步选择中都选择局部最优解",
+        "C": "在每一步选择中都选择全局最优解",
+        "D": "以上都对"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-mc-3",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 3,
+       "answer": "A",
+       "stem": "下面的 C++ 代码片段用于计算阶乘。请在横线处填入（ ），实现正确的阶乘计算。",
+       "code": "int factorial(int n) {\nif (n == 0 || n == 1) {\nreturn 1;\n} else {\n_________________________________   // 在此处填入代码\n}\n}",
+       "options": {
+        "A": "return n * factorial(n - 1);",
+        "B": "return factorial(n - 1) / n;",
+        "C": "return n * factorial(n);",
+        "D": "return factorial(n / 2) * factorial(n / 2);"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-mc-4",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 4,
+       "answer": "B",
+       "stem": "下面的代码片段用于在双向链表中删除一个节点。请在横线处填入（ ），使其能正确实现相应功能。",
+       "code": "void deleteNode(DoublyListNode*& head, int value) {\nDoublyListNode* current = head;\nwhile (current != nullptr && current->val != value) {\ncurrent = current->next;\n}\nif (current != nullptr) {\nif (current->prev != nullptr) {\n____________________________________ // 在此处填入代码\n} else {\nhead = current->next;\n}\nif (current->next != nullptr) {\ncurrent->next->prev = current->prev;\n}\ndelete current;\n}\n}",
+       "options": {
+        "A": "if (current->next != nullptr) current->next->prev = current->prev;",
+        "B": "current->prev->next = current->next;",
+        "C": "delete current->next;",
+        "D": "current->prev = current->next;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-mc-5",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 5,
+       "answer": "C",
+       "stem": "辗转相除法也被称为（ ）",
+       "code": "",
+       "options": {
+        "A": "高斯消元法",
+        "B": "费马定理",
+        "C": "欧几里德算法",
+        "D": "牛顿迭代法"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-mc-6",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 6,
+       "answer": "C",
+       "stem": "下面的代码片段用于计算斐波那契数列。该代码的时间复杂度是（ ）？",
+       "code": "int fibonacci(int n) {\nif (n <= 1) {\nreturn n;\n} else {\nreturn fibonacci(n - 1) + fibonacci(n - 2);\n}\n}",
+       "options": {
+        "A": "O(1)",
+        "B": "O(n)",
+        "C": "O(2ⁿ)",
+        "D": "O(log n)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-mc-7",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 7,
+       "answer": "A",
+       "stem": "下面的代码片段用于将两个高精度整数进行相加。请在横线处填入（ ），使其能正确实现相应功能。",
+       "code": "string add(string num1, string num2) {\nstring result;\nint carry = 0;\nint i = num1.size() - 1, j = num2.size() - 1;\nwhile (i >= 0 || j >= 0 || carry) {\nint x = (i >= 0) ? num1[i--] - '0' : 0;\nint y = (j >= 0) ? num2[j--] - '0' : 0;\nint sum = x + y + carry;\ncarry = sum / 10;\n_______________________________________\n}\nreturn result;\n}",
+       "options": {
+        "A": "result = to_string(sum % 10) + result;",
+        "B": "result = to_string(carry % 10) + result;",
+        "C": "result = to_string(sum / 10) + result;",
+        "D": "result = to_string(sum % 10 + carry) + result;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-mc-8",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 8,
+       "answer": "D",
+       "stem": "给定序列：1，3，6，9，17，31，39，52，61，79，81，90，96。使用以下代码进行二分查找查找元素 82 时，需要循环多少次，即最后输出的 times 值为（ ）。",
+       "code": "int binarySearch(const std::vector<int>& arr, int target) {\nint left = 0;\nint right = arr.size() - 1;\nint times = 0;\nwhile (left <= right) {\ntimes ++;\nint mid = left + (right - left) / 2;\nif (arr[mid] == target) {\ncout << times << endl;\nreturn mid;\n} else if (arr[mid] < target) {\nleft = mid + 1;\n} else {\nright = mid - 1;\n}\n}\ncout << times << endl;\nreturn -1;\n}",
+       "options": {
+        "A": "2",
+        "B": "5",
+        "C": "3",
+        "D": "4"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-mc-9",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 9,
+       "answer": "B",
+       "stem": "下面的代码片段用于判断一个正整数是否为素数。请对以下代码进行修改，使其能正确实现相应功能。（ ）",
+       "code": "bool isPrime(int num) {\nif (num < 2) {\nreturn false;\n}\nfor (int i = 2; i * i < num; ++i) {\nif (num % i == 0) {\nreturn false;\n}\n}\nreturn true;\n}",
+       "options": {
+        "A": "num < 2 应该改为 num <= 2",
+        "B": "循环条件 i * i < num 应该改为 i * i <= num",
+        "C": "循环条件应该是 i <= num",
+        "D": "循环体中应该是 if (num % i != 0)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-mc-10",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 10,
+       "answer": "C",
+       "stem": "在埃拉托斯特尼筛法中，要筛选出不大于 n 的所有素数，最外层循环应该遍历什么范围（ ）？",
+       "code": "vector<int> sieveOfEratosthenes(int n) {\nstd::vector<bool> isPrime(n + 1, true);\nstd::vector<int> primes;\n_______________________ {\nif (isPrime[i]) {\nprimes.push_back(i);\nfor (int j = i * i; j <= n; j += i) {\nisPrime[j] = false;\n}\n}\n}\nfor (int i = sqrt(n) + 1; i <= n; ++i) {\nif (isPrime[i]) {\nprimes.push_back(i);\n}\n}\nreturn primes;\n}",
+       "options": {
+        "A": "for (int i = 2; i <= n; ++i)",
+        "B": "for (int i = 1; i < n; ++i)",
+        "C": "for (int i = 2; i <= sqrt(n); ++i)",
+        "D": "for (int i = 1; i <= sqrt(n); ++i)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-mc-11",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 11,
+       "answer": "A",
+       "stem": "素数的线性筛法时间复杂度为（ ）。",
+       "code": "",
+       "options": {
+        "A": "O(n)",
+        "B": "O(n log log n)",
+        "C": "O(n log n)",
+        "D": "O(n²)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-mc-12",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 12,
+       "answer": "B",
+       "stem": "归并排序的基本思想是（ ）。",
+       "code": "",
+       "options": {
+        "A": "动态规划",
+        "B": "分治",
+        "C": "贪心算法",
+        "D": "回溯算法"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-mc-13",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 13,
+       "answer": "B",
+       "stem": "在快速排序中，选择的主元素（pivot）会影响算法的（ ）。",
+       "code": "",
+       "options": {
+        "A": "不影响",
+        "B": "时间复杂度",
+        "C": "空间复杂度",
+        "D": "时间复杂度和空间复杂度"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-mc-14",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 14,
+       "answer": "A",
+       "stem": "递归函数在调用自身时，必须满足（ ），以避免无限递归？",
+       "code": "",
+       "options": {
+        "A": "有终止条件",
+        "B": "函数参数递减（或递增）",
+        "C": "函数返回值固定",
+        "D": "以上都对"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-mc-15",
+       "paper": "2024-03",
+       "type": "mc",
+       "num": 15,
+       "answer": "A",
+       "stem": "假设给定链表为: ，若调用 searchValue(head, 5) ，函数返回值为（ ）。",
+       "code": "int searchValue(ListNode* head, int target) {\nwhile (head != nullptr) {\nif (head->val == target) {\nreturn 1;\n}\nhead = head->next;\n}\nreturn 0;\n}",
+       "options": {
+        "A": "返回 1",
+        "B": "返回 0",
+        "C": "死循环，无法返回",
+        "D": "返回 -1"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-tf-1",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "辗转相除法用于求两个整数的最大公约数。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-tf-2",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 2,
+       "answer": "×",
+       "stem": "插入排序的时间复杂度是 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-tf-3",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 3,
+       "answer": "√",
+       "stem": "二分查找要求被搜索的序列是有序的，否则无法保证正确性。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-tf-4",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "使用贪心算法解决问题时，每一步的局部最优解一定会导致全局最优解。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-tf-5",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "分治算法的核心思想是将一个大问题分解成多个相同或相似的子问题进行解决，最后合并得到原问题的解。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-tf-6",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "分治算法的典型应用之一是归并排序，其时间复杂度为 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-tf-7",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 7,
+       "answer": "×",
+       "stem": "素数表的埃氏筛法和线性筛法的时间复杂度都是 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-tf-8",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "贪心算法是一种可以应用于所有问题的通用解决方案。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-tf-9",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "单链表和双链表都可以在常数时间内实现在链表头部插入或删除节点的操作。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-03-tf-10",
+       "paper": "2024-03",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "在C语言中，递归的实现方式通常会占用更多的栈空间，可能导致栈溢出。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      }
+     ]
+    },
+    {
+     "id": "2024-06",
+     "name": "2024 年 6 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.5,
+     "questions": [
+      {
+       "qid": "5-2024-06-mc-1",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 1,
+       "answer": "C",
+       "stem": "下面C++代码用于求斐波那契数列，该数列第1、2项为1，以后各项均是前两项之和。函数fibo()属于( )。",
+       "code": "int fibo(int n) {\nif (n <= 0)\nreturn 0;\nif (n == 1 || n == 2)\nreturn 1;\nint a = 1，b = 1, next;\nfor (int i = 3; i <= n; i++) {\nnext = a + b;\na = b;\nb = next;\n}\nreturn next;\n}",
+       "options": {
+        "A": "枚举算法",
+        "B": "贪心算法",
+        "C": "迭代算法",
+        "D": "递归算法"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-mc-2",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 2,
+       "answer": "B",
+       "stem": "下面C++代码用于将输入金额换成最少币种组合方案，其实现算法是( )。",
+       "code": "#include <iostream>\nusing namespace std;\n#define N_COINS 7\nint coins[N_COINS] = {100, 50, 20, 10, 5, 2, 1}; //货币面值，单位相同\nint coins_used[N_COINS];\nvoid find_coins(int money) {\nfor (int i = 0; i < N_COINS; i++) {\ncoins_used[i] = money / coins[i];\nmoney = money % coins[i];\n}\nreturn;\n}\nint main() {\nint money;\ncin >> money;    //输入要换算的金额\nfind_coins(money);\nfor (int i = 0; i < N_COINS; i++)\ncout << coins_used[i] << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "枚举算法",
+        "B": "贪心算法",
+        "C": "迭代算法",
+        "D": "递归算法"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-mc-3",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 3,
+       "answer": "B",
+       "stem": "小杨采用如下双链表结构保存他喜欢的歌曲列表： 小杨想在头指针为 head 的双链表中查找他喜欢的某首歌曲，采用如下查询函数，该操作的时间复杂度为（ ）。",
+       "code": "struct dl_node {\nstring song;\ndl_node* next;\ndl_node* prev;\n};\ndl_node* search(dl_node* head, string my_song) {\ndl_node* temp = head;\nwhile (temp != nullptr) {\nif (temp->song == my_song)\nreturn temp;\ntemp = temp->next;\n}\nreturn nullptr;\n}",
+       "options": {
+        "A": "O(1)",
+        "B": "O(n)",
+        "C": "O(log n)",
+        "D": "O(n²)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-mc-4",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 4,
+       "answer": "C",
+       "stem": "小杨想在如上题所述的双向链表中加入一首新歌曲。为了能快速找到该歌曲，他将其作为链表的第一首歌 曲，则下面横线上应填入的代码为（ ）。",
+       "code": "void insert(dl_node *head, string my_song) {\np = new dl_node;\np->song = my_song;\np->prev = nullptr;\np->next = head;\nif (head != nullptr) {\n________________________________   // 在此处填入代码\n}\nhead = p;\n}",
+       "options": {
+        "A": "head->next->prev = p;",
+        "B": "head->next = p;",
+        "C": "head->prev = p;",
+        "D": "触发异常，不能对空指针进行操作。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-mc-5",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 5,
+       "answer": "C",
+       "stem": "下面是根据欧几里得算法编写的函数，它计算的是 与 的（ ）。",
+       "code": "int gcd(int a, int b) {\nwhile (b != 0) {\nint temp = b;\nb = a % b;\na = temp;\n}\nreturn a;\n}",
+       "options": {
+        "A": "最小公倍数",
+        "B": "最大公共质因子",
+        "C": "最大公约数",
+        "D": "最小公共质因子"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-mc-6",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 6,
+       "answer": "D",
+       "stem": "欧几里得算法还可以写成如下形式: 下面有关说法，错误的是（ ）。",
+       "code": "int gcd(int a, int b) {\nreturn b == 0 ? a : gcd(b, a % b);\n}",
+       "options": {
+        "A": "本题的 gcd() 实现为递归方式。",
+        "B": "本题的 gcd() 代码量少，更容易理解其辗转相除的思想。",
+        "C": "当 较大时，本题的 gcd() 实现会多次调用自身，需要较多额外的辅助空间。",
+        "D": "当 较大时，相比上题中的 gcd() 的实现，本题的 gcd() 执行效率更高。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-mc-7",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 7,
+       "answer": "A",
+       "stem": "下述代码实现素数表的线性筛法，筛选出所有小于等于 的素数，则横线上应填的代码是( )。",
+       "code": "vector<int> linear_sieve(int n) {\nvector<bool> is_prime(n + 1, true);\nvector<int> primes;\nis_prime[0] = is_prime[1] = 0; //0和1两个数特殊处理\nfor (int i = 2; i <= n; ++i) {\nif (is_prime[i]) {\nprimes.push_back(i);\n}\n________________________________ {    // 在此处填入代码\nis_prime[i * primes[j]] = 0;\nif (i % primes[j] == 0)\nbreak;\n}\n}\nreturn primes;\n}",
+       "options": {
+        "A": "for (int j = 0; j < primes.size() && i * primes[j] <= n; j++)",
+        "B": "for (int j = 0; j <= sqrt(n) && i * primes[j] <= n; j++)",
+        "C": "for (int j = 0; j <= n; j++)",
+        "D": "for (int j = 1; j <= sqrt(n); j++)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-mc-8",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 8,
+       "answer": "D",
+       "stem": "上题代码的时间复杂度是（ ）。",
+       "code": "",
+       "options": {
+        "A": "O(n²)",
+        "B": "O(n log n)",
+        "C": "O(n log log n)",
+        "D": "O(n)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-mc-9",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 9,
+       "answer": "D",
+       "stem": "为了正确实现快速排序，下面横线上的代码应为（ ）。",
+       "code": "void qsort(vector<int>& arr, int left, int right) {\nint i, j, mid;\nint pivot;\ni = left;\nj = right;\nmid = (left + right) / 2; // 计算中间元素的索引\npivot = arr[mid]; // 选择中间元素作为基准值\ndo {\nwhile (arr[i] < pivot) i++;\nwhile (arr[j] > pivot) j--;\nif (i <= j) {\nswap(arr[i], arr[j]); // 交换两个元素\ni++; j--;\n}\n} ________________________________; // 在此处填入代码\nif (left < j) qsort(arr, left, j);   // 对左子数组进行快速排序\nif (i < right) qsort(arr, i, right); // 对右子数组进行快速排序\n}",
+       "options": {
+        "A": "while (i <= mid)",
+        "B": "while (i < mid)",
+        "C": "while (i < j)",
+        "D": "while (i <= j)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-mc-10",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 10,
+       "answer": "A",
+       "stem": "关于分治算法，以下哪个说法正确？",
+       "code": "",
+       "options": {
+        "A": "分治算法将问题分成子问题，然后分别解决子问题，最后合并结果。",
+        "B": "归并排序不是分治算法的应用。",
+        "C": "分治算法通常用于解决小规模问题。",
+        "D": "分治算法的时间复杂度总是优于 。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-mc-11",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 11,
+       "answer": "C",
+       "stem": "根据下述二分查找法，在排好序的数组 1，3，6，9，17，31，39，52，61，79，81，90，96 中查找数值 82，和82比较的数组元素分别是（ ）。",
+       "code": "int binary_search(vector<int>& nums, int target) {\nint left = 0;\nint right = nums.size() - 1;\nwhile (left <= right) {\nint mid = (left + right) / 2;\nif (nums[mid] == target) {\nreturn mid;\n} else if (nums[mid] < target) {\nleft = mid + 1;\n} else {\nright = mid - 1;\n}\n}\nreturn -1; // 如果找不到目标元素，返回-1\n}",
+       "options": {
+        "A": "52, 61, 81, 90",
+        "B": "52, 79, 90, 81",
+        "C": "39, 79, 90, 81",
+        "D": "39, 79, 90"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-mc-12",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 12,
+       "answer": "A",
+       "stem": "要实现一个高精度减法函数，则下面代码中加划线应该填写的代码为（ ）。",
+       "code": "//假设a和b均为正数，且a表示的数比b大\nvector<int> minus(vector<int> a, vector<int> b) {\nvector<int> c；\nint len1 = a.size();\nint len2 = b.size();\nint i, t;\nfor (i = 0; i < len2; i++) {\nif (a[i] < b[i]) { //借位\n_____________   // 在此处填入代码\na[i] += 10;\n}\nt = a[i] - b[i];\nc.push_back(t);\n}\nfor (; i < len1; i++)\nc.push_back(a[i]);\nlen3 = c.size();\nwhile (c[len3 - 1] == 0) {//去除前导0\nc.pop_back();\nlen3--;\n}\nreturn c;\n}",
+       "options": {
+        "A": "a[i + 1]--;",
+        "B": "a[i]--;",
+        "C": "b[i + 1]--;",
+        "D": "b[i]--;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-mc-13",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 13,
+       "answer": "C",
+       "stem": "设 和 是两个长度为 的有序数组，现将 和 合并成一个有序数组，归并排序算法在最坏情况下至少要做 （ ）次比较。",
+       "code": "",
+       "options": {
+        "A": "n²",
+        "B": "n log n",
+        "C": "2n − 1",
+        "D": "n"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-mc-14",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 14,
+       "answer": "D",
+       "stem": "给定如下函数： 则当 时，函数返回值为（ ）。",
+       "code": "int fun(int n) {\nif (n == 1) return 1;\nif (n == 2) return 2;\nreturn fun(n - 2) - fun(n - 1);\n}",
+       "options": {
+        "A": "0",
+        "B": "1",
+        "C": "21",
+        "D": "-11"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-mc-15",
+       "paper": "2024-06",
+       "type": "mc",
+       "num": 15,
+       "answer": "C",
+       "stem": "给定如下函数（函数功能同上题，增加输出打印）： 则当 时，屏幕上输出序列为（ ）。",
+       "code": "int fun(int n) {\ncout << n << \" \";\nif (n == 1) return 1;\nif (n == 2) return 2;\nreturn fun(n - 2) - fun(n - 1);\n}",
+       "options": {
+        "A": "4 3 2 1",
+        "B": "1 2 3 4",
+        "C": "4 2 3 1 2",
+        "D": "4 2 3 2 1"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-tf-1",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "如果将双向链表的最后一个结点的下一项指针指向第一个结点，第一个结点的前一项指针指向最后一个结 点，则该双向链表构成循环链表。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-tf-2",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 2,
+       "answer": "×",
+       "stem": "数组和链表都是线性表，链表的优点是插入删除不需要移动元素，并且能随机查找。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-tf-3",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 3,
+       "answer": "√",
+       "stem": "链表的存储空间物理上可以连续，也可以不连续。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-tf-4",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "找出自然数n以内的所有质数，常用算法有埃拉托斯特尼（埃氏）筛法和线性筛法，其中埃氏筛法效率更 高。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-tf-5",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "唯一分解定理表明任何一个大于1的整数都可以唯一地表示为一系列质数的乘积，即质因数分解是唯一的。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-tf-6",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "贪心算法通过每一步选择局部最优解来获得全局最优解，但并不一定能找到最优解。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-tf-7",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 7,
+       "answer": "×",
+       "stem": "归并排序和快速排序都采用递归实现，也都是不稳定排序。（ ）",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-tf-8",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 8,
+       "answer": "√",
+       "stem": "插入排序有时比快速排序时间复杂度更低。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-tf-9",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "在进行全国人口普查时，将其分解为对每个省市县乡来进行普查和统计。这是典型的分治策略。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-06-tf-10",
+       "paper": "2024-06",
+       "type": "tf",
+       "num": 10,
+       "answer": "×",
+       "stem": "在下面C++代码中，由于删除了变量 ptr ，因此 ptr 所对应的数据也随之删除，故执行下述代码时，将报 错。",
+       "code": "int* ptr = new int(10);\ncout << *ptr << endl;\ndelete ptr;\ncout << ptr << endl;",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      }
+     ]
+    },
+    {
+     "id": "2024-09",
+     "name": "2024 年 9 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.5,
+     "questions": [
+      {
+       "qid": "5-2024-09-mc-1",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 1,
+       "answer": "C",
+       "stem": "下面关于链表和数组的描述，错误的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "数组大小固定，链表大小可动态调整。",
+        "B": "数组支持随机访问，链表只能顺序访问。",
+        "C": "存储相同数目的整数，数组比链表所需的内存多。",
+        "D": "数组插入和删除元素效率低，链表插入和删除元素效率高。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-mc-2",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 2,
+       "answer": "D",
+       "stem": "通过（ ）操作，能完成在双向循环链表结点 p 之后插入结点 s 的功能（其中 next 域为结点的直接后继， prev 域为结点的直接前驱）。",
+       "code": "",
+       "options": {
+        "A": "p->next->prev = s; s->prev = p; p->next = s; s->next = p->next;",
+        "B": "p->next->prev = s; p->next = s; s->prev = p; s->next = p->next;",
+        "C": "s->prev = p; s->next = p->next; p->next = s; p->next->prev = s;",
+        "D": "s->next = p->next; p->next->prev = s; s->prev = p; p->next = s;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-mc-3",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 3,
+       "answer": "C",
+       "stem": "对下面两个函数，说法错误的是（ ）。",
+       "code": "int sumA(int n) {\nint res = 0;\nfor (int i = 1; i <= n; i++) {\nres += i;\n}\nreturn res;\n}\nint sumB(int n) {\nif (n == 1)\nreturn 1;\nint res = n + sumB(n - 1);\nreturn res;\n}",
+       "options": {
+        "A": "sumA体现了迭代的思想。",
+        "B": "SumB采用的是递归方式。",
+        "C": "SumB函数比SumA的时间效率更高。",
+        "D": "两个函数的实现的功能相同。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-mc-4",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 4,
+       "answer": "C",
+       "stem": "有如下函数 fun ，则 fun(20, 12) 的返回值为（ ）。",
+       "code": "int fun(int a, int b) {\nif (a % b == 0)\nreturn b;\nelse\nreturn fun(b, a % b);\n}",
+       "options": {
+        "A": "20",
+        "B": "12",
+        "C": "4",
+        "D": "2"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-mc-5",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 5,
+       "answer": "C",
+       "stem": "下述代码实现素数表的埃拉托斯特尼筛法，筛选出所有小于等于 n 的素数，则横线上应填的最佳代码是( )。",
+       "code": "void sieve_Eratosthenes(int n) {\nvector<bool> is_prime(n + 1, true);\nvector<int> primes;\nfor (int i = 2; i * i <= n; i++) {\nif (is_prime[i]) {\nprimes.push_back(i);\n________________________________ {   // 在此处填入代码\nis_prime[j] = false;\n}\n}\n}\nfor (int i = sqrt(n) + 1; i <= n; i++) {\nif (is_prime[i]) {\nprimes.push_back(i);\n}\n}\nreturn primes;\n}",
+       "options": {
+        "A": "for (int j = i; j <= n; j++)",
+        "B": "for (int j = i * i; j <= n; j++)",
+        "C": "for (int j = i * i; j <= n; j += i)",
+        "D": "for (int j = i; j <= n; j += i)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-mc-6",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 6,
+       "answer": "A",
+       "stem": "下述代码实现素数表的线性筛法，筛选出所有小于等于 n 的素数，则横线上应填的代码是( )。",
+       "code": "vector<int> sieve_linear(int n) {\nvector<bool> is_prime(n + 1, true);\nvector<int> primes;\nfor (int i = 2; i <= n / 2; i++) {\nif (is_prime[i])\nprimes.push_back(i);\n________________________________ {   // 在此处填入代码\nis_prime[i * primes[j]] = 0;\nif (i % primes[j] == 0)\nbreak;\n}\n}\nfor (int i = n / 2 + 1; i <= n; i++) {\nif (is_prime[i])\nprimes.push_back(i);\n}\nreturn primes;\n}",
+       "options": {
+        "A": "for (int j = 0; j < primes.size() && i * primes[j] <= n; j++)",
+        "B": "for (int j = 1; j < primes.size() && i * j <= n; j++)",
+        "C": "for (int j = 2; j < primes.size() && i * primes[j] <= n; j++)",
+        "D": "以上都不对"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-mc-7",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 7,
+       "answer": "C",
+       "stem": "下面函数可以将 n 的所有质因数找出来，其时间复杂度是（ ）。",
+       "code": "#include <iostream>\n#include <vector>\nvector<int> get_prime_factors(int n) {\nvector<int> factors;\nwhile (n % 2 == 0) {\nfactors.push_back(2);\nn /= 2;\n}\nfor (int i = 3; i * i <= n; i += 2) {\nwhile (n % i == 0) {\nfactors.push_back(i);\nn /= i;\n}\n}\nif (n > 2) {\nfactors.push_back(n);\n}\nreturn factors;\n}",
+       "options": {
+        "A": "O(n²)",
+        "B": "O(n log n)",
+        "C": "O(√n log n)",
+        "D": "O(n)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-mc-8",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 8,
+       "answer": "A",
+       "stem": "现在用如下代码来计算 xⁿ（n 个 x 相乘），其时间复杂度为（ ）。",
+       "code": "double quick_power(double x, unsigned n) {\nif (n == 0) return 1;\nif (n == 1) return x;\nreturn quick_power(x, n / 2) * quick_power(x, n / 2) * ((n & 1) ? x : 1);\n}",
+       "options": {
+        "A": "O(n)",
+        "B": "O(n²)",
+        "C": "O(log n)",
+        "D": "O(n log n)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-mc-9",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 9,
+       "answer": "C",
+       "stem": "假设快速排序算法的输入是一个长度为 的已排序数组，且该快速排序算法在分治过程总是选择第一个元素 作为基准元素。下面选项（ ）描述的是在这种情况下的快速排序行为。",
+       "code": "",
+       "options": {
+        "A": "快速排序对于此类输入的表现最好，因为数组已经排序。",
+        "B": "快速排序对于此类输入的时间复杂度是 。",
+        "C": "快速排序对于此类输入的时间复杂度是 。",
+        "D": "快速排序无法对此类数组进行排序，因为数组已经排序。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-mc-10",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 10,
+       "answer": "B",
+       "stem": "考虑以下C++代码实现的归并排序算法： 对长度为 n 的数组 arr ，挑用函数 merge_sort(a, 0, n-1) ，在排序过程中 merge 函数的递归调用次数大约是 （ ）。",
+       "code": "void merge(int arr[], int left, int mid, int right) {\nint n1 = mid - left + 1;\nint n2 = right - mid;\nint L[n1], R[n2];\nfor (int i = 0; i < n1; i++)\nL[i] = arr[left + i];\nfor (int j = 0; j < n2; j++)\nR[j] = arr[mid + 1 + j];\nint i = 0, j = 0, k = left;\nwhile (i < n1 && j < n2) {\nif (L[i] <= R[j]) {\narr[k] = L[i];\ni++;\n}\nelse {\narr[k] = R[j];\nj++;\n}\nk++;\n}\nwhile (i < n1) {\narr[k] = L[i];\ni++;\nk++;\n}\nwhile (j < n2) {\narr[k] = R[j];\nj++;\nk++;\n}\n}\nvoid merge_sort(int arr[], int left, int right) {\nif (left < right) {\nint mid = left + (right - left) / 2;\nmerge_sort(arr, left, mid);\nmerge_sort(arr, mid + 1, right);\nmerge(arr, left, mid, right);\n}\n}",
+       "options": {
+        "A": "O(1)",
+        "B": "O(n)",
+        "C": "O(log n)",
+        "D": "O(n log n)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-mc-11",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 11,
+       "answer": "B",
+       "stem": "现在有 n 个人要过河，每只船最多载2人，船的承重为100kg。下列代码中，数组 weight 中保存有 n 个人 的体重（单位为kg），已经按从小到大排好序，代码输出过河所需要的船的数目，采用的思想为（ ）。",
+       "code": "int i, j;\nint count = 0;\nfor (i = 0, j = n - 1; i < j; j--) {\nif (weight[i] + weight[j] <= 100) {\ni++;\n}\ncount++;\n}\nprintf(\"过河的船数：%d\\n\", count);",
+       "options": {
+        "A": "枚举算法",
+        "B": "贪心算法",
+        "C": "迭代算法",
+        "D": "递归算法"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-mc-12",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 12,
+       "answer": "A",
+       "stem": "关于分治算法，以下哪个说法正确？",
+       "code": "",
+       "options": {
+        "A": "分治算法将问题分成子问题，然后分别解决子问题，最后合并结果。",
+        "B": "归并排序不是分治算法的应用。",
+        "C": "分治算法通常用于解决小规模问题。",
+        "D": "分治算法的时间复杂度总是优于 。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-mc-13",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 13,
+       "answer": "C",
+       "stem": "根据下述二分查找法，在排好序的数组 1，3，6，9，17，31，39，52，61，79 中查找数值 31 ，循环 while (left <= right) 执行的次数为（ ）。",
+       "code": "int binary_search(vector<int>& nums, int target) {\nint left = 0;\nint right = nums.size() - 1;\nwhile (left <= right) {\nint mid = left + (right - left) / 2;\nif (nums[mid] == target) {\nreturn mid;\n}\nelse if (nums[mid] < target) {\nleft = mid + 1;\n}\nelse {\nright = mid - 1;\n}\n}\nreturn -1; // 如果找不到目标元素，返回-1\n}",
+       "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-mc-14",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 14,
+       "answer": "C",
+       "stem": "以下关于高精度运算的说法错误的是( )。",
+       "code": "",
+       "options": {
+        "A": "高精度计算主要是用来处理大整数或需要保留多位小数的运算。",
+        "B": "大整数除以小整数的处理的步骤可以是，将被除数和除数对齐，从左到右逐位尝试将除数乘以某个数，通过 减法得到新的被除数，并累加商。",
+        "C": "高精度乘法的运算时间只与参与运算的两个整数中长度较长者的位数有关。",
+        "D": "高精度加法运算的关键在于逐位相加并处理进位。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-mc-15",
+       "paper": "2024-09",
+       "type": "mc",
+       "num": 15,
+       "answer": "C",
+       "stem": "当 时，下面函数的返回值为（ ）。",
+       "code": "int fun(int n) {\nif (n == 1) return 1;\nelse if (n >= 5) return n * fun(n - 2);\nelse return n * fun(n - 1);\n}",
+       "options": {
+        "A": "105",
+        "B": "840",
+        "C": "210",
+        "D": "420"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-tf-1",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "在操作系统中，需要对一组进程进行循环。每个进程被赋予一个时间片，当时间片用完时，CPU将切换到下 一个进程。这种循环操作可以通过环形链表来实现。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-tf-2",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "找出自然数 n 以内的所有质数，常用算法有埃拉托斯特尼（埃氏）筛法和线性筛法，其中线性筛法效率更 高。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-tf-3",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "唯一分解定理表明任何一个大于 1 的整数都可以唯一地分解为素数之和。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-tf-4",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "贪心算法通过每一步选择局部最优解，从而一定能获得最优解。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-tf-5",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 5,
+       "answer": "×",
+       "stem": "快速排序和归并排序的平均时间复杂度均为 ，且都是稳定排序。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-tf-6",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 6,
+       "answer": "×",
+       "stem": "插入排序的时间复杂度总是比快速排序低。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-tf-7",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "引入分治策略往往可以提升算法效率。一方面，分治策略减少了操作数量；另一方面，分治后有利于系统的 并行优化。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-tf-8",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 8,
+       "answer": "√",
+       "stem": "二分查找要求被搜索的序列是有序的，否则无法保证正确性。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-tf-9",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "在C++语言中，递归的实现方式通常会占用更多的栈空间，可能导致栈溢出。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-09-tf-10",
+       "paper": "2024-09",
+       "type": "tf",
+       "num": 10,
+       "answer": "×",
+       "stem": "对于已经定义好的标准数学函数 sin(x) ，应用程序中的语句 y=sin(sin(x)); 是一种递归调用。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      }
+     ]
+    },
+    {
+     "id": "2024-12",
+     "name": "2024 年 12 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.5,
+     "questions": [
+      {
+       "qid": "5-2024-12-mc-1",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 1,
+       "answer": "C",
+       "stem": "下面关于链表和数组的描述，错误的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "当数据数量不确定时，为了应对各种可能的情况，需要申请一个较大的数组，可能浪费空间；此时用链表比 较合适，大小可动态调整。",
+        "B": "在链表中访问节点的效率较低，时间复杂度为 。",
+        "C": "链表插入和删除元素效率较低，时间复杂度为 。",
+        "D": "链表的节点在内存中是分散存储的，通过指针连在一起。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-mc-2",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 2,
+       "answer": "C",
+       "stem": "在循环单链表中，节点的 next 指针指向下一个节点，最后一个节点的 next 指针指向（ ）。",
+       "code": "",
+       "options": {
+        "A": "当前节点",
+        "B": "nullptr",
+        "C": "第一个节点",
+        "D": "上一个节点"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-mc-3",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 3,
+       "answer": "A",
+       "stem": "为了方便链表的增删操作，一些算法生成一个虚拟头节点，方便统一删除头节点和其他节点。下面代码实现 了删除链表中值为 val 的节点，横线上应填的最佳代码是( )。",
+       "code": "struct LinkedNode {\nint val;\nLinkedNode* next;\nLinkedNode(int val):val(val), next(nullptr){}\n};\nvoid removeElements(LinkedNode* head, int val) {\nif (head == nullptr) {\nreturn;\n}\nLinkedNode* cur;\nLinkedNode* dummyHead = new LinkedNode(0); //虚拟头节点\n________________________________     // 在此处填入代码\nwhile(cur ->next ！= nullptr) {\nif(cur->next->val == val) {\nLinkedNode* tmp = cur->next;\ncur->next = cur->next->next;\ndelete tmp;\ntmp = nullptr;\n}\nelse {\ncur = cur ->next;\n}\n}\nhead = dummyHead->next;\ndelete dummyHead;\ndummyHead = nullptr;\n}",
+       "options": {
+        "A": "dummyHead->next = head; cur = dummyHead;",
+        "B": "dummyHead->next = head->next; cur = dummyHead;",
+        "C": "dummyHead->next = head; cur = dummyHead->next;",
+        "D": "dummyHead->next = head->next; cur = dummyHead->next;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-mc-4",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 4,
+       "answer": "D",
+       "stem": "对下面两个函数，说法错误的是（ ）。",
+       "code": "int fibA(int n) {\nif (n <= 1) return n;\nint f1 = 0, f2 = 1;\nfor (int i = 2; i <= n; ++i) {\nint temp = f2;\nf2 = f1 + f2;\nf1 = temp;\n}\nreturn f2;\n}\nint fibB(int n) {\nif (n <= 1) return n;\nreturn fibB(n - 1) + fibB(n - 2);\n}",
+       "options": {
+        "A": "两个函数的实现的功能相同。",
+        "B": "fibA采用递推方式。",
+        "C": "fibB采用的是递归方式。",
+        "D": "fibA时间复杂度为 ，fibB的时间复杂度为 。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-mc-5",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 5,
+       "answer": "C",
+       "stem": "两块长方形土地的长宽分别为 和 米，要将它们分成正方形的小块，使得正方形的尺寸尽可能大。小杨 采用如下的辗转相除函数 gcd(24, 36) 来求正方形分块的边长，则函数 gcd 调用顺序为（ ）。",
+       "code": "int gcd(int a, int b) {\nint big = a > b ? a : b;\nint small = a < b ? a : b;\nif (big % small == 0) {\nreturn small;\n}\nreturn gcd(small, big % small);\n}",
+       "options": {
+        "A": "gcd(24, 36)、gcd(24, 12)、gcd(12, 0)",
+        "B": "gcd(24, 36)、gcd(12, 24)、gcd(0, 12)",
+        "C": "gcd(24, 36)、gcd(24, 12)",
+        "D": "gcd(24, 36)、gcd(12, 24)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-mc-6",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 6,
+       "answer": "D",
+       "stem": "唯⼀分解定理表明，每个⼤于1的⾃然数可以唯⼀地写成若⼲个质数的乘积。下⾯函数将⾃然数 的所有质因 数找出来，横线上能填写的最佳代码是（ ）。",
+       "code": "#include <vector>\nvector<int> get_prime_factors(int n) {\nvector<int> factors;\nif (n <= 1) {\ncout << \"输入的数必须是大于1的正整数\" << endl;\nreturn;\n}\nwhile (n % 2 == 0) {\nfactors.push_back(2);\nn /= 2;\n}\n________________________________   {   // 在此处填入代码\nwhile (n % i == 0) {\nfactors.push_back(i);\nn /= i;\n}\n}\nif (n > 2) {\nfactors.push_back(n);\n}\nreturn factors;\n}",
+       "options": {
+        "A": "for (int i = 3; i <= n; i ++)",
+        "B": "for (int i = 3; i * i <= n; i ++)",
+        "C": "for (int i = 3; i <= n; i += 2)",
+        "D": "for (int i = 3; i * i <= n; i += 2)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-mc-7",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 7,
+       "answer": "B",
+       "stem": "下述代码实现素数表的埃拉托 尼(埃 )筛法，筛选出所有 于等于 的素数。 色 氏 小 下面说法，正确的是（ ）。",
+       "code": "vector<int> sieve_Eratosthenes(int n) {\nvector<bool> is_prime(n +1, true);\nvector<int> primes;\nfor (int i = 2; i * i <= n; i++) {\nif (is_prime[i]) {\nprimes.push_back(i);\nfor (int j = i * i; j <= n; j += i) {\nis_prime[j] = false;\n}\n}\n}\nfor (int i = sqrt(n) + 1; i <= n; i++) {\nif (is_prime[i]) {\nprimes.push_back(i);\n}\n}\nreturn primes;\n}",
+       "options": {
+        "A": "代码的时间复杂度是 。",
+        "B": "在标记非素数时，代码从 开始，可以减少重复标记。",
+        "C": "代码会输出所有小于等于 的奇数。",
+        "D": "调用函数 sieve_Eratosthenes(10) ，函数返回值的数组中包含的元素有： 2, 3, 5, 7, 9 。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-mc-8",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 8,
+       "answer": "A",
+       "stem": "下述代码实现素数表的线性筛法，筛选出所有小于等于 的素数。下面说法正确的是( )。",
+       "code": "vector<int> sieve_linear(int n) {\nvector<bool> is_prime(n +1, true);\nvector<int> primes;\nfor (int i = 2; i <= n/2; i++) {\nif (is_prime[i])\nprimes.push_back(i);\nfor (int j = 0; j < primes.size() && i * primes[j] <= n; j++) {\nis_prime[ i * primes[j] ] = 0;\nif (i % primes[j] == 0)\nbreak;\n}\n}\nfor (int i = n/2 +1; i <= n; i++) {\nif (is_prime[i])\nprimes.push_back(i);\n}\nreturn primes;\n}",
+       "options": {
+        "A": "线性筛的时间复杂度是 。",
+        "B": "每个合数会被其所有的质因子标记一次。",
+        "C": "线性筛和埃拉托色尼筛的实现思路完全相同。",
+        "D": "以上都不对"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-mc-9",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 9,
+       "answer": "A",
+       "stem": "考虑以下C++代码实现的快速排序算法： 以下关于快速排序的说法，正确的是（ ）。",
+       "code": "int partition(vector<int>& arr, int left, int right) {\nint pivot = arr[right]; // 基准值\nint i = left - 1;\nfor (int j = left; j < right; j++) {\nif (arr[j] < pivot) {\ni++;\nswap(arr[i], arr[j]);\n}\n}\nswap(arr[i + 1], arr[right]);\nreturn i + 1;\n}\n// 快速排序\nvoid quickSort(vector<int>& arr, int left, int right) {\nif (left < right) {\nint pi = partition(arr, left, right);\nquickSort(arr, left, pi - 1);\nquickSort(arr, pi + 1, right);\n}\n}",
+       "options": {
+        "A": "快速排序通过递归对子问题进行求解。",
+        "B": "快速排序的最坏时间复杂度是 。",
+        "C": "快速排序是一个稳定的排序算法。",
+        "D": "在最优情况下，快速排序的时间复杂度是 。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-mc-10",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 10,
+       "answer": "B",
+       "stem": "下面关于归并排序，描述正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "归并排序是一个不稳定的排序算法。",
+        "B": "归并排序的时间复杂度在最优、最差和平均情况下都是 。",
+        "C": "归并排序需要额外的 空间。",
+        "D": "对于输入数组 {12, 11, 13, 5, 6, 7}，代码输出结果为：7 6 5 13 12 11。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-mc-11",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 11,
+       "answer": "C",
+       "stem": "给定一个长度为 的有序数组 nums ，其中所有元素都是唯一的。下面的函数返回数组中元素 target 的索 引。 关于上述函数，描述不正确的是（ ）。",
+       "code": "int binarySearch(vector<int> &nums, int target, int left, int right) {\nif (left > right) {\nreturn -1;\n}\nint middle = left + ((right - left) / 2);\nif (nums[middle] == target) {\nreturn middle;\n}\nelse if (nums[middle] < target) {\nreturn binarySearch(nums, target, middle + 1, right);\n}\nelse\nreturn binarySearch(nums, target, left, middle - 1);\n}\n}\nint Find(vector<int> &nums, int target) {\nint n = nums.size();\nreturn binarySearch(nums, target, 0, n - 1);\n}",
+       "options": {
+        "A": "函数采用二分查找，每次计算搜索当前搜索区间的中点，然后根据中点的元素值排除一半搜索区间。",
+        "B": "函数采用递归求解，每次问题的规模减小一半。",
+        "C": "递归的终止条件是中间元素的值等于 target ，若数组中不包含该元素，递归不会终止。",
+        "D": "算法的复杂度为 ."
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-mc-12",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 12,
+       "answer": "B",
+       "stem": "给定一个长度为 的有序数组 nums ，其中可能包含重复元素。下面的函数返回数组中某个元素 target 的 左边界，若数组中不包含该元素，则返回 −1 。例如在数组 nums = [5,7,7,8,8,10] 中查找 target=8 ，函数返 回 在数组中的左边界的索引为 。则横线上应填写的代码为（ ）。",
+       "code": "int getLeftBoundary(vector<int>& nums, int target) {\nint left = 0;\nint right = nums.size() - 1;\nwhile (left < right) {\nint middle = left + ((right - left) / 2);\nif (target <= nums[middle])\n________________________________    // 在此处填入代码\nelse\nleft = middle+1;\n}\nreturn nums[left]==target?left:-1;\n}",
+       "options": {
+        "A": "right = middle - 1;",
+        "B": "right = middle;",
+        "C": "right = middle + 1;",
+        "D": "以上都不对"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-mc-13",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 13,
+       "answer": "A",
+       "stem": "假设有多个孩子，数组 g 保存所有孩子的胃口值。有多块饼干，数组 s 保存所有饼干的尺寸。小杨给孩子 们发饼干，每个孩子最多只能给一块饼干。饼干的尺寸大于等于孩子的胃口时，孩子才能得到满足。小杨的目标是 尽可能满足越多数量的孩子，因此打算采用贪心算法来找出能满足的孩子的数目，则横线上应填写的代码为（ ）。",
+       "code": "int cooki4children(vector<int>& g, vector<int>& s) {\nsort(g.begin(), g.end());\nsort(s.begin(), s.end());\nint index = s.size() - 1; // 饼干数组下标\nint result = 0;\nfor (int i = g.size() - 1; i >= 0; i--) {\nif (index >= 0 && s[index] >= g[i]) {\n________________________________    // 在此处填入代码\n}\n}\nreturn result;\n}",
+       "options": {
+        "A": "result++; index--;",
+        "B": "result--; index--;",
+        "C": "result--; index++;",
+        "D": "result++; index++;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-mc-14",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 14,
+       "answer": "D",
+       "stem": "关于分治算法，以下说法中不正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "分治算法将问题分成子问题，然后分别解决子问题，最后合并结果。",
+        "B": "归并排序采用了分治思想。",
+        "C": "快速排序采用了分治思想。",
+        "D": "冒泡排序采用了分治思想。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-mc-15",
+       "paper": "2024-12",
+       "type": "mc",
+       "num": 15,
+       "answer": "B",
+       "stem": "小杨编写了一个如下的高精度减法函数： 下面说法，正确的是（ ）。",
+       "code": "vector<int> highPrecisionSubtract(vector<int> a, vector<int> b) {\nvector<int> result;\nint borrow = 0;\nfor (int i = 0; i < a.size(); ++i) {\nint digitA = a[i];\nint digitB = i < b.size() ? b[i] : 0;\nint diff = digitA - digitB - borrow;\nif (diff < 0) {\ndiff += 10;\nborrow = 1;\n}\nelse {\nborrow = 0;\n}\nresult.push_back(diff);\n}\nwhile (result.size() > 1 && result.back() == 0) {\nresult.pop_back();\n}\nreturn result;\n}",
+       "options": {
+        "A": "如果数组 表示的整数小于 表示的整数，代码会正确返回二者的差为负数。",
+        "B": "代码假设输入数字是以倒序存储的，例如 存储为 {0, 0, 5} 。",
+        "C": "代码的时间复杂度为",
+        "D": "当减法结果为 时，结果数组仍然会存储很多个元素 。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-tf-1",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 1,
+       "answer": "×",
+       "stem": "单链表只支持在表头进行插入和删除操作。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-tf-2",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "线性筛相对于埃拉托斯特尼筛法，每个合数只会被它的最小质因数筛去一次，因此效率更高。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-tf-3",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "任何一个大于1的自然数都可以分解成若干个不同的质数的乘积，且分解方式是唯一的。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-tf-4",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "贪心算法通过每一步选择当前最优解，从而一定能获得全局最优解。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-tf-5",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "递归算法必须有一个明确的结束条件，否则会导致无限递归并可能引发栈溢出。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-tf-6",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 6,
+       "answer": "×",
+       "stem": "快速排序和归并排序的平均时间复杂度均为 ，且都是稳定排序。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-tf-7",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 7,
+       "answer": "×",
+       "stem": "快速排序的时间复杂度总比插入排序的时间复杂度低。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-tf-8",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 8,
+       "answer": "√",
+       "stem": "二分查找仅适用于数组而不适合链表，因为二分查找需要跳跃式访问元素，链表中执行跳跃式访问的效率 低。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-tf-9",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "对有序数组 {5,13,19,21,37,56,64,75,88,92,100} 进行二分查找，成功查找元素 19 的比较次数是2。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2024-12-tf-10",
+       "paper": "2024-12",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "递归函数每次调用自身时，系统都会为新开启的函数分配内存，以存储局部变量、调用地址和其他信息 等，导致递归通常比迭代更加耗费内存空间。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "y2025",
+   "name": "2025 年真题",
+   "req": null,
+   "freq": null,
+   "difficulty": 3.5,
+   "sections": [
+    {
+     "id": "2025-03",
+     "name": "2025 年 3 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.5,
+     "questions": [
+      {
+       "qid": "5-2025-03-mc-1",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 1,
+       "answer": "A",
+       "stem": "链表不具备的特点是( )。",
+       "code": "",
+       "options": {
+        "A": "可随机访问任何一个元素",
+        "B": "插入、删除操作不需要移动元素",
+        "C": "无需事先估计存储空间大小",
+        "D": "所需存储空间与存储元素个数成正比"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-mc-2",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 2,
+       "answer": "A",
+       "stem": "双向链表中每个结点有两个指针域 prev 和 next ，分别指向该结点的前驱及后继结点。设 p 指向链表中的 一个结点，它的前驱结点和后继结点均非空。要删除结点 p ，则下述语句中错误的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "1 p->next->prev = p->next; 2 p->prev->next = p->prev; 3 delete p;",
+        "B": "1 p->prev->next = p->next; 2 p->next->prev = p->prev; 3 delete p;",
+        "C": "1 p->next->prev = p->prev; 2 p->next->prev->next = p->next; 3 delete p;",
+        "D": "1 p->prev->next = p->next; 2 p->prev->next->prev = p->prev; 3 delete p;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-mc-3",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 3,
+       "answer": "B",
+       "stem": "假设双向循环链表包含头尾哨兵结点(不存储实际内容)，分别为 head 和 tail ，链表中每个结点有两个指 针域 prev 和 next ，分别指向该结点的前驱及后继结点。下面代码实现了一个空的双向循环链表，横线上应填的最 佳代码是( )。",
+       "code": "// 链表结点\ntemplate <typename T>\nstruct ListNode {\nT data;\nListNode* prev;\nListNode* next;\n// 构造函数\nexplicit ListNode(const T& val = T())\n: data(val), prev(nullptr), next(nullptr) {}\n};\nstruct LinkedList {\nListNode<T>* head;\nListNode<T>* tail;\n};\nvoid InitLinkedList(LinkedList* list) {\nlist->head = new ListNode<T>;\nlist->tail = new ListNode<T>;\n________________________________    // 在此处填入代码\n};",
+       "options": {
+        "A": "1 list->head->prev = list->head; 2 list->tail->prev = list->head;",
+        "B": "1 list->head->next = list->tail; 2 list->tail->prev = list->head;",
+        "C": "1 list->head->next = list->tail; 2 list->tail->next = list->head;",
+        "D": "1 list->head->next = list->tail; 2 list->tail->next = nullptr;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-mc-4",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 4,
+       "answer": "B",
+       "stem": "用以下辗转相除法（欧几里得算法）求gcd(84, 60)的步骤中，第二步计算的数是（ ）。",
+       "code": "int gcd(int a, int b) {\nint big = a > b ? a : b;\nint small = a < b ? a : b;\nif (big % small == 0) {\nreturn small;\n}\nreturn gcd(small, big % small);\n}",
+       "options": {
+        "A": "84和60",
+        "B": "60和24",
+        "C": "24和12",
+        "D": "12和0"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-mc-5",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 5,
+       "answer": "D",
+       "stem": "根据唯一分解定理，下面整数的唯一分解是正确的（ ）。",
+       "code": "",
+       "options": {
+        "A": "18 = 3 × 6",
+        "B": "28 = 4 × 7",
+        "C": "36 = 2 × 3 × 6",
+        "D": "30 = 2 × 3 × 5"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-mc-6",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 6,
+       "answer": "C",
+       "stem": "下述代码实现素数表的线性筛法，筛选出所有小于等于 的素数，横线上应填的最佳代码是( )。",
+       "code": "vector<int> sieve_linear(int n) {\nvector<bool> is_prime(n +1, true);\nvector<int> primes;\nif (n < 2) return primes;\nis_prime[0] = is_prime[1] = false;\nfor (int i = 2; i <= n/2; i++) {\nif (is_prime[i])\nprimes.push_back(i);\nfor (int j = 0; ________________________________ ; j++) {   // 在此处填入代码\nis_prime[ i * primes[j] ] = false;\nif (i % primes[j] == 0)\nbreak;\n}\n}\nfor (int i = n/2 +1; i <= n; i++) {\nif (is_prime[i])\nprimes.push_back(i);\n}\nreturn primes;\n}",
+       "options": {
+        "A": "j < primes.size()",
+        "B": "i * primes[j] <= n",
+        "C": "j < primes.size() && i * primes[j] <= n",
+        "D": "j <= n"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-mc-7",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 7,
+       "answer": "A",
+       "stem": "在程序运 过程中，如果递归调 的层数过多，会因为（ ）引发错误。 行 用",
+       "code": "",
+       "options": {
+        "A": "系统分配的栈空间溢出",
+        "B": "系统分配的堆空间溢出",
+        "C": "系统分配的队列空间溢出",
+        "D": "系统分配的链表空间溢出"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-mc-8",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 8,
+       "answer": "D",
+       "stem": "对下 两个函数，说法错误的是（ ）。 面",
+       "code": "int factorialA(int n) {\nif (n <= 1) return 1;\nreturn n * factorialA(n-1);\n}\nint factorialB(int n) {\nif (n <= 1) return 1;\nint res = 1;\nfor(int i=2; i<=n; i++)\nres *= i;\n}",
+       "options": {
+        "A": "两个函数的实现的功能相同。",
+        "B": "两个函数的时间复杂度均为 。",
+        "C": "factorialA采 递归 式。 用 方",
+        "D": "factorialB采 递归 式。 用 方"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-mc-9",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 9,
+       "answer": "A",
+       "stem": "下算法中，（ ）是不稳定的排序。",
+       "code": "",
+       "options": {
+        "A": "选择排序",
+        "B": "插 排序 入",
+        "C": "归并排序",
+        "D": "冒泡排序"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-mc-10",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 10,
+       "answer": "B",
+       "stem": "考虑以下C++代码实现的快速排序算法，将数据从 到 排序，则横线上应填的最佳代码是( )。 小 大",
+       "code": "int partition(vector<int>& arr, int low, int high) {\nint pivot = arr[high]; // 基准值\nint i = low - 1;\nfor (int j = low; j < high; j++) {\n________________________________           // 在此处填入代码\n}\nswap(arr[i + 1], arr[high]);\nreturn i + 1;\n}\n// 快速排序\nvoid quickSort(vector<int>& arr, int low, int high) {\nif (low < high) {\nint pi = partition(arr, low, high);\nquickSort(arr, low, pi - 1);\nquickSort(arr, pi + 1, high);\n}\n}",
+       "options": {
+        "A": "1 if (arr[j] > pivot) { 2 i++; 3 swap(arr[i], arr[j]); 4 }",
+        "B": "1 if (arr[j] < pivot) { 2 i++; 3 swap(arr[i], arr[j]); 4 }",
+        "C": "1 if (arr[j] < pivot) { 2 swap(arr[i], arr[j]); 3 i++; 4 }",
+        "D": "1 if (arr[j] == pivot) { 2 i++; 3 swap(arr[i], arr[j]); 4 }"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-mc-11",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 11,
+       "answer": "C",
+       "stem": "若用二分法在[1, 100]内猜数，最多需要猜（ ）次。",
+       "code": "",
+       "options": {
+        "A": "100",
+        "B": "10",
+        "C": "7",
+        "D": "5"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-mc-12",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 12,
+       "answer": "A",
+       "stem": "下面代码实现了二分查找算法，在数组 arr 找到目标元素 target 的位置，则横线上能填写的最佳代码 是（ ）。",
+       "code": "int binarySearch(int arr[], int left, int right, int target) {\nwhile (left <= right) {\n________________________________       // 在此处填入代码\nif (arr[mid] == target)\nreturn mid;\nelse if (arr[mid] < target)\nleft = mid + 1;\nelse\nright = mid - 1;\n}\nreturn -1;\n}",
+       "options": {
+        "A": "int mid = left + (right - left) / 2;",
+        "B": "int mid = left;",
+        "C": "int mid = (left + right) / 2;",
+        "D": "int mid = right;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-mc-13",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 13,
+       "answer": "A",
+       "stem": "贪心算法的核心特征是（ ）。",
+       "code": "",
+       "options": {
+        "A": "总是选择当前最优解",
+        "B": "回溯尝试所有可能",
+        "C": "分阶段解决子问题",
+        "D": "总能找到最优解"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-mc-14",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 14,
+       "answer": "D",
+       "stem": "函数 int findMax(int arr[], int low, int high) 计算数组中最大元素，其中数组 arr 从索引 low 到 high ，（ ）正确实现了分治逻辑。",
+       "code": "",
+       "options": {
+        "A": "1 if (low == high) 2 return arr[low]; 3 int mid = (low + high) / 2; 4 return arr[mid];",
+        "B": "1 if (low >= high) 2 return arr[low]; 3 int mid = (low + high) / 2; 4 int leftMax = findMax(arr, low, mid - 1); 5 int rightMax = findMax(arr, mid, high); 6 return leftMax + rightMax;",
+        "C": "1 if (low > high) 2 return 0; 3 int mid = low + (high - low) / 2; 4 int leftMax = findMax(arr, low, mid); 5 int rightMax = findMax(arr, mid + 1, high); 6 return leftMax * rightMax;",
+        "D": "1 if (low == high) 2 return arr[low]; 3 int mid = low + (high - low) / 2; 4 int leftMax = findMax(arr, low, mid); 5 int rightMax = findMax(arr, mid + 1, high); 6 return (leftMax > rightMax) ? leftMax : rightMax;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-mc-15",
+       "paper": "2025-03",
+       "type": "mc",
+       "num": 15,
+       "answer": "B",
+       "stem": "小杨编写了一个如下的高精度乘法函数，则横线上应填写的代码为（ ）。",
+       "code": "vector<int> multiply(vector<int>& a, vector<int>& b) {\nint m = a.size(), n = b.size();\nvector<int> c(m + n, 0);\n// 逐位相乘，逆序存储\nfor (int i = 0; i < m; i++) {\nfor (int j = 0; j < n; j++) {\nc[i + j] += a[i] * b[j];\n}\n}\n// 处理进位\nint carry = 0;\nfor (int k = 0; k < c.size(); ++k) {\n________________________________     // 在此处填入代码\nc[k] = temp % 10;\ncarry = temp / 10;\n}\nwhile (c.size() > 1 && c.back() == 0)\nc.pop_back();\nreturn c;\n}",
+       "options": {
+        "A": "int temp = c[k];",
+        "B": "int temp = c[k] + carry;",
+        "C": "int temp = c[k] - carry;",
+        "D": "int temp = c[k] * carry;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-tf-1",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "要删除单链表中某个结点`p`(⾮尾结点)，但不知道头结点，可⾏的操作是将`p->next`的数据 到`p`的数 据 分，将`p->next`设置为`p->next->next`，然后删除`p->next`。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-tf-2",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 2,
+       "answer": "×",
+       "stem": "链表存储线性表时要求内存中可 存储单元地址是连续的。 用",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-tf-3",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 3,
+       "answer": "√",
+       "stem": "线性筛相对于埃拉托斯特尼筛法，每个合数只会被它的最 质因数筛去 次，因此效率更 。 小 一 高",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-tf-4",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "贪 算法通过每 步选择当前最优解，从 定能获得全局最优解。 心 一 而 一",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-tf-5",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "递归函数必须具有 个终 条件，以防 限递归。 一 止 止 无",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-tf-6",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 6,
+       "answer": "×",
+       "stem": "快速排序算法的时间复杂度与输 是否有序 关，始终稳定为 。 入 无",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-tf-7",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "归并排序算法的时间复杂度与输 是否有序 关，始终稳定为 。 入 无",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-tf-8",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "分查找适 于对 序数组和有序数组的查找。 二 用 无",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-tf-9",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "杨有100元去超市买东西，每个商品有各 的价格，每种商品只能买1个， 杨的 标是买到最多数量的商 小 自 小 目 品。 杨采 的策略是每次挑价格最低的商品买，这体现了分治思想。 小 用",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-03-tf-10",
+       "paper": "2025-03",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "归并排序算法体现了分治算法，每次将 的待排序数组分成 致相等的两个 数组，然后分别对两个 大 大 小 大 小 数组进 排序，最后对排好序的两个 数组合并成有序数组。 小 行 小",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      }
+     ]
+    },
+    {
+     "id": "2025-06",
+     "name": "2025 年 6 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.5,
+     "questions": [
+      {
+       "qid": "5-2025-06-mc-1",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 1,
+       "answer": "C",
+       "stem": "与数组相 ，链表在（ ）操作上通常具有更 的效率。 比 高",
+       "code": "",
+       "options": {
+        "A": "随机访问元素",
+        "B": "查找指定元素",
+        "C": "在已知位置插 或删除节点 入",
+        "D": "遍历所有元素"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-mc-2",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 2,
+       "answer": "C",
+       "stem": "下 C++代码实现双向链表。函数 is_empty() 判断链表是否为空，如链表为空返回 true ，否则返回 面 false 。横线处不能填写（ ）。",
+       "code": "// 节点结构体\nstruct Node {\nint data;\nNode* prev;\nNode* next;\n};\n// 双向链表结构体\nstruct DoubleLink {\nNode* head;\nNode* tail;\nint size;\nDoubleLink() {\nhead = nullptr;\ntail = nullptr;\nsize = 0;\n}\n~DoubleLink() {\nNode* curr = head;\nwhile (curr) {\nNode* next = curr->next;\ndelete curr;\ncurr = next;\n}\n}\n// 判断链表是否为空\nbool is_empty() const {\n_______________________\n}\n};",
+       "options": {
+        "A": "return head == nullptr;",
+        "B": "return tail == nullptr;",
+        "C": "return head.data == 0;",
+        "D": "return size == 0;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-mc-3",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 3,
+       "answer": "D",
+       "stem": "基于上题代码正确的前提下，填 相应代码完善 append() ， 于在双向链表尾部增加新节点，横线上应填 入 用 写（ ）。",
+       "code": "void append(int data) {\nNode* newNode = new Node{data, nullptr, nullptr};\nif (is_empty()) {\nhead = tail = newNode;\n} else {\n_______________________\n}\n++size;\n}",
+       "options": {
+        "A": "1 tail->next = newNode;",
+        "B": "1 newNode->prev = tail; 2 tail = newNode;",
+        "C": "1 tail = newNode; 2 newNode->prev = tail; 3 tail->next = newNode;",
+        "D": "1 tail->next = newNode; 2 newNode->prev = tail; 3 tail = newNode;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-mc-4",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 4,
+       "answer": "A",
+       "stem": "下列C++代码 循环链表解决约瑟夫问题，即假设 n 个 围成 圈，从第 个 开始数，每次数到第 k 个 用 人 一 一 人 的 就出圈，输出最后留下的那个 的编号。横线上应填写（ ）。 人 人",
+       "code": "struct Node {\nint data;\nNode* next;\n};\nNode* createCircularList(int n) {\nNode* head = new Node{1, nullptr};\nNode* prev = head;\nfor (int i = 2; i <= n; ++i) {\nNode* node = new Node{i, nullptr};\nprev->next = node;\nprev = node;\n}\nprev->next = head;\nreturn head;\n}\nint fingLastSurvival(int n, int k) {\nNode* head = createCircularList(n);\nNode* p = head;\nNode* prev = nullptr;\nwhile (p->next != p) {\nfor (int count = 1; count < k; ++count) {\nprev = p;\np = p->next;\n}\n_______________________\n}\ncout << \"最后留下的人编号是: \" << p->data << endl;\ndelete p;\nreturn 0;\n}",
+       "options": {
+        "A": "1 prev->next = p->next; 2 delete p; 3 p = prev->next;",
+        "B": "1 delete p; 2 prev->next = p->next; 3 p = prev->next;",
+        "C": "1 delete p; 2 p = prev->next; 3 prev->next = p->next;",
+        "D": "1 prev->next = p->next; 2 p = prev->next; 3 delete p;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-mc-5",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 5,
+       "answer": "C",
+       "stem": "下列C++代码判断 个正整数是否是质数，说法正确的是( )。 一",
+       "code": "bool is_prime(int n) {\nif (n <= 1)\nreturn false;\nif (n == 2 || n == 3 || n == 5)\nreturn true;\nif (n % 2 == 0 || n % 3 == 0 || n % 5 == 0)\nreturn false;\nint i = 7;\nint step = 4;\nint finish_number = sqrt(n) + 1;\nwhile (i <= finish_number) {\nif (n % i == 0)\nreturn false;\ni += step;\nstep = 6 - step;\n}\nreturn true;\n}",
+       "options": {
+        "A": "代码存在错误，比如5是质数，但因为 5 % 5 余数是0返回了 false",
+        "B": "finish_number 的值应该是 n / 2 ，当前写法将导致错误",
+        "C": "当前 while 循环正确的前提是：所有大于3的质数都符合 6k±1 形式",
+        "D": "while 循环修改如下，其执行效果和执行时间相同。 1 for (int i = 2; i < finish_number; i++) { 2 if (n % i == 0) 3 return false; 4 } 5 return true;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-mc-6",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 6,
+       "answer": "D",
+       "stem": "下列C++代码用两种方式求解两个正整数的最大公约数，说法错误的是( )。",
+       "code": "int gcd0(int big, int small) {\nif (big < small) {\nswap(big, small);\n}\nif (big % small == 0) {\nreturn small;\n}\nreturn gcd0(small, big % small);\n}\nint gcd1(int big, int small) {\nif (big < small) {\nswap(big, small);\n}\nfor (int i = small; i >= 1; --i) {\nif (big % i == 0 && small % i == 0)\nreturn i;\n}\nreturn 1;\n}",
+       "options": {
+        "A": "gcd0() 函数的时间复杂度为",
+        "B": "gcd1() 函数的时间复杂度为",
+        "C": "一般说来， gcd0() 的效率高于 gcd1()",
+        "D": "gcd1() 中的代码 for (int i = small; i >= 1; --i) 应该修改为 for (int i = small; i > 1; --i)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-mc-7",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 7,
+       "answer": "D",
+       "stem": "下面的代码用于判断整数 是否是质数，错误的说法是（ ）。",
+       "code": "bool is_prime(int n) {\nif (n <= 1) return false;\nint finish_number = static_cast<int>(sqrt(n)) + 1;\nfor (int i = 2; i < finish_number; ++i) {\nif (n % i == 0)\nreturn false;\n}\nreturn true;\n}",
+       "options": {
+        "A": "埃氏筛算法相对于上面的代码效率更高",
+        "B": "线性筛算法相对于上面的代码效率更高",
+        "C": "上面的代码有很多重复计算，因为不是判断单个数是否为质数，故而导致筛选出连续数中质数的效率不高",
+        "D": "相对而言，埃氏筛算法比上面代码以及线性筛算法效率都高"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-mc-8",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 8,
+       "answer": "B",
+       "stem": "唯一分解定理描述了关于正整数的什么性质？",
+       "code": "",
+       "options": {
+        "A": "任何正整数都可以表示为两个素数的和。",
+        "B": "任何大于1的合数都可以唯一分解为有限个质数的乘积。",
+        "C": "两个正整数的最大公约数总是等于它们的最小公倍数除以它们的乘积。",
+        "D": "所有素数都是奇数。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-mc-9",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 9,
+       "answer": "C",
+       "stem": "下面的C++代码，用于求一系列数据中的最大值。有关其算法说法错误的是（ ）。",
+       "code": "int find_max_recursive(const vector<int>& nums, int left, int right) {\nif (left == right)\nreturn nums[left];\nint mid = left + (right - left) / 2;\nint left_max = find_max_recursive(nums, left, mid);\nint right_max = find_max_recursive(nums, mid + 1, right);\nreturn max(left_max, right_max);\n}\nint find_max(const vector<int>& nums) {\nif (nums.empty()) {\nthrow invalid_argument(\"输入数组不能为空\");\n}\nreturn find_max_recursive(nums, 0, nums.size() - 1);\n}",
+       "options": {
+        "A": "该算法采用分治算法",
+        "B": "该算法是递归实现",
+        "C": "该算法采用贪心算法",
+        "D": "该算法不是递推算法"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-mc-10",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 10,
+       "answer": "D",
+       "stem": "下面的C++代码，用于求一系列数据中的最大值。有关其算法说法错误的是（ ）。",
+       "code": "int find_max(const vector<int>& nums) {\nif (nums.empty()) {\nthrow invalid_argument(\"输入数组不能为空\");\n}\nint max_value = nums[0];\nfor (int num : nums) {\nif (num > max_value) {\nmax_value = num;\n}\n}\nreturn max_value;\n}",
+       "options": {
+        "A": "本题 find_max() 函数采 的是迭代算法 用",
+        "B": "本题 find_max() 函数的时间复杂度为",
+        "C": "和上 题的 find_max() 相 ，因为没有递归，所以没有栈的创建和销毁开销 一 比",
+        "D": "本题 find_max() 函数和上⼀题的 find_max() 空间复杂度相同"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-mc-11",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 11,
+       "answer": "A",
+       "stem": "下 的 C++ 代码 于在升序数组 lst 中查找 标值 target 最后 次出现的位置。相关说法，正确的是（ 面 用 目 一 ）。",
+       "code": "int binary_search_last_occurrence(const vector<int>& lst, int target) {\nif (lst.empty()) return -1;\nint low = 0, high = lst.size() - 1;\nwhile (low < high) {\nint mid = (low + high + 1) / 2;\nif (lst[mid] <= target) {\nlow = mid;\n} else {\nhigh = mid - 1;\n}\n}\nif (lst[low] == target)\nreturn low;\nelse\nreturn -1;\n}",
+       "options": {
+        "A": "当 lst 中存在重复的 target 时，该函数总能返回最后 个 target 的位置，即便 lst 全由相同元素组成 一",
+        "B": "当 target 于 lst 中所有元素时，该函数会返回 0 小",
+        "C": "循环条件改为 while (low <= high) 程序执 效果相同，且能提 准确性 行 高",
+        "D": "将代码中 (low + high + 1) / 2 修改为 (low + high) / 2 效果相同"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-mc-12",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 12,
+       "answer": "D",
+       "stem": "有关下 C++代码的说法，错误的是（ ）。 面",
+       "code": "double sqrt_binary(long long n, double epsilon = 1e-10) {\nif (n < 0) {\nthrow invalid_argument(\"输入必须为非负整数\");\n}\nif (n == 0 || n == 1) return n;\n// 阶段 1\nlong long low = 1, high = n;\nlong long k = 0;\nwhile (low <= high) {\nlong long mid = (low + high) / 2;\nlong long mid_sq = mid * mid;\nif (mid_sq == n) {\nreturn mid;\n} else if (mid_sq < n) {\nk = mid;\nlow = mid + 1;\n} else {\nhigh = mid - 1;\n}\n}\nlong long next_k = k + 1;\nif (next_k * next_k == n) {\nreturn next_k;\n}\n// 阶段 2\ndouble low_d = (double)k;\ndouble high_d = (double)(k + 1);\ndouble mid;\nwhile (high_d - low_d >= epsilon) {\nmid = (low_d + high_d) / 2;\ndouble mid_sq = mid * mid;\nif (mid_sq < n) {\nlow_d = mid;\n} else {\nhigh_d = mid;\n}\n}\ndouble result = (low_d + high_d) / 2;\nlong long check_int = (long long)(result + 0.5);\nif (check_int * check_int == n) {\nreturn check_int;\n}\nreturn result;\n}",
+       "options": {
+        "A": "“阶段1”的 标是寻找正整数 n 可能的正完全平 根 目 方",
+        "B": "“阶段2”的 标是如果正整数 n 没有正完全平 根，则在可能产 完全平 根附近寻找带 数点的平 根 目 方 生 方 小 方",
+        "C": "代码 check_int = (long long)(result + 0.5) 是检查因浮点误差是否为正完全平 根 方",
+        "D": "阶段2的 分法中 high_d - low_d >= epsilon 不能 于浮点数 较，会进 死循环 二 用 比 入"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-mc-13",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 13,
+       "answer": "A",
+       "stem": "13.硬币找零问题中要求找给客户最少的硬币。 coins 存储可 硬币规格，单位为角，假设规格都 于10 用 小 角，且 定有1角规格。 amount 为要找零的 额，约定必须为1角的整数倍。输出为每种规格及其数量，按规格从 一 金 大 到 输出，如果某种规格不必要，则输出为0。下 是其实现代码，相关说法正确的是（ ）。 小 面",
+       "code": "const int MAX_COINS = 10;\nint result[MAX_COINS] = {0};     // 假设最多10种面额\nint find_coins(const vector<int>& coins, int amount) {\nsort(coins.begin(), coins.end(), greater<int>());\nint n = coins.size();\nfor (int i = 0; i < n; ++i) {\nint coin = coins[i];\nint num = amount / coin;\nresult[i] = num;\namount -= num * coin;\nif (amount == 0) break;\n}\ncout << \"找零方案如下：\" << endl;\nfor (int i = 0; i < n; ++i) {\ncout << sorted_coins[i] << \"角需要\" << result[i] << \"枚\" << endl;\n}\nreturn 0;\n}",
+       "options": {
+        "A": "上述代码采用贪心算法实现",
+        "B": "针对本题具体要求，上述代码总能找到最优解",
+        "C": "上述代码采用枚举算法",
+        "D": "上述代码采用分治算法"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-mc-14",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 14,
+       "answer": "D",
+       "stem": "关于下述C++代码的快速排序算法，说法错误的是（ ）。",
+       "code": "int randomPartition(std::vector<int>& arr, int low, int high) {\nint random = low + rand() % (high - low + 1);\nstd::swap(arr[random], arr[high]);\nint pivot = arr[high];\nint i = low - 1;\nfor (int j = low; j < high; j++) {\nif (arr[j] <= pivot) {\ni++;\nstd::swap(arr[i], arr[j]);\n}\n}\nstd::swap(arr[i + 1], arr[high]);\nreturn i + 1;\n}\nvoid quickSort(std::vector<int>& arr, int low, int high) {\nif (low < high) {\nint pi = randomPartition(arr, low, high);\nquickSort(arr, low, pi - 1);\nquickSort(arr, pi + 1, high);\n}\n}",
+       "options": {
+        "A": "在 randomPartition 函数中，变量 i 的作用是记录大于基准值的元素的边界",
+        "B": "randomPartition 函数随机选择基准值，可以避免输入数据特定模式导致的最坏情况下时间复杂度 ²",
+        "C": "快速排序平均时间复杂度是",
+        "D": "快速排序是稳定排序算法"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-mc-15",
+       "paper": "2025-06",
+       "type": "mc",
+       "num": 15,
+       "answer": "A",
+       "stem": "杨编写了 个如下的 精度除法函数，则横线上应填写的代码为（ ）。 小 一 高",
+       "code": "const int MAXN = 1005; // 最大位数\nstruct BigInt {\nint d[MAXN]; // 存储数字，d[0]是个位，d[1]是十位，...\nint len;     // 数字长度\nBigInt() {\nmemset(d, 0, sizeof(d));\nlen = 0;\n}\n};\n// 比较两个高精度数的大小\nint compare(BigInt a, BigInt b) {\nif(a.len != b.len) return a.len > b.len ? 1 : -1;\nfor(int i = a.len - 1; i >= 0; i--) {\nif(a.d[i] != b.d[i]) return a.d[i] > b.d[i] ? 1 : -1;\n}\nreturn 0;\n}\n// 高精度减法\nBigInt sub(BigInt a, BigInt b) {\nBigInt c;\nfor(int i = 0; i < a.len; i++) {\nc.d[i] += a.d[i] - b.d[i];\nif(c.d[i] < 0) {\nc.d[i] += 10;\nc.d[i+1]--;\n}\n}\nc.len = a.len;\nwhile(c.len > 1 && c.d[c.len-1] == 0) c.len--;\nreturn c;\n}\n// 高精度除法（a/b，返回商和余数）\npair<BigInt, BigInt> div(BigInt a, BigInt b) {\nBigInt q, r; // q是商，r是余数\nif(compare(a, b) < 0) { // 如果a<b，商为0，余数为a\nq.len = 1;\nq.d[0] = 0;\nr = a;\nreturn make_pair(q, r);\n}\n// 初始化余数r为a的前b.len位\nr.len = b.len;\nfor(int i = a.len - 1; i >= a.len - b.len; i--) {\nr.d[i - (a.len - b.len)] = a.d[i];\n}\n// 逐位计算商\nfor(int i = a.len - b.len; i >= 0; i--) {\n// 把下一位加入余数\nif(r.len > 1 || r.d[0] != 0) {\nfor(int j = r.len; j > 0; j--) {\nr.d[j] = r.d[j-1];\n}\n_______________________\n} else {\nr.d[0] = a.d[i];\nr.len = 1;\n}\n// 计算当前位的商\nwhile(compare(r, b) >= 0) {\nr = sub(r, b);\nq.d[i]++;\n}\n}\n// 确定商的长度\nq.len = a.len - b.len + 1;\nwhile(q.len > 1 && q.d[q.len-1] == 0) q.len--;\n// 处理余数前导零\nwhile(r.len > 1 && r.d[r.len-1] == 0) r.len--;\nreturn make_pair(q, r);\n}",
+       "options": {
+        "A": "1 r.d[0] = a.d[i]; 2 r.len++;",
+        "B": "1 r.d[i] = a.d[i]; 2 r.len++;",
+        "C": "1 r.d[i] = a.d[i]; 2 r.len = 1;",
+        "D": "1 r.d[0] = a.d[i]; 2 r.len = 1;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-tf-1",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "下面C++代码是用欧几里得算法（辗转相除法）求两个正整数的最大公约数， a 大于 b 还是小于 b 都适用。",
+       "code": "int gcd(int a, int b) {\nwhile (b) {\nint temp = b;\nb = a % b;\na = temp;\n}\nreturn a;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-tf-2",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "假设函数 gcd() 函数能正确求两个正整数的最大公约数，则下面的 lcm() 函数能求相应两数的最小公倍数。",
+       "code": "int lcm(int a, int b) {\nreturn a * b / gcd(a, b);\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-tf-3",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "下 的C++代码 于输出每个数对应的质因数列表，输出形如： {5: [5], 6: [2, 3], 7: [7], 8: [2, 2, 面 用 2]} 。",
+       "code": "int main() {\nint n, m;\ncin >> n >> m;\nif (n > m) swap(n, m);\nmap<int, vector<int>> prime_factor;\nfor (int i = n; i <= m; ++i) {\nint j = 2, k = i;\nwhile (k != 1) {\nif (k % j == 0) {\nprime_factor[i] = prime_factor[i] + j;\nk /= j;\n} else {\n++j;\n}\n}\n}\nfor (auto& p : prime_factor) {\ncout << p.first << \": \";\nfor (int v : p.second)\ncout << v << \" \";\ncout << endl;\n}\nreturn 0;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-tf-4",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "下 的C++代码实现归并排序。代码在执 时，将输出 次 HERE 字符串，因为merge()函数仅被调 次。 面 行 一 用 一",
+       "code": "void merge(std::vector<int>& arr, int left, int mid, int right) {\nstd::vector<int> temp(right - left + 1);\nint i = left;\nint j = mid + 1;\nint k = 0;\nwhile (i <= mid && j <= right) {\nif (arr[i] <= arr[j]) {\ntemp[k++] = arr[i++];\n} else {\ntemp[k++] = arr[j++];\n}\n}\nwhile (i <= mid) {\ntemp[k++] = arr[i++];\n}\nwhile (j <= right) {\ntemp[k++] = arr[j++];\n}\nfor (int p = 0; p < k; ++p) {\narr[left + p] = temp[p];\n}\n}\nvoid mergeSort(std::vector<int>& arr, int left, int right) {\nif (left >= right) {\nreturn;\n}\nint mid = left + (right - left) / 2;\nmergeSort(arr, left, mid);\nmergeSort(arr, mid + 1, right);\nstd::cout << \"HERE\";\nmerge(arr, left, mid, right);\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-tf-5",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "归并排序的最好、最坏和平均时间复杂度均为 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-tf-6",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "查字典这个 学 必备技能，可以把字典视为 个已排序的数组。假设 杨要查找 个 字母为 g 的单 小 生 一 小 一 音 首 词，他 先翻到字典约 半的页数，发现该页的 字母是 m ，由于字母表中 g 位于 m 之前，所以排除字典后半部 首 一 首 分，查找范围缩 到前半部分；不断重复上述步骤，直 找到 字母为 g 的页码。这种查字典的 系列操作可看作 小 至 首 一 分查找。 二",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-tf-7",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "求解下图中A点到D点最短路径，其中A到B之间的12可以理解为距离。求解这样的问题常 Dijkstra算法，其 用 思路是通过逐步选择当前距离起点最近的节点来求解 负权重图（如距离不能为负值）单源最短路径的算法。从该 非 算法的描述可以看出，Dijkstra算法是贪 算法。 心",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-tf-8",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "分治算法将原问题可以分解成规模更 的 问题，使得求解问题的难度降低。但由于分治算法需要将问题进 小 子 分解，并且需要将多个 问题的解合并为原问题的解，所以分治算法的效率通常 直接求解原问题的效率低。 行 子 比",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-tf-9",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "函数 puzzle 定义如下，则调 puzzle(7) 程序会 限递归。 用 无",
+       "code": "int puzzle(int n) {\nif (n == 1) return 1;\nif (n % 2 == 0) return puzzle(n / 2);\nreturn puzzle(3 * n + 1);\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-06-tf-10",
+       "paper": "2025-06",
+       "type": "tf",
+       "num": 10,
+       "answer": "√",
+       "stem": "如下为线性筛法， 于 效 成素数表，其核 思想是每个合数只被它的最 质因数筛掉 次，时间复杂 用 高 生 心 小 一 度为 。",
+       "code": "vector<int> linearSieve(int n) {\nvector<bool> is_prime(n + 1, true);\nvector<int> primes;\nfor (int i = 2; i <= n; ++i) {\nif (is_prime[i]) {\nprimes.push_back(i);\n}\nfor (int j = 0; j < primes.size() && i * primes[j] <= n; ++j) {\nis_prime[i * primes[j]] = false;\nif (i % primes[j] == 0) {\nbreak;\n}\n}\n}\nreturn primes;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      }
+     ]
+    },
+    {
+     "id": "2025-09",
+     "name": "2025 年 9 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.5,
+     "questions": [
+      {
+       "qid": "5-2025-09-mc-1",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 1,
+       "answer": "B",
+       "stem": "以下哪种情况使用链表比数组更合适？",
+       "code": "",
+       "options": {
+        "A": "数据量固定且读多写少",
+        "B": "需要频繁在中间或开头插入、删除元素",
+        "C": "需要高效随机访问元素",
+        "D": "存储空间必须连续"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-mc-2",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 2,
+       "answer": "C",
+       "stem": "函数 removeElements 删除单链表中所有结点值等于 val 的结点，并返回新的头结点，其中链表头结点为 head ，则横线处填写（ ）。",
+       "code": "// 结点结构体\nstruct Node {\nint val;\nNode* next;\nNode() : val(0), next(nullptr) {}\nNode(int x) : val(x), next(nullptr) {}\nNode(int x, Node *next) : val(x), next(next) {}\n};\nNode* removeElements(Node* head, int val) {\nNode dummy(0, head);        // 哑结点，统一处理头结点\nNode* cur = &dummy;\nwhile (cur->next) {\nif (cur->next->val == val) {\n_______________________        // 在此填入代码\n}\nelse {\ncur = cur->next;\n}\n}\nreturn dummy.next;\n}",
+       "options": {
+        "A": "1 Node* del = cur; 2 cur = del->next; 3 delete del;",
+        "B": "1 Node* del = cur->next; 2 cur->next = del; 3 delete del;",
+        "C": "1 Node* del = cur->next; 2 cur->next = del->next; 3 delete del;",
+        "D": "1 Node* del = cur->next; 2 delete del; 3 cur->next = del->next;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-mc-3",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 3,
+       "answer": "A",
+       "stem": "函数 hasCycle 采用Floyd快慢指针法判断一个单链表中是否存在环，链表的头节点为 head ，即用两个指针 在链表上前进： slow 每次走 1 步， fast 每次走 2 步，若存在环， fast 终会追上 slow （相遇）；若无环， fast 会先到达 nullptr，则横线上应填写（ ）。",
+       "code": "struct Node {\nint val;\nNode *next;\nNode(int x) : val(x), next(nullptr) {}\n};\nbool hasCycle(Node *head) {\nif (!head || !head->next)\nreturn false;\nNode* slow = head;\nNode* fast = head->next;\nwhile (fast && fast->next) {\nif (slow == fast) return true;\n_______________________        // 在此填入代码\n}\nreturn false;\n}",
+       "options": {
+        "A": "1 slow = slow->next; 2 fast = fast->next->next;",
+        "B": "1 slow = fast->next; 2 fast = slow->next->next;",
+        "C": "1 slow = slow->next; 2 fast = slow->next->next;",
+        "D": "1 slow = fast->next; 2 fast = fast->next->next;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-mc-4",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 4,
+       "answer": "B",
+       "stem": "函数 isPerfectNumber 判断一个正整数是否为完全数（该数是否即等于它的真因子之和），则横线上应填 写（ ）。一个正整数 n 的真因子包括所有小于 n 的正因子，如28的真因子为1, 2, 4, 7, 14。",
+       "code": "bool isPerfectNumber(int n) {\nif(n <= 1) return false;\nint sum = 1;\nfor(int i = 2; ______; i++) {\nif(n % i == 0) {\nsum += i;\nif(i != n/i) sum += n/i;\n}\n}\nreturn sum == n;\n}",
+       "options": {
+        "A": "i <= n",
+        "B": "i*i <= n",
+        "C": "i <= n/2",
+        "D": "i < n"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-mc-5",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 5,
+       "answer": "B",
+       "stem": "以下代码计算两个正整数的最 公约数(GCD)，横线上应填写（ ）。 大",
+       "code": "int gcd0(int a, int b) {\nif (a < b) {\nswap(a, b);\n}\nwhile(b != 0) {\nint temp = a % b;\na = b;\nb = temp;\n}\nreturn ______;\n}",
+       "options": {
+        "A": "b",
+        "B": "a",
+        "C": "temp",
+        "D": "a * b"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-mc-6",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 6,
+       "answer": "D",
+       "stem": "函数 sieve 实现埃拉托斯特尼筛法(埃 筛)，横线处应填 （ ）。 氏 入",
+       "code": "vector<bool> sieve(int n) {\nvector<bool> is_prime(n+1, true);\nis_prime[0] = is_prime[1] = false;\nfor(int i = 2; i <= n; i++) {\nif(is_prime[i]) {\nfor(int j = ______; j <= n; j += i) {\nis_prime[j] = false;\n}\n}\n}\nreturn is_prime;\n}",
+       "options": {
+        "A": "i",
+        "B": "i+1",
+        "C": "i*2",
+        "D": "i*i"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-mc-7",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 7,
+       "answer": "A",
+       "stem": "函数 linearSieve 实现线性筛法(欧拉筛)，横线处应填 （ ）。 入",
+       "code": "vector<int> linearSieve(int n) {\nvector<bool> is_prime(n+1, true);\nvector<int> primes;\nfor(int i = 2; i <= n; i++) {\nif(is_prime[i]) primes.push_back(i);\nfor(int p : primes) {\nif(p * i > n) break;\nis_prime[p * i] = false;\nif(________) break;\n}\n}\nreturn primes;\n}",
+       "options": {
+        "A": "i % p == 0",
+        "B": "p % i == 0",
+        "C": "i == p",
+        "D": "i * p == n"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-mc-8",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 8,
+       "answer": "B",
+       "stem": "关于 埃 筛 和 线性筛 的 较，下列说法错误的是（ ）。 氏 比",
+       "code": "",
+       "options": {
+        "A": "埃 筛可能会对同 个合数进 多次标记 氏 一 行",
+        "B": "线性筛的理论时间复杂度更优，所以线性筛的速度往往优于埃 筛 氏",
+        "C": "线性筛保证每个合数只被其最 质因 筛到 次 小 子 一",
+        "D": "对于常见范围（ ），埃 筛因实现简单，常数较 ，其速度往往优于线性筛 氏 小"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-mc-9",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 9,
+       "answer": "B",
+       "stem": "唯 分解定理描述的是( )。 一",
+       "code": "",
+       "options": {
+        "A": "每个整数都能表 为任意素数的乘积 示",
+        "B": "每个 于 1 的整数能唯 分解为素数幂乘积（忽略顺序） 大 一",
+        "C": "合数不能分解为素数乘积",
+        "D": "素数只有两个因 ：1 和 子 自 身"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-mc-10",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 10,
+       "answer": "C",
+       "stem": "给定 个 n x n 的矩阵 matrix ，矩阵的每 和每 列都按升序排列。函数 countLE 返回矩阵中第 一 一 行 一 k 的元素，则两处横线上应分别填写（ ）。 小",
+       "code": "// 统计矩阵中 <= x 的元素个数：从左下角开始\nint countLE(const vector<vector<int>>& matrix, int x) {\nint n = (int)matrix.size();\nint i = n - 1, j = 0, cnt = 0;\nwhile (i >= 0 && j < n) {\nif (matrix[i][j] <= x) {\ncnt += i + 1;\n++j;\n}\nelse {\n--i;\n}\n}\nreturn cnt;\n}\nint kthSmallest(vector<vector<int>>& matrix, int k) {\nint n = (int)matrix.size();\nint lo = matrix[0][0];\nint hi = matrix[n - 1][n - 1];\nwhile (lo < hi) {\nint mid = lo + (hi - lo) / 2;\nif (countLE(matrix, mid) >= k) {\n________________    // 在此处填入代码\n} else {\n________________    // 在此处填入代码\n}\n}\nreturn lo;\n}",
+       "options": {
+        "A": "1 hi = mid - 1; 2 lo = mid + 1;",
+        "B": "1 hi = mid; 2 lo = mid;",
+        "C": "1 hi = mid; 2 lo = mid + 1;",
+        "D": "1 hi = mid + 1; 2 lo = mid;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-mc-11",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 11,
+       "answer": "D",
+       "stem": "下述C++代码实现了快速排序算法，下 说法错误的是（ ）。 面",
+       "code": "int partition(vector<int>& arr, int low, int high) {\nint i = low, j = high;\nint pivot = arr[low];                 // 以首元素为基准\nwhile (i < j) {\nwhile (i < j && arr[j] >= pivot) j--;   //从右往左查找\nwhile (i < j && arr[i] <= pivot) i++;   //从左往右查找\nif (i < j) swap(arr[i], arr[j]);\n}\nswap(arr[i], arr[low]);\nreturn i;\n}\nvoid quickSort(vector<int>& arr, int low, int high) {\nif (low >= high) return;\nint p = partition(arr, low, high);\nquickSort(arr, low, p - 1);\nquickSort(arr, p + 1, high);\n}",
+       "options": {
+        "A": "快速排序之所以叫“快速”，是因为它在平均情况下运 速度较快，常数 、就地排序，实践中通常 归并排 行 小 比 序更 效。 高",
+        "B": "在平均情况下，划分的递归层数为 ，每层中的总循环数为 ，总时间为 。",
+        "C": "在最差情况下，每轮划分操作都将长度为 的数组划分为长度为 0 和 的两个 数组，此时递归层数达到 子 ，每层中的循环数为 ，总时间为 。",
+        "D": "划分函数 partition 中“从右往左查找”与“从左往右查找”的顺序可以交换。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-mc-12",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 12,
+       "answer": "D",
+       "stem": "下述C++代码实现了归并排序算法，则横线上应填写（ ）。",
+       "code": "void merge(vector<int> &nums, int left, int mid, int right) {\n// 左子数组区间为 [left, mid], 右子数组区间为 [mid+1, right]\nvector<int> tmp(right - left + 1);\nint i = left, j = mid + 1, k = 0;\nwhile (i <= mid && j <= right) {\nif (nums[i] <= nums[j])\ntmp[k++] = nums[i++];\nelse\ntmp[k++] = nums[j++];\n}\nwhile (i <= mid) {\ntmp[k++] = nums[i++];\n}\nwhile (________) {     // 在此处填入代码\ntmp[k++] = nums[j++];\n}\nfor (k = 0; k < tmp.size(); k++) {\nnums[left + k] = tmp[k];\n}\n}\nvoid mergeSort(vector<int> &nums, int left, int right) {\nif (left >= right)\nreturn;\nint mid = (left + right) / 2;\nmergeSort(nums, left, mid);\nmergeSort(nums, mid + 1, right);\nmerge(nums, left, mid, right);\n}",
+       "options": {
+        "A": "i < mid",
+        "B": "j < right",
+        "C": "i <= mid",
+        "D": "j <= right"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-mc-13",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 13,
+       "answer": "B",
+       "stem": "假设你是 家电影院的排 经理，只有 个放映厅。你有 个电影列表 movies ，其中 movies[i] = 一 片 一 一 [start_i, end_i] 表 第 i 部电影的开始和结束时间。请你找出最多能安排多少部不重叠的电影，则横线上应分 示 别填写的代码为（ ）。",
+       "code": "int maxMovies(vector<vector<int>>& movies) {\nif (movies.empty()) return 0;\nsort(movies.begin(), movies.end(), [](const vector<int>& a, const vector<int>& b) {\nreturn ______; // 在此处填入代码\n});\nint count = 1;\nint lastEnd = movies[0][1];\nfor (int i = 1; i < movies.size(); i++) {\nif (movies[i][0] >= lastEnd) {\ncount++;\n______ = movies[i][1]; // 在此处填入代码\n}\n}\nreturn count;\n}",
+       "options": {
+        "A": "a[0] < b[0] 和 lastEnd",
+        "B": "a[1] < b[1] 和 lastEnd",
+        "C": "a[0] < b[0] 和 movies[i][0]",
+        "D": "a[1] < b[1] 和 movies[i][0]"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-mc-14",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 14,
+       "answer": "B",
+       "stem": "给定 个整数数组 nums ，下 代码找到 个具有最 和的连续 数组，并返回该最 和。则下 说法错 一 面 一 大 子 大 面 误的是（ ）。",
+       "code": "int crossSum(vector<int>& nums, int left, int mid, int right) {\nint leftSum = INT_MIN, rightSum = INT_MIN;\nint sum = 0;\nfor (int i = mid; i >= left; i--) {\nsum += nums[i];\nleftSum = max(leftSum, sum);\n}\nsum = 0;\nfor (int i = mid + 1; i <= right; i++) {\nsum += nums[i];\nrightSum = max(rightSum, sum);\n}\nreturn leftSum + rightSum;\n}\nint helper(vector<int>& nums, int left, int right) {\nif (left == right)\nreturn nums[left];\nint mid = left + (right - left) / 2;\nint leftMax = helper(nums, left, mid);\nint rightMax = helper(nums, mid + 1, right);\nint crossMax = crossSum(nums, left, mid, right);\nreturn max({leftMax, rightMax, crossMax});\n}\nint maxSubArray(vector<int>& nums) {\nreturn helper(nums, 0, nums.size() - 1);\n}",
+       "options": {
+        "A": "上述代码采 分治算法实现 用",
+        "B": "上述代码采 贪 算法 用 心",
+        "C": "上述代码时间复杂度为",
+        "D": "上述代码采 递归 式实现 用 方"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-mc-15",
+       "paper": "2025-09",
+       "type": "mc",
+       "num": 15,
+       "answer": "A",
+       "stem": "给定 个由 负整数组成的数组 digits ，表 个 负整数的各位数字，其中最 位在数组 位，且 一 非 示 一 非 高 首 digits 不含前导0（除 是0本 ）。下 代码对该整数执 +1 操作，并返回结果数组，则横线上应填写（ ）。 非 身 面 行",
+       "code": "vector<int> plusOne(vector<int>& digits) {\nfor (int i = (int)digits.size() - 1; i >= 0; --i) {\nif (digits[i] < 9) {\ndigits[i] += 1;\nreturn digits;\n}\n________________    // 在此处填入代码\n}\ndigits.insert(digits.begin(), 1);\nreturn digits;\n}",
+       "options": {
+        "A": "1 digits[i] = 0;",
+        "B": "1 digits[i] = 9;",
+        "C": "1 digits[i] = 1;",
+        "D": "1 digits[i] = 10;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-tf-1",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "基于下面定义的函数，通过判断 isDivisibleBy9(n) == isDigitSumDivisibleBy9(n) 代码可验算如果 一个数能被9整除，则它的各位数字之和能被9整除。",
+       "code": "bool isDivisibleBy9(int n) {\nreturn n % 9 == 0;\n}\nbool isDigitSumDivisibleBy9(int n) {\nint sum = 0;\nstring numStr = to_string(n);\nfor (char c : numStr) {\nsum += (c - '0');\n}\nreturn sum % 9 == 0;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-tf-2",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 2,
+       "answer": "×",
+       "stem": "假设函数 gcd() 能正确求两个正整数的最大公约数，则下面的 findMusicalPattern(4，6) 函数返回2。",
+       "code": "void findMusicalPattern(int rhythm1, int rhythm2) {\nint commonDivisor = gcd(rhythm1, rhythm2);\nint patternLength = (rhythm1 * rhythm2) / commonDivisor;\nreturn patternLength；\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-tf-3",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "下面递归实现的斐波那契数列的时间复杂度为 。",
+       "code": "long long fib_memo(int n, long long memo[]) {\nif (n <= 1) return n;\nif (memo[n] != -1) return memo[n];\nmemo[n] = fib_memo(n - 1, memo) + fib_memo(n - 2, memo);\nreturn memo[n];\n}\nint main() {\nint n = 40;\nlong long memo[100];\nfill_n(memo, 100, -1);\nlong long result2 = fib_memo(n, memo);\nreturn 0;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-tf-4",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 4,
+       "answer": "√",
+       "stem": "链表通过更改指针实现高效的结点插入与删除，但结点访问效率低、占用内存较多，且对缓存利用不友好。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-tf-5",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "二分查找依赖数据的有序性，通过循环逐步缩减一半搜索区间来进行查找，且仅适用于数组或基于数组实现 的数据结构。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-tf-6",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "线性筛关键是“每个合数只会被最小质因子筛到一次”，因此为 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-tf-7",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 7,
+       "answer": "×",
+       "stem": "快速排序和归并排序都是稳定的排序算法。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-tf-8",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "下面代码采用分治算法求解标准 3 柱汉诺塔问题，时间复杂度为 。",
+       "code": "void move(vector<int> &src, vector<int> &tar) {\nint pan = src.back();\nsrc.pop_back();\ntar.push_back(pan);\n}\nvoid dfs(int n, vector<int> &src, vector<int> &buf, vector<int> &tar) {\nif (n == 1) {\nmove(src, tar);\nreturn;\n}\ndfs(n - 1, src, tar, buf);\nmove(src, tar);\ndfs(n - 1, buf, src, tar);\n}\nvoid solveHanota(vector<int> &A, vector<int> &B, vector<int> &C) {\nint n = A.size();\ndfs(n, A, B, C);\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-tf-9",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "所有递归算法都可以转换为迭代算法。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-09-tf-10",
+       "paper": "2025-09",
+       "type": "tf",
+       "num": 10,
+       "answer": "×",
+       "stem": "贪心算法总能得到全局最优解。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      }
+     ]
+    },
+    {
+     "id": "2025-12",
+     "name": "2025 年 12 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.5,
+     "questions": [
+      {
+       "qid": "5-2025-12-mc-1",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 1,
+       "answer": "C",
+       "stem": "对如下定义的循环单链表，横线处填写（ ）。",
+       "code": "// 循环单链表的结点\nstruct Node {\nint data;        // 数据域\nNode* next;      // 指针域\nNode(int d) : data(d), next(nullptr) {}\n};\n// 创建一个只有一个结点的循环单链表\nNode* createList(int value) {\nNode* head = new Node(value);\nhead->next = head;\nreturn head;\n}\n// 在循环单链表尾部插入新结点\nvoid insertTail(Node* head, int value) {\nNode* p = head;\nwhile (p->next != head) {\np = p->next;\n}\nNode* node = new Node(value);\nnode->next = head;\np->next = node;\n}\n// 遍历并输出循环单链表\nvoid printList(Node* head) {\nif (head == nullptr) return;\nNode* p = head;\n_______________________      //在此处填入代码\ncout << endl;\n}",
+       "options": {
+        "A": "1 while (p != nullptr){ 2 cout << p->data << \" \"; 3 p = p->next; 4 }",
+        "B": "1 while (p->next != nullptr){ 2 cout << p->data << \" \"; 3 p = p->next; 4 }",
+        "C": "1 do { 2 cout << p->data << \" \"; 3 p = p->next; 4 } while (p != head);",
+        "D": "1 for(; p; p=p->next){ 2 cout << p->data << \" \"; 3 }"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-mc-2",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 2,
+       "answer": "B",
+       "stem": "区块链技术是比特币的基础。在区块链中，每个区块指向前一个区块，构成链式列表，新区块只能接在链 尾，不允许在中间插入或删除。下面代码实现插入区块添加函数，则横线处填写（ ）。",
+       "code": "//区块（节点）\nstruct Block {\nint index;            // 区块编号（高度）\nstring data;          // 区块里保存的数据\nBlock* prev;          // 指向前一个区块\nBlock(int idx, const string& d, Block* p) : index(idx), data(d), prev(p) {}\n};\n// 区块链\nstruct Blockchain {\nBlock* tail;\n// 初始化\nvoid init() {\ntail = new Block(0, \"Genesis Block\", nullptr);\n}\n// 插入新区块\nvoid addBlock(const string& data) {\n_______________________     //在此处填入代码\n}\n// 释放内存\nvoid clear() {\nBlock* cur = tail;\nwhile (cur != nullptr) {\nBlock* p = cur->prev;\ndelete cur;\ncur = p;\n}\ntail = nullptr;\n}\n};",
+       "options": {
+        "A": "1 Block* newBlock = new Block(tail->index + 1, data, tail); 2 tail = newBlock->prev;",
+        "B": "1 Block* newBlock = new Block(tail->index + 1, data, tail); 2 tail = newBlock;",
+        "C": "1 Block* newBlock = new Block(tail->index + 1, data, tail->prev); 2 tail = newBlock;",
+        "D": "1 Block* newBlock = new Block(tail->index + 1, data, tail->prev); 2 tail = newBlock->prev;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-mc-3",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 3,
+       "answer": "C",
+       "stem": "下面关于单链表和双链表的描述中，正确的是（ ）。",
+       "code": "struct DNode {\nint data;\nDNode* prev;\nDNode* next;\n};\n// 在双链表中删除指定节点\nvoid deleteNode(DNode* node) {\nif (node->prev) {\nnode->prev->next = node->next;\n}\nif (node->next) {\nnode->next->prev = node->prev;\n}\ndelete node;\n}\nstruct SNode {\nint data;\nSNode* next;\n};\n// 在单链表中删除指定节点\nvoid deleteSNode(SNode* head, SNode* node) {\nSNode* prev = head;\nwhile (prev->next != node) {\nprev = prev->next;\n}\nprev->next = node->next;\ndelete node;\n}",
+       "options": {
+        "A": "双链表删除指定节点是 ，单链表是",
+        "B": "双链表删除指定节点是 ，单链表是",
+        "C": "双链表删除指定节点是 ，单链表是",
+        "D": "双链表删除指定节点是 ，单链表是"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-mc-4",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 4,
+       "answer": "D",
+       "stem": "假设我们有两个数 和 ，它们对模 同余，即 。以下哪个值不可能是 ？",
+       "code": "",
+       "options": {
+        "A": "3",
+        "B": "4",
+        "C": "6",
+        "D": "9"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-mc-5",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 5,
+       "answer": "D",
+       "stem": "下面代码实现了欧几里得算法。下面有关说法，错误的是（ ）。",
+       "code": "int gcd1(int a, int b) {\nreturn b == 0 ? a : gcd1(b, a % b);\n}\nint gcd2(int a, int b) {\nwhile (b != 0) {\nint temp = b;\nb = a % b;\na = temp;\n}\nreturn a;\n}",
+       "options": {
+        "A": "gcd1() 实现为递归方式。",
+        "B": "gcd2() 实现为迭代方式。",
+        "C": "当 较大时， gcd1() 实现会多次调用自身，需要较多额外的辅助空间。",
+        "D": "当 较大时， gcd1() 的实现比 gcd2() 执行效率更高。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-mc-6",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 6,
+       "answer": "B",
+       "stem": "唯一分解定理描述的内容是（ ）。",
+       "code": "",
+       "options": {
+        "A": "任何正整数都可以表示为两个素数的和。",
+        "B": "任何大于1的合数都可以唯一分解为有限个质数的乘积。",
+        "C": "两个正整数的最大公约数总是等于它们的最小公倍数除以它们的乘积。",
+        "D": "所有素数都是奇数。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-mc-7",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 7,
+       "answer": "A",
+       "stem": "下述代码实现素数表的线性筛法，筛选出所有小于等于 的素数，则横线上应填的代码是( )。",
+       "code": "vector<int> linear_sieve(int n) {\nvector<bool> is_prime(n +1, true);\nvector<int> primes;\nis_prime[0] = is_prime[1] = 0; //0和1两个数特殊处理\nfor (int i = 2; i <= n; ++i) {\nif (is_prime[i]) {\nprimes.push_back(i);\n}\n________________________________ { // 在此处填入代码\nis_prime[ i * primes[j] ] = 0;\nif (i % primes[j] == 0)\nbreak;\n}\n}\nreturn primes;\n}",
+       "options": {
+        "A": "for (int j = 0; j < primes.size() && i * primes[j] <= n; j++)",
+        "B": "for(int j = sqrt(n); j <= n && i * primes[j] <= n; j++)",
+        "C": "for (int j = 1; j <= sqrt(n); j++)",
+        "D": "for(int j = 1; j < n && i * primes[j] <= n; j++)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-mc-8",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 8,
+       "answer": "B",
+       "stem": "下列关于排序的说法，正确的是( )。",
+       "code": "",
+       "options": {
+        "A": "快速排序是稳定排序",
+        "B": "归并排序通常是稳定的",
+        "C": "插入排序是不稳定排序",
+        "D": "冒泡排序不是原地排序"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-mc-9",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 9,
+       "answer": "C",
+       "stem": "下面代码实现了归并排序。下述关于归并排序的说法中，不正确的是（ ）。",
+       "code": "void merge(vector<int>& arr, vector<int>& temp, int l, int mid, int r) {\nint i = l, j = mid + 1, k = l;\nwhile (i <= mid && j <= r) {\nif (arr[i] <= arr[j]) temp[k++] = arr[i++];\nelse temp[k++] = arr[j++];\n}\nwhile (i <= mid) temp[k++] = arr[i++];\nwhile (j <= r)   temp[k++] = arr[j++];\nfor (int p = l; p <= r; p++) arr[p] = temp[p];\n}\nvoid mergeSort(vector<int>& arr, vector<int>& temp, int l, int r) {\nif (l >= r) return;\nint mid = l + (r - l) / 2;\nmergeSort(arr, temp, l, mid);\nmergeSort(arr, temp, mid + 1, r);\nmerge(arr, temp, l, mid, r);\n}",
+       "options": {
+        "A": "归并排序的平均复杂度是 。",
+        "B": "归并排序需要 的额外空间。",
+        "C": "归并排序在最坏情况的时间复杂度是 。",
+        "D": "归并排序适合大规模数据。"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-mc-10",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 10,
+       "answer": "C",
+       "stem": "下述C++代码实现了快速排序算法，最坏情况的时间复杂度是（ ）。",
+       "code": "int partition(vector<int>& arr, int low, int high) {\nint i = low, j = high;\nint pivot = arr[low];                 // 以首元素为基准\nwhile (i < j) {\nwhile (i < j && arr[j] >= pivot) j--;\nwhile (i < j && arr[i] <= pivot) i++;\nif (i < j) swap(arr[i], arr[j]);\n}\nswap(arr[i], arr[low]);\nreturn i;\n}\nvoid quickSort(vector<int>& arr, int low, int high) {\nif (low >= high) return;\nint p = partition(arr, low, high);\nquickSort(arr, low, p - 1);\nquickSort(arr, p + 1, high);\n}",
+       "options": {
+        "A": "O(n)",
+        "B": "O(log n)",
+        "C": "O(n²)",
+        "D": "O(n log n)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-mc-11",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 11,
+       "answer": "A",
+       "stem": "下面代码尝试在有序数组中查找第一个大于等于 x 的元素位置。如果没有大于等于 x 的元素，返回 arr.size() 。以下说法正确的是（ ）。",
+       "code": "int lower_bound(vector<int>& arr, int x) {\nint l = 0, r = arr.size();\nwhile(l < r) {\nint mid = l + (r - l) / 2;\nif(arr[mid] >= x) r = mid;\nelse l = mid + 1;\n}\nreturn l;\n}",
+       "options": {
+        "A": "上述代码逻辑正确",
+        "B": "上述代码逻辑错误， while 循环条件应该用 l <= r",
+        "C": "上述代码逻辑错误， mid 计算错误",
+        "D": "上述代码逻辑错误，边界条件不对"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-mc-12",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 12,
+       "answer": "A",
+       "stem": "小杨要把一根长度为 L 的木头切成 K 段，使得每段长度小于等于 x 。已知每切一刀只能把一段木头分成 两段，他用二分法找到满足条件的最小 x （ x 为正整数），则横线处应填写（ ）。",
+       "code": "// 判断：在不超过 K 次切割内，是否能让每段长度 <= x\nbool check(int L, int K, int x) {\nint cuts = (L - 1) / x;\nreturn cuts <= K;\n}\n// 二分查找最小可行的 x\nint binary_cut(int L, int K) {\nint l = 1, r = L;\nwhile (l < r) {\nint mid = l + (r - l) / 2;\n________________________________     // 在此处填入代码\n}\nreturn l;\n}\nint main() {\nint L = 10;   // 木头长度\nint K = 2;    // 最多切 K 刀\ncout << binary_cut(L, K) << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "1 if (check(L, K, mid)) 2 r = mid; 3 else 4 l = mid + 1;",
+        "B": "1 if (check(L, K, mid)) 2 r = mid+1; 3 else 4 l = mid + 1;",
+        "C": "1 if (check(L, K, mid)) 2 r = mid + 1; 3 else 4 l = mid - 1;",
+        "D": "1 if (check(L, K, mid)) 2 r = mid + 1; 3 else 4 l = mid;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-mc-13",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 13,
+       "answer": "A",
+       "stem": "下面给出了阶乘计算的两种方式。以下说法正确的是（ ）。",
+       "code": "int factorial1(int n) {\nif (n <= 1) return 1;\nreturn n * factorial1(n - 1);\n}\nint factorial2(int n) {\nint acc = 1;\nwhile (n > 1) {\nacc = n * acc;\nn = n - 1;\n}\nreturn acc;\n}",
+       "options": {
+        "A": "上面两种实现方式的时间复杂度相同，都为",
+        "B": "上面两种实现方式的空间复杂度相同，都为",
+        "C": "上面两种实现方式的空间复杂度相同，都为",
+        "D": "函数 factorial1() 的时间复杂度为 ，函数 factorial2() 的时间复杂度为"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-mc-14",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 14,
+       "answer": "A",
+       "stem": "给定有 个任务，每个任务有截止时间和利润，每个任务耗时 1 个时间单位、必须在截止时间前完成，且每 个时间槽最多做 1 个任务。为了在规定时间内获得最大利润，可以采用贪心策略，即按利润从高到低排序，尽量安 排，则横线处应填写（ ）。",
+       "code": "struct Task {\nint deadline;    //截止时间\nint profit;      //利润\n};\nvoid sortByProfit(vector<Task>& tasks) {\nsort(tasks.begin(), tasks.end(),\n[](const Task& a, const Task& b) {\nreturn a.profit > b.profit;\n});\n}\nint maxProfit(vector<Task>& tasks) {\nsortByProfit(tasks);\nint maxTime = 0;\nfor (auto& t : tasks) {\nmaxTime = max(maxTime, t.deadline);\n}\nvector<bool> slot(maxTime + 1, false);\nint totalProfit = 0;\nfor (auto& task : tasks) {\nfor (int t = task.deadline; t >= 1; t--) {\nif (!slot[t]) {\n_______________________ //在此处填入代码\nbreak;\n}\n}\n}\nreturn totalProfit;\n}",
+       "options": {
+        "A": "1 slot[t] = true; 2 totalProfit += task.profit;",
+        "B": "1 slot[t] = false; 2 totalProfit += task.profit;",
+        "C": "1 slot[t] = true; 2 totalProfit = task.profit;",
+        "D": "1 2 slot[t] = false; 3 totalProfit = task.profit;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-mc-15",
+       "paper": "2025-12",
+       "type": "mc",
+       "num": 15,
+       "answer": "B",
+       "stem": "下面代码实现了对两个数组表示的正整数的高精度加法（数组低位在前），则横线上应填写（ ）。",
+       "code": "vector<int> add(vector<int> a, vector<int> b) {\nvector<int> c;\nint carry = 0;\nfor (int i = 0; i < a.size() || i < b.size(); i++) {\nif (i < a.size()) carry += a[i];\nif (i < b.size()) carry += b[i];\n_______________________         //在此处填入代码\n}\nif (carry) c.push_back(carry);\nreturn c;\n}",
+       "options": {
+        "A": "1 c.push_back(carry / 10); 2 carry %= 10;",
+        "B": "1 c.push_back(carry % 10); 2 carry /= 10;",
+        "C": "1 c.push_back(carry % 10);",
+        "D": "1 c.push_back(carry); 2 carry /= 10;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-tf-1",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 1,
+       "answer": "×",
+       "stem": "数组和链表都是线性表。链表的优点是插入删除不需要移动元素，并且能随机查找。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-tf-2",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "假设函数 gcd() 函数能正确求两个正整数的最大公约数，则下面的 lcm(a，b) 函数能正确找到两个正整 数 a 和 b 的最小公倍数。",
+       "code": "int lcm(int a, int b) {\nreturn a / gcd(a, b) * b;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-tf-3",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 3,
+       "answer": "√",
+       "stem": "在单链表中，已知指针 p 指向要删除的结点（非尾结点），想在 删除 p ，可行做法是用 p->next 覆盖 p 的值与 next ，然后删除 p->next 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-tf-4",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 4,
+       "answer": "×",
+       "stem": "在求解所有不大于 n 的素数时，线性筛法（欧拉筛）都应当优先于埃氏筛法使用，因为线性筛法的时间复 杂度为 ，低于埃氏筛法的 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-tf-5",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 5,
+       "answer": "√",
+       "stem": "二分查找仅适用于有序数据。若输入数据无序，当仅进行一次查找时，为了使用二分而排序通常不划算。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-tf-6",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "通过在数组的第一个、最中间和最后一个这3个数据中选择中间值作为枢轴（比较基准），快速排序算法可 降低落入最坏情况的概率。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-tf-7",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "贪心算法在每一步都做出当前看来最优的局部选择，并且一旦做出选择就不再回溯；而分治算法将问题分解 为若干子问题分别求解，再将子问题的解合并得到原问题的解。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-tf-8",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "以下 fib 函数计算第 n 项斐波那契数（ fib(0)=0 , fib(1)=1 ），其时间复杂度为 。",
+       "code": "int fib(int n) {\nif (n <= 1) return n;\nreturn fib(n-1) + fib(n-2);\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-tf-9",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 9,
+       "answer": "√",
+       "stem": "递归函数一定要有终止条件，否则可能会造成栈溢出。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2025-12-tf-10",
+       "paper": "2025-12",
+       "type": "tf",
+       "num": 10,
+       "answer": "×",
+       "stem": "使用贪心算法解决问题时，通过对每一步求局部最优解，最终一定能找到全局最优解。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "y2026",
+   "name": "2026 年真题",
+   "req": null,
+   "freq": null,
+   "difficulty": 3.5,
+   "sections": [
+    {
+     "id": "2026-03",
+     "name": "2026 年 3 月",
+     "req": null,
+     "freq": null,
+     "difficulty": 3.5,
+     "questions": [
+      {
+       "qid": "5-2026-03-mc-1",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 1,
+       "answer": "D",
+       "stem": "关于单链表、双链表和循环链表，下列说法正确的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "在单链表中，若已知任意结点的指针，则可以在 时间内删除该结点。",
+        "B": "循环链表中 定不存在空指针。 一",
+        "C": "在循环双链表中，尾结点的 next 指针 定为 nullptr 。 一",
+        "D": "在带头结点的循环单链表中，判定链表是否为空只需判断头结点的 next 是否指向 。 自 身"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-mc-2",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 2,
+       "answer": "C",
+       "stem": "双向循环链表中要在结点 p 之前插 新结点 s （均 空），以下指针操作正确的是（ ）。 入 非",
+       "code": "",
+       "options": {
+        "A": "1 s -> next = p; 2 p -> prev = s; 3 p -> next = s; 4 s -> prev = p;",
+        "B": "1 s -> prev = p; 2 s -> next = p -> next; 3 p -> next -> prev = s; 4 p -> next = s;",
+        "C": "1 s -> next = p; 2 s -> prev = p->prev; 3 p -> prev -> next = s; 4 p -> prev = s;",
+        "D": "1 s -> next = p; 2 s -> prev = nullptr; 3 p -> prev = s;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-mc-3",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 3,
+       "answer": "B",
+       "stem": "下 函数 “哑结点”统 处理删除单向链表中的头结点与中间结点。横线处应填（ ）。 面 用 一",
+       "code": "struct Node{\nint val;\nNode* next;\nNode(int v):val(v),next(nullptr){}\n};\nNode* eraseAll(Node* head, int x){\nNode dummy(0);\ndummy.next = head;\nNode* cur = &dummy;\nwhile(cur->next){\nif(cur->next->val == x){\nNode* del = cur->next;\n______________________\ndelete del;\n}else cur = cur->next;\n}\nreturn dummy.next;\n}",
+       "options": {
+        "A": "1 cur = cur->next;",
+        "B": "1 cur->next = del->next;",
+        "C": "1 del->next = cur->next;",
+        "D": "1 cur->next = nullptr;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-mc-4",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 4,
+       "answer": "A",
+       "stem": "对如下代码实现的欧几里得算法（辗转相除法），执行 gcd(48, 18) 得到的调用序列为（ ）。",
+       "code": "int gcd(int a, int b) {\nreturn b == 0 ? a : gcd(b, a % b);\n}",
+       "options": {
+        "A": "1 gcd(48,18) -> gcd(18,12) -> gcd(12,6) -> gcd(6,0)",
+        "B": "1 gcd(48,18) -> gcd(30,18) -> gcd(12,18)",
+        "C": "1 gcd(48,18) -> gcd(18,30) -> gcd(30,6)",
+        "D": "1 gcd(48,18) -> gcd(12,18) -> gcd(6,12)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-mc-5",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 5,
+       "answer": "C",
+       "stem": "下面代码实现了欧拉（线性）筛，横线处应填写（ ）。",
+       "code": "vector<int> euler_sieve(int n) {\nvector<bool> is_composite(n + 1, false);\nvector<int> primes;\nfor (int i = 2; i <= n; i++) {\nif (!is_composite[i])\nprimes.push_back(i);\nfor (int j = 0; __________________________ && (long long)i * primes[j] <= n; j++) {\nis_composite[i * primes[j]] = true;\nif (i % primes[j] == 0)\nbreak;\n}\n}\nreturn primes;\n}",
+       "options": {
+        "A": "1 j <= n",
+        "B": "1 j < sqrt(n)",
+        "C": "1 j < primes.size()",
+        "D": "1 j < i"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-mc-6",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 6,
+       "answer": "C",
+       "stem": "埃氏筛中将内层循环从 j = i*i 开始而不是 j = 2*i 的主要原因是（ ）。",
+       "code": "vector<int> eratosthenes_sieve(int n) {\nvector<bool> is_composite(n + 1, false);\nvector<int> primes;\nfor (int i = 2; i <= n; i++) {\nif (is_composite[i]) continue;\nprimes.push_back(i);\nfor (long long j = (long long)i * i; j <= n; j += i)\nis_composite[j] = true;\n}\nreturn primes;\n}",
+       "options": {
+        "A": "因为 2*i 一定不是合数",
+        "B": "i*i 一定是质数",
+        "C": "小于 i*i 的 i 的倍数已被更小质因子筛过",
+        "D": "这样可以把时间复杂度降为"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-mc-7",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 7,
+       "answer": "B",
+       "stem": "下面程序的运行结果为（ ）。",
+       "code": "bool check(int n, int a[], int k, int dist) {\nint cnt = 1;\nint last = a[0];\nfor (int i = 1; i < n; i++) {\nif (a[i] - last >= dist) {\ncnt++;\nlast = a[i];\n}\n}\nreturn cnt >= k;\n}\nint solve(int n, int a[], int k) {\nstd::sort(a, a + n);\nint l = 0;\nint r = a[n - 1] - a[0];\nwhile (l < r) {\nint mid = (l + r + 1) / 2;\nif (check(n, a, k, mid))\nl = mid;\nelse\nr = mid - 1;\n}\nreturn l;\n}\nint main() {\nint a[] = {1, 2, 8, 4, 9};\nint n = 5;\nint k = 3;\nstd::cout << solve(n, a, k) << std::endl;\nreturn 0;\n}",
+       "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "5"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-mc-8",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 8,
+       "answer": "A",
+       "stem": "在升序数组中查找第一个大于等于 x 的位置，下面循环中横线应填（ ）。",
+       "code": "int lowerBound(const vector<int>& a, int x){\nint l=0, r=a.size();\nwhile(l<r){\nint mid = l + (r - l)/2;\nif(a[mid] >= x) _____________;\nelse l = mid + 1;\n}\nreturn l;\n}",
+       "options": {
+        "A": "1 r = mid;",
+        "B": "1 r = mid - 1;",
+        "C": "1 l = mid;",
+        "D": "1 l = mid + 1;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-mc-9",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 9,
+       "answer": "D",
+       "stem": "关于递归函数调用，下列说法错误的是（ ）。",
+       "code": "",
+       "options": {
+        "A": "递归调用层次过深时，可能会耗尽栈空间导致栈溢出",
+        "B": "尾递归函数可以通过编译器优化来避免栈溢出",
+        "C": "所有递归函数都可以通过循环结构来改写，从而避免栈溢出",
+        "D": "栈溢出发生时，程序会抛出异常并可以继续执行后续代码"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-mc-10",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 10,
+       "answer": "A",
+       "stem": "给定 n 根木头，第 i 根长度为 a[i] 。要切成不少于 m 段等长木段，求最大可能长度，则横线上应填 写（ ）。",
+       "code": "const int MAXN = 100005;\nlong long a[MAXN];\nint n, m;\nbool check(long long x){\nlong long cnt = 0;\nfor(int i = 1; i <= n; i++){\nif(x == 0) return true;\ncnt += a[i] / x;\nif(cnt >= m) return true;\n}\nreturn false;\n}\nint main(){\ncin >> n >> m;\nlong long mx = 0;\nfor(int i = 1; i <= n; i++){\ncin >> a[i];\nmx = max(mx, a[i]);\n}\nlong long l = 1, r = mx;\nlong long ans = 0;\nwhile(l <= r){\nlong long mid = l + (r - l) / 2;\nif(check(mid)){\nans = mid;\n______________________\n}else{\n______________________\n}\n}\ncout << ans << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "1 l = mid + 1; 2 r = mid - 1;",
+        "B": "1 l = mid - 1; 2 r = mid + 1;",
+        "C": "1 l = mid + 1; 2 r = mid;",
+        "D": "1 l = mid; 2 r = mid + 1;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-mc-11",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 11,
+       "answer": "B",
+       "stem": "下面代码用分治求“最大连续子段和”，其时间复杂度为（ ）。",
+       "code": "int solve(vector<int>& a, int l, int r){\nif(l == r) return a[l];\nint mid = l + (r - l) / 2;\nint left = solve(a, l, mid);\nint right = solve(a, mid + 1, r);\nint sum = 0, lmax = INT_MIN;\nfor(int i = mid; i >= l; i--){\nsum += a[i];\nlmax = max(lmax, sum);\n}\nsum = 0;\nint rmax = INT_MIN;\nfor(int i = mid + 1; i <= r; i++){\nsum += a[i];\nrmax = max(rmax, sum);\n}\nreturn max({left, right, lmax + rmax});\n}",
+       "options": {
+        "A": "O(n²)",
+        "B": "O(n log n)",
+        "C": "O(log n)",
+        "D": "O(n)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-mc-12",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 12,
+       "answer": "B",
+       "stem": "游戏大赛决赛，两组选手分别按得分从小到大排好队，现在要把他们合并成一个有序排行榜。 A组： A = {12, 35, 67, 89} ，B组： B = {20, 45, 55, 78} ，下面是归并合并函数的核心循环，横线处应填 入（ ）。",
+       "code": "int i = 0, j = 0;\nvector<int> result;\nwhile (i < A.size() && j < B.size()) {\nif (___________________) {\nresult.push_back(A[i++]);\n} else {\nresult.push_back(B[j++]);\n}\n}\nwhile (i < A.size()) {\nresult.push_back(A[i++]);\n}\nwhile (j < B.size()) {\nresult.push_back(B[j++]);\n}",
+       "options": {
+        "A": "A[i] >= B[j]",
+        "B": "A[i] <= B[j]",
+        "C": "i >= j",
+        "D": "i <= j"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-mc-13",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 13,
+       "answer": "C",
+       "stem": "有 位同学的成绩已经从小到大排好序，现在对它执行下面这段以第一个元素为 pivot 的快速排序，请 问此次排序的时间复杂度是（ ）。",
+       "code": "void quicksort(vector<int>& a, int l, int r) {\nif (l >= r) return;\nint pivot = a[l];\nint i = l, j = r;\nwhile (i < j) {\nwhile (i < j && a[j] >= pivot) j--;\nwhile (i < j && a[i] <= pivot) i++;\nif (i < j) swap(a[i], a[j]);\n}\nswap(a[l], a[i]);\nquicksort(a, l, i - 1);\nquicksort(a, i + 1, r);\n}",
+       "options": {
+        "A": "O(n)",
+        "B": "O(n log n)",
+        "C": "O(n²)",
+        "D": "O(log n)"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-mc-14",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 14,
+       "answer": "B",
+       "stem": "下面关于排序算法的描述中，不正确的是( )。",
+       "code": "",
+       "options": {
+        "A": "冒泡排序和插入排序都是稳定的排序算法",
+        "B": "快速排序和归并排序都是不稳定的排序算法",
+        "C": "冒泡排序和插入排序最好时间复杂度均为",
+        "D": "归并排序在最好、最坏和平均三种情况的时间复杂度均为"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-mc-15",
+       "paper": "2026-03",
+       "type": "mc",
+       "num": 15,
+       "answer": "B",
+       "stem": "下面代码实现两个整数除法，其中被除数为一个“大整数”，用字符串表示，除数是一个小整数，用 int 表 示，则横线处应该填写（ ）。",
+       "code": "int main(){\nstring s;\nint b;\ncin >> s >> b;\nvector<int> a;\nfor(char c : s){\na.push_back(c - '0');\n}\nvector<int> c;\nlong long rem = 0;\nfor(int i = 0; i < a.size(); i++){\nrem = rem * 10 + a[i];\nint q = rem / b;\nc.push_back(q);\n______________________\n}\nint pos = 0;\nwhile(pos < c.size() - 1 && c[pos] == 0) pos++;\nfor(int i = pos; i < c.size(); i++){\ncout << c[i];\n}\ncout << endl;\ncout << rem << endl;\nreturn 0;\n}",
+       "options": {
+        "A": "1 rem /= b;",
+        "B": "1 rem %= b;",
+        "C": "1 rem = b;",
+        "D": "1 rem = q;"
+       },
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-tf-1",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 1,
+       "answer": "√",
+       "stem": "有一个存储了 个整数的线性表，分别用数组和单链表两种方式实现。在已知下标（或结点指针）的前提 下，数组的随机访问是 ， 而在链表中已知某结点的指针时，在该结点之后插入一个新结点的操作也是 。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-tf-2",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 2,
+       "answer": "√",
+       "stem": "若数组 a 已按升序排列，则下面代码可以正确实现 “在 a 中查找第一个大于等于 x 的元素的位置”。",
+       "code": "int lowerBound(vector<int>& a,int x){\nint l=0, r=a.size();\nwhile(l < r) {\nint mid = (l + r) / 2;\nif( a[mid] >= x) r = mid;\nelse l = mid + 1;\n}\nreturn l;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-tf-3",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 3,
+       "answer": "×",
+       "stem": "快速排序只要每次都选取中间元素作为枢轴，就 定是稳定排序。 一",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-tf-4",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 4,
+       "answer": "√",
+       "stem": "若某算法满 递推式： ，则其时间复杂度为 。 足",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-tf-5",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 5,
+       "answer": "×",
+       "stem": "在 个数组中，如果两个元素 a[i] 和 a[j] 满 i < j 且 a[i] > a[j] ，则 a[i] 和 a[j] 是 个逆 一 足 一 序对。 下 代码可以正确统计数组 a 区间 [l,r] 内的逆序对总数。 面",
+       "code": "long long cnt=0;\nvoid merge_count(vector<int>& a, int l, int m, int r){\nint i = l, j = m + 1;\nwhile(i <= m && j <= r) {\nif(a[i] <= a[j]) i++;\nelse {\ncnt += (m - i+ 1);\nj++;\n}\n}\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-tf-6",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 6,
+       "answer": "√",
+       "stem": "根据唯⼀分解定理，如果⼤于1 被任何不超其平⽅根的质数整除， n 是质数。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-tf-7",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 7,
+       "answer": "√",
+       "stem": "假设数组 的值域范围是 ，以下程序的时间复杂度是 。",
+       "code": "bool check(int n, int a[], int k, int dist) {\nint cnt = 1;\nint last = a[0];\nfor (int i = 1; i < n; i++) {\nif (a[i] - last >= dist) {\ncnt++;\nlast = a[i];\n}\n}\nreturn cnt >= k;\n}\nint solve(int n, int a[], int k) {\nstd::sort(a, a + n);\nint l = 0;\nint r = a[n - 1] - a[0];\nwhile (l < r) {\nint mid = (l + r + 1) / 2;\nif (check(n, a, k, mid))\nl = mid;\nelse\nr = mid - 1;\n}\nreturn l;\n}\nint main() {\nint a[] = {1, 2, 8, 4, 9};\nint n = 5;\nint k = 3;\nstd::cout << solve(n, a, k) << std::endl;\nreturn 0;\n}",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-tf-8",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 8,
+       "answer": "×",
+       "stem": "若一个问题满足最优子结构性质，则一定可以用贪心算法得到最优解。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-tf-9",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 9,
+       "answer": "×",
+       "stem": "线性筛相比埃氏筛的核心改进在于：埃氏筛中一个合数可能被多个质数重复标记，线性筛通过\"每个合数只 被其最大质因子筛去\"的策略，保证每个合数恰好被标记一次，从而实现 的时间复杂度。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      },
+      {
+       "qid": "5-2026-03-tf-10",
+       "paper": "2026-03",
+       "type": "tf",
+       "num": 10,
+       "answer": "×",
+       "stem": "任何递归程序都可以改写为等价的非递归程序，但改写后的非递归程序一定需要显式地使用栈来模拟递归 调用过程。",
+       "code": "",
+       "options": {},
+       "explanation": "",
+       "difficulty": 3.5
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
