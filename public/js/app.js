@@ -129,7 +129,7 @@ async function ensureCatalog(){
 const LV_CN = {1:'一级',2:'二级',3:'三级',4:'四级',5:'五级',6:'六级',7:'七级',8:'八级'};
 // 模块数据驱动：status 'ready'=已上线可进入；'soon'=已预留、内容编写中。后续填内容只需改这里。
 const LEARN_MODULES = [
-  {icon:'📘', title:'入门讲义', tag:'纸质教程·电子版', status:'soon',
+  {icon:'📘', title:'入门讲义', tag:'纸质教程·电子版', key:'lessons', status:'ready',
    desc:'按考纲知识点系统讲解，配套纸质教程电子版。先把概念学懂，再去刷题，事半功倍。'},
   {icon:'🪤', title:'陷阱通关手册', tag:'高频易错·避坑', key:'traps', status:'soon',
    desc:'汇总历年高频易错点与命题陷阱，逐条「通关」。考前过一遍，专治粗心丢分。'},
@@ -143,6 +143,8 @@ const LEARN_MODULES = [
    desc:'重点题型与难点的视频讲解，文字看不懂的地方，看视频秒懂。'},
   {icon:'📄', title:'知识速查表', tag:'一页速查', status:'soon',
    desc:'本级别语法与核心概念浓缩成一页速查表，随时翻阅、考前突击。'},
+  {icon:'🗓️', title:'报考指南', tag:'报名·考务', status:'soon',
+   desc:'GESP 报名时间表、考试流程与考场须知，证书用途一文讲清，第一次报考也不慌。'},
 ];
 function renderLearn(){
   const lv = LV_CN[LEVEL] || (LEVEL+'级');
@@ -153,6 +155,7 @@ function renderLearn(){
     const badge = ready ? '' : '<span class="lm-soon">即将上线</span>';
     let onclick = `go('${m.go}')`;
     if(trapsReady) onclick = 'renderTraps()';
+    if(m.key==='lessons') onclick = 'renderLessons()';
     const btn = ready
       ? `<button class="lm-btn" onclick="${onclick}">进入 →</button>`
       : `<button class="lm-btn ghost" disabled>敬请期待</button>`;
@@ -207,6 +210,57 @@ async function renderTraps(){
     <div class="tp-toc">${toc}</div>
     ${body}
     <div class="learn-foot">看完手册，建议回到「真题精讲」对照练习，把这些坑真正踩熟、记牢。</div>`;
+  window.scrollTo(0,0);
+}
+
+/* ===================== 入门讲义(电子教程) ===================== */
+let LESSONS_TOC=null, LESSONS_TOC_LV=null;
+async function renderLessons(){
+  setActiveTab('learn');
+  C().innerHTML='<div class="empty"><div class="spinner"></div>正在打开讲义…</div>';
+  let d;
+  try{
+    if(LESSONS_TOC && LESSONS_TOC_LV===LEVEL){ d=LESSONS_TOC; }
+    else { d=await api('/api/lessons?level='+LEVEL); LESSONS_TOC=d; LESSONS_TOC_LV=LEVEL; }
+  }catch(e){ C().innerHTML='<div class="empty">讲义加载失败，请稍后再试。</div>'; return; }
+  const main=d.chapters.filter(c=>String(c.id)[0]==='c');
+  const apps=d.chapters.filter(c=>String(c.id)[0]==='a');
+  const item=c=>{
+    const lock=c.locked?'<span class="lb-lock">🔒 VIP</span>':'';
+    const secs=(c.sections||[]).length?`<span class="lb-secs">${c.sections.length} 节</span>`:'';
+    return `<div class="lb-item${c.locked?' lb-dim':''}" onclick="renderLessonChapter('${c.id}')">
+      <span class="lb-t">${esc(c.title)}</span><span class="lb-x">${secs}${lock}</span></div>`;
+  };
+  C().innerHTML=`
+    <div class="tp-back"><a onclick="go('learn')">← 返回学习中心</a></div>
+    <div class="learn-hero">
+      <h2>📘 ${esc(d.title)}</h2>
+      <p>${esc(d.brand||'')} · 严格对照官方考纲，每章配模拟题精讲。<b>先学概念，再去刷题</b>，事半功倍。${Number(LEVEL)!==1?'前言与第 1 章免费试读，全书内容 VIP 专享。':'本级别讲义全部免费阅读。'}</p>
+    </div>
+    <div class="lb-card"><div class="lb-h">正文</div>${main.map(item).join('')}</div>
+    ${apps.length?`<div class="lb-card"><div class="lb-h">附录</div>${apps.map(item).join('')}</div>`:''}
+    <div class="learn-foot">建议每读完一章，立即到「真题精讲」做对应章节的真题，把知识点焊牢。</div>`;
+  window.scrollTo(0,0);
+}
+async function renderLessonChapter(cid){
+  setActiveTab('learn');
+  C().innerHTML='<div class="empty"><div class="spinner"></div>正在加载章节…</div>';
+  let d;
+  try{ d=await api('/api/lessons/chapter?level='+LEVEL+'&id='+encodeURIComponent(cid)); }
+  catch(e){ C().innerHTML='<div class="empty">章节加载失败，请稍后再试。</div>'; return; }
+  const nav=(cls)=>`<div class="ls-nav ${cls}">
+    ${d.prev?`<a class="ls-navbtn" onclick="renderLessonChapter('${d.prev.id}')">← ${esc(d.prev.title)}</a>`:'<span></span>'}
+    <a class="ls-navbtn ghost" onclick="renderLessons()">目录</a>
+    ${d.next?`<a class="ls-navbtn" onclick="renderLessonChapter('${d.next.id}')">${esc(d.next.title)} →</a>`:'<span></span>'}
+  </div>`;
+  const toc=(d.sections||[]).length?`<div class="ls-toc">${d.sections.map(s=>`<a href="#s${s.id.replace(/\./g,'-')}">${s.id}　${esc(s.title)}</a>`).join('')}</div>`:'';
+  const body=d.locked
+    ? `<div class="exp vip-lock" style="margin:24px 0">🔒 本章为 <b>VIP 专享</b> · 前言与第 1 章免费试读<a class="vip-cta" onclick="event.stopPropagation();go('upgrade')">开通 VIP 解锁全书 ›</a></div>`
+    : `<article class="ls-body">${d.html}</article>`;
+  C().innerHTML=`
+    <div class="tp-back"><a onclick="renderLessons()">← 返回讲义目录</a></div>
+    <div class="learn-hero ls-hero"><h2>${esc(d.title)}</h2></div>
+    ${toc}${body}${nav('bottom')}`;
   window.scrollTo(0,0);
 }
 
@@ -444,6 +498,7 @@ async function renderProgress(){
       <div class="stat-card blue"><div class="num">${d.attempts}</div><div class="lab">总作答次数</div></div>
       <div class="stat-card amber"><div class="num">${d.wrongbook_count}</div><div class="lab">错题本待巩固</div></div>
     </div>
+    <div class="cheer-wrap"><span class="cheer">${d.answered===0?'🌱 做第一道题，就是超越昨天的自己！':d.accuracy>=80?'🏆 正确率超棒，保持节奏冲刺满分！':d.wrongbook_count>0?('💪 错题本还有 '+d.wrongbook_count+' 题待消灭，清完它们就稳了！'):'🚀 继续刷题，数字会越来越好看！'}</span></div>
     <div style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
       <button class="btn solid" onclick="go('recommend')">🤖 智能推题(攻克薄弱点)</button>
       <button class="btn teal" onclick="go('mock')">📝 来一套限时模考</button></div>

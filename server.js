@@ -1,5 +1,6 @@
 'use strict';
 const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 const { Q, initDb, questionsByQids, shapeQuestion, deleteUserCascade, adminStats } = require('./src/db');
@@ -429,6 +430,52 @@ app.post('/api/admin/codes', adminRequired, wrap(async (req, res) => {
 app.post('/api/admin/codes/:code/disable', adminRequired, wrap(async (req, res) => {
   await Q.disableCode(req.params.code);
   res.json({ ok: true });
+}));
+
+/* ===== 入门讲义(纸质教程电子版) ===== */
+// 数据来自 data/lessons/levelN.json(由教程 docx 转换生成);文件级缓存,与题库 DB 无关。
+const LESSONS_CACHE = {};
+function lessonBook(level) {
+  const n = Number(level);
+  if (!(n >= 1 && n <= 8)) return null;
+  if (!LESSONS_CACHE[n]) {
+    try { LESSONS_CACHE[n] = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'lessons', `level${n}.json`), 'utf8')); }
+    catch (e) { return null; }
+  }
+  return LESSONS_CACHE[n];
+}
+// 门槛与解析一致(方案A):一级全免费;二至八级「前言 + 第 1 章」免费试读,其余 VIP 专享。
+function lessonLocked(level, chapterId, user) {
+  if (Number(level) === 1) return false;
+  if (chapterId === 'c0' || chapterId === 'c1') return false;
+  return !vipActive(user);
+}
+app.get('/api/lessons', authRequired, wrap(async (req, res) => {
+  const level = Number(req.query.level || 1);
+  const book = lessonBook(level);
+  if (!book) return res.status(404).json({ error: '本级别讲义暂未上线' });
+  res.json({
+    level, title: book.title, brand: book.brand,
+    chapters: book.chapters.map(c => ({
+      id: c.id, num: c.num, title: c.title, sections: c.sections,
+      locked: lessonLocked(level, c.id, req.user),
+    })),
+  });
+}));
+app.get('/api/lessons/chapter', authRequired, wrap(async (req, res) => {
+  const level = Number(req.query.level || 1);
+  const book = lessonBook(level);
+  if (!book) return res.status(404).json({ error: '本级别讲义暂未上线' });
+  const idx = book.chapters.findIndex(c => c.id === String(req.query.id || ''));
+  if (idx < 0) return res.status(404).json({ error: '章节不存在' });
+  const c = book.chapters[idx];
+  const locked = lessonLocked(level, c.id, req.user);
+  res.json({
+    id: c.id, num: c.num, title: c.title, sections: c.sections, locked,
+    html: locked ? '' : c.html,
+    prev: book.chapters[idx - 1] ? { id: book.chapters[idx - 1].id, title: book.chapters[idx - 1].title } : null,
+    next: book.chapters[idx + 1] ? { id: book.chapters[idx + 1].id, title: book.chapters[idx + 1].title } : null,
+  });
 }));
 
 /* ===== SEO + 法务页(干净 URL) ===== */

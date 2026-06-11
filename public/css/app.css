@@ -382,3 +382,90 @@ tr.clk:hover{background:var(--brand-soft);box-shadow:inset 3px 0 0 var(--brand)}
 .tp-exs{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);font-size:13px;color:var(--ink2)}
 .tp-ex{display:inline-block;background:#eef0f6;color:#185fa5;border-radius:6px;padding:2px 8px;margin:2px 4px 0 0;font-size:12.5px;text-decoration:none}
 .tp-ex:hover{background:#e0e8fc}
+
+/* ===== 入门讲义(电子教程阅读器) ===== */
+.lb-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);margin:18px 0;overflow:hidden}
+.lb-h{padding:13px 18px;font-weight:700;font-size:16px;color:var(--ink2);background:var(--line2);letter-spacing:.04em}
+.lb-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 18px;border-top:1px solid var(--line2);cursor:pointer;transition:background .15s}
+.lb-item:hover{background:#fafbff}
+.lb-item:first-of-type{border-top:none}
+.lb-t{font-size:17.5px;font-weight:600;color:var(--ink)}
+.lb-x{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.lb-secs{font-size:13.5px;color:var(--ink3)}
+.lb-lock{font-size:13px;background:var(--gold-soft);color:#8a5a12;border-radius:6px;padding:2px 8px;font-weight:600}
+.lb-dim .lb-t{color:var(--ink2)}
+.ls-hero h2{margin-bottom:0}
+.ls-toc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 18px;margin:14px 0;display:flex;flex-wrap:wrap;gap:8px 18px}
+.ls-toc a{font-size:15px;color:#185fa5;padding:2px 0}
+.ls-toc a:hover{text-decoration:underline}
+.ls-body{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:30px 36px;margin:14px 0;font-size:18.5px;line-height:1.9;overflow-wrap:break-word}
+.ls-body p{margin:12px 0}
+.ls-body code{font-family:var(--mono);background:#eef0f6;color:#185fa5;padding:1px 6px;border-radius:5px;font-size:.88em}
+.ls-h3{margin:34px 0 12px;padding:10px 14px;background:linear-gradient(90deg,var(--brand-soft),transparent);border-left:4px solid var(--brand);border-radius:6px;font-size:21px;color:var(--ink);scroll-margin-top:80px}
+.ls-h4{margin:24px 0 8px;font-size:18.5px;color:var(--ink);border-bottom:2px solid var(--line2);padding-bottom:6px}
+.ls-strong{font-weight:700;color:var(--ink);margin-top:18px}
+.ls-code{background:var(--ed-bg);color:#cdd6f4;padding:16px 18px;border-radius:var(--rsm);overflow-x:auto;margin:14px 0;border:1px solid #20264a}
+.ls-code code{font-family:var(--mono);font-size:15.5px;line-height:1.75;background:none;color:inherit;padding:0;white-space:pre}
+.ls-callout{background:#fff8ec;border:1px solid #f0d9a8;border-left:4px solid var(--gold);border-radius:var(--rsm);padding:13px 16px;margin:16px 0}
+.ls-callout-t{font-weight:700;color:#8a5a12;margin-bottom:6px}
+.ls-callout p{margin:6px 0;color:#6b521f;font-size:17px}
+.ls-callout code{background:#f5e8cb;color:#7a5a1a}
+.ls-note{background:#eef4fd;border:1px solid #cdddf6;border-left:4px solid var(--blue);border-radius:var(--rsm);padding:13px 16px;margin:16px 0}
+.ls-note p{margin:6px 0;color:#274468;font-size:17px}
+.ls-note code{background:#dce8fa;color:#1a4e8a}
+.ls-tablewrap{overflow-x:auto;margin:16px 0}
+.ls-table{border-collapse:collapse;width:100%;font-size:16px;background:var(--surface)}
+.ls-table th,.ls-table td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;line-height:1.65}
+.ls-table th{background:var(--line2);font-weight:700;color:var(--ink)}
+.ls-table tr:nth-child(even) td{background:#fafbfd}
+.ls-img{display:block;max-width:100%;height:auto;margin:14px auto;border:1px solid var(--line);border-radius:var(--rsm)}
+.ls-cap{text-align:center;color:var(--ink3);font-size:14.5px;margin-top:-6px}
+.ls-nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0 30px;flex-wrap:wrap}
+.ls-navbtn{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 16px;font-size:15px;color:#185fa5;box-shadow:var(--sh);max-width:42%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ls-navbtn:hover{border-color:#b9c6ee;background:#fafbff}
+.ls-navbtn.ghost{color:var(--ink2);max-width:none}
+@media(max-width:760px){
+  .ls-body{padding:20px 16px;font-size:17.5px}
+  .ls-navbtn{max-width:100%}
+}
+
+/* 新版图形 logo */
+.logo-img{height:44px;width:auto;display:block}
+.lawnav .logo-img{height:36px}
+@media(max-width:760px){.logo-img{height:36px}}
+
+/* ===== v2.1 童趣微调(克制版):只动圆角/阴影/小点缀 ===== */
+/* ① 主按钮:糖果底边 + 按压弹性 */
+.btn.solid{box-shadow:0 4px 0 var(--brand-d)}
+.btn.solid:hover{transform:translateY(-1px);box-shadow:0 5px 0 var(--brand-d)}
+.btn.solid:active{transform:translateY(2px);box-shadow:0 2px 0 var(--brand-d)}
+.btn.teal{border-width:2px}
+.lm-btn{border-radius:999px;padding:9px 22px;box-shadow:0 3px 0 var(--brand-d)}
+.lm-btn:hover{transform:translateY(-1px);box-shadow:0 4px 0 var(--brand-d)}
+.lm-btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--brand-d)}
+.lm-btn.ghost{box-shadow:none;transform:none}
+.pill.pill-red{box-shadow:0 4px 0 var(--brand-d)}
+.pill.pill-red:hover{transform:translateY(-1px);box-shadow:0 5px 0 var(--brand-d)}
+.pill.pill-red:active{transform:translateY(2px);box-shadow:0 2px 0 var(--brand-d)}
+.auth-body .submit{box-shadow:0 4px 0 var(--brand-d)}
+.auth-body .submit:active{transform:translateY(2px);box-shadow:0 2px 0 var(--brand-d)}
+/* ② 学习中心模块卡:四色顶条 + 图标底托 + 角落小星 */
+.lm-card{position:relative;border-radius:18px;padding-top:23px;overflow:hidden}
+.lm-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;
+  background:linear-gradient(90deg,#4285f4 0 25%,#ea4335 25% 50%,#fbbc05 50% 75%,#34a853 75% 100%)}
+.lm-card::after{content:"✦";position:absolute;bottom:14px;right:16px;color:var(--gold);font-size:13px;opacity:.8}
+.lm-card.lm-dim::before{opacity:.35}
+.lm-card.lm-dim::after{opacity:.3}
+.lm-ic{width:46px;height:46px;display:inline-flex;align-items:center;justify-content:center;border-radius:14px;font-size:25px;background:#eaf1fe}
+.lm-card:nth-child(4n+2) .lm-ic{background:#fdebe9}
+.lm-card:nth-child(4n+3) .lm-ic{background:#fdf3d8}
+.lm-card:nth-child(4n)   .lm-ic{background:#e7f5ec}
+/* ③ 首页级别码:方块改圆形 */
+.lv .lv-code{border-radius:50%}
+/* ④ 进度条:黄→绿渐变 + 鼓励语 */
+.quiz-progress .bar span{background:linear-gradient(90deg,var(--gold),var(--pass))}
+.prog-row .pbar .done{background:linear-gradient(90deg,#fbbc05,#34a853)}
+.cheer{margin-top:14px;text-align:center;font-size:16.5px;font-weight:700;color:var(--pass-d);background:var(--pass-soft);border-radius:999px;padding:8px 18px;display:inline-block}
+.cheer-wrap{text-align:center;margin-top:6px}
+/* ⑤ 学习中心两行四列 */
+@media(min-width:1100px){.learn-grid{grid-template-columns:repeat(4,1fr)}}
