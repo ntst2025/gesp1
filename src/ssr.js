@@ -4,7 +4,7 @@
  * 设计目标:
  *  - 纯服务端 HTML(不依赖 JS 渲染),百度蜘蛛/LLM 抓取友好。
  *  - 语义化结构 + <title>/description/keywords + schema.org(QAPage) 结构化数据。
- *  - 分层:一~三级整篇解析公开(吃搜题流量+引流);四~八级题干+答案公开、解析上锁(保护 VIP)。
+ *  - 分层:一级整篇解析公开(吃搜题流量+引流);二~八级题干+答案公开、解析上锁(保护 VIP)。
  */
 
 const LEVEL_CN = { 1: '一级', 2: '二级', 3: '三级', 4: '四级', 5: '五级', 6: '六级', 7: '七级', 8: '八级' };
@@ -64,7 +64,7 @@ function jsonLd(obj) {
  *  - section: 所属知识点(section 行,可空)
  *  - prev/next: 同卷上一题/下一题 {qid, type, num} (可空)
  *  - base: 站点根 URL(用于 canonical/og)
- *  - expFree: 是否公开完整解析(一~三级 true)
+ *  - expFree: 是否公开完整解析(一级 true)
  */
 function renderQuestionPage({ q, section, prev, next, base, expFree, baiduPush }) {
   const lv = LEVEL_CN[q.level] || `${q.level}级`;
@@ -102,7 +102,7 @@ function renderQuestionPage({ q, section, prev, next, base, expFree, baiduPush }
     const teaser = plainText(q.explanation, 38);
     expBlock = `<div class="exp locked"><div class="exp-h">题目解析</div>`
       + `<p class="teaser">${esc(teaser)}……</p>`
-      + `<div class="lock"><b>完整解析为会员内容</b><span>四级及以上的逐题精讲需开通 VIP。一～三级全部免费。</span>`
+      + `<div class="lock"><b>完整解析为会员内容</b><span>二级及以上的逐题精讲需开通 VIP。一级解析全部免费。</span>`
       + `<a class="btn" href="/app?level=${q.level}">前往 GESPPASS 解锁</a></div></div>`;
   } else {
     expBlock = '';

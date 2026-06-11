@@ -129,33 +129,31 @@ async function ensureCatalog(){
 const LV_CN = {1:'一级',2:'二级',3:'三级',4:'四级',5:'五级',6:'六级',7:'七级',8:'八级'};
 // 模块数据驱动：status 'ready'=已上线可进入；'soon'=已预留、内容编写中。后续填内容只需改这里。
 const LEARN_MODULES = [
-  {icon:'📘', title:'入门讲义', tag:'纸质教程·电子版', key:'lessons', status:'ready',
+  {icon:'📘', title:'入门讲义', tag:'纸质教程·电子版', key:'lessons', status:'ready', fn:'renderLessons',
    desc:'按考纲知识点系统讲解，配套纸质教程电子版。先把概念学懂，再去刷题，事半功倍。'},
-  {icon:'🪤', title:'陷阱通关手册', tag:'高频易错·避坑', key:'traps', status:'soon',
+  {icon:'🪤', title:'陷阱通关手册', tag:'高频易错·避坑', key:'traps', l1:true, fn:'renderTraps',
    desc:'汇总历年高频易错点与命题陷阱，逐条「通关」。考前过一遍，专治粗心丢分。'},
   {icon:'📝', title:'限时模拟题', tag:'模考·估分', status:'ready', go:'mock',
    desc:'整套真题限时模考，交卷后自动估分，模拟真实考场节奏与压力。'},
   {icon:'📚', title:'真题精讲', tag:'逐题解析', status:'ready', go:'browse',
    desc:'按章节浏览全部历年真题，每题讲透「为什么对、坑在哪」。'},
-  {icon:'🗺️', title:'备考路线图', tag:'学习计划', status:'soon',
+  {icon:'🗺️', title:'备考路线图', tag:'学习计划', key:'roadmap', l1:true, fn:'renderRoadmap',
    desc:'本级别的学习顺序、时间规划与阶段里程碑，照着走不迷路。'},
   {icon:'🎬', title:'视频精讲', tag:'重难点讲解', status:'soon',
    desc:'重点题型与难点的视频讲解，文字看不懂的地方，看视频秒懂。'},
-  {icon:'📄', title:'知识速查表', tag:'一页速查', status:'soon',
+  {icon:'📄', title:'知识速查表', tag:'一页速查', key:'cheat', l1:true, fn:'renderCheatsheet',
    desc:'本级别语法与核心概念浓缩成一页速查表，随时翻阅、考前突击。'},
-  {icon:'🗓️', title:'报考指南', tag:'报名·考务', status:'soon',
+  {icon:'🗓️', title:'报考指南', tag:'报名·考务', key:'guide', l1:true, fn:'renderExamGuide',
    desc:'GESP 报名时间表、考试流程与考场须知，证书用途一文讲清，第一次报考也不慌。'},
 ];
 function renderLearn(){
   const lv = LV_CN[LEVEL] || (LEVEL+'级');
   const cards = LEARN_MODULES.map(m=>{
-    // 陷阱通关手册：一级已上线（内容来自一级解析的💡提示），其他级别暂未开放
-    const trapsReady = m.key==='traps' && String(LEVEL)==='1';
-    const ready = m.status==='ready' || trapsReady;
+    // l1:true 的模块当前仅一级上线;status:'ready' 的模块全级别可用
+    const l1Ready = m.l1 && String(LEVEL)==='1';
+    const ready = m.status==='ready' || l1Ready;
     const badge = ready ? '' : '<span class="lm-soon">即将上线</span>';
-    let onclick = `go('${m.go}')`;
-    if(trapsReady) onclick = 'renderTraps()';
-    if(m.key==='lessons') onclick = 'renderLessons()';
+    const onclick = m.fn ? `${m.fn}()` : `go('${m.go}')`;
     const btn = ready
       ? `<button class="lm-btn" onclick="${onclick}">进入 →</button>`
       : `<button class="lm-btn ghost" disabled>敬请期待</button>`;
@@ -172,7 +170,7 @@ function renderLearn(){
       <p>刷题之外，先把知识学扎实。这里汇集本级别的教程、避坑手册、模拟题与备考资料——<b>先学后练，稳步通关</b>。</p>
     </div>
     <div class="learn-grid">${cards}</div>
-    <div class="learn-foot">更多学习内容正在持续上线中。已上线的「真题精讲」与「限时模考」可立即使用。</div>`;
+    <div class="learn-foot">一级已上线讲义、陷阱手册、路线图、速查表与报考指南；其余级别讲义、真题精讲与模考可用，更多模块持续上线中。</div>`;
 }
 
 // 陷阱通关手册（数据来自 /api/traps，由一级解析的💡提示汇总而成）
@@ -264,6 +262,125 @@ async function renderLessonChapter(cid){
   window.scrollTo(0,0);
 }
 
+/* ===================== 备考路线图(一级) ===================== */
+function renderRoadmap(){
+  setActiveTab('learn');
+  const stages=[
+    {w:'第 1–2 周',t:'起步：认识计算机与第一个程序',ch:'讲义第 1–3 章',pts:'计算机软硬件、Dev-C++ 实操、标识符与变量',ms:'独立写出并运行 Hello World，说清「编辑→编译→运行」流程'},
+    {w:'第 3–5 周',t:'语法核心：数据与运算',ch:'讲义第 4–7 章',pts:'数据类型、cin/cout 与 printf、运算符与优先级、顺序结构',ms:'「表达式求值」「输出是什么」类单选题正确率 ≥ 80%'},
+    {w:'第 6–8 周',t:'控制结构：分支与循环',ch:'讲义第 8–12 章',pts:'if/switch、for、while、break 与 continue',ms:'循环类编程题能独立写出，不抄答案'},
+    {w:'第 9–10 周',t:'综合与真题实战',ch:'讲义第 13 章 + 真题精讲',pts:'综合编程 + 按章刷完全部 325 道真题',ms:'错题本完整清零一遍'},
+    {w:'考前 2 周',t:'冲刺：模考与避坑',ch:'陷阱手册 + 限时模考',pts:'陷阱通关手册过一遍；限时模考至少 3 套；重做全部错题',ms:'模考稳定 80 分以上，安心进考场'},
+  ];
+  const rows=stages.map((s,i)=>`<div class="rm-stage">
+    <div class="rm-no">${i+1}</div>
+    <div class="rm-bd">
+      <div class="rm-w">${s.w}</div>
+      <div class="rm-t">${s.t}<span class="rm-ch">${s.ch}</span></div>
+      <p class="rm-p">${s.pts}</p>
+      <div class="rm-ms">🏁 里程碑：${s.ms}</div>
+    </div></div>`).join('');
+  C().innerHTML=`
+    <div class="tp-back"><a onclick="go('learn')">← 返回学习中心</a></div>
+    <div class="learn-hero"><h2>🗺️ 备考路线图 · C++一级</h2>
+      <p>零基础按这条路线走，<b>约 10–12 周</b>稳妥拿下一级。每周 2–3 次、每次 40–60 分钟即可；进度快的孩子可以压缩到 6–8 周。GESP 每年 <b>3、6、9、12 月</b>各开考一次，倒推安排起跑时间正合适。</p></div>
+    ${rows}
+    <div class="lb-card"><div class="lb-h">使用建议</div><div style="padding:14px 18px;font-size:16.5px;line-height:1.85;color:var(--ink2)">
+      每个阶段「先读讲义 → 再做对应章节真题 → 错题进错题本」三步走；达成里程碑再进入下一阶段，没达成就放慢一周，<b>不赶进度赶扎实</b>。冲刺期重点用「陷阱通关手册」和「限时模考」，把粗心分全部抠回来。</div></div>
+    <div class="learn-foot">准备好了就从 <a onclick="renderLessons()" style="color:#185fa5;font-weight:700;cursor:pointer">入门讲义第 1 章</a> 出发吧。</div>`;
+  window.scrollTo(0,0);
+}
+
+/* ===================== 知识速查表(一级) ===================== */
+function renderCheatsheet(){
+  setActiveTab('learn');
+  C().innerHTML=`
+    <div class="tp-back"><a onclick="go('learn')">← 返回学习中心</a></div>
+    <div class="learn-hero"><h2>📄 知识速查表 · C++一级</h2>
+      <p>一级全部核心语法浓缩在这一页。<b>考前 10 分钟过一遍</b>，该记的都在这了。</p></div>
+    <div class="lb-card"><div class="lb-h">① 程序骨架(必须一字不差)</div><div class="cs-pad">
+      <pre class="ls-code"><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    cout &lt;&lt; "Hello, GESP!" &lt;&lt; endl;
+    return 0;
+}</code></pre>
+      <p class="cs-note">⚠️ main 必须返回 <code>int</code>；每条语句末尾的分号不能省；C++ 严格区分大小写。</p></div></div>
+    <div class="lb-card"><div class="lb-h">② 常用数据类型</div><div class="cs-pad"><div class="ls-tablewrap"><table class="ls-table">
+      <tr><th>类型</th><th>含义</th><th>要点</th></tr>
+      <tr><td><code>int</code></td><td>整数</td><td>约 ±21 亿以内</td></tr>
+      <tr><td><code>double</code></td><td>小数(浮点)</td><td>比 float 更精确，一级首选</td></tr>
+      <tr><td><code>char</code></td><td>单个字符</td><td>用单引号：<code>'A'</code></td></tr>
+      <tr><td><code>bool</code></td><td>布尔</td><td>只有 true / false</td></tr>
+    </table></div></div></div>
+    <div class="lb-card"><div class="lb-h">③ 运算符:一级最高频考点</div><div class="cs-pad"><div class="ls-tablewrap"><table class="ls-table">
+      <tr><th>要点</th><th>例子</th><th>结果</th></tr>
+      <tr><td>整数除法<b>向下取整</b></td><td><code>7 / 2</code></td><td><code>3</code>(不是 3.5)</td></tr>
+      <tr><td><code>%</code> 取余数</td><td><code>7 % 2</code></td><td><code>1</code></td></tr>
+      <tr><td>先乘除后加减</td><td><code>2 + 3 * 4</code></td><td><code>14</code></td></tr>
+      <tr><td><code>=</code> 是赋值,<code>==</code> 才是比较</td><td><code>if (a == 5)</code></td><td>判断 a 是否等于 5</td></tr>
+      <tr><td>自增/自减</td><td><code>i++</code> / <code>i--</code></td><td>i 加 1 / 减 1</td></tr>
+    </table></div></div></div>
+    <div class="lb-card"><div class="lb-h">④ 输入输出</div><div class="cs-pad"><div class="ls-tablewrap"><table class="ls-table">
+      <tr><th>写法</th><th>作用</th></tr>
+      <tr><td><code>cin &gt;&gt; a;</code></td><td>读入一个值到变量 a</td></tr>
+      <tr><td><code>cout &lt;&lt; a &lt;&lt; endl;</code></td><td>输出 a 并换行(endl = 换行)</td></tr>
+      <tr><td><code>printf("%d", a);</code></td><td>按格式输出整数</td></tr>
+      <tr><td><code>%d</code> 整数 · <code>%f</code> 小数 · <code>%.2f</code> 保留两位 · <code>%c</code> 字符</td><td>printf 格式符(高频考点)</td></tr>
+    </table></div></div></div>
+    <div class="lb-card"><div class="lb-h">⑤ ASCII 三个关键值(大小写差 32)</div><div class="cs-pad"><div class="ls-tablewrap"><table class="ls-table">
+      <tr><th><code>'0'</code></th><th><code>'A'</code></th><th><code>'a'</code></th></tr>
+      <tr><td>48</td><td>65</td><td>97</td></tr>
+    </table></div></div></div>
+    <div class="lb-card"><div class="lb-h">⑥ 考前必背 8 条易错</div><div class="cs-pad"><ol class="cs-list">
+      <li>分号丢失是最常见编译错误，逐行检查</li>
+      <li><code>cout</code>、<code>cin</code>、<code>endl</code> 都<b>不是</b>关键字(判断题高频)</li>
+      <li><code>7 / 2 = 3</code>，想要 3.5 必须有小数参与：<code>7.0 / 2</code></li>
+      <li><code>if (a = 5)</code> 是赋值永远为真，比较要用 <code>==</code></li>
+      <li><code>switch</code> 不支持 double 和 string</li>
+      <li><code>break</code> 只跳出<b>最内一层</b>循环</li>
+      <li><code>for(int i=0;…)</code> 中的 i 出了 for 就不存在</li>
+      <li><code>void main()</code> 是错的，必须 <code>int main()</code></li>
+    </ol></div></div>
+    <div class="learn-foot">每条都对应真题里的坑——配合 <a onclick="renderTraps()" style="color:#185fa5;font-weight:700;cursor:pointer">陷阱通关手册</a> 食用效果最佳。</div>`;
+  window.scrollTo(0,0);
+}
+
+/* ===================== 报考指南(一级) ===================== */
+function renderExamGuide(){
+  setActiveTab('learn');
+  C().innerHTML=`
+    <div class="tp-back"><a onclick="go('learn')">← 返回学习中心</a></div>
+    <div class="learn-hero"><h2>🗓️ GESP 报考指南</h2>
+      <p>第一次给孩子报 GESP？这一页把<b>时间、流程、考场、证书</b>讲清楚。具体日期与费用以 CCF 官网当期通知为准。</p></div>
+    <div class="lb-card"><div class="lb-h">① 考试时间规律</div><div class="cs-pad">
+      <p class="cs-p">GESP 每年开考 <b>4 次：3 月、6 月、9 月、12 月</b>各一次。报名通常在<b>考前 1–2 个月</b>开放，名额先到先得，建议关注官网通知后尽早报名。</p>
+      <p class="cs-p">💡 备考节奏参考：用 <a onclick="renderRoadmap()" style="color:#185fa5;font-weight:700;cursor:pointer">备考路线图</a> 的 10–12 周计划，倒推出最晚起跑时间。</p></div></div>
+    <div class="lb-card"><div class="lb-h">② 报名流程(全程线上)</div><div class="cs-pad"><ol class="cs-list">
+      <li>访问 CCF GESP 官网 <b>gesp.ccf.org.cn</b>，注册账号并完成实名信息</li>
+      <li>选择编程语言(<b>C++</b>)、报考级别与考点城市</li>
+      <li>在线缴费，报名成功后等待通知</li>
+      <li>考前按通知打印<b>准考证</b>，记好考点地址与场次时间</li>
+    </ol>
+    <p class="cs-p">级别选择：GESP 支持直接报考相应级别(具体规则以官网当期简章为准)。零基础建议从一级起步，把地基打牢。</p></div></div>
+    <div class="lb-card"><div class="lb-h">③ 一级考什么</div><div class="cs-pad"><div class="ls-tablewrap"><table class="ls-table">
+      <tr><th>题型</th><th>数量</th><th>说明</th></tr>
+      <tr><td>单选题</td><td>15 道</td><td>语法概念 + 读程序选结果</td></tr>
+      <tr><td>判断题</td><td>10 道</td><td>概念辨析,易错点集中区</td></tr>
+      <tr><td>编程题</td><td>2 道</td><td>上机编写完整程序,提交评测</td></tr>
+    </table></div>
+    <p class="cs-p">机考形式，本站「<a onclick="go('mock')" style="color:#185fa5;font-weight:700;cursor:pointer">限时模拟题</a>」即按真实题型与节奏组卷，考前务必模考 3 套以上。</p></div></div>
+    <div class="lb-card"><div class="lb-h">④ 考场须知</div><div class="cs-pad"><ol class="cs-list">
+      <li>携带<b>准考证 + 有效身份证件</b>(身份证/户口本,按通知要求)</li>
+      <li>提前 30 分钟到场，留出入场核验时间</li>
+      <li>开考先通览全卷：先做有把握的选择/判断，编程题留足时间</li>
+      <li>编程题提交前务必<b>自测一遍样例</b>,检查输出格式(空格/换行)是否与题目完全一致</li>
+    </ol></div></div>
+    <div class="lb-card"><div class="lb-h">⑤ 成绩与证书</div><div class="cs-pad">
+      <p class="cs-p">成绩一般在考后数周内于官网公布，达标即获 CCF 颁发的等级证书。GESP 证书是孩子编程能力的权威背书，也是向 <b>CSP-J/S、NOIP</b> 等信奥竞赛进阶的台阶——一级是起点，路在脚下。</p></div></div>
+    <div class="learn-foot">信息整理自 CCF 公开资料，具体以 <b>gesp.ccf.org.cn</b> 当期通知为准。</div>`;
+  window.scrollTo(0,0);
+}
 /* ===================== 题库浏览 ===================== */
 function browseLayout(mainHtml){
   return `<div class="layout"><aside class="side"><div class="card" id="sidebar"></div></aside><main class="main" id="bmain">${mainHtml}</main></div>`;
@@ -289,7 +406,7 @@ function renderBrowse(){ // overview
   const main=`<div class="card"><div class="card-h">历年真题 · 各章分布<span class="sub">单位：真题数量</span></div><div class="card-b">${pie(items)}</div></div>
     <div class="card"><div class="card-h">分章真题一览</div>
     <table><thead><tr><th>章节</th><th class="num">要求</th><th class="num">知识点</th><th class="num">真题</th></tr></thead><tbody>${rows}</tbody></table>
-    <div class="notice">真题已对照 CCF GESP 大纲按知识点归类并标注答案;解析一级最完整,其余级别按章持续补充中。知识点归类由程序依题面与代码自动判定,个别题以题目本身为准。</div></div>`;
+    <div class="notice">真题已对照 CCF GESP 大纲按知识点归类并标注答案;一至八级 2300 道真题<b>已全部配备逐题解析</b>,一级解析另含逐题「💡 提示」与易错点强化。知识点归类由程序依题面与代码自动判定,个别题以题目本身为准。</div></div>`;
   C().innerHTML=browseLayout(main); renderSidebar();
 }
 async function goBrowse(sub,cid,sid){
@@ -357,7 +474,7 @@ function qCard(q,idx,opts={}){
     `<div class="opt ${k===q.answer?'correct':''}"><span class="ok">${k}</span><span>${hlInline(q.options[k])}</span></div>`).join('')+'</div>';
   const code=q.code?`<pre class="q-code">${hl(q.code)}</pre>`:'';
   let exp; if(q.locked){ exp=lockBox(); } else if(q.explanation){ let e=fmtExp(q.explanation); exp=`<div class="exp">${e}</div>`; }
-  else exp='<div class="exp todo">解析待补充(本题已分类入库,解析按章补写中)</div>';
+  else exp='<div class="exp todo">本题解析整理中,可先对照答案理解</div>';
   const star=`<span class="q-star ${q.bookmarked?'on':''}" id="star${idx}" title="收藏" onclick="event.stopPropagation();toggleStar('${q.qid}',${idx})">${q.bookmarked?'★':'☆'}</span>`;
   const masterBtn=opts.wrong?`<span class="btn teal" style="margin-left:auto" onclick="event.stopPropagation();masterQ('${q.qid}',${idx})">✓ 已掌握</span>`:'';
   return `<div class="q" id="q${idx}">
@@ -444,7 +561,7 @@ async function submitAns(){
     document.querySelectorAll('#quizopts .opt').forEach(o=>{ o.classList.remove('sel','pick'); o.onclick=null;
       if(o.dataset.val===d.answer)o.classList.add('correct','show');
       else if(o.dataset.val===quiz.picked)o.classList.add('wrongpick'); });
-    const expHtml=d.locked?lockBox():`<div class="exp">${d.explanation?fmtExp(d.explanation):'<span class="todo">本题暂未提供解析(已分类入库,解析按章补写中)</span>'}</div>`;
+    const expHtml=d.locked?lockBox():`<div class="exp">${d.explanation?fmtExp(d.explanation):'<span class="todo">本题解析整理中,可先对照答案理解</span>'}</div>`;
     const last=quiz.idx>=quiz.questions.length-1;
     document.getElementById('quizfb').innerHTML=
       `<div class="fb ${d.correct?'ok':'no'}">${d.correct?'✓ 回答正确':'✗ 回答错误,正确答案：'+d.answer}</div>
@@ -681,9 +798,9 @@ async function doSearch(kw){ kw=(kw||'').trim(); if(!kw)return;
 }
 
 function renderUpgrade(){
-  const vipNow = IS_VIP ? '<div class="ci ci-done" style="margin-bottom:14px">👑 你已是 VIP 会员，二级至八级全部逐题精解已解锁，感谢支持！</div>' : '';
+  const vipNow = IS_VIP ? '<div class="ci ci-done" style="margin-bottom:14px">👑 你已是 VIP 会员，二级至八级全部逐题精解与讲义全书已解锁，感谢支持！</div>' : '';
   C().innerHTML=`
-  <div class="card"><div class="card-h">👑 开通 VIP · 解锁全部级别逐题精解</div><div class="card-b">
+  <div class="card"><div class="card-h">👑 开通 VIP · 解锁全部精解与全套讲义</div><div class="card-b">
     ${vipNow}
     <div class="plan-grid">
       <div class="plan">
@@ -692,9 +809,10 @@ function renderUpgrade(){
         <ul class="plan-f">
           <li>✓ <b>一级至八级</b>全部历年真题（题目 + 答案）</li>
           <li>✓ 全部级别 <b>无限次</b> 计时模考</li>
-          <li>✓ 一级全部逐题精解</li>
+          <li>✓ <b>一级全套</b>：逐题精解 + 入门讲义全书 + 陷阱手册 / 路线图 / 速查表 / 报考指南</li>
+          <li>✓ 二至八级讲义<b>免费试读</b>（前言 + 第 1 章）</li>
           <li>✓ 错题本 · 收藏 · 进度 · 排行榜 · AI 推荐</li>
-          <li class="muted">✗ 二级及以上详细解析</li>
+          <li class="muted">✗ 二级及以上详细解析与讲义全书</li>
         </ul>
       </div>
       <div class="plan hot">
@@ -704,7 +822,8 @@ function renderUpgrade(){
         <div class="plan-sub">约 ¥39/月 · ¥99/季</div>
         <ul class="plan-f">
           <li>✓ 免费版<b>全部</b>功能</li>
-          <li>✓ <b>二级至八级</b>全部逐题精解</li>
+          <li>✓ <b>二级至八级</b>全部逐题精解（全站 2300 题解析无死角）</li>
+          <li>✓ <b>二级至八级《备考教程》讲义全书</b>（8 册电子教程，按考纲逐章讲解）</li>
           <li>✓ 考后解析 48 小时内抢先看</li>
           <li>✓ 后续增值服务优先体验</li>
           <li>✓ 去除推广位</li>
@@ -712,7 +831,7 @@ function renderUpgrade(){
         <button class="btn solid" style="width:100%;margin-top:6px" onclick="howToVip()">立即开通 ›</button>
       </div>
     </div>
-    <div class="notice" style="margin-top:14px">真题与模考全部免费、不限级别——一级解析也免费，满意再开通解锁二级至八级全部精解。</div>
+    <div class="notice" style="margin-top:14px">真题与模考全部免费、不限级别——一级解析与全部学习资料也免费，满意再开通，解锁二至八级精解与讲义全书。</div>
   </div></div>
   <div class="card"><div class="card-h">🎟️ 已有兑换码？</div><div class="card-b">
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">

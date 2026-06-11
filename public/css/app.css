@@ -469,3 +469,23 @@ tr.clk:hover{background:var(--brand-soft);box-shadow:inset 3px 0 0 var(--brand)}
 .cheer-wrap{text-align:center;margin-top:6px}
 /* ⑤ 学习中心两行四列 */
 @media(min-width:1100px){.learn-grid{grid-template-columns:repeat(4,1fr)}}
+
+/* 任务3:侧栏与总览表「知识点」列防换行 */
+.nav-cols .nc-x,.ni-x{width:48px;white-space:nowrap}
+.nav-cols .nc-x{font-size:14px}
+th.num,td.num{width:80px;white-space:nowrap}
+/* 新页面通用 */
+.cs-pad{padding:14px 18px}
+.cs-note{font-size:15.5px;color:#8a5a12;background:var(--gold-soft);border-radius:8px;padding:8px 12px;margin-top:10px}
+.cs-p{font-size:16.5px;color:var(--ink2);line-height:1.85;margin:8px 0}
+.cs-list{margin:4px 0 4px 22px;font-size:16.5px;color:var(--ink2);line-height:2}
+.cs-list li b,.cs-p b{color:var(--ink)}
+.rm-stage{display:flex;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh);padding:18px 20px;margin:13px 0}
+.rm-no{flex:none;width:44px;height:44px;border-radius:50%;background:var(--brand-soft);color:var(--brand);font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center}
+.rm-stage:nth-child(odd) .rm-no{background:#eaf1fe;color:#3f72f0}
+.rm-w{font-size:13.5px;font-weight:700;color:var(--ink3);letter-spacing:.05em}
+.rm-t{font-size:18.5px;font-weight:700;color:var(--ink);margin:3px 0}
+.rm-ch{font-size:13px;font-weight:600;color:#185fa5;background:#eaf1fe;border-radius:99px;padding:2px 10px;margin-left:10px;vertical-align:2px}
+.rm-p{font-size:16px;color:var(--ink2);margin:4px 0 8px;line-height:1.7}
+.rm-ms{font-size:15.5px;font-weight:600;color:var(--pass-d);background:var(--pass-soft);border-radius:8px;padding:6px 12px;display:inline-block}
+@media(max-width:640px){.rm-stage{flex-direction:column;gap:8px}}
