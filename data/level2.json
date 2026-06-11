@@ -92,7 +92,7 @@
        "stem": "诞生于 1986 年的中华学习机 CEC-I 入选了 2021 年的 CCF 计算机历史记忆 （一 类），它的内存只有 64KB。当时的汉字编码字符集 GB2312 中共有 6763 个汉字， 假如每个汉字用 2 个字节编码，将整个 GB2312 汉字字符集都放入 CEC-I 的内存， 也只占用了不超过 1/5 的内存空间。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。GB2312 共 6763 字×2 字节=13526 字节,占 64KB(65536 字节)约 20.6%,超过了 1/5,并非“不超过 1/5”。",
        "difficulty": 2.0
       },
       {
@@ -104,7 +104,7 @@
        "stem": "杨最近在准备考GESP，他 的Dev C++来练习和运 程序，所以Dev C++也是 个 型操作系统。（ ） 小 用 行 一 小",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。Dev C++ 是集成开发环境(IDE),不是操作系统。",
        "difficulty": 2.0
       },
       {
@@ -121,7 +121,7 @@
         "C": "操作系统",
         "D": "神话人物"
        },
-       "explanation": "",
+       "explanation": "鸿蒙(HarmonyOS)是华为自研的操作系统,故选 C。",
        "difficulty": 2.0
       },
       {
@@ -138,7 +138,7 @@
         "C": "CPU",
         "D": "显示器"
        },
-       "explanation": "",
+       "explanation": "磁芯存储元件是早期计算机的主存储器,作用相当于现代计算机的内存,故选 A。",
        "difficulty": 2.0
       },
       {
@@ -155,7 +155,7 @@
         "C": "《哪吒2》可以生成新的软件",
         "D": "DeepSeek可以根据《哪吒2》的场景生成剧情脚本"
        },
-       "explanation": "",
+       "explanation": "DeepSeek 是大语言模型类 AI,能根据《哪吒2》的场景生成剧情脚本等文本,故选 D。其余把影片/模型张冠李戴,均不成立。",
        "difficulty": 2.0
       },
       {
@@ -172,7 +172,7 @@
         "C": "输入设备",
         "D": "输出设备"
        },
-       "explanation": "",
+       "explanation": "传感器把外界状态(姿态、平衡)采集成数据送入系统处理,作用相当于计算机的输入设备,故选 C。",
        "difficulty": 2.0
       },
       {
@@ -189,7 +189,7 @@
         "C": "CACHE",
         "D": "EPROM"
        },
-       "explanation": "",
+       "explanation": "要扩容的运行内存是 RAM(随机存取存储器,断电即失、可读可写)。ROM/EPROM 是只读、CACHE 在 CPU 内,都不是要加的内存条,故选 A。",
        "difficulty": 2.0
       },
       {
@@ -201,7 +201,7 @@
        "stem": "人们现在参加很多闭卷考试时通常都不允许带智能手机、平板电脑等，此外很多种智能手表同样因为具有嵌 入操作系统及通信等功能，所以也不允许随身携带。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。智能手表内置操作系统与通信功能,与手机平板类似,很多闭卷考试同样禁止携带。",
        "difficulty": 2.0
       },
       {
@@ -218,7 +218,7 @@
         "C": "内存单元",
         "D": "输出设备"
        },
-       "explanation": "",
+       "explanation": "飞行控制系统中“执行判断/运算”的核心部件是处理器,故选 B。",
        "difficulty": 2.0
       },
       {
@@ -235,7 +235,7 @@
         "C": "3.1415926535 是一个无限循环小数，在计算机中无法精确表示。",
         "D": "由于计算机CPU的运算错误导致。"
        },
-       "explanation": "",
+       "explanation": "%g 默认只显示 6 位有效数字,所以 6.1415926535 被显示为 6.14159,选 B。(并非舍入误差。)",
        "difficulty": 2.0
       },
       {
@@ -247,7 +247,7 @@
        "stem": "鸿蒙是华为公司开发的一款操作系统，那么它能够将正确的源程序翻译成目标程序，并运行。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。鸿蒙是操作系统,负责资源管理与程序运行,而“把源程序翻译成目标程序”是编译器的工作,不是操作系统。",
        "difficulty": 2.0
       },
       {
@@ -259,7 +259,7 @@
        "stem": "小明的妈妈最近刚刚给他买了一块电话手表，除了可以看时间，小明也可以用它和妈妈打电话、收发信息， 那么可以推测这块手表中装有一款特定操作系统。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。能打电话、收发信息的电话手表内必然装有一款操作系统来支撑这些功能。",
        "difficulty": 2.0
       }
      ]
@@ -292,7 +292,7 @@
        "stem": "域名是由一串用点分隔的名字来标识互联网上一个计算机或计算机组的名称， CCF 编程能力等级认证官方网站的域名是 gesp.ccf.org.cn，其中顶级域名是 gesp。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。域名 gesp.ccf.org.cn 的顶级域名是最右边的 cn,gesp 是主机名(最左)。",
        "difficulty": 2.0
       },
       {
@@ -304,7 +304,7 @@
        "stem": "我们常说的互联网（Internet）是一个覆盖全球的广域网络，它不属于任何一个国家。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。互联网是覆盖全球的网络,不属于任何单一国家。",
        "difficulty": 2.0
       },
       {
@@ -321,7 +321,7 @@
         "C": "126",
         "D": "128"
        },
-       "explanation": "",
+       "explanation": "IPv4 的 A 类网络号范围 1~126(127 保留),共 126 个,故选 C。",
        "difficulty": 2.0
       },
       {
@@ -338,7 +338,7 @@
         "C": "11 9",
         "D": "9 9"
        },
-       "explanation": "",
+       "explanation": "编号 XX 有 12 种取值(00~11)、Y 有 10 种取值(0~9),二者各自循环。所以取 XX 用 N%12、取 Y 用 N%10,故选 A。模数必须等于各自的循环周期长度。",
        "difficulty": 2.0
       },
       {
@@ -355,7 +355,7 @@
         "C": "MAN",
         "D": "WAN"
        },
-       "explanation": "",
+       "explanation": "一栋教学楼范围内的网络属于局域网 LAN,故选 B。(PAN 个人、MAN 城域、WAN 广域。)",
        "difficulty": 2.0
       },
       {
@@ -372,7 +372,7 @@
         "C": "1 N / 3 2 rst / 10",
         "D": "1 N / 3 2 rst % 10"
        },
-       "explanation": "",
+       "explanation": "前 4 位各整除 3 再累加:L1 填 N/3;校验是累加和除 10 的余数:L2 填 rst%10,故选 D。",
        "difficulty": 2.0
       },
       {
@@ -389,7 +389,7 @@
         "C": "== 运算符不能用于比较浮点数，只能用于整数",
         "D": "因为 0.1 + 0.2 的数学结果不等于 0.3"
        },
-       "explanation": "",
+       "explanation": "0.1、0.2、0.3 无法用二进制浮点精确表示,0.1+0.2 与 0.3 存在微小误差,故 == 得 0(假),选 B。",
        "difficulty": 2.0
       }
      ]
@@ -500,7 +500,7 @@
         "C": "循环体包含多条语句时，可以用缩进消除二义性。",
         "D": "除了“先乘除、后加减”，还有很多运算符优先级。"
        },
-       "explanation": "",
+       "explanation": "问不正确的。C++ 靠大括号而非缩进来界定语句块,缩进不能消除二义性,故 C 不正确,选 C。",
        "difficulty": 2.0
       },
       {
@@ -517,7 +517,7 @@
         "C": "||",
         "D": "<>"
        },
-       "explanation": "",
+       "explanation": "<> 不是 C++ 运算符,选 D。>=、/=、|| 都是。",
        "difficulty": 2.0
       },
       {
@@ -534,7 +534,7 @@
         "C": "a * h / (b + 0.0)",
         "D": "(a + 0.0) * h / b"
        },
-       "explanation": "",
+       "explanation": "平行四边形面积 a*h=b*h_b,故 h_b=a*h/b。A 的 a/b 先做整数除法会丢精度,不能正确计算,选 A。B/C/D 都先转成浮点再除。",
        "difficulty": 2.0
       },
       {
@@ -551,7 +551,7 @@
         "C": "(a == b == 1)",
         "D": "(a * b == 1)"
        },
-       "explanation": "",
+       "explanation": "(a==b)&&(b==1):a 等于 b 且 b 等于 1,则 a 也等于 1,正确判断“a 和 b 都为 1”,选 A。",
        "difficulty": 2.0
       },
       {
@@ -563,7 +563,7 @@
        "stem": "++和==都是 C++语言的运算符，但+=不是。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。++、==、+= 都是 C++ 运算符,+= 也是。",
        "difficulty": 2.0
       },
       {
@@ -575,7 +575,7 @@
        "stem": "表达式 sqrt(9.0)的计算结果为 3，且结果类型为 int。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。sqrt(9.0)=3.0,结果类型是 double 不是 int。",
        "difficulty": 2.0
       },
       {
@@ -592,7 +592,7 @@
         "C": "-13",
         "D": "-12"
        },
-       "explanation": "",
+       "explanation": "−123.123/10=−12.3123,int() 向零截断得 −12,故选 D。",
        "difficulty": 2.0
       },
       {
@@ -604,7 +604,7 @@
        "stem": "C++表达式 (2 * 3) || (2 + 5) 的值为 67 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。(2*3)||(2+5) 是逻辑或,6||7 为真即 1,不是 67。",
        "difficulty": 2.0
       },
       {
@@ -616,7 +616,7 @@
        "stem": "如果 a 为 int 类型的变量，则表达式 (a >= 5 && a <= 10) 与 (5 <= a <= 10) 的值总是相同的。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。(5<=a<=10) 实为 (5<=a)<=10=(0或1)<=10 恒为真,与 (a>=5 && a<=10) 并不总相同。",
        "difficulty": 2.0
       },
       {
@@ -633,7 +633,7 @@
         "C": "int i = 0; i < N+1; i++",
         "D": "int i = 1; i < N+1; i++"
        },
-       "explanation": "",
+       "explanation": "从小到大输出 N 的因子需 i 从 1 到 N(含),即 int i=1; i<N+1; i++,选 D。",
        "difficulty": 2.0
       },
       {
@@ -645,7 +645,7 @@
        "stem": "C++表达式 -7/2 的值为整数-3。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。−7/2 向零截断,得整数 −3。",
        "difficulty": 2.0
       },
       {
@@ -657,7 +657,7 @@
        "stem": "C++表达式 3+2 && 5-5 的值为false。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。3+2 为 5(真)、5−5 为 0(假),真 && 假 为 false。",
        "difficulty": 2.0
       },
       {
@@ -674,7 +674,7 @@
         "C": "int(8.88)",
         "D": "sqrt(64)"
        },
-       "explanation": "",
+       "explanation": "min(max(8,9),10)=min(9,10)=9,不是 8,故选 B。abs(-8)=8、int(8.88)=8、sqrt(64)=8 都是 8。",
        "difficulty": 2.0
       },
       {
@@ -686,7 +686,7 @@
        "stem": "如果变量 a 的值使得C++表达式 sqrt(a)==abs(a) ，则 a 的值为0。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。sqrt(a)==abs(a) 时 a 可为 0(0=0),也可为 1(1=1),并不只有 0。",
        "difficulty": 2.0
       },
       {
@@ -703,7 +703,7 @@
         "C": "如果N输入8，M输入36则将输出：36非8的超级幸运数!",
         "D": "如果N输入3，M输入63则将输出：63是3的超级幸运数!"
        },
-       "explanation": "",
+       "explanation": "问正确说法。打印用的是当时的 M。N=3、M=63 时,第一轮个位就是 3 且能整除,此时 M 仍是 63,输出“63是3的超级幸运数!”,选 D。(如 36 因个位先变化,M 会被 /=10 改成 3,输出就不是 36。)",
        "difficulty": 2.0
       },
       {
@@ -715,7 +715,7 @@
        "stem": "C++表达式 -12 % 10 的值为2。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。C++ 中取余结果符号随被除数,−12%10=−2,不是 2。",
        "difficulty": 2.0
       },
       {
@@ -727,7 +727,7 @@
        "stem": "C++表达式 int(12.56) 的值为13。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。int(12.56) 是向零截断取整,得 12,不是 13。",
        "difficulty": 2.0
       },
       {
@@ -744,7 +744,7 @@
         "C": "删除 M = N 并将其后代码中的M变量改为N，并调整输出同样能完成相关功能",
         "D": "删除 break 语句不会导致死循环，但有时会影响效率"
        },
-       "explanation": "",
+       "explanation": "问错误说法。删掉 break 后,一旦 Flag 变真,下一次 while 条件 !Flag 即为假会退出,既不会死循环也不会改变结果。A 说“有时导致结果错误”,错误,故选 A。",
        "difficulty": 2.0
       },
       {
@@ -756,7 +756,7 @@
        "stem": "C++表达式 12 % 10 % 10 的值为2。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。12%10%10=(12%10)%10=2%10=2。",
        "difficulty": 2.0
       },
       {
@@ -773,7 +773,7 @@
         "C": "i % 7 && i % 3",
         "D": "i % 7 == 0 && !(i % 3 == 0)"
        },
-       "explanation": "",
+       "explanation": "要“被 7 整除且不被 3 整除”。C 的 i%7 && i%3 表示“不被 7 整除且不被 3 整除”,正好相反,不能实现,故选 C。A/B/D 都等价于正确条件。",
        "difficulty": 2.0
       },
       {
@@ -785,7 +785,7 @@
        "stem": "如果C++表达式 int(sqrt(N))*int(sqrt(N)) == N 的值为True，则说明N为完全平方数，如4、9、25 等。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。int(sqrt(N)) 取平方根的整数部分,平方后若等于 N 即说明 N 是完全平方数(如 4、9、25)。",
        "difficulty": 2.0
       },
       {
@@ -802,7 +802,7 @@
         "C": "平行四边形框",
         "D": "菱形框"
        },
-       "explanation": "",
+       "explanation": "流程图中输出语句用平行四边形框(表示输入/输出);菱形是判断、椭圆是开始/结束,故选 C。",
        "difficulty": 2.0
       },
       {
@@ -819,7 +819,7 @@
         "C": "((!(i % 2)) && (!(i % 7)))",
         "D": "((i % 2 != 1) && (i % 7 == 2))"
        },
-       "explanation": "",
+       "explanation": "要“被 2 整除且除以 7 余 2”。C 的 (!(i%2))&&(!(i%7)) 表示“被 2 整除且被 7 整除(余 0)”,余数错了,不能实现,故选 C。A/B/D 都等价于正确条件。",
        "difficulty": 2.0
       },
       {
@@ -831,7 +831,7 @@
        "stem": "C++表达式 (sqrt(N) * sqrt(N)) == N 中的N如果为正整数，则表达式的值为true，相当于开平方后平方 是本身。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。sqrt 返回 double,sqrt(N)*sqrt(N) 因浮点误差未必精确等于 N,所以该表达式并非对所有正整数都为 true。浮点数不能直接用 == 判等。",
        "difficulty": 2.0
       },
       {
@@ -848,7 +848,7 @@
         "C": "(i % 3) && !(i % 5 != 2)",
         "D": "!(i % 3) && (i % 5 == 2)"
        },
-       "explanation": "",
+       "explanation": "要“不被 3 整除且除 5 余 2”。D 的 !(i%3) 表示“能被 3 整除”,正好相反,不能实现,故选 D。A/B/C 都等价于正确条件。",
        "difficulty": 2.0
       },
       {
@@ -860,7 +860,7 @@
        "stem": "a 和 b 分别是C++的整型变量，如果表达式 max(a, b) == min(a, b) 的值为真，则说明 a 和 b 相等。 （ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。最大值等于最小值,只有在两数相等时才成立,故 max(a,b)==min(a,b) 为真即 a=b。",
        "difficulty": 2.0
       },
       {
@@ -877,7 +877,7 @@
         "C": "代码中 break 修改为 j = 0 ，不影响程序执 结果 行",
         "D": "将 while (j > 0) 修正为 while (j >= 0) 不影响程序执 的结果 行"
        },
-       "explanation": "",
+       "explanation": "问正确说法。C 对:break 的作用是“发现含 5 就计数并跳出 while”,改成 j=0 也会让 while(j>0) 不成立而退出,效果相同。A 错(删 continue 会让 5 的倍数又去查数位、可能重复计数);B、D 会破坏逻辑或死循环。",
        "difficulty": 2.0
       },
       {
@@ -894,7 +894,7 @@
         "C": "while 循环中 if 判断语句可以增加 else 子句，其内容为 Flag = 0 。",
         "D": "如果先后输入 0 和 3 ，则肯定会输出 0是3的完整漂亮数 。"
        },
-       "explanation": "",
+       "explanation": "问正确说法。while 中 N 会被除到 0,导致后面再用 N 判断会出错。B 的做法是先 int old_num=N 保存,再把相关代码里的 N 换成 old_num,即可正确判定,选 B。",
        "difficulty": 2.0
       },
       {
@@ -906,7 +906,7 @@
        "stem": "C++表达式 5 < 10 && 20 对应的逻辑值为 true 。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。5<10 为真,真 && 20(非零为真)仍为真,值为 true。",
        "difficulty": 2.0
       },
       {
@@ -918,7 +918,7 @@
        "stem": "C++表达式 10 / 0.333333 == 10 / (1 / 3) 的值为 true 。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。1/3 是整数除法,结果为 0,10/(1/3) 即除以 0(非法);而 10/0.333333≈30,两边并不相等。",
        "difficulty": 2.0
       },
       {
@@ -935,7 +935,7 @@
         "C": "x <= 5 || y > 10",
         "D": "! x > 5 && ! y <= 10"
        },
-       "explanation": "",
+       "explanation": "按德摩根律:!(x>5 && y<=10) = !(x>5) || !(y<=10) = x<=5 || y>10,选 C。",
        "difficulty": 2.0
       }
      ]
@@ -956,7 +956,7 @@
        "stem": "如果 a 是 double 类型的变量，而且值为 3.5，则表达式 a * 10 的计算结果 为 35，且结果类型为 int。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。a 是 double,a*10=35.0,结果类型是 double 不是 int。",
        "difficulty": 2.0
       },
       {
@@ -968,7 +968,7 @@
        "stem": "C++表达式 7.8 / 2 的值为 3.9 ，类型为 float 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。7.8/2=3.9,但结果类型是 double 不是 float。",
        "difficulty": 2.0
       },
       {
@@ -980,7 +980,7 @@
        "stem": "在C++代码中，运算符只能处理相同的数据类型，不同类型之间必须转换为相同的数据类型。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。不同类型运算时 C++ 会自动进行隐式类型转换,并非“必须手动转换”才能运算。",
        "difficulty": 2.0
       },
       {
@@ -992,7 +992,7 @@
        "stem": "在C++代码中，虽然变量都有数据类型，但同 个变量也可以先后 不同类型的值赋值。（ ） 一 用",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。变量虽有类型,但可先后赋予不同类型的值(发生隐式转换),如先赋字符再赋小数。",
        "difficulty": 2.0
       },
       {
@@ -1004,7 +1004,7 @@
        "stem": "for (i = 0; i < 100; i+=2) ; 语句中变量i的取值范围是0到99。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。步长为 2,i 取 0、2、4…98(偶数),最大是 98 而非 99。",
        "difficulty": 2.0
       },
       {
@@ -1016,7 +1016,7 @@
        "stem": "C++中 cout << float(2022) 与 cout << float('2022') 运行后的输出结果均为2022。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。float(2022)=2022;但 '2022' 是多字符常量(实现定义的整数值),float('2022') 不等于 2022,两者输出不同。",
        "difficulty": 2.0
       },
       {
@@ -1033,7 +1033,7 @@
         "C": "如果输入的学生成绩含有小数，程序将无法正常执行",
         "D": "变量 int score 初始值不确定，但不影响程序执行"
        },
-       "explanation": "",
+       "explanation": "问错误说法。while(1) 配合 break 是完全合法的写法。A 说它写法错误,错误,故选 A。",
        "difficulty": 2.0
       },
       {
@@ -1050,7 +1050,7 @@
         "C": "(abs(b-a) <= 0.000001 )",
         "D": "(sqrt(b-a) <= 0.000001 )"
        },
-       "explanation": "",
+       "explanation": "浮点数判等要看差的绝对值是否足够小:abs(b−a)<=0.000001,选 C。A/B 不取绝对值(差为负时失效),D 用 sqrt 也不对。",
        "difficulty": 2.0
       },
       {
@@ -1067,7 +1067,7 @@
         "C": "10",
         "D": "11"
        },
-       "explanation": "",
+       "explanation": "a*=b 即 a=a*b=3*3.5=10.5,但 a 是 int,小数被截断为 10,故选 C。",
        "difficulty": 2.0
       },
       {
@@ -1084,7 +1084,7 @@
         "C": "L1和L2标记的两行代码可以分别改为简单的 if 语句或 ? : 语句。",
         "D": "total_score += now_score 不可以更改为 total_score = total_score + now_score 。"
        },
-       "explanation": "",
+       "explanation": "问正确说法。C 对:更新最高/最低分的 L1、L2 两行可用简单的 if 或三目 ?: 表达式实现。A 错(无需排序)、B 错(清零三行应留在外层内、每人重置)、D 错(+= 可改写),故选 C。",
        "difficulty": 2.0
       },
       {
@@ -1096,7 +1096,7 @@
        "stem": "执行下面的 C++ 代码段，如果N是基本数据类型，则语句 cout << (N); 将被执行 0 次或无数次（即死循 环）。（ ）",
        "code": "cin >> N;\nwhile (N)\ncout << (N);",
        "options": {},
-       "explanation": "",
+       "explanation": "对。循环体不改变 N:N 为 0 时执行 0 次,N 非 0 时无限输出(死循环)。",
        "difficulty": 2.0
       }
      ]
@@ -1132,7 +1132,7 @@
         "C": "1 tnt = order_num / 10 + tnt 2 tnt % 10 == check_num",
         "D": "1 tnt = order_num % 10 2 tnt / 10 == check_num"
        },
-       "explanation": "",
+       "explanation": "order_num 为前 5 位,逐位取末位累加:tnt+=order_num%10、order_num/=10;最后校验 tnt%10==check_num,选 B。",
        "difficulty": 2.0
       }
      ]
@@ -1260,7 +1260,7 @@
         "C": "计算两个 int 类型变量相乘时，如果乘积超出了 int 类型的取值范围，程序 会报错崩溃。",
         "D": "计算两个 double 类型变量相除时，如果除数的值为 0.0，程序会报错崩溃。"
        },
-       "explanation": "",
+       "explanation": "两个 int 相乘结果仍是 int,选 B。A 错(char 可赋给 int);C 错(溢出是回绕不报错崩溃);D 错(double 除以 0.0 得 inf,不崩溃)。",
        "difficulty": 2.0
       },
       {
@@ -1277,7 +1277,7 @@
         "C": "b = (char)(a + '0');",
         "D": "(int)b = a;"
        },
-       "explanation": "",
+       "explanation": "(int)b = a; 不合法——强制类型转换的结果是右值,不能被赋值,选 D。",
        "difficulty": 2.0
       },
       {
@@ -1294,7 +1294,7 @@
         "C": "for (char c = 'A'; c < 'z'; c++) ;",
         "D": "for (double d = 0.0; d < 10.0; d += 0.001) ;"
        },
-       "explanation": "",
+       "explanation": "B 会无限循环:bool b 自增到 true 后保持为 true(布尔封顶),b<=true 恒成立,选 B。",
        "difficulty": 2.0
       },
       {
@@ -1311,7 +1311,7 @@
         "C": "C2",
         "D": "69"
        },
-       "explanation": "",
+       "explanation": "a+2 中字符提升为整数:67+2=69,cout 输出整数 69,选 D。",
        "difficulty": 2.0
       },
       {
@@ -1328,7 +1328,7 @@
         "C": "'0' <= a <= '9'",
         "D": "'1' <= a <= '0'"
        },
-       "explanation": "",
+       "explanation": "'0'<=a && a<='9' 正确判断字符 a 是数字,选 A。C 的链式比较 '0'<=a<='9' 在 C++ 里是错误写法。",
        "difficulty": 2.0
       },
       {
@@ -1345,7 +1345,7 @@
         "C": "(char)(a + b)",
         "D": "(char)(a + b - '0')"
        },
-       "explanation": "",
+       "explanation": "a='3'、b='6'。(char)(a+b−'0')=(char)(51+54−48)=(char)57='9',输出字符 9,选 D。A/B/C 会输出 105、57 或字符 'i'。",
        "difficulty": 2.0
       },
       {
@@ -1357,7 +1357,7 @@
        "stem": "如果 a 为 char 类型的变量，且取值为大写字母'F'，则执行语句 a = a + 1; 后，a 的值会变为大写字母'G'。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。'F' 的下一个字符是 'G',char a='F' 执行 a=a+1 后变为 'G'。",
        "difficulty": 2.0
       },
       {
@@ -1374,7 +1374,7 @@
         "C": "'A' + j % 3",
         "D": "(char)('A' + j % 3)"
        },
-       "explanation": "",
+       "explanation": "每行以 ABC 循环,列下标 j 对应字符 'A'+j%3,且需转成字符输出。故填 (char)('A'+j%3),选 D。",
        "difficulty": 2.0
       },
       {
@@ -1386,7 +1386,7 @@
        "stem": "C++表达式 2*int('9')*2 的值为36。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。int('9') 是字符 '9' 的 ASCII 值 57,2*57*2=228,不是 36。",
        "difficulty": 2.0
       },
       {
@@ -1403,7 +1403,7 @@
         "C": "cout << '+';",
         "D": "cout << '+' << ' ';"
        },
-       "explanation": "",
+       "explanation": "栅栏一行输出:每段先一个 +,再 k−1 个 −。横线处应输出 +(不换行、不加空格),选 C。",
        "difficulty": 2.0
       },
       {
@@ -1415,7 +1415,7 @@
        "stem": "已知 A 的ASCII码值为65，表达式 int('C')+abs(-5.8) 的值为72.8。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。int('C')=67,abs(−5.8)=5.8,相加 72.8。",
        "difficulty": 2.0
       },
       {
@@ -1427,7 +1427,7 @@
        "stem": "执行C++代码 cout << '9'+'1'; 的输出为10。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。'9'+'1' 按 ASCII 是 57+49=106(整数),cout 输出 106,不是 10。",
        "difficulty": 2.0
       },
       {
@@ -1444,7 +1444,7 @@
         "C": "47",
         "D": "将触发异常"
        },
-       "explanation": "",
+       "explanation": "a、b 类型不同会得到不同结果:int+int=1、int+float=1.14、char('-'=45)+2=47 都可能。而 cin 类型不符只会读取失败,不会触发异常,故“将触发异常”不可能,选 D。",
        "difficulty": 2.0
       },
       {
@@ -1456,7 +1456,7 @@
        "stem": "C++语句 cout << rand() << ' ' << rand(); 的第二个输出值较大。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。两个 rand() 的求值顺序未定义,不能断定第二个输出更大。",
        "difficulty": 2.0
       },
       {
@@ -1468,7 +1468,7 @@
        "stem": "定义C++的 int 类型的变量 ch ，而且值为 '1' ，则语句 cout << int(ch); 的输出为 1 。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。ch 的值为 '1' 即 ASCII 49,int(ch) 输出 49,不是 1。",
        "difficulty": 2.0
       },
       {
@@ -1485,7 +1485,7 @@
         "C": "4 4",
         "D": "4 3"
        },
-       "explanation": "",
+       "explanation": "坑在 a==b; b==a; 这是比较运算(结果被丢弃),不是赋值!a、b 的值不变,仍是 3 和 4,输出 3 4,选 A。",
        "difficulty": 2.0
       },
       {
@@ -1502,7 +1502,7 @@
         "C": "28 6",
         "D": "28 28"
        },
-       "explanation": "",
+       "explanation": "坑在 b=(6,28):(6,28) 是逗号运算符,取最后一个值 28,所以 b=28、a 未初始化;b==a 只是比较;a=b 使 a=28。输出 28 28,选 D。",
        "difficulty": 2.0
       },
       {
@@ -1514,7 +1514,7 @@
        "stem": "下面C++代码编译时将报错，因为字符变量 a 被赋值了浮点值。 ( )",
        "code": "char a = '1';\na = 45.6;\ncout << a;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。char a=45.6 会隐式转换为 (char)45,即字符 '-',能正常编译并输出 '-',不会报错。",
        "difficulty": 2.0
       },
       {
@@ -1531,7 +1531,7 @@
         "C": "4 4 4",
         "D": "以上都不对"
        },
-       "explanation": "",
+       "explanation": "坑在 a, b = 3, 4; ——这是逗号运算符,不是 Python 式多重赋值!它等价于“算 a、再 b=3、再 4”,所以只有 b=3,而 a 始终未初始化(垃圾值)。于是 c=(a==b) 也不确定,输出无法预测,选 D。",
        "difficulty": 2.0
       },
       {
@@ -1548,7 +1548,7 @@
         "C": "如果 于输 考试成绩，即成绩中不可能有 -999 ，则程序能求出已输 成绩中的最 成绩和最低成绩 用 入 入 高",
         "D": "可以将 cin >> now_num; 移动到 while (now_num != -999) { 下 ，结果不变 面"
        },
-       "explanation": "",
+       "explanation": "问错误说法。D 错:把 cin>>now_num 移到 while 内首行后,循环一开头就会覆盖掉循环前读入的第一个数,导致第一个数没参与比较、逻辑改变、结果不同。A/B/C 的描述都是对的。",
        "difficulty": 2.0
       },
       {
@@ -1565,7 +1565,7 @@
         "C": "98 97",
         "D": "不确定"
        },
-       "explanation": "",
+       "explanation": "字符按 ASCII 参与运算:'a'=97、'b'=98。a='a'+'b'=195;b='a'−'b'=−1;a=a−b=195−(−1)=196。输出 196 −1,选 A。注意 a、b 是 int,存的是计算结果。",
        "difficulty": 2.0
       },
       {
@@ -1577,7 +1577,7 @@
        "stem": "执 下 的C++代码时输 123 ，则输出是 DCB 。( ) 行 面 入",
        "code": "int a;\ncin >> a;\nwhile(a){\ncout << 'A'+a%10;\na /= 10;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。'A'+a%10 是整数运算(ASCII),结果是 int,cout 按数字打印而非字符。输入 123 会输出 686766 之类,而不是 DCB。",
        "difficulty": 2.0
       },
       {
@@ -1589,7 +1589,7 @@
        "stem": "下面的C++代码执行后将输出 +#+#3# 。（ ）",
        "code": "int i;\nfor (i = 0; i < 3; i++){\nif (i == 2)\ncontinue;\nprintf(\"+#\");\n}\ncout << i << '#';",
        "options": {},
-       "explanation": "",
+       "explanation": "对。i=0、1 各打印 +#,i=2 时 continue 跳过;循环结束后 i=3,再输出 3#。最终 +#+#3#。",
        "difficulty": 2.0
       },
       {
@@ -1601,7 +1601,7 @@
        "stem": "C++代码 cout << ('5'+4); 执行后的输出为 9 。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。'5' 的 ASCII 是 53,'5'+4=57 是整数,cout 按数字打印输出 57,而不是 9。",
        "difficulty": 2.0
       },
       {
@@ -1613,7 +1613,7 @@
        "stem": "下 的C++代码执 后，其输出是 4 0 。（ ） 面 行",
        "code": "int a,b;\na = 4;\nb = a == 5;\ncout << a << ' ' << b;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。b=(a==5) 是比较,4≠5 得 0;a 不变为 4。输出 4 0。",
        "difficulty": 2.0
       },
       {
@@ -1625,7 +1625,7 @@
        "stem": "C++代码中对表达式 ('Z' - 'A') < ('z' - 'A') 的结果输出为 0 。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。'Z'−'A'=25、'z'−'A'=57,25<57 为真,输出 1 而不是 0。",
        "difficulty": 2.0
       },
       {
@@ -1637,7 +1637,7 @@
        "stem": "C++ 语句 cout << ('4' % '2' == '2' * '2' % 2); 执行后的输出是1。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。'4'%'2'=52%50=2;'2'*'2'%2=2500%2=0;2==0 为假,输出 0 而不是 1。",
        "difficulty": 2.0
       }
      ]
@@ -1663,7 +1663,7 @@
         "C": "可以将 XingMing 改为 xingming",
         "D": "可以将 XingMing 改为 Xing-Ming"
        },
-       "explanation": "",
+       "explanation": "C 正确:xingming 全小写仍是合法标识符。A 错——汉语拼音完全可作变量名;B 错——标识符不能含空格(Xing Ming 非法);D 错——不能含连字符(Xing-Ming 非法)。",
        "difficulty": 2.0
       }
      ]
@@ -1706,7 +1706,7 @@
        "stem": "在使用 C++语言编写程序时，不能使用 sqrt、abs 等数学函数，包含<cmath> 或<math.h>头文件后就能够使用了。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。使用 sqrt、abs 等数学函数前需包含 <cmath> 或 <math.h> 头文件。",
        "difficulty": 2.0
       },
       {
@@ -1718,7 +1718,7 @@
        "stem": "bool() 函数用于将给定参数或表达式转换为布尔类型。语句 bool(-1) 返回的是 false 值。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。bool 转换中非零即真,bool(−1) 返回 true,不是 false。",
        "difficulty": 2.0
       },
       {
@@ -1735,7 +1735,7 @@
         "C": "M",
         "D": "M + 1"
        },
-       "explanation": "",
+       "explanation": "孪生素数对 (i, i+2) 都要在 N..M 内,较大的 i+2 不能超过 M,故 i≤M−2,循环条件写 i<M−1,选 B。",
        "difficulty": 2.0
       },
       {
@@ -1752,7 +1752,7 @@
         "C": "代码中L1标记行中的 j < i + 1 应修改为 j < i",
         "D": "外层for循环前的 last = 1 修改为 last = 0 执行效果相同"
        },
-       "explanation": "",
+       "explanation": "问正确说法。B 对:last+=1 与 last=last+1 完全等价。A 错(printf(\"\\n\") 能换行);C 错(j<i 会少输出一个数);D 错(从 0 起会改变数字),故选 B。",
        "difficulty": 2.0
       }
      ]
@@ -1812,7 +1812,7 @@
        "stem": "循环语句的循环体有可能无限制地执行下去。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。写得不当(如条件恒真)时,循环体确实可能无限执行下去(死循环)。",
        "difficulty": 2.0
       },
       {
@@ -1829,7 +1829,7 @@
         "C": "分支结构",
         "D": "跳转结构"
        },
-       "explanation": "",
+       "explanation": "找出 a、b 中较大者需要根据条件做选择,用分支结构,故选 C。",
        "difficulty": 2.0
       },
       {
@@ -1846,7 +1846,7 @@
         "C": "break",
         "D": "goto"
        },
-       "explanation": "",
+       "explanation": "cout 是输出流对象,不是关键字,故选 B。continue、break、goto 都是 C++ 关键字。",
        "difficulty": 2.0
       },
       {
@@ -1858,7 +1858,7 @@
        "stem": "如果 m 和 n 为 int 类型变量，则执行 for (m = 0, n = 1; n < 9; ) n = ((m = 3 * n, m + 1), m - 1); 之后 n 的值为偶数。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。逗号表达式使 n=m−1(m=3*n):n 由 1→2→5→14,14<9 不成立退出,最终 n=14 为偶数。",
        "difficulty": 2.0
       },
       {
@@ -1875,7 +1875,7 @@
         "C": "代码存在语法错误，程序不能被执行。",
         "D": "代码没有语法错误，但不能达到预期目标，因为循环结束N总为0。"
        },
-       "explanation": "",
+       "explanation": "while 循环把 N 不断 /=10,结束后 N 必为 0,于是 newNum==N 实际是 newNum==0,永远判不出对称数。代码无语法错误但达不到目标,选 D。",
        "difficulty": 2.0
       },
       {
@@ -1887,7 +1887,7 @@
        "stem": "C++代码中 while(1){...} 的判断条件不是逻辑值，将导致语法错误。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。while(1) 中的 1 是合法的循环条件(非零为真),不会语法错误。",
        "difficulty": 2.0
       },
       {
@@ -1904,7 +1904,7 @@
         "C": "else",
         "D": "if"
        },
-       "explanation": "",
+       "explanation": "return 用于函数返回,不是分支结构关键字。分支用 if/else/switch,故选 B。",
        "difficulty": 2.0
       },
       {
@@ -1921,7 +1921,7 @@
         "C": "26",
         "D": "50"
        },
-       "explanation": "",
+       "explanation": "m 初值 (5−1)*2=8;循环两次:i=0 时 (8−1)*2=14,i=1 时 (14−1)*2=26。输出 26,选 C。",
        "difficulty": 2.0
       },
       {
@@ -1938,7 +1938,7 @@
         "C": "49",
         "D": "81"
        },
-       "explanation": "",
+       "explanation": "找能整除 81 的最大完全平方数。i 从 1 到 9:81%1、81%9、81%81 都为 0,result 最后更新为 81,选 D。",
        "difficulty": 2.0
       },
       {
@@ -1955,7 +1955,7 @@
         "C": "4",
         "D": "5"
        },
-       "explanation": "",
+       "explanation": "t=10→5(/2)→4(−1)→2(/2),每步 ans+1,到 t=2=s 停,共 3 步,选 B。",
        "difficulty": 2.0
       },
       {
@@ -1972,7 +1972,7 @@
         "C": "7",
         "D": "8"
        },
-       "explanation": "",
+       "explanation": "逐步模拟:masks 从 10 递减,cur 在 0 或 1 时先 +7;到 days=7 时 masks 恰好等于 17 退出,选 C。",
        "difficulty": 2.0
       },
       {
@@ -1989,7 +1989,7 @@
         "C": "N = N / 10",
         "D": "N = N % 10"
        },
-       "explanation": "",
+       "explanation": "一旦发现某位是奇数(N%2≠0),就置 Flag=false 并 break 退出。故填 break,选 A。(continue 会因 N 不变而死循环。)",
        "difficulty": 2.0
       },
       {
@@ -2006,7 +2006,7 @@
         "C": "i == 0 && i == 4",
         "D": "i == 0 || i == 4"
        },
-       "explanation": "",
+       "explanation": "5 天一循环,i=n%5:1/2/3 打鱼、4 和 0(第 4、5 天)晒网。故晒网条件是 i==4||i==0,选 D。",
        "difficulty": 2.0
       },
       {
@@ -2023,7 +2023,7 @@
         "C": "Jan Mar",
         "D": "以上均不对"
        },
-       "explanation": "",
+       "explanation": "switch 中 case 1 后没有 break,会“穿透”继续执行 case 3,直到遇到 break。输入 1 输出 Jan Mar,选 C。",
        "difficulty": 2.0
       },
       {
@@ -2040,7 +2040,7 @@
         "C": "如果先后输入0和0，则将输出2",
         "D": "如果先后输入0和0，则将输出4"
        },
-       "explanation": "",
+       "explanation": "问错误说法。输入 0、0 时:a&&b 假、!(a||b) 真→输出 2。所以 C 对、D 错(0,0 不会输出 4),故选 D。",
        "difficulty": 2.0
       },
       {
@@ -2057,7 +2057,7 @@
         "C": "0 2",
         "D": "0 0"
        },
-       "explanation": "",
+       "explanation": "偶数 i 被 continue 跳过;奇数 i 必然 i%2 为真→cnt1+1,后面的 else if 永远到不了。奇数 1/3/5/7/9 共 5 个,故 cnt1=5、cnt2=0,选 B。",
        "difficulty": 2.0
       },
       {
@@ -2069,7 +2069,7 @@
        "stem": "下面C++代码执行后将导致死循环。（ ）",
        "code": "for (int i = 0; i < 10; i++)\ncontinue;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。for 循环执行 10 次后正常结束,continue 只是跳过本轮剩余语句,不会死循环。",
        "difficulty": 2.0
       },
       {
@@ -2081,7 +2081,7 @@
        "stem": "下面C++代码能实现正整数各位数字之和。（ ）",
        "code": "int N,Sum = 0;\ncin >> N;\nwhile (N){\nSum += N % 10;\nN /= 10;\n}\ncout << Sum;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。Sum+=N%10 取个位累加、N/=10 去个位,循环到 N 为 0,即得各位数字之和。",
        "difficulty": 2.0
       },
       {
@@ -2098,7 +2098,7 @@
         "C": "0#0#1",
         "D": "没有输出"
        },
-       "explanation": "",
+       "explanation": "i=0:i%2 假,输出 0#;i=1:i%2 真→break。跳出时 i=1(非 10),输出 0#,选 A。",
        "difficulty": 2.0
       },
       {
@@ -2115,7 +2115,7 @@
         "C": "3",
         "D": "4"
        },
-       "explanation": "",
+       "explanation": "输入 1、0:a&&b 假;!(a||b)=!(真)假;(a||b) 真→输出 3,选 C。",
        "difficulty": 2.0
       },
       {
@@ -2132,7 +2132,7 @@
         "C": "3",
         "D": "5"
        },
-       "explanation": "",
+       "explanation": "i 从 1 到 4、步长 2,即 i=1、3,循环 2 次,loopCount=2,选 B。",
        "difficulty": 2.0
       },
       {
@@ -2149,7 +2149,7 @@
         "C": "rst = rst * 10 + N / 10 N = N % 10",
         "D": "rst += N / 10 N = N % 10"
        },
-       "explanation": "",
+       "explanation": "求逆序:每轮 rst=rst*10+N%10 取末位接到结果后面,再 N=N/10 去末位。如 123→321,选 A。",
        "difficulty": 2.0
       },
       {
@@ -2161,7 +2161,7 @@
        "stem": "下面C++代码执行后将输出10。（ ）",
        "code": "int i;\nfor (i = 0; i < 10; i++)\ncontinue;\nif(i == 10)\ncout << i;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。循环执行 10 次后 i=10,if(i==10) 成立,输出 10。",
        "difficulty": 2.0
       },
       {
@@ -2173,7 +2173,7 @@
        "stem": "下面C++代码能求整数N和M之间所有整数之和，包含N和M。（ ）",
        "code": "int N, M, Sum;\ncin >> N >> M;\nif (N > M){\nint tmp = N;\nN = M, M = tmp;\n}\nfor (int i = N; i < M+1; i++)\nSum += i;\ncout << Sum;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。int Sum 未初始化(是垃圾值),Sum+=i 累加在垃圾值上,结果不确定,不能正确求和。",
        "difficulty": 2.0
       },
       {
@@ -2185,7 +2185,7 @@
        "stem": "某一系列数据的规律是从第3个数值开始是前两个数之和。下面的代码求第N个数的值，N限定为大于2。（ ）",
        "code": "int start1; // 第1个数\nint start2; // 第2个数\nint N; //求N个数的值\nint tmp;\ncin >> start1 >> start2 >> N;\nfor (int i = 2; i < N; i++){\ntmp = start1 + start2;\nstart1 = start2;\nstart2 = tmp;\n}\ncout << start2;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。每轮 tmp=前两数之和,再滚动更新 start1、start2,循环到第 N 个,N>2 时能正确求值。",
        "difficulty": 2.0
       },
       {
@@ -2197,7 +2197,7 @@
        "stem": "下面C++代码执行时如果输入 2024 ，则输出是 4202 。（ ）",
        "code": "int N, flag=0;\ncin >> N;\nwhile (N){\nif(!flag) cout << N % 10;\nN /= 10;\nflag = (flag + 1)%2;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。flag 在 0/1 间交替,只在 flag=0 时打印,故只输出隔位的数字。输入 2024 输出 40,不是 4202。",
        "difficulty": 2.0
       },
       {
@@ -2214,7 +2214,7 @@
         "C": "12345678910",
         "D": "012345678910"
        },
-       "explanation": "",
+       "explanation": "循环 i 从 0 到 9 依次打印,输出 0123456789,故选 B。",
        "difficulty": 2.0
       },
       {
@@ -2231,7 +2231,7 @@
         "C": "上述代码执行后其输出相当于求0-10的和（不包含10）",
         "D": "上述代码执行后将输出不确定的值"
        },
-       "explanation": "",
+       "explanation": "坑在 int tnt; 未初始化(是垃圾值)。后面 tnt+=i 是在垃圾值上累加,结果不确定,故选 D。求和前必须先 tnt=0。",
        "difficulty": 2.0
       },
       {
@@ -2248,7 +2248,7 @@
         "C": "9",
         "D": "10"
        },
-       "explanation": "",
+       "explanation": "i=1 为奇,i%2 真→continue;i=2 为偶→break。跳出时 i=2,输出 2,故选 B。",
        "difficulty": 2.0
       },
       {
@@ -2265,7 +2265,7 @@
         "C": "0#0#0#0#1#",
         "D": "0#0#0#0#"
        },
-       "explanation": "",
+       "explanation": "i%3 为真(不被 3 整除)时 continue,故只在 i 被 3 整除时打印:i=0、3、6、9 共 4 个 0#;循环后 i=10 满足 i≥10 再打印 1#。输出 0#0#0#0#1#,选 C。",
        "difficulty": 2.0
       },
       {
@@ -2282,7 +2282,7 @@
         "C": "tnt = N % 10 + tnt",
         "D": "tnt = N % 10"
        },
-       "explanation": "",
+       "explanation": "求各位数字之和,需把 N%10 累加到 tnt。D 的 tnt=N%10 是直接覆盖、没有累加,无法求和,故选 D(不应填入)。A/B/C 都是累加写法。",
        "difficulty": 2.0
       },
       {
@@ -2294,7 +2294,7 @@
        "stem": "以下C++代码因为循环变量为将导致错误，即不能作为变量名称，不符合C++变量命名规范。（ ）",
        "code": "for (int _ = 0; _ < 10; _++)\ncontinue;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。下划线 _ 是合法的 C++ 标识符,可作变量名,代码不会出错。",
        "difficulty": 2.0
       },
       {
@@ -2306,7 +2306,7 @@
        "stem": "下面C++代码执行后因为有break，将输出0。（ ）",
        "code": "int i;\nfor (i = 0; i < 10; i++){\ncontinue;\nbreak;\n}\ncout << i;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。continue 在 break 之前,每轮直接跳过 break、继续下一轮,break 永远执行不到。循环正常结束后 i=10,输出 10,不是 0。",
        "difficulty": 2.0
       },
       {
@@ -2318,7 +2318,7 @@
        "stem": "将下面C++代码中的 i = 1 调整为 i = 0 的输出结果相同。（ ）",
        "code": "int i;\nint cnt = 0;\nfor (i = 1; i < 5; i++)\nif(i%2) cnt += 1;\ncout << cnt;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。原来 i=1..4 中奇数 1、3 使 cnt=2;改成 i=0..4 只多了 i=0(偶数,不计数),cnt 仍为 2,结果相同。",
        "difficulty": 2.0
       },
       {
@@ -2335,7 +2335,7 @@
         "C": "else if ((6 <= remainder) && (remainder <= 8)) 写法错误，应修改为 else if (6 <= remainder <= 8)",
         "D": "根据题意 remainder = N % 10 应修改为 remainder = N / 10"
        },
-       "explanation": "",
+       "explanation": "remainder=N%10 取末位:1~5 红、6~8 绿、9 或 0 蓝。A 正确:由于余数只可能是 0~9,前两段判完后剩下的恰好就是 9 和 0,把最后一个 else if 直接写成 else 效果相同。B 错(漏判会把 0 误判为红);C 是非法链式比较;D 用 N/10 取错了位。",
        "difficulty": 2.0
       },
       {
@@ -2352,7 +2352,7 @@
         "C": "16",
         "D": "14"
        },
-       "explanation": "",
+       "explanation": "i%3 为真(不被 3 整除)时 +1,否则 +2。被 3 整除的 i=0、3、6、9 共 4 个,各 +2=8;其余 6 个各 +1=6。合计 14,选 D。",
        "difficulty": 2.0
       },
       {
@@ -2369,7 +2369,7 @@
         "C": "0",
         "D": "因为循环执行时会执行break语句而终止循环，所以i的值不确定"
        },
-       "explanation": "",
+       "explanation": "循环一进入就 break,i 仍是初值 10,输出 10,选 A。",
        "difficulty": 2.0
       },
       {
@@ -2386,7 +2386,7 @@
         "C": "0#0#0#0#1#",
         "D": "0#0#0#0#0#0#1#"
        },
-       "explanation": "",
+       "explanation": "i%3==0 时 continue,故只在不被 3 整除时打印:i=1、2、4、5、7、8 共 6 个 0#;循环后 i=10 再打印 1#。输出 0#0#0#0#0#0#1#,选 D。",
        "difficulty": 2.0
       },
       {
@@ -2403,7 +2403,7 @@
         "C": "1 continue 2 j %= 10",
         "D": "1 break 2 j %= 10"
        },
-       "explanation": "",
+       "explanation": "逐位检查是否含 3:① 找到含 3 就计数并 break(避免同一个数重复计);② 否则 j/=10 看下一位。故填 break 和 j/=10,选 B。",
        "difficulty": 2.0
       },
       {
@@ -2420,7 +2420,7 @@
         "C": "rand( ) % 10 + 1",
         "D": "rand() % 9 + 1"
        },
-       "explanation": "",
+       "explanation": "rand()%10 得 0~9,再 +1 得 1~10,正好覆盖 1 到 10,选 C。A 的 %11 会出现 0~10、B 的 %10 是 0~9、D 的 %9+1 是 1~9,都不对。",
        "difficulty": 2.0
       },
       {
@@ -2432,7 +2432,7 @@
        "stem": "下面C++代码执行后将输出10。（ ）",
        "code": "int i;\nfor (i = 0; i < 10; i++)\ncontinue;\ncout << i << endl;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。循环 i 从 0 加到 10 退出(continue 不影响计数),循环后 i=10,输出 10。",
        "difficulty": 2.0
       },
       {
@@ -2444,7 +2444,7 @@
        "stem": "下面C++代码执行后将输出1。（ ）",
        "code": "int i;\nfor (i = 1; i < 10; i++){\nbreak;\ncontinue;\n}\ncout << i << endl;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。循环一进入就 break,i 仍是初值 1,输出 1。",
        "difficulty": 2.0
       },
       {
@@ -2461,7 +2461,7 @@
         "C": "N % 7",
         "D": "(N + 6) % 7"
        },
-       "explanation": "",
+       "explanation": "今天周六(记作 6),第 N 天的星期数 =(6+N)%7:为 0 则周日,1~6 则星期几。故 remainder=(N+6)%7,选 D。(B 的 // 不是 C++ 运算符。)",
        "difficulty": 2.0
       },
       {
@@ -2478,7 +2478,7 @@
         "C": "3",
         "D": "0"
        },
-       "explanation": "",
+       "explanation": "i=1:Sum=1,i%2 真→continue;i=2:Sum=3,i%2 假不跳,i%7 真→break。输出 Sum=3,选 C。",
        "difficulty": 2.0
       },
       {
@@ -2495,7 +2495,7 @@
         "C": "99",
         "D": "98"
        },
-       "explanation": "",
+       "explanation": "i 从 −99 到 99、步长 2,共 (99−(−99))/2+1=100 个数,cnt=100,选 B。",
        "difficulty": 2.0
       },
       {
@@ -2512,7 +2512,7 @@
         "C": "A#A#1",
         "D": "A#0#A#0#1"
        },
-       "explanation": "",
+       "explanation": "i=1、2 不被 3 整除→打印 A# 并 continue;i=3 被 3 整除→else break。输出 A#A#,选 A(后面 0# 永远到不了)。",
        "difficulty": 2.0
       },
       {
@@ -2529,7 +2529,7 @@
         "C": "1 N == 0 2 N /= 10",
         "D": "1 N > 0 2 N /= 10"
        },
-       "explanation": "",
+       "explanation": "数位计数:只要 N>0 就 cnt+1 再 N/=10。故填 N>0 和 N/=10,选 D。(N>1 会漏掉像 10 这种末位为 0 的高位,出错。)",
        "difficulty": 2.0
       },
       {
@@ -2546,7 +2546,7 @@
         "C": "代码 N1 = N1 / 10, M1 = M1 / 10 将个位数去掉",
         "D": "将 N1 > 0 改为 N > 0 效果相同"
        },
-       "explanation": "",
+       "explanation": "问错误说法。D 错:循环里改变的是 N1 不是 N,把 N1>0 改成 N>0 会因 N 恒大于 0 而死循环。A/B/C 对自守数判断的描述都正确。",
        "difficulty": 2.0
       },
       {
@@ -2558,7 +2558,7 @@
        "stem": "下面C++代码执行时如输入59.99，将输出 及格 两个汉字。（ ）",
        "code": "int score;\ncout << \"请输入学生成绩: \";\ncin >> score;\nif (score < 60)\ncout << \"不及格\";\nelse\ncout << \"及格\";",
        "options": {},
-       "explanation": "",
+       "explanation": "错。cin>>score 是 int,59.99 只取 59;59<60 输出“不及格”,不是“及格”。",
        "difficulty": 2.0
       },
       {
@@ -2570,7 +2570,7 @@
        "stem": "在下面的C++代码中，因为 continue 将被执行，因此不会有输出。（ ）",
        "code": "int i;\nfor (i = 1; i < 10; i++)\nif (i % 2 == 0)\ncontinue;\nif(i == 10)\ncout << \"END\";",
        "options": {},
-       "explanation": "",
+       "explanation": "错。if(i==10) 在 for 之外。循环结束后 i=10,条件成立,会输出 END,并非“没有输出”。",
        "difficulty": 2.0
       },
       {
@@ -2582,7 +2582,7 @@
        "stem": "下面的C++代码执行后将输出15。（ ）",
        "code": "int Sum = 0;\nfor (int i = 0; i < 5; i++)\nSum += i;\ncout << Sum;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。i 从 0 加到 4,Sum=0+1+2+3+4=10,不是 15。",
        "difficulty": 2.0
       },
       {
@@ -2599,7 +2599,7 @@
         "C": "N % div % 10",
         "D": "N / div % 10"
        },
-       "explanation": "",
+       "explanation": "循环后 div=10^(M−1)。取从右数第 M 位:先 N/div 去掉低位,再 %10 取出该位。如 N=1234、M=2:div=10,1234/10=123,123%10=3。故选 D。(A 得 0、B 得 12、C 得 4。)",
        "difficulty": 2.0
       },
       {
@@ -2616,7 +2616,7 @@
         "C": "a 和 b 都必须为正整数，否则 a % b 将导致错误",
         "D": "如果 a 输 为 0 ，则不管 b 的输 值是什么，输出值的绝对值都是 abs(b) 入 入"
        },
-       "explanation": "",
+       "explanation": "这是辗转相除求最大公约数。D 正确:若 a 输入 0,循环一次后 a 变成原来的 b、b 变 0 退出,输出即原 b,绝对值为 abs(b)。A 错(while 已先判 b≠0,不会用 0 取余);B、C 的限制都不必要。",
        "difficulty": 2.0
       },
       {
@@ -2633,7 +2633,7 @@
         "C": "1#2#3#4#5#6#",
         "D": "1#2#3#4#5#6"
        },
-       "explanation": "",
+       "explanation": "num 自增后:1#、2#,到 3 时 continue 跳过打印,继续 4#、5#;num=5 仍满足 ≤5 进入、自增到 6 打印 6#,再判 6≤5 为假退出。输出 1#2#4#5#6#,选 A。",
        "difficulty": 2.0
       },
       {
@@ -2650,7 +2650,7 @@
         "C": "必须同时修改 L3 和 L5 代码 才能实现功能 行",
         "D": "其他说法都不对"
        },
-       "explanation": "",
+       "explanation": "这是分组累加题:G 取整组数、R 取余数,再按余数落在不同区间累加对应重量。逐一检验 A/B/C 所说的“必须同时修改某两行”都站不住,故选 D。",
        "difficulty": 2.0
       },
       {
@@ -2662,7 +2662,7 @@
        "stem": "下 C++代码执 时如输 99.99 ，将输出 及格 两个汉字。（ ） 面 行 入",
        "code": "int score;\ncout << \"请输入学生成绩：\";\ncin >> score;\nif (score >= 60)\nprintf(\"及格\");\nelse\nprintf(\"不及格\");",
        "options": {},
-       "explanation": "",
+       "explanation": "对。cin>>score 读到 int 时遇小数点即停,99.99 只取 99;99≥60,故输出“及格”。",
        "difficulty": 2.0
       },
       {
@@ -2679,7 +2679,7 @@
         "C": "N / 3",
         "D": "(N - 1) / 3"
        },
-       "explanation": "",
+       "explanation": "循环节长 3:第 1、2、3 位是 1、2、3。用 (N−1)%3 得 0/1/2 分别对应 1/2/3,故选 B。",
        "difficulty": 2.0
       },
       {
@@ -2696,7 +2696,7 @@
         "C": "-2#-1#1#",
         "D": "-2#-1#1#2#"
        },
-       "explanation": "",
+       "explanation": "i%2 非零(奇数)才打印。i=−2 否、i=−1 是(−1)、i=0 否、i=1 是。输出 −1#1#,选 A。",
        "difficulty": 2.0
       },
       {
@@ -2713,7 +2713,7 @@
         "C": "1#2#3#4#5#6#",
         "D": "1#2#3#4#5#6#6"
        },
-       "explanation": "",
+       "explanation": "num%3 非零就 continue,只在被 3 整除时打印:3#、6#;循环后 num=6>5 再打印 6。输出 3#6#6,选 B。",
        "difficulty": 2.0
       },
       {
@@ -2725,7 +2725,7 @@
        "stem": "下 C++代码中N是整数，执 时 论输 负整数、0或正整数，其输出都将是 0 。 ( ) 面 行 无 入",
        "code": "cin >> N;\nwhile (N)\nN /= 10;\ncout << N;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。任意整数 N 反复 /=10 终会变成 0、循环结束,输出 0(N=0 时也直接输出 0)。",
        "difficulty": 2.0
       },
       {
@@ -2737,7 +2737,7 @@
        "stem": "下 的C++代码可以 于判断正整数N的位数（即 位数，如123是3位数，12为2位数）。( ) 面 用 几",
        "code": "int N, N10, i;\ncin >> N;\nN10 = 10, i = 1;\nwhile (1) {\nif (N % N10 == N) {\nprintf(\"%d 是 %d 位数\", N, i);\nbreak;\n}\ni++, N10 *= 10;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。当 N10 第一次大于 N 时 N%N10==N 成立,此时 i 正好是 N 的位数,能正确判断位数。",
        "difficulty": 2.0
       },
       {
@@ -2749,7 +2749,7 @@
        "stem": "计算交叉加减的结果，形如 1-2+3-4+5-…… 。下 C++代码中的变量都是整型，则将 Flag = -Flag 改为 面 Flag -= Flag 效果相同。（ ）",
        "code": "cin >> N;\nFlag = -1;\ntnt = 0;\nfor (i = 1; i < N + 1; i++) {\nFlag = -Flag;\ntnt += Flag * i;\n}\ncout << tnt;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。Flag-=Flag 即 Flag=Flag−Flag=0,会让 tnt 始终加 0、结果恒为 0,与 Flag=−Flag(正负交替)效果完全不同。",
        "difficulty": 2.0
       },
       {
@@ -2766,7 +2766,7 @@
         "C": "平行四边形框",
         "D": "菱形框"
        },
-       "explanation": "",
+       "explanation": "L1 的 if(val>max) 是一次条件判断,流程图中用菱形框表示,故选 D。",
        "difficulty": 2.0
       },
       {
@@ -2783,7 +2783,7 @@
         "C": "-1#0#",
         "D": "-2#0#1#"
        },
-       "explanation": "",
+       "explanation": "not i%3 即 (i%3==0)。i=−2、−1、1 都不被 3 整除→否;只有 i=0 满足→输出 0#,选 A。",
        "difficulty": 2.0
       },
       {
@@ -2800,7 +2800,7 @@
         "C": "6",
         "D": "7"
        },
-       "explanation": "",
+       "explanation": "n 从 10 每轮先 −1:9→continue,8、7 不满足,6→continue,到 5 时 n==5→break。输出 5,选 B。",
        "difficulty": 2.0
       },
       {
@@ -2817,7 +2817,7 @@
         "C": "1 high_count += 1 2 total_score += score",
         "D": "1 total_score *= score 2 high_count *= 1"
        },
-       "explanation": "",
+       "explanation": "累加总分 total_score+=score;遇到 ≥6 分就 high_count+=1。故选 A。",
        "difficulty": 2.0
       },
       {
@@ -2829,7 +2829,7 @@
        "stem": "下面C++代码段执行后将输出 0-3-6-9- 。 ( )",
        "code": "for (int i = 0; i < 10; i++){\nif (i % 3)\ncontinue;\ncout << i << \"-\";\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。i%3 非零就 continue,只在被 3 整除时输出:0-3-6-9-。",
        "difficulty": 2.0
       },
       {
@@ -2841,7 +2841,7 @@
        "stem": "下面的 C++ 代码段可正常执行，删除 continue 不影响执行效果。（ ）",
        "code": "for (i = 0; i < 10; i++){\ni += 1;\ncontinue;\n}\ncout << (i);",
        "options": {},
-       "explanation": "",
+       "explanation": "对。continue 是循环体最后一句,删与不删都一样;每轮因 i+=1 再加 i++ 共加 2。",
        "difficulty": 2.0
       }
      ]
@@ -2867,7 +2867,7 @@
         "C": "while 条件判断 do 语句块",
         "D": "while not 条件判断 do 语句块"
        },
-       "explanation": "",
+       "explanation": "流程图是“先判断、条件不满足则反复执行”的前测循环,对应 while not 条件 do 语句块,选 D。",
        "difficulty": 2.0
       },
       {
@@ -2884,7 +2884,7 @@
         "C": "for(int i = 10; i < 21; i +=2) cout << i;",
         "D": "以上均不对"
        },
-       "explanation": "",
+       "explanation": "原循环输出 10、12、14、16、18。A 的 i<19 同样到 18 截止(20 被排除),输出相同,选 A。(C 的 i<21 会多出 20。)",
        "difficulty": 2.0
       },
       {
@@ -2901,7 +2901,7 @@
         "C": "for(i=2;i<N/2;i++) if(!(N%(i-1)) && !(N%i)) printf(\"(%d,%d)\\n\", i-1, i);",
         "D": "for(i=1;i<N/2;i++) if(!(N%i) && !(N%(i+1))) printf(\"(%d,%d)\\n\", i, i+1);"
        },
-       "explanation": "",
+       "explanation": "相邻因数对从 (1,2) 开始。B 的循环 i 从 2 起,会漏掉 i=1 对应的 (1,2),找不全所有因数对,选 B。",
        "difficulty": 2.0
       },
       {
@@ -2918,7 +2918,7 @@
         "C": "在C++中可以使用 foreach 循环",
         "D": "break 和 continue 语句都可以用在 for 循环和 while 循环中"
        },
-       "explanation": "",
+       "explanation": "问错误说法。C++ 没有 foreach 关键字(用的是基于范围的 for),C 说可用 foreach,错误,故选 C。",
        "difficulty": 2.0
       },
       {
@@ -2935,7 +2935,7 @@
         "C": "for(int i=10; i>0; i--)",
         "D": "for(int i=10; i<1; i++)"
        },
-       "explanation": "",
+       "explanation": "i+=1 与 i++ 在 for 步进里完全等价,起止也相同,故选 A。其余循环次数/方向都不同。",
        "difficulty": 2.0
       },
       {
@@ -2952,7 +2952,7 @@
         "C": "36",
         "D": "28"
        },
-       "explanation": "",
+       "explanation": "内层 j 从 1 到 i−1,执行 max(0,i−1) 次。i=0..9 累加 0+0+1+2+3+4+5+6+7+8=36,选 C。",
        "difficulty": 2.0
       },
       {
@@ -2969,7 +2969,7 @@
         "C": "10",
         "D": "9"
        },
-       "explanation": "",
+       "explanation": "loopCount+=1 在内层循环之外,每个外层 i 都会执行一次,共 10 次(内层的 break 不影响它),选 C。",
        "difficulty": 2.0
       },
       {
@@ -2986,7 +2986,7 @@
         "C": "如果 cout << endl; 移到循环L1外部，则可实现预期效果",
         "D": "删除 cout << endl; 行，则可实现预期效果"
        },
-       "explanation": "",
+       "explanation": "内层 j 从 1 到 i 输出 i*j,每行末 cout<<endl 换行,正好得到所需三角形,当前代码即可,选 A。",
        "difficulty": 2.0
       },
       {
@@ -2998,7 +2998,7 @@
        "stem": "下面C++代码执行后将输出10。（ ）",
        "code": "int cnt = 0;\nfor (int i = 0; i < 10; i++)\nfor (int j = 0; j < i; j++){\ncnt += 1;\nbreak;\n}\ncout << cnt;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。内层 j=0 时就 cnt+1 并 break,只有 i=1..9 各加一次,cnt=9,不是 10(i=0 时内层不执行)。",
        "difficulty": 2.0
       },
       {
@@ -3010,7 +3010,7 @@
        "stem": "下面C++代码执行后，将输出5。（ ）",
        "code": "int cnt = 0;\nfor (int i = 1; i < 5; i++)\nfor (int j = i; j < 5; j +=i)\nif (i * j % 2 == 0)\ncnt += 1;\ncout << cnt;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。逐一代入:i=1 计 2 次、i=2 计 2 次、i=3 计 0 次、i=4 计 1 次,cnt=5。",
        "difficulty": 2.0
       },
       {
@@ -3027,7 +3027,7 @@
         "C": "for (int i = 1; i < 10; ++i)",
         "D": "for (int i = 0; i < 11; ++i)"
        },
-       "explanation": "",
+       "explanation": "++i 与 i++ 用在 for 步进里等价,起止条件也相同,故选 C。",
        "difficulty": 2.0
       },
       {
@@ -3044,7 +3044,7 @@
         "C": "j = i; j < i*2; j++",
         "D": "j = i+1; j < i+i; j++"
        },
-       "explanation": "",
+       "explanation": "第 i 行从 i 开始、连续输出 i 个数(到 2i−1),即 for(j=i; j<i*2; j++),选 C。",
        "difficulty": 2.0
       },
       {
@@ -3056,7 +3056,7 @@
        "stem": "将下面C++代码中的 L3 标记的代码行调整为 for (int i = 0; i < 5; i++) 后输出结果相同。（ ）",
        "code": "int loopCount = 0;\nfor (int i = 1; i < 5; i++) // L3\nfor (int j = 0; j < i; j++)\nloopCount += 1;\ncout << loopCount;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。原 i=1..4 内层各执行 i 次,和为 1+2+3+4=10;改成 i=0..4 只多了 i=0(执行 0 次),结果仍是 10。",
        "difficulty": 2.0
       },
       {
@@ -3073,7 +3073,7 @@
         "C": "001012012301234",
         "D": "01012012301234012345"
        },
-       "explanation": "",
+       "explanation": "内层 j 从 0 到 i−1。i=0 不输出,i=1 输出 0,i=2 输出 01,i=3 输出 012,i=4 输出 0123,拼起来是 0010120123,选 A。",
        "difficulty": 2.0
       },
       {
@@ -3090,7 +3090,7 @@
         "C": "将 Lie * Hang > 9 修改为 Lie * Hang >= 10 效果相同",
         "D": "将 Lie * Hang > 9 修改为 Hang * Lie > 9 效果相同"
        },
-       "explanation": "",
+       "explanation": "问错误说法。换行 printf(\"\\n\") 的位置决定每行何时结束,把它从 L1 移到 L2 会改变换行时机、打乱乘法表布局,效果并不相同,故 A 错误。",
        "difficulty": 2.0
       },
       {
@@ -3107,7 +3107,7 @@
         "C": "1 height - i 2 2 * i + 1",
         "D": "1 height - i - 1 2 2 * i + 1"
        },
-       "explanation": "",
+       "explanation": "金字塔第 i 行(从 0 计):前导空格 height−i−1 个、星号 2*i+1 个(第 0 行 1 颗、第 4 行 9 颗)。对应 D。",
        "difficulty": 2.0
       },
       {
@@ -3119,7 +3119,7 @@
        "stem": "下面的C++代码执行后将输出18行“OK”。（ ）",
        "code": "int i,j;\nfor (i = 8; i > 2; i-=2)\nfor (j =0; j < i; j++)\nprintf(\"OK\\n\");",
        "options": {},
-       "explanation": "",
+       "explanation": "对。外层 i=8、6、4,内层各执行 i 次,共 8+6+4=18 行 OK。",
        "difficulty": 2.0
       },
       {
@@ -3131,7 +3131,7 @@
        "stem": "下面两段C++代码都是用于求1-10的和，其运行结果相同。通常说来，for循环都可以用while循环实现。（ ）",
        "code": "int tnt;\nint i;\ntnt = 0;\nfor (i = 1; i < 10 + 1; i++)\ntnt += i;\ncout << tnt << endl;\nint tnt;\nint i;\ntnt = 0;\ni = 1;\nwhile (i <= 10){\ntnt += i;\ni += 1;\n}\ncout << tnt << endl;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。两段分别用 for 和 while 求 1~10 的和,结果都是 55;一般来说 for 循环都能改写成等价的 while 循环。",
        "difficulty": 2.0
       },
       {
@@ -3148,7 +3148,7 @@
         "C": "0-0-1-0-1-2-0-1-2-3-",
         "D": "0-0-1-0-1-2-0-1-2-3"
        },
-       "explanation": "",
+       "explanation": "内层 j 从 i 递减到 1。i=0 不输出,i=1 输出 1-,i=2 输出 2-1-,i=3 输出 3-2-1-,i=4 输出 4-3-2-1-,拼成 1-2-1-3-2-1-4-3-2-1-,选 A。",
        "difficulty": 2.0
       },
       {
@@ -3160,7 +3160,7 @@
        "stem": "下面的C++代码执行后将输出10行\"OK\"。（ ）",
        "code": "for (int i = 0; i < 5; i++)\nfor(int j = 0; j < i; j++)\nprintf(\"OK\\n\");",
        "options": {},
-       "explanation": "",
+       "explanation": "对。内层 j 从 0 到 i−1,i=0..4 分别执行 0、1、2、3、4 次,共 10 行 OK。",
        "difficulty": 2.0
       },
       {
@@ -3172,7 +3172,7 @@
        "stem": "将下面C++代码中的for循环中的 i = 1 调整为 i = 0 的输出结果相同。（ ）",
        "code": "int tnt = 0;\nfor (int i = 1; i < 5; i++) // i=1\ntnt += i;\ncout << tnt;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。i=1..4 累加得 1+2+3+4=10;改成 i=0..4 只多加了 0,结果仍是 10。",
        "difficulty": 2.0
       },
       {
@@ -3184,7 +3184,7 @@
        "stem": "下面C++代码执行后将输出 0123 。（ ）",
        "code": "for (i = 0; i < 5; i++)\nfor (i = 0; i < i; i++)\ncontinue;\nprintf(\"%d\\n\", i);",
        "options": {},
-       "explanation": "",
+       "explanation": "错。内层 for 复用了外层的循环变量 i:内层把 i 重置为 0、判 0<0 立即退出,外层又 i++ 变 1……i 在 0 和 1 之间反复,陷入死循环,根本不会输出 0123。",
        "difficulty": 2.0
       },
       {
@@ -3201,7 +3201,7 @@
         "C": "12",
         "D": "3"
        },
-       "explanation": "",
+       "explanation": "内层奇数积就 break。各 i 的内层都停在 j=1;外层结束后 i=12、j=1,输出 i*j=12,选 C。",
        "difficulty": 2.0
       },
       {
@@ -3218,7 +3218,7 @@
         "C": "0#0-1#0-1#1-2#0-2#1-2#2-END",
         "D": "1#0-2#0-2#1-END"
        },
-       "explanation": "",
+       "explanation": "内层 j<i:i=0 无,i=1 输出 1#0-,i=2 输出 2#0-2#1-,最后再 END。结果 1#0-2#0-2#1-END,选 D。",
        "difficulty": 2.0
       },
       {
@@ -3235,7 +3235,7 @@
         "C": "将代码 now_number == 10 调整为 now_number > 9 效果维持不变",
         "D": "将最后一行的 cout << endl 修改为 cout << \"\\n\" ，效果维持不变"
        },
-       "explanation": "",
+       "explanation": "问错误说法。A 错:now_number=0 是连续编号的起点,移到每行循环内部会每行都从 0 重来、破坏连续编号。B(等价写法)、C(==10 与 >9 在逐 1 递增时等价)、D(endl 与 \"\\n\")都不影响。",
        "difficulty": 2.0
       },
       {
@@ -3247,7 +3247,7 @@
        "stem": "为实现如下效果，即N行N列字符。当输入是奇数时，中间列为 * ，其他是-；当输入是偶数时，则中间两 列是 * ，其他是-。字符阵列后的代码能实现其效果。（ ）",
        "code": "/*\n5\n--*--\n--*--\n--*--\n--*--\n--*--\n*/\nint N;\ncin >> N;\nint i,j;\nfor (i = 0; i < N; i++){\nfor (j = 0; j < N; j++)\nif ((j == N / 2) || (j == (N-1) / 2))\ncout << \"*\";\nelse\ncout << \"-\";\ncout << endl;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。中间列用 j==N/2(奇数时即正中),偶数时再加 j==(N−1)/2,正好覆盖中间一或两列,其余输出 -,代码能实现。",
        "difficulty": 2.0
       },
       {
@@ -3264,7 +3264,7 @@
         "C": "55",
         "D": "45"
        },
-       "explanation": "",
+       "explanation": "内层 for(j=0;j<i;j++) 只在 i>0 时执行 i 次,i≤0 时一次都不执行。故 cnt=1+2+…+9=45,选 D。",
        "difficulty": 2.0
       },
       {
@@ -3281,7 +3281,7 @@
         "C": "不确定",
         "D": "输出 无"
        },
-       "explanation": "",
+       "explanation": "外层只处理奇数 i(偶数 continue 跳过)。i 为奇数时 i*j 的奇偶取决于 j,故 j=1 时 i*j 为奇就 break,内层停在 j=1。循环结束后 i=12、j=1,i≥12 成立,输出 i*j=12×1=12,选 B。",
        "difficulty": 2.0
       },
       {
@@ -3298,7 +3298,7 @@
         "C": "1 N 2 i",
         "D": "1 N - i 2 i + 1"
        },
-       "explanation": "",
+       "explanation": "第 i 行需要 (N−i) 个前导空格,再输出 i 个连续数字(数字在 1~9 间循环)。对照选项,只有 A 的边界能让空格数随行递减、数字个数随行递增,故选 A。",
        "difficulty": 2.0
       },
       {
@@ -3310,7 +3310,7 @@
        "stem": "下面的C++不能实现如下输出，但如果将L1标记的 cout << 0 行移动 if 块外面，或者说移动到 L2 标记 行，则可以。（ ）",
        "code": "请输入矩阵大小n: 9\n100000000\n020000000\n003000000\n000400000\n000050000\n000006000\n000000700\n000000080\n000000009\nint n, i, j;\ncout << \"请输入矩阵大小n: \";\ncin >> n;\nfor (i = 0; i < n; i++){\nfor (j = 0; j < n; j++){\nif (i == j){\ncout << i + 1;\ncontinue;\ncout << 0; // L1\n}\n// L2\n}\nprintf(\"\\n\");\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。对角线应输出 i+1、其余输出 0;当前 0 的输出位置不对(被对角线分支的 continue 关系影响),把 cout<<0 移到 L2(if 块外)后,每个非对角元素都会输出 0,即可得到正确图形。",
        "difficulty": 2.0
       },
       {
@@ -3327,7 +3327,7 @@
         "C": "_tnt_ 不可以是变量名，因为最后一个字符容易与减号混淆。",
         "D": "可以用 printf 作为变量名，因为 printf 是关键字，但这不是好习惯，因为 printf 有约定的功能与含 义。"
        },
-       "explanation": "",
+       "explanation": "A 正确:for 是关键字,不能作变量名。B 错(下划线可作首字符)、C 错(_tnt_ 合法)、D 错(printf 是函数名不是关键字)。",
        "difficulty": 2.0
       },
       {
@@ -3344,7 +3344,7 @@
         "C": "45",
         "D": "25"
        },
-       "explanation": "",
+       "explanation": "外层 i=1、3、5、7、9,内层各执行 i 次,cnt=1+3+5+7+9=25,选 D。",
        "difficulty": 2.0
       },
       {
@@ -3361,7 +3361,7 @@
         "C": "0",
         "D": "0 11"
        },
-       "explanation": "",
+       "explanation": "奇数 i 的内层 j=0 时 i*0%2==0 立即 break,j 始终为 0,if(j>=i) 永不成立、循环内不输出。循环后 i=12、j=0,i≥12 成立输出 12*0=0,选 C。",
        "difficulty": 2.0
       },
       {
@@ -3378,7 +3378,7 @@
         "C": "1 int i = 0; 2 while (true){ 3 cout << i; 4 i += 1; 5 if (i >= 10) 6 break; 7 }",
         "D": "1 int i = 0; 2 while (true){ 3 if (i >= 10) 4 break; 5 cout << i; 6 i += 1; 7 }"
        },
-       "explanation": "",
+       "explanation": "原代码输出 0123456789。B 是先 i+=1 再打印,输出 12345678910,与原效果不一致,故选 B。A/C/D 都输出 0~9。",
        "difficulty": 2.0
       },
       {
@@ -3395,7 +3395,7 @@
         "C": "14",
         "D": "20"
        },
-       "explanation": "",
+       "explanation": "内层 j 从 i 到 3,执行 (4−i) 次(i≥4 时 0 次)。i=0..4 累加 4+3+2+1+0=10,选 B。",
        "difficulty": 2.0
       },
       {
@@ -3412,7 +3412,7 @@
         "C": "1 * 2 ** 3 *** 4 **** 5 *****",
         "D": "1 * 2 ** 3 *** 4 **** 5 *****"
        },
-       "explanation": "",
+       "explanation": "n=5,第 i 行空格 n−i−1 个、星号 2*i+1 个,得到居中金字塔:*、***、*****、*******、*********,选 B。",
        "difficulty": 2.0
       },
       {
@@ -3424,7 +3424,7 @@
        "stem": "下列C++代码 执⾏后将输出 55 。（ ）",
        "code": "int cnt = 0;\nfor (i = 0; i < 10; i++)\nfor (j = i; j < 10; j++)\ncnt += 1;\ncout << cnt;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。内层 j 从 i 到 9 执行 (10−i) 次,i=0..9 累加 10+9+…+1=55。",
        "difficulty": 2.0
       },
       {
@@ -3436,7 +3436,7 @@
        "stem": "下 C++代码执 后输出如下，因为代码 printf(\"\\n\") 没有任何可读内容，删除不影响输出效果。（ 面 行 ）",
        "code": "1 2 3 4 5 6 7 8 9\n2 4 6 8 10 12 14 16 18\n3 6 9 12 15 18 21 24 27\n4 8 12 16 20 24 28 32 36\n5 10 15 20 25 30 35 40 45\n6 12 18 24 30 36 42 48 54\n7 14 21 28 35 42 49 56 63\n8 16 24 32 40 48 56 64 72\n9 18 27 36 45 54 63 72 81\nfor (int i = 1; i < 10; i++) {\nfor(int j = 1; j < 10; j++)\nprintf(\"%3d\", i * j);\nprintf(\"\\n\");\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。printf(\"\\n\") 负责每行换行,删除后整张乘法表会挤成一行,输出效果改变。",
        "difficulty": 2.0
       },
       {
@@ -3453,7 +3453,7 @@
         "C": "10#10",
         "D": "10"
        },
-       "explanation": "",
+       "explanation": "tnt 累计内层次数:i=0 后 tnt=0 打印 0#,i=1 后 1#,i=2 后 3#,i=3 后 6#,i=4 后 10#;末尾再输出 tnt=10。结果 0#1#3#6#10#10,选 A。",
        "difficulty": 2.0
       },
       {
@@ -3470,7 +3470,7 @@
         "C": "0#",
         "D": "1#"
        },
-       "explanation": "",
+       "explanation": "break 在外层循环体内(内层之后)。第一轮 i=1:内层输出 0#,随即 break 跳出外层。i=1,if(i>=5) 不成立。输出 0#,选 C。",
        "difficulty": 2.0
       },
       {
@@ -3487,7 +3487,7 @@
         "C": "6",
         "D": "8"
        },
-       "explanation": "",
+       "explanation": "i=1:j=1、2 计数,j=3 continue,j=4 计数→+3;i=2:j=1 即 i==2 break→+0;i=3:同 i=1→+3。count=6,选 C。",
        "difficulty": 2.0
       },
       {
@@ -3504,7 +3504,7 @@
         "C": "1 for (i = 0; i < 6; i++) 2 cout << i;",
         "D": "1 for (i = 1; i < 6; i++) 2 cout << i;"
        },
-       "explanation": "",
+       "explanation": "while 输出 0、1、2、3、4(0~4)。A 的 for(i=0;i<5;i++) 输出相同的 01234,选 A。",
        "difficulty": 2.0
       },
       {
@@ -3521,7 +3521,7 @@
         "C": "20",
         "D": "30"
        },
-       "explanation": "",
+       "explanation": "内层执行前 i 被改成 −i,循环 j 从 −i 到 −i−1 共 2|i| 次,之后 i 又改回。i=0..4 累加 0+2+4+6+8=20,选 C。",
        "difficulty": 2.0
       },
       {
@@ -3538,7 +3538,7 @@
         "C": "1 1 2 21 3 321 4 4321",
         "D": "1 4 2 34 3 234 4 1234"
        },
-       "explanation": "",
+       "explanation": "第 i 行输出 1 到 i:i=1 为 1,i=2 为 12,i=3 为 123,i=4 为 1234,选 A。",
        "difficulty": 2.0
       },
       {
@@ -3550,7 +3550,7 @@
        "stem": "下面的 C++ 代码段用于计算1到N之间且包含N的所有数字中含有的3的个数，如1到40含有14个3, 而1到20则 只含有2个3。如果将 while (i != 0) 改为 while (abs(i)) ，则执行结果相同。( )",
        "code": "cout << \"请输入正整数N：\";\ncin >> N;\ncnt = 0; // 保存3的个数\nfor (k = 1; k < N + 1; k++){\ni = k;\nwhile (i != 0){\nif (i % 10 == 3)\ncnt += 1;\ni /= 10;\n}\n}\ncout << cnt;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。k 从 1 到 N 都是正数,过程中 i=k 及 i/=10 始终非负,故 while(i!=0) 与 while(abs(i)) 等价。",
        "difficulty": 2.0
       },
       {
@@ -3562,7 +3562,7 @@
        "stem": "下面的 C++ 代码段执行将不会有输出，因为内层循环 j 总是 0 开始， i * j % 10 == 0 将会被满足，执 行 break ，故而 i 小于 10 ，不会满足 if 判断条件。（ ）",
        "code": "for (i = 1; i < 10; i++)\nfor (j = 0; j < i; j++)\nif (i * j % 10 == 0)\nbreak;\nif(i >= 10)\ncout << (i*j);",
        "options": {},
-       "explanation": "",
+       "explanation": "错。内层 j=0 时 i*0%10==0 立即 break,但 break 只跳内层;外层跑完后 i=10、j=0,if(i>=10) 成立,会输出 10*0=0,并非没有输出。",
        "difficulty": 2.0
       },
       {
@@ -3574,7 +3574,7 @@
        "stem": "下列 C++ 代码执行后将输出 1#4#9#16#16 。（ ）",
        "code": "cnt = 0;\nfor (i = 1; i < 5; i++){\nfor (j = 1; j < i + 1; j++)\nif (i * j % 10 == 0)\nbreak;\nif (j >= i + 1)\ncout << (i * j) << \"#\";\n}\nif(i >= 5)\ncout << (i * j);",
        "options": {},
-       "explanation": "",
+       "explanation": "错。内层正常结束后 j=i+1,故 cout 的 i*j=i*(i+1) 不是 i²;第一项就是 1*2=2 而非 1,输出并不是 1#4#9#16#16。",
        "difficulty": 2.0
       },
       {
@@ -3586,7 +3586,7 @@
        "stem": "下面 C++ 代码执行后输出如左图所示，将 \" %d\" 修改为 \"%3d\" 即可实现右图输出。（ ）",
        "code": "/*\n// 左图                           // 右图\n1 2 3 4 5 6 7 8 9                 1  2  3    4    5    6    7    8    9\n2 4 6 8 10 12 14 16 18            2  4  6    8   10   12   14   16   18\n3 6 9 12 15 18 21 24 27           3  6  9   12   15   18   21   24   27\n4 8 12 16 20 24 28 32 36          4  8 12   16   20   24   28   32   36\n5 10 15 20 25 30 35 40 45         5 10 15   20   25   30   35   40   45\n6 12 18 24 30 36 42 48 54         6 12 18   24   30   36   42   48   54\n7 14 21 28 35 42 49 56 63         7 14 21   28   35   42   49   56   63\n8 16 24 32 40 48 56 64 72         8 16 24   32   40   48   56   64   72\n9 18 27 36 45 54 63 72 81         9 18 27   36   45   54   63   72   81\n*/\nfor (i = 1; i < 10; i++){\nfor (j = 1; j < 10; j++)\nprintf(\" %d\", i*j);\nprintf(\"\\n\");\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。\" %d\" 改成 \"%3d\" 会把每个数字按宽度 3 右对齐输出,正好实现右图的整齐对齐效果。",
        "difficulty": 2.0
       }
      ]
@@ -3622,7 +3622,7 @@
         "C": "exit",
         "D": "return"
        },
-       "explanation": "",
+       "explanation": "判断质数时,一旦发现能整除的因子即可断定非质数,用 break 跳出循环,选 A。",
        "difficulty": 2.0
       },
       {
@@ -3639,7 +3639,7 @@
         "C": "删除第5行 break ，将能正确判断N是否质数。",
         "D": "代码存在漏洞，边界存在问题，应将第2行和第7行的 N / 2 改为 N / 2 + 1 。"
        },
-       "explanation": "",
+       "explanation": "循环上界 i<N/2 存在边界漏洞:如 N=4 时 N/2=2,循环不执行就判成质数。应把第 2、7 行的 N/2 改为 N/2+1,选 D。",
        "difficulty": 2.0
       },
       {
@@ -3656,7 +3656,7 @@
         "C": "10 * a + n / 10",
         "D": "a + n / 10"
        },
-       "explanation": "",
+       "explanation": "构造逆序数:a=10*a+n%10 每轮把末位接到结果后面,最后与原数比较。故选 A。",
        "difficulty": 2.0
       },
       {
@@ -3673,7 +3673,7 @@
         "C": "执行上面代码第一次输入0，最后将输出0",
         "D": "执行上面代码将陷入死循环，可将 while (N) 改为 while (N==0)"
        },
-       "explanation": "",
+       "explanation": "问错误说法。while(N) 在输入 0 时正常结束、能正确求和,代码并无死循环。D 说会死循环并要改 while(N==0),错误,故选 D。",
        "difficulty": 2.0
       },
       {
@@ -3690,7 +3690,7 @@
         "C": "如果输入大于等于0的整数，上面代码能正确判断N是否质数",
         "D": "如将 Flag = true 修改为 Flag = N>=2? true:false 则能判断所有整数包括负整数、0、正整数是否为质 数"
        },
-       "explanation": "",
+       "explanation": "问正确说法。原代码对 0、1、负数会误判为质数。D 把 Flag 初值改为 N>=2?true:false,使 N<2 直接判为非质数,从而对所有整数都正确,选 D。",
        "difficulty": 2.0
       },
       {
@@ -3707,7 +3707,7 @@
         "C": "num / i",
         "D": "num / i == 0"
        },
-       "explanation": "",
+       "explanation": "质数判断:若 num 能被某个 i 整除(num%i==0)则非质数,输出 NO 并 break。故填 num%i==0,选 B。",
        "difficulty": 2.0
       },
       {
@@ -3724,7 +3724,7 @@
         "C": "1 nowNum *= i; 2 tnt = nowNum + tnt;",
         "D": "1 nowNum = nowNum + i; 2 tnt *= nowNum;"
        },
-       "explanation": "",
+       "explanation": "① 由上一个阶乘乘 i 得当前阶乘,② 把当前阶乘累加到和。D 把 nowNum *= i 写成 nowNum + i(变成加法,不是阶乘)、把累加写成 tnt *= nowNum(变成连乘),都错,故选 D。",
        "difficulty": 2.0
       },
       {
@@ -3741,7 +3741,7 @@
         "C": "实现1因为应用了前项计算结果，计算量更小，因此效率高",
         "D": "两种实现，效率几乎一致"
        },
-       "explanation": "",
+       "explanation": "实现1 用 last*=i 复用上一个阶乘(O(N)),实现2 每次都从头重算阶乘(O(N²))。所以实现1计算量更小、效率更高,选 C。",
        "difficulty": 2.0
       },
       {
@@ -3758,7 +3758,7 @@
         "C": "即便将外层循环中i的上界1000修改为很大的整数，也不能说从数学上证明了哥德巴赫猜想",
         "D": "根据题意，break语句应该移到if语句块之外"
        },
-       "explanation": "",
+       "explanation": "问错误说法。D 错:break 必须留在 if 块内——只有“找到一组分解”才跳出;若移到 if 外,内层每次 j=2 就 break,无法继续尝试。A(==true 等价)、B(小数在前)、C(再大的上界也不算数学证明)都对。",
        "difficulty": 2.0
       },
       {
@@ -3770,7 +3770,7 @@
        "stem": "将下面C++代码中的 (int i = 5; i > 1; i--) 调整为 (int i = 1; i < 5; i++) 输出结果相同，因为5到1 与1到5的求和相同。（ ）",
        "code": "int tnt;\ntnt = 0;\nfor (int i = 5; i > 1; i--)\ntnt += i;\ncout << tnt;\ncout << endl;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。i=5 递减到 2(i>1)求和=5+4+3+2=14;改成 1 到 4 求和=10,两者并不相等。",
        "difficulty": 2.0
       },
       {
@@ -3782,7 +3782,7 @@
        "stem": "下列C++代码用于求斐波那契数列，即第1个数0，第2个数1，从第三个数开始，是前两个数之和。如果输入 的值为大于1的正整数，该代码能实现。（ ）",
        "code": "cin >> n;\na = 0, b = 1;\nfor (int j = 0; j < n; j++){\ncout << a << \" \";\nb = b + a;\na = b - a;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。a=0、b=1,每轮先打印 a,再用 b=b+a、a=b−a 滚动更新,依次输出 0 1 1 2 3 5…,正是斐波那契数列(n>1 时成立)。",
        "difficulty": 2.0
       }
      ]
@@ -3927,7 +3927,7 @@
         "C": "调试",
         "D": "编译"
        },
-       "explanation": "",
+       "explanation": "高级语言写的源程序要经过编译,才能翻译成可在计算机上运行的可执行代码,故选 D。",
        "difficulty": 2.0
       },
       {
@@ -3944,7 +3944,7 @@
         "C": "double",
         "D": "sqrt"
        },
-       "explanation": "",
+       "explanation": "double 是 C++ 关键字,选 C。main、max、sqrt 都不是关键字(是标识符/函数名)。",
        "difficulty": 2.0
       },
       {
@@ -3961,7 +3961,7 @@
         "C": "i <= 8",
         "D": "i >= 18"
        },
-       "explanation": "",
+       "explanation": "要让 1~20 中满足条件的 i 之和为 42。20%i==0 即 i 是 20 的因子:1+2+4+5+10+20=42,选 B。",
        "difficulty": 2.0
       },
       {
@@ -3978,7 +3978,7 @@
         "C": "C",
         "D": "D"
        },
-       "explanation": "",
+       "explanation": "逐一代入 x=A/B/C/D 计算 (x!='A')+(x=='C')+(x=='D')+(x!='D'):只有 x='C' 时为 1+1+0+1=3,故只输出 C,选 C。",
        "difficulty": 2.0
       },
       {
@@ -3990,7 +3990,7 @@
        "stem": "在 C++语言中，标识符中可以有下划线‘_’。同时，‘_’也是 C++语言的运 算符。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。下划线 _ 可以出现在标识符中,但 _ 不是 C++ 的运算符。",
        "difficulty": 2.0
       },
       {
@@ -4002,7 +4002,7 @@
        "stem": "在 if 语句中，如果条件成立时需要执行多条语句，可以使用大括号‘{’和 ‘}’将这些语句括起来。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。if 条件成立时要执行多条语句,可用大括号 { } 把它们括成一个语句块。",
        "difficulty": 2.0
       },
       {
@@ -4019,7 +4019,7 @@
         "C": "晶体管",
         "D": "电子管"
        },
-       "explanation": "",
+       "explanation": "我国第一台大型通用电子计算机属于第一代,使用的逻辑部件是电子管,故选 D。",
        "difficulty": 2.0
       },
       {
@@ -4036,7 +4036,7 @@
         "C": "5 5",
         "D": "12 12"
        },
-       "explanation": "",
+       "explanation": "按流程图依次赋值/交换后,两个变量分别为 12 和 5,输出 12 5,故选 B。",
        "difficulty": 2.0
       },
       {
@@ -4053,7 +4053,7 @@
         "C": "int i = N; i > 0; i--",
         "D": "int i = N; i > 1; i--"
        },
-       "explanation": "",
+       "explanation": "从大到小输出 N 的所有因子,需 i 从 N 递减到 1,逐个判断能否整除。故填 int i=N; i>0; i--,选 C。(i>1 会漏掉因子 1。)",
        "difficulty": 2.0
       },
       {
@@ -4070,7 +4070,7 @@
         "C": "i >= j",
         "D": "i == j"
        },
-       "explanation": "",
+       "explanation": "对角线即行号等于列号,填 i==j,选 D。",
        "difficulty": 2.0
       },
       {
@@ -4087,7 +4087,7 @@
         "C": "1#1#1#1#1#1",
         "D": "1#1#1#1#1#1#0"
        },
-       "explanation": "",
+       "explanation": "N=9,i 从 2 到 8:9%i 非零(不整除)就打印 1#,即 i=2、4、5、6、7、8 共 6 个 1#,最后输出 0。结果 1#1#1#1#1#1#0,选 D。",
        "difficulty": 2.0
       },
       {
@@ -4104,7 +4104,7 @@
         "C": "35",
         "D": "36"
        },
-       "explanation": "",
+       "explanation": "内层 j 从 1 到 i−1、步长 2,执行 ⌊i/2⌋ 次。i=1..8 累加 0+1+1+2+2+3+3+4=16,选 A。",
        "difficulty": 2.0
       },
       {
@@ -4121,7 +4121,7 @@
         "C": "15",
         "D": "没有输出"
        },
-       "explanation": "",
+       "explanation": "i=1、4、7、10。i=1 内层不执行;i=4 时 j=1 即 4 为偶 break;i=7 时 7*1、7*3、7*5 都为奇,cnt 累加 3 次;i=10 时 j=1 即偶 break。cnt=3,选 B。",
        "difficulty": 2.0
       },
       {
@@ -4138,7 +4138,7 @@
         "C": "3,6,9,10",
         "D": "1,5,7,11,13,15"
        },
-       "explanation": "",
+       "explanation": "x 始终为奇数:x=3 输出 3,、x=9 输出 9,;x=11 时 x%3≠0 且 x/10=1 触发 break;最后输出 x=11。结果 3,9,11,选 B。",
        "difficulty": 2.0
       },
       {
@@ -4155,7 +4155,7 @@
         "C": "lineCount - i - 1",
         "D": "lineCount - i"
        },
-       "explanation": "",
+       "explanation": "该图形第 i 行的前导空格数为 (lineCount−i−1)*2,故选 A。",
        "difficulty": 2.0
       },
       {
@@ -4172,7 +4172,7 @@
         "C": "True",
         "D": "False"
        },
-       "explanation": "",
+       "explanation": "连续输入直到负数停止,用 while(true) 配合 break 实现。故横线处填 true,选 A。",
        "difficulty": 2.0
       },
       {
@@ -4184,7 +4184,7 @@
        "stem": "神威·太湖之光超级计算机是中国自主研制的超级计算机，在全球超级计算机TOP500排行榜中多次荣膺榜 首。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。神威·太湖之光是我国自主研制的超级计算机,曾多次位居全球 TOP500 榜首。",
        "difficulty": 2.0
       },
       {
@@ -4196,7 +4196,7 @@
        "stem": "下面C++代码执行后的输出为 10 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。循环体内 i 既 +=1 又 i++,每轮加 2,只执行 i=1、3、5、7、9 共 5 次,cnt=5,不是 10。",
        "difficulty": 2.0
       },
       {
@@ -4208,7 +4208,7 @@
        "stem": "执行以下C++代码后的输出为 0 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。i 从 −100 到 98(步长 2)。−98 到 98 对称相消为 0,只剩未配对的 −100,故 rst=−100,不是 0。",
        "difficulty": 2.0
       },
       {
@@ -4220,7 +4220,7 @@
        "stem": "执行以下C++代码后的输出为 30 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。i=0、2、4、6、8,rst=0+2+4+6+8=20,不是 30。",
        "difficulty": 2.0
       },
       {
@@ -4232,7 +4232,7 @@
        "stem": "C++是一种高级程序设计语言。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。C++ 是一种高级程序设计语言。",
        "difficulty": 2.0
       },
       {
@@ -4249,7 +4249,7 @@
         "C": "5Star",
         "D": "Star5"
        },
-       "explanation": "",
+       "explanation": "5Star 以数字开头,不符合标识符“首字符须为字母或下划线”的规则,故选 C。",
        "difficulty": 2.0
       },
       {
@@ -4266,7 +4266,7 @@
         "C": "1#0#",
         "D": "2#3#"
        },
-       "explanation": "",
+       "explanation": "N=4。i=2 时 j=1,2*1 为偶→输出 2#;i=3 时 j=2,3*2 为偶→输出 3#;循环后再输出 0。结果 2#3#0,选 A。",
        "difficulty": 2.0
       },
       {
@@ -4283,7 +4283,7 @@
         "C": "4",
         "D": "4#4"
        },
-       "explanation": "",
+       "explanation": "内层找到 i*j 为偶就 cnt+1 并 break:i=2、4、6、8 各找到一次,cnt=4。循环后 i=10,i≥10 输出 4#,再输出 cnt=4。结果 4#4,选 D。",
        "difficulty": 2.0
       },
       {
@@ -4300,7 +4300,7 @@
         "C": "55",
         "D": "0"
        },
-       "explanation": "",
+       "explanation": "N=100:偶数且非 3 倍数→−20 得 80→60;60 是 3 倍数→−5 得 55;55 为奇数→break。输出 55,选 C。",
        "difficulty": 2.0
       },
       {
@@ -4317,7 +4317,7 @@
         "C": "15,17",
         "D": "1,10,12"
        },
-       "explanation": "",
+       "explanation": "x=1 输出 1,;x=3 经 else x+=5、x+=2 到 10;x=10 输出 10,;x=12 时 x%3==0 且 x/10=1→break。最后输出 x=12。结果 1,10,12,选 D。",
        "difficulty": 2.0
       },
       {
@@ -4334,7 +4334,7 @@
         "C": "20",
         "D": "30"
        },
-       "explanation": "",
+       "explanation": "内层 j 从 0 到 i−1 执行 i 次,i=0..4 累加 0+1+2+3+4=10,选 B。",
        "difficulty": 2.0
       },
       {
@@ -4351,7 +4351,7 @@
         "C": "int(sqrt(i)) * int(sqrt(i)) == i",
         "D": "int(sqrt(i)) = sqrt(i)"
        },
-       "explanation": "",
+       "explanation": "完全平方数判断:对 i 开平方取整再平方,若等于 i 则是完全平方数,即 int(sqrt(i))*int(sqrt(i))==i,选 C。(A/D 用了赋值号 =;B 拿整数与浮点比较不可靠。)",
        "difficulty": 2.0
       },
       {
@@ -4368,7 +4368,7 @@
         "C": "与第7行下面填入一行： cout << nowNum;",
         "D": "与第9行下面填入一行： cout << endl;"
        },
-       "explanation": "",
+       "explanation": "图形每行末尾缺换行。第 9 行的 } 结束内层循环(一行输出完毕),在其后(外层内)加一行 cout<<endl 即可逐行换行,选 D。",
        "difficulty": 2.0
       },
       {
@@ -4385,7 +4385,7 @@
         "C": "油量表",
         "D": "传感器"
        },
-       "explanation": "",
+       "explanation": "选路只需采集语音(麦克风)、感知环境(传感器)、播报结果(扬声器)。油量表与路线选择无关,故选 C。",
        "difficulty": 2.0
       },
       {
@@ -4402,7 +4402,7 @@
         "C": "阿塔纳索夫",
         "D": "埃克特-莫克利"
        },
-       "explanation": "",
+       "explanation": "现代电子计算机普遍基于冯·诺依曼体系结构(存储程序、顺序执行),选 B。",
        "difficulty": 2.0
       },
       {
@@ -4414,7 +4414,7 @@
        "stem": "在C++代码中，执 srand(0) 后连续两次执 rand() 的结果相等。 ( ) 行 行",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。srand(0) 后连续两次 rand() 会返回不同的随机值(序列依次推进)。",
        "difficulty": 2.0
       },
       {
@@ -4426,7 +4426,7 @@
        "stem": "执 以下C++代码后将输出0。（ ） 行",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。i 从 −500 到 499,−499 到 499 对称相消为 0,只剩未配对的 −500,故 Sum=−500,不是 0。",
        "difficulty": 2.0
       },
       {
@@ -4438,7 +4438,7 @@
        "stem": "任何 个 while 循环都可以转化为等价的 for 循环（ ）。 一",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。任何 while 循环都可改写成等价的 for 循环。",
        "difficulty": 2.0
       },
       {
@@ -4455,7 +4455,7 @@
         "C": "不及格",
         "D": "没有输出"
        },
-       "explanation": "",
+       "explanation": "按流程图的分支条件逐步判定,成绩落在“良好”对应的区间,故输出良好,选 B。",
        "difficulty": 2.0
       },
       {
@@ -4472,7 +4472,7 @@
         "C": "_to",
         "D": "Text"
        },
-       "explanation": "",
+       "explanation": "2_from 以数字开头,不符合标识符“首字符必须是字母或下划线”的规则,故选 B。",
        "difficulty": 2.0
       },
       {
@@ -4489,7 +4489,7 @@
         "C": "发明汉字激光照排系统",
         "D": "成立方正公司"
        },
-       "explanation": "",
+       "explanation": "王选先生的重大贡献是发明汉字激光照排系统,故选 C。",
        "difficulty": 2.0
       },
       {
@@ -4501,7 +4501,7 @@
        "stem": "如果有以下C++代码： 那么 cout << t 的结果为 28.5 。",
        "code": "double s;\nint t;\ns = 18.5;\nt = int(s) + 10;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。t 是 int:t=int(18.5)+10=18+10=28,cout<<t 输出整数 28,不是 28.5。",
        "difficulty": 2.0
       },
       {
@@ -4513,7 +4513,7 @@
        "stem": "Xyz ， xYz ， xyZ 是三个不同的变量。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。C++ 标识符区分大小写,Xyz、xYz、xyZ 是三个不同变量。",
        "difficulty": 2.0
       },
       {
@@ -4525,7 +4525,7 @@
        "stem": "cout << (8< 9< 10) 的输出结果为 true 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。8<9<10 实为 (8<9)<10=1<10=1,cout 输出 1(数字),不是单词 true。",
        "difficulty": 2.0
       },
       {
@@ -4537,7 +4537,7 @@
        "stem": "小杨今年春节回奶奶家了，奶奶家的数字电视要设置ip地址并接入到WIFI盒子才能收看节目，那这个WIFI盒 子具有路由器的功能。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。能设置 IP 并接入网络的 WIFI 盒子具备路由器功能。",
        "difficulty": 2.0
       },
       {
@@ -4549,7 +4549,7 @@
        "stem": "任何一个 for 循环都可以转化为等价的 while 循环（ ）。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。任何 for 循环都可改写成等价的 while 循环。",
        "difficulty": 2.0
       },
       {
@@ -4566,7 +4566,7 @@
         "C": "3",
         "D": "4"
        },
-       "explanation": "",
+       "explanation": "GESP 一级可选认证语言有 3 种:C++、Python、图形化(Scratch),故选 C。",
        "difficulty": 2.0
       },
       {
@@ -4583,7 +4583,7 @@
         "C": "(yr%400==0) && (yr%4==0)",
         "D": "(yr%400==0) && (yr%4==0 && yr%100!=0)"
        },
-       "explanation": "",
+       "explanation": "闰年条件:被 400 整除,或者(被 4 整除且不被 100 整除)。即 (yr%400==0)||(yr%4==0 && yr%100!=0),选 B。",
        "difficulty": 2.0
       },
       {
@@ -4600,7 +4600,7 @@
         "C": "fiveStar",
         "D": "_fiveStar"
        },
-       "explanation": "",
+       "explanation": "five-Star 含连字符 -,不是合法标识符,故选 A。其余用下划线、字母、大小写都合法。",
        "difficulty": 2.0
       },
       {
@@ -4617,7 +4617,7 @@
         "C": "true",
         "D": "false"
        },
-       "explanation": "",
+       "explanation": "5%2=1、5%3=2,1 && 2 为真即 1;cout 输出 bool 时显示 1(不是 true),选 A。",
        "difficulty": 2.0
       },
       {
@@ -4634,7 +4634,7 @@
         "C": "第1横线处应填入：N - M5 * 5 / 2 第2横线处应填入：N - M5 * 5 - M2 * 2",
         "D": "第1横线处应填入：(N - M5 * 5) / 2 第2横线处应填入：N - M5 - M2"
        },
-       "explanation": "",
+       "explanation": "先用 5 元:M5=N/5;剩下的钱 (N−M5*5) 用 2 元:M2=(N−M5*5)/2;再剩下用 1 元:M1=N−M5*5−M2*2,选 B。",
        "difficulty": 2.0
       },
       {
@@ -4646,7 +4646,7 @@
        "stem": "C++的整型变量N被赋值为10，则语句 cout << N / 3 << \"-\" << N % 3 执行后输出是3-1。 ( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。N=10:N/3=3、N%3=1,输出 3-1。",
        "difficulty": 2.0
       },
       {
@@ -4658,7 +4658,7 @@
        "stem": "在C++代码中，不可以将变量命名为scanf，因为scanf是C++语言的关键字。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。scanf 是函数名而非 C++ 关键字,可以用作变量名(虽不推荐),不会因此报错。",
        "difficulty": 2.0
       },
       {
@@ -4670,7 +4670,7 @@
        "stem": "GESP测试是对认证者的编程能力进行等级认证，同一级别的能力基本上与编程语言无关。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。GESP 按等级认证编程能力,同一级别的要求基本与具体语言无关。",
        "difficulty": 2.0
       },
       {
@@ -4687,7 +4687,7 @@
         "C": "ccfGesp",
         "D": "_ccfGesp"
        },
-       "explanation": "",
+       "explanation": "ccf-gesp 含连字符 -,不是合法标识符,故选 A。",
        "difficulty": 2.0
       },
       {
@@ -4704,7 +4704,7 @@
         "C": "4",
         "D": "5"
        },
-       "explanation": "",
+       "explanation": "5/2=2(整除)、5%3=2,相加得 4,选 C。",
        "difficulty": 2.0
       },
       {
@@ -4721,7 +4721,7 @@
         "C": "N && 10",
         "D": "以上选项均不正确"
        },
-       "explanation": "",
+       "explanation": "取个位用 N%10,选 A。(N/10 去掉个位、N&&10 是逻辑运算,都不对。)",
        "difficulty": 2.0
       },
       {
@@ -4733,7 +4733,7 @@
        "stem": "小杨最近开始学习C++编程，老师说C++是一门面向对象的编程语言,也是一门高级语言。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。C++ 是面向对象的高级编程语言。",
        "difficulty": 2.0
       },
       {
@@ -4745,7 +4745,7 @@
        "stem": "在C++中， cout << (3, 4, 5) 可以输出 3 4 5 ，且每个输出项之间用空格分开。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。(3,4,5) 是逗号运算符,只取最后一个值,cout 只输出 5,不是 3 4 5。",
        "difficulty": 2.0
       },
       {
@@ -4762,7 +4762,7 @@
         "C": "人工智能",
         "D": "量子理论"
        },
-       "explanation": "",
+       "explanation": "2024 年诺贝尔物理学奖授予 Hopfield 与 Hinton,表彰他们在人工神经网络/机器学习上的奠基性贡献,研究方向是人工智能,故选 C。",
        "difficulty": 2.0
       },
       {
@@ -4779,7 +4779,7 @@
         "C": "Bulk",
         "D": "Bit"
        },
-       "explanation": "",
+       "explanation": "存储基本单位 B 指 Byte(字节),1 字节=8 位。小写 b 才是 bit(位)。照片 3MB 即 3 兆字节,故选 A。",
        "difficulty": 2.0
       },
       {
@@ -4796,7 +4796,7 @@
         "C": "56",
         "D": "2"
        },
-       "explanation": "",
+       "explanation": "按优先级先乘除取余后加减:3%3=0,0*2=0,3+0−1=2,故选 D。",
        "difficulty": 2.0
       },
       {
@@ -4813,7 +4813,7 @@
         "C": "sqrt(a+b+c)",
         "D": "(a+b+c)/2"
        },
-       "explanation": "",
+       "explanation": "要输出 30。C 的 sqrt(10+20+30)=sqrt(60)≈7.75,不是 30,故选 C(不能填入)。A=max=30、B=min(30,30)=30、D=60/2=30 都可以。",
        "difficulty": 2.0
       },
       {
@@ -4825,7 +4825,7 @@
        "stem": "在Windows的资源管理器中为已有文件A建立副本的操作是Ctrl+C，然后Ctrl+V。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。Ctrl+C 复制、Ctrl+V 粘贴,即可为文件建立副本。",
        "difficulty": 2.0
       },
       {
@@ -4837,7 +4837,7 @@
        "stem": "在C++代码中，假设N为正整数，则 cout << (N - N / 10 * 10) 将获得N的个位数。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。N−N/10*10 把 N 去掉个位后再补 0,相减即得个位数(如 123−120=3),等价于 N%10。",
        "difficulty": 2.0
       },
       {
@@ -4849,7 +4849,7 @@
        "stem": "在C++语句 cout << (10 <= N <= 12) 中，假设N为12，则其输出为1。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对(仅就输出值而言)。10<=N<=12 实为 (10<=N)<=12=(真)<=12=1,N=12 时输出 1。",
        "difficulty": 2.0
       },
       {
@@ -4861,7 +4861,7 @@
        "stem": "下面C++代码执行后将输出2*3=6。 ( )",
        "code": "int a = 2, b = 3;\nprintf(\"%%a*%%b=%d\",a*b);",
        "options": {},
-       "explanation": "",
+       "explanation": "错。%% 在 printf 中输出一个字面的 %,所以 \"%%a*%%b=%d\" 实际输出 %a*%b=6(那里的 a、b 是普通文字,不是变量值),而不是 2*3=6。",
        "difficulty": 2.0
       },
       {
@@ -4873,7 +4873,7 @@
        "stem": "C++、Python都是高级编程语言，它们的每条语句最终都要通过机器指令来完成。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。C++、Python 等高级语言写的程序,最终都要翻译成机器指令才能被 CPU 执行。",
        "difficulty": 2.0
       },
       {
@@ -4885,7 +4885,7 @@
        "stem": "在C++代码中，假设N为正整数，则 N - N / 10 * 10 与 N % 10 都将获得N的个位数。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。N−N/10*10 与 N%10 都得到个位数(如 123 都得 3)。",
        "difficulty": 2.0
       },
       {
@@ -4897,7 +4897,7 @@
        "stem": "C++语句 cout << ((10 <= N <= 12)? \"true\":\"false\") 中，假设整型变量N为12，则其输出为 true 。原因是执行 10 <= N 后其值为 true ， true 与 12 相比仍然是 true 。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。(10<=N<=12) 实为 (10<=N)<=12;N=12 时 10<=12 为真(1),1<=12 仍为真,三目输出 true。此处理由描述也正确。",
        "difficulty": 2.0
       },
       {
@@ -4909,7 +4909,7 @@
        "stem": "下面C++执行后将输出 3*2=6 。 ( )",
        "code": "int a=2, b = 3;\na=a-b;\nb=a+b;\na=b-a;\nprintf(\"%d*%d=%d\\n\", a, b, a*b);",
        "options": {},
-       "explanation": "",
+       "explanation": "对。算术交换:a=2−3=−1,b=−1+3=2,a=2−(−1)=3,得 a=3、b=2,输出 3*2=6。",
        "difficulty": 2.0
       },
       {
@@ -4926,7 +4926,7 @@
         "C": "N / 1000 / 100",
         "D": "N % 100 / 100"
        },
-       "explanation": "",
+       "explanation": "取第 3 位:N%1000 留下后三位,再 /100 取出百位。如 1234%1000=234,234/100=2;若不足三位(如 12)结果为 0,故选 A。",
        "difficulty": 2.0
       },
       {
@@ -4938,7 +4938,7 @@
        "stem": "在C++代码中，假设N为正整数，则 N / 10 舍弃个位数。如果 N 小于10，则其值为0，大于10则是舍弃个位 数的数。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。整数除法 N/10 舍去个位:N<10 得 0,N>10 得去掉个位后的数。",
        "difficulty": 2.0
       },
       {
@@ -4950,7 +4950,7 @@
        "stem": "下列C++代码执行后，其输出为 10 20 ，即 a == b 和 b == a 对 a 和 b 的值没有任何影响。( )",
        "code": "int a = 10, b = 20;\na == b;\nb == a;\ncout << (a, b);",
        "options": {},
-       "explanation": "",
+       "explanation": "错。a==b、b==a 只是比较,不改变值;但 cout<<(a,b) 里 (a,b) 是逗号运算符,只输出 b(=20),并非 10 20。说法错误。",
        "difficulty": 2.0
       },
       {
@@ -4967,7 +4967,7 @@
         "C": "智能的单位",
         "D": "大语言模型"
        },
-       "explanation": "",
+       "explanation": "“大模型”是“大语言模型”(LLM)的简称,指用海量文本训练、能理解和生成自然语言的 AI 模型(如 ChatGPT 类)。其余选项都是望文生义的干扰项。",
        "difficulty": 2.0
       },
       {
@@ -4984,7 +4984,7 @@
         "C": "三次",
         "D": "四次"
        },
-       "explanation": "",
+       "explanation": "TCP 建立连接采用“三次握手”:客户端 SYN → 服务器 SYN+ACK → 客户端 ACK,三步确认双方收发能力正常后才正式建立连接,故选 C。",
        "difficulty": 2.0
       },
       {
@@ -4996,7 +4996,7 @@
        "stem": "在集成开发环境 调试程序时，要注意不能修改源程序，因为如果修改，就要终 调试、关闭该 件并重新 里 止 文 打开，才能再次开始调试。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。在集成开发环境里调试时,多数 IDE 允许编辑源码(甚至支持边改边调),并不强制“终止调试、关文件、重开”才能继续。",
        "difficulty": 2.0
       },
       {
@@ -5008,7 +5008,7 @@
        "stem": "在C++代码中，假设N为正整数且 于100，则 N / 100 将舍弃个位和 位，如N为1234则 cout << (N / 大 十 100) 将输出 12 。如果N 于100，则其值为 0 。( ) 小",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。整数除法 N/100 直接舍弃个位和十位:1234/100=12;当 N<100 时商为 0。",
        "difficulty": 2.0
       },
       {
@@ -5020,7 +5020,7 @@
        "stem": "下列C++代码执 后将输出 1 ，因为 a 确实 于 20 和 10。( ) 行 小",
        "code": "a = 5;\ncout << (a < 10 and 20);",
        "options": {},
-       "explanation": "",
+       "explanation": "错在“理由”。a<10 and 20 实为 (a<10) and 20 = 真 and 真 = 1,确实输出 1,但并不是“因为 a 小于 20 和 10”——那个 20 只是个恒真的常量,根本没和 a 比较。理由错误,故判错。",
        "difficulty": 2.0
       },
       {
@@ -5032,7 +5032,7 @@
        "stem": "下 的C++代码中变量都是整型，则执 后将输出 1 。（ ） 面 行",
        "code": "x, y, z = 5, 10, 15;\nresult = x < y < z;\ncout << result;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。x<y<z 等价于 (x<y)<z。(x<y) 的结果只会是 0 或 1,而它们都小于 z(=5),所以无论 x、y 是什么,(0或1)<5 都为真,输出 1。",
        "difficulty": 2.0
       },
       {
@@ -5049,7 +5049,7 @@
         "C": "接收动作指令的遥控器",
         "D": "拍摄其他机器人的摄像头"
        },
-       "explanation": "",
+       "explanation": "预装的 AI 算法程序是软件,不是输入设备。重力传感器、遥控器、摄像头都能采集外界信息属于输入设备,故选 B。",
        "difficulty": 2.0
       },
       {
@@ -5066,7 +5066,7 @@
         "C": "不能用 PI 做变量名，因为要保存圆周率这个常量",
         "D": "将程序中全部 PI 都改写为 Pai ，将能正常执行，不会报错"
        },
-       "explanation": "",
+       "explanation": "变量名区分大小写。D 正确:把所有 PI 一致改名为 Pai 能正常运行。A 错(大小写敏感)、B 错(Pi 未定义)、C 错(PI 可作变量名)。",
        "difficulty": 2.0
       },
       {
@@ -5078,7 +5078,7 @@
        "stem": "下面的 C++ 代码段执行时将报错，因为10是整数类型， a 是布尔类型。由于类型不同，不能进行加法运 算。（ ）",
        "code": "bool a = true;\ncout << (10 + a);",
        "options": {},
-       "explanation": "",
+       "explanation": "错。bool 会隐式转成 int(true=1),10+a=11,能正常输出 11,不会报错。",
        "difficulty": 2.0
       }
      ]

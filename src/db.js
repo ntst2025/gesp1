@@ -203,6 +203,9 @@ const Q = {
   // questions
   questionsBySection: (sid) => all('SELECT * FROM questions WHERE section_id = ? ORDER BY ord', [sid]),
   questionByQid: (qid) => get('SELECT * FROM questions WHERE qid = ?', [qid]),
+  sectionById: (sid) => get('SELECT * FROM sections WHERE id = ?', [sid]),
+  questionsByLevelPaper: (lv, paper) => all("SELECT qid, type, num FROM questions WHERE level = ? AND paper = ? ORDER BY (type='tf'), num", [lv, paper]),
+  allQuestionRefs: () => all('SELECT qid, level, paper, type, num FROM questions ORDER BY level, paper, (type=\'tf\'), num'),
   randomByLevel: (lv, n) => all('SELECT * FROM questions WHERE level = ? ORDER BY RANDOM() LIMIT ?', [lv, n]),
   randomBySection: (sid, n) => all('SELECT * FROM questions WHERE section_id = ? ORDER BY RANDOM() LIMIT ?', [sid, n]),
   randomByChapter: (cid, n) => all('SELECT * FROM questions WHERE chapter_id = ? ORDER BY RANDOM() LIMIT ?', [cid, n]),

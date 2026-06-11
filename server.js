@@ -4,6 +4,9 @@ const express = require('express');
 const cors = require('cors');
 const { Q, initDb, questionsByQids, shapeQuestion, deleteUserCascade, adminStats } = require('./src/db');
 const { register, login, authRequired, signAdminToken, adminRequired } = require('./src/auth');
+const { renderQuestionPage } = require('./src/ssr');
+let TRAPS = null;
+try { TRAPS = require('./data/traps.json'); } catch (e) { TRAPS = { categories: [] }; }
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -41,6 +44,9 @@ app.get('/api/levels', authRequired, wrap(async (req, res) => {
 }));
 
 /* ===== 题库目录(按级别) ===== */
+// 陷阱通关手册(公开,免费一级内容)
+app.get('/api/traps', (req, res) => { res.json(TRAPS || { categories: [] }); });
+
 app.get('/api/catalog', authRequired, wrap(async (req, res) => {
   const lv = LV(req);
   const [level, chapters, sections, chAgg, secAgg, papers] = await Promise.all([
@@ -176,7 +182,7 @@ function vipActive(u) {
   if (!u.vip_until) return true;            // 永久 VIP
   return new Date(u.vip_until).getTime() > Date.now();
 }
-// 免费用户:一级解析全开;六级及以上解析为 VIP 专享(题目与答案仍可见)
+// 免费用户:仅一级解析免费(引流);二级及以上解析为 VIP 专享(题目与答案仍对所有人可见)
 function expLocked(level, user) { return !vipActive(user) && Number(level) !== 1; }
 function streakOf(dateRows) {
   const set = new Set(dateRows.map(r => r.d));
@@ -427,14 +433,39 @@ app.post('/api/admin/codes/:code/disable', adminRequired, wrap(async (req, res) 
 
 /* ===== SEO + 法务页(干净 URL) ===== */
 function siteBase(req){ const proto=(req.headers['x-forwarded-proto']||req.protocol||'https').split(',')[0]; return proto+'://'+req.headers.host; }
-app.get('/sitemap.xml',(req,res)=>{
-  const b=siteBase(req);
-  const urls=['/','/app?level=1','/app?level=2','/app?level=3','/app?level=4','/app?level=5','/app?level=6','/app?level=7','/app?level=8','/about','/terms','/privacy'];
-  const xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+
-    urls.map(u=>`  <url><loc>${b}${u.replace(/&/g,'&amp;')}</loc></url>`).join('\n')+'\n</urlset>';
+
+// 服务端渲染单题页(免登录、可被百度/大模型抓取);分层与 App 一致(复用 expLocked)
+app.get('/q/:qid', wrap(async (req, res) => {
+  const qid = String(req.params.qid || '');
+  const q = await Q.questionByQid(qid);
+  if (!q) {
+    res.status(404).type('text/html; charset=utf-8').send(
+      `<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>题目未找到 | GESPPASS</title><body style="font-family:sans-serif;max-width:560px;margin:60px auto;text-align:center;color:#13182e"><h1 style="color:#ef3b57">GESPPASS</h1><p>没有找到这道题。</p><p><a href="/" style="color:#185fa5">返回首页</a></p></body></html>`);
+    return;
+  }
+  const [section, sib] = await Promise.all([
+    q.section_id ? Q.sectionById(q.section_id) : null,
+    Q.questionsByLevelPaper(q.level, q.paper),
+  ]);
+  let prev = null, next = null;
+  const idx = sib.findIndex(r => r.qid === qid);
+  if (idx >= 0) { prev = sib[idx - 1] || null; next = sib[idx + 1] || null; }
+  const expFree = !expLocked(q.level, null);
+  const html = renderQuestionPage({ q, section, prev, next, base: siteBase(req), expFree, baiduPush: !!process.env.BAIDU_PUSH });
+  res.set('Cache-Control', 'public, max-age=3600').type('text/html; charset=utf-8').send(html);
+}));
+
+app.get('/sitemap.xml', wrap(async (req, res) => {
+  const b = siteBase(req);
+  const statics = ['/', '/app?level=1', '/app?level=2', '/app?level=3', '/app?level=4', '/app?level=5', '/app?level=6', '/app?level=7', '/app?level=8', '/about', '/terms', '/privacy'];
+  let refs = [];
+  try { refs = await Q.allQuestionRefs(); } catch (e) { refs = []; }
+  const locs = statics.map(u => b + u.replace(/&/g, '&amp;')).concat(refs.map(r => `${b}/q/${r.qid}`));
+  const xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    + locs.map(u => `  <url><loc>${u}</loc></url>`).join('\n') + '\n</urlset>';
   res.type('application/xml').send(xml);
-});
-app.get('/robots.txt',(req,res)=>{ res.type('text/plain').send(`User-agent: *\nAllow: /\nSitemap: ${siteBase(req)}/sitemap.xml\n`); });
+}));
+app.get('/robots.txt',(req,res)=>{ res.type('text/plain').send(`User-agent: *\nAllow: /\n\nUser-agent: Baiduspider\nAllow: /\n\nUser-agent: Bytespider\nAllow: /\n\nUser-agent: Sogou web spider\nAllow: /\n\nUser-agent: PetalBot\nAllow: /\n\nUser-agent: YisouSpider\nAllow: /\n\nSitemap: ${siteBase(req)}/sitemap.xml\n`); });
 app.get('/about',(req,res)=>res.sendFile(path.join(__dirname,'public','about.html')));
 app.get('/terms',(req,res)=>res.sendFile(path.join(__dirname,'public','terms.html')));
 app.get('/privacy',(req,res)=>res.sendFile(path.join(__dirname,'public','privacy.html')));

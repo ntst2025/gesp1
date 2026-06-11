@@ -50,7 +50,7 @@
         "C": "3.125",
         "D": "3.25"
        },
-       "explanation": "",
+       "explanation": "11.01:整数 11=3,小数 .01=0.25,合计 3.25,选 D。",
        "difficulty": 2.5
       },
       {
@@ -67,7 +67,7 @@
         "C": "48",
         "D": "49"
        },
-       "explanation": "",
+       "explanation": "'A'=0x41,'F' 比 'A' 大 5,故 'F'=0x41+5=0x46,选 A。",
        "difficulty": 2.5
       },
       {
@@ -84,7 +84,7 @@
         "C": "从二进制转换为 8 进制时，可以很方便地由低到高将每 3 位二进制位转换为 对应的一位 8 进制位。",
         "D": "从二进制转换为 16 进制时，可以很方便地由低到高将每 4 位二进制位转换 为对应的一位 16 进制位。"
        },
-       "explanation": "",
+       "explanation": "问不正确的。任何十进制数都能转成二进制,B 的“无法转换”说法错误,选 B。",
        "difficulty": 2.5
       },
       {
@@ -101,7 +101,7 @@
         "C": "按位或 7，再按位与-8。",
         "D": "按位异或 7，再按位异或 7。"
        },
-       "explanation": "",
+       "explanation": "D 一定还原:对同一个数两次异或 7,a^7^7=a。其余移位会丢位、或与运算不可逆,选 D。",
        "difficulty": 2.5
       },
       {
@@ -113,7 +113,7 @@
        "stem": "数据编码方式只有原码、反码、补码三种。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。数据编码不止原码、反码、补码三种(还有移码等)。",
        "difficulty": 2.5
       },
       {
@@ -125,7 +125,7 @@
        "stem": "计算机中存储的数据都是二进制形式。因此，在使用 C++语言编写程序时， 将所有十进制数改写为相同数值的二进制数，会使得程序运行效率更高。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。源码里写十进制还是二进制,编译后都是同样的机器码,不会改变运行效率。",
        "difficulty": 2.5
       },
       {
@@ -142,7 +142,7 @@
         "C": "4C",
         "D": "52"
        },
-       "explanation": "",
+       "explanation": "'A'=0x41,'L' 比 'A' 大 11,故 'L'=0x41+11=0x4C,选 C。",
        "difficulty": 2.5
       },
       {
@@ -159,7 +159,7 @@
         "C": "对任意正整数，其二进制表示不会比它的十进制表示更短。",
         "D": "正整数的八进制表示中，每一位可能出现的最大数字是8。"
        },
-       "explanation": "",
+       "explanation": "C 正确:同一正整数的二进制位数不会比十进制更少(进制越小位数越多)。A、B、D 均错(八/十六进制也能表小数、八进制每位最大是 7)。",
        "difficulty": 2.5
       },
       {
@@ -171,7 +171,7 @@
        "stem": "二进制数 101.101 在十进制下是 5.005。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。101.101=4+1+0.5+0.125=5.625,不是 5.005。",
        "difficulty": 2.5
       },
       {
@@ -183,7 +183,7 @@
        "stem": "在C++语言中，位运算符也有类似“先乘除、后加减”的优先级规则。因此，使用时应注意合理使用括号。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。位运算符之间也有优先级,书写时应合理加括号避免歧义。",
        "difficulty": 2.5
       },
       {
@@ -195,7 +195,7 @@
        "stem": "字符常量 '3' 的值和 int 类型常量 3 的值是相同的，只是占用的字节数不同。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。'3' 的值是 ASCII 51,常量 3 的值是 3,二者数值就不同(不只是字节数)。",
        "difficulty": 2.5
       },
       {
@@ -212,7 +212,7 @@
         "C": "（dd）16进制",
         "D": "（5d）16进制"
        },
-       "explanation": "",
+       "explanation": "二进制 11011101=221(十进制)=335(八进制)=0xDD;而 0x5D=93≠221,故 D 不相等,选 D。",
        "difficulty": 2.5
       },
       {
@@ -229,7 +229,7 @@
         "C": "FFFA",
         "D": "FFFB"
        },
-       "explanation": "",
+       "explanation": "−5 的 16 位补码:65536−5=65531=0xFFFB,选 D。",
        "difficulty": 2.5
       },
       {
@@ -246,7 +246,7 @@
         "C": "FFFC",
         "D": "FFFH"
        },
-       "explanation": "",
+       "explanation": "−4 的 16 位补码:65536−4=65532=0xFFFC,选 C。",
        "difficulty": 2.5
       },
       {
@@ -258,7 +258,7 @@
        "stem": "任意整数 a 的二进制反码与补码都有1位不同。 ( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。正数的反码与补码相同(0 位不同);负数的补码=反码+1,进位时可能差多位,并非总是恰好 1 位。",
        "difficulty": 2.5
       },
       {
@@ -275,7 +275,7 @@
         "C": "5.75",
         "D": "5.25"
        },
-       "explanation": "",
+       "explanation": "101.11=4+1+0.5+0.25=5.75,选 C。",
        "difficulty": 2.5
       },
       {
@@ -287,7 +287,7 @@
        "stem": "整数-6的16位补码可用十六进制表示为FFFA。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。−6 的 16 位补码为 0xFFFA(65536−6=65530)。",
        "difficulty": 2.5
       },
       {
@@ -299,7 +299,7 @@
        "stem": "补码的优点是可以将减法运算转化为加法运算，从而简化计算机的硬件设计。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。补码把减法转化为加法,简化了硬件设计。",
        "difficulty": 2.5
       },
       {
@@ -316,7 +316,7 @@
         "C": "机器数是带符号的",
         "D": "[-1]=[1000 0001]原=[1111 1111]反"
        },
-       "explanation": "",
+       "explanation": "C 正确:机器数是带符号的。A 错(负数形式值≠真值)、B 表述不准、D 错([−1]反应为 11111110)。",
        "difficulty": 2.5
       },
       {
@@ -333,7 +333,7 @@
         "C": "7B3",
         "D": "7D3"
        },
-       "explanation": "",
+       "explanation": "3703₈=3×512+7×64+3=1987;1987 转十六进制为 7C3,选 A。",
        "difficulty": 2.5
       },
       {
@@ -350,7 +350,7 @@
         "C": "0.1 1111 1011 1100",
         "D": "0.1101"
        },
-       "explanation": "",
+       "explanation": "0.8125=0.5+0.25+0.0625=0.1101(二进制),选 D。",
        "difficulty": 2.5
       },
       {
@@ -362,7 +362,7 @@
        "stem": "+1和-1的原码进行1+（-1）计算的结果是-2 。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。原码相加:+1 与 −1 的原码相加得 10000010,按原码即 −2(说明原码不适合加减)。",
        "difficulty": 2.5
       },
       {
@@ -374,7 +374,7 @@
        "stem": "16进制数 AB ，表示成2进制数是 10101011 。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。十六进制 AB=1010 1011(A=1010、B=1011)。",
        "difficulty": 2.5
       },
       {
@@ -386,7 +386,7 @@
        "stem": "def (十六进制) = 103231 (五进制)。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。def₁₆=3567,而 103231₅=3566,二者不相等。",
        "difficulty": 2.5
       },
       {
@@ -403,7 +403,7 @@
         "C": "-3，-3",
         "D": "-125，-125"
        },
-       "explanation": "",
+       "explanation": "[10000011]原:符号 1+数值 0000011=3,即 −3;[10000011]补:取反加 1 得 01111101=125,即 −125。故 原=−3、补=−125,选 B。",
        "difficulty": 2.5
       },
       {
@@ -420,7 +420,7 @@
         "C": "负数的反码和补码是不一样的",
         "D": "负数的反码，在其原码的基础上, 各个位取反"
        },
-       "explanation": "",
+       "explanation": "问错误说法。求负数的反码时符号位保持不变、只对数值各位取反;D 说“各个位取反”(含符号位)错误。",
        "difficulty": 2.5
       },
       {
@@ -437,7 +437,7 @@
         "C": "729125",
         "D": "2420045"
        },
-       "explanation": "",
+       "explanation": "B2025₁₆ 先转二进制再三位一组转八进制,结果为 2620045,选 A。",
        "difficulty": 2.5
       },
       {
@@ -454,7 +454,7 @@
         "C": "101.1001110001",
         "D": "1001110001.1101"
        },
-       "explanation": "",
+       "explanation": "625=1001110001,0.625=0.101,故 625.625=1001110001.101,选 A。",
        "difficulty": 2.5
       },
       {
@@ -471,7 +471,7 @@
         "C": "1111 1101",
         "D": "1111 1010"
        },
-       "explanation": "",
+       "explanation": "11111101 是补码 −3,算术右移 1 位向下取整得 −2,即 11111110,选 B。",
        "difficulty": 2.5
       },
       {
@@ -488,7 +488,7 @@
         "C": "使a的二进制表示从右往左第二位为0",
         "D": "使a的二进制表示最高位为0"
        },
-       "explanation": "",
+       "explanation": "10 的二进制是 1010,a|10 会把 a 二进制从右数第 2 位置 1(也会影响第 4 位),选 A。",
        "difficulty": 2.5
       },
       {
@@ -500,7 +500,7 @@
        "stem": "为了简化计算机基本运算电路，使加减法都只需要通过加法电路实现，也就是让减去一个正数或加上一个负 数这样的运算可以用加上一个正数来代替。于是改变负数存储的形式，存储成一种可以直接当成正数来相加的形 式，这种形式就是补码。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。补码就是把减法统一成加法的存储形式,简化运算电路。",
        "difficulty": 2.5
       },
       {
@@ -512,7 +512,7 @@
        "stem": "使用原码进行的计算， 2+(-1) 的结果是 -3",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。原码直接相加:2 与 −1 的原码相加得 10000011,按原码即 −3(这正说明原码不适合做加减)。",
        "difficulty": 2.5
       },
       {
@@ -524,7 +524,7 @@
        "stem": "10 进制数 63，在转换成二进制的计算过程中，产生了如下的式子： 按照从前往后的顺序，获得 63 的二进制值是 111111",
        "code": "63/2=31 余 1\n31/2=15 余 1\n15/2=7 余 1\n7/2=3   余 1\n3/2=1   余 1\n1/2=0   余 1",
        "options": {},
-       "explanation": "",
+       "explanation": "错。竖式除 2 得到的余数应从下往上(倒序)读取才是二进制;题中说“从前往后”方法错误(本例 63 全为 1 才恰好相同)。",
        "difficulty": 2.5
       },
       {
@@ -536,7 +536,7 @@
        "stem": "CCF(十六进制) = 12363(七进制)",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。CCF₁₆=3279,而 3279 换算成七进制正是 12363。",
        "difficulty": 2.5
       },
       {
@@ -553,7 +553,7 @@
         "C": "0x80 0x80 0x80",
         "D": "0xFF 0xFE 0xFD"
        },
-       "explanation": "",
+       "explanation": "B 合法:0xF0 0x90 0x80 0x80=11110000 10010000 10000000 10000000,符合 4 字节 UTF-8 格式。A 是过长编码、C 以 10 开头(续字节)、D 含非法字节,选 B。",
        "difficulty": 2.5
       },
       {
@@ -570,7 +570,7 @@
         "C": "11111011",
         "D": "00000101"
        },
-       "explanation": "",
+       "explanation": "八进制 −5 即十进制 −5。8 位原码:符号位 1+数值 0000101=10000101,选 A。",
        "difficulty": 2.5
       },
       {
@@ -587,7 +587,7 @@
         "C": "1101111.1001110001",
         "D": "1101111.0011110001"
        },
-       "explanation": "",
+       "explanation": "111=1101111,0.111≈0.0001110001(二进制),故为 1101111.0001110001,选 A。",
        "difficulty": 2.5
       },
       {
@@ -604,7 +604,7 @@
         "C": "增加整数的表示范围",
         "D": "优化内存分配"
        },
-       "explanation": "",
+       "explanation": "补码的主要作用是把减法统一为加法,简化整数加减运算,选 B。",
        "difficulty": 2.5
       },
       {
@@ -621,7 +621,7 @@
         "C": "-256 到 255",
         "D": "0 到 255"
        },
-       "explanation": "",
+       "explanation": "8 位有符号数(补码)范围是 −128~127,选 A。",
        "difficulty": 2.5
       },
       {
@@ -633,7 +633,7 @@
        "stem": "若将 个正整数化为 进制数，在此 进制数中，我们将数字 1 的个数是偶数的这类 进制数称为 A 类数， 一 二 二 二 否则就称其为 B 类数。 例如： (13) 10 =(1101) 2 ，其中 1 的个数为 3则称此数为 B 类数； (10) 10 =(1010) 2 ，其中 1 的个数为 2，称此数为 A 类数； 判断（2025）10化为 进制后，1的个数为偶数个，因此2025为A类数。 二",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。按二进制中 1 的个数奇偶划分 A/B 类:13=1101 有 3 个 1 为 B 类,例子描述正确。",
        "difficulty": 2.5
       },
       {
@@ -645,7 +645,7 @@
        "stem": "两个13进制的数A和B，在10进制下分别表 10和11。（A+B）13=（18）13，也就是说13进制数A加上13进 示 制数B，和是13进制数18。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。13 进制 A=10、B=11,A+B=21,而 21=1×13+8,即 (18)₁₃。",
        "difficulty": 2.5
       },
       {
@@ -657,7 +657,7 @@
        "stem": "k 进制，逢 k 进第 位， 进百位， 进千位； 二",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。k 进制是“逢 k 进一”,各高位是 k 的幂(k、k²、k³…),题中的进位/位权描述错误。",
        "difficulty": 2.5
       },
       {
@@ -669,7 +669,7 @@
        "stem": "CCF( 九进制) = 21AC( 三进制)(不区分 写) 十 十 大 小",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。两边换算成同一进制后数值并不相等,等式不成立。",
        "difficulty": 2.5
       },
       {
@@ -686,7 +686,7 @@
         "C": "-255",
         "D": "-256"
        },
-       "explanation": "",
+       "explanation": "8 位原码:1 位符号+7 位数值,最小为 1 1111111=−(2^7−1)=−127,选 A。",
        "difficulty": 2.5
       },
       {
@@ -703,7 +703,7 @@
         "C": "-68",
         "D": "-58"
        },
-       "explanation": "",
+       "explanation": "10111011 最高位 1 为负。取反 01000100、加 1 得 01000101=69,真值为 −69,选 A。",
        "difficulty": 2.5
       },
       {
@@ -720,7 +720,7 @@
         "C": "0000 0101 或 1000 0101",
         "D": "算术右移后结果取决于符号位"
        },
-       "explanation": "",
+       "explanation": "X 补码 00001010=10(正数),X/2=5,补码为 00000101,选 A。",
        "difficulty": 2.5
       },
       {
@@ -737,7 +737,7 @@
         "C": "11.875",
         "D": "14.5"
        },
-       "explanation": "",
+       "explanation": "1101.101:整数 1101=13,小数 .101=0.5+0.125=0.625,合计 13.625,选 A。",
        "difficulty": 2.5
       },
       {
@@ -754,7 +754,7 @@
         "C": "27.625",
         "D": "30.25"
        },
-       "explanation": "",
+       "explanation": "八进制 35.6=3×8+5+6/8=24+5+0.75=29.75,选 A。",
        "difficulty": 2.5
       },
       {
@@ -771,7 +771,7 @@
         "C": "1010",
         "D": "1100"
        },
-       "explanation": "",
+       "explanation": "1010 | 1100 按位或:逐位取“有 1 即 1”,得 1110,选 B。",
        "difficulty": 2.5
       },
       {
@@ -788,7 +788,7 @@
         "C": "a = a | b; b = a ^ b; a = a ^ b;",
         "D": "a = ~a; b = ~b; a = ~a;"
        },
-       "explanation": "",
+       "explanation": "经典异或交换 a=a^b、b=a^b、a=a^b 无需临时变量即可互换,选 A。",
        "difficulty": 2.5
       },
       {
@@ -805,7 +805,7 @@
         "C": "13.5",
         "D": "14.5"
        },
-       "explanation": "",
+       "explanation": "二进制转十进制:整数部分按 2 的正幂、小数部分按 2 的负幂(0.5、0.25、0.125…)加权求和,结果为 13.625,选 B。",
        "difficulty": 2.5
       },
       {
@@ -822,7 +822,7 @@
         "C": "-65536 ~ 65535",
         "D": "0 ~ 32767"
        },
-       "explanation": "",
+       "explanation": "2 字节=16 位,unsigned int 表示范围 0~2^16−1=0~65535,选 A。",
        "difficulty": 2.5
       },
       {
@@ -839,7 +839,7 @@
         "C": "八进制11",
         "D": "十六进制11"
        },
-       "explanation": "",
+       "explanation": "a&b=3&7=3;c^d=15^4=1111^0100=1011=11;3|11=0011|1011=1011=11(十进制),选 A。",
        "difficulty": 2.5
       },
       {
@@ -851,7 +851,7 @@
        "stem": "位运算符 & 、 | 、 ^ 、 ~ 的优先级高于算术运算符 + 、 - 、 * 、 / 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。&、|、^ 的优先级低于算术运算符 +、−、*、/,并非更高。",
        "difficulty": 2.5
       },
       {
@@ -863,7 +863,7 @@
        "stem": "给定一个正整数 a ，当需要计算 -a 的补码时，有这样一个计算技巧：将 a 的二进制形式从右往左扫 描，遇到第一个 1 之后，将找到的第一个 1 左边的所有位都取反，能得到 -a 的补码。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。这是求 −a 补码的扫描技巧:从右找到第一个 1,其左边所有位取反即得。",
        "difficulty": 2.5
       },
       {
@@ -880,7 +880,7 @@
         "C": "10010000",
         "D": "11110001"
        },
-       "explanation": "",
+       "explanation": "−15 的 8 位补码:15=00001111,取反 11110000,加 1 得 11110001,选 D。",
        "difficulty": 2.5
       },
       {
@@ -897,7 +897,7 @@
         "C": "67",
         "D": "69"
        },
-       "explanation": "",
+       "explanation": "三进制转十进制:把各位按 3 的幂(…27、9、3、1)加权求和,结果为 65,选 B。",
        "difficulty": 2.5
       },
       {
@@ -914,7 +914,7 @@
         "C": "-77",
         "D": "75"
        },
-       "explanation": "",
+       "explanation": "10110101 最高位为 1 是负数。求值:取反 01001010、加 1 得 01001011=75,故原数为 −75,选 B。",
        "difficulty": 2.5
       },
       {
@@ -931,7 +931,7 @@
         "C": "80",
         "D": "120"
        },
-       "explanation": "",
+       "explanation": "0x0F=00001111,左移 3 位得 01111000=64+32+16+8=120,选 D。",
        "difficulty": 2.5
       },
       {
@@ -948,7 +948,7 @@
         "C": "~(-3) 的结果是 2（ int 类型，32 位）",
         "D": "~8 的结果是 -9（ int 类型，32 位）"
        },
-       "explanation": "",
+       "explanation": "问错误说法。按位取反满足 ~x=−x−1:~0=−1(不是 0),所以 B 错。~5=−6、~(−3)=2、~8=−9 都对。",
        "difficulty": 2.5
       },
       {
@@ -960,7 +960,7 @@
        "stem": "已知大写字符 A 的ASCII编码的十六进制表示为 0x41 ，计算字符 m 的ASCII编码的八进制表示为 155 （八进制）。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。'A'=0x41=65,'m'=65+12=109;109 的八进制为 155(1×64+5×8+5)。",
        "difficulty": 2.5
       },
       {
@@ -972,7 +972,7 @@
        "stem": "在 C++ 位运算中，各种不同的运算符有优先级的区分，使用括号能够解决优先级的问题。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。位运算符之间存在优先级差异,用括号可明确运算顺序、避免歧义。",
        "difficulty": 2.5
       },
       {
@@ -984,7 +984,7 @@
        "stem": "如果 a 为 int 类型的变量，且 a 的二进制最低位为 0 ，则表达式 ((a & 3 & 1) == 0) 的值为 true 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。a 最低位为 0,a&1=0,故 a&3&1=0,表达式 ==0 为 true。",
        "difficulty": 2.5
       }
      ]
@@ -1020,7 +1020,7 @@
         "C": "*",
         "D": "**"
        },
-       "explanation": "",
+       "explanation": "** 不是 C++ 运算符,选 D。&、&&、* 都是。",
        "difficulty": 2.5
       },
       {
@@ -1037,7 +1037,7 @@
         "C": "((a ^ b) == 0)",
         "D": "((a | b) == b)"
        },
-       "explanation": "",
+       "explanation": "(a^b)==0 当且仅当 a 与 b 完全相同,能正确判断相等,选 C。",
        "difficulty": 2.5
       },
       {
@@ -1054,7 +1054,7 @@
         "C": "(a ^ 3)",
         "D": "((a - 1) | 3) + 1"
        },
-       "explanation": "",
+       "explanation": "小于等于 a 的最大 4 的倍数,就是把 a 的低 2 位清零:a&(~3),选 A。",
        "difficulty": 2.5
       },
       {
@@ -1066,7 +1066,7 @@
        "stem": "在 C++语言中，表达式(0xf == 015)的值为 true。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。0xf=15,015(八进制)=13,15==13 为假。",
        "difficulty": 2.5
       },
       {
@@ -1078,7 +1078,7 @@
        "stem": "如果 a 为 int 类型的变量，且表达式((a | 3) == 3)的值为 true，则说 明 a 在从 0 到 3 之间（可能为 0、可能为 3）。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。(a|3)==3 说明 a 在 0b11 之内,即 a 取值在 0~3 之间。",
        "difficulty": 2.5
       },
       {
@@ -1095,7 +1095,7 @@
         "C": "<",
         "D": "<<"
        },
-       "explanation": "",
+       "explanation": "~~ 不是单个运算符,选 B。~、<、<< 都是 C++ 运算符。",
        "difficulty": 2.5
       },
       {
@@ -1112,7 +1112,7 @@
         "C": "(a & 1) == 1",
         "D": "(a | 1) == a + 1"
        },
-       "explanation": "",
+       "explanation": "A 一定为真:a+1000−1000 仍等于 a。B 可能溢出、C/D 不一定成立,选 A。",
        "difficulty": 2.5
       },
       {
@@ -1129,7 +1129,7 @@
         "C": "((a + b) == (a + a))",
         "D": "((a ^ b) == 0)"
        },
-       "explanation": "",
+       "explanation": "问不能正确判断的。(a>>1)==(b>>1) 丢掉了最低位,如 a=2、b=3 也会相等,不能正确判等,选 B。",
        "difficulty": 2.5
       },
       {
@@ -1141,7 +1141,7 @@
        "stem": "在C++语言中，表达式 (0xff == 255) 的值为 true 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。0xff=255,表达式 (0xff==255) 为 true。",
        "difficulty": 2.5
       },
       {
@@ -1153,7 +1153,7 @@
        "stem": "如果 a 为 int 类型的变量，且表达式 ((a & 1) == 0) 的值为 true ，则说明 a 是偶数。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。(a&1)==0 表示最低位为 0,即 a 是偶数。",
        "difficulty": 2.5
       },
       {
@@ -1165,7 +1165,7 @@
        "stem": "任何一个while循环都可以转化为等价的for循环（ ）。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。任何 while 循环都可改写成等价的 for 循环。",
        "difficulty": 2.5
       },
       {
@@ -1177,7 +1177,7 @@
        "stem": "任何一个 for 循环都可以转化为等价的 while 循环（ ）。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。任何 for 循环都可改写成等价的 while 循环。",
        "difficulty": 2.5
       },
       {
@@ -1189,7 +1189,7 @@
        "stem": "如果 为 int 类型的变量，且表达式 ((a | 3) == 3) 的值为 true ，则说明 在从0到3之间（可能为0、可 能为3）。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。(a|3)==3 说明 a 在 0b11 之内没有多余的位,即 a 取值在 0~3 之间。",
        "difficulty": 2.5
       },
       {
@@ -1206,7 +1206,7 @@
         "C": "if (a % 9 == 0 && a % 8 != 0)",
         "D": "if (a % 9 == 0 & a % 8 != 0)"
        },
-       "explanation": "",
+       "explanation": "美丽数字=9 的倍数且非 8 的倍数:if(a%9==0 && a%8!=0),选 C。(注意是逻辑与 &&,B 用了按位 & 且条件错。)",
        "difficulty": 2.5
       },
       {
@@ -1218,7 +1218,7 @@
        "stem": "C++语句 cout<<(n%15==0? \"YES\":\"NO\"); 能够判断 个整数能否被3和5同时整除 一",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。n%15==0 即同时被 3 和 5 整除(15 是二者最小公倍数)。",
        "difficulty": 2.5
       },
       {
@@ -1230,7 +1230,7 @@
        "stem": "该段程序将 n 不停地除以 2，并输出此时的商和余数，直到 n=0 为 。 止",
        "code": "long long n;\ncin >> n;\nwhile(n != 0) {\ncout << n/2 << ' ' << n%2 << '\\n';\nn /= 2;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。循环不断输出 n/2 和 n%2 并令 n/=2,直到 n 为 0。",
        "difficulty": 2.5
       },
       {
@@ -1247,7 +1247,7 @@
         "C": "(10 != 10) || (5 >= 3)",
         "D": "(5 == 3) && (4 > 2)"
        },
-       "explanation": "",
+       "explanation": "C 为真:(10!=10)||(5>=3)=假||真=真,选 C。A、D 为假,B 是 !(真)=假。",
        "difficulty": 2.5
       },
       {
@@ -1264,7 +1264,7 @@
         "C": "15",
         "D": "死循环"
        },
-       "explanation": "",
+       "explanation": "循环体内的 int sum=0 是新的局部变量(遮蔽外层),不影响外层 sum。外层 sum 累加 1+3+5=9,选 B。",
        "difficulty": 2.5
       },
       {
@@ -1281,7 +1281,7 @@
         "C": "4",
         "D": "0"
        },
-       "explanation": "",
+       "explanation": "continue 在 count++ 之前,每轮都跳过 count++,所以 count++ 一次也不执行,选 D。",
        "difficulty": 2.5
       },
       {
@@ -1298,7 +1298,7 @@
         "C": "0#1#2#3#",
         "D": "0#01#012#01243#"
        },
-       "explanation": "",
+       "explanation": "内层 j 从 0 到 i,每个 i 后输出 #。i=0..3 依次得 0#、01#、012#、0123#,拼成 0#01#012#0123#,选 A。",
        "difficulty": 2.5
       },
       {
@@ -1315,7 +1315,7 @@
         "C": "能够反转的最大位数正整数是 2147483648",
         "D": "能够反转的最大位数正整数是 1463847412"
        },
-       "explanation": "",
+       "explanation": "反转时 reversed=reversed*10+digit 可能超出 int 上限 2147483647。能安全反转的最大正整数是 1463847412,选 D。",
        "difficulty": 2.5
       },
       {
@@ -1327,7 +1327,7 @@
        "stem": "表达式 sizeof('a') 的结果总是 1 ，因为 'a' 是一个字符。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。在 C++ 中 'a' 是 char、sizeof 为 1,但说“总是”不严谨——C 语言里字符常量是 int,sizeof('a') 为 4。",
        "difficulty": 2.5
       },
       {
@@ -1339,7 +1339,7 @@
        "stem": "do { ... } while (false); 循环体内的语句至少会被执行一次。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。do-while 先执行一次循环体再判断条件,故 while(false) 时循环体也至少执行一次。",
        "difficulty": 2.5
       },
       {
@@ -1351,7 +1351,7 @@
        "stem": "在C++中， ++i 是一个左值表达式，而 i++ 是一个右值表达式。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。++i 返回可被取地址的左值,i++ 返回临时副本(右值)。",
        "difficulty": 2.5
       },
       {
@@ -1363,7 +1363,7 @@
        "stem": "表达式 a > b ? a : b = 10; 一定是合法的C++代码。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。因运算符优先级,a>b?a:b=10 实际被解析为 a>b?a:(b=10),并非给三目结果赋值;说它“一定合法”不准确。",
        "difficulty": 2.5
       },
       {
@@ -1380,7 +1380,7 @@
         "C": "33",
         "D": "40"
        },
-       "explanation": "",
+       "explanation": "8>>2=2,条件即 if(i%3==2) continue。i=1~10 中跳过 i%3==2 的 2、5、8,sum=55−15=40,选 D。",
        "difficulty": 2.5
       },
       {
@@ -1397,7 +1397,7 @@
         "C": "120",
         "D": "1"
        },
-       "explanation": "",
+       "explanation": "3>>2=0,条件 x==0 不成立(x=5),故 x 不变仍为 5,选 B。(8>>3=1 未执行。)",
        "difficulty": 2.5
       },
       {
@@ -1414,7 +1414,7 @@
         "C": "1",
         "D": "死循环"
        },
-       "explanation": "",
+       "explanation": "t=x-- 先取 x=10 赋给 t,x 再变 9;t−=x 即 10−9=1,选 C。",
        "difficulty": 2.5
       },
       {
@@ -1426,7 +1426,7 @@
        "stem": "在 C++ 中， ++ 和 -- 运算符只能用于整型变量，不能用于浮点数变量。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。++、-- 也能用于浮点变量(如 double d; d++;),不限于整型。",
        "difficulty": 2.5
       },
       {
@@ -1438,7 +1438,7 @@
        "stem": "以下代码中， Hello 将被输出5次。",
        "code": "for (int i = 0; i < 5; i++);\n{\ncout << \"Hello\" << endl;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。for(...); 末尾的分号使循环体为空,后面的 {cout<<\"Hello\"} 只是普通代码块,仅执行 1 次,不是 5 次。",
        "difficulty": 2.5
       },
       {
@@ -1450,7 +1450,7 @@
        "stem": "下面流程图的功能是计算 5 对 2 取余数，输出结果为 1。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。流程图计算 5%2=1,输出 1。",
        "difficulty": 2.5
       },
       {
@@ -1462,7 +1462,7 @@
        "stem": "在C++语言中，表达式 ((0xf0 + 0x15) == 255) 的值为 true 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。0xf0=240、0x15=21,相加为 261 而非 255,表达式值为 false。",
        "difficulty": 2.5
       }
      ]
@@ -1498,7 +1498,7 @@
         "C": "6",
         "D": "3"
        },
-       "explanation": "",
+       "explanation": "double array[3] 占 3×8=24 字节,选 A。",
        "difficulty": 2.5
       },
       {
@@ -1515,7 +1515,7 @@
         "C": "int c[3.0];",
         "D": "int[3] d;"
        },
-       "explanation": "",
+       "explanation": "int b['3']:'3' 是字符常量(值 51),可作数组大小,合法,选 B。其余写法都不合法。",
        "difficulty": 2.5
       },
       {
@@ -1532,7 +1532,7 @@
         "C": "min = array[i]",
         "D": "以上均不对。"
        },
-       "explanation": "",
+       "explanation": "min 初值为 0,正数数组里 min>array[i] 永不成立(输出 0)、min<array[i] 求得最大值 7、直接赋值得 4,没有一个能得到 2,故选 D。",
        "difficulty": 2.5
       },
       {
@@ -1549,7 +1549,7 @@
         "C": "res = res | array[i]",
         "D": "res = res ^ array[i]"
        },
-       "explanation": "",
+       "explanation": "res 初值 0:加/或/异或后都得 31,只有 res=res&array[i] 始终为 0(0 与任何数相与都是 0),输出不是 31,选 B。",
        "difficulty": 2.5
       },
       {
@@ -1561,7 +1561,7 @@
        "stem": "在 C++语言中，长度为 n 的数组，合理的下标范围是从 0 到 n，包括 0 和 n。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。长度为 n 的数组,合法下标是 0 到 n−1,不包括 n。",
        "difficulty": 2.5
       },
       {
@@ -1573,7 +1573,7 @@
        "stem": "在 C++语言中，可以使用字符（如'0'）作为数组下标。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。字符本质是整数,可作数组下标(取其编码值)。",
        "difficulty": 2.5
       },
       {
@@ -1585,7 +1585,7 @@
        "stem": "在 C++语言中，数组被定义时，它的大小就确定了。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。数组一经定义,大小即固定。",
        "difficulty": 2.5
       },
       {
@@ -1602,7 +1602,7 @@
         "C": "8",
         "D": "4"
        },
-       "explanation": "",
+       "explanation": "long long 占 8 字节,4 个元素共 4×8=32 字节,选 A。",
        "difficulty": 2.5
       },
       {
@@ -1619,7 +1619,7 @@
         "C": "23",
         "D": "24"
        },
-       "explanation": "",
+       "explanation": "double array[3] 合法下标 0~2,最大为 2,选 A。",
        "difficulty": 2.5
       },
       {
@@ -1636,7 +1636,7 @@
         "C": "double c[3.0];",
         "D": "double[] d = new double[3];"
        },
-       "explanation": "",
+       "explanation": "double b[]={1,2.0,'3'} 合法(各值都能转 double),选 B。其余写法都不合法。",
        "difficulty": 2.5
       },
       {
@@ -1653,7 +1653,7 @@
         "C": "数组下标越界访问会产生编译错误。",
         "D": "程序运行时发生数组下标的越界访问，程序依然可能正常结束。"
        },
-       "explanation": "",
+       "explanation": "问不正确的。数组下标越界是运行期未定义行为,不会产生编译错误,故 C 不正确。",
        "difficulty": 2.5
       },
       {
@@ -1670,7 +1670,7 @@
         "C": "res = array[i]",
         "D": "以上均不对。"
        },
-       "explanation": "",
+       "explanation": "要得 120(=5 的阶乘,连乘)。但 res 初值为 0,连乘 res*=array[i] 恒为 0;累加得 15、直接赋值得 5,都不是 120,故选 D。",
        "difficulty": 2.5
       },
       {
@@ -1682,7 +1682,7 @@
        "stem": "在C++语言中，长度为 的数组，访问下标为 的元素会引起编译错误。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。下标越界是运行期未定义行为,不会引起编译错误。",
        "difficulty": 2.5
       },
       {
@@ -1694,7 +1694,7 @@
        "stem": "在C++语言中，数组下标的大小决定元素在逻辑上的先后顺序，与元素在内存中位置的先后顺序无关。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。数组下标与元素在内存中的先后位置是一致的(连续存放)。",
        "difficulty": 2.5
       },
       {
@@ -1706,7 +1706,7 @@
        "stem": "在C++语言中，定义数组时， [] 中必须指定元素个数。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。定义数组时若带初始化列表,[] 中可不写元素个数。",
        "difficulty": 2.5
       },
       {
@@ -1723,7 +1723,7 @@
         "C": "char dict_name[]={'chen','wang','zhou'};",
         "D": "float dict_value[]={3,2,1};"
        },
-       "explanation": "",
+       "explanation": "C 会丢数据:'chen'、'wang' 是多字符常量,放不进一个 char,选 C。",
        "difficulty": 2.5
       },
       {
@@ -1740,7 +1740,7 @@
         "C": "str[i]==115",
         "D": "str[i]==111"
        },
-       "explanation": "",
+       "explanation": "统计 'o'(=111)出现 3 次,A、B('a'+14=111)、D 都等价于 'o';C 的 115 是 's',统计的是另一个字符,得不到 3,选 C。",
        "difficulty": 2.5
       },
       {
@@ -1757,7 +1757,7 @@
         "C": "能被2或3整除的数",
         "D": "能被2和3同时整除的数"
        },
-       "explanation": "",
+       "explanation": "当 a[i] 既不被 2 整除又不被 3 整除时置 0,故剩下非零的都是能被 2 或 3 整除的数,选 C。",
        "difficulty": 2.5
       },
       {
@@ -1774,7 +1774,7 @@
         "C": "1",
         "D": "不确定"
        },
-       "explanation": "",
+       "explanation": "第一个循环后 i=20,第二个循环首次输出 a[19]=20,选 A。",
        "difficulty": 2.5
       },
       {
@@ -1791,7 +1791,7 @@
         "C": "10",
         "D": "12"
        },
-       "explanation": "",
+       "explanation": "统计相邻两数之和不被 3 整除的对数。和为 2k−1(k=2~20)共 19 对,其中被 3 整除的有 7 对,故 cnt=19−7=12,选 D。",
        "difficulty": 2.5
       },
       {
@@ -1803,7 +1803,7 @@
        "stem": "对定义的数组 int a[7]={2,0,2,4,3,1,6} ，可以用简单循环就找到其中最小的整数。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。用一个简单循环遍历比较即可找出数组最小值。",
        "difficulty": 2.5
       },
       {
@@ -1820,7 +1820,7 @@
         "C": "oct_number[i++] = decimal % 8; decimal /= 8;",
         "D": "oct_number[i++] = decimal / 8; decimal %= 8;"
        },
-       "explanation": "",
+       "explanation": "十进制转八进制:取余存入、再除 8,需 oct_number[i++]=decimal%8; decimal/=8,选 C。(A 漏了 i++。)",
        "difficulty": 2.5
       },
       {
@@ -1837,7 +1837,7 @@
         "C": "max = array[i]",
         "D": "以上均不对"
        },
-       "explanation": "",
+       "explanation": "求最大值:当 max<array[i] 时更新 max,选 B。",
        "difficulty": 2.5
       },
       {
@@ -1854,7 +1854,7 @@
         "C": "arr[i] = count;",
         "D": "arr[count] = count++;"
        },
-       "explanation": "",
+       "explanation": "把满足条件的数存入数组并计数:arr[count++]=i,选 A。",
        "difficulty": 2.5
       },
       {
@@ -1871,7 +1871,7 @@
         "C": "count++;",
         "D": "以上都不对"
        },
-       "explanation": "",
+       "explanation": "统计身高>135:count += arr[i]>135?1:0,选 B。",
        "difficulty": 2.5
       },
       {
@@ -1883,7 +1883,7 @@
        "stem": "数组的所有元素在内存中可以不连续存放。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。数组元素在内存中是连续存放的。",
        "difficulty": 2.5
       },
       {
@@ -1895,7 +1895,7 @@
        "stem": "C++中可以对数组和数组的每个基础类型的元素赋值。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。不能对整个数组整体赋值,只能逐个给元素赋值。",
        "difficulty": 2.5
       },
       {
@@ -1907,7 +1907,7 @@
        "stem": "执行下面C++代码后，输出的结果不可能是89781。（ ）",
        "code": "#include <iostream>\n#include <cstdlib> // 为了使用 rand() 和 srand()\n#include <ctime>    // 为了使用 time()\nusing namespace std;\nint main() {\n// 设置随机种子\nsrand(time(NULL));\nint i = 1;\nint s[5];\nwhile(i <= 5)\n{\nint a = rand() % 10;\nif(a % 3 == (i + 1) % 3)\ns[i++] = a;\n}\nfor(int i = 1; i <= 5; i++)\ncout << s[i];\ncout << endl;\nreturn 0;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。各位受 a%3==(i+1)%3 约束,末位应满足 %3==0,而 89781 的末位 1 不满足,故不可能输出 89781。",
        "difficulty": 2.5
       },
       {
@@ -1924,7 +1924,7 @@
         "C": "10",
         "D": "不确定的值"
        },
-       "explanation": "",
+       "explanation": "a[10] 越界(合法下标 0~9),访问到的是不确定的值,选 D。",
        "difficulty": 2.5
       },
       {
@@ -1936,7 +1936,7 @@
        "stem": "下列程序将输出 1 。（ ）",
        "code": "int a[10]={1};\ncout<<a[1]<<endl;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。a[10]={1} 只有 a[0]=1、其余为 0,a[1]=0,输出 0 不是 1。",
        "difficulty": 2.5
       },
       {
@@ -1953,7 +1953,7 @@
         "C": "while (arr[right] % 2 != 0 && left < right) right--;",
         "D": "while (arr[right] % 2 == 0 && left < right) right--;"
        },
-       "explanation": "",
+       "explanation": "左指针跳过已就位的奇数,右指针应跳过已就位的偶数:while(arr[right]%2==0 && left<right) right--,再交换,选 D。",
        "difficulty": 2.5
       },
       {
@@ -1970,7 +1970,7 @@
         "C": "int[] array = {1,2,3,4,5};",
         "D": "int array[5];"
        },
-       "explanation": "",
+       "explanation": "C++ 定义数组的正确写法是 int array[5];,选 D。其余是其他语言或错误语法。",
        "difficulty": 2.5
       },
       {
@@ -1987,7 +1987,7 @@
         "C": "数组的 必须在编译时确定，不能使 变量定义 。 大 小 用 大 小",
         "D": "可以通过 arr[5] 来访问 int arr[5]; 数组的最后 个元素。 一"
        },
-       "explanation": "",
+       "explanation": "问错误说法。int arr[5] 的最后一个元素是 arr[4],arr[5] 已越界,D 错。",
        "difficulty": 2.5
       },
       {
@@ -2004,7 +2004,7 @@
         "C": "{1, 2, 3, 5}",
         "D": "{1, 2, 3, 6}"
        },
-       "explanation": "",
+       "explanation": "arr[4]={1,2,3} 中 arr[3] 默认 0;arr[3]=arr[0]+arr[2]=1+3=4,得 {1,2,3,4},选 B。",
        "difficulty": 2.5
       },
       {
@@ -2021,7 +2021,7 @@
         "C": "2处",
         "D": "3处"
        },
-       "explanation": "",
+       "explanation": "两处错误:循环 i<=SIZE 会写到 arr[5] 越界(应 i<SIZE),且最后 cout<<arr[SIZE] 也越界,选 C。",
        "difficulty": 2.5
       },
       {
@@ -2038,7 +2038,7 @@
         "C": "数组的长度只能在运行时才能确定",
         "D": "可以在程序中修改数组某个元素的值"
        },
-       "explanation": "",
+       "explanation": "问错误说法。标准 C++ 普通数组的长度必须在编译期确定(常量),不能在运行时才定,故 C 错。",
        "difficulty": 2.5
       },
       {
@@ -2055,7 +2055,7 @@
         "C": "3",
         "D": "4"
        },
-       "explanation": "",
+       "explanation": "p=arr[1]=2,p+2=4,选 D。",
        "difficulty": 2.5
       },
       {
@@ -2072,7 +2072,7 @@
         "C": "{3,1,4,2,5,3}",
         "D": "{1,3,2,5,4,6}"
        },
-       "explanation": "",
+       "explanation": "对 i=0、2、4 三对相邻元素做加减交换,结果各对互换:{2,1,4,3,6,5},选 A。",
        "difficulty": 2.5
       },
       {
@@ -2089,7 +2089,7 @@
         "C": "14",
         "D": "15"
        },
-       "explanation": "",
+       "explanation": "1|2=3。各元素 %3:2→case2(+3)、4→case1(+2)、6→case0(+1)、8→case2(+3)、10→case1(+2),sum=11,选 B。",
        "difficulty": 2.5
       },
       {
@@ -2101,7 +2101,7 @@
        "stem": "在 C++ 中，数组名不能改变，数组名不能被赋值。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。数组名是常量地址,不能被重新赋值。",
        "difficulty": 2.5
       },
       {
@@ -2113,7 +2113,7 @@
        "stem": "在 C++ 中， int a[] = {1, 2, 3, 4, 5}; 可以定义一个包含 5 个元素的整型数组。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。int a[]={1,2,3,4,5} 由初始值个数推断,定义了 5 个元素的数组。",
        "difficulty": 2.5
       },
       {
@@ -2125,7 +2125,7 @@
        "stem": "C++ 表达式 z = a > b ? x : y 等同于： 以下代码执行后，输出将会是 2 。",
        "code": "if (a > b) {\nz = x;\n} else {\nz = y;\n}\nint main() {\nint arr[5] = {1, 2, 3, 4, 5};\ncout << arr[3 > 2 ? 1 : 2] << endl;\nreturn 0;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。三目与 if-else 等价;arr[3>2?1:2]=arr[1]=2,输出 2。",
        "difficulty": 2.5
       },
       {
@@ -2142,7 +2142,7 @@
         "C": "24",
         "D": "30"
        },
-       "explanation": "",
+       "explanation": "sizeof(arr)/sizeof(arr[0]) 用总字节数除以单元素字节数,得元素个数 6,选 B。",
        "difficulty": 2.5
       },
       {
@@ -2154,7 +2154,7 @@
        "stem": "定义 int arr[5] = {1,2,3}; ，则 arr[3] 的值为 0， arr[5] 是合法下标。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。arr[3]、arr[4] 会被补 0,但合法下标只有 0~4,arr[5] 越界,不是合法下标。",
        "difficulty": 2.5
       },
       {
@@ -2166,7 +2166,7 @@
        "stem": "定义 double arr[10]; ，未手动初始化时，数组中所有元素的默认值为 0.0。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。局部数组 double arr[10] 未初始化时是垃圾值,并非 0.0(只有全局/静态数组才自动清零)。",
        "difficulty": 2.5
       },
       {
@@ -2178,7 +2178,7 @@
        "stem": "定义 int arr[] = {1,2,3}; ，则 sizeof(arr) 的结果为 12（ int 占 4 字节）。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。3 个 int 元素,sizeof(arr)=3×4=12 字节。",
        "difficulty": 2.5
       }
      ]
@@ -2214,7 +2214,7 @@
         "C": "6",
         "D": "7"
        },
-       "explanation": "",
+       "explanation": "\"Hello\" 占 6 个字符(5 个字母+结束符 '\\0'),数组长度为 6,选 C。",
        "difficulty": 2.5
       },
       {
@@ -2231,7 +2231,7 @@
         "C": "除了字符数组，在定义数组时“[]”内必须有常数。",
         "D": "不能对数组赋值，但可以对数组的每个基础类型的元素赋值。"
        },
-       "explanation": "",
+       "explanation": "问不正确的。定义无初始化的数组(含字符数组)都必须给常量大小,C 说“除字符数组外”错误,选 C。",
        "difficulty": 2.5
       },
       {
@@ -2243,7 +2243,7 @@
        "stem": "字符常量'\\0'常用来表示字符串结束，它和字符常量'0'是不同的。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。'\\0' 的值是 0(字符串结束符),'0' 的值是 48,二者不同。",
        "difficulty": 2.5
       },
       {
@@ -2260,7 +2260,7 @@
         "C": "'A' <= 'a' <= 'Z'",
         "D": "('A' <= a) && (a <= 'Z')"
        },
-       "explanation": "",
+       "explanation": "判断大写字母用 ('A'<=a)&&(a<='Z'),选 D。B、C 的链式比较是错误写法。",
        "difficulty": 2.5
       },
       {
@@ -2277,7 +2277,7 @@
         "C": "string str(\"GESP\"); cout<<str[1]<<str[2]<<str[3]<<str[4]<<endl;",
         "D": "string str{\"GESP\"}; cout<<str<<endl;"
        },
-       "explanation": "",
+       "explanation": "C 从下标 1 输出,漏掉了 str[0]='G',只得到 \"ESP\"(及结束符),无法输出 \"GESP\",选 C。",
        "difficulty": 2.5
       },
       {
@@ -2294,7 +2294,7 @@
         "C": "代码将不换行输出各个含有数字的电话号码，号码中间有分隔。",
         "D": "不能够输出数字电话号码。"
        },
-       "explanation": "",
+       "explanation": "代码逐位累积数字,遇到非数字且 tel 非空时执行 cout<<tel<<endl,endl 换行,故每个电话号码各占一行,选 A。",
        "difficulty": 2.5
       },
       {
@@ -2311,7 +2311,7 @@
         "C": "154",
         "D": "316"
        },
-       "explanation": "",
+       "explanation": "x 累加各字符 ASCII:'3'+'1'+'6'=51+49+54=154,选 C。",
        "difficulty": 2.5
       },
       {
@@ -2328,7 +2328,7 @@
         "C": "str[i]+='A'-'a'",
         "D": "无法实现"
        },
-       "explanation": "",
+       "explanation": "小写转大写:str[i]+='A'-'a'(即 −32),选 C。",
        "difficulty": 2.5
       },
       {
@@ -2345,7 +2345,7 @@
         "C": "3",
         "D": "4"
        },
-       "explanation": "",
+       "explanation": "代码在每段空白处计数并跳过连续空格。\"gEsP is Interesting     !\" 有 3 处空白段,nwords=3,选 C。",
        "difficulty": 2.5
       },
       {
@@ -2362,7 +2362,7 @@
         "C": "19",
         "D": "20"
        },
-       "explanation": "",
+       "explanation": "只初始化了 4 个字符,其后自动补 '\\0',字符串长度为 4,选 A。",
        "difficulty": 2.5
       },
       {
@@ -2374,7 +2374,7 @@
        "stem": "执行下面C++代码后将输出 2 。（ ）",
        "code": "int main()\n{\nstring str=\"gEsP is Interesting\";\nint x = str.find(\"s\");\ncout << x << endl;\ncout << endl;\nreturn 0;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。\"gEsP is Interesting\" 中 's' 在下标 2,find 返回 2。",
        "difficulty": 2.5
       },
       {
@@ -2386,7 +2386,7 @@
        "stem": "在C++语言中，字符数组被定义时，它的大小可以调整。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。字符数组定义后大小固定,不能再调整。",
        "difficulty": 2.5
       },
       {
@@ -2403,7 +2403,7 @@
         "C": "5",
         "D": "6"
        },
-       "explanation": "",
+       "explanation": "\"GESP\" 占 5 个字符(4 个字母+结束符 '\\0'),数组长度为 5,选 C。",
        "difficulty": 2.5
       },
       {
@@ -2420,7 +2420,7 @@
         "C": "209",
         "D": "316"
        },
-       "explanation": "",
+       "explanation": "x 累加各字符 ASCII:'0'+'6'+'2'+'9'=48+54+50+57=209,选 C。",
        "difficulty": 2.5
       },
       {
@@ -2437,7 +2437,7 @@
         "C": "str = str.substr(found, str.length() -1);",
         "D": "以上都不对"
        },
-       "explanation": "",
+       "explanation": "按 . 分割:取出一段后要跳过分隔符继续,str=str.substr(found+delimiter.length(), …),选 A。",
        "difficulty": 2.5
       },
       {
@@ -2449,7 +2449,7 @@
        "stem": "字符常量'\\0'常用来表示字符串结束，和字符常量'0'相同。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。'\\0' 的值是 0(字符串结束符),'0' 的值是 48,二者不同。",
        "difficulty": 2.5
       },
       {
@@ -2466,7 +2466,7 @@
         "C": "7",
         "D": "6"
        },
-       "explanation": "",
+       "explanation": "\"Hello,CHAD\" 中 'A' 在下标 8(H0e1l2l3o4,5C6H7A8D9),find 返回 8,选 B。",
        "difficulty": 2.5
       },
       {
@@ -2478,7 +2478,7 @@
        "stem": "下列程序输出的是 3 。（ ）",
        "code": "string str=\"CHADai\";\nsize_t pos = str.find('D');\ncout<<pos<<endl;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。\"CHADai\" 中 'D' 在下标 3,find 返回 3。",
        "difficulty": 2.5
       },
       {
@@ -2495,7 +2495,7 @@
         "C": "112345chenadai",
         "D": "12345chenadai"
        },
-       "explanation": "",
+       "explanation": "replace(1,5,\"12345\") 把下标 1 起的 5 个字符 \"234@@\" 换成 \"12345\",得 \"1\"+\"12345\"+\"chenadai\"=\"112345chenadai\",选 C。",
        "difficulty": 2.5
       },
       {
@@ -2512,7 +2512,7 @@
         "C": "hello",
         "D": "不能正确执行"
        },
-       "explanation": "",
+       "explanation": "对 string,ch[5] 是结束符 '\\0'(值为 0),NULL 也是 0,故 ch[5]==NULL 成立,输出 right,选 A。",
        "difficulty": 2.5
       },
       {
@@ -2529,7 +2529,7 @@
         "C": "13",
         "D": "12"
        },
-       "explanation": "",
+       "explanation": "程序输出 strlen=11,但本题问 ch 占用的内存:\"hello world\" 11 个字符再加结束符 '\\0',共 12,选 D。",
        "difficulty": 2.5
       },
       {
@@ -2541,7 +2541,7 @@
        "stem": "下列可执行程序段中，最后 pos 的值是 4",
        "code": "string str=\"chenADai\";\nint pos = str.find('D');\n--pos&11;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。\"chenADai\" 中 'D' 在下标 5,find 得 5;--pos 使 pos=4,后面的 &11 不改变 pos,故 pos=4。",
        "difficulty": 2.5
       },
       {
@@ -2553,7 +2553,7 @@
        "stem": "该段程序将不能正确执行",
        "code": "string ch=\"chen\";\ncout<<ch[4]<<endl;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。对 string,ch[4] 是结束符 '\\0',程序能正常执行(只是输出空字符),并非不能执行。",
        "difficulty": 2.5
       },
       {
@@ -2570,7 +2570,7 @@
         "C": "14 字节",
         "D": "16 字节"
        },
-       "explanation": "",
+       "explanation": "Base64 每 3 字节编码为 4 字符。10 字节需 ⌈10/3⌉=4 组(末组补 =),共 4×4=16 字节,选 D。",
        "difficulty": 2.5
       },
       {
@@ -2587,7 +2587,7 @@
         "C": "1 str.replace(1, 5, \"C++\");",
         "D": "1 str.replace(4, 5, \"C++\");"
        },
-       "explanation": "",
+       "explanation": "\"HelloWorld\" 中 \"World\" 在下标 5、长度 5,replace(5,5,\"C++\") 得 \"HelloC++\",选 B。",
        "difficulty": 2.5
       },
       {
@@ -2604,7 +2604,7 @@
         "C": "1 str.insert(\"World\"); 2 cout << str.substr(5, 5);",
         "D": "1 str.insert(5, \"World\"); 2 cout << str.substr(5, 5);"
        },
-       "explanation": "",
+       "explanation": "insert(5,\"World\") 把 \"HelloC++\" 变成 \"HelloWorldC++\",再 substr(5,5) 取出 \"World\",选 D。",
        "difficulty": 2.5
       },
       {
@@ -2621,7 +2621,7 @@
         "C": "8或10",
         "D": "取决于计算机采用什么编码"
        },
-       "explanation": "",
+       "explanation": "\"GESP考试\" 含 4 个 ASCII 字符+2 个汉字,字节数随编码而定(UTF-8 为 10、GBK 为 8),选 D。",
        "difficulty": 2.5
       },
       {
@@ -2638,7 +2638,7 @@
         "C": "6",
         "D": "3"
        },
-       "explanation": "",
+       "explanation": "rfind 找最后一次出现。\"Gesp Test\" 中最后一个 'e' 在下标 6,选 C。",
        "difficulty": 2.5
       },
       {
@@ -2655,7 +2655,7 @@
         "C": "6",
         "D": "字符数多少取决于编码"
        },
-       "explanation": "",
+       "explanation": "字符数指字符个数:\"Gesp考试\"=G、e、s、p、考、试 共 6 个(与编码无关),选 C。",
        "difficulty": 2.5
       },
       {
@@ -2667,7 +2667,7 @@
        "stem": "C++中 string 的 == 运算符比较的是字符串的内存地址，而非内容",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。string 的 == 比较的是字符串内容,不是内存地址。",
        "difficulty": 2.5
       },
       {
@@ -2679,7 +2679,7 @@
        "stem": "string 的 substr(1, 3) 返回从下标1开始的3个字符的子串。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。substr(1,3) 返回从下标 1 开始、长度 3 的子串。",
        "difficulty": 2.5
       },
       {
@@ -2691,7 +2691,7 @@
        "stem": "string(\"hello\") == \"hello\" 的比较结果为true。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。string(\"hello\")==\"hello\" 比较内容,结果为 true。",
        "difficulty": 2.5
       },
       {
@@ -2703,7 +2703,7 @@
        "stem": "string 的 substr(2, 10) 在字符串长度不足时会抛出异常。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。substr(2,10) 在长度不足时只返回到串尾的字符,不会抛异常(仅当起始位置越界才抛)。",
        "difficulty": 2.5
       },
       {
@@ -2720,7 +2720,7 @@
         "C": "string 对象在内存中是动态分配空间的，因此可以自动处理字符串长度的变化。",
         "D": "string 对象和字符数组都可以使用 == 运算符来直接比较两个字符串的内容是否相同。"
        },
-       "explanation": "",
+       "explanation": "问错误说法。字符数组用 == 比较的是地址而非内容,必须用 strcmp;只有 string 才能用 == 比内容,故 D 错。",
        "difficulty": 2.5
       },
       {
@@ -2737,7 +2737,7 @@
         "C": "16",
         "D": "17"
        },
-       "explanation": "",
+       "explanation": "\"C++ Programming\" 长 15。15|3:1111|0011=1111=15,选 B。",
        "difficulty": 2.5
       },
       {
@@ -2754,7 +2754,7 @@
         "C": "hesp",
         "D": "GFUS"
        },
-       "explanation": "",
+       "explanation": "s=\"GESP\",s[i]=toupper(s[i]+i):G+0=G、E+1=F、S+2=U、P+3=S,结果 GFUS,选 D。",
        "difficulty": 2.5
       },
       {
@@ -2771,7 +2771,7 @@
         "C": "字符数组 str1 和 str2 不相等。",
         "D": "这两个赋值方式完全相同。"
        },
-       "explanation": "",
+       "explanation": "str2 最后一个是字符 '0'(ASCII 48)而非结束符 '\\0',且数组没有自动补 \\0;str1=\"Hello\"。两者内容不同,选 C。",
        "difficulty": 2.5
       },
       {
@@ -2788,7 +2788,7 @@
         "C": "2026",
         "D": "026"
        },
-       "explanation": "",
+       "explanation": "substr(4,2) 从下标 4 起取 2 个字符。\"GESP2026\" 下标 4、5 是 '2'、'0',得 \"20\",选 A。",
        "difficulty": 2.5
       },
       {
@@ -2805,7 +2805,7 @@
         "C": "6",
         "D": "10"
        },
-       "explanation": "",
+       "explanation": "sizeof(s)=10(数组容量),strlen(s)=5(实际字符数),a−b=5,选 B。",
        "difficulty": 2.5
       },
       {
@@ -2822,7 +2822,7 @@
         "C": "if (str[i] + 3 > 122) str[i] = str[i] - 26;",
         "D": "if (str[i] + 3 > 'z') str[i] = 'a' + (str[i] + 3 - 'z') - 1;"
        },
-       "explanation": "",
+       "explanation": "加密 +3 且超过 'z' 要回卷到 'a'。D 正确:当 str[i]+3>'z' 时,'a'+(str[i]+3−'z')−1 把超出部分从 'a' 重新数起,选 D。",
        "difficulty": 2.5
       }
      ]
@@ -2858,7 +2858,7 @@
         "C": "19",
         "D": "48"
        },
-       "explanation": "",
+       "explanation": "3|16=00011|10000=10011=19,选 C。",
        "difficulty": 2.5
       },
       {
@@ -2870,7 +2870,7 @@
        "stem": "下面C++代码可以计算1到100的累加和，采用的是穷举法。",
        "code": "int main()\n{\nint i,sum=0;\nfor(int i = 1; i <= 100 ; i++)\nsum += i;\ncout << sum << endl;\ncout << endl;\nreturn 0;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。逐项累加 1~100 属于迭代累加,不是穷举(枚举)法。",
        "difficulty": 2.5
       },
       {
@@ -2887,7 +2887,7 @@
         "C": "3",
         "D": "1"
        },
-       "explanation": "",
+       "explanation": "a>>2 即 12/4=3,选 C。",
        "difficulty": 2.5
       },
       {
@@ -2904,7 +2904,7 @@
         "C": "a = 10, b = 5",
         "D": "a = 10, b = 10"
        },
-       "explanation": "",
+       "explanation": "异或三步交换:a=5、b=10 互换后 a=10、b=5,选 C。",
        "difficulty": 2.5
       },
       {
@@ -2921,7 +2921,7 @@
         "C": "程序不能正确执行",
         "D": "没有输出"
        },
-       "explanation": "",
+       "explanation": "浮点数有误差:1.0−0.9 的结果不是精确的 0.1,故 (b−a)==0.1 为假,输出 Not equal,选 B。",
        "difficulty": 2.5
       },
       {
@@ -2938,7 +2938,7 @@
         "C": "a和b的值交换",
         "D": "a和b的高低位互换"
        },
-       "explanation": "",
+       "explanation": "带 a≠b 判断的异或三步,实现 a 与 b 的值交换,选 C。",
        "difficulty": 2.5
       },
       {
@@ -2955,7 +2955,7 @@
         "C": "将二进制数转换成八进制数",
         "D": "将八进制数转换成16进制数"
        },
-       "explanation": "",
+       "explanation": "cout<<oct<<decimal 把十进制数以八进制形式输出,即十进制转八进制,选 A。",
        "difficulty": 2.5
       },
       {
@@ -2972,7 +2972,7 @@
         "C": "cout << hex << decimal;",
         "D": "不能正确执行"
        },
-       "explanation": "",
+       "explanation": "十进制转十六进制用 cout<<hex<<decimal,选 C。",
        "difficulty": 2.5
       },
       {
@@ -2989,7 +2989,7 @@
         "C": "进行的是按位与运算",
         "D": "进行的是按位异或运算"
        },
-       "explanation": "",
+       "explanation": "a^b 是按位异或运算,选 D。",
        "difficulty": 2.5
       },
       {
@@ -3001,7 +3001,7 @@
        "stem": "这段程序进 的是判断 个从键盘输 的字符的ASCII 是否是奇数，若是，输出 YES，否则，输出 NO 行 一 入",
        "code": "int main()\n{\nchar x;\nscanf(\"%c\", &x);\nint ASCII = (int)x;\ncout << (x & 1 ? \"YES\" : \"NO\") << '\\n';\nreturn 0;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。(int)x & 1 取最低位,为 1 即 ASCII 为奇数,输出 YES,否则 NO。",
        "difficulty": 2.5
       },
       {
@@ -3018,7 +3018,7 @@
         "C": "int b = (i % 10) / 10;",
         "D": "int b = (i % 10) % 10;"
        },
-       "explanation": "",
+       "explanation": "三位数 i 中,百位 a=i/100、个位 c=i%10、十位 b=(i/10)%10,选 B。",
        "difficulty": 2.5
       },
       {
@@ -3035,7 +3035,7 @@
         "C": "distance += height*2;",
         "D": "distance += height+1;"
        },
-       "explanation": "",
+       "explanation": "每次落地后累加本次下落高度:distance+=height(随后再 height/=2),选 B。",
        "difficulty": 2.5
       },
       {
@@ -3047,7 +3047,7 @@
        "stem": "函数声明 double f(); 返回 int 时，会自动转换为 double",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。函数返回类型为 double 时,return 的 int 会自动转换为 double。",
        "difficulty": 2.5
       },
       {
@@ -3064,7 +3064,7 @@
         "C": "main 函数可以被其他函数调 。 用",
         "D": "函数的定义可以直接嵌套，即 个函数内部可以真正定义另 个函数。 一 一"
        },
-       "explanation": "",
+       "explanation": "B 正确:return 一次只能返回一个值,但可借助指针/引用等间接返回多个值。A/C/D 均错(参数非必须、main 不被调用、不能真正嵌套定义函数)。",
        "difficulty": 2.5
       },
       {
@@ -3081,7 +3081,7 @@
         "C": "在所有函数外部声明的变量，在整个程序中都有效。",
         "D": "不同函数中的局部变量可以同名，它们代表不同的内存单元"
        },
-       "explanation": "",
+       "explanation": "问错误说法。全局变量的作用域是从“声明处”到文件末尾,而非“整个程序”(声明前的函数看不到它),故 C 不准确。",
        "difficulty": 2.5
       },
       {
@@ -3098,7 +3098,7 @@
         "C": "没有返回值的函数必须声明为 void 类型，且不能包含 return 语句",
         "D": "C++11 及之后标准要求函数必须显式声明返回类型，不允许默认返回 int"
        },
-       "explanation": "",
+       "explanation": "D 正确:C++11 起函数必须显式声明返回类型,不允许默认返回 int。A/B/C 均错(还有引用/指针传递、形参调用后释放、void 可写空 return)。",
        "difficulty": 2.5
       },
       {
@@ -3115,7 +3115,7 @@
         "C": "调用 min(5) 是错误的，不能通过编译",
         "D": "调用 min() （不传任何参数）可以通过编译，结果为 0"
        },
-       "explanation": "",
+       "explanation": "问错误说法。min() 不传参数无法通过编译,D 说“可通过编译且返回 0”错误。",
        "difficulty": 2.5
       },
       {
@@ -3132,7 +3132,7 @@
         "C": "abs(-1, -2) 的返回值是 1",
         "D": "若传入负数浮点数， abs() 会自动截断小数部分后返回整数绝对值"
        },
-       "explanation": "",
+       "explanation": "abs() 可求 int 绝对值,头文件 <cmath> 或 <cstdlib>,A 正确。B 错(abs 不做四舍五入)、C 错(只接收一个参数)、D 错。",
        "difficulty": 2.5
       }
      ]
@@ -3158,7 +3158,7 @@
         "C": "1 int a[10]={1,2,3,4,5,6,7,8,9,10}; 2 int sum=0; 3 for(int i=0;i<10;i++) { 4 um=sum+a[i]; 5 }",
         "D": "1 int a[10]={0}; 2 int sum=0; 3 for(int i=0;i<=10;i++) { 4 sum=sum+a[i]; 5 }"
        },
-       "explanation": "",
+       "explanation": "C 正确:数组已初始化且循环 i<10 不越界。A 的 a 未初始化且 i<=10 越界,B、D 也都 i<=10 越界。",
        "difficulty": 2.5
       },
       {
@@ -3175,7 +3175,7 @@
         "C": "1 int n,m,res=0,d; 2 cin >> n >> m>>d; 3 for(int i = n; i <= m; i++){ 4 int temp = i; 5 while(temp){ 6 if(temp % 10 == d) res++; 7 temp /= 10; 8 } 9 } 10 cout << res << endl; 11 return 0;",
         "D": "1 int n,m,res=0,d; 2 cin >> n >> m>>d; 3 for(int i = n; i <= m; i++){ 4 while(temp){ 5 if(temp % 10 == d) res++; 6 temp /= 10; 7 } 8 } 9 cout << res << endl; 10 return 0;"
        },
-       "explanation": "",
+       "explanation": "C 正确:res 初始化为 0,且循环 i 从 n 到 m(含两端)逐个统计数字 d 出现次数。A 漏了 n、B 的 res 未初始化。",
        "difficulty": 2.5
       },
       {
@@ -3192,7 +3192,7 @@
         "C": "1 for(int i = 0; i <= 20; i++){ 2 for(int j = 0; j <= 34; j++){ 3 for(int k = 0; k <= 20; k++){ 4 if(i + j + k == 100 && 15 * i + 9 * j + k == 300) 5 cout << i << \" \" << j << \" \" << k << endl; 6 } 7 } 8 }",
         "D": "1 for(int i = 0; i <= 100; i++){ 2 for(int j = 0; j <= 100; j++){ 3 for(int k = 0; k <= 100; k++){ 4 if(i + j + k == 100 && 15 * i + 9 * j + k == 300) 5 cout << i << \" \" << j << \" \" << k << endl; 6 } 7 } 8 }"
        },
-       "explanation": "",
+       "explanation": "百钱百鸡变体需三重枚举且满足总数 100、总价 100、每种至少 1 只、鸭子数能被 3 整除等约束,只有 D 的边界与判断都正确。",
        "difficulty": 2.5
       },
       {
@@ -3209,7 +3209,7 @@
         "C": "1 if(N >= 2){ 2 cout<<2<<endl; 3 for(int i = 3;i <= N;i ++){ 4 for(int j = 2;j < i;j ++){ 5 if(i % j == 0){ 6 flag = 1; 7 } 8 } 9 if(flag == 0){ 10 cout<<i<<endl; 11 } 12 flag = 0; 13 } 14 }",
         "D": "1 if(N >= 2){ 2 cout<<2<<endl; 3 for(int i = 3;i <= N;i ++){ 4 for(int j = 2;j < i;j ++){ 5 if(i % j == 0){ 6 flag = 1; 7 } 8 } 9 if(flag == 0){ 10 cout<<i<<endl; 11 } 12 } 13 }"
        },
-       "explanation": "",
+       "explanation": "试除法判素数:先输出 2,再从 3 起、用 2 到 i−1 逐个试除。只有 C 的结构正确。",
        "difficulty": 2.5
       },
       {
@@ -3226,7 +3226,7 @@
         "C": "int max(a, b) { if (a > b) return a; else return b; }",
         "D": "void max(a, b) { cout << (a > b ? a : b); }"
        },
-       "explanation": "",
+       "explanation": "B 正确:返回类型为 int 且用 return 返回较大值。A/D 用 void 不能返回值,C 形参缺类型,选 B。",
        "difficulty": 2.5
       }
      ]
@@ -3257,7 +3257,7 @@
        "stem": "sort 可以直接用于排序 set 中的元素。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。sort 需要随机访问迭代器,而 set 是有序容器(双向迭代器),不能直接对其用 sort。",
        "difficulty": 2.5
       }
      ]
@@ -3293,7 +3293,7 @@
         "C": "if (arr[i]+1 > arr[maxIndex])",
         "D": "if (arr[i] > arr[maxIndex])"
        },
-       "explanation": "",
+       "explanation": "求最大值下标:当 arr[i]>arr[maxIndex] 时更新 maxIndex=i,选 D。",
        "difficulty": 2.5
       },
       {
@@ -3310,7 +3310,7 @@
         "C": "arr[0]",
         "D": "size"
        },
-       "explanation": "",
+       "explanation": "求最大值应先把第一个元素作为初值,maxVal=arr[0],选 C。(初值取 0 或下标越界都不对。)",
        "difficulty": 2.5
       },
       {
@@ -3322,7 +3322,7 @@
        "stem": "#include \"file.h\" 和 #include <file.h> 在编译器查找头文件时的搜索策略是完全相同的。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。\"file.h\" 一般先搜索当前目录,<file.h> 直接搜索系统目录,两者查找策略并不相同。",
        "difficulty": 2.5
       }
      ]
@@ -3353,7 +3353,7 @@
        "stem": "著名的哥德巴赫猜想：任一大于2的偶数都可写成两个素数之和。我们可以通过枚举法来证明它。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。哥德巴赫猜想涉及无穷多偶数,枚举有限个例子不能算作数学证明。",
        "difficulty": 2.5
       },
       {
@@ -3365,7 +3365,7 @@
        "stem": "自然界中，最小的素数是 2",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。最小的素数是 2。",
        "difficulty": 2.5
       },
       {
@@ -3382,7 +3382,7 @@
         "C": "发生下溢",
         "D": "结果符号位错误"
        },
-       "explanation": "",
+       "explanation": "补码加法中,符号位无进位而次高位有进位,表示结果超出正数范围,发生上溢,选 B。",
        "difficulty": 2.5
       },
       {
@@ -3399,7 +3399,7 @@
         "C": "计算 1+2+3+…+1000 的和",
         "D": "找出三位数中个位、十位、百位数字之和等于 10 的数"
        },
-       "explanation": "",
+       "explanation": "枚举法适合“逐个尝试再筛选”的搜索问题。C 求 1+…+1000 是直接累加/公式计算,不是搜索,最不适合用枚举,选 C。",
        "difficulty": 2.5
       }
      ]
@@ -3435,7 +3435,7 @@
         "C": "调试",
         "D": "编译"
        },
-       "explanation": "",
+       "explanation": "高级语言源程序经过编译才能生成可执行代码,选 D。",
        "difficulty": 2.5
       },
       {
@@ -3452,7 +3452,7 @@
         "C": "a = a + b",
         "D": "b = a + b"
        },
-       "explanation": "",
+       "explanation": "要输出 24 12(即交换)。填 b=a^b 后,配合后两步 a=a^b、b=a^b 正好完成异或交换:a=12、b=24 → a=24、b=12,选 B。",
        "difficulty": 2.5
       },
       {
@@ -3464,7 +3464,7 @@
        "stem": "一个算法可以用不同的形式来描述，但要求描述比较规范，因此不能用自然 语言描述。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。算法可以用自然语言、流程图、伪代码等多种形式描述,并非不能用自然语言。",
        "difficulty": 2.5
       },
       {
@@ -3476,7 +3476,7 @@
        "stem": "域名是由一串用点分隔的名字来标识互联网上一个计算机或计算机组的名称， CCF 编程能力等级认证官方网站的域名是 gesp.ccf.org.cn，其中顶级域名是 gesp。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。gesp.ccf.org.cn 的顶级域名是最右的 cn,不是 gesp。",
        "difficulty": 2.5
       },
       {
@@ -3493,7 +3493,7 @@
         "C": "一种通话设备",
         "D": "以上都不对"
        },
-       "explanation": "",
+       "explanation": "手机上的 App 指的是应用软件,选 B。",
        "difficulty": 2.5
       },
       {
@@ -3510,7 +3510,7 @@
         "C": "5",
         "D": "1"
        },
-       "explanation": "",
+       "explanation": "按流程图运算,输出 20,选 B。",
        "difficulty": 2.5
       },
       {
@@ -3527,7 +3527,7 @@
         "C": "a = b; b = a & 0xff;",
         "D": "b = a; a = b;"
        },
-       "explanation": "",
+       "explanation": "a=(10<<8)|20 把 10、20 打包(高字节 10、低字节 20)。B 用 b=a>>8 取高字节得 10、a=a&0xff 取低字节得 20,输出 20 10,选 B。",
        "difficulty": 2.5
       },
       {
@@ -3544,7 +3544,7 @@
         "C": "45",
         "D": "55"
        },
-       "explanation": "",
+       "explanation": "这是欧拉函数筛:把 array[i]=i,对每个质数 p 将其倍数乘以 (p−1)/p,得到 φ(1..9)=1,1,2,2,4,2,6,4,6,求和为 28,选 B。",
        "difficulty": 2.5
       },
       {
@@ -3556,7 +3556,7 @@
        "stem": "在C++语言中，所有 int 类型的值，经过若干次左移操作（ << ）后，它们的值总会变为 0 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。任何 int 经过足够多次左移,有效位最终都被移出,变为 0。",
        "difficulty": 2.5
       },
       {
@@ -3573,7 +3573,7 @@
         "C": "4",
         "D": "3"
        },
-       "explanation": "",
+       "explanation": "统计 i/j==2(整除)的对数:i=2、4、5、6 各有一组满足,共 4 对,选 C。",
        "difficulty": 2.5
       },
       {
@@ -3590,7 +3590,7 @@
         "C": "5",
         "D": "3"
        },
-       "explanation": "",
+       "explanation": "x=4,循环 i<=4 共执行 5 次,temp=5,选 C。",
        "difficulty": 2.5
       },
       {
@@ -3607,7 +3607,7 @@
         "C": "2",
         "D": "5"
        },
-       "explanation": "",
+       "explanation": "\"chen\" 的长度为 4,选 A。",
        "difficulty": 2.5
       },
       {
@@ -3624,7 +3624,7 @@
         "C": "输出'\\0'",
         "D": "输出空格"
        },
-       "explanation": "",
+       "explanation": "str[5] 越界(\"chen\" 合法下标 0~4),访问到不确定的值,选 A。",
        "difficulty": 2.5
       },
       {
@@ -3641,7 +3641,7 @@
         "C": "输出空格",
         "D": "什么也不输出"
        },
-       "explanation": "",
+       "explanation": "ch[2] 是结束符 '\\0'(值 0),cout 输出空字符、屏幕上什么也看不到,选 D。",
        "difficulty": 2.5
       },
       {
@@ -3658,7 +3658,7 @@
         "C": "-2^31~+(2^31)-1",
         "D": "-(2^31)+1~2^31"
        },
-       "explanation": "",
+       "explanation": "32 位 int 的范围是 −2^31 ~ 2^31−1,选 C。",
        "difficulty": 2.5
       },
       {
@@ -3675,7 +3675,7 @@
         "C": "5",
         "D": "4"
        },
-       "explanation": "",
+       "explanation": "i%3==0 && i%5==0 即被 15 整除,0~20 中有 0 和 15 两个,cnt=2,选 A。",
        "difficulty": 2.5
       },
       {
@@ -3692,7 +3692,7 @@
         "C": "2",
         "D": "1.50"
        },
-       "explanation": "",
+       "explanation": "a/b 先做整数除法 3/2=1,再 *1.0=1.0,输出 1,选 B。(整除发生在乘 1.0 之前。)",
        "difficulty": 2.5
       },
       {
@@ -3709,7 +3709,7 @@
         "C": "油量表",
         "D": "传感器"
        },
-       "explanation": "",
+       "explanation": "选路只需语音(麦克风)、感知(传感器)、播报(扬声器),油量表与选路无关,选 C。",
        "difficulty": 2.5
       },
       {
@@ -3726,7 +3726,7 @@
         "C": "阿塔纳索夫",
         "D": "埃克特-莫克利"
        },
-       "explanation": "",
+       "explanation": "现代电子计算机基于冯·诺依曼体系结构,选 B。",
        "difficulty": 2.5
       },
       {
@@ -3738,7 +3738,7 @@
        "stem": "执行C++代码 cout<<(5&&2)<<endl; 后将输出 1 。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。5&&2 为真,输出 1。",
        "difficulty": 2.5
       },
       {
@@ -3750,7 +3750,7 @@
        "stem": "C++程序执行后，输入 chen a dai 输出应该为： chen 。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。cin>>str 遇空格即停,只读入 \"chen\",故输出 chen。",
        "difficulty": 2.5
       },
       {
@@ -3762,7 +3762,7 @@
        "stem": "执行C++代码 cout<<(5||2); 后将输出 1 。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。5||2 为真,输出 1。",
        "difficulty": 2.5
       },
       {
@@ -3774,7 +3774,7 @@
        "stem": "执行下面C++代码后将输出\"China\"。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。replace(0,1,\"C\") 把下标 0 的 'c' 替换成 \"C\",得到 \"China\"。",
        "difficulty": 2.5
       },
       {
@@ -3786,7 +3786,7 @@
        "stem": "执行C++代码将输出 0 5 ， 5 之后还有一个空格。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。i%5==0 时输出的是 list[i] 而非 i:i=0、5 对应 list[0]=1、list[5]=6,输出 \"1 6 \",不是 \"0 5\"。",
        "difficulty": 2.5
       },
       {
@@ -3798,7 +3798,7 @@
        "stem": "下面C++代码将输出1（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。cout<<list 输出的是数组的地址(指针),不是元素值 1。",
        "difficulty": 2.5
       },
       {
@@ -3810,7 +3810,7 @@
        "stem": "下面C++程序将输出1。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。arr[0]=1,输出 1。",
        "difficulty": 2.5
       },
       {
@@ -3822,7 +3822,7 @@
        "stem": "执行C++代码，将输出 1 3 5 7 9 ， 9 之后还有一个空格。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。i 取 0、2、4、6、8,输出 list[i]=1、3、5、7、9,末尾还有一个空格。",
        "difficulty": 2.5
       },
       {
@@ -3834,7 +3834,7 @@
        "stem": "小杨最近在准备考GESP，他用的Dev C++来练习和运行程序，所以Dev C++也是一个小型操作系统。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。Dev C++ 是集成开发环境(IDE),不是操作系统。",
        "difficulty": 2.5
       },
       {
@@ -3851,7 +3851,7 @@
         "C": "-5",
         "D": "5"
        },
-       "explanation": "",
+       "explanation": "x=−5,−5<<1=−10,−10>>1=−5(算术移位保符号),故 x==(x<<1>>1) 为真,输出 1,选 B。",
        "difficulty": 2.5
       },
       {
@@ -3868,7 +3868,7 @@
         "C": "0x70",
         "D": "0x60"
        },
-       "explanation": "",
+       "explanation": "比较码值:100=100、075(八进制)=61、0x70=112、0x60=96,最大是 0x70,选 C。",
        "difficulty": 2.5
       },
       {
@@ -3885,7 +3885,7 @@
         "C": "小于",
         "D": "等于或小于"
        },
-       "explanation": "",
+       "explanation": "3=00011、16=10000 无公共位,a|b=10011=19,a+b 也是 19,故 a|b 等于 a+b,选 B。",
        "difficulty": 2.5
       },
       {
@@ -3902,7 +3902,7 @@
         "C": "操作系统",
         "D": "神话人物"
        },
-       "explanation": "",
+       "explanation": "鸿蒙(HarmonyOS)是华为自研的操作系统,选 C。",
        "difficulty": 2.5
       },
       {
@@ -3919,7 +3919,7 @@
         "C": "发明汉字激光照排系统",
         "D": "成立方正公司"
        },
-       "explanation": "",
+       "explanation": "王选先生的重大贡献是发明汉字激光照排系统,选 C。",
        "difficulty": 2.5
       },
       {
@@ -3931,7 +3931,7 @@
        "stem": "对整型变量 int a = 3 ，执行C++代码 a<<2 将把2输出到 a 中。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。a<<2 只是一个表达式、不含赋值,不会把结果写回 a。",
        "difficulty": 2.5
       },
       {
@@ -3943,7 +3943,7 @@
        "stem": "一个 int 类型变量 a ，执行操作 (a<<2>>2) 后的值一定是 a 。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。(a<<2>>2) 若左移时高位溢出丢失,右移无法还原,结果不一定等于 a。",
        "difficulty": 2.5
       },
       {
@@ -3955,7 +3955,7 @@
        "stem": "在C++语言中， (010<<1) 执行结果是 100 。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。010 以 0 开头是八进制(=8),8<<1=16,输出 16 不是 100。",
        "difficulty": 2.5
       },
       {
@@ -3967,7 +3967,7 @@
        "stem": "小杨今年春节回奶奶家了，奶奶家的数字电视要设置ip地址并接入到WIFI盒子才能收看节目，那这个WIFI盒 子具有路由器的功能。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。能设置 IP 并接入网络的 WIFI 盒子具备路由器功能。",
        "difficulty": 2.5
       },
       {
@@ -3984,7 +3984,7 @@
         "C": "3",
         "D": "4"
        },
-       "explanation": "",
+       "explanation": "GESP 一级可选 C++、Python、图形化共 3 种语言,选 C。",
        "difficulty": 2.5
       },
       {
@@ -4001,7 +4001,7 @@
         "C": "(yr%400==0) && (yr%4==0)",
         "D": "(yr%400==0) && (yr%4==0 && yr%100!=0)"
        },
-       "explanation": "",
+       "explanation": "闰年条件 (yr%400==0)||(yr%4==0 && yr%100!=0),选 B。",
        "difficulty": 2.5
       },
       {
@@ -4018,7 +4018,7 @@
         "C": "~",
         "D": "~"
        },
-       "explanation": "",
+       "explanation": "32 位 int 的范围是 −2147483648~2147483647,选 C。",
        "difficulty": 2.5
       },
       {
@@ -4035,7 +4035,7 @@
         "C": "20",
         "D": "30"
        },
-       "explanation": "",
+       "explanation": "按流程图累加,输出 10,选 B。",
        "difficulty": 2.5
       },
       {
@@ -4052,7 +4052,7 @@
         "C": "cout << 'They're planning a party for their friend's birthday.'<< endl;",
         "D": "cout << \"They\\'re planning a party for their friend\\'s birthday.\" << endl;"
        },
-       "explanation": "",
+       "explanation": "字符串要用双引号,内部单引号可直接写或转义。D 正确地用双引号包裹并转义,选 D。",
        "difficulty": 2.5
       },
       {
@@ -4064,7 +4064,7 @@
        "stem": "GESP测试是对认证者的编程能力进行等级认证，同一级别的能力基本上与编程语言无关。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。GESP 按等级认证编程能力,同级要求基本与语言无关。",
        "difficulty": 2.5
       },
       {
@@ -4076,7 +4076,7 @@
        "stem": "执行下面C++代码后，输出的结果是8。",
        "code": "int a = 0b1010;\nint b = 01100;\nint c = a & b;\ncout << c <<endl;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。b=01100 以 0 开头是八进制(=576),a=0b1010=10,10&576=0,输出 0 不是 8。",
        "difficulty": 2.5
       },
       {
@@ -4088,7 +4088,7 @@
        "stem": "把整数3025从中剪开分为30和25两个数，此时再将这两数之和平方，计算结果又等于原数。(30 + 25) × (30 + 25) = 55 × 55 = 3025，这样的数叫“雷劈数”。可以使用枚举的方法求出所有符合这样条件的四位数。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。(30+25)²=3025 这类“雷劈数”,可用枚举法遍历四位数求出。",
        "difficulty": 2.5
       },
       {
@@ -4105,7 +4105,7 @@
         "C": "(23|10)==31",
         "D": "(23|01)==31"
        },
-       "explanation": "",
+       "explanation": "C 正确:23|10=10111|01010=11111=31。其余等式都不成立。",
        "difficulty": 2.5
       },
       {
@@ -4122,7 +4122,7 @@
         "C": "(11^00)和(1^0)的值是一样的",
         "D": "(~0的输出值是1)"
        },
-       "explanation": "",
+       "explanation": "B 正确:(2>>2)=0、(1>>1)=0,两者相等。A、C 两边不等,D 中 ~0=−1。",
        "difficulty": 2.5
       },
       {
@@ -4139,7 +4139,7 @@
         "C": "使a的最低位为0",
         "D": "使a的最高位为0"
        },
-       "explanation": "",
+       "explanation": "~1 是除最低位外全为 1,a&~1 把最低位清 0,选 C。",
        "difficulty": 2.5
       },
       {
@@ -4156,7 +4156,7 @@
         "C": "a的值变为0101 1101",
         "D": "a的值变为0101 1100"
        },
-       "explanation": "",
+       "explanation": "10101110 左移 2 位:高 2 位移出、低位补 00,得 10111000,选 A。",
        "difficulty": 2.5
       },
       {
@@ -4173,7 +4173,7 @@
         "C": "1 -1",
         "D": "1 -123"
        },
-       "explanation": "",
+       "explanation": "123&1=1(奇数);−123 & 全 1(unsigned −1)保留所有位,仍是 −123。故输出 1 与 −123,选 D。",
        "difficulty": 2.5
       },
       {
@@ -4190,7 +4190,7 @@
         "C": "995",
         "D": "945"
        },
-       "explanation": "",
+       "explanation": "第 k 组有 k 天、每天浇 k 次,贡献 k²。前 13 组用 91 天(浇 819 次),剩 9 天属第 14 组各浇 14 次(126 次),共 819+126=945,选 D。",
        "difficulty": 2.5
       },
       {
@@ -4207,7 +4207,7 @@
         "C": "C",
         "D": "D"
        },
-       "explanation": "",
+       "explanation": "设 C 是小偷:A“不是我”真、B“是C”真、C“是D”假(正是小偷的谎话)、D“C瞎说”真,恰好只有 C 说假话,选 C。",
        "difficulty": 2.5
       },
       {
@@ -4219,7 +4219,7 @@
        "stem": "~1 的输出值是 -2 。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。~x=−x−1,~1=−2。",
        "difficulty": 2.5
       },
       {
@@ -4231,7 +4231,7 @@
        "stem": "~1 = 1111 1110 。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。8 位下 ~1=11111110。",
        "difficulty": 2.5
       },
       {
@@ -4243,7 +4243,7 @@
        "stem": "取 X 的低四位，可以用 Y = 0000 1111 ，用 X&Y 获取 X 的低四位。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。用掩码 00001111 与 X 相与,可取出 X 的低 4 位。",
        "difficulty": 2.5
       },
       {
@@ -4255,7 +4255,7 @@
        "stem": "下列程序输出的是 A 。（ ）",
        "code": "char x=65;\nx++;\ncout<<x++<<endl;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。x=65='A',x++ 后 x='B';cout<<x++ 是后置自增,输出当前值 'B'(随后 x 变 'C'),并非 A。",
        "difficulty": 2.5
       },
       {
@@ -4267,7 +4267,7 @@
        "stem": "下列程序将输出 A 。（ ）",
        "code": "int a=65;\ncout<<(char)a<<endl;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。(char)65 即 'A'。",
        "difficulty": 2.5
       },
       {
@@ -4284,7 +4284,7 @@
         "C": "5||3==11",
         "D": "5&3==0001"
        },
-       "explanation": "",
+       "explanation": "5&3=0101&0011=0001(即十进制 1),D 的 5&3==0001 成立,选 D。",
        "difficulty": 2.5
       },
       {
@@ -4301,7 +4301,7 @@
         "C": "a",
         "D": "97"
        },
-       "explanation": "",
+       "explanation": "tolower 接收并返回 int:tolower(65)=97('a' 的码),cout 按整数输出 97,选 D。",
        "difficulty": 2.5
       },
       {
@@ -4318,7 +4318,7 @@
         "C": "6段，分别是3、3、3、3、2、1",
         "D": "9段，分别是2、2、2、2、2、2、1、1、1"
        },
-       "explanation": "",
+       "explanation": "用二进制思想剪成 1、2、4、8 共 4 段,即可凑出 1~15 任意天数的结算,选 A。",
        "difficulty": 2.5
       },
       {
@@ -4330,7 +4330,7 @@
        "stem": "反码计算加减法：加法与减法结果都是正确的，只是解决不了 -0 的问题",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。反码加减结果正确,只是存在 +0/−0 两种零的问题。",
        "difficulty": 2.5
       },
       {
@@ -4342,7 +4342,7 @@
        "stem": "下列程序输出的是 A",
        "code": "char x=65;\nx=x&00001111;\ncout<<x<<endl;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。00001111 以 0 开头是八进制(=585),其二进制含第 6、0 位,与 'A'(65) 相与仍得 65,输出 A。",
        "difficulty": 2.5
       },
       {
@@ -4354,7 +4354,7 @@
        "stem": "将输出 97",
        "code": "char a='A';\na=a+32;\ncout<<(int)a<<endl;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。a='A'(65),a+32=97 即 'a',(int)a 输出 97。",
        "difficulty": 2.5
       },
       {
@@ -4371,7 +4371,7 @@
         "C": "4294967291",
         "D": "编译错误"
        },
-       "explanation": "",
+       "explanation": "−5 赋给 32 位 unsigned 会按补码解释为 2^32−5=4294967291,选 C。",
        "difficulty": 2.5
       },
       {
@@ -4383,7 +4383,7 @@
        "stem": "判断一个三角形是否成立的条件只有:任意两边长度之和大于第三条边的长度",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。构成三角形还要求边长为正,且需三组“两边之和都大于第三边”同时成立,仅这一句表述不完整。",
        "difficulty": 2.5
       },
       {
@@ -4395,7 +4395,7 @@
        "stem": "闰年的定义： 普通闰年：公历年份是 4 的倍数，且不是 100 的倍数的，为闰年（如 2004 年、2020 年等就是闰年）。 世纪闰年：公历年份是整百数的，必须是 400 的倍数才是闰年（如 1900 年不是闰年，2000 年是闰年）。 下 程序是判断是否是闰年的正确程序 面",
        "code": "cin>>n;\ncout<<((n%4==0&&n%100!=0)||(n%400==0))?1:0;\nreturn 0;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。(n%4==0&&n%100!=0)||(n%400==0) 正是闰年判定条件,程序正确。",
        "difficulty": 2.5
       },
       {
@@ -4407,7 +4407,7 @@
        "stem": "有n个同学，从中抽取任意个 数来参加学校组织的 合唱，共有2的n次幂个 法 人 大 方",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。每个同学可选或不选,n 人共有 2^n 种组合方式。",
        "difficulty": 2.5
       },
       {
@@ -4424,7 +4424,7 @@
         "C": "8种",
         "D": "16种"
        },
-       "explanation": "",
+       "explanation": "反码中 0 有两种表示:+0=00000000、−0=11111111,共 2 种,选 B。",
        "difficulty": 2.5
       },
       {
@@ -4436,7 +4436,7 @@
        "stem": "x 是浮点数， (x >> 1) 等价于 x / 2",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。>> 不能作用于浮点数,(x>>1) 对 float 无效,不等价于 x/2。",
        "difficulty": 2.5
       },
       {
@@ -4448,7 +4448,7 @@
        "stem": "(x & 1) == 0 可以判断整数 x 是否为偶数。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。(x&1)==0 取最低位为 0,即 x 为偶数。",
        "difficulty": 2.5
       },
       {
@@ -4460,7 +4460,7 @@
        "stem": "在数学纸面计算中， pow(2, 3) 的计算结果一定是8，但是在C++中，如果遇到数据类型是浮点数，那就不 一定正确。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。数学上 pow(2,3)=8,但 C++ 中 pow 返回 double,浮点运算可能产生 7.9999 之类的微小误差,不一定恰好是 8。",
        "difficulty": 2.5
       },
       {
@@ -4472,7 +4472,7 @@
        "stem": "在 C++ 中，枚举的底层类型可以是非整型（如 float 或 double ）。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。枚举(enum)的底层类型必须是整型,不能是 float 或 double。",
        "difficulty": 2.5
       },
       {
@@ -4489,7 +4489,7 @@
         "C": "3.0",
         "D": "3.3"
        },
-       "explanation": "",
+       "explanation": "a/b 是整数除法:10/3=3,再赋给 double 得 3.0,选 C。",
        "difficulty": 2.5
       },
       {
@@ -4501,7 +4501,7 @@
        "stem": "在C++中，所有全局变量如果没有显式初始化，都会被自动初始化为0。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。全局变量若未显式初始化,会被自动初始化为 0。",
        "difficulty": 2.5
       },
       {
@@ -4513,7 +4513,7 @@
        "stem": "对于 enum Color { RED, GREEN, BLUE }; ， RED 的类型是 int",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。RED 的类型是枚举类型 Color(可隐式转成 int),本身并不是 int。",
        "difficulty": 2.5
       },
       {
@@ -4525,7 +4525,7 @@
        "stem": "#define SQUARE(x) x * x 是一个安全的宏定义， SQUARE(2+3) 会正确计算出 25 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。该宏不安全:SQUARE(2+3) 展开为 2+3*2+3=11,而非 25(缺少括号保护)。",
        "difficulty": 2.5
       },
       {
@@ -4537,7 +4537,7 @@
        "stem": "在C++中， char 类型的取值范围总是 -128 到 127。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。char 是否带符号由实现决定,取值范围不一定是 −128~127(可能是 0~255)。",
        "difficulty": 2.5
       },
       {
@@ -4549,7 +4549,7 @@
        "stem": "在同一个作用域内， extern 声明的变量可以多次定义。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。extern 可多次声明,但变量的定义只能有一次,多次定义会报错。",
        "difficulty": 2.5
       },
       {
@@ -4566,7 +4566,7 @@
         "C": "不及格",
         "D": "没有输出"
        },
-       "explanation": "",
+       "explanation": "按流程图分支,score=60 落在及格区间(≥60 且 <某优秀线),输出及格,选 B。",
        "difficulty": 2.5
       },
       {
@@ -4578,7 +4578,7 @@
        "stem": "整型变量 a 的值为 3 ，浮点数变量 b 的值为 3.5 ，在 C++ 编译环境下，经过 a *= b 计算后， a 的 值变为 10.5 ，此时如果输出 a ，将输出 10.5 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。a 是 int,a*=b 即 a=int(3×3.5)=int(10.5)=10,输出 10 不是 10.5。",
        "difficulty": 2.5
       },
       {
@@ -4590,7 +4590,7 @@
        "stem": "strcmp(str1, str2) 返回 0 表示 str1 大于 str2 ，返回正数表示两者相等。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。strcmp 返回 0 表示两串相等;返回正数表示 str1 大于 str2,描述正好弄反。",
        "difficulty": 2.5
       },
       {
@@ -4602,7 +4602,7 @@
        "stem": "以下代码输出结果为 8 。",
        "code": "int a = 5, b = 3;\nint c = a++ + ++b;\ncout << c << endl;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。c=a++ + ++b:a++ 用 5(后 a=6),++b 先加得 4,c=5+4=9,不是 8。",
        "difficulty": 2.5
       },
       {
@@ -4619,7 +4619,7 @@
         "C": "49",
         "D": "+1 或者 -1"
        },
-       "explanation": "",
+       "explanation": "字符 '1' 的 ASCII 码是 49,(int)_1 取其编码值 49,选 C。(不是数字 1。)",
        "difficulty": 2.5
       },
       {
@@ -4636,7 +4636,7 @@
         "C": "a,b 的值互换了以后，又还回去了，相当于没有变化。",
         "D": "a,b 的值最后和原值不一样，没有任何意义。"
        },
-       "explanation": "",
+       "explanation": "经典异或交换:a=a^b、b=a^b、a=a^b 三步后 a 与 b 的值互换,选 B。",
        "difficulty": 2.5
       },
       {
@@ -4653,7 +4653,7 @@
         "C": "21",
         "D": "20"
        },
-       "explanation": "",
+       "explanation": "(x++)+(++x) 在一个表达式里两次修改 x,且无序列点,属于未定义行为,不同编译器结果可能不同,选 A。",
        "difficulty": 2.5
       },
       {
@@ -4670,7 +4670,7 @@
         "C": "枚举所有整数 x （0-100）和 y （0-100），判断 x+y==35 && 2*x+4*y==94",
         "D": "枚举脚的总数 sum （0~94），判断 sum == 94"
        },
-       "explanation": "",
+       "explanation": "最优是单层枚举:枚举鸡 x(0~35),由 y=35−x 直接得兔数,再验 2x+4y==94,选 A。C 用双重循环效率低、B 范围不合理。",
        "difficulty": 2.5
       },
       {
@@ -4682,7 +4682,7 @@
        "stem": "下面的流程图是用来求 1+2+3+…+10 的和。 请判断：这个流程图的逻辑正确还是错误？",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。该流程图能正确累加 1+2+…+10。",
        "difficulty": 2.5
       },
       {
@@ -4694,7 +4694,7 @@
        "stem": "由于在 0~255 范围内， char 类型和 int 类型可以互换，因此在这里 x 和 y 相等。",
        "code": "char x='1';\nint y=1;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。x='1' 的值是 ASCII 49,y=1,二者并不相等。",
        "difficulty": 2.5
       }
      ]

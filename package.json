@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --env-file=.env server.js",
-    "reseed": "node scripts/reseed.js"
+    "reseed": "node scripts/reseed.js",
+    "push:baidu": "node scripts/baidu-push.js"
   },
   "engines": {
     "node": ">=18.0.0"

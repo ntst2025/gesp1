@@ -19,6 +19,7 @@
   <div class="search"><input id="q" type="text" placeholder="搜索真题（题干 / 代码 / 选项）" onkeydown="if(event.key==='Enter')doSearch(this.value)"><button onclick="doSearch(document.getElementById('q').value)">🔍</button></div>
 </div></header>
 <nav class="tabs"><div class="wrap">
+  <a id="tab-learn"    onclick="go('learn')">📖 学习</a>
   <a id="tab-browse"   onclick="go('browse')">📚 题库浏览</a>
   <a id="tab-practice" onclick="go('practice')">🎯 刷题自测</a>
   <a id="tab-recommend" onclick="go('recommend')">🤖 智能推题</a>

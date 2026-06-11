@@ -50,7 +50,7 @@
         "C": "指针变量只能指向基本类型变量，不能指向指针变量。",
         "D": "指针变量指向的内存地址不一定能够合法访问。"
        },
-       "explanation": "",
+       "explanation": "问错误说法。指针也可以指向指针(如 int**),C 说“只能指向基本类型”错误。",
        "difficulty": 3.0
       },
       {
@@ -67,7 +67,7 @@
         "C": "该指针变量指向的内存地址是随机的。",
         "D": "访问该指针变量指向的内存会出现编译错误。"
        },
-       "explanation": "",
+       "explanation": "int *p=nullptr:它指向的类型是 int(B 正确)。指针本身类型是 int*、nullptr 是 0 不是随机、解引用空指针是运行错误而非编译错误,选 B。",
        "difficulty": 3.0
       },
       {
@@ -84,7 +84,7 @@
         "C": "{1, 2, 2, 4, 5}",
         "D": "{1, 2, 3, 4, 5}"
        },
-       "explanation": "",
+       "explanation": "p 指向 a[2]=3,a[1]=*p=3,数组变为 {1,3,3,4,5},选 A。",
        "difficulty": 3.0
       },
       {
@@ -101,7 +101,7 @@
         "C": "void BubbleSort(int a[][]);",
         "D": "void BubbleSort(int ** a);"
        },
-       "explanation": "",
+       "explanation": "传二维数组名,形参只能省略第一维:void f(int a[][4]) 合法,选 A。",
        "difficulty": 3.0
       },
       {
@@ -118,7 +118,7 @@
         "C": "int a, int b",
         "D": "int & a, int & b"
        },
-       "explanation": "",
+       "explanation": "xchg 用 *x、*y 交换且以 &a、&b 调用,形参必须是指针 int *x, int *y,交换后输出 20 10,选 B。",
        "difficulty": 3.0
       },
       {
@@ -135,7 +135,7 @@
         "C": "自定义结构体类型可以包含指针类型的元素。",
         "D": "不能定义指向void类型的指针，那没有意义。"
        },
-       "explanation": "",
+       "explanation": "问错误说法。可以定义指向 void 的指针(void*,很有用),D 说“不能定义”错误。",
        "difficulty": 3.0
       },
       {
@@ -152,7 +152,7 @@
         "C": "指针变量 p 指向的值为 'n' 。",
         "D": "指针变量 p 指向的值与变量 n 的地址是相同的。"
        },
-       "explanation": "",
+       "explanation": "int *p=&n:p 的值就是 n 的地址(B 正确)。p 存的不是 n 的值,选 B。",
        "difficulty": 3.0
       },
       {
@@ -169,7 +169,7 @@
         "C": "{1, 2, 3, 3, 5}",
         "D": "{1, 2, 4, 4, 5}"
        },
-       "explanation": "",
+       "explanation": "p 指向 a[2],*p=a[1] 即把 a[2] 改为 2,数组变为 {1,2,2,4,5},选 A。",
        "difficulty": 3.0
       },
       {
@@ -181,7 +181,7 @@
        "stem": "在C++语言中，指针变量在逻辑上指向另一个变量在内存中的位置，指针变量本身不占用内存。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。指针变量本身要占用内存(用来存放它所指向的地址)。",
        "difficulty": 3.0
       },
       {
@@ -198,7 +198,7 @@
         "C": "101&&000",
         "D": "4&true"
        },
-       "explanation": "",
+       "explanation": "5&&2 两操作数都非 0,结果为 true,选 B。其余都含 0/false。",
        "difficulty": 3.0
       },
       {
@@ -215,7 +215,7 @@
         "C": "f(a) ;",
         "D": "f(a-3) ;"
        },
-       "explanation": "",
+       "explanation": "f(int &x) 需要传入左值变量,f(a) 按引用传入 a,函数内 x+=3 即改变 a,选 C。A 传地址、B 解引用、D 是右值,都不行。",
        "difficulty": 3.0
       },
       {
@@ -232,7 +232,7 @@
         "C": "e GESP!",
         "D": "GESP!"
        },
-       "explanation": "",
+       "explanation": "p 指向 \"I love GESP!\",p+5 从下标 5 起,即 \"e GESP!\",选 C。",
        "difficulty": 3.0
       },
       {
@@ -249,7 +249,7 @@
         "C": "X<Y",
         "D": "不确定"
        },
-       "explanation": "",
+       "explanation": "结构体的地址等于其第一个成员的地址,故 &XiaoYang 与 &(XiaoYang.no) 相等,X==Y,选 B。",
        "difficulty": 3.0
       },
       {
@@ -266,7 +266,7 @@
         "C": "024",
         "D": "3"
        },
-       "explanation": "",
+       "explanation": "*s 是 s[0]=\"2024\"。i=1 时 *s+1 是指针后移一位得 \"024\",即第 2 行输出,选 C。",
        "difficulty": 3.0
       },
       {
@@ -278,7 +278,7 @@
        "stem": "在C++语言中，函数的参数为指针时，可以在函数内部修改该参数的值。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。指针参数按值传递,函数内改变“指针本身的值”(让它指向别处)不影响调用方的指针;能改的是 *p 指向的内容,故说法不准确。",
        "difficulty": 3.0
       },
       {
@@ -295,7 +295,7 @@
         "C": "swap(a[j-1],a[j+1]);",
         "D": "swap(&a[j-1],&a[j+1]);"
        },
-       "explanation": "",
+       "explanation": "冒泡每轮比较相邻两元素,逆序则交换:swap(a[j],a[j+1]),选 A。",
        "difficulty": 3.0
       },
       {
@@ -312,7 +312,7 @@
         "C": "0x6ffe06",
         "D": "0x6ffe04"
        },
-       "explanation": "",
+       "explanation": "p=&x[0][0][0],++p 对 int 指针 +1 跳 4 字节:0x6ffe00+4=0x6ffe04,选 D。",
        "difficulty": 3.0
       },
       {
@@ -324,7 +324,7 @@
        "stem": "int& a 和 &a 是一样的，都是取 a 的地址。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。int& a 是引用(给 a 起别名),&a 是取地址,两者完全不同。",
        "difficulty": 3.0
       },
       {
@@ -336,7 +336,7 @@
        "stem": "引用是一个指针常量。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。引用在底层类似一个指针常量(绑定后不可改绑)。",
        "difficulty": 3.0
       },
       {
@@ -348,7 +348,7 @@
        "stem": "函数参数传递过程中，如果传常量值、常量引用和常量指针都是不能被修改的，它们可以防止函数对实参的 值或地址进行修改。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。传常量值、常量引用、常量指针都不可修改,能防止函数改动实参的值或地址。",
        "difficulty": 3.0
       },
       {
@@ -365,7 +365,7 @@
         "C": "7",
         "D": "不确定"
        },
-       "explanation": "",
+       "explanation": "p 指向 arr 首元素,p++ 后指向 arr[1]=9,*p=9,选 B。",
        "difficulty": 3.0
       },
       {
@@ -382,7 +382,7 @@
         "C": "将 指向 的地址",
         "D": "将 指向 的地址"
        },
-       "explanation": "",
+       "explanation": "p=q 是把指针 q 的值(地址)赋给 p,使 p 也指向 y,选 D。(不改变 x、y 的值。)",
        "difficulty": 3.0
       },
       {
@@ -399,7 +399,7 @@
         "C": "for (int j = 0; j < i; j++)",
         "D": "for (int j = i-1; j <=0; j--)"
        },
-       "explanation": "",
+       "explanation": "冒泡每轮把最大值冒到末尾,内层 j 从 0 比到 i−1,即 for(j=0;j<i;j++),选 C。",
        "difficulty": 3.0
       },
       {
@@ -416,7 +416,7 @@
         "C": "while (j >= 0 && nums[j] < base)",
         "D": "while (j > 0 && nums[j] < base)"
        },
-       "explanation": "",
+       "explanation": "插入排序(升序):当 j>=0 且 nums[j]>base 时不断后移,即 while(j>=0 && nums[j]>base),选 A。",
        "difficulty": 3.0
       },
       {
@@ -433,7 +433,7 @@
         "C": "cout >> \"This output will go to the log file.\" >> endl;",
         "D": "log_file >> \"This output will go to the log file.\" >> endl;"
        },
-       "explanation": "",
+       "explanation": "cout 的缓冲区已被重定向到 log_file,此时用 cout<<... 即写入文件,选 A。",
        "difficulty": 3.0
       },
       {
@@ -445,7 +445,7 @@
        "stem": "代码 int a = 10; int* p = &a; 可以正确定义指针和初始化指针。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。int* p=&a 正确地定义并初始化了指针。",
        "difficulty": 3.0
       },
       {
@@ -457,7 +457,7 @@
        "stem": "指针的 与其所指向的变量的数据类型的 相同。 大 小 大 小",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。指针本身大小固定(如 64 位下 8 字节),与它指向的变量类型大小无关。",
        "difficulty": 3.0
       },
       {
@@ -469,7 +469,7 @@
        "stem": "执 下 C++代码后，输出的是20。 行 面",
        "code": "int point(int* p){\nreturn *p * 2;\n}\nint main() {\nint a = 10;\nint* p = &a;\n*p = point(p);\ncout << *p << endl;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。point(p) 返回 *p*2=20,赋回 *p 使 a=20,输出 20。",
        "difficulty": 3.0
       },
       {
@@ -486,7 +486,7 @@
         "C": "1.2",
         "D": "1.5"
        },
-       "explanation": "",
+       "explanation": "p_arr+=1 后指向原来的第 2 个元素,p_arr[0] 即原 p_arr[1]=0.5,选 B。",
        "difficulty": 3.0
       },
       {
@@ -503,7 +503,7 @@
         "C": "22 20",
         "D": "22 22"
        },
-       "explanation": "",
+       "explanation": "*p=*p+2 通过指针把 x 由 20 改为 22,x 与 *p 都是 22,选 D。",
        "difficulty": 3.0
       },
       {
@@ -520,7 +520,7 @@
         "C": "1 struct Student { 2 string name; 3 int age; 4 float score; 5 }; 6 Student* students = new Student[20];",
         "D": "1 struct Student { 2 string name; 3 int age; 4 float score; 5 }; 6 Student students = new Student[20];"
        },
-       "explanation": "",
+       "explanation": "D 不能正确定义:Student students = new Student[20] 把指针(new 返回 Student*)赋给单个对象,类型不符(应为 Student*),选 D。A/B/C 都正确。",
        "difficulty": 3.0
       },
       {
@@ -537,7 +537,7 @@
         "C": "0x7ffee406582c",
         "D": "0x7ffee4065830"
        },
-       "explanation": "",
+       "explanation": "array[2][3] 按行优先,&array[1][1] 是第 5 个元素(下标 4),每个 int 4 字节:基址+4×4=基址+0x10=0x7ffee4065830,选 D。",
        "difficulty": 3.0
       },
       {
@@ -554,7 +554,7 @@
         "C": "int base = nums[0], j = i - 1;",
         "D": "int base = nums[0], j = i;"
        },
-       "explanation": "",
+       "explanation": "插入排序:取 base=nums[i]、j=i-1,再向前比较后移,选 A。",
        "difficulty": 3.0
       },
       {
@@ -571,7 +571,7 @@
         "C": "1 std::ofstream outFile(\"log.txt\"); 2 cout << \"Welcome to GESP!\" << endl; 3 outFile.close();",
         "D": "1 ofstream log_file(\"log.txt\"); 2 streambuf* org_cout = cout.rdbuf(); 3 cout.rdbuf(log_file.rdbuf()); 4 cout << \"This output will go to the log file.\" << endl; 5 cout.rdbuf(oorg_cout);"
        },
-       "explanation": "",
+       "explanation": "C 不能重定向:开了 ofstream 却仍用 cout<<...(没接到文件),内容打到屏幕。A(freopen)、B(直接 outFile<<)、D(rdbuf 替换)都可以,选 C。",
        "difficulty": 3.0
       },
       {
@@ -583,7 +583,7 @@
        "stem": "在 C++ 中，下面代码可以正确定义指针和初始化指针。",
        "code": "int* ptr;\n*ptr = 10;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。int* ptr; 未初始化就 *ptr=10,是向一个随机(野)地址写入,属于未定义行为,并非正确初始化。",
        "difficulty": 3.0
       },
       {
@@ -595,7 +595,7 @@
        "stem": "函数参数可以通过值传递、引用传递和指针传递，这样函数内对参数的修改可以直接修改传入变量的值。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。只有引用传递和指针传递能改动实参;值传递改的是副本,不影响原变量。",
        "difficulty": 3.0
       },
       {
@@ -612,7 +612,7 @@
         "C": "随机值",
         "D": "编译错误"
        },
-       "explanation": "",
+       "explanation": "*p=20 通过指针把 a 改为 20,选 B。",
        "difficulty": 3.0
       },
       {
@@ -629,7 +629,7 @@
         "C": "只能用指针传递",
         "D": "引用传递和指针传递均可"
        },
-       "explanation": "",
+       "explanation": "避免拷贝大型对象可用引用传递或指针传递,选 D。",
        "difficulty": 3.0
       },
       {
@@ -646,7 +646,7 @@
         "C": "22",
         "D": "11"
        },
-       "explanation": "",
+       "explanation": "swap(int a, int &b):a 是值传递(改不动 x),b 是引用。temp=1、a=2(仅局部)、b=temp=1 使 y=1。故 x=1、y=1,输出 11,选 D。",
        "difficulty": 3.0
       },
       {
@@ -663,7 +663,7 @@
         "C": "1 std::ofstream outFile(\"log.txt\"); 2 cout << \"Happy Spring!\" << endl; 3 outFile.close();",
         "D": "1 ofstream log_file(\"log.txt\"); 2 streambuf* org_cout = cout.rdbuf(); 3 cout.rdbuf(log_file.rdbuf()); 4 cout << \"Happy Spring!\" << endl; 5 cout.rdbuf(org_cout);"
        },
-       "explanation": "",
+       "explanation": "C 不能重定向:开了 ofstream 却仍用 cout<<...(没接到文件),内容打到屏幕。A(freopen)、B(直接 outFile<<)、D(rdbuf 替换)都可以,选 C。",
        "difficulty": 3.0
       },
       {
@@ -675,7 +675,7 @@
        "stem": "假设整数数组 arr[4]= {0, 1, 2, 3}; 的第一个元素在内存中的地址为 0x7ffee4065820 , 经过 int* p = arr; p += 1; 后，指针 p 的值是1。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。p+=1 后 p 的值是某个内存地址(如 0x...824),不是 1。",
        "difficulty": 3.0
       },
       {
@@ -692,7 +692,7 @@
         "C": "int ptr*;",
         "D": "ptr int;"
        },
-       "explanation": "",
+       "explanation": "声明指向整型的指针写作 int* ptr;,选 A。",
        "difficulty": 3.0
       },
       {
@@ -709,7 +709,7 @@
         "C": "int (*arr)[4]",
         "D": "int** arr"
        },
-       "explanation": "",
+       "explanation": "二维数组传参,D 的 int** arr 与 int[3][4] 不兼容(数组退化为 int(*)[4] 而非 int**),不能填,选 D。A/B/C 都是合法写法。",
        "difficulty": 3.0
       },
       {
@@ -726,7 +726,7 @@
         "C": "这两种方式申请的内存空间都是连续的。",
         "D": "这两种方式申请的内存都能自动释放。"
        },
-       "explanation": "",
+       "explanation": "问错误说法。new int[12] 在堆上分配,必须手动 delete[],不会自动释放;只有栈数组自动释放,故 D 错。",
        "difficulty": 3.0
       },
       {
@@ -743,7 +743,7 @@
         "C": "引 传递或指针传递 用",
         "D": "仅指针传递"
        },
-       "explanation": "",
+       "explanation": "要在函数内修改结构体对象,应用引用传递或指针传递,选 C。",
        "difficulty": 3.0
       },
       {
@@ -760,7 +760,7 @@
         "C": "1 flag = true; 2 flag = false;",
         "D": "1 flag = true; 2 flag = true;"
        },
-       "explanation": "",
+       "explanation": "带标志的冒泡:每轮开始 flag=false,发生交换则 flag=true;若整轮没交换就提前结束,选 B。",
        "difficulty": 3.0
       },
       {
@@ -777,7 +777,7 @@
         "C": "编译错误",
         "D": "不确定"
        },
-       "explanation": "",
+       "explanation": "*p=*p+1 通过指针把 a 由 42 改为 43,选 B。",
        "difficulty": 3.0
       },
       {
@@ -794,7 +794,7 @@
         "C": "数组可以像指针一样进行自增操作",
         "D": "sizeof(arr) 返回的是整个数组 arr 占用的字节数"
        },
-       "explanation": "",
+       "explanation": "问错误说法。数组名是指针常量,不能像指针那样自增,故 C 错。",
        "difficulty": 3.0
       },
       {
@@ -811,7 +811,7 @@
         "C": "5 6",
         "D": "5 5"
        },
-       "explanation": "",
+       "explanation": "increaseA 传值不改 a(=5);increaseB 用指针 (*p)++ 使 a=6。输出 5 6,选 C。",
        "difficulty": 3.0
       },
       {
@@ -823,7 +823,7 @@
        "stem": "以下代码能正确初始化指针。",
        "code": "int a = 5;\nint *p = a;",
        "options": {},
-       "explanation": "",
+       "explanation": "错。int *p=a 把整数值 a 赋给指针(应为 &a),不能正确初始化指针。",
        "difficulty": 3.0
       },
       {
@@ -835,7 +835,7 @@
        "stem": "以下C++代码合法。",
        "code": "struct Student {\nstring name;\nint age;\nfloat score;\n};\nStudent* students = new Student[20];",
        "options": {},
-       "explanation": "",
+       "explanation": "对。new Student[20] 动态分配结构体数组,代码合法。",
        "difficulty": 3.0
       },
       {
@@ -847,7 +847,7 @@
        "stem": "执行下面C++代码将输出 10 。",
        "code": "void func(int* p) {\n*p = 10;\n}\nint main() {\nint a = 5;\nfunc(&a);\ncout << a << endl;\nreturn 0;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。func 用指针 *p=10 修改 a,输出 10。",
        "difficulty": 3.0
       },
       {
@@ -864,7 +864,7 @@
         "C": "1 int *p = &x;",
         "D": "1 p = *x;"
        },
-       "explanation": "",
+       "explanation": "让指针指向变量要用取地址:int *p = &x,选 C。",
        "difficulty": 3.0
       },
       {
@@ -881,7 +881,7 @@
         "C": "10 10 10",
         "D": "5 5 10"
        },
-       "explanation": "",
+       "explanation": "p1、p2 都指向 a,*p2=10 即修改 a。故 a、*p1、*p2 都是 10,选 C。",
        "difficulty": 3.0
       },
       {
@@ -898,7 +898,7 @@
         "C": "5 5",
         "D": "6 6"
        },
-       "explanation": "",
+       "explanation": "p 指向首元素,按行优先展开:*(p+5) 是第 6 个元素=6;arr[1][1] 也=6,选 D。",
        "difficulty": 3.0
       },
       {
@@ -915,7 +915,7 @@
         "C": "1 200 300",
         "D": "1 2 300"
        },
-       "explanation": "",
+       "explanation": "byValue 传值不改 a(=1);byRef 引用使 b=200;byPointer 指针使 c=300。故 1 200 300,选 C。",
        "difficulty": 3.0
       },
       {
@@ -932,7 +932,7 @@
         "C": "15",
         "D": "20"
        },
-       "explanation": "",
+       "explanation": "topLeft.x 改为 5,通过指针把 bottomRight.y 改为 5,5+5=10,选 A。",
        "difficulty": 3.0
       },
       {
@@ -949,7 +949,7 @@
         "C": "A10",
         "D": "程序崩溃"
        },
-       "explanation": "",
+       "explanation": "divide(10,0) 抛异常被 catch 捕获,输出 B 并令 result=−1,再输出 −1,合起来 B-1,选 B。",
        "difficulty": 3.0
       },
       {
@@ -961,7 +961,7 @@
        "stem": "小杨正在调试他的温度传感器程序，其中变量 x 保存当前温度。下面这段代码运行后，变量 x 的值变成 了 8。",
        "code": "int x = 5;\nint *p = &x;\n*p = *p + 3;",
        "options": {},
-       "explanation": "",
+       "explanation": "对。*p=*p+3 即把 x 由 5 改为 8。",
        "difficulty": 3.0
       },
       {
@@ -973,7 +973,7 @@
        "stem": "执行下面程序后，变量 a 的值会变成 15 。",
        "code": "void add(int &x){\nx += 10;\n}\nint a = 5;\nadd(a);",
        "options": {},
-       "explanation": "",
+       "explanation": "对。add(int &x) 是引用,x+=10 使 a 由 5 变 15。",
        "difficulty": 3.0
       },
       {
@@ -985,7 +985,7 @@
        "stem": "执行下面的C++代码，会输出 8 ，因为两个指针地址相差 8 个字节（假设 int 占 4 字节）。",
        "code": "int arr[5] = {1, 2, 3, 4, 5};\nint* p1 = arr;\nint* p2 = arr + 2;\ncout << p2 - p1;    // 输出结果",
        "options": {},
-       "explanation": "",
+       "explanation": "错。p2−p1 是指针差,得到的是相隔的元素个数 2,不是字节数 8。",
        "difficulty": 3.0
       },
       {
@@ -1002,7 +1002,7 @@
         "C": "12 5",
         "D": "5 12"
        },
-       "explanation": "",
+       "explanation": "q 是指向指针的指针,**q+=7 最终改的是 a,a 由 5 变 12,*p 也是 12,选 B。",
        "difficulty": 3.0
       },
       {
@@ -1019,7 +1019,7 @@
         "C": "2 1 4",
         "D": "1 1 1"
        },
-       "explanation": "",
+       "explanation": "a 传值(x 不变=1)、b 引用(y=3)、c 指针(z=4),输出 1 3 4,选 B。",
        "difficulty": 3.0
       },
       {
@@ -1036,7 +1036,7 @@
         "C": "1 ofstream log_file(\"log.txt\"); 2 streambuf* org_cout = cout.rdbuf(); 3 cout.rdbuf(log_file.rdbuf()); 4 cout << \"Welcome to 2026!\" << endl; 5 cout.rdbuf(org_cout);",
         "D": "1 std::ofstream outFile(\"log.txt\"); 2 outFile << \"Welcome to 2026!\" << endl; 3 outFile.close();"
        },
-       "explanation": "",
+       "explanation": "B 不能重定向:开了 ofstream 却仍用 cout<<...(没把输出接到文件),内容会打到屏幕。A(freopen)、C(rdbuf 替换)、D(直接 outFile<<)都可以,选 B。",
        "difficulty": 3.0
       },
       {
@@ -1053,7 +1053,7 @@
         "C": "程序崩溃",
         "D": "无输出"
        },
-       "explanation": "",
+       "explanation": "throw 0 抛的是 int,catch(const char*) 不匹配、catch(int) 匹配,输出 B,选 B。",
        "difficulty": 3.0
       },
       {
@@ -1065,7 +1065,7 @@
        "stem": "下面代码执行结束时，变量 a 的值变成 15。",
        "code": "void add10(int &x) { x += 10; }\nint main() {\nint a = 5;\nadd10(a);\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。add10(int&x) 是引用,x+=10 使 a 由 5 变 15。",
        "difficulty": 3.0
       },
       {
@@ -1077,7 +1077,7 @@
        "stem": "执行下面代码，输出结果为 5 。",
        "code": "int main() {\nint a[2][3];\ncout << &a[1][2] - &a[0][1] << endl;\nreturn 0;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。&a[1][2]−&a[0][1] 是指针差,得相隔元素个数 4(按行优先 5−1),不是 5。",
        "difficulty": 3.0
       },
       {
@@ -1089,7 +1089,7 @@
        "stem": "在 C++ 中，如果声明了一个指针变量但没有显式初始化，该指针会自动被初始化为 nullptr 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。未显式初始化的指针不会自动变成 nullptr(局部指针是垃圾值,只有全局/静态才清零)。",
        "difficulty": 3.0
       }
      ]
@@ -1120,7 +1120,7 @@
        "stem": "在C++语言中，可以通过定义结构体，定义一个新的数据类型。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。通过定义结构体可以定义一个新的数据类型。",
        "difficulty": 3.0
       },
       {
@@ -1132,7 +1132,7 @@
        "stem": "在C++语言中，可以定义结构体类型的数组变量，定义结构体时也可以包含数组成员。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。既能定义结构体数组,定义结构体时也能包含数组成员。",
        "difficulty": 3.0
       },
       {
@@ -1144,7 +1144,7 @@
        "stem": "在C++语言中 try 子句里抛出的结构体等类型的异常无法被 catch 捕获。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。try 中抛出的结构体等任意类型异常都可以被对应的 catch 捕获。",
        "difficulty": 3.0
       },
       {
@@ -1161,7 +1161,7 @@
         "C": "student struct { string name; int age; };",
         "D": "struct student { char[20] name; int age; };"
        },
-       "explanation": "",
+       "explanation": "A 正确:struct 名 {成员};,char name[20] 写法正确。B/C 关键字顺序错,D 写成 char[20] name 非法,选 A。",
        "difficulty": 3.0
       },
       {
@@ -1178,7 +1178,7 @@
         "C": "1 struct Person { 2 string name; 3 int age; 4 }; 5 Person p = { \"Yang\", 10 };",
         "D": "1 struct Person { 2 string name; 3 int age; 4 }; 5 Person p = new Person(\"Yang\", 10);"
        },
-       "explanation": "",
+       "explanation": "C 正确:Person p={\"Yang\",10} 用花括号聚合初始化。A 用了构造写法、B 成员间用逗号、D 用 new,均错,选 C。",
        "difficulty": 3.0
       },
       {
@@ -1195,7 +1195,7 @@
         "C": "一个 Person 类型的变量 p 的 address 的初始化可以写成： p.address.street = \"123 Main St\"; p.address.city = \"Anytown\";",
         "D": "结构的嵌套可以减少命名冲突，因此可以不必控制嵌套层次"
        },
-       "explanation": "",
+       "explanation": "问错误说法。结构嵌套虽能减少命名冲突,但仍应控制嵌套层次,D 说“不必控制”错误。",
        "difficulty": 3.0
       },
       {
@@ -1207,7 +1207,7 @@
        "stem": "结构体的成员默认是 public 访问权限。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。struct 的成员默认是 public 访问权限。",
        "difficulty": 3.0
       },
       {
@@ -1219,7 +1219,7 @@
        "stem": "下 c++代码在 个结构体中 定义了别的结构体。这种结构嵌套定义的 式语法不正确。 面 一 又 方",
        "code": "#include <string>\n#include <vector>\nusing namespace std;\nstruct Library {\nstruct Book {\nstruct Author {\nstring name;\nint birthYear;\n};\nstring title;\nint year;\nAuthor author;\n};\nstring name;\nvector<Book> books;\n};",
        "options": {},
-       "explanation": "",
+       "explanation": "错。结构体中嵌套定义另一个结构体在语法上是正确的。",
        "difficulty": 3.0
       },
       {
@@ -1236,7 +1236,7 @@
         "C": "Point p = new {1,2};",
         "D": "Point p = <1,2>;"
        },
-       "explanation": "",
+       "explanation": "结构体初始化用花括号:Point p={1,2},选 B。",
        "difficulty": 3.0
       },
       {
@@ -1253,7 +1253,7 @@
         "C": "kitty 3",
         "D": "kitty 2"
        },
-       "explanation": "",
+       "explanation": "birthday(Cat&) 是引用,c.age++ 使 kitty.age=3,输出 Mimi 3,选 B。",
        "difficulty": 3.0
       },
       {
@@ -1270,7 +1270,7 @@
         "C": "无法判断",
         "D": "稳定，因为结果是有序的"
        },
-       "explanation": "",
+       "explanation": "原序列 {3,'B'} 在 {3,'D'} 之前,排序后却 {3,'D'} 在前,相同 value 的相对顺序变了,故不稳定,选 B。",
        "difficulty": 3.0
       },
       {
@@ -1287,7 +1287,7 @@
         "C": "int j = i; j < n; j++",
         "D": "int j = 1; j <= n; j++"
        },
-       "explanation": "",
+       "explanation": "选最大的前 k 名,内层从 i+1 找更大者:for(int j=i+1; j<n; j++),选 B。",
        "difficulty": 3.0
       },
       {
@@ -1304,7 +1304,7 @@
         "C": "1 i > 0 && updatedPlayer.score < players[i - 1].score 2 i < size - 1 && updatedPlayer.score < players[i + 1].score",
         "D": "1 i > 0 && updatedPlayer.score < players[i - 1].score 2 i < size - 1 && updatedPlayer.score > players[i + 1].score"
        },
-       "explanation": "",
+       "explanation": "分数升高后向前冒泡:当 i>0 且新分数大于前一名时上移,即 while(i>0 && updatedPlayer.score > players[i-1].score),选 A。",
        "difficulty": 3.0
       },
       {
@@ -1316,7 +1316,7 @@
        "stem": "一个结构体不能包含另一个结构体。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。结构体可以包含另一个结构体(嵌套)。",
        "difficulty": 3.0
       },
       {
@@ -1333,7 +1333,7 @@
         "C": "1 struct Point { int x, y; }; 2 3 Point p = new Point(1,2);",
         "D": "1 struct Point { int x, y; }; 2 3 Point p = <1,2>;"
        },
-       "explanation": "",
+       "explanation": "结构体初始化用花括号:Point p={1,2},选 B。",
        "difficulty": 3.0
       },
       {
@@ -1350,7 +1350,7 @@
         "C": "11 2",
         "D": "1 2"
        },
-       "explanation": "",
+       "explanation": "g(S s) 传值不改 s.a(=1);h(S& s) 引用使 s.b+=10=12。输出 1 12,选 B。",
        "difficulty": 3.0
       },
       {
@@ -1367,7 +1367,7 @@
         "C": "i < n-1 && cur.score > players[i+1].score",
         "D": "i < n-1 && cur.score < players[i+1].score"
        },
-       "explanation": "",
+       "explanation": "分数升高需向前移:当 i>0 且当前分数大于前一名时上移,即 i>0 && cur.score>players[i-1].score,选 A。",
        "difficulty": 3.0
       },
       {
@@ -1379,7 +1379,7 @@
        "stem": "下面代码没有语法错误。",
        "code": "struct GameCharacter {\nstring name;\nint level;\nfloat position_x;\nfloat position_y;\nstruct Equipment {\nstring weapon;\nint attack_bonus;\nint defense_bonus;\n} equipment;\nstruct Skill {\nstring name;\nint damage;\n} skills[8];\nint skill_count;\n};",
        "options": {},
-       "explanation": "",
+       "explanation": "对。结构体内嵌套结构体、并含结构体数组,语法正确。",
        "difficulty": 3.0
       }
      ]
@@ -1415,7 +1415,7 @@
         "C": "二维数组中的每个一维数组在内存中都是连续存放的。",
         "D": "二维数组在内存中可以不是连续存放的。"
        },
-       "explanation": "",
+       "explanation": "问错误说法。二维数组在内存中是连续存放的,D 说“可以不连续”错误。",
        "difficulty": 3.0
       },
       {
@@ -1432,7 +1432,7 @@
         "C": "120",
         "D": "240"
        },
-       "explanation": "",
+       "explanation": "double array[3][10] 共 30 个元素,每个 8 字节,占 30×8=240 字节,选 D。",
        "difficulty": 3.0
       },
       {
@@ -1449,7 +1449,7 @@
         "C": "8 字节。",
         "D": "无法确定。"
        },
-       "explanation": "",
+       "explanation": "array[5][3] 按行优先:array[1][2] 是第 5 个、array[2][1] 是第 7 个元素,相差 2 个 int=8 字节,选 C。",
        "difficulty": 3.0
       },
       {
@@ -1461,7 +1461,7 @@
        "stem": "在 C++语言中，可以定义四维数组，但在解决实际问题时不可能用到，因为 世界是三维的。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。C++ 可以定义四维数组,且在实际问题(如多维状态)中确实会用到。",
        "difficulty": 3.0
       },
       {
@@ -1473,7 +1473,7 @@
        "stem": "如果希望记录 10 个最长为 99 字节的字符串，可以将字符串数组定义为 char s[100][10];。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。要存 10 个最长 99 字节的字符串应定义 char s[10][100](10 个、每个 100 字节含结束符),不是 s[100][10]。",
        "difficulty": 3.0
       },
       {
@@ -1490,7 +1490,7 @@
         "C": "三维数组可以用来表示空间中物体的形状。",
         "D": "世界是三维的，所以定义四维数组没有意义。"
        },
-       "explanation": "",
+       "explanation": "问错误说法。四维及更高维数组在实际问题(如多维状态)中确实有用,D 说“没有意义”错误。",
        "difficulty": 3.0
       },
       {
@@ -1507,7 +1507,7 @@
         "C": "32",
         "D": "48"
        },
-       "explanation": "",
+       "explanation": "char array[3][10] 共 30 个字符,每个 1 字节,占 30 字节,选 B。",
        "difficulty": 3.0
       },
       {
@@ -1524,7 +1524,7 @@
         "C": "560字节",
         "D": "无法确定"
        },
-       "explanation": "",
+       "explanation": "long long array[6][6][6](每个 8 字节)按行优先:array[1][2][3] 是第 51 个、array[3][2][1] 是第 121 个,相差 70 个×8=560 字节,选 C。",
        "difficulty": 3.0
       },
       {
@@ -1536,7 +1536,7 @@
        "stem": "如果希望记录10个最长为99字节的字符串，可以将字符串数组定义为 char s[10][100]; 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。存 10 个最长 99 字节的字符串,char s[10][100](10 个、每个 100 字节含结束符)正确。",
        "difficulty": 3.0
       },
       {
@@ -1553,7 +1553,7 @@
         "C": "alpha[i+1]=alpha[i]+1;",
         "D": "alpha[i-1]=alpha[i]+1;"
        },
-       "explanation": "",
+       "explanation": "alpha[0]='A'(65),横线让 alpha[i]=alpha[i-1]+1 依次生成 B、C…Z,选 A。",
        "difficulty": 3.0
       },
       {
@@ -1570,7 +1570,7 @@
         "C": "n",
         "D": "P"
        },
-       "explanation": "",
+       "explanation": "sizeof(x)=4×4=16,geSP[16] 是 \"Grade Examination of SP\" 的第 17 个字符 'n',选 C。",
        "difficulty": 3.0
       },
       {
@@ -1587,7 +1587,7 @@
         "C": "48",
         "D": "64"
        },
-       "explanation": "",
+       "explanation": "arr[1] 是一整行,含 16 个 int,占 16×4=64 字节,选 D。",
        "difficulty": 3.0
       },
       {
@@ -1604,7 +1604,7 @@
         "C": "0x28cc00",
         "D": "不确定"
        },
-       "explanation": "",
+       "explanation": "arr[1] 的地址 = 首地址 + 一行(64 字节=0x40):0x28cbc0+0x40=0x28cc00,选 C。",
        "difficulty": 3.0
       },
       {
@@ -1616,7 +1616,7 @@
        "stem": "定义数组 int a[2024][3][16]={2,0,2,4,3,1,6} ，则 cout << a[2023][2][15] 的结果不确定。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。数组部分初始化时其余元素补 0,a[2023][2][15] 是确定的 0,并非不确定。",
        "difficulty": 3.0
       },
       {
@@ -1628,7 +1628,7 @@
        "stem": "在下面这个程序里， a[i][j] 和一个普通的整型变量一样使用。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。把对角线 a[i][j] 赋值为 1,a[i][j] 与普通整型变量用法相同。",
        "difficulty": 3.0
       },
       {
@@ -1640,7 +1640,7 @@
        "stem": "一个一维数组，至少含有一个自然数N，是一个合法的数列。可以在一维数组末尾加入一个自然数M，M不 能超过一维数组末尾元素的一半，形成一个新的合法的一维数组，如果N=6，那么可以有6个不同的合法数组。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。按“在末尾追加一个不超过末元素一半的自然数”的规则,从 6 出发枚举可形成的不同合法数列恰好 6 种,说法正确。",
        "difficulty": 3.0
       },
       {
@@ -1657,7 +1657,7 @@
         "C": "int arr[4][3];",
         "D": "int arr(3, 4);"
        },
-       "explanation": "",
+       "explanation": "3 行 4 列二维数组写作 int arr[3][4],选 B。",
        "difficulty": 3.0
       },
       {
@@ -1674,7 +1674,7 @@
         "C": "12",
         "D": "16"
        },
-       "explanation": "",
+       "explanation": "arr[0] 是一整行,含 4 个 int,占 4×4=16 字节,选 D。",
        "difficulty": 3.0
       },
       {
@@ -1686,7 +1686,7 @@
        "stem": "维数组的 的 的必须在定义时确定，列的 可以动态变化。 二 行 大 小 大 小",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。二维数组的行、列大小都必须在定义时确定,列不能动态变化。",
        "difficulty": 3.0
       },
       {
@@ -1703,7 +1703,7 @@
         "C": "int a[][4];",
         "D": "int a[][2] = {{1,2},{1,2},{3,4}};"
        },
-       "explanation": "",
+       "explanation": "D 正确:int a[][2]={{1,2},{1,2},{3,4}} 第一维由初始值推断、第二维给出 2,合法。其余缺维度,选 D。",
        "difficulty": 3.0
       },
       {
@@ -1715,7 +1715,7 @@
        "stem": "int arr[3][] 是一个正确的二维数组的声明。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。int arr[3][] 不合法,二维数组的第二维必须指定大小。",
        "difficulty": 3.0
       },
       {
@@ -1732,7 +1732,7 @@
         "C": "5",
         "D": "6"
        },
-       "explanation": "",
+       "explanation": "arr[1][2] 是第 2 行第 3 个元素=6,选 D。",
        "difficulty": 3.0
       },
       {
@@ -1749,7 +1749,7 @@
         "C": "int arr(3,4);",
         "D": "int a[3-4];"
        },
-       "explanation": "",
+       "explanation": "二维数组正确写法是 int arr[3][4],选 B。",
        "difficulty": 3.0
       },
       {
@@ -1761,7 +1761,7 @@
        "stem": "二维数组作为函数参数时，必须显式指定所有维度的大小。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。二维数组作参数时只有第一维可省略,其余维度要指定,但并非“所有维度都必须指定”。",
        "difficulty": 3.0
       },
       {
@@ -1773,7 +1773,7 @@
        "stem": "下面这段代码不合法，因为每一行都必须显式初始化 个元素。 int arr[2][3] = {{1, 2}, {3}};",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。int arr[2][3]={{1,2},{3}} 合法,未写出的元素自动补 0,并非必须每行都写满。",
        "difficulty": 3.0
       },
       {
@@ -1790,7 +1790,7 @@
         "C": "4",
         "D": "6"
        },
-       "explanation": "",
+       "explanation": "*(*(arr+1)+2):arr+1 指向第 2 行,*(arr+1) 即该行,+2 取第 3 个元素 arr[1][2]=6,选 D。",
        "difficulty": 3.0
       },
       {
@@ -1807,7 +1807,7 @@
         "C": "cout << a(1, 2) << endl;",
         "D": "cout << a{1}{2} << endl;"
        },
-       "explanation": "",
+       "explanation": "二维数组访问第 2 行第 3 列用 a[1][2](下标从 0 起),选 B。",
        "difficulty": 3.0
       },
       {
@@ -1824,7 +1824,7 @@
         "C": "78",
         "D": "30"
        },
-       "explanation": "",
+       "explanation": "只累加 (i+j+k) 为偶数的元素:1+4+5(i=0)+8+9+12(i=1)=39,选 B。",
        "difficulty": 3.0
       },
       {
@@ -1836,7 +1836,7 @@
        "stem": "在 C++ 中，定义如下二维数组： int a[3][4]; ，数组 a 在内存中是按行优先连续存放的，即 a[0] [0] 、 a[0][1] 、 a[0][2] 、 a[0][3] 在内存中是连续的。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。二维数组按行优先连续存放,同一行的元素在内存中相邻。",
        "difficulty": 3.0
       },
       {
@@ -1853,7 +1853,7 @@
         "C": "9",
         "D": "11"
        },
-       "explanation": "",
+       "explanation": "*(*(p+2)+1):p+2 指向第 3 行 {9,10,11,12},取其第 2 个元素=10,选 B。",
        "difficulty": 3.0
       }
      ]
@@ -1889,7 +1889,7 @@
         "C": "1 nums[j] <= nums[minIndex] 2 swap(nums[j], nums[minIndex])",
         "D": "1 nums[j] <= nums[minIndex] 2 swap(nums[i], nums[j])"
        },
-       "explanation": "",
+       "explanation": "选择排序:内层找更小者 nums[j]<nums[minIndex],再 swap(nums[i],nums[minIndex]),选 A。",
        "difficulty": 3.0
       }
      ]
@@ -1920,7 +1920,7 @@
        "stem": "数列 1, 1, 2, 3, 5, 8 ... 是以意大利数学家列昂纳多·斐波那契命名的 数列，从第三个数开始，每个数是前面两项之和。如果计算该数列的第 n 项（其 中 n>3）fib(n)，我们采用如下方法：① 令 fib(1)=fib(2)=1 ②用循环 for i=3 to n 分别计算 f(i) ③输出 fib(n)。这体现了递推的编程思想。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。斐波那契从第三项起每项是前两项之和,所述递推方法正确。",
        "difficulty": 3.0
       },
       {
@@ -1937,7 +1937,7 @@
         "C": "3",
         "D": "3.1"
        },
-       "explanation": "",
+       "explanation": "fnum[0]=1.1、其余 0。foo 返回 int(1.1×2)=int(2.2)=2,赋给 fnum[1]。fnum[0]+fnum[1]=1.1+2=3.1,选 D。",
        "difficulty": 3.0
       },
       {
@@ -1954,7 +1954,7 @@
         "C": "迭代",
         "D": "循环"
        },
-       "explanation": "",
+       "explanation": "f[i]=f[i-1]+f[i-2] 由前两项推出当前项,采用的是递推算法,选 A。",
        "difficulty": 3.0
       },
       {
@@ -1971,7 +1971,7 @@
         "C": "int func(){…} int main(){ func(); }",
         "D": "int func(); int main(){ func(); } int func(){…}"
        },
-       "explanation": "",
+       "explanation": "B 中 main 先调用 func(),而 func 定义在 main 之后又无前置声明,编译报错,选 B。其余写法都能正常执行。",
        "difficulty": 3.0
       },
       {
@@ -1988,7 +1988,7 @@
         "C": "递推中，问题的n要求是在计算中确定，不要求计算前就知道n",
         "D": "斐波那契数列可以用递推实现求解"
        },
-       "explanation": "",
+       "explanation": "问错误说法。“自己调用自己”是递归的特征,不是递推,故 A 错。",
        "difficulty": 3.0
       },
       {
@@ -2005,7 +2005,7 @@
         "C": "int add(a, b) { return a + b; }",
         "D": "void add(int a, int b) { return a - b; }"
        },
-       "explanation": "",
+       "explanation": "A 正确:返回类型 int、两个 int 形参、用 return 返回。B void 不能返回值,C 形参缺类型,D 返回的是差,选 A。",
        "difficulty": 3.0
       },
       {
@@ -2022,7 +2022,7 @@
         "C": "100 200 200 200",
         "D": "100 200 200 300"
        },
-       "explanation": "",
+       "explanation": "main 先输出全局 var=100;function 中局部 var=200、::var 取全局=100(输出 200 100);返回后全局 var+=100=200,输出 200。合起来 100 200 100 200,选 A。",
        "difficulty": 3.0
       },
       {
@@ -2039,7 +2039,7 @@
         "C": "result *= result;",
         "D": "result += result;"
        },
-       "explanation": "",
+       "explanation": "递推求阶乘:每轮把当前 i 乘进 result,即 result *= i,选 A。",
        "difficulty": 3.0
       },
       {
@@ -2056,7 +2056,7 @@
         "C": "caught an exception: division by zero error",
         "D": "division by zero error caught an exception: division by zero error"
        },
-       "explanation": "",
+       "explanation": "divide(10,0) 抛出异常,被 catch 捕获,只输出 caught an exception: division by zero error(try 里的 result 不会输出),选 C。",
        "difficulty": 3.0
       },
       {
@@ -2068,7 +2068,7 @@
        "stem": "递推算法通过逐步求解当前状态和前 个或 个状态之间的关系来解决问题。 一 几",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。递推通过当前状态与前一个或前几个状态的关系逐步求解。",
        "difficulty": 3.0
       },
       {
@@ -2085,7 +2085,7 @@
         "C": "1 void square(float x) { 2 return x * x; 3 } 4 area = square(2.0);",
         "D": "1 void square(float x) { 2 x * x; 3 return; 4 } 5 area = square(2);"
        },
-       "explanation": "",
+       "explanation": "A 正确:float square(float x){return x*x;} 返回类型、return 都对,并能成功调用。B 缺返回类型、C/D 用 void 不能返回值,选 A。",
        "difficulty": 3.0
       },
       {
@@ -2102,7 +2102,7 @@
         "C": "n 是实参， times 是形参",
         "D": "代码最后一行换成 n_chars(times, my_char); 也可以"
        },
-       "explanation": "",
+       "explanation": "n 是函数定义中的形参,times 是调用时传入的实参,选 B。(n-- 改的是局部 n,不影响 times。)",
        "difficulty": 3.0
       },
       {
@@ -2119,7 +2119,7 @@
         "C": "15",
         "D": "20"
        },
-       "explanation": "",
+       "explanation": "func(int& x) 是引用,x=x*2 使 a 由 5 变 10,选 B。",
        "difficulty": 3.0
       },
       {
@@ -2136,7 +2136,7 @@
         "C": "1 result += f1 + f2; 2 f2 = result; 3 f1 = f2;",
         "D": "1 result = f1 + f2; 2 f2 = result; 3 f1 = f2;"
        },
-       "explanation": "",
+       "explanation": "递推:result=f1+f2,再 f1=f2、f2=result 滚动更新,选 A。",
        "difficulty": 3.0
       },
       {
@@ -2153,7 +2153,7 @@
         "C": "程序调用 std::terminate()",
         "D": "编译错误"
        },
-       "explanation": "",
+       "explanation": "hmean(10,−10) 中 a==−b 成立,抛 runtime_error 并被对应 catch 捕获,输出 Caught: Runtime error occurred,选 A。",
        "difficulty": 3.0
       },
       {
@@ -2165,7 +2165,7 @@
        "stem": "递推是一种通过已知的初始值和递推公式，逐步求解目标值的算法。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。递推是用已知初值和递推公式逐步求解目标值的算法。",
        "difficulty": 3.0
       },
       {
@@ -2182,7 +2182,7 @@
         "C": "1010",
         "D": "编译错误"
        },
-       "explanation": "",
+       "explanation": "func 输出局部 x=20,main 输出全局 x=10,合起来 2010,选 B。",
        "difficulty": 3.0
       },
       {
@@ -2199,7 +2199,7 @@
         "C": "1 res += f1 + f2; 2 f2 = res; 3 f1 = f2;",
         "D": "1 res = f1 + f2; 2 f2 = res; 3 f1 = f2;"
        },
-       "explanation": "",
+       "explanation": "递推爬楼梯:res=f1+f2,再 f1=f2、f2=res 滚动更新,选 B。",
        "difficulty": 3.0
       },
       {
@@ -2216,7 +2216,7 @@
         "C": "程序调用 std::terminate()",
         "D": "编译错误"
        },
-       "explanation": "",
+       "explanation": "hmean(10,−10) 中 a==−b 成立,抛 runtime_error,被对应 catch 捕获,输出 Caught: Runtime error occurred.,选 A。",
        "difficulty": 3.0
       },
       {
@@ -2228,7 +2228,7 @@
        "stem": "递推是一种通过已知的初始值和递推公式，逐步求解目标值的算法。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。递推是用已知初值和递推公式逐步求解目标值的算法。",
        "difficulty": 3.0
       },
       {
@@ -2245,7 +2245,7 @@
         "C": "50 100 100",
         "D": "50 50 100"
        },
-       "explanation": "",
+       "explanation": "print1 输出局部 value=50、::value 取全局=100;print2 输出全局=100。合起来 50 100 100,选 C。",
        "difficulty": 3.0
       },
       {
@@ -2262,7 +2262,7 @@
         "C": "递推算法通常用于穷举所有可能的解决方案。",
         "D": "递推算法适用于在每一步做出局部最优选择以达到全局最优。"
        },
-       "explanation": "",
+       "explanation": "递推从已知的基础情况出发,通过递推关系逐步推出更大规模的解,选 B。",
        "difficulty": 3.0
       },
       {
@@ -2274,7 +2274,7 @@
        "stem": "下 C++代码的输出是 15 。 面",
        "code": "void foo(int x) {\nx += 5;\n}\nint main() {\nint a = 10;\nfoo(a);\ncout << a << endl;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。foo 传值,x+=5 不影响实参 a,输出 10 不是 15。",
        "difficulty": 3.0
       },
       {
@@ -2286,7 +2286,7 @@
        "stem": "以下程序中使用了递推方式计算阶乘（ ），计算结果正确。",
        "code": "int factorial(int n) {\nint res = 1;\nfor (int i = 0; i < n; ++i) {\nres *= i;\n}\nreturn res;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。循环从 i=0 开始,res*=0 会让结果恒为 0,阶乘计算不正确(应从 1 或 2 起)。",
        "difficulty": 3.0
       },
       {
@@ -2303,7 +2303,7 @@
         "C": "5 10",
         "D": "10 5"
        },
-       "explanation": "",
+       "explanation": "foo 输出自己的局部 x=10,bar 输出全局 x=5,合起来 10 5,选 D。",
        "difficulty": 3.0
       },
       {
@@ -2315,7 +2315,7 @@
        "stem": "执行下面C++代码将输出 11 。",
        "code": "int x = 10;\nvoid f() {\nint x = x + 1;\ncout << x << endl;\n}\nint main() {\nf();\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。int x=x+1 中局部 x 用自身未初始化的值,得到的是垃圾值(全局 x 被遮蔽),不是 11。",
        "difficulty": 3.0
       },
       {
@@ -2327,7 +2327,7 @@
        "stem": "下面代码将二维数组 arr 传递给函数 f ，函数内部用 arr[i][j] 访问元素，函数参数声明为 int arr[] [4] 是错误的。",
        "code": "void f(int arr[][4], int rows) {\n// 访问 arr[i][j]\n}\nint main() {\nint arr[3][4] = { /* 初始化 */ };\nf(arr, 3);\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。把二维数组传给函数,形参写 int arr[][4] 是正确的(列数必须给出),并非错误。",
        "difficulty": 3.0
       },
       {
@@ -2339,7 +2339,7 @@
        "stem": "递推是在给定初始条件下，已知前一项（或前几项）求后一项的过程。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。递推就是在初始条件下,由前一项(或前几项)求后一项。",
        "difficulty": 3.0
       },
       {
@@ -2356,7 +2356,7 @@
         "C": "3 2",
         "D": "4 2"
        },
-       "explanation": "",
+       "explanation": "内层块的 a=3 自增不影响外层;test 的 a 由 2 自增到 3,输出 3;main 输出全局 a=1。合起来 3 1,选 A。",
        "difficulty": 3.0
       },
       {
@@ -2373,7 +2373,7 @@
         "C": "13",
         "D": "10"
        },
-       "explanation": "",
+       "explanation": "递推:a=1,b=2,依次 i=3→3、i=4→5、i=5→8,返回 b=8,选 B。",
        "difficulty": 3.0
       },
       {
@@ -2390,7 +2390,7 @@
         "C": "6 4",
         "D": "12 6"
        },
-       "explanation": "",
+       "explanation": "f(int x=2) 返回 x*3:f()=6、f(4)=12,输出 6 12,选 B。",
        "difficulty": 3.0
       },
       {
@@ -2407,7 +2407,7 @@
         "C": "12 5",
         "D": "10 3"
        },
-       "explanation": "",
+       "explanation": "f(int&x) 使局部 x 由 10 变 12;::x 是全局=3。输出 12 3,选 A。",
        "difficulty": 3.0
       },
       {
@@ -2424,7 +2424,7 @@
         "C": "5",
         "D": "10"
        },
-       "explanation": "",
+       "explanation": "climb(6):a=1,b=2,依次 i=3→3、4→5、5→8、6→13,返回 c=13,选 B。",
        "difficulty": 3.0
       },
       {
@@ -2436,7 +2436,7 @@
        "stem": "下面程序可以正常编译并输出 10 。",
        "code": "int calc(int x, int y = 10);\nint calc(int x) { return x * 2; }\nint calc(int x, int y) { return x * y; }\nint main() {\ncout << calc(5);\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。带默认参数的 calc(int,int=10) 与重载 calc(int) 会使 calc(5) 产生二义性,无法通过编译。",
        "difficulty": 3.0
       },
       {
@@ -2448,7 +2448,7 @@
        "stem": "下面程序执行后输出 2010 。",
        "code": "int x = 10;\nvoid f() { int x = 20; cout << x; }\nint main() {\nf();\ncout << x;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。f 输出局部 x=20,main 输出全局 x=10,合起来 2010。",
        "difficulty": 3.0
       }
      ]
@@ -2484,7 +2484,7 @@
         "C": "选择排序是不稳定的。",
         "D": "以上都不正确。"
        },
-       "explanation": "",
+       "explanation": "选择排序是不稳定的(C 正确)。冒泡、插入都是稳定的,故 A、B 错,选 C。",
        "difficulty": 3.0
       },
       {
@@ -2501,7 +2501,7 @@
         "C": "min > array[j]",
         "D": "min > array[i]"
        },
-       "explanation": "",
+       "explanation": "选择排序找最小元素:当 array[min]>array[j] 时更新 min=j,选 A。",
        "difficulty": 3.0
       },
       {
@@ -2518,7 +2518,7 @@
         "C": "int j = 0; j < i - 1; j++",
         "D": "int j = 0; j < i; j++"
        },
-       "explanation": "",
+       "explanation": "冒泡外层 i 从 n 递减,内层比较 array[j] 与 array[j+1],j 应从 0 到 i−2,即 for(int j=0; j<i-1; j++),选 C。",
        "difficulty": 3.0
       },
       {
@@ -2530,7 +2530,7 @@
        "stem": "C++的内置函数 sort() 持数组的局部排序。例如 int a={10,9,8,7,6,5,4,3,2,1} ，可以 支 用 sort(a,a+5) ,排序成 {6,7,8,9,10,5,4,3,2,1} 。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。sort(a,a+5) 只对前 5 个元素局部排序,{10,9,8,7,6} 升序成 {6,7,8,9,10},其余不变。",
        "difficulty": 3.0
       },
       {
@@ -2542,7 +2542,7 @@
        "stem": "C++内置函数 sort() 可以对整数、浮点数、字符数组进行从大到小，从小到大，局部排序。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。sort() 可对整数、浮点数、字符数组排序,配合比较器能升序/降序,也能对区间做局部排序。",
        "difficulty": 3.0
       },
       {
@@ -2554,7 +2554,7 @@
        "stem": "对 int a[]={2,0,2,4,3,1,6} ，执行第一趟选择排序处理后 a 中数据变为 {0,2,2,4,3,1,6} 。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。{2,0,2,4,3,1,6} 选择排序一轮(找最小 0 换到首位)后是 {0,2,2,4,3,1,6}。",
        "difficulty": 3.0
       },
       {
@@ -2566,7 +2566,7 @@
        "stem": "如果待排序数据不能都装进内存，需要使用外排序算法。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。待排序数据装不进内存时,需要使用外排序算法。",
        "difficulty": 3.0
       },
       {
@@ -2583,7 +2583,7 @@
         "C": "`插入排序是一种稳定的排序算法",
         "D": "如果排序前2个相等的数在序列中的前后位置顺序和排序后它们2个的前后位置顺序相同，则称为一种稳定的 排序算法"
        },
-       "explanation": "",
+       "explanation": "问错误说法。冒泡排序是稳定的排序算法,B 说它不稳定错误。",
        "difficulty": 3.0
       },
       {
@@ -2600,7 +2600,7 @@
         "C": "{45,66,23,1,10,52,88,5,33,97}",
         "D": "{45,66,23,1,10,97,52,88,33,5}"
        },
-       "explanation": "",
+       "explanation": "{45,66,23,1,10,97,52,88,5,33} 冒泡一轮(把最大 97 冒到末尾)后是 {45,23,1,10,66,52,88,5,33,97},选 A。",
        "difficulty": 3.0
       },
       {
@@ -2617,7 +2617,7 @@
         "C": "a[j+1]=a[j-1];",
         "D": "a[j+1]=a[j];"
        },
-       "explanation": "",
+       "explanation": "插入排序把较大元素整体后移:a[j+1]=a[j],选 D。",
        "difficulty": 3.0
       },
       {
@@ -2629,7 +2629,7 @@
        "stem": "选择排序是稳定的排序算法。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。选择排序是不稳定的排序算法。",
        "difficulty": 3.0
       },
       {
@@ -2646,7 +2646,7 @@
         "C": "1, 4, 3, 1, 2, 5",
         "D": "4, 1, 3, 1, 5, 2"
        },
-       "explanation": "",
+       "explanation": "{4,1,3,1,5,2} 冒泡一轮(把最大 5 冒到末尾)后是 {1,3,1,4,2,5},选 B。",
        "difficulty": 3.0
       },
       {
@@ -2658,7 +2658,7 @@
        "stem": "冒泡排序和插入排序都是稳定的排序算法。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。冒泡排序和插入排序都是稳定排序。",
        "difficulty": 3.0
       },
       {
@@ -2670,7 +2670,7 @@
        "stem": "选择排序是稳定的排序算法。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。选择排序是不稳定的排序算法。",
        "difficulty": 3.0
       },
       {
@@ -2687,7 +2687,7 @@
         "C": "3, 5, 8, 1",
         "D": "5, 3, 8, 1"
        },
-       "explanation": "",
+       "explanation": "{5,3,8,1} 冒泡一轮:5↔3 得 3,5,8,1;8↔1 得 3,5,1,8,选 A。",
        "difficulty": 3.0
       },
       {
@@ -2699,7 +2699,7 @@
        "stem": "对数组 arr[]={4, 3, 1, 5, 2} 进行升序排序，执行第一轮选择排序后数组arr中的内容是 {1, 4, 3, 5, 2} 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。{4,3,1,5,2} 选择排序一轮(找最小 1 换到首位)后是 {1,3,4,5,2},不是 {1,4,3,5,2}。",
        "difficulty": 3.0
       },
       {
@@ -2716,7 +2716,7 @@
         "C": "选择排序",
         "D": "直接排序"
        },
-       "explanation": "",
+       "explanation": "每次把新牌插入有序部分的正确位置,这正是插入排序的思想,选 B。",
        "difficulty": 3.0
       },
       {
@@ -2733,7 +2733,7 @@
         "C": "数据几乎有序，只需少量调整",
         "D": "想在交换次数最少的前提下排好大数组"
        },
-       "explanation": "",
+       "explanation": "数据几乎有序、只需少量调整时,插入排序最合适,选 C。",
        "difficulty": 3.0
       },
       {
@@ -2745,7 +2745,7 @@
        "stem": "无论初始数组是否有序，选择排序都执行 次比较",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。选择排序无论数组是否有序,比较次数都相同(固定为约 n²/2 次)。",
        "difficulty": 3.0
       },
       {
@@ -2757,7 +2757,7 @@
        "stem": "以下C++代码，尝试对有 n 个整数的数组 arr 进行排序。这个代码实现了选择排序算法。",
        "code": "for (int i = 0; i < n - 1; ++i) {\nint minIndex = i;\nfor (int j = i + 1; j < n; ++j) {\nif (arr[j] < arr[minIndex])\nminIndex = j;\n}\nif (minIndex != i)\nswap(arr[i], arr[minIndex]);\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。该代码每轮找最小值并交换到前面,正是选择排序。",
        "difficulty": 3.0
       },
       {
@@ -2774,7 +2774,7 @@
         "C": "选择排序是稳定的排序算法",
         "D": "插 排序是稳定的排序算法 入"
        },
-       "explanation": "",
+       "explanation": "问错误说法。选择排序是不稳定的,故 C 错。冒泡、插入都稳定。",
        "difficulty": 3.0
       },
       {
@@ -2791,7 +2791,7 @@
         "C": "1 arr[j] > key 2 arr[j] = key",
         "D": "1 arr[j] < key 2 arr[j] = key"
        },
-       "explanation": "",
+       "explanation": "插入排序(升序):当 arr[j]>key 时后移,结束后 arr[j+1]=key,选 A。",
        "difficulty": 3.0
       },
       {
@@ -2803,7 +2803,7 @@
        "stem": "对整数数组 {4, 1, 3, 1, 5, 2} 进行冒泡排序（将最大元素放到最后），执行一轮之后是 {4, 1, 3, 1, 2, 5} 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。{4,1,3,1,5,2} 冒泡一轮后是 {1,3,1,4,2,5},不是 {4,1,3,1,2,5}。",
        "difficulty": 3.0
       },
       {
@@ -2815,7 +2815,7 @@
        "stem": "冒泡排序和插入排序都是稳定排序算法。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。冒泡排序和插入排序都是稳定排序。",
        "difficulty": 3.0
       },
       {
@@ -2827,7 +2827,7 @@
        "stem": "下面这段代码实现了选择排序算法。",
        "code": "void sort(int a[], int n) {\nfor (int i = 1; i < n; i++) {\nint x = a[i];\nint j = i - 1;\nwhile (j >= 0 && a[j] > x) {\na[j + 1] = a[j];\nj--;\n}\na[j + 1] = x;\n}\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。这段代码(从后向前移位插入)是插入排序,不是选择排序。",
        "difficulty": 3.0
       },
       {
@@ -2844,7 +2844,7 @@
         "C": "不稳定，因为 C 跑到前面了",
         "D": "无法判断"
        },
-       "explanation": "",
+       "explanation": "排序后相同 score 的 A、B、D 相对顺序保持不变,故是稳定的,选 B。",
        "difficulty": 3.0
       },
       {
@@ -2861,7 +2861,7 @@
         "C": "a[j+1] > key",
         "D": "a[j] == key"
        },
-       "explanation": "",
+       "explanation": "插入排序(升序):当 a[j]>key 时后移,即 while(j>=0 && a[j]>key),选 B。",
        "difficulty": 3.0
       }
      ]
@@ -2897,7 +2897,7 @@
         "C": "O(n²)",
         "D": "以上都不正确"
        },
-       "explanation": "",
+       "explanation": "冒泡排序平均时间复杂度为 O(n²),选 C。",
        "difficulty": 3.0
       },
       {
@@ -2909,7 +2909,7 @@
        "stem": "对 个元素的数组执行插入排序算法，通常的时间复杂度是 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。插入排序通常的时间复杂度是 O(n²)。",
        "difficulty": 3.0
       },
       {
@@ -2921,7 +2921,7 @@
        "stem": "递归法求 的阶乘，时间复杂度是 。 用",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。递归求 n 的阶乘,时间复杂度是 O(n)。",
        "difficulty": 3.0
       },
       {
@@ -2938,7 +2938,7 @@
         "C": "O(N)",
         "D": "O(N²)"
        },
-       "explanation": "",
+       "explanation": "插入排序最好情况(已有序)时间复杂度是 O(N),选 C。",
        "difficulty": 3.0
       },
       {
@@ -2955,7 +2955,7 @@
         "C": "平均来说插入排序算法的复杂度为",
         "D": "空间复杂度上，直接插入法是就地排序，空间复杂度为"
        },
-       "explanation": "",
+       "explanation": "问错误说法。直接插入排序是就地排序,空间复杂度为 O(1) 而非 O(n),故 D 错。",
        "difficulty": 3.0
       },
       {
@@ -2967,7 +2967,7 @@
        "stem": "插入排序算法中，平均时间复杂度是 ，最坏的情况逆序情况下，达到最大时间复杂度。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。插入排序平均时间复杂度 O(n²),最坏情况(逆序)达到最大时间复杂度。",
        "difficulty": 3.0
       },
       {
@@ -2984,7 +2984,7 @@
         "C": "排序后数据不会被修改",
         "D": "排序后数据的时间复杂度不变"
        },
-       "explanation": "",
+       "explanation": "排序稳定性指排序后相同元素的相对顺序保持不变,选 B。",
        "difficulty": 3.0
       },
       {
@@ -3001,7 +3001,7 @@
         "C": "O(1)",
         "D": "O(n)"
        },
-       "explanation": "",
+       "explanation": "冒泡排序两层循环,时间复杂度 O(n²),选 A。",
        "difficulty": 3.0
       },
       {
@@ -3013,7 +3013,7 @@
        "stem": "插 排序的时间复杂度总是 冒泡排序低。 入 比",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。插入与冒泡最坏都是 O(n²),插入排序时间复杂度并不总是更低。",
        "difficulty": 3.0
       },
       {
@@ -3025,7 +3025,7 @@
        "stem": "以下代码 递推法求斐波那契数列的第 项，时间复杂度为指数级。 用",
        "code": "int fibonacci(int n) {\nif (n == 0) return 0;\nif (n == 1) return 1;\nint f0 = 0; // F(0)\nint f1 = 1; // F(1)\nint current;\nfor (int i = 2; i <= n; i++) {\ncurrent = f0+ f1; // F(n) = F(n-1) + F(n-2)\nf0 = f1;\nf1 = current;\n}\nreturn current;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。该斐波那契是递推(单层循环),时间复杂度是 O(n) 线性,不是指数级。",
        "difficulty": 3.0
       },
       {
@@ -3042,7 +3042,7 @@
         "C": "冒泡排序在任何情况下的时间复杂度都为 。",
         "D": "如果给定数据部分有序，插入排序通常比选择排序效率更高。"
        },
-       "explanation": "",
+       "explanation": "问错误说法。带优化(提前终止)的冒泡在已有序时只需一轮 O(n),并非“任何情况下都是 O(n²)”,故 C 不准确。(选择排序无法提前结束,确实恒为 O(n²)。)",
        "difficulty": 3.0
       },
       {
@@ -3059,7 +3059,7 @@
         "C": "O(1)",
         "D": "O(n)"
        },
-       "explanation": "",
+       "explanation": "cellRecur 每次调用自己两次,调用数呈指数增长,时间复杂度 O(2ⁿ),选 B。",
        "difficulty": 3.0
       },
       {
@@ -3071,7 +3071,7 @@
        "stem": "某算法的递推关系式为 （ 为正整数）及 ，则该算法的时间复杂度为 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。按所给递推关系式分析,该算法的时间复杂度成立。",
        "difficulty": 3.0
       },
       {
@@ -3083,7 +3083,7 @@
        "stem": "冒泡排序的平均时间复杂度为 ，但最优情况下为 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。冒泡排序平均 O(n²),最优情况(已有序、带提前终止)为 O(n)。",
        "difficulty": 3.0
       },
       {
@@ -3100,7 +3100,7 @@
         "C": "O(1)",
         "D": "O(n³)"
        },
-       "explanation": "",
+       "explanation": "外层循环 2ⁿ 次(i<(1<<n))、内层 n 次,时间复杂度 O(n×2ⁿ),选 B。",
        "difficulty": 3.0
       },
       {
@@ -3117,7 +3117,7 @@
         "C": "选择排序是稳定排序",
         "D": "插入排序不是稳定排序"
        },
-       "explanation": "",
+       "explanation": "稳定排序保证相同元素的相对顺序不变,选 B。(选择排序不稳定、插入排序稳定。)",
        "difficulty": 3.0
       },
       {
@@ -3129,7 +3129,7 @@
        "stem": "考虑最坏情况下冒泡排序算法的时间复杂度， 为待排序数字的数目为 的复杂度，则其递推关系式为 ， 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。最坏情况下冒泡排序的复杂度递推关系成立,时间复杂度为 O(n²)。",
        "difficulty": 3.0
       },
       {
@@ -3141,7 +3141,7 @@
        "stem": "插入排序在最好情况（已有序）下的时间复杂度是 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。插入排序最好情况(已有序)的时间复杂度是 O(n),题述复杂度不对。",
        "difficulty": 3.0
       },
       {
@@ -3158,7 +3158,7 @@
         "C": "O(n³)",
         "D": "O(2ⁿ)"
        },
-       "explanation": "",
+       "explanation": "外层 i 到 n、内层 j 到 n(按位累加),两层都是 n,时间复杂度 O(n²),选 B。",
        "difficulty": 3.0
       },
       {
@@ -3175,7 +3175,7 @@
         "C": "O(n³)",
         "D": "O(2ⁿ)"
        },
-       "explanation": "",
+       "explanation": "递归斐波那契重复计算严重,时间复杂度是 O(2ⁿ),选 D。",
        "difficulty": 3.0
       },
       {
@@ -3192,7 +3192,7 @@
         "C": "最好情况是 ，最坏情况是",
         "D": "最好情况是 ，最坏情况是"
        },
-       "explanation": "",
+       "explanation": "插入排序最好情况(已有序)O(n),最坏情况(逆序)O(n²),选 B。",
        "difficulty": 3.0
       },
       {
@@ -3209,7 +3209,7 @@
         "C": "O(n³)",
         "D": "O(2ⁿ)"
        },
-       "explanation": "",
+       "explanation": "三重嵌套循环,时间复杂度 O(n³),选 C。",
        "difficulty": 3.0
       },
       {
@@ -3221,7 +3221,7 @@
        "stem": "虽然插入排序的时间复杂度为 ，但由于单元操作相对较少，因此在小数据量的排序任务中非常受欢 迎。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。插入排序虽是 O(n²),但常数小、单步操作少,在小数据量时很受欢迎。",
        "difficulty": 3.0
       },
       {
@@ -3238,7 +3238,7 @@
         "C": "O(n³)",
         "D": "O(2ⁿ)"
        },
-       "explanation": "",
+       "explanation": "外层 i 到 n、内层 j 到 n(按位累加),两层都是 n,时间复杂度 O(n²),选 B。",
        "difficulty": 3.0
       },
       {
@@ -3250,7 +3250,7 @@
        "stem": "考虑用如下递推方式计算斐波那契数列，时间复杂度是 。",
        "code": "int n = 10;\nint f[20];\nf[0] = 0;\nf[1] = 1;\nfor (int i = 2; i <= n; i++)\nf[i] = f[i - 1] + f[i - 2];",
        "options": {},
-       "explanation": "",
+       "explanation": "对。用数组递推求斐波那契,单层循环,时间复杂度是 O(n) 线性。",
        "difficulty": 3.0
       },
       {
@@ -3267,7 +3267,7 @@
         "C": "递推只能用于指数复杂度问题",
         "D": "递推一定需要回溯"
        },
-       "explanation": "",
+       "explanation": "递推从已知初值出发,利用递推关系逐步推出后续结果,选 B。",
        "difficulty": 3.0
       },
       {
@@ -3284,7 +3284,7 @@
         "C": "O(n²)",
         "D": "O(2ⁿ)"
        },
-       "explanation": "",
+       "explanation": "两层嵌套循环各到 n,时间复杂度 O(n²),选 C。",
        "difficulty": 3.0
       },
       {
@@ -3296,7 +3296,7 @@
        "stem": "由于选择排序和插 排序的时间复杂度均为 ，在任何实际场景下两者的性能表现 乎相同，可以互相 入 几 替代。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。选择排序不稳定、插入排序稳定,且在近乎有序数据上表现差异很大,不能互相替代。",
        "difficulty": 3.0
       },
       {
@@ -3308,7 +3308,7 @@
        "stem": "下 递推 式计算斐波那契数列第 n 项的程序，时间复杂度是 。 面 用 方",
        "code": "int fib(int n) {\nif (n <= 1) return n;\nint f0 = 0, f1 = 1, cur = 0;\nfor (int i = 2; i <= n; i++) {\ncur = f0 + f1;\nf0 = f1;\nf1 = cur;\n}\nreturn cur;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。这是递推(单层循环),真实时间复杂度是 O(n) 线性,题述复杂度不对。",
        "difficulty": 3.0
       }
      ]
@@ -3344,7 +3344,7 @@
         "C": "调试",
         "D": "编译"
        },
-       "explanation": "",
+       "explanation": "高级语言源程序经过编译才能生成可执行代码,选 D。",
        "difficulty": 3.0
       },
       {
@@ -3361,7 +3361,7 @@
         "C": "函数必须有返回值。",
         "D": "函数定义必须写在函数调用前。"
        },
-       "explanation": "",
+       "explanation": "A 正确:函数必须有名字。参数、返回值都可没有,定义也可写在调用之后(只要先声明),选 A。",
        "difficulty": 3.0
       },
       {
@@ -3378,7 +3378,7 @@
         "C": "两个变量的变量名可以相同，但它们的类型必须是不同的。",
         "D": "两个变量的变量名可以相同，但它们的作用域必须是不同的。"
        },
-       "explanation": "",
+       "explanation": "D 正确:两个变量名可相同,但作用域必须不同(如分处不同函数/代码块),选 D。",
        "difficulty": 3.0
       },
       {
@@ -3395,7 +3395,7 @@
         "C": "2",
         "D": "7"
        },
-       "explanation": "",
+       "explanation": "6=110、3=011,a&=3 即按位与得 010=2,选 C。",
        "difficulty": 3.0
       },
       {
@@ -3412,7 +3412,7 @@
         "C": "33",
         "D": "无法确定。"
        },
-       "explanation": "",
+       "explanation": "对角线 array[0][0]+array[1][1]+array[2][2]=0+11+22=33,但 sum 未初始化(int sum;)起始是垃圾值,结果无法确定,选 D。",
        "difficulty": 3.0
       },
       {
@@ -3424,7 +3424,7 @@
        "stem": "域名是由一串用点分隔的名字来标识互联网上一个计算机或计算机组的名称， CCF 编程能力等级认证官方网站的域名是 gesp.ccf.org.cn，其中顶级域名是 gesp。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。gesp.ccf.org.cn 的顶级域名是最右的 cn,不是 gesp。",
        "difficulty": 3.0
       },
       {
@@ -3436,7 +3436,7 @@
        "stem": "在 C++语言中，函数的参数默认以引用传递方式进行传递。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。C++ 函数参数默认是值传递,不是引用传递。",
        "difficulty": 3.0
       },
       {
@@ -3448,7 +3448,7 @@
        "stem": "在 C++语言中，一个函数没有被调用时，它的参数不占用内存。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。函数未被调用时不会为其形参分配内存(调用时才在栈上分配)。",
        "difficulty": 3.0
       },
       {
@@ -3460,7 +3460,7 @@
        "stem": "在 C++语言中，如果一个函数可能抛出异常，那么一定要在 try 子句里调用 这个函数。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。可能抛异常的函数不一定要放在 try 里调用,异常可以向上层传播。",
        "difficulty": 3.0
       },
       {
@@ -3472,7 +3472,7 @@
        "stem": "字符常量'0'和'\\0'是等价的。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。'0' 的值是 48,'\\0' 的值是 0,二者并不等价。",
        "difficulty": 3.0
       },
       {
@@ -3484,7 +3484,7 @@
        "stem": ">=和>>=都是 C++语言的运算符。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。>= 和 >>=(右移赋值)都是 C++ 的运算符。",
        "difficulty": 3.0
       },
       {
@@ -3496,7 +3496,7 @@
        "stem": "由于文件重定向操作，程序员在使用 C++语言编写程序时无法确定通过 cout 输出的内容是否会被输出到屏幕上。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。由于存在文件重定向,cout 的输出不一定打到屏幕,可能被定向到文件。",
        "difficulty": 3.0
       },
       {
@@ -3513,7 +3513,7 @@
         "C": "一种通话设备",
         "D": "以上都不对"
        },
-       "explanation": "",
+       "explanation": "手机上的 App 指的是应用软件,选 B。",
        "difficulty": 3.0
       },
       {
@@ -3530,7 +3530,7 @@
         "C": "5",
         "D": "11"
        },
-       "explanation": "",
+       "explanation": "按流程图运算,输出 9,选 A。",
        "difficulty": 3.0
       },
       {
@@ -3547,7 +3547,7 @@
         "C": "函数定义前必须声明。",
         "D": "函数声明只能写在函数调用前。"
        },
-       "explanation": "",
+       "explanation": "B 正确:函数调用时必须提供足够的实参。调用前需要的是声明而非定义,声明位置也不限,选 B。",
        "difficulty": 3.0
       },
       {
@@ -3564,7 +3564,7 @@
         "C": "两个函数的参数可以重名。",
         "D": "两个函数可以重名。"
        },
-       "explanation": "",
+       "explanation": "问错误说法。两个函数声明若完全相同就是同一个函数,不能并存,A 错。",
        "difficulty": 3.0
       },
       {
@@ -3581,7 +3581,7 @@
         "C": "-7",
         "D": "7"
        },
-       "explanation": "",
+       "explanation": "a=6,~a=−a−1=−7,选 C。",
        "difficulty": 3.0
       },
       {
@@ -3598,7 +3598,7 @@
         "C": "如果 try 子句中没有可能发生异常的语句，会产生编译错误。",
         "D": "catch 子句处理异常后，会重新执行与之对应的 try 子句。"
        },
-       "explanation": "",
+       "explanation": "A 正确:一个 try 可以对应多个 catch。B 不保证进入 catch、C 不会编译错误、D 不会重新执行 try,选 A。",
        "difficulty": 3.0
       },
       {
@@ -3615,7 +3615,7 @@
         "C": "55",
         "D": "无法确定。"
        },
-       "explanation": "",
+       "explanation": "fib 大小为 10(合法下标 0~9),而 cout<<fib[10] 访问越界,结果无法确定,选 D。",
        "difficulty": 3.0
       },
       {
@@ -3627,7 +3627,7 @@
        "stem": "在C++语言中，每个变量都有其作用域。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。C++ 中每个变量都有其作用域。",
        "difficulty": 3.0
       },
       {
@@ -3639,7 +3639,7 @@
        "stem": "在C++语言中，在函数调用时，通过引用传递的参数不会复制实际参数，因此不会额外占用内存。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。引用传递虽避免拷贝实参,但引用本身底层通常以指针实现,仍占少量内存,说“完全不额外占用内存”不准确。",
        "difficulty": 3.0
       },
       {
@@ -3651,7 +3651,7 @@
        "stem": "一个可能抛出异常的函数，调用它的位置没有在 try 子句中，会引起编译错误。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。调用可能抛异常的函数时不在 try 中,不会引起编译错误(异常在运行时才传播)。",
        "difficulty": 3.0
       },
       {
@@ -3663,7 +3663,7 @@
        "stem": "== 和 := 都是C++语言的运算符。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。== 是运算符,但 := 不是 C++ 的运算符。",
        "difficulty": 3.0
       },
       {
@@ -3675,7 +3675,7 @@
        "stem": "通过使用文件重定向操作，可以将程序中输出到 cout 的内容输出到文件中，这是常用的记录程序运行日志 的方法之一。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。用文件重定向把 cout 的输出写入文件,是常用的记录运行日志的方法之一。",
        "difficulty": 3.0
       },
       {
@@ -3692,7 +3692,7 @@
         "C": "函数参数传递时，主函数如果将参数的地址传递给子函数，若子函数将参数值改变，主函数当中的参数值将 不改变。",
         "D": "函数参数传递可以不满足子函数的参数个数要求。"
        },
-       "explanation": "",
+       "explanation": "A 正确:值传递时,子函数改变形参不会影响主函数里的实参值。地址传递则会改变(C 错),实参个数必须够(D 错),选 A。",
        "difficulty": 3.0
       },
       {
@@ -3709,7 +3709,7 @@
         "C": "chen a dai",
         "D": "dai"
        },
-       "explanation": "",
+       "explanation": "arr[10]={1} 中 arr[0]=1、arr[1]=0,strArr[arr[1]] 即 strArr[0]='c',选 B。",
        "difficulty": 3.0
       },
       {
@@ -3726,7 +3726,7 @@
         "C": "3",
         "D": "4"
        },
-       "explanation": "",
+       "explanation": "fun1 返回 *n * *n,即 arr[0]×arr[0]=2×2=4,赋给 arr[1],输出 4,选 D。",
        "difficulty": 3.0
       },
       {
@@ -3743,7 +3743,7 @@
         "C": "3 2 1 / 6 5 4 / 9 8 7",
         "D": "9 8 7 6 5 4 3 2 1"
        },
-       "explanation": "",
+       "explanation": "内层 j 从 2 到 0 逆序打印每行:3 2 1 / 6 5 4 / 9 8 7,选 C。",
        "difficulty": 3.0
       },
       {
@@ -3760,7 +3760,7 @@
         "C": "2",
         "D": "3"
        },
-       "explanation": "",
+       "explanation": "p=arr 指向 arr[0],p++ 后指向 arr[1]=2,*p=2,选 C。",
        "difficulty": 3.0
       },
       {
@@ -3777,7 +3777,7 @@
         "C": "0x6ffe18",
         "D": "0x6ffe15"
        },
-       "explanation": "",
+       "explanation": "p=&x 后 p++ 对 int 指针 +1 跳 4 字节:0x6ffe14+4=0x6ffe18,选 C。",
        "difficulty": 3.0
       },
       {
@@ -3794,7 +3794,7 @@
         "C": "20",
         "D": "100"
        },
-       "explanation": "",
+       "explanation": "point 返回 *p * *p=20×20=400,赋回 *p 使 a=400,输出 400,选 A。",
        "difficulty": 3.0
       },
       {
@@ -3811,7 +3811,7 @@
         "C": "40",
         "D": "24"
        },
-       "explanation": "",
+       "explanation": "循环 10 次,每次只写 1 个字符('6' 或 'A'),共 10 个字符,文件 10 字节,选 A。",
        "difficulty": 3.0
       },
       {
@@ -3828,7 +3828,7 @@
         "C": "1#2#3#4#",
         "D": "1#2#3#4"
        },
-       "explanation": "",
+       "explanation": "输入 \"1,2,3,4\":数字原样输出、其他字符(逗号)输出 #,得 1#2#3#4,选 D。",
        "difficulty": 3.0
       },
       {
@@ -3845,7 +3845,7 @@
         "C": "if(n%i!=0)",
         "D": "if(n/i!=0)"
        },
-       "explanation": "",
+       "explanation": "求因数:当 n%i==0 时 i 是 n 的因数,选 A。",
        "difficulty": 3.0
       },
       {
@@ -3862,7 +3862,7 @@
         "C": "油量表",
         "D": "传感器"
        },
-       "explanation": "",
+       "explanation": "选路只需语音(麦克风)、感知(传感器)、播报(扬声器),油量表与选路无关,选 C。",
        "difficulty": 3.0
       },
       {
@@ -3879,7 +3879,7 @@
         "C": "阿塔纳索夫",
         "D": "埃克特-莫克利"
        },
-       "explanation": "",
+       "explanation": "现代电子计算机基于冯·诺依曼体系结构,选 B。",
        "difficulty": 3.0
       },
       {
@@ -3896,7 +3896,7 @@
         "C": "for(i=2;i<N/2;i++) if(!(N%(i-1)) && !(N%i)) printf(\"(%d,%d)\\n\", i-1, i);",
         "D": "for(i=1;i<N/2;i++) if(!(N%i) && !(N%(i+1))) printf(\"(%d,%d)\\n\", i, i+1);"
        },
-       "explanation": "",
+       "explanation": "找相邻因数对要从 i=1 起才能找到 (1,2)。B 从 i=2 开始,漏掉 (1,2),找不全,选 B。",
        "difficulty": 3.0
       },
       {
@@ -3908,7 +3908,7 @@
        "stem": "[(1,2)*2]*3 在C++中是合法的表达式。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。[(1,2)*2]*3 不是合法的 C++ 表达式。",
        "difficulty": 3.0
       },
       {
@@ -3920,7 +3920,7 @@
        "stem": "在下 的C++代码中，将对1.txt 件写 hello 。( ) 面 文 入",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。filein(ifstream)打开的是 1.txt 用于读取,而 fileout 从未关联任何文件,向它写 \"hello\" 不会写进 1.txt。",
        "difficulty": 3.0
       },
       {
@@ -3932,7 +3932,7 @@
        "stem": "本 件 1.txt 第1 由 01234 共5个字符组成其间没有空格，当 C++代码正常打开 件成功并执 如下 文 文 行 用 文 行 代码以后，第1 长度为5（ ） 行",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。代码读入的是 int buff(把 01234 当整数读),并没有测量“长度”,所谓“第 1 行长度为 5”不成立。",
        "difficulty": 3.0
       },
       {
@@ -3944,7 +3944,7 @@
        "stem": "执行C++代码 cout<<(5||2); 后将输出 1 。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。5||2 为真,输出 1。",
        "difficulty": 3.0
       },
       {
@@ -3956,7 +3956,7 @@
        "stem": "在C++中，两个字符串相加的运算符为+相当于字符串的合并运算。下面C++代码执行后，将输出 chenadai 。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。字符串相加是拼接:\"chen\"+\"a\"+\"dai\"=\"chenadai\"。",
        "difficulty": 3.0
       },
       {
@@ -3968,7 +3968,7 @@
        "stem": "小杨最近在准备考GESP，他用的Dev C++来练习和运行程序，所以Dev C++也是一个小型操作系统。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。Dev C++ 是集成开发环境(IDE),不是操作系统。",
        "difficulty": 3.0
       },
       {
@@ -3980,7 +3980,7 @@
        "stem": "任何一个while循环都可以转化为等价的for循环（ ）。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。任何 while 循环都可改写成等价的 for 循环。",
        "difficulty": 3.0
       },
       {
@@ -3997,7 +3997,7 @@
         "C": "6",
         "D": "不确定"
        },
-       "explanation": "",
+       "explanation": "全局 rc=5,但 main 内的局部 rc 未初始化,++rc 作用在垃圾值上,结果不确定,选 D。",
        "difficulty": 3.0
       },
       {
@@ -4014,7 +4014,7 @@
         "C": "3",
         "D": "0"
        },
-       "explanation": "",
+       "explanation": "循环读两个词 \"50\"、\"2024\";再 fin>>x 读 \"3.16\" 到 int,遇小数点即停只取 3,选 C。",
        "difficulty": 3.0
       },
       {
@@ -4031,7 +4031,7 @@
         "C": "inline",
         "D": "public"
        },
-       "explanation": "",
+       "explanation": "static 能限定对象/变量的作用域(限定在文件或函数内),选 B。",
        "difficulty": 3.0
       },
       {
@@ -4048,7 +4048,7 @@
         "C": "操作系统",
         "D": "神话人物"
        },
-       "explanation": "",
+       "explanation": "鸿蒙(HarmonyOS)是华为自研的操作系统,选 C。",
        "difficulty": 3.0
       },
       {
@@ -4065,7 +4065,7 @@
         "C": "发明汉字激光照排系统",
         "D": "成立方正公司"
        },
-       "explanation": "",
+       "explanation": "王选先生的重大贡献是发明汉字激光照排系统,选 C。",
        "difficulty": 3.0
       },
       {
@@ -4077,7 +4077,7 @@
        "stem": "定义变量 int a=5 , 则 cout << &++a 会输出 6 。( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。&++a 是对自增后的 a 取地址,输出的是一个内存地址,不是 6。",
        "difficulty": 3.0
       },
       {
@@ -4089,7 +4089,7 @@
        "stem": "两个函数之间可以使用全局变量来传递数据。 ( )",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。两个函数之间可以借助全局变量传递数据。",
        "difficulty": 3.0
       },
       {
@@ -4101,7 +4101,7 @@
        "stem": "C++语言中 cout << 9^2 << endl; 会输出81。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。^ 在 C++ 中是按位异或而非乘方,9^2 不等于 81(乘方要用 pow)。",
        "difficulty": 3.0
       },
       {
@@ -4113,7 +4113,7 @@
        "stem": "小杨今年春节回奶奶家了，奶奶家的数字电视要设置ip地址并接入到WIFI盒子才能收看节目，那这个WIFI盒 子具有路由器的功能。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。能设置 IP 并接入网络的 WIFI 盒子具备路由器功能。",
        "difficulty": 3.0
       },
       {
@@ -4125,7 +4125,7 @@
        "stem": "任何一个 for 循环都可以转化为等价的 while 循环（ ）。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。任何 for 循环都可改写成等价的 while 循环。",
        "difficulty": 3.0
       },
       {
@@ -4142,7 +4142,7 @@
         "C": "12 12 24 24",
         "D": "24 24 12 12"
        },
-       "explanation": "",
+       "explanation": "func 内对局部副本 a、b 做交换并输出 24 12;但传值不改 main 的 c、d,故 main 输出 12 24。合起来 24 12 12 24,选 B。",
        "difficulty": 3.0
       },
       {
@@ -4159,7 +4159,7 @@
         "C": "2 10 11 121",
         "D": "2 10 3 100"
        },
-       "explanation": "",
+       "explanation": "外层 i=2→输出 2;for 内是新作用域的 i=10→输出 10;回到外层 i=2+1=3→输出 3;再 i=3×3=9→输出 9。合起来 2 10 3 9,选 B。",
        "difficulty": 3.0
       },
       {
@@ -4176,7 +4176,7 @@
         "C": "0x6ffe15",
         "D": "0x6ffe18"
        },
-       "explanation": "",
+       "explanation": "p=&a 后 p++ 对 int 指针 +1 跳 4 字节:0x6ffe14+4=0x6ffe18,选 D。",
        "difficulty": 3.0
       },
       {
@@ -4193,7 +4193,7 @@
         "C": "0x6ffe08",
         "D": "0x6ffe00"
        },
-       "explanation": "",
+       "explanation": "a 是 int[2][3],数组名退化为指向一行的指针,a+1 跳一整行 3 个 int=12 字节(0xC):0x6ffe00+0xC=0x6ffe0C,选 B。",
        "difficulty": 3.0
       },
       {
@@ -4210,7 +4210,7 @@
         "C": "\"./data/GESP.txt\"：指定与当前工作目录中的程序文件同级目录下的 data 目录中的 GESP.txt 文件",
         "D": "\"GESP.txt\"是绝对路径"
        },
-       "explanation": "",
+       "explanation": "问错误说法。\"GESP.txt\" 是相对路径(相对当前工作目录),不是绝对路径,故 D 错。",
        "difficulty": 3.0
       },
       {
@@ -4227,7 +4227,7 @@
         "C": "10",
         "D": "100"
        },
-       "explanation": "",
+       "explanation": "输入 10 0,Division 中 b==0 抛出字符串(const char*),被 catch(const char*) 捕获,输出 Division by zero condition!,选 A。",
        "difficulty": 3.0
       },
       {
@@ -4244,7 +4244,7 @@
         "C": "54",
         "D": "58"
        },
-       "explanation": "",
+       "explanation": "n 条直线最多把平面分成 1+n(n+1)/2 个区域,n=10 时为 1+55=56,选 B。",
        "difficulty": 3.0
       },
       {
@@ -4256,7 +4256,7 @@
        "stem": "以下代码不能够正确执行。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。int& ra; 这种引用未初始化即声明是非法的,且 ra=&a 把地址赋给整型引用也不对,代码不能正确执行。",
        "difficulty": 3.0
       },
       {
@@ -4268,7 +4268,7 @@
        "stem": "下面程序两个输出结果是一样的。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。数组名 a 与 &a[0][0] 都是首元素的地址,两条输出结果相同。",
        "difficulty": 3.0
       },
       {
@@ -4280,7 +4280,7 @@
        "stem": "函数不可以调用自己。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。函数可以调用自己,这就是递归。",
        "difficulty": 3.0
       },
       {
@@ -4292,7 +4292,7 @@
        "stem": "下面代码输出的值等于0。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。int *p=NULL 是空指针,cout<<p 输出的地址值为 0。",
        "difficulty": 3.0
       },
       {
@@ -4309,7 +4309,7 @@
         "C": "形参和实参可以互换",
         "D": "形参和实参必须是完全相同的类型，不能有任何差异。"
        },
-       "explanation": "",
+       "explanation": "形参在函数定义时指定,实参在函数调用时传入,选 B。",
        "difficulty": 3.0
       },
       {
@@ -4321,7 +4321,7 @@
        "stem": "在 C++ 中，引 传递允许函数修改传递给它的参数的值。 用",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。引用传递可让函数直接修改实参的值。",
        "difficulty": 3.0
       },
       {
@@ -4333,7 +4333,7 @@
        "stem": "在 C++ 中，如果没有捕获到异常（没有匹配的 catch 块），程序会继续执 不会终 。 行 而 止",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。未被任何 catch 捕获的异常会调用 terminate 终止程序,而非继续执行。",
        "difficulty": 3.0
       },
       {
@@ -4345,7 +4345,7 @@
        "stem": "一个函数必须在调用之前既声明又定义。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。函数在调用前必须先声明,但不一定要先定义(定义可放在后面)。",
        "difficulty": 3.0
       },
       {
@@ -4357,7 +4357,7 @@
        "stem": "在 C++语言中，如果一个函数可能抛出异常，那么一定要在try 子句里调用这个函数。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。可能抛异常的函数不一定要在 try 里调用,异常可以向上层传播。",
        "difficulty": 3.0
       },
       {
@@ -4374,7 +4374,7 @@
         "C": "在 main 函数中，函数 multiply 通过 multiply(a, b) 被调用，其中 a 和 b 是定义在 main 函数中的变 量，它们作为实参传递给了 multiply 函数的形参 x 和 y 。",
         "D": "运行上述代码，将输出 The result is: 20 。"
        },
-       "explanation": "",
+       "explanation": "问错误说法。有了 main 之前的函数声明,定义放在 main 之后也能正常调用,并非“必须放到 main 之前”,故 A 错。",
        "difficulty": 3.0
       },
       {
@@ -4386,7 +4386,7 @@
        "stem": "函数是C++中的核心概念，用于封装可重用的代码块。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。函数用于封装可重用的代码块,是 C++ 的核心概念。",
        "difficulty": 3.0
       },
       {
@@ -4398,7 +4398,7 @@
        "stem": "在C++中，函数的返回类型可以省略，默认为 int 。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。C++ 中函数返回类型不能省略,也没有默认为 int 的规则。",
        "difficulty": 3.0
       },
       {
@@ -4410,7 +4410,7 @@
        "stem": "未捕获异常会调用std::terminate终止程序。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。未捕获的异常会调用 std::terminate 终止程序。",
        "difficulty": 3.0
       },
       {
@@ -4427,7 +4427,7 @@
         "C": "编译警告但可以运 行",
         "D": "链接错误"
        },
-       "explanation": "",
+       "explanation": "greet() 在 main 中调用时尚未声明/定义,编译报错找不到 greet(),选 B。",
        "difficulty": 3.0
       },
       {
@@ -4444,7 +4444,7 @@
         "C": "形参和实参在函数调 时是完全相同的。 用",
         "D": "形参只在函数内部可见，实参在函数外部可见。"
        },
-       "explanation": "",
+       "explanation": "形参是函数定义中声明的变量,实参是调用时传入的具体值,选 B。",
        "difficulty": 3.0
       },
       {
@@ -4461,7 +4461,7 @@
         "C": "将 data.txt 中的每 读取并输出到屏幕 一 行",
         "D": "程序将创建 data.txt 并写 默认 本 入 文"
        },
-       "explanation": "",
+       "explanation": "用 ifstream 逐行 getline 读取 data.txt 并输出到屏幕,选 C。",
        "difficulty": 3.0
       },
       {
@@ -4478,7 +4478,7 @@
         "C": "确保程序在编译时没有错误。",
         "D": "减少程序的内存占 。 用"
        },
-       "explanation": "",
+       "explanation": "try-catch 的主要目的是在程序发生运行时错误时提供结构化的错误处理方式,选 B。",
        "difficulty": 3.0
       },
       {
@@ -4490,7 +4490,7 @@
        "stem": "下 C++代码正确声明了 个返回 int 类型、接受两个 int 参数的函数。 面 一",
        "code": "int add(int, int);",
        "options": {},
-       "explanation": "",
+       "explanation": "对。int add(int,int); 正确声明了返回 int、接收两个 int 的函数。",
        "difficulty": 3.0
       },
       {
@@ -4502,7 +4502,7 @@
        "stem": "在C++中，相比于值传递，使用引用传递作的优点可以直接操作和修改原始变量，避免数据拷贝，提高效 率。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。引用传递可直接操作原变量、避免拷贝,效率更高。",
        "difficulty": 3.0
       },
       {
@@ -4514,7 +4514,7 @@
        "stem": "如果一个异常在 try 块中抛出但没有任何 catch 匹配，它将在编译时报错。",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "错。未被 catch 匹配的异常是在运行时终止程序,不是编译时报错。",
        "difficulty": 3.0
       },
       {
@@ -4526,7 +4526,7 @@
        "stem": "下面C++代码实现将 Hello 写入 data.txt 。",
        "code": "ofstream out(\"data.txt\");\nout << \"Hello\";\nout.close();",
        "options": {},
-       "explanation": "",
+       "explanation": "对。ofstream out 后 out<<\"Hello\" 即把 Hello 写入文件。",
        "difficulty": 3.0
       },
       {
@@ -4543,7 +4543,7 @@
         "C": "运行错误",
         "D": "链接失败：未定义引用"
        },
-       "explanation": "",
+       "explanation": "默认参数 b=1:add(2)=3、add(2,3)=5,输出 3 5,选 A。",
        "difficulty": 3.0
       },
       {
@@ -4560,7 +4560,7 @@
         "C": "1 current = prev1 + prev2; 2 prev1 = current; 3 prev2 = prev1;",
         "D": "1 prev1 = current; 2 prev2 = prev1; 3 current = prev1 + prev2;"
        },
-       "explanation": "",
+       "explanation": "递推爬楼梯:先 current=prev1+prev2,再 prev2=prev1、prev1=current 滚动更新,选 B。",
        "difficulty": 3.0
       },
       {
@@ -4577,7 +4577,7 @@
         "C": "throw 语句用于抛出异常",
         "D": "所有异常都必须被捕获，否则程序会崩溃"
        },
-       "explanation": "",
+       "explanation": "问错误说法。异常并非“必须”被捕获——不捕获只是会导致程序终止,而非语法强制,故 D 错。",
        "difficulty": 3.0
       },
       {
@@ -4589,7 +4589,7 @@
        "stem": "以下代码只能捕获 int 类型异常。",
        "code": "int main() {\ntry {\nthrow 42;\n} catch (...) {\ncout << \"Caught\" << endl;\n}\nreturn 0;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。catch(...) 能捕获所有类型的异常,不只是 int。",
        "difficulty": 3.0
       },
       {
@@ -4601,7 +4601,7 @@
        "stem": "以下代码将 Hello 写入文件 data.txt 。",
        "code": "ofstream file(\"data.txt\");\ncout<<\"Hello\"<< endl;\nfile.close();",
        "options": {},
-       "explanation": "",
+       "explanation": "错。代码用的是 cout<<\"Hello\"(写到屏幕),不是 file<<...,文件里并没有写入 Hello。",
        "difficulty": 3.0
       },
       {
@@ -4618,7 +4618,7 @@
         "C": "HappyNew Year|",
         "D": "Happy|"
        },
-       "explanation": "",
+       "explanation": "文件为 \"Happy\\nNew Year\"。fin>>s1 读到 \"Happy\" 停在换行前;getline 立即遇到换行读到空串,故输出 Happy|,选 D。",
        "difficulty": 3.0
       },
       {
@@ -4630,7 +4630,7 @@
        "stem": "下面代码可以正常编译并输出 10 。",
        "code": "#include <iostream>\nusing namespace std;\nint calculate(int x, int y = 10);\nint main() {\ncout << calculate(5);    // 调用1\nreturn 0;\n}\nint calculate(int x, int y) {\nreturn x * y;\n}\nint calculate(int x) {   // 重载函数\nreturn x * 2;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "错。带默认参数的 calculate(int,int=10) 与重载 calculate(int) 会使 calculate(5) 调用产生二义性,无法通过编译。",
        "difficulty": 3.0
       },
       {
@@ -4642,7 +4642,7 @@
        "stem": "执行下面代码会输出 100 。",
        "code": "int main() {\nofstream fout(\"data.txt\");\nfout << 10 << \" \" << 20 << endl;\nfout << 30 << \" \" << 40;\nfout.close();\nifstream fin(\"data.txt\");\nint a, b, c, d;\nfin >> a >> b >> c >> d;\nfin.close();\ncout << a + b + c + d;\nreturn 0;\n}",
        "options": {},
-       "explanation": "",
+       "explanation": "对。写入 10 20 30 40,读回 a、b、c、d 求和=100。",
        "difficulty": 3.0
       },
       {
@@ -4654,7 +4654,7 @@
        "stem": "引用一旦绑定某个变量，就不能再绑定其他变量。（ ）",
        "code": "",
        "options": {},
-       "explanation": "",
+       "explanation": "对。引用一旦绑定某变量,就不能再改绑到其他变量。",
        "difficulty": 3.0
       },
       {
@@ -4666,7 +4666,7 @@
        "stem": "下 程序能够把 Hello 写 data.txt 件中。 面 入 文",
        "code": "ofstream fout(\"data.txt\");\ncout << \"Hello\";\nfout.close();",
        "options": {},
-       "explanation": "",
+       "explanation": "错。代码用的是 cout<<\"Hello\"(打到屏幕),不是 fout<<,文件里没写入 Hello。",
        "difficulty": 3.0
       }
      ]

@@ -42,6 +42,7 @@ function hl(code){
   return s;
 }
 function hlInline(t){ let s=esc(t); s=s.replace(/`([^`]+)`/g,(m,p)=>`<code>${p}</code>`); return s; }
+function fmtExp(t){ let s=esc(t); s=s.replace(/`([^`]+)`/g,'<code>$1</code>'); s=s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>'); s=s.replace(/💡(.*)$/,'<span class="tip">💡$1</span>'); return s; }
 function stars(n){ let h=''; for(let i=1;i<=5;i++){ if(n>=i)h+='★'; else if(n>=i-0.5)h+='<span style="position:relative;display:inline-block"><span class="empty">★</span><span style="position:absolute;left:0;width:50%;overflow:hidden">★</span></span>'; else h+='<span class="empty">★</span>'; } return '<span class="stars">'+h+'</span>'; }
 function badge(req){return `<span class="badge ${REQ_CLS[req]||''}">${req}</span>`;}
 function freqB(f){return `<span class="b-freq freq-${f}">${f}</span>`;}
@@ -100,12 +101,13 @@ let browsePage={};
 const sectionCache={};
 const C = ()=>document.getElementById('content');
 
-function setActiveTab(tab){ ['browse','practice','recommend','mock','wrong','progress','rank','mark'].forEach(t=>{
+function setActiveTab(tab){ ['learn','browse','practice','recommend','mock','wrong','progress','rank','mark'].forEach(t=>{
   const el=document.getElementById('tab-'+t); if(el) el.classList.toggle('on',t===tab); }); }
 
 async function go(tab){
   setActiveTab(tab); document.getElementById('q').value='';
-  if(tab==='browse'){ view={tab:'browse',sub:'overview'}; await ensureCatalog(); renderBrowse(); }
+  if(tab==='learn'){ view={tab:'learn'}; renderLearn(); }
+  else if(tab==='browse'){ view={tab:'browse',sub:'overview'}; await ensureCatalog(); renderBrowse(); }
   else if(tab==='practice'){ await ensureCatalog(); renderPracticeSetup(); }
   else if(tab==='recommend'){ await ensureCatalog(); await renderRecommend(); }
   else if(tab==='mock'){ await ensureCatalog(); await renderMock(); }
@@ -121,6 +123,91 @@ async function ensureCatalog(){
   if(CATALOG) return CATALOG;
   C().innerHTML='<div class="empty"><div class="spinner"></div>加载题库中…</div>';
   CATALOG=await api('/api/catalog?level='+LEVEL); PAPERS=CATALOG.meta.papers; document.querySelectorAll('.badge-sub').forEach(e=>{e.textContent=CATALOG.level_name;}); return CATALOG;
+}
+
+/* ===================== 学习板块（先学后练） ===================== */
+const LV_CN = {1:'一级',2:'二级',3:'三级',4:'四级',5:'五级',6:'六级',7:'七级',8:'八级'};
+// 模块数据驱动：status 'ready'=已上线可进入；'soon'=已预留、内容编写中。后续填内容只需改这里。
+const LEARN_MODULES = [
+  {icon:'📘', title:'入门讲义', tag:'纸质教程·电子版', status:'soon',
+   desc:'按考纲知识点系统讲解，配套纸质教程电子版。先把概念学懂，再去刷题，事半功倍。'},
+  {icon:'🪤', title:'陷阱通关手册', tag:'高频易错·避坑', key:'traps', status:'soon',
+   desc:'汇总历年高频易错点与命题陷阱，逐条「通关」。考前过一遍，专治粗心丢分。'},
+  {icon:'📝', title:'限时模拟题', tag:'模考·估分', status:'ready', go:'mock',
+   desc:'整套真题限时模考，交卷后自动估分，模拟真实考场节奏与压力。'},
+  {icon:'📚', title:'真题精讲', tag:'逐题解析', status:'ready', go:'browse',
+   desc:'按章节浏览全部历年真题，每题讲透「为什么对、坑在哪」。'},
+  {icon:'🗺️', title:'备考路线图', tag:'学习计划', status:'soon',
+   desc:'本级别的学习顺序、时间规划与阶段里程碑，照着走不迷路。'},
+  {icon:'🎬', title:'视频精讲', tag:'重难点讲解', status:'soon',
+   desc:'重点题型与难点的视频讲解，文字看不懂的地方，看视频秒懂。'},
+  {icon:'📄', title:'知识速查表', tag:'一页速查', status:'soon',
+   desc:'本级别语法与核心概念浓缩成一页速查表，随时翻阅、考前突击。'},
+];
+function renderLearn(){
+  const lv = LV_CN[LEVEL] || (LEVEL+'级');
+  const cards = LEARN_MODULES.map(m=>{
+    // 陷阱通关手册：一级已上线（内容来自一级解析的💡提示），其他级别暂未开放
+    const trapsReady = m.key==='traps' && String(LEVEL)==='1';
+    const ready = m.status==='ready' || trapsReady;
+    const badge = ready ? '' : '<span class="lm-soon">即将上线</span>';
+    let onclick = `go('${m.go}')`;
+    if(trapsReady) onclick = 'renderTraps()';
+    const btn = ready
+      ? `<button class="lm-btn" onclick="${onclick}">进入 →</button>`
+      : `<button class="lm-btn ghost" disabled>敬请期待</button>`;
+    return `<div class="lm-card${ready?'':' lm-dim'}">
+      <div class="lm-top"><span class="lm-ic">${m.icon}</span>${badge}</div>
+      <div class="lm-title">${m.title}<span class="lm-tag">${m.tag}</span></div>
+      <p class="lm-desc">${m.desc}</p>
+      ${btn}
+    </div>`;
+  }).join('');
+  C().innerHTML = `
+    <div class="learn-hero">
+      <h2>📖 学习中心 · C++${lv}</h2>
+      <p>刷题之外，先把知识学扎实。这里汇集本级别的教程、避坑手册、模拟题与备考资料——<b>先学后练，稳步通关</b>。</p>
+    </div>
+    <div class="learn-grid">${cards}</div>
+    <div class="learn-foot">更多学习内容正在持续上线中。已上线的「真题精讲」与「限时模考」可立即使用。</div>`;
+}
+
+// 陷阱通关手册（数据来自 /api/traps，由一级解析的💡提示汇总而成）
+let TRAPS_CACHE=null;
+async function renderTraps(){
+  setActiveTab('learn');
+  C().innerHTML='<div class="empty"><div class="spinner"></div>正在打开陷阱通关手册…</div>';
+  try{
+    if(!TRAPS_CACHE){ const r=await fetch('/api/traps'); TRAPS_CACHE=await r.json(); }
+  }catch(e){ C().innerHTML='<div class="empty">手册加载失败，请稍后再试。</div>'; return; }
+  const data=TRAPS_CACHE; const cats=data.categories||[];
+  const total=cats.reduce((s,c)=>s+c.traps.length,0);
+  const toc=cats.map((c,i)=>`<a href="#trapcat${i}" class="tp-toc-i">${c.title}<span>${c.traps.length}</span></a>`).join('');
+  const body=cats.map((c,i)=>{
+    const items=c.traps.map(t=>{
+      const ex=(t.examples||[]).map(e=>`<a class="tp-ex" href="/q/${e.qid}" target="_blank">${e.paper} ${e.type==='mc'?'单':'判'}${e.num}</a>`).join('');
+      return `<div class="tp-card">
+        <div class="tp-h"><span class="tp-x">⚠️</span><b>${t.title}</b></div>
+        <p class="tp-why">${fmtExp(t.why)}</p>
+        <div class="tp-eg">
+          <div class="tp-bad"><span>✗ 错误/陷阱</span><pre>${esc(t.wrong)}</pre></div>
+          <div class="tp-good"><span>✓ 正确/正解</span><pre>${esc(t.right)}</pre></div>
+        </div>
+        ${ex?`<div class="tp-exs">📎 出现的真题：${ex}</div>`:''}
+      </div>`;
+    }).join('');
+    return `<section class="tp-cat" id="trapcat${i}"><h3 class="tp-cat-h">${c.title}</h3><div class="tp-list">${items}</div></section>`;
+  }).join('');
+  C().innerHTML=`
+    <div class="tp-back"><a onclick="go('learn')">← 返回学习中心</a></div>
+    <div class="learn-hero">
+      <h2>🪤 陷阱通关手册 · C++一级</h2>
+      <p>这本手册汇总了一级真题里 <b>${total} 个高频易错陷阱</b>，全部来自每道题的「💡 提示」。考前过一遍，专治<b>粗心丢分</b>。每条都配错误/正解对照，并链接到出现该坑的真题。</p>
+    </div>
+    <div class="tp-toc">${toc}</div>
+    ${body}
+    <div class="learn-foot">看完手册，建议回到「真题精讲」对照练习，把这些坑真正踩熟、记牢。</div>`;
+  window.scrollTo(0,0);
 }
 
 /* ===================== 题库浏览 ===================== */
@@ -215,7 +302,7 @@ function qCard(q,idx,opts={}){
   if(isMC) optsHtml='<div class="q-opts">'+['A','B','C','D'].filter(k=>q.options[k]!=null).map(k=>
     `<div class="opt ${k===q.answer?'correct':''}"><span class="ok">${k}</span><span>${hlInline(q.options[k])}</span></div>`).join('')+'</div>';
   const code=q.code?`<pre class="q-code">${hl(q.code)}</pre>`:'';
-  let exp; if(q.locked){ exp=lockBox(); } else if(q.explanation){ let e=esc(q.explanation).replace(/💡(.*)$/,'<span class="tip">💡$1</span>'); exp=`<div class="exp">${e}</div>`; }
+  let exp; if(q.locked){ exp=lockBox(); } else if(q.explanation){ let e=fmtExp(q.explanation); exp=`<div class="exp">${e}</div>`; }
   else exp='<div class="exp todo">解析待补充(本题已分类入库,解析按章补写中)</div>';
   const star=`<span class="q-star ${q.bookmarked?'on':''}" id="star${idx}" title="收藏" onclick="event.stopPropagation();toggleStar('${q.qid}',${idx})">${q.bookmarked?'★':'☆'}</span>`;
   const masterBtn=opts.wrong?`<span class="btn teal" style="margin-left:auto" onclick="event.stopPropagation();masterQ('${q.qid}',${idx})">✓ 已掌握</span>`:'';
@@ -303,7 +390,7 @@ async function submitAns(){
     document.querySelectorAll('#quizopts .opt').forEach(o=>{ o.classList.remove('sel','pick'); o.onclick=null;
       if(o.dataset.val===d.answer)o.classList.add('correct','show');
       else if(o.dataset.val===quiz.picked)o.classList.add('wrongpick'); });
-    const expHtml=d.locked?lockBox():`<div class="exp">${d.explanation?esc(d.explanation).replace(/💡(.*)$/,'<span class="tip">💡$1</span>'):'<span class="todo">本题暂未提供解析(已分类入库,解析按章补写中)</span>'}</div>`;
+    const expHtml=d.locked?lockBox():`<div class="exp">${d.explanation?fmtExp(d.explanation):'<span class="todo">本题暂未提供解析(已分类入库,解析按章补写中)</span>'}</div>`;
     const last=quiz.idx>=quiz.questions.length-1;
     document.getElementById('quizfb').innerHTML=
       `<div class="fb ${d.correct?'ok':'no'}">${d.correct?'✓ 回答正确':'✗ 回答错误,正确答案：'+d.answer}</div>
@@ -477,7 +564,7 @@ function renderMockResult(d){
     const optsHtml = isMC?'<div class="q-opts">'+['A','B','C','D'].filter(k=>q.options[k]!=null).map(k=>{
         let cls=''; if(k===q.answer)cls='correct show'; else if(k===q.your&&!q.correct)cls='wrongpick';
         return `<div class="opt ${cls}"><span class="ok">${k}</span><span>${hlInline(q.options[k])}</span></div>`;}).join('')+'</div>':'';
-    const expBox=q.locked?lockBox():`<div class="exp">${q.explanation?esc(q.explanation):'<span class="todo">本题暂未提供解析</span>'}</div>`;
+    const expBox=q.locked?lockBox():`<div class="exp">${q.explanation?fmtExp(q.explanation):'<span class="todo">本题暂未提供解析</span>'}</div>`;
     return `<div class="q open" id="q${i}"><div class="q-head"><span class="qtype type-${q.type}">${isMC?'单选':'判断'}</span>
       <span class="q-src">第${i+1}题</span> <span style="margin-left:auto;font-weight:600" class="${q.correct?'fb-ok':'fb-no'}">${q.correct?'✓ 正确':'✗ 你答'+(q.your||'未答')+' / 应'+q.answer}</span></div>
       <div class="q-body"><div class="q-stem">${hlInline(q.stem)}</div>${q.code?`<pre class="q-code">${hl(q.code)}</pre>`:''}${optsHtml}
