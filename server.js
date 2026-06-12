@@ -500,7 +500,7 @@ app.get('/api/prog/:pid', authRequired, wrap(async (req, res) => {
   res.json({
     pid: q.pid, paper: q.paper, num: q.num, title: q.title,
     time_limit: q.time_limit, mem_limit: q.mem_limit,
-    statement: q.statement, samples: q.samples, solution: q.solution,
+    statement: q.statement, samples: q.samples, solution: q.solution, solution_zh: q.solution_zh || '',
     kps: q.kps || [], analysis: q.analysis || '',
     judge: PROG.judgeAvailable(), last_code: last ? last.code : '',
     submissions: await Q.mySubmissions(req.user.id, q.pid),

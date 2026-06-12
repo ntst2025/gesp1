@@ -184,6 +184,17 @@
 .ft-wx-t{text-align:left;display:flex;flex-direction:column;gap:3px}
 .ft-wx-t b{font-size:14.5px;color:var(--ink)}
 .ft-wx-t span{font-size:12.5px;color:var(--ink3);line-height:1.6}
+
+/* 级别卡 v2:四色循环 + 立体糖果感 */
+.lv{position:relative;overflow:hidden;border-radius:18px;border-bottom:4px solid var(--cd);transition:transform .18s,box-shadow .18s}
+.lv::before{content:"";position:absolute;left:0;top:0;right:0;height:5px;background:linear-gradient(90deg,var(--c),var(--cl))}
+.lv:hover{transform:translateY(-5px);box-shadow:0 18px 34px -14px var(--cs);border-color:var(--line)}
+.lv .lv-code{background:linear-gradient(160deg,var(--cl) 0%,var(--c) 55%,var(--cd) 100%);box-shadow:0 4px 10px -3px var(--cs),inset 0 2px 3px rgba(255,255,255,.45);width:46px;height:46px;border-radius:14px;font-size:17.5px}
+.lv:nth-child(4n+1){--c:#4285f4;--cl:#7aa9f8;--cd:#2a5fc4;--cs:rgba(66,133,244,.35)}
+.lv:nth-child(4n+2){--c:#ea4335;--cl:#f3766b;--cd:#c2271b;--cs:rgba(234,67,53,.35)}
+.lv:nth-child(4n+3){--c:#f5a623;--cl:#ffc555;--cd:#d4880e;--cs:rgba(245,166,35,.4)}
+.lv:nth-child(4n+4){--c:#34a853;--cl:#63c97f;--cd:#1f8a3f;--cs:rgba(52,168,83,.35)}
+.lv-foot .lv-q{color:var(--cd)}
 </style>
 <script src="/js/analytics.js" defer></script>
 </head>
@@ -267,14 +278,14 @@
   <div class="sec-t">从一级到八级,逐级通关</div>
   <div class="sec-d">对照 CCF 官方大纲分章分节,每级真题独立成库。颜色即梯队,进度一眼可见。</div>
   <div class="lv-grid">
-    <div class="lv" onclick="enter(1)"><div class="lv-code" style="background:var(--L1)">L1</div><div class="lv-name">C++ 一级</div><div class="lv-desc">变量、分支、循环入门</div><div class="lv-foot"><span class="lv-q">325 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
-    <div class="lv" onclick="enter(2)"><div class="lv-code" style="background:var(--L2)">L2</div><div class="lv-name">C++ 二级</div><div class="lv-desc">数组、字符串、函数</div><div class="lv-foot"><span class="lv-q">325 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
-    <div class="lv" onclick="enter(3)"><div class="lv-code" style="background:var(--L3)">L3</div><div class="lv-name">C++ 三级</div><div class="lv-desc">递归与排序</div><div class="lv-foot"><span class="lv-q">300 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
-    <div class="lv" onclick="enter(4)"><div class="lv-code" style="background:var(--L4)">L4</div><div class="lv-name">C++ 四级</div><div class="lv-desc">指针与结构体</div><div class="lv-foot"><span class="lv-q">300 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
-    <div class="lv" onclick="enter(5)"><div class="lv-code" style="background:var(--L5)">L5</div><div class="lv-name">C++ 五级</div><div class="lv-desc">基础数据结构</div><div class="lv-foot"><span class="lv-q">275 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
-    <div class="lv" onclick="enter(6)"><div class="lv-code" style="background:var(--L6)">L6</div><div class="lv-name">C++ 六级</div><div class="lv-desc">STL 与基础算法</div><div class="lv-foot"><span class="lv-q">275 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
-    <div class="lv" onclick="enter(7)"><div class="lv-code" style="background:var(--L7)">L7</div><div class="lv-name">C++ 七级</div><div class="lv-desc">搜索与动态规划</div><div class="lv-foot"><span class="lv-q">250 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
-    <div class="lv" onclick="enter(8)"><div class="lv-code" style="background:var(--L8)">L8</div><div class="lv-name">C++ 八级</div><div class="lv-desc">图论与高级算法</div><div class="lv-foot"><span class="lv-q">250 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
+    <div class="lv" onclick="enter(1)"><div class="lv-code">L1</div><div class="lv-name">C++ 一级</div><div class="lv-desc">变量、分支、循环入门</div><div class="lv-foot"><span class="lv-q">325 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
+    <div class="lv" onclick="enter(2)"><div class="lv-code">L2</div><div class="lv-name">C++ 二级</div><div class="lv-desc">数组、字符串、函数</div><div class="lv-foot"><span class="lv-q">325 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
+    <div class="lv" onclick="enter(3)"><div class="lv-code">L3</div><div class="lv-name">C++ 三级</div><div class="lv-desc">递归与排序</div><div class="lv-foot"><span class="lv-q">300 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
+    <div class="lv" onclick="enter(4)"><div class="lv-code">L4</div><div class="lv-name">C++ 四级</div><div class="lv-desc">指针与结构体</div><div class="lv-foot"><span class="lv-q">300 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
+    <div class="lv" onclick="enter(5)"><div class="lv-code">L5</div><div class="lv-name">C++ 五级</div><div class="lv-desc">基础数据结构</div><div class="lv-foot"><span class="lv-q">275 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
+    <div class="lv" onclick="enter(6)"><div class="lv-code">L6</div><div class="lv-name">C++ 六级</div><div class="lv-desc">STL 与基础算法</div><div class="lv-foot"><span class="lv-q">275 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
+    <div class="lv" onclick="enter(7)"><div class="lv-code">L7</div><div class="lv-name">C++ 七级</div><div class="lv-desc">搜索与动态规划</div><div class="lv-foot"><span class="lv-q">250 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
+    <div class="lv" onclick="enter(8)"><div class="lv-code">L8</div><div class="lv-name">C++ 八级</div><div class="lv-desc">图论与高级算法</div><div class="lv-foot"><span class="lv-q">250 题</span><span class="status st-done"><span class="sd"></span>已上线</span></div></div>
   </div>
 </div></section>
 

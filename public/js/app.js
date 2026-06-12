@@ -442,8 +442,8 @@ async function renderProgQ(pid){
       </div>
       <div id="pg-verdict"></div>
       <div id="pg-sol" style="display:none">
-        <h4 class="ls-h4">标准答案(官方参考程序)</h4>
-        <pre class="ls-code"><code>${esc(d.solution)}</code></pre>
+        <h4 class="ls-h4">标准答案(逐行注释版)</h4>
+        <pre class="ls-code pg-anno"><code>${hl(d.solution_zh||d.solution)}</code></pre>
         ${d.analysis?`<h4 class="ls-h4">代码解析</h4><div class="pg-analysis">${progMd(d.analysis)}</div>`:''}
         <p class="cs-note">💡 建议先独立完成并通过评测，再对照标准答案比较写法差异。</p></div>
     </div></div>

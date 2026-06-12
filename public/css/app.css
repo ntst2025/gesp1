@@ -605,3 +605,8 @@ th.num,td.num{width:80px;white-space:nowrap}
 .pg-analysis b{color:var(--ink)}
 .pg-analysis code{font-family:var(--mono);background:#eef0f6;color:#185fa5;padding:1px 6px;border-radius:5px;font-size:.88em}
 .pg-analysis .pg-li{margin:5px 0}
+
+/* 导航SVG图标(logo风格四色) */
+.tabs a{display:inline-flex;align-items:center;gap:7px}
+.tab-ic{flex:none;opacity:.85}
+.tabs a.on .tab-ic,.tabs a:hover .tab-ic{opacity:1}

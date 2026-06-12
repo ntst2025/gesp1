@@ -1,10 +1,11 @@
 'use strict';
 /* 编程题(OJ)模块:题库文件加载 + 判题
  * 判题后端(环境变量 JUDGE_BACKEND 选择):
- *   piston(默认) — emkc.org 公共 Piston API,免费、无需 Key,限速 5 次/秒
- *                  可用 PISTON_URL 指向自托管实例(将来 HK VPS)
- *   judge0       — 需配 JUDGE0_KEY(RapidAPI);JUDGE0_URL 可选
- *   local        — 仅本地开发自测,禁止生产开启
+ *   wandbox(默认) — wandbox.org 免费、无需 Key;社区服务,中低量友好
+ *   piston        — 自托管实例(PISTON_URL=http://你的VPS:2000/api/v2)或授权Key(PISTON_KEY)
+ *                   注:emkc.org 公共 API 自 2026-02-15 起需授权,未配 Key 会 401
+ *   judge0        — 需 JUDGE0_KEY(RapidAPI);JUDGE0_URL 可选
+ *   local         — 仅本地开发自测,禁止生产开启
  */
 const fs = require('fs');
 const path = require('path');
@@ -45,12 +46,36 @@ function outEq(got, exp) {
   return norm(got) === norm(exp);
 }
 
-/* ---- 判题后端 1:Piston 公共 API(默认,免费无Key,限速5次/秒) ---- */
+/* ---- 判题后端 0:Wandbox(默认,免费无需Key) ---- */
+async function wandboxRun(code, input, timeLimit) {
+  const base = (process.env.WANDBOX_URL || 'https://wandbox.org').replace(/\/+$/, '');
+  const r = await fetch(`${base}/api/compile.json`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'User-Agent': 'gesppass-oj/1.0 (study site; low volume)' },
+    body: JSON.stringify({
+      compiler: process.env.WANDBOX_COMPILER || 'gcc-head',
+      code, stdin: input,
+      options: '', 'compiler-option-raw': '-O2',
+    }),
+  });
+  if (r.status === 429) { await new Promise(s => setTimeout(s, 800)); return wandboxRun(code, input, timeLimit); }
+  if (!r.ok) throw new Error(`判题服务响应 ${r.status}`);
+  const d = await r.json();
+  if (d.compiler_error && String(d.status) !== '0' && !d.program_output && !d.signal) {
+    return { kind: 'CE', detail: String(d.compiler_error).slice(0, 1500) };
+  }
+  if (d.signal) return { kind: 'TLE' }; // 被信号终止(超时/资源),按超时处理
+  if (String(d.status) !== '0') return { kind: 'RE', detail: String(d.program_error || d.program_message || '').slice(0, 800) };
+  return { kind: 'OK', output: String(d.program_output || '') };
+}
+
+/* ---- 判题后端 1:Piston(需授权Key或自托管;PISTON_URL 指向自托管实例) ---- */
 let PISTON_VER = null; // c++ 运行时版本缓存
 async function pistonVersion(base) {
   if (PISTON_VER) return PISTON_VER;
   try {
-    const r = await fetch(`${base}/runtimes`);
+    const h = {}; if (process.env.PISTON_KEY) h['Authorization'] = process.env.PISTON_KEY;
+    const r = await fetch(`${base}/runtimes`, { headers: h });
     const list = await r.json();
     const cpp = (list || []).find(x => x.language === 'c++' || (x.aliases || []).includes('c++'));
     PISTON_VER = cpp ? cpp.version : '10.2.0';
@@ -60,8 +85,10 @@ async function pistonVersion(base) {
 async function pistonRun(code, input, timeLimit) {
   const base = (process.env.PISTON_URL || 'https://emkc.org/api/v2/piston').replace(/\/+$/, '');
   const version = await pistonVersion(base);
+  const headers = { 'Content-Type': 'application/json' };
+  if (process.env.PISTON_KEY) headers['Authorization'] = process.env.PISTON_KEY;
   const r = await fetch(`${base}/execute`, {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    method: 'POST', headers,
     body: JSON.stringify({
       language: 'c++', version,
       files: [{ name: 'main.cpp', content: code }],
@@ -126,12 +153,13 @@ async function localRun(code, input, timeLimit) {
   return { kind: 'OK', output: r.stdout };
 }
 
-// 后端选择:JUDGE_BACKEND = piston(默认) | judge0 | local
+// 后端选择:JUDGE_BACKEND = wandbox(默认) | piston | judge0 | local
 function pickBackend() {
   const b = (process.env.JUDGE_BACKEND || '').toLowerCase();
   if (b === 'local' || process.env.LOCAL_JUDGE === '1') return localRun;
   if (b === 'judge0') return judge0Run;
-  return pistonRun; // 默认:Piston 公共 API,免费无需配置
+  if (b === 'piston') return pistonRun; // 自托管(PISTON_URL)或已获授权(PISTON_KEY)
+  return wandboxRun; // 默认:Wandbox,免费无需配置
 }
 function judgeAvailable() {
   const b = (process.env.JUDGE_BACKEND || '').toLowerCase();
@@ -150,7 +178,7 @@ async function judgeSubmission(pid, code) {
   let verdict = 'AC';
   for (const tc of tcs) {
     let r;
-    if (results.length && run === pistonRun) await new Promise(s => setTimeout(s, 250)); // 公共API限速保险
+    if (results.length && run !== localRun) await new Promise(s => setTimeout(s, 300)); // 公共API限速保险
     try { r = await run(code, tc.input, q.time_limit); }
     catch (e) { return { error: '判题服务暂时不可用:' + e.message }; }
     if (r.kind === 'CE') return { verdict: 'CE', compile_output: r.detail, results: [] };
