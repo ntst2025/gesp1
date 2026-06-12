@@ -6,6 +6,7 @@ const cors = require('cors');
 const { Q, initDb, questionsByQids, shapeQuestion, deleteUserCascade, adminStats } = require('./src/db');
 const { register, login, authRequired, signAdminToken, adminRequired } = require('./src/auth');
 const { renderQuestionPage } = require('./src/ssr');
+const PROG = require('./src/prog');
 let TRAPS = null;
 try { TRAPS = require('./data/traps.json'); } catch (e) { TRAPS = { categories: [] }; }
 
@@ -477,6 +478,65 @@ app.get('/api/lessons/chapter', authRequired, wrap(async (req, res) => {
     prev: book.chapters[idx - 1] ? { id: book.chapters[idx - 1].id, title: book.chapters[idx - 1].title } : null,
     next: book.chapters[idx + 1] ? { id: book.chapters[idx + 1].id, title: book.chapters[idx + 1].title } : null,
   });
+}));
+
+/* ===== 编程题(在线评测) ===== */
+app.get('/api/prog', authRequired, wrap(async (req, res) => {
+  const bank = PROG.progBank(req.query.level || 1);
+  if (!bank) return res.status(404).json({ error: '本级别编程题暂未上线' });
+  const st = {}; (await Q.myProgStatus(req.user.id)).forEach(r => st[r.pid] = r);
+  res.json({
+    level: bank.level, judge: PROG.judgeAvailable(),
+    questions: bank.questions.map(q => ({
+      pid: q.pid, paper: q.paper, num: q.num, title: q.title,
+      ac: !!(st[q.pid] && st[q.pid].ac), tries: st[q.pid] ? st[q.pid].tries : 0,
+    })),
+  });
+}));
+app.get('/api/prog/:pid', authRequired, wrap(async (req, res) => {
+  const q = PROG.progByPid(req.params.pid);
+  if (!q) return res.status(404).json({ error: '题目不存在' });
+  const last = await Q.myLastCode(req.user.id, q.pid);
+  res.json({
+    pid: q.pid, paper: q.paper, num: q.num, title: q.title,
+    time_limit: q.time_limit, mem_limit: q.mem_limit,
+    statement: q.statement, samples: q.samples, solution: q.solution,
+    judge: PROG.judgeAvailable(), last_code: last ? last.code : '',
+    submissions: await Q.mySubmissions(req.user.id, q.pid),
+  });
+}));
+app.post('/api/prog/:pid/submit', authRequired, wrap(async (req, res) => {
+  const code = String((req.body || {}).code || '');
+  if (code.trim().length < 10) return res.status(400).json({ error: '请先写好代码再提交' });
+  if (code.length > 20000) return res.status(400).json({ error: '代码过长(上限 20000 字符)' });
+  if (!PROG.judgeAvailable()) return res.status(503).json({ error: '在线评测暂未开通,请稍后再试' });
+  const today = (await Q.submissionCountToday(req.user.id)).n;
+  if (today >= 100) return res.status(429).json({ error: "今日提交次数已达上限(100 次),明天再来吧" });
+  const r = await PROG.judgeSubmission(req.params.pid, code);
+  if (r.error) return res.status(502).json({ error: r.error });
+  await Q.addSubmission(req.params.pid, req.user.id, code, r.verdict, r.passed || 0, r.total || 0);
+  res.json(r);
+}));
+
+/* ===== 题目报错 ===== */
+app.post('/api/questions/:qid/report', authRequired, wrap(async (req, res) => {
+  const reason = String((req.body || {}).reason || '').trim();
+  if (reason.length < 2 || reason.length > 300) return res.status(400).json({ error: '请用 2–300 字描述问题' });
+  const q = await Q.questionByQid(req.params.qid);
+  if (!q) return res.status(404).json({ error: '题目不存在' });
+  const today = (await Q.reportCountToday(req.user.id)).n;
+  if (today >= 20) return res.status(429).json({ error: '今日反馈次数已达上限,感谢你的热心!' });
+  await Q.addReport(req.params.qid, req.user.id, reason);
+  res.json({ ok: true });
+}));
+app.get('/api/admin/reports', adminRequired, wrap(async (req, res) => {
+  res.json({ reports: await Q.listReports(req.query.status || null) });
+}));
+app.post('/api/admin/reports/:id/status', adminRequired, wrap(async (req, res) => {
+  const st = String((req.body || {}).status || 'closed');
+  if (!['open', 'closed'].includes(st)) return res.status(400).json({ error: 'status 取值 open/closed' });
+  await Q.setReportStatus(Number(req.params.id), st);
+  res.json({ ok: true });
 }));
 
 /* ===== 用户头像 ===== */

@@ -25,8 +25,8 @@ function adminLogout(){ localStorage.removeItem('gesp_admin_token'); show('login
 
 const V=()=>document.getElementById('view');
 function nav(v){
-  ['dash','q','u','c','b'].forEach(x=>{const el=document.getElementById('nav-'+x);if(el)el.classList.toggle('on',x===v);});
-  const fn={dash:renderDash,q:renderQ,u:renderU,c:renderC,b:renderBaidu}[v];
+  ['dash','q','u','c','b','r'].forEach(x=>{const el=document.getElementById('nav-'+x);if(el)el.classList.toggle('on',x===v);});
+  const fn={dash:renderDash,q:renderQ,u:renderU,c:renderC,b:renderBaidu,r:renderReports}[v];
   Promise.resolve(fn&&fn()).catch(e=>{ if(e&&e.message!=='请重新登录') toast(e.message); });
 }
 
@@ -237,4 +237,30 @@ async function baiduPushNow(){
     renderBaidu();
   }catch(e){ out.innerHTML='<div class="err" style="display:block">✗ '+e.message+'</div>'; }
   finally{ btn.disabled=false; btn.textContent='立即推送'; }
+}
+
+
+/* ---------- 题目报错 ---------- */
+async function renderReports(st){
+  V().innerHTML='<div class="empty">加载中…</div>';
+  let d; try{ d=await api('/api/admin/reports'+(st?'?status='+st:'')); }catch(e){ V().innerHTML='<div class="empty">'+e.message+'</div>'; return; }
+  const rows=(d.reports||[]).map(r=>`<tr>
+    <td>#${r.id}</td>
+    <td><a href="/q/${encodeURIComponent(r.qid)}" target="_blank" style="font-family:monospace">${r.qid}</a></td>
+    <td style="max-width:380px">${(r.reason||'').replace(/</g,'&lt;')}</td>
+    <td>${r.username||'-'}</td>
+    <td>${(r.created_at||'').slice(0,16)}</td>
+    <td>${r.status==='open'?'<span style="color:#ed9b1f">待处理</span>':'<span style="color:#13b083">已处理</span>'}</td>
+    <td class="right">${r.status==='open'
+      ?`<button class="btn sm" onclick="setReport(${r.id},'closed')">标记已处理</button>`
+      :`<button class="btn sm ghost" onclick="setReport(${r.id},'open')">重新打开</button>`}</td>
+  </tr>`).join('');
+  V().innerHTML=`<div class="card"><div class="card-h">🐞 题目报错
+    <span class="sub"><a onclick="renderReports()" style="cursor:pointer">全部</a> · <a onclick="renderReports('open')" style="cursor:pointer">待处理</a> · <a onclick="renderReports('closed')" style="cursor:pointer">已处理</a></span></div>
+    <table class="tbl"><thead><tr><th>#</th><th>题目</th><th>反馈内容</th><th>用户</th><th>时间</th><th>状态</th><th></th></tr></thead>
+    <tbody>${rows||'<tr><td colspan="7" class="empty">暂无反馈</td></tr>'}</tbody></table></div>`;
+}
+async function setReport(id,st){
+  try{ await api('/api/admin/reports/'+id+'/status',{method:'POST',body:JSON.stringify({status:st})}); renderReports(); }
+  catch(e){ toast(e.message); }
 }

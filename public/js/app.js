@@ -116,6 +116,8 @@ async function go(tab){
   else if(tab==='practice'){ await ensureCatalog(); renderPracticeSetup(); }
   else if(tab==='recommend'){ await ensureCatalog(); await renderRecommend(); }
   else if(tab==='mock'){ await ensureCatalog(); await renderMock(); }
+  else if(tab==='prog'){ await renderProgList(); }
+  else if(tab==='progq'){ /* 由 renderProgQ 直接调用 */ }
   else if(tab==='wrong'){ await renderWrong(); }
   else if(tab==='progress'){ await renderProgress(); }
   else if(tab==='rank'){ await renderRank(); }
@@ -386,6 +388,107 @@ function renderExamGuide(){
     <div class="learn-foot">信息整理自 CCF 公开资料，具体以 <b>gesp.ccf.org.cn</b> 当期通知为准。</div>`;
   window.scrollTo(0,0);
 }
+/* ===================== 💻 编程题(在线评测) ===================== */
+async function renderProgList(){
+  setActiveTab('prog');
+  C().innerHTML='<div class="empty"><div class="spinner"></div>加载编程题…</div>';
+  let d;
+  try{ d=await api('/api/prog?level='+LEVEL); }
+  catch(e){
+    C().innerHTML=`<div class="card"><div class="card-b empty"><div class="big">💻</div>${esc(e.message||'本级别编程题暂未上线')}<br><span style="font-size:13px;color:var(--ink3)">编程真题正在按级别整理上线，一级已就绪</span></div></div>`;
+    return;
+  }
+  const byPaper={};
+  d.questions.forEach(q=>{ (byPaper[q.paper]=byPaper[q.paper]||[]).push(q); });
+  const rows=Object.keys(byPaper).sort().reverse().map(p=>`
+    <div class="pg-paper">
+      <div class="pg-paper-h">${papFull(p)}</div>
+      ${byPaper[p].map(q=>`<div class="pg-row" onclick="renderProgQ('${q.pid}')">
+        <span class="pg-st ${q.ac?'ac':q.tries?'tr':''}">${q.ac?'✓ 已通过':q.tries?'尝试过':'未做'}</span>
+        <span class="pg-t">编程题 ${q.num} · ${esc(q.title)}</span>
+        <span class="pg-go">去做题 ›</span></div>`).join('')}
+    </div>`).join('');
+  const judgeTip=d.judge?'':'<div class="notice" style="margin-bottom:14px">⏳ 在线评测引擎即将开通。开通前可以先看题、写代码，对照样例与参考程序自查。</div>';
+  C().innerHTML=`
+    <div class="learn-hero"><h2>💻 编程真题 · 在线评测</h2>
+      <p>历年真题编程题，在线编写 C++ 代码提交评测，逐测试点反馈结果。建议先用「<a onclick="renderLessons()" style="color:#185fa5;font-weight:700;cursor:pointer">入门讲义</a>」学完对应章节再来练。</p></div>
+    ${judgeTip}${rows}`;
+  window.scrollTo(0,0);
+}
+
+let PROGQ=null;
+async function renderProgQ(pid){
+  setActiveTab('prog');
+  C().innerHTML='<div class="empty"><div class="spinner"></div>加载题目…</div>';
+  let d;
+  try{ d=await api('/api/prog/'+encodeURIComponent(pid)); }
+  catch(e){ C().innerHTML='<div class="empty">'+esc(e.message)+'</div>'; return; }
+  PROGQ=d;
+  const stmt=progMd(d.statement);
+  const subs=(d.submissions||[]).map(s=>`<div class="pg-sub"><span class="pg-v v-${s.verdict}">${s.verdict}</span><span>${s.passed}/${s.total} 测试点</span><span class="pg-sub-t">${(s.created_at||'').slice(5,16)}</span></div>`).join('');
+  const starter=d.last_code||'#include <iostream>\nusing namespace std;\n\nint main() {\n    \n    return 0;\n}\n';
+  C().innerHTML=`
+    <div class="tp-back"><a onclick="go('prog')">← 返回编程题列表</a></div>
+    <div class="learn-hero ls-hero"><h2>${esc(d.title)}</h2>
+      <p style="margin-top:4px;font-size:14px;color:var(--ink3)">${papFull(d.paper)} · 编程题 ${d.num} ·  时限 ${d.time_limit}s</p></div>
+    <div class="card"><div class="card-b"><article class="ls-body pg-stmt">${stmt}</article></div></div>
+    <div class="card"><div class="card-h">✍️ 我的代码<span class="sub">C++ · Tab 键可缩进</span></div><div class="card-b">
+      <textarea id="pg-code" class="pg-editor" spellcheck="false">${esc(starter)}</textarea>
+      <div class="pg-actions">
+        <button class="btn solid" id="pg-submit" onclick="submitProg('${d.pid}')" ${d.judge?'':'disabled title="评测引擎即将开通"'}>${d.judge?'提交评测':'评测即将开通'}</button>
+        <a class="pg-sol-toggle" onclick="toggleSol()">查看参考程序 ▾</a>
+      </div>
+      <div id="pg-verdict"></div>
+      <div id="pg-sol" style="display:none"><pre class="ls-code"><code>${esc(d.solution)}</code></pre>
+        <p class="cs-note">💡 建议先独立完成并通过评测，再对照参考程序比较写法差异。</p></div>
+    </div></div>
+    ${subs?`<div class="card"><div class="card-h">📜 提交记录</div><div class="card-b">${subs}</div></div>`:''}`;
+  const ta=document.getElementById('pg-code');
+  ta.addEventListener('keydown',function(e){
+    if(e.key==='Tab'){ e.preventDefault();
+      const s=this.selectionStart, t=this.selectionEnd;
+      this.value=this.value.slice(0,s)+'    '+this.value.slice(t);
+      this.selectionStart=this.selectionEnd=s+4; }
+  });
+  window.scrollTo(0,0);
+}
+function toggleSol(){
+  const el=document.getElementById('pg-sol');
+  el.style.display=el.style.display==='none'?'block':'none';
+}
+async function submitProg(pid){
+  const btn=document.getElementById('pg-submit');
+  const out=document.getElementById('pg-verdict');
+  const code=document.getElementById('pg-code').value;
+  btn.disabled=true; btn.textContent='评测中…';
+  out.innerHTML='<div class="empty" style="padding:14px"><div class="spinner"></div>正在逐测试点评测，请稍候…</div>';
+  try{
+    const r=await api('/api/prog/'+encodeURIComponent(pid)+'/submit',{method:'POST',body:JSON.stringify({code})});
+    if(r.verdict==='CE'){
+      out.innerHTML=`<div class="pg-result v-CE"><b>✗ 编译错误 (CE)</b><pre class="pg-ce">${esc(r.compile_output||'')}</pre></div>`;
+    }else{
+      const dots=(r.results||[]).map(t=>`<span class="pg-dot d-${t.status}" title="测试点 ${t.name}: ${t.status}">${t.status==='AC'?'✓':'✗'}</span>`).join('');
+      const remain=r.total-(r.results||[]).length;
+      const head=r.verdict==='AC'
+        ?`<b class="pg-ac">🎉 全部通过 (AC) · ${r.passed}/${r.total}</b>`
+        :`<b>✗ ${r.verdict==='WA'?'答案错误 (WA)':r.verdict==='TLE'?'超出时限 (TLE)':'运行错误 (RE)'} · 通过 ${r.passed}/${r.total}</b>`;
+      out.innerHTML=`<div class="pg-result v-${r.verdict}">${head}<div class="pg-dots">${dots}${remain>0?`<span class="pg-skip">… 其余 ${remain} 点未测</span>`:''}</div>${r.verdict!=='AC'?'<p class="pg-hint">提示：从第一个失败的测试点开始排查；注意输出格式（空格 / 换行）要与要求完全一致。</p>':''}</div>`;
+    }
+  }catch(e){ out.innerHTML='<div class="pg-result v-RE"><b>'+esc(e.message||'提交失败')+'</b></div>'; }
+  finally{ btn.disabled=false; btn.textContent='提交评测'; }
+}
+/* 极简 markdown 渲染(题面专用:标题/粗体/代码块/行内码) */
+function progMd(md){
+  let s=esc(md);
+  s=s.replace(/```([a-z]*)\n([\s\S]*?)```/g,(m,l,c)=>'<pre class="ls-code"><code>'+c.replace(/\n$/,'')+'</code></pre>');
+  s=s.replace(/^####\s*(.+)$/gm,'<h4 class="ls-h4">$1</h4>');
+  s=s.replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>');
+  s=s.replace(/`([^`\n]+)`/g,'<code>$1</code>');
+  s=s.replace(/^- (.+)$/gm,'<p class="pg-li">· $1</p>');
+  s=s.split(/\n{2,}/).map(p=>/^<(h4|pre|p)/.test(p.trim())?p:'<p>'+p.replace(/\n/g,'<br>')+'</p>').join('');
+  return s;
+}
+
 /* ===================== 题库浏览 ===================== */
 function browseLayout(mainHtml){
   return `<div class="layout"><aside class="side"><div class="card" id="sidebar"></div></aside><main class="main" id="bmain">${mainHtml}</main></div>`;
@@ -490,7 +593,27 @@ function qCard(q,idx,opts={}){
       ${opts.wrong?`<span style="color:var(--red);font-size:11px">错 ${q.wrong_count||1} 次</span>`:''}
       ${masterBtn||'<span class="q-toggle" style="margin-left:auto">展开解析 ▾</span>'}${opts.wrong?'':star}</div>
     <div class="q-body"><div class="q-stem">${hlInline(q.stem)}</div>${code}${optsHtml}
-      <div class="ans"><div class="a-line">正确答案：<span class="ansv">${q.answer}</span></div>${exp}</div></div></div>`;
+      <div class="ans"><div class="a-line">正确答案：<span class="ansv">${q.answer}</span></div>${exp}
+      <div class="q-report"><a onclick="event.stopPropagation();openReport('${q.qid}','${idx}')">题目有误？报错 ›</a><span class="rp-slot" id="rp${idx}"></span></div></div></div></div>`;
+}
+/* 题目报错:行内小表单 */
+function openReport(qid,idx){
+  const host=document.getElementById('rp'+idx); if(!host) return;
+  if(host.dataset.open){ host.innerHTML=''; delete host.dataset.open; return; }
+  host.dataset.open='1';
+  host.innerHTML=`<div class="rp-box">
+    <textarea id="rpt${idx}" maxlength="300" rows="2" placeholder="请描述问题：如答案有误、解析笔误、题干缺图等（2–300 字）"></textarea>
+    <div class="rp-act"><button class="lm-btn ghost" onclick="event.stopPropagation();openReport('${qid}','${idx}')">取消</button><button class="lm-btn" onclick="event.stopPropagation();submitReport('${qid}','${idx}')">提交</button></div></div>`;
+  const ta=document.getElementById('rpt'+idx); if(ta) ta.focus();
+}
+async function submitReport(qid,idx){
+  const ta=document.getElementById('rpt'+idx); const v=(ta&&ta.value||'').trim();
+  if(v.length<2){ if(ta) ta.placeholder='请填写问题描述后再提交'; return; }
+  try{
+    await api('/api/questions/'+encodeURIComponent(qid)+'/report',{method:'POST',body:JSON.stringify({reason:v})});
+    const host=document.getElementById('rp'+idx);
+    host.innerHTML='<span class="rp-ok">已收到，感谢反馈，我们会尽快核对。</span>'; delete host.dataset.open;
+  }catch(e){ const host=document.getElementById('rp'+idx); if(host) host.insertAdjacentHTML('beforeend','<span class="rp-err">'+esc(e.message||'提交失败')+'</span>'); }
 }
 function toggleQ(i){const el=document.getElementById('q'+i);if(!el)return;el.classList.toggle('open');
   const t=el.querySelector('.q-toggle');if(t)t.innerHTML=el.classList.contains('open')?'收起解析 ▴':'展开解析 ▾';}
@@ -741,7 +864,8 @@ function renderMockResult(d){
     const optsHtml = isMC?'<div class="q-opts">'+['A','B','C','D'].filter(k=>q.options[k]!=null).map(k=>{
         let cls=''; if(k===q.answer)cls='correct show'; else if(k===q.your&&!q.correct)cls='wrongpick';
         return `<div class="opt ${cls}"><span class="ok">${k}</span><span>${hlInline(q.options[k])}</span></div>`;}).join('')+'</div>':'';
-    const expBox=q.locked?lockBox():`<div class="exp">${q.explanation?fmtExp(q.explanation):'<span class="todo">本题暂未提供解析</span>'}</div>`;
+    const expBox=(q.locked?lockBox():`<div class="exp">${q.explanation?fmtExp(q.explanation):'<span class="todo">本题暂未提供解析</span>'}</div>`)
+      +`<div class="q-report"><a onclick="event.stopPropagation();openReport('${q.qid}','m${i}')">题目有误？报错 ›</a><span class="rp-slot" id="rpm${i}"></span></div>`;
     return `<div class="q open" id="q${i}"><div class="q-head"><span class="qtype type-${q.type}">${isMC?'单选':'判断'}</span>
       <span class="q-src">第${i+1}题</span> <span style="margin-left:auto;font-weight:600" class="${q.correct?'fb-ok':'fb-no'}">${q.correct?'✓ 正确':'✗ 你答'+(q.your||'未答')+' / 应'+q.answer}</span></div>
       <div class="q-body"><div class="q-stem">${hlInline(q.stem)}</div>${q.code?`<pre class="q-code">${hl(q.code)}</pre>`:''}${optsHtml}

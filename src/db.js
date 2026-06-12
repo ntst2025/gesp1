@@ -50,6 +50,18 @@ CREATE TABLE IF NOT EXISTS bookmarks(
 );
 CREATE TABLE IF NOT EXISTS meta(k TEXT PRIMARY KEY, v TEXT);
 CREATE TABLE IF NOT EXISTS baidu_push(url TEXT PRIMARY KEY, ts TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS prog_submissions(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  pid TEXT NOT NULL, user_id INTEGER NOT NULL,
+  code TEXT NOT NULL, verdict TEXT NOT NULL, passed INTEGER, total INTEGER,
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE TABLE IF NOT EXISTS question_reports(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  qid TEXT NOT NULL, user_id INTEGER, reason TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'open',
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
 CREATE TABLE IF NOT EXISTS mock_results(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id INTEGER NOT NULL, level INTEGER NOT NULL, paper TEXT NOT NULL,
@@ -208,6 +220,15 @@ const Q = {
   questionsByLevelPaper: (lv, paper) => all("SELECT qid, type, num FROM questions WHERE level = ? AND paper = ? ORDER BY (type='tf'), num", [lv, paper]),
   allQuestionRefs: () => all('SELECT qid, level, paper, type, num FROM questions ORDER BY level, paper, (type=\'tf\'), num'),
   setAvatar: (uid, av) => run('UPDATE users SET avatar = ? WHERE id = ?', [av, uid]),
+  addSubmission: (pid, uid, code, verdict, passed, total) => run('INSERT INTO prog_submissions(pid,user_id,code,verdict,passed,total) VALUES(?,?,?,?,?,?)', [pid, uid, code, verdict, passed, total]),
+  mySubmissions: (uid, pid) => all('SELECT id, verdict, passed, total, created_at FROM prog_submissions WHERE user_id=? AND pid=? ORDER BY id DESC LIMIT 20', [uid, pid]),
+  myLastCode: (uid, pid) => get('SELECT code FROM prog_submissions WHERE user_id=? AND pid=? ORDER BY id DESC LIMIT 1', [uid, pid]),
+  myProgStatus: (uid) => all("SELECT pid, MAX(verdict='AC') ac, COUNT(*) tries FROM prog_submissions WHERE user_id=? GROUP BY pid", [uid]),
+  submissionCountToday: (uid) => get("SELECT COUNT(*) n FROM prog_submissions WHERE user_id=? AND created_at >= datetime('now','-1 day')", [uid]),
+  addReport: (qid, uid, reason) => run('INSERT INTO question_reports(qid, user_id, reason) VALUES(?,?,?)', [qid, uid, reason]),
+  reportCountToday: (uid) => get("SELECT COUNT(*) n FROM question_reports WHERE user_id = ? AND created_at >= datetime('now','-1 day')", [uid]),
+  listReports: (status) => all(`SELECT r.*, u.username FROM question_reports r LEFT JOIN users u ON u.id = r.user_id ${status ? "WHERE r.status = ?" : ''} ORDER BY r.id DESC LIMIT 200`, status ? [status] : []),
+  setReportStatus: (id, st) => run('UPDATE question_reports SET status = ? WHERE id = ?', [st, id]),
   baiduPushedUrls: () => all('SELECT url FROM baidu_push'),
   baiduPushCount: () => get('SELECT COUNT(*) n FROM baidu_push'),
   baiduMarkPushed: async (urls) => { for (const u of urls) await run('INSERT OR IGNORE INTO baidu_push(url, ts) VALUES(?, ?)', [u, new Date().toISOString()]); },

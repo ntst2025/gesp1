@@ -123,6 +123,7 @@ function renderQuestionPage({ q, section, prev, next, base, expFree, baiduPush }
   const lvLinks = Object.keys(LEVEL_CN).map(n =>
     `<a href="/app?level=${n}">C++${LEVEL_CN[n]}</a>`).join(' · ');
 
+  const analyticsJs = '<script src="/js/analytics.js" defer></scr'+'ipt>';
   const baiduJs = baiduPush
     ? `<script>(function(){var s=document.createElement('script');s.src='https://zz.bdstatic.com/linksubmit/push.js';var t=document.getElementsByTagName('script')[0];t.parentNode.insertBefore(s,t);})();</script>`
     : '';
@@ -184,7 +185,7 @@ footer{border-top:1px solid var(--line);margin-top:26px;padding-top:16px;font-si
 footer .lv{margin:6px 0}footer a{color:var(--ink2);text-decoration:none}
 footer .links a{color:#185fa5;margin-right:12px}
 </style>
-</head>
+${analyticsJs}</head>
 <body>
 <div class="wrap">
 <header class="site"><span class="logo">GESPPASS</span><span class="slogan">GESP C++ 真题 · 逐题精解</span></header>
