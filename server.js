@@ -523,7 +523,8 @@ app.post('/api/prog/:pid/submit', authRequired, wrap(async (req, res) => {
 app.post('/api/questions/:qid/report', authRequired, wrap(async (req, res) => {
   const reason = String((req.body || {}).reason || '').trim();
   if (reason.length < 2 || reason.length > 300) return res.status(400).json({ error: '请用 2–300 字描述问题' });
-  const q = await Q.questionByQid(req.params.qid);
+  let q = await Q.questionByQid(req.params.qid);
+  if (!q) q = PROG.progByPid(req.params.qid); // 编程题题号也可报错
   if (!q) return res.status(404).json({ error: '题目不存在' });
   const today = (await Q.reportCountToday(req.user.id)).n;
   if (today >= 20) return res.status(429).json({ error: '今日反馈次数已达上限,感谢你的热心!' });

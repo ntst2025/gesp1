@@ -38,12 +38,18 @@ function short(id){return String(id).split(':').pop();}  // 'L1:c1'->'c1', 'L8:1
 function papLabel(p){const [y,m]=p.split('-');return y.slice(2)+'.'+parseInt(m);}
 function papFull(p){const [y,m]=p.split('-');return y+'年'+parseInt(m)+'月';}
 function hl(code){
+  // 占位符法:先把注释/字符串收进令牌(用私有区字符占位),再做关键字高亮,最后回填——
+  // 保证后续正则永远不会命中已生成的 <span> 标记本身
   let s=esc(code);
-  s=s.replace(/(\/\/[^\n]*)/g,'<span class="hl-cm">$1</span>');
-  s=s.replace(/(&quot;[^&]*?&quot;|&#39;[^&]*?&#39;|"[^"\n]*"|'[^'\n]*')/g,'<span class="hl-str">$1</span>');
+  const toks=[];
+  s=s.replace(/(\/\/[^\n]*)|(&quot;[\s\S]*?&quot;|&#39;[\s\S]*?&#39;|"[^"\n]*"|'[^'\n]*')/g,function(m,cm,st){
+    toks.push(cm?'<span class="hl-cm">'+cm+'</span>':'<span class="hl-str">'+(st||'')+'</span>');
+    return String.fromCharCode(0xE100+toks.length-1);
+  });
   s=s.replace(/\b(\d+\.?\d*)\b/g,'<span class="hl-num">$1</span>');
   s=s.replace(/\b(for|while|do|if|else|switch|case|break|continue|return|const|unsigned|namespace|using|include|std|cin|cout|endl|printf|scanf|main)\b/g,'<span class="hl-kw">$1</span>');
   s=s.replace(/\b(int|long|float|double|char|bool|void)\b/g,'<span class="hl-ty">$1</span>');
+  s=s.replace(/[\uE100-\uE8FF]/g,function(ch){ return toks[ch.charCodeAt(0)-0xE100]||''; });
   return s;
 }
 function hlInline(t){ let s=esc(t); s=s.replace(/`([^`]+)`/g,(m,p)=>`<code>${p}</code>`); return s; }
@@ -433,7 +439,8 @@ async function renderProgQ(pid){
     <div class="learn-hero ls-hero"><h2>${esc(d.title)}</h2>
       <p style="margin-top:4px;font-size:14px;color:var(--ink3)">${papFull(d.paper)} · 编程题 ${d.num} ·  时限 ${d.time_limit}s</p>
       ${(d.kps&&d.kps.length)?`<div class="pg-kps">${d.kps.map(k=>'<span class="pg-kp">'+esc(k)+'</span>').join('')}</div>`:''}</div>
-    <div class="card"><div class="card-b"><article class="ls-body pg-stmt">${stmt}</article></div></div>
+    <div class="card"><div class="card-b"><article class="ls-body pg-stmt">${stmt}</article>
+      <div class="q-report"><a onclick="openReport('${d.pid}','pg')">题目有误？报错 ›</a><span class="rp-slot" id="rppg"></span></div></div></div>
     <div class="card"><div class="card-h">✍️ 我的代码<span class="sub">C++ · Tab 键可缩进</span></div><div class="card-b">
       <textarea id="pg-code" class="pg-editor" spellcheck="false">${esc(starter)}</textarea>
       <div class="pg-actions">
@@ -442,7 +449,7 @@ async function renderProgQ(pid){
       </div>
       <div id="pg-verdict"></div>
       <div id="pg-sol" style="display:none">
-        <h4 class="ls-h4">标准答案(逐行注释版)</h4>
+        <h4 class="ls-h4">标准答案(逐行注释版) <a class="pg-copy" onclick="copyAnno(this)">复制代码</a></h4>
         <pre class="ls-code pg-anno"><code>${hl(d.solution_zh||d.solution)}</code></pre>
         ${d.analysis?`<h4 class="ls-h4">代码解析</h4><div class="pg-analysis">${progMd(d.analysis)}</div>`:''}
         <p class="cs-note">💡 建议先独立完成并通过评测，再对照标准答案比较写法差异。</p></div>
@@ -456,6 +463,16 @@ async function renderProgQ(pid){
       this.selectionStart=this.selectionEnd=s+4; }
   });
   window.scrollTo(0,0);
+}
+function copyAnno(el){
+  const txt=(PROGQ&&(PROGQ.solution_zh||PROGQ.solution))||'';
+  const done=()=>{ el.textContent='已复制 ✓'; setTimeout(()=>{el.textContent='复制代码';},1600); };
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt,done)); }
+  else fallbackCopy(txt,done);
+}
+function fallbackCopy(txt,done){
+  const ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta);
+  ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); done();
 }
 function toggleSol(){
   const el=document.getElementById('pg-sol');

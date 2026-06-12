@@ -610,3 +610,5 @@ th.num,td.num{width:80px;white-space:nowrap}
 .tabs a{display:inline-flex;align-items:center;gap:7px}
 .tab-ic{flex:none;opacity:.85}
 .tabs a.on .tab-ic,.tabs a:hover .tab-ic{opacity:1}
+.pg-copy{font-size:13px;font-weight:600;color:#185fa5;cursor:pointer;margin-left:10px}
+.pg-copy:hover{text-decoration:underline}

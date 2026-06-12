@@ -47,7 +47,12 @@ function outEq(got, exp) {
 }
 
 /* ---- 判题后端 0:Wandbox(默认,免费无需Key) ---- */
-async function wandboxRun(code, input, timeLimit) {
+const INFRA_ERR = /OCI runtime|crun|runc|clone:|Resource temporarily unavailable|cannot fork|container/i;
+function isInfraErr(d) {
+  const txt = [d.compiler_error, d.program_error, d.program_message, d.signal].filter(Boolean).join(' ');
+  return INFRA_ERR.test(txt) && !String(d.program_output || '').trim();
+}
+async function wandboxRun(code, input, timeLimit, _retry = 0) {
   const base = (process.env.WANDBOX_URL || 'https://wandbox.org').replace(/\/+$/, '');
   const r = await fetch(`${base}/api/compile.json`, {
     method: 'POST',
@@ -61,6 +66,10 @@ async function wandboxRun(code, input, timeLimit) {
   if (r.status === 429) { await new Promise(s => setTimeout(s, 800)); return wandboxRun(code, input, timeLimit); }
   if (!r.ok) throw new Error(`判题服务响应 ${r.status}`);
   const d = await r.json();
+  if (isInfraErr(d)) { // Wandbox 自身容器资源紧张等瞬时故障:重试,而不是当作用户代码错误
+    if (_retry < 2) { await new Promise(s => setTimeout(s, 900 * (_retry + 1))); return wandboxRun(code, input, timeLimit, _retry + 1); }
+    throw new Error('busy');
+  }
   if (d.compiler_error && String(d.status) !== '0' && !d.program_output && !d.signal) {
     return { kind: 'CE', detail: String(d.compiler_error).slice(0, 1500) };
   }
@@ -153,13 +162,19 @@ async function localRun(code, input, timeLimit) {
   return { kind: 'OK', output: r.stdout };
 }
 
-// 后端选择:JUDGE_BACKEND = wandbox(默认) | piston | judge0 | local
-function pickBackend() {
+// 后端链:主后端 + 自动故障转移备用(按已配置情况)
+function backendChain() {
   const b = (process.env.JUDGE_BACKEND || '').toLowerCase();
-  if (b === 'local' || process.env.LOCAL_JUDGE === '1') return localRun;
-  if (b === 'judge0') return judge0Run;
-  if (b === 'piston') return pistonRun; // 自托管(PISTON_URL)或已获授权(PISTON_KEY)
-  return wandboxRun; // 默认:Wandbox,免费无需配置
+  if (b === 'local' || process.env.LOCAL_JUDGE === '1') return [localRun];
+  const chain = [];
+  if (b === 'judge0') chain.push(judge0Run);
+  else if (b === 'piston') chain.push(pistonRun);
+  else chain.push(wandboxRun);
+  // 备用:凡已配置的其他后端,失败时自动顶上
+  if (!chain.includes(pistonRun) && (process.env.PISTON_URL || process.env.PISTON_KEY)) chain.push(pistonRun);
+  if (!chain.includes(judge0Run) && process.env.JUDGE0_KEY) chain.push(judge0Run);
+  if (!chain.includes(wandboxRun)) chain.push(wandboxRun);
+  return chain;
 }
 function judgeAvailable() {
   const b = (process.env.JUDGE_BACKEND || '').toLowerCase();
@@ -173,14 +188,20 @@ async function judgeSubmission(pid, code) {
   if (!q) return { error: '题目不存在' };
   const tcs = testcases(pid);
   if (!tcs.length) return { error: '本题测试数据暂缺' };
-  const run = pickBackend();
+  const chain = backendChain();
+  let bi = 0; // 当前后端下标
   const results = [];
   let verdict = 'AC';
   for (const tc of tcs) {
-    let r;
-    if (results.length && run !== localRun) await new Promise(s => setTimeout(s, 300)); // 公共API限速保险
-    try { r = await run(code, tc.input, q.time_limit); }
-    catch (e) { return { error: '判题服务暂时不可用:' + e.message }; }
+    let r = null;
+    if (results.length && chain[bi] !== localRun) await new Promise(s => setTimeout(s, 300)); // 公共API限速保险
+    while (r === null) {
+      try { r = await chain[bi](code, tc.input, q.time_limit); }
+      catch (e) {
+        bi++; // 当前判题后端故障 -> 切换备用后端重试本测试点
+        if (bi >= chain.length) return { error: '判题服务此刻比较繁忙，请等十几秒再点一次提交。代码已自动保留，不会丢失。' };
+      }
+    }
     if (r.kind === 'CE') return { verdict: 'CE', compile_output: r.detail, results: [] };
     if (r.kind === 'OK' && outEq(r.output, tc.expected)) {
       results.push({ name: tc.name, status: 'AC' });
