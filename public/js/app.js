@@ -372,10 +372,11 @@ function renderExamGuide(){
     <p class="cs-p">级别选择：GESP 支持直接报考相应级别(具体规则以官网当期简章为准)。零基础建议从一级起步，把地基打牢。</p></div></div>
     <div class="lb-card"><div class="lb-h">③ 一级考什么</div><div class="cs-pad"><div class="ls-tablewrap"><table class="ls-table">
       <tr><th>题型</th><th>数量</th><th>说明</th></tr>
-      <tr><td>单选题</td><td>15 道</td><td>语法概念 + 读程序选结果</td></tr>
-      <tr><td>判断题</td><td>10 道</td><td>概念辨析,易错点集中区</td></tr>
-      <tr><td>编程题</td><td>2 道</td><td>上机编写完整程序,提交评测</td></tr>
+      <tr><td>单选题(客观题)</td><td>15 道 × 2 分</td><td>语法概念 + 读程序选结果</td></tr>
+      <tr><td>判断题(客观题)</td><td>10 道 × 2 分</td><td>概念辨析,易错点集中区</td></tr>
+      <tr><td>编程题</td><td>2 道 × 25 分</td><td>上机编写完整程序,提交评测</td></tr>
     </table></div>
+    <p class="cs-p">单选与判断合称「客观题」,共 50 分;编程题共 50 分,满分 100 分。客观题在「题库浏览 / 限时模考」中练习,编程题在「💻 编程题」栏目在线提交评测。</p>
     <p class="cs-p">机考形式。本站「<a onclick="go('mock')" style="color:#185fa5;font-weight:700;cursor:pointer">限时模拟题</a>」按真实题型组卷，建议考前完成 3 套以上。</p></div></div>
     <div class="lb-card"><div class="lb-h">④ 考场须知</div><div class="cs-pad"><ol class="cs-list">
       <li>携带<b>准考证 + 有效身份证件</b>(身份证/户口本,按通知要求)</li>
@@ -411,7 +412,7 @@ async function renderProgList(){
   const judgeTip=d.judge?'':'<div class="notice" style="margin-bottom:14px">⏳ 在线评测引擎即将开通。开通前可以先看题、写代码，对照样例与参考程序自查。</div>';
   C().innerHTML=`
     <div class="learn-hero"><h2>💻 编程真题 · 在线评测</h2>
-      <p>历年真题编程题，在线编写 C++ 代码提交评测，逐测试点反馈结果。建议先用「<a onclick="renderLessons()" style="color:#185fa5;font-weight:700;cursor:pointer">入门讲义</a>」学完对应章节再来练。</p></div>
+      <p>历年真题编程题（每卷 2 题 × 25 分，占试卷 50 分；单选与判断为客观题，在「题库浏览」练习）。在线编写 C++ 代码提交评测，逐测试点反馈结果。建议先用「<a onclick="renderLessons()" style="color:#185fa5;font-weight:700;cursor:pointer">入门讲义</a>」学完对应章节再来练。</p></div>
     ${judgeTip}${rows}`;
   window.scrollTo(0,0);
 }
@@ -430,17 +431,21 @@ async function renderProgQ(pid){
   C().innerHTML=`
     <div class="tp-back"><a onclick="go('prog')">← 返回编程题列表</a></div>
     <div class="learn-hero ls-hero"><h2>${esc(d.title)}</h2>
-      <p style="margin-top:4px;font-size:14px;color:var(--ink3)">${papFull(d.paper)} · 编程题 ${d.num} ·  时限 ${d.time_limit}s</p></div>
+      <p style="margin-top:4px;font-size:14px;color:var(--ink3)">${papFull(d.paper)} · 编程题 ${d.num} ·  时限 ${d.time_limit}s</p>
+      ${(d.kps&&d.kps.length)?`<div class="pg-kps">${d.kps.map(k=>'<span class="pg-kp">'+esc(k)+'</span>').join('')}</div>`:''}</div>
     <div class="card"><div class="card-b"><article class="ls-body pg-stmt">${stmt}</article></div></div>
     <div class="card"><div class="card-h">✍️ 我的代码<span class="sub">C++ · Tab 键可缩进</span></div><div class="card-b">
       <textarea id="pg-code" class="pg-editor" spellcheck="false">${esc(starter)}</textarea>
       <div class="pg-actions">
         <button class="btn solid" id="pg-submit" onclick="submitProg('${d.pid}')" ${d.judge?'':'disabled title="评测引擎即将开通"'}>${d.judge?'提交评测':'评测即将开通'}</button>
-        <a class="pg-sol-toggle" onclick="toggleSol()">查看参考程序 ▾</a>
+        <a class="pg-sol-toggle" onclick="toggleSol()">标准答案与代码解析 ▾</a>
       </div>
       <div id="pg-verdict"></div>
-      <div id="pg-sol" style="display:none"><pre class="ls-code"><code>${esc(d.solution)}</code></pre>
-        <p class="cs-note">💡 建议先独立完成并通过评测，再对照参考程序比较写法差异。</p></div>
+      <div id="pg-sol" style="display:none">
+        <h4 class="ls-h4">标准答案(官方参考程序)</h4>
+        <pre class="ls-code"><code>${esc(d.solution)}</code></pre>
+        ${d.analysis?`<h4 class="ls-h4">代码解析</h4><div class="pg-analysis">${progMd(d.analysis)}</div>`:''}
+        <p class="cs-note">💡 建议先独立完成并通过评测，再对照标准答案比较写法差异。</p></div>
     </div></div>
     ${subs?`<div class="card"><div class="card-h">📜 提交记录</div><div class="card-b">${subs}</div></div>`:''}`;
   const ta=document.getElementById('pg-code');
@@ -514,7 +519,7 @@ function renderBrowse(){ // overview
   const main=`<div class="card"><div class="card-h">历年真题 · 各章分布<span class="sub">单位：真题数量</span></div><div class="card-b">${pie(items)}</div></div>
     <div class="card"><div class="card-h">分章真题一览</div>
     <table><thead><tr><th>章节</th><th class="num">要求</th><th class="num">知识点</th><th class="num">真题</th></tr></thead><tbody>${rows}</tbody></table>
-    <div class="notice">真题已对照 CCF GESP 大纲按知识点归类并标注答案;一至八级 2300 道真题均配有逐题解析，<b>对所有用户免费开放</b>;一级解析另含逐题提示与易错点说明。知识点归类由程序依题面与代码自动判定,个别题以题目本身为准。</div></div>`;
+    <div class="notice"><b>题型说明</b>:本题库收录的单选题与判断题合称试卷的「<b>客观题</b>」部分(单选 15 题 × 2 分 + 判断 10 题 × 2 分,共 50 分);编程题(2 题 × 25 分,共 50 分)在顶部「💻 编程题」栏目单独提供在线评测。真题已对照 CCF GESP 大纲按知识点归类并标注答案;一至八级 2300 道真题均配有逐题解析，<b>对所有用户免费开放</b>;一级解析另含逐题提示与易错点说明。知识点归类由程序依题面与代码自动判定,个别题以题目本身为准。</div></div>`;
   C().innerHTML=browseLayout(main); renderSidebar();
 }
 async function goBrowse(sub,cid,sid){

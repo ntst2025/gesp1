@@ -597,3 +597,11 @@ th.num,td.num{width:80px;white-space:nowrap}
 .pg-v.v-WA,.pg-v.v-RE,.pg-v.v-CE{background:#fdecef;color:#b3263f}
 .pg-v.v-TLE{background:var(--gold-soft);color:#8a5a12}
 .pg-sub-t{margin-left:auto;color:var(--ink3);font-size:13px;font-family:var(--mono)}
+
+/* 编程题知识点与解析 */
+.pg-kps{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.pg-kp{font-size:13px;font-weight:600;color:#185fa5;background:#eaf1fe;border-radius:99px;padding:3px 12px}
+.pg-analysis{font-size:16.5px;line-height:1.85;color:var(--ink2)}
+.pg-analysis b{color:var(--ink)}
+.pg-analysis code{font-family:var(--mono);background:#eef0f6;color:#185fa5;padding:1px 6px;border-radius:5px;font-size:.88em}
+.pg-analysis .pg-li{margin:5px 0}
