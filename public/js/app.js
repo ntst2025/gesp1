@@ -1038,7 +1038,7 @@ function renderUpgrade(){
   </div></div>`;
   window.scrollTo(0,0);
 }
-function howToVip(){ toast('开通通道即将上线；当前可用兑换码开通，或通过页脚邮箱联系（支付宝/微信转账后为你手动开通）','ok'); }
+function howToVip(){ toast('加入「皮爸皮妈陪考星球」即可免费开通 VIP：私信星球主领取兑换码，在下方输入激活。也可通过页脚邮箱联系开通。','ok'); }
 async function redeemCode(){
   const code=(document.getElementById('redeem-code').value||'').trim();
   const m=document.getElementById('redeem-msg'); if(!code)return;
@@ -1046,7 +1046,7 @@ async function redeemCode(){
     const d=await api('/api/redeem',{method:'POST',body:JSON.stringify({code})});
     IS_VIP=true; updateVipUI();
     m.style.display='block'; m.style.color='#16a34a';
-    m.textContent='🎉 兑换成功！VIP 已开通'+(d.vip_until?('，有效期至 '+d.vip_until.slice(0,10)):'（永久）')+'，二级至八级全部精解已解锁。';
+    m.textContent='🎉 兑换成功！VIP 已开通'+(d.vip_until?('，有效期至 '+d.vip_until.slice(0,10)):'（永久）')+'，全部会员内容已解锁。';
     toast('VIP 已开通 👑'); setTimeout(()=>renderUpgrade(),1300);
   }catch(e){ m.style.display='block'; m.style.color='#dc2626'; m.textContent='兑换失败：'+e.message; }
 }

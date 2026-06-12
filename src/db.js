@@ -171,6 +171,7 @@ async function applyAllOverrides() {
 async function initDb() {
   await client.executeMultiple(USER_SCHEMA);
   // 迁移:为老库补充 avatar 列(已存在则忽略报错)
+  try { await run("ALTER TABLE redeem_codes ADD COLUMN note TEXT"); } catch (e) { /* 列已存在 */ }
   try { await run("ALTER TABLE users ADD COLUMN avatar TEXT"); } catch (e) { /* 列已存在 */ }
   try { await run("ALTER TABLE users ADD COLUMN tier TEXT DEFAULT 'free'"); } catch (e) { /* 列已存在 */ }
   try { await run("ALTER TABLE users ADD COLUMN vip_until TEXT"); } catch (e) { /* 列已存在 */ }
@@ -324,8 +325,9 @@ const Q = {
       (SELECT COUNT(*) FROM wrongbook WHERE user_id=? AND mastered=0) wrongs`, [uid, uid, uid]),
 
   // ===== 管理后台 · 兑换码 =====
-  createCode: (code, tier, days, batch) => run('INSERT INTO redeem_codes(code,tier,days,batch) VALUES(?,?,?,?)', [code, tier, days, batch || null]),
-  listCodes: (lim) => all(`SELECT c.code,c.tier,c.days,c.batch,c.status,c.used_by,c.used_at,c.created_at,u.username used_name
+  createCode: (code, tier, days, batch, note) => run('INSERT INTO redeem_codes(code,tier,days,batch,note) VALUES(?,?,?,?,?)', [code, tier, days, batch || null, note || null]),
+  setCodeNote: (code, note) => run('UPDATE redeem_codes SET note = ? WHERE code = ?', [note, code]),
+  listCodes: (lim) => all(`SELECT c.code,c.tier,c.days,c.batch,c.note,c.status,c.used_by,c.used_at,c.created_at,u.username used_name
     FROM redeem_codes c LEFT JOIN users u ON u.id=c.used_by ORDER BY c.created_at DESC LIMIT ?`, [lim]),
   getCode: (code) => get('SELECT * FROM redeem_codes WHERE code = ?', [code]),
   useCode: (code, uid) => run("UPDATE redeem_codes SET status='used', used_by=?, used_at=datetime('now') WHERE code=? AND status='unused'", [uid, code]),

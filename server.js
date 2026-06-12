@@ -421,13 +421,18 @@ app.post('/api/admin/codes', adminRequired, wrap(async (req, res) => {
   const qty = Math.max(1, Math.min(200, N(b.qty) || 1));
   const days = Math.max(0, N(b.days) || 0);     // 0 = 永久
   const batch = (b.batch || '').toString().slice(0, 40) || null;
+  const note = (b.note || '').toString().trim().slice(0, 60) || null;
   const made = [];
   for (let i = 0; i < qty; i++) {
     let code, ok = false;
-    for (let t = 0; t < 5 && !ok; t++) { code = genCode(); try { await Q.createCode(code, 'vip', days, batch); ok = true; } catch (e) { /* 撞码重试 */ } }
+    for (let t = 0; t < 5 && !ok; t++) { code = genCode(); try { await Q.createCode(code, 'vip', days, batch, note); ok = true; } catch (e) { /* 撞码重试 */ } }
     if (ok) made.push(code);
   }
   res.json({ ok: true, created: made.length, days, codes: made });
+}));
+app.post('/api/admin/codes/:code/note', adminRequired, wrap(async (req, res) => {
+  await Q.setCodeNote(req.params.code, String((req.body || {}).note || '').trim().slice(0, 60));
+  res.json({ ok: true });
 }));
 app.post('/api/admin/codes/:code/disable', adminRequired, wrap(async (req, res) => {
   await Q.disableCode(req.params.code);

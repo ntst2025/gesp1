@@ -159,30 +159,55 @@ async function renderC(){
     <div class="toolbar">
       <div><label class="muted" style="font-size:12px">数量</label><br><input id="c-qty" type="number" value="10" min="1" max="200" style="width:90px"></div>
       <div><label class="muted" style="font-size:12px">有效期(天,0=永久)</label><br><input id="c-days" type="number" value="365" min="0" style="width:140px"></div>
-      <div style="flex:1;min-width:160px"><label class="muted" style="font-size:12px">批次备注(可空)</label><br><input id="c-batch" placeholder="如 2026春-淘宝"></div>
+      <div style="min-width:140px"><label class="muted" style="font-size:12px">批次(可空)</label><br><input id="c-batch" placeholder="如 星球创始"></div>
+      <div style="flex:1;min-width:170px"><label class="muted" style="font-size:12px">备注·发给谁(可空)</label><br><input id="c-note" placeholder="如 星球昵称:小明妈妈"></div>
       <div style="align-self:flex-end"><button class="btn solid" onclick="genCodes()">生成</button></div>
     </div>
     <div id="c-out"></div>
   </div>
-  <div class="card" style="padding:6px"><div class="card-h" style="padding:12px 12px 0">已生成兑换码 <span class="sub" id="c-count"></span></div><div id="c-list"><div class="empty">加载中…</div></div></div>`;
+  <div class="card" style="padding:6px"><div class="card-h" style="padding:12px 12px 0">已生成兑换码 <span class="sub" id="c-count"></span><button class="btn sm" style="float:right" onclick="exportCodes()">📥 导出 Excel</button></div><div id="c-list"><div class="empty">加载中…</div></div></div>`;
   loadCodes();
 }
 async function genCodes(){
-  const qty=Number(document.getElementById('c-qty').value)||1, days=Number(document.getElementById('c-days').value)||0, batch=document.getElementById('c-batch').value;
-  const d=await aapi('/api/admin/codes',{method:'POST',body:JSON.stringify({qty,days,batch})});
+  const qty=Number(document.getElementById('c-qty').value)||1, days=Number(document.getElementById('c-days').value)||0, batch=document.getElementById('c-batch').value, note=document.getElementById('c-note').value;
+  const d=await aapi('/api/admin/codes',{method:'POST',body:JSON.stringify({qty,days,batch,note})});
   document.getElementById('c-out').innerHTML=`<div style="margin:6px 0 8px"><b>已生成 ${d.created} 个</b> · ${days>0?days+' 天':'永久'} <button class="btn sm" style="margin-left:10px" onclick="copyCodes()">复制全部</button></div><div class="code-out" id="c-codes">${d.codes.join('\n')}</div>`;
   toast('已生成 '+d.created+' 个兑换码'); loadCodes();
 }
 function copyCodes(){ const t=document.getElementById('c-codes'); if(!t)return; navigator.clipboard.writeText(t.textContent).then(()=>toast('已复制到剪贴板')).catch(()=>toast('复制失败,请手动选择')); }
+let CODES_CACHE=[];
+async function editNote(code,cur){
+  const v=prompt('备注(发给谁):',cur||''); if(v===null)return;
+  await aapi('/api/admin/codes/'+encodeURIComponent(code)+'/note',{method:'POST',body:JSON.stringify({note:v})});
+  toast('备注已更新'); loadCodes();
+}
+function exportCodes(){
+  if(!CODES_CACHE.length){ toast('暂无数据'); return; }
+  const head=['兑换码','有效期(天,0=永久)','状态','使用者','使用时间','备注(发给谁)','批次','生成时间'];
+  const st={unused:'未使用',used:'已使用',disabled:'已失效'};
+  const q=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"';
+  const rows=CODES_CACHE.map(c=>[c.code,c.days,st[c.status]||c.status,c.used_name||'',(c.used_at||'').slice(0,16),c.note||'',c.batch||'',(c.created_at||'').slice(0,16)].map(q).join(','));
+  const csv='\ufeff'+head.map(q).join(',')+'\n'+rows.join('\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
+  const aEl=document.createElement('a');
+  aEl.href=URL.createObjectURL(blob);
+  const d=new Date(), pad=n=>String(n).padStart(2,'0');
+  aEl.download='兑换码统计_'+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'.csv';
+  document.body.appendChild(aEl); aEl.click(); document.body.removeChild(aEl);
+  URL.revokeObjectURL(aEl.href);
+  toast('已导出 '+CODES_CACHE.length+' 条');
+}
 async function loadCodes(){
   const d=await aapi('/api/admin/codes');
+  CODES_CACHE=d.codes||[];
   document.getElementById('c-count').textContent='共 '+d.codes.length+' 个';
-  document.getElementById('c-list').innerHTML=`<table class="tbl"><thead><tr><th>兑换码</th><th>有效期</th><th>状态</th><th>使用者</th><th>批次</th><th>生成时间</th><th></th></tr></thead><tbody>${
+  document.getElementById('c-list').innerHTML=`<table class="tbl"><thead><tr><th>兑换码</th><th>有效期</th><th>状态</th><th>使用者</th><th>备注(发给谁)</th><th>批次</th><th>生成时间</th><th></th></tr></thead><tbody>${
     d.codes.map(c=>`<tr>
       <td class="mono">${esc(c.code)}</td>
       <td>${c.days>0?c.days+' 天':'永久'}</td>
       <td><span class="pill ${c.status}">${c.status==='unused'?'未使用':c.status==='used'?'已使用':'已失效'}</span></td>
       <td class="muted">${c.used_name?esc(c.used_name):'—'}${c.used_at?'<br><span class="mono" style="font-size:11px">'+c.used_at.slice(0,16)+'</span>':''}</td>
+      <td class="muted" style="cursor:pointer" title="点击修改备注" onclick="editNote('${c.code}','${esc(c.note||'').replace(/'/g,"\\'")}')">${c.note?esc(c.note):'<span style="opacity:.45">点击添加</span>'}</td>
       <td class="muted">${esc(c.batch||'')}</td>
       <td class="muted">${(c.created_at||'').slice(0,16)}</td>
       <td class="right">${c.status==='unused'?`<button class="btn sm danger" onclick="disableCode('${c.code}')">失效</button>`:''}</td>
