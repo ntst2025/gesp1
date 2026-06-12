@@ -17,7 +17,10 @@ async function register({ username, email, password, avatar }) {
   username = (username || '').trim();
   if (username.length < 2 || username.length > 24) throw httpErr(400, '昵称需 2–24 个字符（支持中文）');
   if (!password || password.length < 6) throw httpErr(400, '密码至少 6 位');
-  avatar = (avatar || '').trim().slice(0, 8) || '🦊';
+  avatar = (avatar || '').trim();
+  // 允许:预设图标 id(a1-a12) / 短 emoji;默认随机一个预设
+  if (!/^a([1-9]|1[0-2])$/.test(avatar) && avatar.length > 8) avatar = '';
+  if (!avatar) avatar = 'a' + (1 + Math.floor(Math.random() * 12));
   if (await Q.userByName(username)) throw httpErr(409, '该昵称已被使用,换一个吧');
   const hash = bcrypt.hashSync(password, 10);
   let info;
@@ -36,7 +39,7 @@ async function login({ username, password }) {
   if (!row || !bcrypt.compareSync(password || '', row.password_hash)) {
     throw httpErr(401, '用户名或密码错误');
   }
-  return { token: signToken(row), user: { id: row.id, username: row.username, avatar: row.avatar || '🦊' } };
+  return { token: signToken(row), user: { id: row.id, username: row.username, avatar: row.avatar || 'a1' } };
 }
 
 // Express 中间件:校验 Bearer token,挂载 req.user(异步,需查库)

@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS bookmarks(
   created_at TEXT NOT NULL DEFAULT (datetime('now')), PRIMARY KEY(user_id, qid)
 );
 CREATE TABLE IF NOT EXISTS meta(k TEXT PRIMARY KEY, v TEXT);
+CREATE TABLE IF NOT EXISTS baidu_push(url TEXT PRIMARY KEY, ts TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS mock_results(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id INTEGER NOT NULL, level INTEGER NOT NULL, paper TEXT NOT NULL,
@@ -206,6 +207,10 @@ const Q = {
   sectionById: (sid) => get('SELECT * FROM sections WHERE id = ?', [sid]),
   questionsByLevelPaper: (lv, paper) => all("SELECT qid, type, num FROM questions WHERE level = ? AND paper = ? ORDER BY (type='tf'), num", [lv, paper]),
   allQuestionRefs: () => all('SELECT qid, level, paper, type, num FROM questions ORDER BY level, paper, (type=\'tf\'), num'),
+  setAvatar: (uid, av) => run('UPDATE users SET avatar = ? WHERE id = ?', [av, uid]),
+  baiduPushedUrls: () => all('SELECT url FROM baidu_push'),
+  baiduPushCount: () => get('SELECT COUNT(*) n FROM baidu_push'),
+  baiduMarkPushed: async (urls) => { for (const u of urls) await run('INSERT OR IGNORE INTO baidu_push(url, ts) VALUES(?, ?)', [u, new Date().toISOString()]); },
   randomByLevel: (lv, n) => all('SELECT * FROM questions WHERE level = ? ORDER BY RANDOM() LIMIT ?', [lv, n]),
   randomBySection: (sid, n) => all('SELECT * FROM questions WHERE section_id = ? ORDER BY RANDOM() LIMIT ?', [sid, n]),
   randomByChapter: (cid, n) => all('SELECT * FROM questions WHERE chapter_id = ? ORDER BY RANDOM() LIMIT ?', [cid, n]),

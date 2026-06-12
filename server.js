@@ -184,7 +184,8 @@ function vipActive(u) {
   return new Date(u.vip_until).getTime() > Date.now();
 }
 // 免费用户:仅一级解析免费(引流);二级及以上解析为 VIP 专享(题目与答案仍对所有人可见)
-function expLocked(level, user) { return !vipActive(user) && Number(level) !== 1; }
+// 2026-06 起:一至八级真题与解析全部免费(降低真题版权敏感度;VIP 转向讲义等自研增值内容)
+function expLocked(level, user) { return false; }
 function streakOf(dateRows) {
   const set = new Set(dateRows.map(r => r.d));
   const total = set.size;
@@ -211,14 +212,14 @@ app.get('/api/stats/me', authRequired, wrap(async (req, res) => {
 }));
 // 平台初期的「示例对手」——让本周排行榜更有竞争氛围(真人会按积分插入其中并逐步超越)
 const DEMO_RIVALS = [
-  { username: '编程小王子',   avatar: '🦊', points: 1280, attempts: 156 },
-  { username: '代码键盘侠',   avatar: '🐼', points: 1150, attempts: 138 },
-  { username: '循环不打烊',   avatar: '🐯', points: 990,  attempts: 121 },
-  { username: '二叉树观察员', avatar: '🦁', points: 935,  attempts: 110 },
-  { username: '指针没指空',   avatar: '🐱', points: 905,  attempts: 104 },
-  { username: '递归不打草稿', avatar: '🐻', points: 860,  attempts: 98  },
-  { username: '摸鱼也能AC',   avatar: '🐰', points: 790,  attempts: 90  },
-  { username: '数组越界君',   avatar: '🐨', points: 760,  attempts: 85  },
+  { username: '编程小王子',   avatar: 'a1', points: 1280, attempts: 156 },
+  { username: '代码键盘侠',   avatar: 'a2', points: 1150, attempts: 138 },
+  { username: '循环不打烊',   avatar: 'a9', points: 990,  attempts: 121 },
+  { username: '二叉树观察员', avatar: 'a4', points: 935,  attempts: 110 },
+  { username: '指针没指空',   avatar: 'a7', points: 905,  attempts: 104 },
+  { username: '递归不打草稿', avatar: 'a6', points: 860,  attempts: 98  },
+  { username: '摸鱼也能AC',   avatar: 'a5', points: 790,  attempts: 90  },
+  { username: '数组越界君',   avatar: 'a11', points: 760,  attempts: 85  },
   { username: '变量起名废',   avatar: '🐹', points: 720,  attempts: 80  },
   { username: '一遍过选手',   avatar: '🦄', points: 690,  attempts: 74  },
   { username: '调试到天亮',   avatar: '🐸', points: 655,  attempts: 69  },
@@ -227,13 +228,13 @@ const DEMO_RIVALS = [
 app.get('/api/leaderboard', authRequired, wrap(async (req, res) => {
   const real = await Q.leaderboard(50);
   const merged = [
-    ...real.map(r => ({ id: r.id, username: r.username, avatar: r.avatar || '🦊', points: N(r.points), attempts: N(r.attempts), me: r.id === req.user.id })),
+    ...real.map(r => ({ id: r.id, username: r.username, avatar: r.avatar || 'a1', points: N(r.points), attempts: N(r.attempts), me: r.id === req.user.id })),
     ...DEMO_RIVALS.map(d => ({ id: null, username: d.username, avatar: d.avatar, points: d.points, attempts: d.attempts, me: false })),
   ];
   // 确保当前用户始终在榜(即便还没答题)
   if (!merged.some(x => x.me)) {
     const pr = await Q.userPointsRow(req.user.id);
-    merged.push({ id: req.user.id, username: req.user.username, avatar: req.user.avatar || '🦊', points: N(pr.points), attempts: N(pr.attempts), me: true });
+    merged.push({ id: req.user.id, username: req.user.username, avatar: req.user.avatar || 'a1', points: N(pr.points), attempts: N(pr.attempts), me: true });
   }
   merged.sort((a, b) => b.points - a.points || b.attempts - a.attempts);
   const top = merged.map((u, i) => { const t = tierOf(u.points); return { rank: i + 1, username: u.username, avatar: u.avatar, points: u.points, attempts: u.attempts, tier: t.name, icon: t.icon, me: u.me }; });
@@ -476,6 +477,54 @@ app.get('/api/lessons/chapter', authRequired, wrap(async (req, res) => {
     prev: book.chapters[idx - 1] ? { id: book.chapters[idx - 1].id, title: book.chapters[idx - 1].title } : null,
     next: book.chapters[idx + 1] ? { id: book.chapters[idx + 1].id, title: book.chapters[idx + 1].title } : null,
   });
+}));
+
+/* ===== 用户头像 ===== */
+// 接受:预设 id(a1-a12) / 短 emoji / 自定义图片 dataURL(客户端已压到 128px,≤60KB 串长)
+app.post('/api/me/avatar', authRequired, wrap(async (req, res) => {
+  const av = String((req.body || {}).avatar || '').trim();
+  const okPreset = /^a([1-9]|1[0-2])$/.test(av);
+  const okEmoji = av && av.length <= 8 && !av.startsWith('data:');
+  const okData = /^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(av) && av.length <= 60000;
+  if (!okPreset && !okEmoji && !okData) return res.status(400).json({ error: '头像格式不支持或图片过大' });
+  await Q.setAvatar(req.user.id, av);
+  res.json({ ok: true, avatar: av });
+}));
+
+/* ===== 百度主动推送(普通收录 API) ===== */
+// 站点前缀必须与百度站长平台登记的完全一致(含 www);token 走环境变量,不入库不入仓库。
+const BAIDU_SITE_BASE = (process.env.BAIDU_SITE_BASE || 'https://www.gesppass.com').replace(/\/+$/, '');
+function baiduUrlList(refs) {
+  const statics = ['/', '/app?level=1', '/app?level=2', '/app?level=3', '/app?level=4', '/app?level=5', '/app?level=6', '/app?level=7', '/app?level=8', '/about', '/terms', '/privacy'];
+  // 优先级:静态页 -> 一级单题(解析免费,SEO 价值最高) -> 其余级别
+  const l1 = refs.filter(r => Number(r.level) === 1), rest = refs.filter(r => Number(r.level) !== 1);
+  return statics.map(u => BAIDU_SITE_BASE + u).concat(l1.concat(rest).map(r => `${BAIDU_SITE_BASE}/q/${r.qid}`));
+}
+app.get('/api/admin/baidu/status', adminRequired, wrap(async (req, res) => {
+  const refs = await Q.allQuestionRefs();
+  const total = baiduUrlList(refs).length;
+  const pushed = (await Q.baiduPushCount()).n;
+  res.json({ total, pushed, pending: total - pushed, site: BAIDU_SITE_BASE, tokenSet: !!process.env.BAIDU_TOKEN });
+}));
+app.post('/api/admin/baidu/push', adminRequired, wrap(async (req, res) => {
+  const token = process.env.BAIDU_TOKEN;
+  if (!token) return res.status(400).json({ error: '未配置 BAIDU_TOKEN 环境变量(在 Render 的 Environment 里添加后重启)' });
+  const limit = Math.max(1, Math.min(2000, Number((req.body || {}).limit) || 100));
+  const refs = await Q.allQuestionRefs();
+  const done = new Set((await Q.baiduPushedUrls()).map(r => r.url));
+  const pending = baiduUrlList(refs).filter(u => !done.has(u));
+  if (!pending.length) return res.json({ ok: true, submitted: 0, success: 0, remain: null, msg: '全部 URL 均已推送过' });
+  const batch = pending.slice(0, limit);
+  const api = `http://data.zz.baidu.com/urls?site=${encodeURIComponent(BAIDU_SITE_BASE)}&token=${encodeURIComponent(token)}`;
+  let data;
+  try {
+    const r = await fetch(api, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: batch.join('\n') });
+    data = await r.json();
+  } catch (e) { return res.status(502).json({ error: '调用百度接口失败:' + e.message }); }
+  if (data.error) return res.status(400).json({ error: `百度返回错误 ${data.error}: ${data.message || ''}` });
+  const okCount = Number(data.success) || 0;
+  if (okCount > 0) await Q.baiduMarkPushed(batch.slice(0, okCount));
+  res.json({ ok: true, submitted: batch.length, success: okCount, remain: data.remain, not_same_site: data.not_same_site || [], pending: pending.length - okCount });
 }));
 
 /* ===== SEO + 法务页(干净 URL) ===== */

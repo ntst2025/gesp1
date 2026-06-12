@@ -25,8 +25,8 @@ function adminLogout(){ localStorage.removeItem('gesp_admin_token'); show('login
 
 const V=()=>document.getElementById('view');
 function nav(v){
-  ['dash','q','u','c'].forEach(x=>{const el=document.getElementById('nav-'+x);if(el)el.classList.toggle('on',x===v);});
-  const fn={dash:renderDash,q:renderQ,u:renderU,c:renderC}[v];
+  ['dash','q','u','c','b'].forEach(x=>{const el=document.getElementById('nav-'+x);if(el)el.classList.toggle('on',x===v);});
+  const fn={dash:renderDash,q:renderQ,u:renderU,c:renderC,b:renderBaidu}[v];
   Promise.resolve(fn&&fn()).catch(e=>{ if(e&&e.message!=='请重新登录') toast(e.message); });
 }
 
@@ -198,3 +198,43 @@ function val(id){ const e=document.getElementById(id); return e?e.value:''; }
 /* ---------- 启动 ---------- */
 if(AT()){ show('app'); nav('dash'); } else { show('login'); }
 document.getElementById('lg-key').addEventListener('keydown',e=>{ if(e.key==='Enter') adminLogin(); });
+
+
+/* ---------- 百度推送 ---------- */
+async function renderBaidu(){
+  V().innerHTML='<div class="empty">加载中…</div>';
+  let st; try{ st=await api('/api/admin/baidu/status'); }catch(e){ V().innerHTML='<div class="empty">'+e.message+'</div>'; return; }
+  V().innerHTML=`
+  <div class="card"><div class="card-h">🔍 百度普通收录 · 主动推送<span class="sub">站点 ${st.site}</span></div>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px">
+      <div><b style="font-size:22px">${st.total}</b><div style="color:var(--muted);font-size:13px">URL 总数</div></div>
+      <div><b style="font-size:22px;color:#13b083">${st.pushed}</b><div style="color:var(--muted);font-size:13px">已推送</div></div>
+      <div><b style="font-size:22px;color:#ed9b1f">${st.pending}</b><div style="color:var(--muted);font-size:13px">待推送</div></div>
+    </div>
+    ${st.tokenSet?'':'<div class="err" style="display:block;margin-bottom:10px">⚠ 服务器未配置 BAIDU_TOKEN 环境变量,推送将失败。请在 Render → Environment 添加。</div>'}
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      本次推送 <input id="bd-limit" type="number" value="100" min="1" max="2000" style="width:90px"> 条
+      <button class="btn primary" id="bd-go" onclick="baiduPushNow()">立即推送</button>
+    </div>
+    <div style="color:var(--muted);font-size:13px;margin-top:10px;line-height:1.7">
+      · 推送顺序:首页与栏目页 → 一级单题页(解析免费,SEO 价值最高) → 其余级别。<br>
+      · 每日配额以百度站长平台显示为准;配额用尽时百度会返回 remain=0,次日再推即可。<br>
+      · 已推送记录存数据库,重复点击不会重复占用配额。</div>
+    <div id="bd-result" style="margin-top:12px"></div>
+  </div>`;
+}
+async function baiduPushNow(){
+  const btn=document.getElementById('bd-go'); btn.disabled=true; btn.textContent='推送中…';
+  const out=document.getElementById('bd-result');
+  try{
+    const limit=Number(document.getElementById('bd-limit').value)||100;
+    const d=await api('/api/admin/baidu/push',{method:'POST',body:JSON.stringify({limit})});
+    out.innerHTML=`<div class="ok" style="display:block">✓ 提交 ${d.submitted} 条,百度接收 <b>${d.success}</b> 条`+
+      (d.remain!=null?`,今日剩余配额 <b>${d.remain}</b>`:'')+
+      (d.pending!=null?`;站内待推 ${d.pending} 条`:'')+
+      ((d.not_same_site&&d.not_same_site.length)?`<br>⚠ ${d.not_same_site.length} 条因域名不一致被拒(检查 BAIDU_SITE_BASE)`:'')+
+      `</div>`;
+    renderBaidu();
+  }catch(e){ out.innerHTML='<div class="err" style="display:block">✗ '+e.message+'</div>'; }
+  finally{ btn.disabled=false; btn.textContent='立即推送'; }
+}
