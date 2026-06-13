@@ -3,6 +3,7 @@
 const AT = () => localStorage.getItem('gesp_admin_token');
 function show(which){ document.getElementById('login').style.display = which==='login'?'flex':'none'; document.getElementById('app').style.display = which==='app'?'block':'none'; }
 function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function short(id){ return String(id).split(':').pop(); }  // 'L1:c1'->'c1', 'L1:1.1'->'1.1'
 function toast(m){ const t=document.createElement('div'); t.className='toast'; t.textContent=m; document.body.appendChild(t); setTimeout(()=>{t.style.transition='.3s';t.style.opacity='0';setTimeout(()=>t.remove(),300);},2200); }
 
 async function aapi(path, opts={}){
@@ -35,7 +36,7 @@ async function renderDash(){
   V().innerHTML='<div class="empty">加载中…</div>';
   const s=await aapi('/api/admin/stats'); const codes=s.codes||{};
   const lv=s.levels.map(l=>`<tr><td>${l.level} 级</td><td class="right">${l.count}</td><td class="right">${l.exp}</td><td class="right">${l.count?Math.round(l.exp/l.count*100):0}%</td></tr>`).join('');
-  const recent=s.recent.map(u=>`<tr><td>${u.avatar||'🙂'} ${esc(u.username)} <span class="muted mono">#${u.id}</span></td><td><span class="pill ${u.tier==='vip'?'vip':'free'}">${u.tier==='vip'?'VIP':'免费'}</span></td><td class="muted">${(u.created_at||'').slice(0,16)}</td></tr>`).join('');
+  const recent=s.recent.map(u=>`<tr><td>${avatarHtml(u.avatar)} ${esc(u.username)} <span class="muted mono">#${u.id}</span></td><td><span class="pill ${u.tier==='vip'?'vip':'free'}">${u.tier==='vip'?'VIP':'免费'}</span></td><td class="muted">${(u.created_at||'').slice(0,16)}</td></tr>`).join('');
   V().innerHTML=`<h1 class="page-h">📊 概览</h1>
   <div class="stat-grid">
     <div class="stat"><div class="v">${s.users}</div><div class="l">注册用户</div></div>
@@ -131,7 +132,7 @@ async function loadU(){
       const vipOn=u.tier==='vip'&&(!u.vip_until||new Date(u.vip_until)>new Date());
       const until=u.vip_until?u.vip_until.slice(0,10):'永久';
       const days=u.vip_until?Math.ceil((new Date(u.vip_until)-new Date())/86400000):null;
-      const av=(/^a([1-9]|1[0-2])$/.test(u.avatar||''))?`<img class="u-av" src="/avatars/${u.avatar}.svg">`:`<span class="u-av-e">${u.avatar||'🙂'}</span>`;
+      const av=avatarHtml(u.avatar);
       return `<tr class="${u.disabled?'u-off':''}">
         <td>${av} <b>${esc(u.username)}</b> <span class="muted mono">#${u.id}</span></td>
         <td><span class="pill ${vipOn?'vip':'free'}">${vipOn?'👑 VIP':'免费'}</span></td>
@@ -241,7 +242,7 @@ document.getElementById('lg-key').addEventListener('keydown',e=>{ if(e.key==='En
 /* ---------- 百度推送 ---------- */
 async function renderBaidu(){
   V().innerHTML='<div class="empty">加载中…</div>';
-  let st; try{ st=await api('/api/admin/baidu/status'); }catch(e){ V().innerHTML='<div class="empty">'+e.message+'</div>'; return; }
+  let st; try{ st=await aapi('/api/admin/baidu/status'); }catch(e){ V().innerHTML='<div class="empty">'+e.message+'</div>'; return; }
   V().innerHTML=`
   <div class="card"><div class="card-h">🔍 百度普通收录 · 主动推送<span class="sub">站点 ${st.site}</span></div>
     <div style="display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px">
@@ -266,7 +267,7 @@ async function baiduPushNow(){
   const out=document.getElementById('bd-result');
   try{
     const limit=Number(document.getElementById('bd-limit').value)||100;
-    const d=await api('/api/admin/baidu/push',{method:'POST',body:JSON.stringify({limit})});
+    const d=await aapi('/api/admin/baidu/push',{method:'POST',body:JSON.stringify({limit})});
     out.innerHTML=`<div class="ok" style="display:block">✓ 提交 ${d.submitted} 条,百度接收 <b>${d.success}</b> 条`+
       (d.remain!=null?`,今日剩余配额 <b>${d.remain}</b>`:'')+
       (d.pending!=null?`;站内待推 ${d.pending} 条`:'')+
@@ -281,7 +282,7 @@ async function baiduPushNow(){
 /* ---------- 题目报错 ---------- */
 async function renderReports(st){
   V().innerHTML='<div class="empty">加载中…</div>';
-  let d; try{ d=await api('/api/admin/reports'+(st?'?status='+st:'')); }catch(e){ V().innerHTML='<div class="empty">'+e.message+'</div>'; return; }
+  let d; try{ d=await aapi('/api/admin/reports'+(st?'?status='+st:'')); }catch(e){ V().innerHTML='<div class="empty">'+e.message+'</div>'; return; }
   const rows=(d.reports||[]).map(r=>`<tr>
     <td>#${r.id}</td>
     <td><a href="/q/${encodeURIComponent(r.qid)}" target="_blank" style="font-family:monospace">${r.qid}</a></td>
@@ -299,7 +300,7 @@ async function renderReports(st){
     <tbody>${rows||'<tr><td colspan="7" class="empty">暂无反馈</td></tr>'}</tbody></table></div>`;
 }
 async function setReport(id,st){
-  try{ await api('/api/admin/reports/'+id+'/status',{method:'POST',body:JSON.stringify({status:st})}); renderReports(); }
+  try{ await aapi('/api/admin/reports/'+id+'/status',{method:'POST',body:JSON.stringify({status:st})}); renderReports(); }
   catch(e){ toast(e.message); }
 }
 
@@ -429,12 +430,20 @@ async function renderPostedPanel(p){
 // —— 面板4:我的题库 ——
 async function renderProgbankPanel(p){
   p.innerHTML=`<div class="card"><div class="card-h">💻 我出的编程题 <span class="sub">C++ ${TEACH_LV}级 · 布置作业时可选</span>
-    <button class="btn sm solid" style="float:right" onclick="openProgMaker()">＋ 出一道编程题</button></div><div class="card-b">
+    <span style="float:right"><button class="btn sm" onclick="openAdaptPicker()">🎲 基于真题改编</button>
+    <button class="btn sm solid" onclick="openProgMaker()">＋ 手动出题</button></span></div><div class="card-b">
     <div id="t-myprog">加载中…</div></div></div>`;
   loadMyProg();
 }
 
-function avA(av){ return /^a([1-9]|1[0-2])$/.test(av||'')?`<img class="u-av" src="/avatars/${av}.svg">`:`<span class="u-av-e">${av||'🙂'}</span>`; }
+function avatarHtml(av){
+  av = String(av||'');
+  if(/^a([1-9]|1[0-2])$/.test(av)) return `<img class="u-av" src="/avatars/${av}.svg">`;
+  if(/^(data:image|https?:|\/)/.test(av)) return `<img class="u-av" src="${esc(av)}">`;  // 用户上传的图片
+  if(av && av.length<=4) return `<span class="u-av-e">${av}</span>`;  // emoji
+  return `<span class="u-av-e">🙂</span>`;  // 兜底,绝不平铺长串
+}
+function avA(av){ return avatarHtml(av); }
 let TEACH_ROSTER=[];
 let PICKED={mc:[],prog:[],ranges:[]};  // 已选题(ranges 可多个)
 function teachTypeChange(){
@@ -519,7 +528,7 @@ function pickRange(kind,id,name,count){
   renderPickedSummary(); updateCpLive();
 }
 async function pickBrowse(sid,name){
-  let qs; try{ qs=(await aapi('/api/sections/'+encodeURIComponent(sid)+'/questions')).questions; }catch(e){ toast(e.message); return; }
+  let qs; try{ qs=(await aapi('/api/admin/sections/'+encodeURIComponent(sid)+'/questions')).questions; }catch(e){ toast(e.message); return; }
   const rows=qs.map((q,i)=>`<label class="pk-q"><input type="checkbox" class="pk-qchk" value="${q.qid}" ${PICKED.mc.includes(q.qid)?'checked':''}>
     <span class="qtype type-${q.type}">${q.type==='mc'?'单选':'判断'}</span> ${i+1}. ${esc((q.stem||'').replace(/<[^>]+>/g,'').slice(0,50))}…</label>`).join('');
   showModal(`<h3 style="margin:0 0 10px">${esc(name)} · 逐题选</h3><div class="pk-qlist">${rows}</div>
@@ -601,8 +610,98 @@ async function delTeacherProg(pid){
   await aapi('/api/admin/teacher-prog/'+encodeURIComponent(pid),{method:'DELETE'}); toast('已删除'); loadMyProg();
 }
 let PM_SAMPLES=[];
+// ===== 基于真题改编:批量生成同类题 + 推送 =====
+let ADAPT_LIST=[];
+async function openAdaptPicker(){
+  let d; try{ d=await aapi('/api/admin/adapt/list?level='+TEACH_LV); }catch(e){ toast(e.message); return; }
+  ADAPT_LIST=d.list;
+  if(!d.list.length){
+    showModal(`<h3 style="margin:0 0 8px">🎲 基于真题改编出题</h3>
+      <div class="muted" style="padding:20px 0">C++ ${TEACH_LV}级 暂无可改编的真题方案。</div>
+      <div style="text-align:right"><button class="btn" onclick="document.getElementById('adm-modal').remove()">关闭</button></div>`);
+    return;
+  }
+  const rows=d.list.map((a,i)=>`<div class="adapt-row">
+    <div class="adapt-info"><b>${esc(a.base_title)}</b> <span class="muted" style="font-size:12px">${a.variant_count}种题型</span>
+      <div class="muted" style="font-size:12px">考点:${(a.kps||[]).join('、')||'—'}</div>
+      <div class="muted" style="font-size:11px;color:#9aa0b4">可生成:${(a.samples||[]).join(' / ')}</div></div>
+    <button class="btn sm solid" onclick="adaptConfig(${i})">选它 ›</button>
+  </div>`).join('');
+  showModal(`<h3 style="margin:0 0 6px">🎲 基于真题改编 · 生成同类练习题(C++ ${TEACH_LV}级)</h3>
+    <div class="muted" style="font-size:13px;margin-bottom:12px">选一个考点,系统会生成<b>若干道同类型的新题</b>(换场景、换数据),每道都已验证标程、带解析,可直接推送给学生练习。</div>
+    <div class="adapt-list">${rows}</div>
+    <div style="margin-top:14px;text-align:right"><button class="btn" onclick="document.getElementById('adm-modal').remove()">取消</button></div>`);
+}
+// 配置:生成几道 + 推送给谁
+function adaptConfig(idx){
+  const a=ADAPT_LIST[idx];
+  const stuOpts=(TEACH_ROSTER||[]).map(s=>`<label class="toc-item"><input type="checkbox" class="adapt-stu" value="${s.id}"> ${avA(s.avatar)} ${esc(s.username)}</label>`).join('') || '<span class="muted">该班暂无学生</span>';
+  showModal(`<h3 style="margin:0 0 6px">🎲 生成「${esc(a.base_title)}」同类练习</h3>
+    <div class="adapt-tip">考点:${(a.kps||[]).join('、')}。系统将生成同类型新题,每道换了场景和数据。</div>
+    <div class="fg-col" style="margin:12px 0">
+      <label class="fl">生成几道?</label>
+      <input id="adapt-count" type="number" value="3" min="1" max="10" style="width:100px">
+      <span class="muted" style="font-size:12px">(1~10 道,题型相同、数据/场景不同)</span>
+    </div>
+    <div class="fg-col" style="margin:12px 0">
+      <label class="fl">推送给谁?</label>
+      <div style="margin-top:4px">
+        <label class="radio-line"><input type="radio" name="adapt-target" value="class" checked onchange="adaptToggleStu()"> 📢 全班</label>
+        <label class="radio-line"><input type="radio" name="adapt-target" value="some" onchange="adaptToggleStu()"> 👤 指定学生</label>
+        <label class="radio-line"><input type="radio" name="adapt-target" value="none" onchange="adaptToggleStu()"> 💾 只存入题库,暂不推送</label>
+      </div>
+      <div id="adapt-stu-box" class="t-toc" style="display:none;margin-top:8px">${stuOpts}</div>
+    </div>
+    <div class="fg-col" style="margin:12px 0">
+      <label class="fl">作业标题(推送时显示)</label>
+      <input id="adapt-asgtitle" value="${esc(a.base_title)} · 同类练习" style="width:100%">
+      <label class="fl" style="margin-top:8px">截止时间(可空)</label>
+      <input id="adapt-due" type="datetime-local" style="width:auto">
+    </div>
+    <div style="margin-top:16px;text-align:right">
+      <button class="btn" onclick="openAdaptPicker()">← 返回</button>
+      <button class="btn solid" onclick="adaptGenerate('${a.base_pid}')">生成并推送</button></div>
+    <div id="adapt-result" style="margin-top:10px"></div>`);
+}
+async function adaptToggleStu(){
+  const v=document.querySelector('input[name=adapt-target]:checked').value;
+  const box=document.getElementById('adapt-stu-box');
+  if(!box) return;
+  if(v==='some'){
+    if(!TEACH_ROSTER || !TEACH_ROSTER.length){
+      try{ const d=await aapi('/api/admin/classes/'+TEACH_LV+'/roster'); TEACH_ROSTER=d.roster||[]; }catch(e){}
+      box.innerHTML=(TEACH_ROSTER||[]).map(s=>`<label class="toc-item"><input type="checkbox" class="adapt-stu" value="${s.id}"> ${avA(s.avatar)} ${esc(s.username)}</label>`).join('') || '<span class="muted">该班暂无学生</span>';
+    }
+    box.style.display='block';
+  } else box.style.display='none';
+}
+async function adaptGenerate(basePid){
+  const count=Math.max(1,Math.min(10,Number(document.getElementById('adapt-count').value)||1));
+  const target=document.querySelector('input[name=adapt-target]:checked').value;
+  const out=document.getElementById('adapt-result');
+  let publish=null;
+  if(target==='class'){ publish={target:'class'}; }
+  else if(target==='some'){
+    const ids=[...document.querySelectorAll('.adapt-stu:checked')].map(c=>Number(c.value));
+    if(!ids.length){ out.innerHTML='<span style="color:#c0392b">请至少选一个学生</span>'; return; }
+    publish={target:','+ids.join(',')+','};
+  }
+  if(publish){
+    publish.title=document.getElementById('adapt-asgtitle').value.trim()||undefined;
+    const due=document.getElementById('adapt-due').value;
+    if(due) publish.due_at=due;
+  }
+  out.innerHTML='<div class="muted">正在生成 '+count+' 道题(每道都要编译标程、生成测试数据),约 '+(count*8)+'~'+(count*20)+' 秒,请稍候…</div>';
+  try{
+    const r=await aapi('/api/admin/adapt/generate',{method:'POST',body:JSON.stringify({level:TEACH_LV,base_pid:basePid,count,publish})});
+    const names=r.created.map(c=>c.title).join('、');
+    out.innerHTML=`<span style="color:#1f9d57">✅ 成功生成 ${r.created.length} 道:${esc(names)}。${r.published?'已推送给学生,可在「我的课程」看到。':'已存入题库。'}</span>`;
+    setTimeout(()=>{ const m=document.getElementById('adm-modal'); if(m)m.remove(); loadMyProg(); }, 2200);
+  }catch(e){ out.innerHTML='<span style="color:#c0392b;white-space:pre-wrap">❌ '+esc(e.message)+'</span>'; }
+}
 function openProgMaker(){
   PM_SAMPLES=[{in:'',out:''}];
+  PM_SPEC=[];
   showModal(progMakerHtml());
 }
 function progMakerHtml(){

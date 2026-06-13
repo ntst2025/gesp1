@@ -1,0 +1,255 @@
+{
+ "level": 1,
+ "adapts": {
+  "1-2023-06-prog-2": {
+   "base_title": "累计相加",
+   "kps": [
+    "循环累加",
+    "嵌套求和"
+   ],
+   "solution": "#include <iostream>\nusing namespace std;\nint main(){\n    int n; cin >> n;\n    long long sum = 0;\n    for(int i=1;i<=n;i++) sum += (long long)(i+1)*i/2;\n    cout << sum << endl;\n    return 0;\n}",
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 1,
+     "max_choices": [
+      100,
+      500,
+      1000,
+      2000,
+      5000
+     ]
+    }
+   ],
+   "variants": [
+    {
+     "title": "搭积木",
+     "story": "小红在搭积木。第 i 层放 (1+2+…+i) 块积木。给定层数 n,求一共用了多少块积木。"
+    },
+    {
+     "title": "叠盘子",
+     "story": "餐厅叠盘子,第 i 摞有 (1+2+…+i) 个盘子。给定摞数 n,求盘子总数。"
+    },
+    {
+     "title": "码砖墙",
+     "story": "工人码砖,第 i 行码 (1+2+…+i) 块砖。给定行数 n,求砖块总数。"
+    }
+   ],
+   "io": "#### 输入描述\n\n输入一个正整数 n。\n\n#### 输出描述\n\n输出一个整数,表示总数。",
+   "analysis": "**思路**:这是嵌套求和。第 i 项本身是 1+2+…+i = i×(i+1)/2,再把所有项累加。\n**做法**:用一个循环 i 从 1 到 n,每次把 i×(i+1)/2 加进总和。\n**注意**:n 较大时总和会很大,用 `long long` 防止溢出。",
+   "base_pid": "1-2023-06-prog-2",
+   "level": 1
+  },
+  "1-2024-12-prog-2": {
+   "base_title": "奇数和偶数",
+   "kps": [
+    "循环",
+    "取余判断",
+    "计数器"
+   ],
+   "variants": [
+    {
+     "title": "统计正数和负数",
+     "story": "小杨记录了 n 个整数。请统计其中正数有多少个、负数有多少个(0 忽略)。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){\n    int n; cin >> n;\n    int pos=0,neg=0;\n    for(int i=0;i<n;i++){ int x; cin>>x; if(x>0)pos++; else if(x<0)neg++; }\n    cout << pos << \" \" << neg << endl;\n    return 0;\n}",
+     "io": "#### 输入格式\n\n第一行一个正整数 n,之后 n 行每行一个整数。\n\n#### 输出格式\n\n输出两个整数(空格隔开):正数个数 和 负数个数。",
+     "analysis": "**思路**:边读边判断。对每个数,大于 0 计入正数,小于 0 计入负数,等于 0 跳过。\n**做法**:两个计数器 pos、neg 初始为 0,循环里用 if-else 分类累加。"
+    },
+    {
+     "title": "统计奇数和偶数",
+     "story": "小杨记录了 n 个正整数。请统计其中奇数有多少个、偶数有多少个。",
+     "solution": "#include<bits/stdc++.h>\nusing namespace std;\nint main(){\n    int n;\n    int a=0,b=0;\n    cin>>n;\n    for(int i=1;i<=n;i++){\n        int x;\n        cin>>x;\n        if(x%2 !=0)a++;\n        else b++;\n    }\n    cout<<a<<\" \"<<b<<\"\\n\";\n}",
+     "io": "#### 输入格式\n\n第一行一个正整数 n,之后 n 行每行一个正整数。\n\n#### 输出格式\n\n输出两个整数(空格隔开):奇数个数 和 偶数个数。",
+     "analysis": "**思路**:用 `x%2` 判断奇偶——余 1 是奇数,余 0 是偶数。\n**做法**:两个计数器,循环里 if 判断 x%2 累加。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "array",
+     "len": {
+      "min": 1,
+      "max_choices": [
+       10,
+       20,
+       50,
+       100
+      ]
+     },
+     "elem": {
+      "min": -100,
+      "max": 100
+     },
+     "lenLine": true
+    }
+   ],
+   "base_pid": "1-2024-12-prog-2",
+   "level": 1
+  },
+  "1-2024-03-prog-2": {
+   "base_title": "找因数",
+   "kps": [
+    "循环枚举",
+    "整除判断"
+   ],
+   "variants": [
+    {
+     "title": "数因数个数",
+     "story": "给定正整数 n,输出它共有多少个因数(能整除 n 的正整数,含 1 和它本身)。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ int n; cin>>n; int c=0; for(int i=1;i<=n;i++) if(n%i==0)c++; cout<<c<<endl; return 0; }",
+     "io": "#### 输入描述\n\n输入一个正整数 n。\n\n#### 输出描述\n\n输出 n 的因数个数。",
+     "analysis": "**思路**:枚举 1 到 n 的每个数 i,如果 `n%i==0` 说明 i 是 n 的因数,计数加一。\n**做法**:循环 + 整除判断 + 计数器。"
+    },
+    {
+     "title": "因数求和",
+     "story": "给定正整数 n,求它所有因数(含 1 和它本身)的和。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ int n; cin>>n; long long s=0; for(int i=1;i<=n;i++) if(n%i==0)s+=i; cout<<s<<endl; return 0; }",
+     "io": "#### 输入描述\n\n输入一个正整数 n。\n\n#### 输出描述\n\n输出 n 所有因数的和。",
+     "analysis": "**思路**:枚举 1 到 n,凡是能整除 n 的就累加进总和。\n**做法**:循环 + 整除判断 + 累加。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 1,
+     "max_choices": [
+      100,
+      1000,
+      10000,
+      100000
+     ]
+    }
+   ],
+   "base_pid": "1-2024-03-prog-2",
+   "level": 1
+  },
+  "1-2026-03-prog-2": {
+   "base_title": "数字替换",
+   "kps": [
+    "数位分离",
+    "循环",
+    "取余与整除"
+   ],
+   "variants": [
+    {
+     "title": "各位数字之和",
+     "story": "给定正整数 n,计算它各个数位上数字的和。例如 1234 → 1+2+3+4=10。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ long long n; cin>>n; int s=0; while(n>0){s+=n%10;n/=10;} cout<<s<<endl; return 0; }",
+     "io": "#### 输入描述\n\n输入一个正整数 n。\n\n#### 输出描述\n\n输出 n 各位数字之和。",
+     "analysis": "**思路**:数位分离。`n%10` 取出个位,`n/=10` 去掉个位,循环直到 n 变成 0。\n**做法**:while 循环,每次累加 n%10 再 n/=10。"
+    },
+    {
+     "title": "统计数字位数",
+     "story": "给定正整数 n,求它是几位数。例如 1234 是 4 位数。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ long long n; cin>>n; int c=0; while(n>0){c++;n/=10;} cout<<c<<endl; return 0; }",
+     "io": "#### 输入描述\n\n输入一个正整数 n。\n\n#### 输出描述\n\n输出 n 的位数。",
+     "analysis": "**思路**:不断去掉个位(`n/=10`)并计数,直到 n 为 0,计数就是位数。\n**做法**:while 循环,每次 n/=10 且计数器加一。"
+    },
+    {
+     "title": "求最大数位",
+     "story": "给定正整数 n,求它各个数位上最大的数字。例如 1925 → 9。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ long long n; cin>>n; int mx=0; while(n>0){ int d=n%10; if(d>mx)mx=d; n/=10;} cout<<mx<<endl; return 0; }",
+     "io": "#### 输入描述\n\n输入一个正整数 n。\n\n#### 输出描述\n\n输出 n 各位数字中最大的一个。",
+     "analysis": "**思路**:数位分离的同时打擂台求最大值。每取出一位就和当前最大值比较。\n**做法**:while 循环取每一位,if 更新最大值。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 1,
+     "max_choices": [
+      1000,
+      100000,
+      1000000,
+      1000000000
+     ]
+    }
+   ],
+   "base_pid": "1-2026-03-prog-2",
+   "level": 1
+  },
+  "1-2023-09-prog-2": {
+   "base_title": "小明的幸运数",
+   "kps": [
+    "循环枚举",
+    "取余判断",
+    "逻辑或"
+   ],
+   "variants": [
+    {
+     "title": "幸运数字统计",
+     "story": "能被 3 整除或能被 5 整除的数叫幸运数字。给定 n,统计 1~n 中幸运数字的个数。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ int n; cin>>n; int c=0; for(int i=1;i<=n;i++) if(i%3==0||i%5==0)c++; cout<<c<<endl; return 0; }",
+     "io": "#### 输入描述\n\n输入一个正整数 n。\n\n#### 输出描述\n\n输出 1~n 中幸运数字的个数。",
+     "analysis": "**思路**:枚举 1~n,用逻辑或判断'能被3整除 或 能被5整除'。\n**做法**:循环 + `i%3==0 || i%5==0` 判断 + 计数。"
+    },
+    {
+     "title": "倍数统计",
+     "story": "给定 n,统计 1~n 中既不是 2 的倍数、也不是 3 的倍数的数有多少个。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ int n; cin>>n; int c=0; for(int i=1;i<=n;i++) if(i%2!=0&&i%3!=0)c++; cout<<c<<endl; return 0; }",
+     "io": "#### 输入描述\n\n输入一个正整数 n。\n\n#### 输出描述\n\n输出符合条件的数的个数。",
+     "analysis": "**思路**:枚举 1~n,用逻辑与判断'不是2的倍数 且 不是3的倍数'。\n**做法**:循环 + `i%2!=0 && i%3!=0` 判断 + 计数。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 1,
+     "max_choices": [
+      100,
+      1000,
+      10000,
+      100000
+     ]
+    }
+   ],
+   "base_pid": "1-2023-09-prog-2",
+   "level": 1
+  },
+  "1-2026-03-prog-1": {
+   "base_title": "交朋友",
+   "kps": [
+    "打擂台求最值",
+    "绝对值",
+    "并列处理"
+   ],
+   "variants": [
+    {
+     "title": "最接近的数",
+     "story": "给定目标数 t 和 4 个整数,找出与 t 差距(绝对值)最小的那个数,若有多个取较小的。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ int t,x; cin>>t; int ans=0,mnd=1000000000; for(int i=0;i<4;i++){cin>>x; int d=x-t; if(d<0)d=-d; if(d<mnd||(d==mnd&&x<ans)){mnd=d;ans=x;}} cout<<ans<<endl; return 0; }",
+     "io": "#### 输入格式\n\n第 1 行目标数 t,之后 4 行各一个整数。\n\n#### 输出格式\n\n输出与 t 最接近的数(并列取较小)。",
+     "analysis": "**思路**:打擂台。对每个数算它与 t 的绝对差,维护最小差和对应的数;并列时取较小的数。\n**做法**:绝对值 + 比较更新。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": -50,
+     "max": 50
+    },
+    {
+     "kind": "int",
+     "min": -50,
+     "max": 50
+    },
+    {
+     "kind": "int",
+     "min": -50,
+     "max": 50
+    },
+    {
+     "kind": "int",
+     "min": -50,
+     "max": 50
+    },
+    {
+     "kind": "int",
+     "min": -50,
+     "max": 50
+    }
+   ],
+   "base_pid": "1-2026-03-prog-1",
+   "level": 1
+  }
+ }
+}

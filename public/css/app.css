@@ -33,6 +33,7 @@ button{font-family:inherit;cursor:pointer}
 .usermenu{display:flex;align-items:center;gap:12px;font-size:17px}
 .usermenu .uname{font-weight:600;color:var(--ink)}
 .usermenu .logout{color:var(--ink2);font-size:16.5px}.usermenu .logout:hover{color:var(--brand)}
+.usermenu #course-entry{font-weight:600;color:#34a853}.usermenu #course-entry.on,.usermenu #course-entry:hover{color:#178a3c}
 
 /* header */
 header{background:#fff;border-bottom:1px solid var(--line)}

@@ -84,6 +84,7 @@ CREATE TABLE IF NOT EXISTS teacher_prog(
   solution TEXT NOT NULL,
   time_limit REAL DEFAULT 1.0,
   samples TEXT,                       -- JSON [{in,out}]
+  analysis TEXT,                      -- 解析(改编题用)
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 CREATE TABLE IF NOT EXISTS teacher_prog_tc(
@@ -221,6 +222,7 @@ async function initDb() {
   try { await run("ALTER TABLE users ADD COLUMN avatar TEXT"); } catch (e) { /* 列已存在 */ }
   try { await run("ALTER TABLE users ADD COLUMN tier TEXT DEFAULT 'free'"); } catch (e) { /* 列已存在 */ }
   try { await run("ALTER TABLE users ADD COLUMN vip_until TEXT"); } catch (e) { /* 列已存在 */ }
+  try { await run("ALTER TABLE teacher_prog ADD COLUMN analysis TEXT"); } catch (e) { /* 列已存在 */ }
   const manifest = readManifest();
   const wantVer = String(manifest.version || 1);
   let schemaOld = false, curVer = null;
@@ -269,7 +271,7 @@ const Q = {
   setAvatar: (uid, av) => run('UPDATE users SET avatar = ? WHERE id = ?', [av, uid]),
   setDisabled: (uid, v) => run('UPDATE users SET disabled = ? WHERE id = ?', [v ? 1 : 0, uid]),
   // ---- 教师编程题 ----
-  createTeacherProg: (pid,level,title,statement,solution,tl,samples) => run('INSERT INTO teacher_prog(pid,level,title,statement,solution,time_limit,samples) VALUES(?,?,?,?,?,?,?)', [pid,level,title,statement,solution,tl,samples]),
+  createTeacherProg: (pid,level,title,statement,solution,tl,samples,analysis) => run('INSERT INTO teacher_prog(pid,level,title,statement,solution,time_limit,samples,analysis) VALUES(?,?,?,?,?,?,?,?)', [pid,level,title,statement,solution,tl,samples,analysis||null]),
   teacherProgByPid: (pid) => get('SELECT * FROM teacher_prog WHERE pid=?', [pid]),
   teacherProgByLevel: (level) => all('SELECT pid,level,title,time_limit,created_at FROM teacher_prog WHERE level=? ORDER BY created_at DESC', [level]),
   deleteTeacherProg: (pid) => run('DELETE FROM teacher_prog WHERE pid=?', [pid]),

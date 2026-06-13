@@ -112,8 +112,9 @@ let browsePage={};
 const sectionCache={};
 const C = ()=>document.getElementById('content');
 
-function setActiveTab(tab){ ['learn','browse','practice','recommend','mock','wrong','progress','rank','mark'].forEach(t=>{
-  const el=document.getElementById('tab-'+t); if(el) el.classList.toggle('on',t===tab); }); }
+function setActiveTab(tab){ ['learn','browse','practice','recommend','mock','prog','wrong','progress','rank','mark'].forEach(t=>{
+  const el=document.getElementById('tab-'+t); if(el) el.classList.toggle('on',t===tab); });
+  const ce=document.getElementById('course-entry'); if(ce) ce.classList.toggle('on',tab==='course'); }
 
 async function go(tab){
   setActiveTab(tab); document.getElementById('q').value='';
@@ -411,10 +412,11 @@ async function renderCourse(){
     asg=(await api('/api/my/assignments')).assignments;
   }catch(e){ C().innerHTML='<div class="empty">'+esc(e.message)+'</div>'; return; }
   if(!cls.length){
-    C().innerHTML=`<div class="learn-hero"><h2>📗 我的课程</h2><p>加入班级后，老师推送的课程资源和作业会出现在这里。</p></div>
-      <div class="card"><div class="card-h">加入班级</div><div class="card-b">
-      <p style="color:var(--ink2);margin-bottom:12px">选择你正在备考的级别加入对应班级（每级一个班）：</p>
-      <div class="opt-group">${[1,2,3,4,5,6,7,8].map(l=>`<span class="chip" onclick="joinClass(${l})">C++ ${l} 级班</span>`).join('')}</div>
+    C().innerHTML=`<div class="learn-hero"><h2>📗 我的课程</h2><p>老师把你加入班级后，这里会显示老师推送的课程资源和作业。</p></div>
+      <div class="card"><div class="card-b" style="text-align:center;padding:40px 20px">
+      <div style="font-size:48px;margin-bottom:12px">🎓</div>
+      <b style="font-size:17px">还没有加入任何班级</b>
+      <p style="color:var(--ink3);margin-top:10px;line-height:1.7">班级由老师统一管理。如果你在跟老师学习，<br>请联系老师把你加入对应级别的班级。</p>
       </div></div>`;
     return;
   }
@@ -439,8 +441,7 @@ async function renderCourse(){
   }).join('')||'<div class="empty" style="padding:20px">暂无资源</div>';
   C().innerHTML=`<div class="learn-hero"><h2>📗 我的课程</h2><p>已加入：${cls.map(l=>'C++ '+l+'级班').join('、')}</p></div>
     <div class="card"><div class="card-h">📝 作业</div><div class="card-b" style="padding:8px">${hwCards}</div></div>
-    <div class="card"><div class="card-h">📎 课程资源</div><div class="card-b" style="padding:8px">${resCards}</div></div>
-    <div class="card"><div class="card-b" style="text-align:center"><span style="font-size:13px;color:var(--ink3)">想加入其他级别的班？</span> ${[1,2,3,4,5,6,7,8].filter(l=>!cls.includes(l)).map(l=>`<a class="mini-join" onclick="joinClass(${l})">+${l}级</a>`).join(' ')||'<span style="color:var(--ink3);font-size:13px">已加入全部</span>'}</div></div>`;
+    <div class="card"><div class="card-h">📎 课程资源</div><div class="card-b" style="padding:8px">${resCards}</div></div>`;
   window.scrollTo(0,0);
 }
 async function joinClass(level){

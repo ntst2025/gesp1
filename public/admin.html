@@ -98,9 +98,10 @@ textarea{resize:vertical;line-height:1.6}
 @media(max-width:760px){.side{width:100%;position:static;display:flex;gap:6px;overflow:auto;padding:10px}.side a{white-space:nowrap;margin:0}.layout{flex-direction:column}}
 
 /* 用户管理增强样式 */
-.utbl td{vertical-align:middle}
+.utbl td{vertical-align:middle;max-width:260px;overflow:hidden;text-overflow:ellipsis}
+.utbl td:first-child{white-space:nowrap}
 .utbl tr.u-off{opacity:.5}
-.u-av{width:26px;height:26px;border-radius:50%;vertical-align:middle;margin-right:4px}
+.u-av{width:26px;height:26px;border-radius:50%;vertical-align:middle;margin-right:4px;object-fit:cover;flex:none}
 .u-av-e{font-size:18px;vertical-align:middle;margin-right:4px}
 .pill{display:inline-block;font-size:12px;font-weight:700;border-radius:99px;padding:2px 10px}
 .pill.vip{background:#fff3d6;color:#c98a12}
@@ -206,6 +207,14 @@ tr.clk{cursor:pointer}tr.clk:hover{background:#f6f8ff}
 /* 表格操作列按钮不换行挤压 */
 .tbl td .btn.sm{font-size:12.5px;padding:4px 10px}
 .u-acts,.t-ops{white-space:normal}
+
+.adapt-list{display:flex;flex-direction:column;gap:8px;max-height:50vh;overflow:auto}
+.adapt-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid #e6e8f0;border-radius:10px;background:#fafbfd}
+.adapt-row:hover{border-color:#aebef0;background:#f6f8ff}
+.adapt-info{flex:1;min-width:0}
+.adapt-info b{font-size:15px;color:#13182e}
+.radio-line{display:block;padding:5px 0;font-size:14px;cursor:pointer}.radio-line input{width:auto;margin-right:6px}
+.adapt-tip{background:#fff8ec;border:1px solid #f0d9a8;border-radius:8px;padding:10px 14px;font-size:13px;color:#8a6d3b;margin:10px 0}
 </style>
 <script src="/js/analytics.js" defer></script>
 </head>

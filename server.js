@@ -20,7 +20,7 @@ async function refreshTeacherProg() {
       TEACHER_PROG[q.pid] = {
         pid: q.pid, level: q.level, title: q.title, statement: q.statement,
         solution: q.solution, time_limit: q.time_limit,
-        samples: q.samples ? JSON.parse(q.samples) : [], teacher: true,
+        samples: q.samples ? JSON.parse(q.samples) : [], analysis: q.analysis || '', teacher: true,
       };
       const tcs = await Q.teacherTc(q.pid);
       TEACHER_TC[q.pid] = tcs.map(t => ({ name: 'tc' + t.ord, input: t.input, expected: t.expected }));
@@ -107,6 +107,11 @@ app.get('/api/admin/catalog', adminRequired, wrap(async (req, res) => {
 }));
 
 // 某节全部真题(含答案+解析)
+// 老师选题用:取某子节的题目(不需要用户收藏信息)
+app.get('/api/admin/sections/:sid/questions', adminRequired, wrap(async (req, res) => {
+  const rows = await Q.questionsBySection(req.params.sid);
+  res.json({ questions: rows.map(r => shapeQuestion(r, { withAnswer: false })) });
+}));
 app.get('/api/sections/:sid/questions', authRequired, wrap(async (req, res) => {
   const [rows, marks] = await Promise.all([
     Q.questionsBySection(req.params.sid), Q.bookmarkQids(req.user.id),
@@ -551,10 +556,8 @@ async function assignmentVisible(a, uid) {
 }
 // --- 学生端:加入/退出班级、我的课程与作业 ---
 app.post('/api/class/join', authRequired, wrap(async (req, res) => {
-  const level = Math.max(1, Math.min(8, Number((req.body || {}).level) || 0));
-  if (!level) return res.status(400).json({ error: '请选择 1-8 级' });
-  await Q.joinClass(level, req.user.id);
-  res.json({ ok: true, level });
+  // 班级由老师统一管理,学生不能自助加入
+  res.status(403).json({ error: '班级由老师统一管理，请联系老师加入' });
 }));
 app.post('/api/class/leave', authRequired, wrap(async (req, res) => {
   await Q.leaveClass(Number((req.body || {}).level) || 0, req.user.id);
@@ -760,6 +763,100 @@ app.post('/api/admin/classes/:level/remove-student', adminRequired, wrap(async (
 
 /* ===== 教师出编程题(A模式:标程自动产出输出) ===== */
 // 按变量规格生成一组输入(每行一个变量,支持 int 范围 / 数组)
+// ===== 基于真题改编出题 =====
+const ADAPT_CACHE = {};
+function adaptBook(level) {
+  const n = Number(level);
+  if (!ADAPT_CACHE[n]) {
+    try { ADAPT_CACHE[n] = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'prog', 'adapt', `level${n}.json`), 'utf8')); }
+    catch (e) { ADAPT_CACHE[n] = { level: n, adapts: {} }; }
+  }
+  return ADAPT_CACHE[n];
+}
+// 把 spec_template(含 max_choices) 实例化成一个具体 spec(随机选上界)
+function instantiateSpec(tpl, idx) {
+  return (tpl || []).map(v => {
+    if (v.kind === 'int') {
+      const max = Array.isArray(v.max_choices) ? v.max_choices[idx % v.max_choices.length] : v.max;
+      return { kind: 'int', min: v.min, max };
+    }
+    if (v.kind === 'array') {
+      const lmax = Array.isArray(v.len.max_choices) ? v.len.max_choices[idx % v.len.max_choices.length] : v.len.max;
+      return { kind: 'array', len: { min: v.len.min, max: lmax }, elem: v.elem, lenLine: v.lenLine !== false };
+    }
+    return v;
+  });
+}
+// 列出某级别可改编的真题(按考点)
+app.get('/api/admin/adapt/list', adminRequired, wrap(async (req, res) => {
+  const lv = Math.max(1, Math.min(8, Number(req.query.level) || 1));
+  const book = adaptBook(lv);
+  const list = Object.values(book.adapts).map(a => ({
+    base_pid: a.base_pid, base_title: a.base_title,
+    kps: a.kps || [], variant_count: (a.variants || []).length,
+    samples: (a.variants || []).map(v => v.title),
+  }));
+  res.json({ level: lv, list });
+}));
+// 批量生成 N 道同类变体并入库(每道独立验证+解析),可选直接发布给班级/学生
+app.post('/api/admin/adapt/generate', adminRequired, wrap(async (req, res) => {
+  const b = req.body || {};
+  const lv = Math.max(1, Math.min(8, Number(b.level) || 1));
+  const basePid = String(b.base_pid || '');
+  const count = Math.max(1, Math.min(10, Number(b.count) || 1));
+  const a = adaptBook(lv).adapts[basePid];
+  if (!a) return res.status(404).json({ error: '该真题暂无改编方案' });
+  if (!PROG.judgeAvailable()) return res.status(503).json({ error: '判题服务未就绪,无法生成题目' });
+  const variants = a.variants || [];
+  const norm = s => String(s || '').split('\n').map(l => l.replace(/[ \t\r]+$/, '')).join('\n').replace(/\n+$/, '');
+  const created = [];
+  for (let k = 0; k < count; k++) {
+    const v = variants[k % variants.length];
+    const solution = v.solution || a.solution;
+    const spec = instantiateSpec(a.spec_template || [], k);
+    // 题面 = 描述 + 输入输出格式
+    const statement = `#### 题目描述\n\n${v.story}\n\n${v.io || a.io || ''}`.trim();
+    const analysis = v.analysis || a.analysis || '';
+    // 生成测试输入并用标程产出输出
+    const inputs = spec.length ? genInputs(spec, 12) : [];
+    if (!inputs.length) continue;
+    let probe;
+    try { probe = await PROG.runOnce(solution, (inputs[0] || '') + '\n', 2); }
+    catch (e) { return res.status(502).json({ error: '判题服务暂时不可用:' + e.message }); }
+    if (probe.kind === 'CE') continue; // 标程编译失败,跳过(内部问题)
+    const samples = [], tcs = [];
+    for (const inp of inputs) {
+      const r = await PROG.runOnce(solution, inp + '\n', 2);
+      if (r.kind === 'OK') {
+        tcs.push({ input: inp + '\n', expected: r.output });
+        if (samples.length < 2) samples.push({ in: inp, out: norm(r.output) });
+      }
+    }
+    if (tcs.length < 2) continue;
+    // 第 k 道的标题(多道同场景时加序号)
+    const title = count > 1 && variants.length < count ? `${v.title}(${k + 1})` : v.title;
+    const pid = 't-' + lv + '-' + Date.now().toString(36) + '-' + k;
+    await Q.createTeacherProg(pid, lv, title, statement, solution, 1,
+      JSON.stringify(samples), analysis);
+    for (let i = 0; i < tcs.length; i++) await Q.addTeacherTc(pid, i + 1, tcs[i].input, tcs[i].expected);
+    created.push({ pid, title });
+  }
+  await refreshTeacherProg();
+  if (!created.length) return res.status(500).json({ error: '生成失败,请重试或换一道题' });
+
+  // 可选:直接发布成作业(target: 'class' 全班 或 ',id,id,' 指定学生)
+  const publish = b.publish || null;
+  let published = false;
+  if (publish && publish.target) {
+    const asgTitle = String(publish.title || (a.base_title + ' · 同类练习')).slice(0, 80);
+    const payload = { mc: [], prog: created.map(c => c.pid) };
+    await Q.createAssignment(lv, 'homework', asgTitle,
+      '基于真题「' + a.base_title + '」生成的同类练习,共 ' + created.length + ' 道编程题。',
+      JSON.stringify(payload), publish.due_at || null, publish.target);
+    published = true;
+  }
+  res.json({ ok: true, created, published });
+}));
 function genInputs(spec, count) {
   // spec: [{kind:'int',min,max} | {kind:'array',len:{min,max},elem:{min,max}, line:true}]
   const rndInt = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
