@@ -315,7 +315,7 @@ async function renderTeach(lv,tab){
   let cls;
   try{ cls=(await aapi('/api/admin/classes')).classes; }catch(e){ V().innerHTML='<div class="empty">'+e.message+'</div>'; return; }
   const lvTabs=cls.map(c=>`<span class="chip ${c.level===TEACH_LV?'on':''}" onclick="renderTeach(${c.level})">C++ ${c.level}级班 <b>${c.students}</b></span>`).join('');
-  const subTabs=[['assign','📚 布置教学'],['students','👥 班级学生'],['posted','📋 已布置'],['progbank','💻 我的题库'],['exam','📝 仿真模拟卷']]
+  const subTabs=[['assign','📚 布置教学'],['students','👥 班级学生'],['posted','📋 已布置'],['progbank','💻 我的题库']]
     .map(([k,label])=>`<a class="t-subtab ${TEACH_TAB===k?'on':''}" onclick="switchTeachTab('${k}')">${label}</a>`).join('');
   V().innerHTML=`<h1 class="page-h">🎓 授课管理</h1>
     <div class="lv-tabs">${lvTabs}</div>
@@ -323,7 +323,7 @@ async function renderTeach(lv,tab){
     <div id="t-panel"><div class="empty">加载中…</div></div>`;
   renderTeachPanel();
 }
-function switchTeachTab(k){ TEACH_TAB=k; document.querySelectorAll('.t-subtab').forEach(e=>e.classList.toggle('on',e.textContent.includes(({assign:'布置',students:'班级',posted:'已布置',progbank:'题库',exam:'模拟卷'})[k]))); renderTeachPanel(); }
+function switchTeachTab(k){ TEACH_TAB=k; document.querySelectorAll('.t-subtab').forEach(e=>e.classList.toggle('on',e.textContent.includes(({assign:'布置',students:'班级',posted:'已布置',progbank:'题库'})[k]))); renderTeachPanel(); }
 async function renderTeachPanel(){
   const p=document.getElementById('t-panel'); if(!p)return;
   p.innerHTML='<div class="empty">加载中…</div>';
@@ -331,7 +331,6 @@ async function renderTeachPanel(){
   if(TEACH_TAB==='students') return renderStudentsPanel(p);
   if(TEACH_TAB==='posted') return renderPostedPanel(p);
   if(TEACH_TAB==='progbank') return renderProgbankPanel(p);
-  if(TEACH_TAB==='exam') return renderExamPanel(p);
 }
 
 // —— 面板1:布置教学 ——
@@ -428,75 +427,7 @@ async function renderPostedPanel(p){
     <table class="tbl"><thead><tr><th>标题</th><th>类型</th><th>截止</th><th class="right">完成情况</th><th class="right">操作</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
-// —— 面板5:仿真模拟卷 ——
-async function renderExamPanel(p){
-  let ck; try{ ck=await aapi('/api/admin/exam/check?level='+TEACH_LV); }catch(e){ p.innerHTML='<div class="empty">'+e.message+'</div>'; return; }
-  const st=ck.struct;
-  let roster=TEACH_ROSTER; if(!roster||!roster.length){ try{ roster=(await aapi('/api/admin/classes/'+TEACH_LV+'/roster')).roster; TEACH_ROSTER=roster; }catch(e){ roster=[]; } }
-  const stuOpts=(roster||[]).map(s=>`<label class="toc-item"><input type="checkbox" class="exam-stu" value="${s.id}"> ${avA(s.avatar)} ${esc(s.username)}</label>`).join('')||'<span class="muted">该班暂无学生</span>';
-  if(!ck.ready){
-    p.innerHTML=`<div class="card"><div class="card-h">📝 仿真模拟卷 · C++ ${TEACH_LV}级</div><div class="card-b">
-      <div class="empty"><div class="big">🚧</div>本级别题库弹药不足，暂时无法自动组卷。<br>
-      <span style="font-size:13px;color:var(--ink3)">需要：${st.mc}道单选(现有${ck.bank_mc}) + ${st.tf}道判断(现有${ck.bank_tf}) + 编程改编方案(现有${ck.adapt_count})</span></div>
-      </div></div>`;
-    return;
-  }
-  p.innerHTML=`<div class="card"><div class="card-h">📝 一键生成仿真模拟卷 <span class="sub">C++ ${TEACH_LV}级</span></div><div class="card-b">
-    <div class="exam-struct">
-      <div class="exam-struct-t">📋 试卷结构（与真题一致）</div>
-      <table class="tbl" style="margin-top:6px"><tbody>
-        <tr><td>单选题</td><td class="right">${st.mc} 题 × ${st.mc_score} 分</td><td class="right mono">${st.mc*st.mc_score} 分</td></tr>
-        <tr><td>判断题</td><td class="right">${st.tf} 题 × ${st.tf_score} 分</td><td class="right mono">${st.tf*st.tf_score} 分</td></tr>
-        <tr><td>编程题</td><td class="right">${st.prog} 题 × ${st.prog_score} 分</td><td class="right mono">${st.prog*st.prog_score} 分</td></tr>
-        <tr style="font-weight:700"><td>合计</td><td class="right">${st.duration_min} 分钟</td><td class="right mono">100 分</td></tr>
-      </tbody></table>
-      <div class="muted" style="font-size:12px;margin-top:8px">客观题从本级模拟题库随机抽取，编程题由真题改编自动生成。每套都不一样。</div>
-    </div>
-    <div class="fg-col" style="margin:14px 0">
-      <label class="fl">生成几套？</label>
-      <input id="exam-sets" type="number" value="1" min="1" max="5" style="width:90px"> <span class="muted" style="font-size:12px">(1~5 套，每套题目不同)</span>
-    </div>
-    <div class="fg-col" style="margin:14px 0">
-      <label class="fl">发给谁？</label>
-      <div style="margin-top:4px">
-        <label class="radio-line"><input type="radio" name="exam-target" value="class" checked onchange="examToggleStu()"> 📢 全班</label>
-        <label class="radio-line"><input type="radio" name="exam-target" value="some" onchange="examToggleStu()"> 👤 指定学生</label>
-        <label class="radio-line"><input type="radio" name="exam-target" value="none" onchange="examToggleStu()"> 💾 只生成不发布</label>
-      </div>
-      <div id="exam-stu-box" class="t-toc" style="display:none;margin-top:8px">${stuOpts}</div>
-    </div>
-    <div class="fg-col" style="margin:14px 0">
-      <label class="fl">试卷名称</label>
-      <input id="exam-title" value="C++ ${TEACH_LV}级 仿真模拟卷" style="width:100%">
-      <label class="fl" style="margin-top:8px">截止时间(可空)</label>
-      <input id="exam-due" type="datetime-local" style="width:auto">
-    </div>
-    <div style="text-align:right"><button class="btn solid" onclick="examGenerate()">🎲 一键生成模拟卷</button></div>
-    <div id="exam-result" style="margin-top:10px"></div>
-  </div></div>`;
-}
-function examToggleStu(){
-  const v=document.querySelector('input[name=exam-target]:checked').value;
-  const box=document.getElementById('exam-stu-box');
-  if(box) box.style.display = v==='some' ? 'block' : 'none';
-}
-async function examGenerate(){
-  const sets=Math.max(1,Math.min(5,Number(document.getElementById('exam-sets').value)||1));
-  const target=document.querySelector('input[name=exam-target]:checked').value;
-  const out=document.getElementById('exam-result');
-  const body={level:TEACH_LV,sets,title:document.getElementById('exam-title').value.trim()||undefined};
-  const due=document.getElementById('exam-due').value; if(due) body.due_at=due;
-  if(target==='some'){
-    const ids=[...document.querySelectorAll('.exam-stu:checked')].map(c=>Number(c.value));
-    if(!ids.length){ out.innerHTML='<span style="color:#c0392b">请至少选一个学生</span>'; return; }
-    body.targetUsers=ids;
-  } else if(target==='none'){ body.onlyStore=true; }
-  out.innerHTML='<div class="muted">正在组卷('+sets+'套)，每套要生成2道编程题(编译标程+造数据)，约 '+(sets*20)+'~'+(sets*40)+' 秒，请稍候…</div>';
-  try{
-    const r=await aapi('/api/admin/exam/generate',{method:'POST',body:JSON.stringify(body)});
-    out.innerHTML=`<span style="color:#1f9d57">✅ 成功生成 ${r.count} 套模拟卷！${target==='none'?'(仅生成，未发布)':'已发布，学生可在「我的课程」开始考试。'}</span>`;
-  }catch(e){ out.innerHTML='<span style="color:#c0392b;white-space:pre-wrap">❌ '+esc(e.message)+'</span>'; }
-}
+// —— 面板4:我的题库 ——
 async function renderProgbankPanel(p){
   p.innerHTML=`<div class="card"><div class="card-h">💻 我出的编程题 <span class="sub">C++ ${TEACH_LV}级 · 布置作业时可选</span>
     <span style="float:right"><button class="btn sm" onclick="openAdaptPicker()">🎲 基于真题改编</button>

@@ -421,17 +421,7 @@ async function renderCourse(){
     return;
   }
   const homework=asg.filter(a=>a.type==='homework');
-  const exams=asg.filter(a=>a.type==='exam');
   const resources=asg.filter(a=>a.type==='resource');
-  const examCards=exams.map(a=>{
-    const done=a.status==='done';
-    const overdue=a.due_at && new Date(a.due_at)<new Date() && !done;
-    return `<div class="cs-item ${done?'done':''}" onclick="openExam(${a.id})">
-      <div class="cs-ic">📝</div>
-      <div class="cs-main"><div class="cs-t">${esc(a.title)}</div>
-        <div class="cs-meta">C++ ${a.level}级 · 满分100 · 仿真模拟卷${a.due_at?(' · 截止 '+a.due_at.slice(5,16).replace('T',' ')):''}${overdue?' <span class="cs-over">已逾期</span>':''}</div></div>
-      <div class="cs-st">${done?`<span class="cs-score">${a.score}分</span>`:'<span class="cs-todo">开始考试 ›</span>'}</div></div>`;
-  }).join('')||'<div class="empty" style="padding:20px">暂无模拟卷</div>';
   const hwCards=homework.map(a=>{
     const done=a.status==='done';
     const overdue=a.due_at && new Date(a.due_at)<new Date() && !done;
@@ -450,7 +440,6 @@ async function renderCourse(){
       <div class="cs-st">${done?'<span class="cs-read">已读</span>':'<span class="cs-todo">查看 ›</span>'}</div></div>`;
   }).join('')||'<div class="empty" style="padding:20px">暂无资源</div>';
   C().innerHTML=`<div class="learn-hero"><h2>📗 我的课程</h2><p>已加入：${cls.map(l=>'C++ '+l+'级班').join('、')}</p></div>
-    ${exams.length?`<div class="card"><div class="card-h">📝 仿真模拟卷</div><div class="card-b" style="padding:8px">${examCards}</div></div>`:''}
     <div class="card"><div class="card-h">📝 作业</div><div class="card-b" style="padding:8px">${hwCards}</div></div>
     <div class="card"><div class="card-h">📎 课程资源</div><div class="card-b" style="padding:8px">${resCards}</div></div>`;
   window.scrollTo(0,0);
@@ -460,147 +449,6 @@ async function joinClass(level){
   catch(e){ toast(e.message,'err'); }
 }
 let CUR_ASG=null;
-// ===== 仿真考试界面(参考 GESP 官方) =====
-let EXAM=null; // {id,paper,answers,timer,remain,curr}
-async function openExam(id){
-  let d; try{ d=await api('/api/my/exam/'+id); }catch(e){ toast(e.message); return; }
-  if(d.status==='done'){
-    // 已考过,直接看成绩(重新交卷拿详情)
-    return examShowResultPage(id);
-  }
-  EXAM={ id, paper:d, answers:{}, remain:d.duration_sec, curr:{type:'mc',idx:0} };
-  renderExamUI();
-  EXAM.timer=setInterval(examTick,1000);
-  window.scrollTo(0,0);
-}
-function examTick(){
-  if(!EXAM) return;
-  EXAM.remain--;
-  const el=document.getElementById('exam-timer');
-  if(el){ const m=Math.floor(EXAM.remain/60), s=EXAM.remain%60; el.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`; if(EXAM.remain<=300) el.classList.add('danger'); }
-  if(EXAM.remain<=0){ clearInterval(EXAM.timer); toast('时间到，自动交卷'); examSubmit(true); }
-}
-function examAnswered(qid){ return EXAM.answers[qid]!=null && EXAM.answers[qid]!==''; }
-function renderExamUI(){
-  const p=EXAM.paper;
-  // 题号导航(单选+判断+编程)
-  const navMc=p.mc.map((q,i)=>`<button class="exam-nav-btn ${examAnswered(q.qid)?'ans':''}" onclick="examGo('mc',${i})">${i+1}</button>`).join('');
-  const navTf=p.tf.map((q,i)=>`<button class="exam-nav-btn ${examAnswered(q.qid)?'ans':''}" onclick="examGo('tf',${i})">${i+1}</button>`).join('');
-  const navProg=p.prog.map((q,i)=>`<button class="exam-nav-btn prog" onclick="examGo('prog',${i})">编${i+1}</button>`).join('');
-  C().innerHTML=`
-    <div class="exam-top">
-      <div class="exam-top-l"><b>${esc(p.title)}</b><span class="exam-sub">满分100 · ${p.struct.mc}单选+${p.struct.tf}判断+${p.struct.prog}编程</span></div>
-      <div class="exam-top-r"><span class="exam-clock">⏱ <span id="exam-timer">--:--</span></span>
-        <button class="btn solid sm" onclick="examConfirmSubmit()">交卷</button></div>
-    </div>
-    <div class="exam-wrap">
-      <div class="exam-main" id="exam-q"></div>
-      <div class="exam-side">
-        <div class="exam-nav-sec"><div class="exam-nav-t">单选题</div><div class="exam-nav-grid">${navMc}</div></div>
-        <div class="exam-nav-sec"><div class="exam-nav-t">判断题</div><div class="exam-nav-grid">${navTf}</div></div>
-        <div class="exam-nav-sec"><div class="exam-nav-t">编程题</div><div class="exam-nav-grid">${navProg}</div></div>
-        <div class="exam-nav-tip">蓝色=已作答。编程题在「💻 编程题」栏提交，本卷自动计入是否通过。</div>
-      </div>
-    </div>`;
-  examGo(EXAM.curr.type, EXAM.curr.idx);
-  examTick();
-}
-function examGo(type,idx){
-  EXAM.curr={type,idx};
-  const p=EXAM.paper; const box=document.getElementById('exam-q');
-  // 高亮当前题号
-  document.querySelectorAll('.exam-nav-btn').forEach(b=>b.classList.remove('curr'));
-  if(type==='mc'){
-    const q=p.mc[idx];
-    const opts=Object.keys(q.options).map(k=>`<label class="exam-opt ${EXAM.answers[q.qid]===k?'sel':''}" onclick="examPick('${q.qid}','${k}')">
-      <span class="exam-opt-k">${k}</span><span class="exam-opt-v">${esc(q.options[k])}</span></label>`).join('');
-    box.innerHTML=`<div class="exam-qhead">单选题 ${idx+1} / ${p.mc.length} <span class="exam-qscore">${p.struct.mc_score}分</span></div>
-      <div class="exam-stem">${esc(q.stem)}</div>${q.code?`<pre class="ls-code"><code>${esc(q.code)}</code></pre>`:''}
-      <div class="exam-opts">${opts}</div>${examNavBtns()}`;
-  } else if(type==='tf'){
-    const q=p.tf[idx];
-    box.innerHTML=`<div class="exam-qhead">判断题 ${idx+1} / ${p.tf.length} <span class="exam-qscore">${p.struct.tf_score}分</span></div>
-      <div class="exam-stem">${esc(q.stem)}</div>${q.code?`<pre class="ls-code"><code>${esc(q.code)}</code></pre>`:''}
-      <div class="exam-opts">
-        <label class="exam-opt ${EXAM.answers[q.qid]==='√'?'sel':''}" onclick="examPick('${q.qid}','√')"><span class="exam-opt-k">√</span><span class="exam-opt-v">正确</span></label>
-        <label class="exam-opt ${EXAM.answers[q.qid]==='×'?'sel':''}" onclick="examPick('${q.qid}','×')"><span class="exam-opt-k">×</span><span class="exam-opt-v">错误</span></label>
-      </div>${examNavBtns()}`;
-  } else {
-    const q=p.prog[idx];
-    box.innerHTML=`<div class="exam-qhead">编程题 ${idx+1} / ${p.prog.length} <span class="exam-qscore">${p.struct.prog_score}分</span></div>
-      <div class="exam-stem"><b>${esc(q.title)}</b></div>
-      <article class="ls-body pg-stmt">${progMd(q.statement)}</article>
-      <div class="notice" style="margin-top:12px">⚠️ 编程题请到「<a onclick="examGotoProg('${q.pid}')" style="color:#185fa5;font-weight:700;cursor:pointer">💻 编程题作答</a>」提交代码评测。通过(AC)后本卷自动计入该题得分。考试期间可随时切回继续答客观题。</div>
-      ${examNavBtns()}`;
-  }
-}
-function examNavBtns(){
-  return `<div class="exam-pager">
-    <button class="btn sm" onclick="examPrev()">← 上一题</button>
-    <button class="btn sm solid" onclick="examNext()">下一题 →</button></div>`;
-}
-function examPick(qid,val){ EXAM.answers[qid]=val; examGo(EXAM.curr.type,EXAM.curr.idx);
-  // 更新题号导航的已答状态
-  renderExamNavState(); }
-function renderExamNavState(){
-  const p=EXAM.paper;
-  document.querySelectorAll('.exam-nav-sec')[0].querySelectorAll('.exam-nav-btn').forEach((b,i)=>b.classList.toggle('ans',examAnswered(p.mc[i].qid)));
-  document.querySelectorAll('.exam-nav-sec')[1].querySelectorAll('.exam-nav-btn').forEach((b,i)=>b.classList.toggle('ans',examAnswered(p.tf[i].qid)));
-}
-function examPrev(){ const seq=examSeq(); let i=examSeqIdx(); if(i>0){ const c=seq[i-1]; examGo(c.type,c.idx); } }
-function examNext(){ const seq=examSeq(); let i=examSeqIdx(); if(i<seq.length-1){ const c=seq[i+1]; examGo(c.type,c.idx); } }
-function examSeq(){ const p=EXAM.paper; return [...p.mc.map((_,i)=>({type:'mc',idx:i})),...p.tf.map((_,i)=>({type:'tf',idx:i})),...p.prog.map((_,i)=>({type:'prog',idx:i}))]; }
-function examSeqIdx(){ const seq=examSeq(); return seq.findIndex(s=>s.type===EXAM.curr.type&&s.idx===EXAM.curr.idx); }
-function examGotoProg(pid){
-  // 跳到编程题作答(保留考试状态,可返回)
-  renderProgQ(pid);
-}
-function examConfirmSubmit(){
-  const p=EXAM.paper;
-  const ansCount=p.mc.filter(q=>examAnswered(q.qid)).length + p.tf.filter(q=>examAnswered(q.qid)).length;
-  const totalObj=p.mc.length+p.tf.length;
-  if(!confirm(`确定交卷吗？\n客观题已答 ${ansCount}/${totalObj} 题。\n编程题按你在编程题栏的通过情况计分。\n交卷后不能修改。`)) return;
-  examSubmit(false);
-}
-async function examSubmit(auto){
-  if(!EXAM) return;
-  clearInterval(EXAM.timer);
-  const id=EXAM.id;
-  try{
-    const r=await api('/api/my/exam/'+id+'/submit',{method:'POST',body:JSON.stringify({answers:EXAM.answers})});
-    examShowResult(r);
-  }catch(e){ toast(e.message); }
-}
-function examShowResult(r){
-  EXAM=null;
-  const grade = r.total>=90?'优秀':r.total>=60?'及格':'继续加油';
-  const color = r.total>=90?'#1f9d57':r.total>=60?'#d48806':'#c0392b';
-  const mcWrong=r.detail.mc.filter(x=>!x.ok), tfWrong=r.detail.tf.filter(x=>!x.ok);
-  const wrongCards=[...mcWrong.map(x=>({...x,t:'单选'})),...tfWrong.map(x=>({...x,t:'判断'}))].map(x=>`
-    <div class="exam-rev-item">
-      <div class="exam-rev-h">${x.t}题 ${x.num} · <span style="color:#c0392b">你的答案 ${esc(x.your||'未答')}</span> · 正确 ${esc(x.answer)}</div>
-      <div class="exam-rev-stem">${esc(x.stem)}</div>
-      ${x.explanation?`<div class="exam-rev-exp">💡 ${esc(x.explanation)}</div>`:''}
-    </div>`).join('')||'<div class="muted" style="padding:12px">客观题全对，太棒了！</div>';
-  C().innerHTML=`
-    <div class="exam-result">
-      <div class="exam-score-circle" style="border-color:${color}">
-        <div class="exam-score-num" style="color:${color}">${r.total}</div><div class="exam-score-tot">/ 100</div></div>
-      <div class="exam-grade" style="color:${color}">${grade}</div>
-      <div class="exam-score-break">
-        <span>单选 ${r.mcScore}分</span><span>判断 ${r.tfScore}分</span><span>编程 ${r.progScore}分</span></div>
-      ${r.progScore<EXAM_PROG_FULL(r)?'<div class="notice" style="margin:14px 0">💡 编程题得分按「💻 编程题」栏的通过情况计算。如果你还没提交或未通过，可以去编程题栏继续完成后再回来查看。</div>':''}
-    </div>
-    <div class="card"><div class="card-h">❌ 错题回顾 + 解析</div><div class="card-b">${wrongCards}</div></div>
-    <div style="text-align:center;margin:20px 0"><button class="btn" onclick="go('course')">返回我的课程</button></div>`;
-  window.scrollTo(0,0);
-}
-function EXAM_PROG_FULL(r){ return r.detail.prog.length*25; }
-async function examShowResultPage(id){
-  try{ const r=await api('/api/my/exam/'+id+'/submit',{method:'POST',body:JSON.stringify({peek:true})});
-    examShowResult(r); return;
-  }catch(e){ toast(e.message); go('course'); }
-}
 async function openAssignment(id){
   C().innerHTML='<div class="empty"><div class="spinner"></div>加载中…</div>';
   let d; try{ d=await api('/api/my/assignments/'+id); }catch(e){ C().innerHTML='<div class="empty">'+esc(e.message)+'</div>'; return; }
