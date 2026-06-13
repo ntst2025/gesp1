@@ -70,8 +70,7 @@ app.get('/api/levels', authRequired, wrap(async (req, res) => {
 // 陷阱通关手册(公开,免费一级内容)
 app.get('/api/traps', (req, res) => { res.json(TRAPS || { categories: [] }); });
 
-app.get('/api/catalog', authRequired, wrap(async (req, res) => {
-  const lv = LV(req);
+async function buildCatalog(lv) {
   const [level, chapters, sections, chAgg, secAgg, papers] = await Promise.all([
     Q.levelById(lv), Q.chaptersByLevel(lv), Q.sectionsByLevel(lv),
     Q.countChaptersByLevel(lv), Q.countSectionsByLevel(lv), Q.distinctPapersByLevel(lv),
@@ -92,11 +91,19 @@ app.get('/api/catalog', authRequired, wrap(async (req, res) => {
              kp: secs.filter(s => s.count > 0).length, explained: N(cc.explained), sections: secs };
   });
   const total = out.reduce((a, c) => a + c.count, 0);
-  res.json({
+  return {
     level: lv, level_name: level ? level.name : ('C++ ' + lv + '级'),
     meta: { total, mc: out.reduce((a, c) => a + c.mc, 0), tf: out.reduce((a, c) => a + c.tf, 0), papers: papers.map(r => r.paper) },
     chapters: out,
-  });
+  };
+}
+app.get('/api/catalog', authRequired, wrap(async (req, res) => {
+  res.json(await buildCatalog(LV(req)));
+}));
+// 老师端用的目录(adminRequired 鉴权,供选题器调用)
+app.get('/api/admin/catalog', adminRequired, wrap(async (req, res) => {
+  const lv = Math.max(1, Math.min(8, Number(req.query.level) || 1));
+  res.json(await buildCatalog(lv));
 }));
 
 // 某节全部真题(含答案+解析)

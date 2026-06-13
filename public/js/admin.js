@@ -455,7 +455,7 @@ function teachTargetChange(){
 /* ---- 按真题章节快捷布置(可多选累加) ---- */
 async function openChapterPicker(){
   if(!PICKER_CAT||PICKER_CAT._lv!==TEACH_LV){
-    try{ PICKER_CAT=await aapi('/api/catalog?level='+TEACH_LV); PICKER_CAT._lv=TEACH_LV; }
+    try{ PICKER_CAT=await aapi('/api/admin/catalog?level='+TEACH_LV); PICKER_CAT._lv=TEACH_LV; }
     catch(e){ toast('该级别题库未就绪:'+e.message); return; }
   }
   const chs=PICKER_CAT.chapters.map(c=>{
@@ -484,7 +484,7 @@ function updateCpLive(){
 let PICKER_CAT=null;
 async function openPicker(){
   if(!PICKER_CAT||PICKER_CAT._lv!==TEACH_LV){
-    try{ PICKER_CAT=await aapi('/api/catalog?level='+TEACH_LV); PICKER_CAT._lv=TEACH_LV; }
+    try{ PICKER_CAT=await aapi('/api/admin/catalog?level='+TEACH_LV); PICKER_CAT._lv=TEACH_LV; }
     catch(e){ toast('该级别题库未就绪:'+e.message); return; }
   }
   const chs=PICKER_CAT.chapters.map(c=>{

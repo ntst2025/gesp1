@@ -683,14 +683,14 @@ th.num,td.num{width:80px;white-space:nowrap}
 
 /* 真题子节讲义弹窗 */
 .sl-mask{display:none;position:fixed;inset:0;background:rgba(19,24,46,.5);z-index:300;align-items:center;justify-content:center;padding:0}
-.sl-box{background:#fff;border-radius:0;max-width:900px;width:100%;height:100vh;max-height:100vh;overflow:auto;position:relative;padding:0}
-@media(min-width:940px){.sl-box{border-radius:16px;height:94vh;max-height:94vh;margin:3vh 0}}
+.sl-box{background:#fff;border-radius:0;max-width:1080px;width:100%;height:100vh;max-height:100vh;overflow:auto;position:relative;padding:0}
+@media(min-width:1120px){.sl-box{border-radius:16px;height:97vh;max-height:97vh;margin:1.5vh 0}}
 .sl-x{position:absolute;top:14px;right:18px;font-size:26px;color:#9aa0b4;cursor:pointer;z-index:2;line-height:1}
 .sl-load{padding:60px;text-align:center;color:var(--ink3)}
 .sl-head{padding:24px 28px 14px;border-bottom:1px solid var(--line2);position:sticky;top:0;background:#fff;border-radius:18px 18px 0 0}
 .sl-tag{display:inline-block;background:#eaf1fe;color:#185fa5;font-size:12px;font-weight:700;border-radius:99px;padding:3px 12px;margin-bottom:8px}
-.sl-head h2{font-size:21px;color:var(--ink);margin:0}
-.sl-body{padding:18px 28px 8px;line-height:1.78}
+.sl-head h2{font-size:24px;color:var(--ink);margin:0}
+.sl-body{padding:24px 40px 12px;line-height:1.85;font-size:16px}
 .sl-foot{padding:14px 28px 24px;text-align:center;position:sticky;bottom:0;background:#fff}
 .sl-empty{padding:40px 28px;text-align:center}
 .sl-empty .big{font-size:48px;margin-bottom:12px}
@@ -699,3 +699,7 @@ th.num,td.num{width:80px;white-space:nowrap}
 
 /* 讲义示意图 */
 .ls-svg{display:block;width:100%;max-width:640px;margin:18px auto;border:1px solid var(--line2);border-radius:12px;background:#fff;padding:6px}
+
+/* 全屏讲义弹窗内的示意图放大 */
+.sl-body .ls-svg{max-width:760px}
+.sl-body .ls-code{font-size:14.5px}
