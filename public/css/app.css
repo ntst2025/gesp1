@@ -704,3 +704,46 @@ th.num,td.num{width:80px;white-space:nowrap}
 /* 全屏讲义弹窗内的示意图放大 */
 .sl-body .ls-svg{max-width:760px}
 .sl-body .ls-code{font-size:14.5px}
+
+/* ===== 仿真考试界面 ===== */
+.exam-top{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;background:#fff;border-bottom:2px solid var(--line);padding:12px 18px;margin:-8px -8px 14px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.exam-top-l b{font-size:16px;color:var(--ink)}
+.exam-sub{display:block;font-size:12px;color:var(--ink3);margin-top:2px}
+.exam-top-r{display:flex;align-items:center;gap:14px}
+.exam-clock{font-size:18px;font-weight:700;color:var(--ink);font-family:monospace}
+#exam-timer.danger{color:#c0392b;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.5}}
+.exam-wrap{display:flex;gap:16px;align-items:flex-start}
+.exam-main{flex:1;min-width:0}
+.exam-side{width:220px;flex:none;position:sticky;top:80px;background:#fafbfd;border:1px solid var(--line);border-radius:12px;padding:14px}
+.exam-nav-sec{margin-bottom:14px}
+.exam-nav-t{font-size:13px;font-weight:700;color:var(--ink2);margin-bottom:6px}
+.exam-nav-grid{display:flex;flex-wrap:wrap;gap:6px}
+.exam-nav-btn{width:34px;height:34px;border:1px solid var(--line2);background:#fff;border-radius:7px;font-size:13px;cursor:pointer;color:var(--ink2)}
+.exam-nav-btn.prog{width:auto;padding:0 8px}
+.exam-nav-btn.ans{background:#e8f0fe;border-color:#4285f4;color:#185fa5;font-weight:700}
+.exam-nav-btn.curr{outline:2px solid #ef3b57;outline-offset:1px}
+.exam-nav-tip{font-size:11px;color:var(--ink3);line-height:1.6;margin-top:8px}
+.exam-qhead{font-size:14px;font-weight:700;color:var(--ink2);margin-bottom:10px;display:flex;justify-content:space-between}
+.exam-qscore{color:#ef3b57;font-size:13px}
+.exam-stem{font-size:16px;line-height:1.7;color:var(--ink);margin-bottom:12px}
+.exam-opts{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.exam-opt{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1.5px solid var(--line2);border-radius:10px;cursor:pointer;transition:.15s}
+.exam-opt:hover{border-color:#aebef0;background:#f6f8ff}
+.exam-opt.sel{border-color:#4285f4;background:#e8f0fe}
+.exam-opt-k{width:28px;height:28px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#eef0f6;font-weight:700;font-size:14px}
+.exam-opt.sel .exam-opt-k{background:#4285f4;color:#fff}
+.exam-opt-v{font-size:15px;line-height:1.5}
+.exam-pager{display:flex;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+/* 成绩页 */
+.exam-result{text-align:center;padding:30px 0}
+.exam-score-circle{width:160px;height:160px;margin:0 auto;border:8px solid;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.exam-score-num{font-size:52px;font-weight:800;line-height:1}
+.exam-score-tot{font-size:15px;color:var(--ink3)}
+.exam-grade{font-size:22px;font-weight:800;margin:16px 0 10px}
+.exam-score-break{display:flex;gap:18px;justify-content:center;font-size:14px;color:var(--ink2)}
+.exam-rev-item{padding:14px;border:1px solid var(--line);border-radius:10px;margin-bottom:10px}
+.exam-rev-h{font-size:13px;font-weight:700;color:var(--ink2);margin-bottom:6px}
+.exam-rev-stem{font-size:14px;line-height:1.6;margin-bottom:6px}
+.exam-rev-exp{font-size:13px;color:var(--ink2);background:#f8f9fc;border-radius:8px;padding:8px 12px;line-height:1.6}
+@media(max-width:760px){.exam-wrap{flex-direction:column}.exam-side{width:100%;position:static}}

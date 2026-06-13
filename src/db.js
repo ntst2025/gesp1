@@ -294,6 +294,7 @@ const Q = {
   listAssignments: (level) => all('SELECT * FROM assignments WHERE level=? ORDER BY id DESC', [level]),
   assignmentById: (id) => get('SELECT * FROM assignments WHERE id=?', [id]),
   deleteAssignment: (id) => run('DELETE FROM assignments WHERE id=?', [id]),
+  setAssignmentTarget: (id, target, due) => run('UPDATE assignments SET target=?, due_at=? WHERE id=?', [target, due, id]),
   // 学生侧:本人所在班级的作业/资源 + 自己的完成状态
   myAssignments: (uid) => all(`SELECT a.*, p.status, p.score, p.comment, p.updated_at done_at
     FROM assignments a
@@ -304,6 +305,7 @@ const Q = {
   setAssignmentProgress: (aid,uid,status,score,detail) => run(`INSERT INTO assignment_progress(assignment_id,user_id,status,score,detail,updated_at)
     VALUES(?,?,?,?,?,datetime('now'))
     ON CONFLICT(assignment_id,user_id) DO UPDATE SET status=excluded.status,score=excluded.score,detail=excluded.detail,updated_at=datetime('now')`, [aid,uid,status,score,detail]),
+  assignmentProgress: (aid,uid) => get('SELECT status,score,detail FROM assignment_progress WHERE assignment_id=? AND user_id=? AND status=?', [aid,uid,'done']),
   setComment: (aid,uid,comment) => run(`INSERT INTO assignment_progress(assignment_id,user_id,status,comment,updated_at)
     VALUES(?,?,'assigned',?,datetime('now'))
     ON CONFLICT(assignment_id,user_id) DO UPDATE SET comment=excluded.comment,updated_at=datetime('now')`, [aid,uid,comment]),
@@ -526,4 +528,45 @@ async function adminStats() {
   };
 }
 
-module.exports = { client, Q, initDb, reseedAll, loadAllLevels, questionsByQids, shapeQuestion, deleteUserCascade, adminStats, applyAllOverrides, DB_PATH };
+// ===== 数据备份:导出所有用户数据 =====
+// 只导用户产生的数据(不导可重建的题库内容),含恢复所需的全部表
+const BACKUP_TABLES = [
+  'users', 'attempts', 'wrongbook', 'bookmarks',
+  'class_members', 'assignments', 'assignment_progress',
+  'teacher_prog', 'teacher_prog_tc', 'prog_submissions',
+  'question_reports', 'mock_results', 'question_overrides',
+  'redeem_codes', 'baidu_push', 'meta',
+];
+async function dumpUserData() {
+  const out = { _meta: { version: 1, exported_at: new Date().toISOString() }, tables: {} };
+  for (const t of BACKUP_TABLES) {
+    try {
+      const r = await client.execute({ sql: `SELECT * FROM ${t}`, args: [] });
+      out.tables[t] = r.rows.map(row => ({ ...row }));
+    } catch (e) { out.tables[t] = []; }
+  }
+  return out;
+}
+// 从备份恢复(覆盖式:清空这些表再写回)。危险操作,仅管理员可用。
+async function restoreUserData(dump) {
+  if (!dump || !dump.tables) throw new Error('备份文件格式不正确');
+  const restored = {};
+  for (const t of BACKUP_TABLES) {
+    const rows = dump.tables[t];
+    if (!Array.isArray(rows)) continue;
+    await client.execute({ sql: `DELETE FROM ${t}`, args: [] });
+    for (const row of rows) {
+      const cols = Object.keys(row);
+      if (!cols.length) continue;
+      const placeholders = cols.map(() => '?').join(',');
+      await client.execute({
+        sql: `INSERT INTO ${t}(${cols.join(',')}) VALUES(${placeholders})`,
+        args: cols.map(c => row[c]),
+      });
+    }
+    restored[t] = rows.length;
+  }
+  return restored;
+}
+
+module.exports = { client, Q, initDb, reseedAll, loadAllLevels, questionsByQids, shapeQuestion, deleteUserCascade, adminStats, applyAllOverrides, DB_PATH, dumpUserData, restoreUserData };

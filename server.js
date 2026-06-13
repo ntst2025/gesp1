@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
-const { Q, initDb, questionsByQids, shapeQuestion, deleteUserCascade, adminStats } = require('./src/db');
+const { Q, initDb, questionsByQids, shapeQuestion, deleteUserCascade, adminStats, dumpUserData, restoreUserData } = require('./src/db');
 const { register, login, authRequired, signAdminToken, adminRequired } = require('./src/auth');
 const { renderQuestionPage } = require('./src/ssr');
 const PROG = require('./src/prog');
@@ -30,6 +30,18 @@ async function refreshTeacherProg() {
 PROG.setTeacherProgSource(pid => TEACHER_PROG[pid] || null, pid => TEACHER_TC[pid] || []);
 let TRAPS = null;
 try { TRAPS = require('./data/traps.json'); } catch (e) { TRAPS = { categories: [] }; }
+
+// 自创模拟题库(用于仿真组卷),按级别加载
+const MOCK_BANK = {};
+function loadMockBank() {
+  for (const lv of [1,2,3,4,5,6,7,8]) {
+    try {
+      const d = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'mock', `level${lv}.json`), 'utf8'));
+      MOCK_BANK[lv] = d.questions || [];
+    } catch (e) { MOCK_BANK[lv] = []; }
+  }
+}
+loadMockBank();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -397,6 +409,31 @@ app.post('/api/admin/login', wrap(async (req, res) => {
   res.json({ token: signAdminToken() });
 }));
 app.get('/api/admin/stats', adminRequired, wrap(async (req, res) => res.json(await adminStats())));
+// ===== 数据备份 =====
+// 一键导出全部用户数据为 JSON(管理员专用)
+app.get('/api/admin/backup', adminRequired, wrap(async (req, res) => {
+  const dump = await dumpUserData();
+  const stamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-');
+  const counts = Object.fromEntries(Object.entries(dump.tables).map(([t, rows]) => [t, rows.length]));
+  res.setHeader('Content-Type', 'application/json; charset=utf-8');
+  res.setHeader('Content-Disposition', `attachment; filename="gesppass-backup-${stamp}.json"`);
+  res.setHeader('X-Backup-Counts', JSON.stringify(counts));
+  res.send(JSON.stringify(dump));
+}));
+// 查看备份概要(各表当前行数,显示给老师看"现在有多少数据")
+app.get('/api/admin/backup/summary', adminRequired, wrap(async (req, res) => {
+  const dump = await dumpUserData();
+  const counts = Object.entries(dump.tables).map(([t, rows]) => ({ table: t, rows: rows.length }));
+  res.json({ counts, total: counts.reduce((a, c) => a + c.rows, 0), exported_at: dump._meta.exported_at });
+}));
+// 从备份恢复(覆盖式,危险操作,需二次确认)。单独放宽 body 上限(备份文件较大)
+app.post('/api/admin/restore', adminRequired, express.json({ limit: '50mb' }), wrap(async (req, res) => {
+  const dump = (req.body || {}).dump;
+  if ((req.body || {}).confirm !== 'RESTORE') return res.status(400).json({ error: '缺少确认标记' });
+  if (!dump || !dump.tables) return res.status(400).json({ error: '备份文件无效' });
+  const restored = await restoreUserData(dump);
+  res.json({ ok: true, restored });
+}));
 
 // --- 题目 ---
 app.get('/api/admin/questions', adminRequired, wrap(async (req, res) => {
@@ -568,12 +605,71 @@ app.get('/api/my/classes', authRequired, wrap(async (req, res) => {
 }));
 app.get('/api/my/assignments', authRequired, wrap(async (req, res) => {
   const rows = await Q.myAssignments(req.user.id);
-  res.json({ assignments: rows.map(a => ({
-    id: a.id, level: a.level, type: a.type, title: a.title, body: a.body,
-    payload: a.payload ? JSON.parse(a.payload) : null,
-    due_at: a.due_at, created_at: a.created_at,
-    status: a.status || 'assigned', score: a.score, comment: a.comment, done_at: a.done_at,
-  })) });
+  res.json({ assignments: rows.map(a => {
+    // exam 类型 payload 含答案,列表里不下发完整内容,只给概要
+    let payload = a.payload ? JSON.parse(a.payload) : null;
+    if (a.type === 'exam' && payload) payload = { struct: payload.struct, isExam: true };
+    return {
+      id: a.id, level: a.level, type: a.type, title: a.title, body: a.body,
+      payload, due_at: a.due_at, created_at: a.created_at,
+      status: a.status || 'assigned', score: a.score, comment: a.comment, done_at: a.done_at,
+    };
+  }) });
+}));
+// 学生开始/继续考试:取卷(不含答案)
+app.get('/api/my/exam/:id', authRequired, wrap(async (req, res) => {
+  const a = await Q.assignmentById(Number(req.params.id));
+  if (!a || a.type !== 'exam') return res.status(404).json({ error: '试卷不存在' });
+  if (!(await assignmentVisible(a, req.user.id))) return res.status(403).json({ error: '无权访问该试卷' });
+  const p = JSON.parse(a.payload);
+  const prog = (p.prog || []).map(it => { const q = PROG.progByPid(it.pid); return { pid: it.pid, title: it.title, statement: q ? q.statement : '', samples: q ? q.samples : [], time_limit: q ? q.time_limit : 1 }; });
+  res.json({
+    id: a.id, level: a.level, title: a.title, struct: p.struct,
+    duration_sec: p.struct.duration_min * 60,
+    mc: p.mc.map(q => ({ qid: q.qid, num: q.num, stem: q.stem, code: q.code, options: q.options })),
+    tf: p.tf.map(q => ({ qid: q.qid, num: q.num, stem: q.stem, code: q.code })),
+    prog,
+    status: (await Q.assignmentProgress(a.id, req.user.id)) ? 'done' : 'assigned',
+  });
+}));
+// 学生交卷:客观题对答案,编程题按是否AC,合分
+app.post('/api/my/exam/:id/submit', authRequired, wrap(async (req, res) => {
+  const a = await Q.assignmentById(Number(req.params.id));
+  if (!a || a.type !== 'exam') return res.status(404).json({ error: '试卷不存在' });
+  if (!(await assignmentVisible(a, req.user.id))) return res.status(403).json({ error: '无权访问该试卷' });
+  const p = JSON.parse(a.payload);
+  const st = p.struct;
+  // 已交过则返回已存成绩,不再覆盖(避免重复进入清零)
+  const prev = await Q.assignmentProgress(a.id, req.user.id);
+  if (prev && req.body && req.body.peek) {
+    const d = prev.detail ? JSON.parse(prev.detail) : { mc: [], tf: [], prog: [] };
+    const mcScore = d.mc.filter(x => x.ok).length * st.mc_score;
+    const tfScore = d.tf.filter(x => x.ok).length * st.tf_score;
+    const progScore = d.prog.filter(x => x.ok).length * st.prog_score;
+    return res.json({ ok: true, total: prev.score, mcScore, tfScore, progScore, detail: d, done: true });
+  }
+  const ans = (req.body || {}).answers || {};
+  let mcScore = 0, tfScore = 0, progScore = 0;
+  const detail = { mc: [], tf: [], prog: [] };
+  for (const q of p.mc) {
+    const ok = String(ans[q.qid] || '').trim() === String(q.answer).trim();
+    if (ok) mcScore += st.mc_score;
+    detail.mc.push({ qid: q.qid, num: q.num, ok, your: ans[q.qid] || '', answer: q.answer, stem: q.stem, code: q.code, options: q.options, explanation: q.explanation });
+  }
+  for (const q of p.tf) {
+    const ok = String(ans[q.qid] || '').trim() === String(q.answer).trim();
+    if (ok) tfScore += st.tf_score;
+    detail.tf.push({ qid: q.qid, num: q.num, ok, your: ans[q.qid] || '', answer: q.answer, stem: q.stem, explanation: q.explanation });
+  }
+  for (const it of (p.prog || [])) {
+    const subs = await Q.mySubmissions(req.user.id, it.pid);
+    const ac = subs.some(x => x.verdict === 'AC');
+    if (ac) progScore += st.prog_score;
+    detail.prog.push({ pid: it.pid, title: it.title, ok: ac });
+  }
+  const total = mcScore + tfScore + progScore;
+  await Q.setAssignmentProgress(a.id, req.user.id, 'done', total, JSON.stringify(detail));
+  res.json({ ok: true, total, mcScore, tfScore, progScore, detail });
 }));
 // 学生取作业详情(题目内容,不含答案)
 app.get('/api/my/assignments/:id', authRequired, wrap(async (req, res) => {
@@ -691,6 +787,17 @@ app.post('/api/admin/classes/:level/assign', adminRequired, wrap(async (req, res
     JSON.stringify(payload), b.due_at || null, target);
   res.json({ ok: true, count: type === 'homework' ? (payload.mc.length + payload.prog.length) : null });
 }));
+// 补发:把未发布(或已发布)的作业/模拟卷发给班级或指定学生
+app.post('/api/admin/assignments/:id/publish', adminRequired, wrap(async (req, res) => {
+  const a = await Q.assignmentById(Number(req.params.id));
+  if (!a) return res.status(404).json({ error: '不存在' });
+  const b = req.body || {};
+  let target = 'class';
+  if (Array.isArray(b.targetUsers) && b.targetUsers.length)
+    target = ',' + b.targetUsers.map(Number).filter(Boolean).join(',') + ',';
+  await Q.setAssignmentTarget(a.id, target, b.due_at || a.due_at || null);
+  res.json({ ok: true });
+}));
 app.delete('/api/admin/assignments/:id', adminRequired, wrap(async (req, res) => {
   await Q.deleteAssignment(Number(req.params.id));
   res.json({ ok: true });
@@ -763,6 +870,104 @@ app.post('/api/admin/classes/:level/remove-student', adminRequired, wrap(async (
 
 /* ===== 教师出编程题(A模式:标程自动产出输出) ===== */
 // 按变量规格生成一组输入(每行一个变量,支持 int 范围 / 数组)
+// ===== 仿真模拟卷:一键组卷 + 发布 =====
+// 各级试卷结构(题型/题量/分值/时长),与真题一致
+const EXAM_STRUCT = {
+  1: { mc: 15, tf: 10, prog: 2, mc_score: 2, tf_score: 2, prog_score: 25, duration_min: 90 },
+  2: { mc: 15, tf: 10, prog: 2, mc_score: 2, tf_score: 2, prog_score: 25, duration_min: 90 },
+  3: { mc: 15, tf: 10, prog: 2, mc_score: 2, tf_score: 2, prog_score: 25, duration_min: 90 },
+  4: { mc: 15, tf: 10, prog: 2, mc_score: 2, tf_score: 2, prog_score: 25, duration_min: 90 },
+  5: { mc: 15, tf: 10, prog: 2, mc_score: 2, tf_score: 2, prog_score: 25, duration_min: 120 },
+  6: { mc: 15, tf: 10, prog: 2, mc_score: 2, tf_score: 2, prog_score: 25, duration_min: 120 },
+  7: { mc: 15, tf: 10, prog: 2, mc_score: 2, tf_score: 2, prog_score: 25, duration_min: 120 },
+  8: { mc: 15, tf: 10, prog: 2, mc_score: 2, tf_score: 2, prog_score: 25, duration_min: 120 },
+};
+function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+// 查看某级别能不能组卷(弹药是否够)
+app.get('/api/admin/exam/check', adminRequired, wrap(async (req, res) => {
+  const lv = Math.max(1, Math.min(8, Number(req.query.level) || 1));
+  const st = EXAM_STRUCT[lv];
+  const bank = MOCK_BANK[lv] || [];
+  const mc = bank.filter(q => q.type === 'mc').length;
+  const tf = bank.filter(q => q.type === 'tf').length;
+  const adaptCount = Object.keys(adaptBook(lv).adapts).length;
+  const ready = mc >= st.mc && tf >= st.tf && adaptCount >= 1;
+  res.json({ level: lv, struct: st, bank_mc: mc, bank_tf: tf, adapt_count: adaptCount, ready });
+}));
+
+// 一键组卷:生成 N 套仿真卷,可发给班级/学生
+app.post('/api/admin/exam/generate', adminRequired, wrap(async (req, res) => {
+  const b = req.body || {};
+  const lv = Math.max(1, Math.min(8, Number(b.level) || 1));
+  const sets = Math.max(1, Math.min(5, Number(b.sets) || 1));
+  const st = EXAM_STRUCT[lv];
+  const bank = MOCK_BANK[lv] || [];
+  const mcPool = bank.filter(q => q.type === 'mc');
+  const tfPool = bank.filter(q => q.type === 'tf');
+  if (mcPool.length < st.mc || tfPool.length < st.tf)
+    return res.status(400).json({ error: `本级别模拟题不足(需${st.mc}单选+${st.tf}判断)，暂无法组卷` });
+  const adaptKeys = Object.keys(adaptBook(lv).adapts);
+  if (!adaptKeys.length) return res.status(400).json({ error: '本级别暂无编程题改编方案，无法组卷' });
+  if (!PROG.judgeAvailable()) return res.status(503).json({ error: '判题服务未就绪，无法生成编程题' });
+
+  // 发布目标
+  let target = 'class';
+  if (Array.isArray(b.targetUsers) && b.targetUsers.length)
+    target = ',' + b.targetUsers.map(Number).filter(Boolean).join(',') + ',';
+  const onlyStore = b.onlyStore === true; // 只存不发
+
+  const norm = s => String(s || '').split('\n').map(l => l.replace(/[ \t\r]+$/, '')).join('\n').replace(/\n+$/, '');
+  const created = [];
+  for (let s = 0; s < sets; s++) {
+    // 抽客观题
+    const mcQ = shuffle(mcPool).slice(0, st.mc);
+    const tfQ = shuffle(tfPool).slice(0, st.tf);
+    // 生成编程题:随机选 2 个不同考点,各生成 1 道(入库为教师题)
+    const pickKeys = shuffle(adaptKeys).slice(0, st.prog);
+    const progItems = [];
+    for (const bp of pickKeys) {
+      const a = adaptBook(lv).adapts[bp];
+      const v = a.variants[Math.floor(Math.random() * a.variants.length)];
+      const solution = v.solution || a.solution;
+      const spec = instantiateSpec(a.spec_template || [], Math.floor(Math.random() * 4));
+      const inputs = spec.length ? genInputs(spec, 12) : [];
+      if (!inputs.length) continue;
+      const samples = [], tcs = [];
+      let probe;
+      try { probe = await PROG.runOnce(solution, (inputs[0] || '') + '\n', 2); }
+      catch (e) { return res.status(502).json({ error: '判题服务暂时不可用:' + e.message }); }
+      if (probe.kind === 'CE') continue;
+      for (const inp of inputs) {
+        const r = await PROG.runOnce(solution, inp + '\n', 2);
+        if (r.kind === 'OK') { tcs.push({ input: inp + '\n', expected: r.output }); if (samples.length < 2) samples.push({ in: inp, out: norm(r.output) }); }
+      }
+      if (tcs.length < 2) continue;
+      const statement = `#### 题目描述\n\n${v.story}\n\n${v.io || a.io || ''}`.trim();
+      const pid = 't-' + lv + '-' + Date.now().toString(36) + '-e' + s + '-' + progItems.length;
+      await Q.createTeacherProg(pid, lv, v.title, statement, solution, 1, JSON.stringify(samples), v.analysis || a.analysis || '');
+      for (let i = 0; i < tcs.length; i++) await Q.addTeacherTc(pid, i + 1, tcs[i].input, tcs[i].expected);
+      progItems.push({ pid, title: v.title });
+    }
+    if (progItems.length < st.prog) return res.status(500).json({ error: '编程题生成失败，请重试' });
+
+    // 组装卷子快照(客观题题面+答案存进 payload,自成一体)
+    const paper = {
+      struct: st,
+      mc: mcQ.map((q, i) => ({ qid: q.qid, num: i + 1, stem: q.stem, code: q.code || '', options: q.options, answer: q.answer, explanation: q.explanation || '' })),
+      tf: tfQ.map((q, i) => ({ qid: q.qid, num: i + 1, stem: q.stem, code: q.code || '', answer: q.answer, explanation: q.explanation || '' })),
+      prog: progItems,
+    };
+    const title = `${(b.title || ('C++ ' + lv + '级 仿真模拟卷'))}${sets > 1 ? ('（第' + (s + 1) + '套）') : ''}`.slice(0, 80);
+    await refreshTeacherProg();
+    await Q.createAssignment(lv, 'exam', title,
+      `仿真模拟卷 · ${st.mc}单选+${st.tf}判断+${st.prog}编程 · 满分100 · ${st.duration_min}分钟`,
+      JSON.stringify(paper), b.due_at || null, onlyStore ? 'none' : target);
+    created.push({ title, published: !onlyStore, stored: true });
+  }
+  res.json({ ok: true, created, count: created.length });
+}));
+
 // ===== 基于真题改编出题 =====
 const ADAPT_CACHE = {};
 function adaptBook(level) {

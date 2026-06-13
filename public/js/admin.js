@@ -27,7 +27,7 @@ function adminLogout(){ localStorage.removeItem('gesp_admin_token'); show('login
 const V=()=>document.getElementById('view');
 function nav(v){
   ['dash','q','u','c','b','r','t'].forEach(x=>{const el=document.getElementById('nav-'+x);if(el)el.classList.toggle('on',x===v);});
-  const fn={dash:renderDash,q:renderQ,u:renderU,c:renderC,b:renderBaidu,r:renderReports,t:renderTeach}[v];
+  const fn={dash:renderDash,q:renderQ,u:renderU,c:renderC,b:renderBaidu,r:renderReports,t:renderTeach,bk:renderBackup}[v];
   Promise.resolve(fn&&fn()).catch(e=>{ if(e&&e.message!=='请重新登录') toast(e.message); });
 }
 
@@ -305,9 +305,63 @@ async function setReport(id,st){
 }
 
 
+/* ---------- 💾 数据备份 ---------- */
+async function renderBackup(){
+  V().innerHTML='<h1 class="page-h">💾 数据备份</h1><div class="empty">加载中…</div>';
+  let sum; try{ sum=await aapi('/api/admin/backup/summary'); }catch(e){ V().innerHTML='<h1 class="page-h">💾 数据备份</h1><div class="empty">'+e.message+'</div>'; return; }
+  const tableNames={users:'用户账号',attempts:'答题记录',wrongbook:'错题本',bookmarks:'收藏',class_members:'班级成员',assignments:'作业/试卷',assignment_progress:'作业成绩',teacher_prog:'老师出的编程题',teacher_prog_tc:'编程题测试点',prog_submissions:'代码提交记录',question_reports:'题目报错',mock_results:'模考成绩',question_overrides:'题目订正',redeem_codes:'兑换码',baidu_push:'百度推送记录',meta:'系统配置'};
+  const rows=sum.counts.filter(c=>c.rows>0).map(c=>`<tr><td>${tableNames[c.table]||c.table}</td><td class="right mono">${c.rows}</td></tr>`).join('');
+  V().innerHTML=`<h1 class="page-h">💾 数据备份</h1>
+    <div class="card"><div class="card-h">📥 备份数据（下载到你的电脑）</div><div class="card-b">
+      <p class="muted" style="margin-bottom:10px">把所有用户数据（账号、做题记录、班级、作业、成绩等）打包成一个文件下载保存。<b>建议每周备份一次</b>，存到电脑或网盘。题库内容不需备份（代码里已有）。</p>
+      <table class="tbl" style="max-width:420px"><thead><tr><th>数据类型</th><th class="right">当前数量</th></tr></thead><tbody>${rows||'<tr><td colspan="2" class="muted">暂无数据</td></tr>'}</tbody></table>
+      <div style="margin-top:14px"><button class="btn solid" onclick="doBackup()">📥 立即下载备份</button>
+      <span id="bk-msg" class="muted" style="margin-left:12px"></span></div>
+    </div></div>
+    <div class="card"><div class="card-h">📤 恢复数据（从备份文件还原）</div><div class="card-b">
+      <div class="notice" style="background:#fef3f3;border-color:#f3c0c0;color:#c0392b;margin-bottom:12px">⚠️ <b>危险操作</b>：恢复会用备份文件<b>覆盖</b>当前所有用户数据，当前数据将被清空替换。请仅在数据出问题需要还原时使用，且操作前务必先下载一份当前备份。</div>
+      <input type="file" id="bk-file" accept=".json" style="font-size:13px">
+      <div style="margin-top:12px"><button class="btn" style="border-color:#c0392b;color:#c0392b" onclick="doRestore()">📤 从文件恢复</button>
+      <span id="rs-msg" class="muted" style="margin-left:12px"></span></div>
+    </div></div>`;
+}
+async function doBackup(){
+  const msg=document.getElementById('bk-msg'); msg.textContent='正在生成备份…';
+  try{
+    const r=await fetch('/api/admin/backup',{headers:{'Authorization':'Bearer '+AT()}});
+    if(!r.ok) throw new Error('备份失败 '+r.status);
+    const blob=await r.blob();
+    // 从响应头取文件名
+    const cd=r.headers.get('Content-Disposition')||'';
+    const m=cd.match(/filename="([^"]+)"/);
+    const name=m?m[1]:('gesppass-backup-'+Date.now()+'.json');
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+    msg.textContent='✅ 已下载 '+name+'（'+(blob.size/1024).toFixed(0)+' KB），请妥善保存';
+  }catch(e){ msg.textContent='❌ '+e.message; }
+}
+async function doRestore(){
+  const f=document.getElementById('bk-file').files[0];
+  const msg=document.getElementById('rs-msg');
+  if(!f){ msg.textContent='请先选择备份文件'; return; }
+  if(!confirm('⚠️ 确定要恢复吗？\n这会清空当前所有用户数据，用备份文件替换！\n此操作不可撤销，请确认已备份当前数据。')) return;
+  if(!confirm('再次确认：真的要覆盖当前数据吗？')) return;
+  msg.textContent='正在读取文件…';
+  try{
+    const text=await f.text();
+    const dump=JSON.parse(text);
+    msg.textContent='正在恢复…';
+    const r=await aapi('/api/admin/restore',{method:'POST',body:JSON.stringify({dump,confirm:'RESTORE'})});
+    const total=Object.values(r.restored).reduce((a,b)=>a+b,0);
+    msg.textContent='✅ 恢复完成，共还原 '+total+' 条记录';
+    setTimeout(()=>renderBackup(),1500);
+  }catch(e){ msg.textContent='❌ '+e.message; }
+}
+
 /* ---------- 🎓 授课管理 ---------- */
 let TEACH_LV=1;
-let TEACH_TAB='assign';
+let TEACH_TAB='center';
 async function renderTeach(lv,tab){
   TEACH_LV=lv||TEACH_LV;
   if(tab) TEACH_TAB=tab;
@@ -315,7 +369,7 @@ async function renderTeach(lv,tab){
   let cls;
   try{ cls=(await aapi('/api/admin/classes')).classes; }catch(e){ V().innerHTML='<div class="empty">'+e.message+'</div>'; return; }
   const lvTabs=cls.map(c=>`<span class="chip ${c.level===TEACH_LV?'on':''}" onclick="renderTeach(${c.level})">C++ ${c.level}级班 <b>${c.students}</b></span>`).join('');
-  const subTabs=[['assign','📚 布置教学'],['students','👥 班级学生'],['posted','📋 已布置'],['progbank','💻 我的题库']]
+  const subTabs=[['center','📤 布置中心'],['posted','📋 已布置'],['students','👥 班级学生']]
     .map(([k,label])=>`<a class="t-subtab ${TEACH_TAB===k?'on':''}" onclick="switchTeachTab('${k}')">${label}</a>`).join('');
   V().innerHTML=`<h1 class="page-h">🎓 授课管理</h1>
     <div class="lv-tabs">${lvTabs}</div>
@@ -323,30 +377,55 @@ async function renderTeach(lv,tab){
     <div id="t-panel"><div class="empty">加载中…</div></div>`;
   renderTeachPanel();
 }
-function switchTeachTab(k){ TEACH_TAB=k; document.querySelectorAll('.t-subtab').forEach(e=>e.classList.toggle('on',e.textContent.includes(({assign:'布置',students:'班级',posted:'已布置',progbank:'题库'})[k]))); renderTeachPanel(); }
+function switchTeachTab(k){ TEACH_TAB=k; document.querySelectorAll('.t-subtab').forEach(e=>e.classList.toggle('on',e.textContent.includes(({center:'布置中心',posted:'已布置',students:'班级'})[k]))); renderTeachPanel(); }
 async function renderTeachPanel(){
   const p=document.getElementById('t-panel'); if(!p)return;
   p.innerHTML='<div class="empty">加载中…</div>';
-  if(TEACH_TAB==='assign') return renderAssignPanel(p);
+  if(TEACH_TAB==='center'||TEACH_TAB==='assign') return renderCenterPanel(p);
   if(TEACH_TAB==='students') return renderStudentsPanel(p);
   if(TEACH_TAB==='posted') return renderPostedPanel(p);
   if(TEACH_TAB==='progbank') return renderProgbankPanel(p);
+  if(TEACH_TAB==='exam') return renderExamPanel(p);
+}
+// 布置中心:顶部选"发什么",下方展开对应表单
+let CENTER_MODE='homework'; // homework|resource|exam|adapt
+async function renderCenterPanel(p){
+  const modes=[
+    ['homework','📝 发作业','选题或按章节，给学生布置练习'],
+    ['resource','📎 推送资源','把讲义章节推给学生自学'],
+    ['exam','📋 发模拟卷','一键生成仿真考试卷'],
+    ['adapt','🎲 改编练习','基于真题生成同类编程题'],
+  ];
+  const cards=modes.map(([k,t,d])=>`<div class="center-card ${CENTER_MODE===k?'on':''}" onclick="centerPick('${k}')">
+    <div class="center-card-t">${t}</div><div class="center-card-d">${d}</div></div>`).join('');
+  p.innerHTML=`<div class="center-cards">${cards}</div><div id="center-body"><div class="empty">加载中…</div></div>`;
+  renderCenterBody();
+}
+function centerPick(m){ CENTER_MODE=m; document.querySelectorAll('.center-card').forEach((c,i)=>c.classList.toggle('on',['homework','resource','exam','adapt'][i]===m)); renderCenterBody(); }
+async function renderCenterBody(){
+  const body=document.getElementById('center-body'); if(!body)return;
+  body.innerHTML='<div class="empty">加载中…</div>';
+  if(CENTER_MODE==='homework'||CENTER_MODE==='resource') return renderAssignPanel(body, CENTER_MODE);
+  if(CENTER_MODE==='exam') return renderExamPanel(body);
+  if(CENTER_MODE==='adapt') return renderAdaptInline(body);
 }
 
-// —— 面板1:布置教学 ——
-async function renderAssignPanel(p){
+// —— 布置作业/推送资源(由布置中心调用,mode=homework|resource) ——
+async function renderAssignPanel(p, mode){
+  mode = mode || 'homework';
   let roster=[]; try{ roster=(await aapi('/api/admin/classes/'+TEACH_LV+'/roster')).roster; }catch(e){}
   TEACH_ROSTER=roster;
+  const isHw = mode==='homework';
   p.innerHTML=`
-    <div class="card"><div class="card-h">布置作业 / 推送资源 <span class="sub">C++ ${TEACH_LV}级班</span></div><div class="card-b">
+    <div class="card"><div class="card-h">${isHw?'📝 布置作业':'📎 推送课程资源'} <span class="sub">C++ ${TEACH_LV}级班</span></div><div class="card-b">
+      <input type="hidden" id="t-type" value="${mode}">
       <div class="form-grid">
         <div class="fg-row">
-          <div class="fg-col"><label class="fl">类型</label><select id="t-type" onchange="teachTypeChange()"><option value="homework">📝 作业</option><option value="resource">📎 课程资源</option></select></div>
-          <div class="fg-col grow"><label class="fl">标题</label><input id="t-title" placeholder="如:第3章 if 语句练习"></div>
-          <div class="fg-col" id="t-due-wrap"><label class="fl">截止时间(可空)</label><input id="t-due" type="datetime-local"></div>
+          <div class="fg-col grow"><label class="fl">标题</label><input id="t-title" placeholder="${isHw?'如:第3章 if 语句练习':'如:第3章 讲义'}"></div>
+          ${isHw?'<div class="fg-col" id="t-due-wrap"><label class="fl">截止时间(可空)</label><input id="t-due" type="datetime-local"></div>':''}
         </div>
         <div class="fg-row"><div class="fg-col grow"><label class="fl">说明(给学生的话,可空)</label><textarea id="t-body" rows="2" placeholder="说明文字"></textarea></div></div>
-        <div id="t-hw-fields" class="fg-block">
+        ${isHw?`<div id="t-hw-fields" class="fg-block">
           <label class="fl">题目内容</label>
           <div class="t-quick">
             <button class="btn solid" onclick="openChapterPicker()">📚 按真题章节布置</button>
@@ -354,11 +433,10 @@ async function renderAssignPanel(p){
           </div>
           <span class="muted" id="t-pick-summary" style="display:block;margin-top:8px;font-size:13px">未选题</span>
           <div id="t-picked" class="t-picked"></div>
-        </div>
-        <div id="t-res-fields" class="fg-block" style="display:none">
+        </div>`:`<div id="t-res-fields" class="fg-block">
           <label class="fl">勾选讲义章节(与网站同步,学生点开即看)</label>
           <div id="t-lesson-toc" class="t-toc">加载中…</div>
-        </div>
+        </div>`}
         <div class="fg-block">
           <label class="fl">发给谁</label>
           <select id="t-target" onchange="teachTargetChange()"><option value="class">📢 全班</option><option value="some">👤 指定学生</option></select>
@@ -366,9 +444,8 @@ async function renderAssignPanel(p){
         </div>
         <div><button class="btn solid" onclick="postAssign()">发布</button></div>
       </div>
-    </div></div>
-    <div class="card"><div class="card-h">📉 班级共性弱点 <span class="sub">全班错最多的章节</span></div><div class="card-b">
-      <div id="t-weakness"><button class="btn sm" onclick="loadWeakness()">点击查看</button></div></div></div>`;
+    </div></div>`;
+  if(!isHw) loadLessonToc();
 }
 
 // —— 面板2:班级学生(含拉人进班) ——
@@ -416,18 +493,96 @@ async function removeStudent(uid,name){
 // —— 面板3:已布置 ——
 async function renderPostedPanel(p){
   let asg; try{ asg=(await aapi('/api/admin/classes/'+TEACH_LV+'/assignments')).assignments; }catch(e){ p.innerHTML='<div class="empty">'+e.message+'</div>'; return; }
-  const rows=asg.map(a=>`<tr>
-    <td>${a.type==='homework'?'📝':'📎'} ${esc(a.title)}${a.target&&a.target!=='class'?' <span class="pill" style="background:#eef;color:#558">指定</span>':''}</td>
-    <td>${a.type==='homework'?'作业':'资源'}</td>
-    <td class="muted">${a.due_at?a.due_at.slice(0,16).replace('T',' '):'—'}</td>
-    <td class="right">${a.done} 人完成${a.avg!=null?` · 均分 ${a.avg}`:''}</td>
-    <td class="right"><button class="btn sm" onclick="viewAsgRoster(${a.id})">详情</button> <button class="btn sm danger" onclick="delAsg(${a.id})">删除</button></td>
-  </tr>`).join('')||'<tr><td class="empty" colspan="5">该班暂无作业/资源</td></tr>';
+  const typeIcon={homework:'📝',resource:'📎',exam:'📝'};
+  const typeName={homework:'作业',resource:'资源',exam:'模拟卷'};
+  const rows=asg.map(a=>{
+    const unpub = a.target==='none';
+    const tag = a.type==='exam'?' <span class="pill" style="background:#fde8ec;color:#c0392b">模拟卷</span>':'';
+    const pubTag = unpub?' <span class="pill" style="background:#fff3cd;color:#856404">未发布</span>':(a.target&&a.target!=='class'?' <span class="pill" style="background:#eef;color:#558">指定</span>':'');
+    const pubBtn = unpub?`<button class="btn sm solid" onclick="publishAsg(${a.id})">发布</button> `:'';
+    return `<tr>
+      <td>${typeIcon[a.type]||'📄'} ${esc(a.title)}${tag}${pubTag}</td>
+      <td>${typeName[a.type]||a.type}</td>
+      <td class="muted">${a.due_at?a.due_at.slice(0,16).replace('T',' '):'—'}</td>
+      <td class="right">${unpub?'<span class="muted">未发布</span>':(a.done+' 人完成'+(a.avg!=null?' · 均分 '+a.avg:''))}</td>
+      <td class="right">${pubBtn}<button class="btn sm" onclick="viewAsgRoster(${a.id})">详情</button> <button class="btn sm danger" onclick="delAsg(${a.id})">删除</button></td>
+    </tr>`;
+  }).join('')||'<tr><td class="empty" colspan="5">该班暂无作业/资源/模拟卷</td></tr>';
   p.innerHTML=`<div class="card"><div class="card-h">已布置 <span class="sub">C++ ${TEACH_LV}级</span></div>
     <table class="tbl"><thead><tr><th>标题</th><th>类型</th><th>截止</th><th class="right">完成情况</th><th class="right">操作</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
-// —— 面板4:我的题库 ——
+// —— 面板5:仿真模拟卷 ——
+async function renderExamPanel(p){
+  let ck; try{ ck=await aapi('/api/admin/exam/check?level='+TEACH_LV); }catch(e){ p.innerHTML='<div class="empty">'+e.message+'</div>'; return; }
+  const st=ck.struct;
+  let roster=TEACH_ROSTER; if(!roster||!roster.length){ try{ roster=(await aapi('/api/admin/classes/'+TEACH_LV+'/roster')).roster; TEACH_ROSTER=roster; }catch(e){ roster=[]; } }
+  const stuOpts=(roster||[]).map(s=>`<label class="toc-item"><input type="checkbox" class="exam-stu" value="${s.id}"> ${avA(s.avatar)} ${esc(s.username)}</label>`).join('')||'<span class="muted">该班暂无学生</span>';
+  if(!ck.ready){
+    p.innerHTML=`<div class="card"><div class="card-h">📝 仿真模拟卷 · C++ ${TEACH_LV}级</div><div class="card-b">
+      <div class="empty"><div class="big">🚧</div>本级别题库弹药不足，暂时无法自动组卷。<br>
+      <span style="font-size:13px;color:var(--ink3)">需要：${st.mc}道单选(现有${ck.bank_mc}) + ${st.tf}道判断(现有${ck.bank_tf}) + 编程改编方案(现有${ck.adapt_count})</span></div>
+      </div></div>`;
+    return;
+  }
+  p.innerHTML=`<div class="card"><div class="card-h">📝 一键生成仿真模拟卷 <span class="sub">C++ ${TEACH_LV}级</span></div><div class="card-b">
+    <div class="exam-struct">
+      <div class="exam-struct-t">📋 试卷结构（与真题一致）</div>
+      <table class="tbl" style="margin-top:6px"><tbody>
+        <tr><td>单选题</td><td class="right">${st.mc} 题 × ${st.mc_score} 分</td><td class="right mono">${st.mc*st.mc_score} 分</td></tr>
+        <tr><td>判断题</td><td class="right">${st.tf} 题 × ${st.tf_score} 分</td><td class="right mono">${st.tf*st.tf_score} 分</td></tr>
+        <tr><td>编程题</td><td class="right">${st.prog} 题 × ${st.prog_score} 分</td><td class="right mono">${st.prog*st.prog_score} 分</td></tr>
+        <tr style="font-weight:700"><td>合计</td><td class="right">${st.duration_min} 分钟</td><td class="right mono">100 分</td></tr>
+      </tbody></table>
+      <div class="muted" style="font-size:12px;margin-top:8px">客观题从本级模拟题库随机抽取，编程题由真题改编自动生成。每套都不一样。</div>
+    </div>
+    <div class="fg-col" style="margin:14px 0">
+      <label class="fl">生成几套？</label>
+      <input id="exam-sets" type="number" value="1" min="1" max="5" style="width:90px"> <span class="muted" style="font-size:12px">(1~5 套，每套题目不同)</span>
+    </div>
+    <div class="fg-col" style="margin:14px 0">
+      <label class="fl">发给谁？</label>
+      <div style="margin-top:4px">
+        <label class="radio-line"><input type="radio" name="exam-target" value="class" checked onchange="examToggleStu()"> 📢 全班</label>
+        <label class="radio-line"><input type="radio" name="exam-target" value="some" onchange="examToggleStu()"> 👤 指定学生</label>
+        <label class="radio-line"><input type="radio" name="exam-target" value="none" onchange="examToggleStu()"> 💾 只生成不发布</label>
+      </div>
+      <div id="exam-stu-box" class="t-toc" style="display:none;margin-top:8px">${stuOpts}</div>
+    </div>
+    <div class="fg-col" style="margin:14px 0">
+      <label class="fl">试卷名称</label>
+      <input id="exam-title" value="C++ ${TEACH_LV}级 仿真模拟卷" style="width:100%">
+      <label class="fl" style="margin-top:8px">截止时间(可空)</label>
+      <input id="exam-due" type="datetime-local" style="width:auto">
+    </div>
+    <div style="text-align:right"><button class="btn solid" onclick="examGenerate()">🎲 一键生成模拟卷</button></div>
+    <div id="exam-result" style="margin-top:10px"></div>
+  </div></div>`;
+}
+function examToggleStu(){
+  const v=document.querySelector('input[name=exam-target]:checked').value;
+  const box=document.getElementById('exam-stu-box');
+  if(box) box.style.display = v==='some' ? 'block' : 'none';
+}
+async function examGenerate(){
+  const sets=Math.max(1,Math.min(5,Number(document.getElementById('exam-sets').value)||1));
+  const target=document.querySelector('input[name=exam-target]:checked').value;
+  const out=document.getElementById('exam-result');
+  const body={level:TEACH_LV,sets,title:document.getElementById('exam-title').value.trim()||undefined};
+  const due=document.getElementById('exam-due').value; if(due) body.due_at=due;
+  if(target==='some'){
+    const ids=[...document.querySelectorAll('.exam-stu:checked')].map(c=>Number(c.value));
+    if(!ids.length){ out.innerHTML='<span style="color:#c0392b">请至少选一个学生</span>'; return; }
+    body.targetUsers=ids;
+  } else if(target==='none'){ body.onlyStore=true; }
+  out.innerHTML='<div class="muted">正在组卷('+sets+'套)，每套要生成2道编程题(编译标程+造数据)，约 '+(sets*20)+'~'+(sets*40)+' 秒，请稍候…</div>';
+  try{
+    const r=await aapi('/api/admin/exam/generate',{method:'POST',body:JSON.stringify(body)});
+    out.innerHTML=`<span style="color:#1f9d57">✅ 成功生成 ${r.count} 套模拟卷！</span><br>
+      <span style="font-size:13px;color:var(--ink2)">${target==='none'?'卷子已存入题库（未发给学生）。':'已发布，学生可在「我的课程 → 仿真模拟卷」开始考试。'}
+      在「<a onclick="switchTeachTab('posted')" style="color:#185fa5;font-weight:700;cursor:pointer">📋 已布置</a>」可查看所有生成的模拟卷和学生完成情况。</span>`;
+  }catch(e){ out.innerHTML='<span style="color:#c0392b;white-space:pre-wrap">❌ '+esc(e.message)+'</span>'; }
+}
 async function renderProgbankPanel(p){
   p.innerHTML=`<div class="card"><div class="card-h">💻 我出的编程题 <span class="sub">C++ ${TEACH_LV}级 · 布置作业时可选</span>
     <span style="float:right"><button class="btn sm" onclick="openAdaptPicker()">🎲 基于真题改编</button>
@@ -612,6 +767,28 @@ async function delTeacherProg(pid){
 let PM_SAMPLES=[];
 // ===== 基于真题改编:批量生成同类题 + 推送 =====
 let ADAPT_LIST=[];
+// 改编练习内嵌面板(布置中心用)
+async function renderAdaptInline(body){
+  let d; try{ d=await aapi('/api/admin/adapt/list?level='+TEACH_LV); }catch(e){ body.innerHTML='<div class="empty">'+e.message+'</div>'; return; }
+  ADAPT_LIST=d.list;
+  let myprog=''; try{ const mp=await aapi('/api/admin/teacher-prog?level='+TEACH_LV); myprog=(mp.list||[]).length; }catch(e){}
+  if(!d.list.length){
+    body.innerHTML=`<div class="card"><div class="card-b">
+      <div class="empty">C++ ${TEACH_LV}级 暂无改编方案。</div>
+      <div style="text-align:center"><button class="btn solid" onclick="openProgMaker()">＋ 手动出一道编程题</button></div></div></div>`;
+    return;
+  }
+  const rows=d.list.map((a,i)=>`<div class="adapt-row">
+    <div class="adapt-info"><b>${esc(a.base_title)}</b> <span class="muted" style="font-size:12px">${a.variant_count}种题型</span>
+      <div class="muted" style="font-size:12px">考点:${(a.kps||[]).join('、')||'—'}</div></div>
+    <button class="btn sm solid" onclick="adaptConfig(${i})">生成 ›</button>
+  </div>`).join('');
+  body.innerHTML=`<div class="card"><div class="card-h">🎲 基于真题改编出题 <span class="sub">C++ ${TEACH_LV}级</span>
+    <button class="btn sm" style="float:right" onclick="openProgMaker()">＋ 手动出题</button></div><div class="card-b">
+    <div class="muted" style="font-size:13px;margin-bottom:12px">选一个考点，生成若干道同类型的新编程题，自动验证、带解析，可直接推送给学生。已出 ${myprog||0} 道。</div>
+    <div class="adapt-list">${rows}</div>
+  </div></div>`;
+}
 async function openAdaptPicker(){
   let d; try{ d=await aapi('/api/admin/adapt/list?level='+TEACH_LV); }catch(e){ toast(e.message); return; }
   ADAPT_LIST=d.list;
@@ -774,6 +951,27 @@ async function loadWeakness(){
     box.innerHTML='<table class="tbl"><thead><tr><th>章节</th><th class="right">累计错题</th><th class="right">涉及人数</th></tr></thead><tbody>'+
       d.weakness.map(w=>`<tr><td>${esc(w.name)}</td><td class="right mono">${w.wrong_total}</td><td class="right mono">${w.students}</td></tr>`).join('')+'</tbody></table>';
   }catch(e){ box.innerHTML='<span class="muted">'+e.message+'</span>'; }
+}
+async function publishAsg(id){
+  let roster=TEACH_ROSTER; if(!roster||!roster.length){ try{ roster=(await aapi('/api/admin/classes/'+TEACH_LV+'/roster')).roster; TEACH_ROSTER=roster; }catch(e){ roster=[]; } }
+  const stuOpts=(roster||[]).map(s=>`<label class="toc-item"><input type="checkbox" class="pub-stu" value="${s.id}"> ${avA(s.avatar)} ${esc(s.username)}</label>`).join('')||'<span class="muted">该班暂无学生</span>';
+  showModal(`<h3 style="margin:0 0 10px">📤 发布给学生</h3>
+    <div style="margin-bottom:10px">
+      <label class="radio-line"><input type="radio" name="pub-target" value="class" checked onchange="pubToggle()"> 📢 全班</label>
+      <label class="radio-line"><input type="radio" name="pub-target" value="some" onchange="pubToggle()"> 👤 指定学生</label></div>
+    <div id="pub-stu-box" class="t-toc" style="display:none">${stuOpts}</div>
+    <div style="margin-top:8px"><label class="fl">截止时间(可空)</label><input id="pub-due" type="datetime-local" style="width:auto"></div>
+    <div style="margin-top:14px;text-align:right"><button class="btn" onclick="document.getElementById('adm-modal').remove()">取消</button>
+      <button class="btn solid" onclick="doPublishAsg(${id})">确认发布</button></div>
+    <div id="pub-msg" class="muted" style="margin-top:8px"></div>`);
+}
+function pubToggle(){ const v=document.querySelector('input[name=pub-target]:checked').value; const box=document.getElementById('pub-stu-box'); if(box) box.style.display=v==='some'?'block':'none'; }
+async function doPublishAsg(id){
+  const v=document.querySelector('input[name=pub-target]:checked').value;
+  const body={}; const due=document.getElementById('pub-due').value; if(due) body.due_at=due;
+  if(v==='some'){ const ids=[...document.querySelectorAll('.pub-stu:checked')].map(c=>Number(c.value)); if(!ids.length){ document.getElementById('pub-msg').textContent='请至少选一个学生'; return; } body.targetUsers=ids; }
+  try{ await aapi('/api/admin/assignments/'+id+'/publish',{method:'POST',body:JSON.stringify(body)}); toast('已发布'); const m=document.getElementById('adm-modal'); if(m)m.remove(); renderTeachPanel(); }
+  catch(e){ document.getElementById('pub-msg').textContent=e.message; }
 }
 async function delAsg(id){ if(!confirm('删除该作业/资源?学生端将不再显示。'))return; await aapi('/api/admin/assignments/'+id,{method:'DELETE'}); toast('已删除'); renderTeach(TEACH_LV); }
 async function viewAsgRoster(id){

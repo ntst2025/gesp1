@@ -208,6 +208,14 @@ tr.clk{cursor:pointer}tr.clk:hover{background:#f6f8ff}
 .tbl td .btn.sm{font-size:12.5px;padding:4px 10px}
 .u-acts,.t-ops{white-space:normal}
 
+.center-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.center-card{border:1.5px solid #e6e8f0;border-radius:12px;padding:14px;cursor:pointer;transition:.15s;background:#fff}
+.center-card:hover{border-color:#aebef0;background:#f6f8ff}
+.center-card.on{border-color:#ef3b57;background:#fef3f5;box-shadow:0 2px 8px rgba(239,59,87,.12)}
+.center-card-t{font-weight:700;font-size:15px;color:#13182e}
+.center-card-d{font-size:12px;color:#8a90a6;margin-top:4px;line-height:1.5}
+@media(max-width:760px){.center-cards{grid-template-columns:repeat(2,1fr)}}
+.exam-struct{background:#f8f9fc;border:1px solid #e6e8f0;border-radius:10px;padding:14px}.exam-struct-t{font-weight:700;font-size:14px}.fg-col .fl{font-weight:600;font-size:14px;display:block;margin-bottom:4px}
 .adapt-list{display:flex;flex-direction:column;gap:8px;max-height:50vh;overflow:auto}
 .adapt-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid #e6e8f0;border-radius:10px;background:#fafbfd}
 .adapt-row:hover{border-color:#aebef0;background:#f6f8ff}
@@ -244,6 +252,7 @@ tr.clk{cursor:pointer}tr.clk:hover{background:#f6f8ff}
       <a id="nav-b" onclick="nav('b')">🔍 百度推送</a>
       <a id="nav-r" onclick="nav('r')">🐞 题目报错</a>
       <a id="nav-t" onclick="nav('t')">🎓 授课管理</a>
+      <a id="nav-bk" onclick="nav('bk')">💾 数据备份</a>
     </nav>
     <main class="main"><div id="view"></div></main>
   </div>
