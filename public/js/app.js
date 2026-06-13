@@ -143,7 +143,7 @@ async function ensureCatalog(){
 const LV_CN = {1:'一级',2:'二级',3:'三级',4:'四级',5:'五级',6:'六级',7:'七级',8:'八级'};
 // 模块数据驱动：status 'ready'=已上线可进入；'soon'=已预留、内容编写中。后续填内容只需改这里。
 const LEARN_MODULES = [
-  {icon:'📘', title:'入门讲义', tag:'纸质教程·电子版', key:'lessons', status:'ready', fn:'renderLessons',
+  {icon:'📘', title:'入门教程', tag:'纸质教程·电子版', key:'lessons', status:'ready', fn:'renderLessons',
    desc:'纸质教程的电子版，按考纲章节讲解。建议先读讲义，再做对应章节的真题。'},
   {icon:'🪤', title:'陷阱通关手册', tag:'高频易错·避坑', key:'traps', l1:true, fn:'renderTraps',
    desc:'历年高频易错点与常见命题陷阱的汇总，按条目核对，适合考前过一遍。'},
@@ -225,7 +225,7 @@ async function renderTraps(){
   window.scrollTo(0,0);
 }
 
-/* ===================== 入门讲义(电子教程) ===================== */
+/* ===================== 入门教程(电子教程) ===================== */
 let LESSONS_TOC=null, LESSONS_TOC_LV=null;
 async function renderLessons(){
   setActiveTab('learn');
@@ -306,7 +306,7 @@ function renderRoadmap(){
     ${rows}
     <div class="lb-card"><div class="lb-h">使用建议</div><div style="padding:14px 18px;font-size:16.5px;line-height:1.85;color:var(--ink2)">
       每个阶段按「读讲义 → 做对应章节真题 → 错题进错题本」推进，达成里程碑再进入下一阶段，没达成就放慢一周。冲刺期以「陷阱通关手册」和「限时模考」为主。</div></div>
-    <div class="learn-foot">可以从 <a onclick="renderLessons()" style="color:#185fa5;font-weight:700;cursor:pointer">入门讲义第 1 章</a> 开始。</div>`;
+    <div class="learn-foot">可以从 <a onclick="renderLessons()" style="color:#185fa5;font-weight:700;cursor:pointer">入门教程第 1 章</a> 开始。</div>`;
   window.scrollTo(0,0);
 }
 
@@ -517,7 +517,7 @@ async function renderProgList(){
   const judgeTip=d.judge?'':'<div class="notice" style="margin-bottom:14px">⏳ 在线评测引擎即将开通。开通前可以先看题、写代码，对照样例与参考程序自查。</div>';
   C().innerHTML=`
     <div class="learn-hero"><h2>💻 编程真题 · 在线评测</h2>
-      <p>历年真题编程题（每卷 2 题 × 25 分，占试卷 50 分；单选与判断为客观题，在「题库浏览」练习）。在线编写 C++ 代码提交评测，逐测试点反馈结果。建议先用「<a onclick="renderLessons()" style="color:#185fa5;font-weight:700;cursor:pointer">入门讲义</a>」学完对应章节再来练。</p></div>
+      <p>历年真题编程题（每卷 2 题 × 25 分，占试卷 50 分；单选与判断为客观题，在「题库浏览」练习）。在线编写 C++ 代码提交评测，逐测试点反馈结果。建议先用「<a onclick="renderLessons()" style="color:#185fa5;font-weight:700;cursor:pointer">入门教程</a>」学完对应章节再来练。</p></div>
     ${judgeTip}${rows}`;
   window.scrollTo(0,0);
 }
@@ -681,7 +681,7 @@ function renderSection(cid,sid,data){
     pager+=`<button ${pg===pages-1?'disabled':''} onclick="setBrowsePage('${key}',${pg+1})">›</button></div>`; }
   const main=`<div class="crumb"><a onclick="goBrowse('overview')">首页</a> › <a onclick="goBrowse('chapter','${cid}')">第${short(cid).slice(1)}章 ${c.name}</a> › <span>${short(s.id)} ${s.name}</span></div>
     <div class="card"><div class="card-h">${short(s.id)}　${s.name}
-      <span class="sec-acts"><a class="sec-btn lesson" onclick="renderLessons()">📖 看讲义</a><a class="sec-btn drill" onclick="drillSection('${sid}')">🎯 练本节</a></span>
+      <span class="sec-acts"><a class="sec-btn lesson" onclick="openSectionLesson('${sid}','${esc(s.name)}')">📖 看本节讲义</a><a class="sec-btn drill" onclick="drillSection('${sid}')">🎯 练本节</a></span>
     </div><div class="card-b"><div class="stats">
       <div class="stat"><span class="lab">被考次数</span><span class="val red">${s.count}</span><span class="lab">题</span></div>
       <div class="stat"><span class="lab">题型</span><span class="val">单选 ${s.mc} / 判断 ${s.tf}</span></div>
@@ -809,12 +809,34 @@ function drillSection(sid){
   go('practice');
   setTimeout(()=>{ if(typeof startQuiz==='function') startQuiz(); }, 50);
 }
-function openSectionLesson(sid){
-  // 题库子节与讲义章节非一一对应,跳到讲义目录由学生选择对应章节学习
-  PRACTICE_RETURN={mode:quizCfg.mode,id:quizCfg.id};
-  renderLessons();
-  setTimeout(()=>{ try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){} }, 60);
+async function openSectionLesson(sid, name){
+  // 弹出该真题子节对应的讲义(只显示这一节)
+  const m=document.getElementById('sec-lesson-modal') || (()=>{ const d=document.createElement('div'); d.id='sec-lesson-modal'; d.className='sl-mask'; document.body.appendChild(d); return d; })();
+  m.innerHTML='<div class="sl-box"><div class="sl-load"><div class="spinner"></div>正在打开讲义…</div></div>';
+  m.style.display='flex';
+  m.onclick=e=>{ if(e.target===m) closeSectionLesson(); };
+  let d;
+  try{ d=await api('/api/lessons/section?level='+LEVEL+'&sid='+encodeURIComponent(sid)); }
+  catch(e){ m.querySelector('.sl-box').innerHTML='<div class="sl-load">讲义加载失败</div>'; return; }
+  if(!d.found){
+    m.querySelector('.sl-box').innerHTML=`<span class="sl-x" onclick="closeSectionLesson()">×</span>
+      <div class="sl-empty"><div class="big">📖</div><b>本节讲义编写中</b><p>「${esc(name||sid)}」的讲义正在制作，敬请期待。<br>你可以先到「学习中心 → 入门教程」阅读系统教程。</p>
+      <button class="btn" onclick="closeSectionLesson();renderLessons()">打开入门教程</button></div>`;
+    return;
+  }
+  if(d.locked){
+    m.querySelector('.sl-box').innerHTML=`<span class="sl-x" onclick="closeSectionLesson()">×</span>
+      <div class="sl-empty"><div class="big">🔒</div><b>${esc(d.title)}</b><p>本节讲义为 VIP 内容。</p>
+      <button class="btn solid" onclick="closeSectionLesson();go('vip')">了解 VIP</button></div>`;
+    return;
+  }
+  m.querySelector('.sl-box').innerHTML=`<span class="sl-x" onclick="closeSectionLesson()">×</span>
+    <div class="sl-head"><span class="sl-tag">📖 本节讲义</span><h2>${esc(sid)}　${esc(d.title)}</h2></div>
+    <div class="sl-body ls-body">${d.html}</div>
+    <div class="sl-foot"><button class="btn solid" onclick="closeSectionLesson();drillSection('${sid}')">学完了，练本节 🎯</button></div>`;
+  m.querySelector('.sl-box').scrollTop=0;
 }
+function closeSectionLesson(){ const m=document.getElementById('sec-lesson-modal'); if(m) m.style.display='none'; }
 let PRACTICE_RETURN=null;
 function updateScopeHint(){
   const h=document.getElementById('scope-hint'); if(!h)return;

@@ -494,6 +494,29 @@ app.get('/api/lessons', authRequired, wrap(async (req, res) => {
     })),
   });
 }));
+// ===== 真题子节讲义(题库"看讲义"用,只返回单个子节) =====
+const SECTION_LESSONS_CACHE = {};
+function sectionLessons(level) {
+  const n = Number(level);
+  if (!(n >= 1 && n <= 8)) return null;
+  if (!SECTION_LESSONS_CACHE[n]) {
+    try { SECTION_LESSONS_CACHE[n] = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'lessons', 'sections', `level${n}.json`), 'utf8')); }
+    catch (e) { SECTION_LESSONS_CACHE[n] = { level: n, lessons: {} }; }
+  }
+  return SECTION_LESSONS_CACHE[n];
+}
+app.get('/api/lessons/section', authRequired, wrap(async (req, res) => {
+  const level = Number(req.query.level || 1);
+  let sid = String(req.query.sid || '');
+  const m = sid.match(/(\d+\.\d+)/);
+  if (m) sid = m[1];
+  const book = sectionLessons(level);
+  const lesson = book && book.lessons[sid];
+  if (!lesson) return res.json({ found: false, sid });
+  // 子节讲义门槛与整册一致:一级全免费,二至八级 VIP(第1章子节免费试读)
+  const locked = Number(level) !== 1 && !sid.startsWith('1.') && !vipActive(req.user);
+  res.json({ found: true, sid, title: lesson.title, html: locked ? '' : lesson.html, locked });
+}));
 app.get('/api/lessons/chapter', authRequired, wrap(async (req, res) => {
   const level = Number(req.query.level || 1);
   const book = lessonBook(level);
