@@ -36,7 +36,7 @@ let PAPERS = [];
 function esc(s){return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function short(id){return String(id).split(':').pop();}  // 'L1:c1'->'c1', 'L8:1.1'->'1.1'
 function papLabel(p){const [y,m]=p.split('-');return y.slice(2)+'.'+parseInt(m);}
-function papFull(p){const [y,m]=p.split('-');return y+'年'+parseInt(m)+'月';}
+function papFull(p){if(!p)return '专项练习';const parts=String(p).split('-');if(parts.length<2)return String(p);return parts[0]+'年'+parseInt(parts[1])+'月';}
 function hl(code){
   // 占位符法:先把注释/字符串收进令牌(用私有区字符占位),再做关键字高亮,最后回填——
   // 保证后续正则永远不会命中已生成的 <span> 标记本身
@@ -537,7 +537,7 @@ async function renderProgQ(pid){
   C().innerHTML=`
     <div class="tp-back"><a onclick="go('prog')">← 返回编程题列表</a></div>
     <div class="learn-hero ls-hero"><h2>${esc(d.title)}</h2>
-      <p style="margin-top:4px;font-size:14px;color:var(--ink3)">${papFull(d.paper)} · 编程题 ${d.num} ·  时限 ${d.time_limit}s</p>
+      <p style="margin-top:4px;font-size:14px;color:var(--ink3)">${d.paper?(papFull(d.paper)+' · 编程题 '+d.num+' · '):'老师布置 · '}时限 ${d.time_limit}s</p>
       ${(d.kps&&d.kps.length)?`<div class="pg-kps">${d.kps.map(k=>'<span class="pg-kp">'+esc(k)+'</span>').join('')}</div>`:''}</div>
     <div class="card"><div class="card-b"><article class="ls-body pg-stmt">${stmt}</article>
       <div class="q-report"><a onclick="openReport('${d.pid}','pg')">题目有误？报错 ›</a><span class="rp-slot" id="rppg"></span></div></div></div>
