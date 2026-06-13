@@ -7,6 +7,27 @@ const { Q, initDb, questionsByQids, shapeQuestion, deleteUserCascade, adminStats
 const { register, login, authRequired, signAdminToken, adminRequired } = require('./src/auth');
 const { renderQuestionPage } = require('./src/ssr');
 const PROG = require('./src/prog');
+
+/* ===== 教师编程题:内存缓存(供 prog.js 同步读取) ===== */
+const TEACHER_PROG = {};   // pid -> 题对象
+const TEACHER_TC = {};     // pid -> [{name,input,expected}]
+async function refreshTeacherProg() {
+  for (const lv of [1,2,3,4,5,6,7,8]) {
+    const rows = await Q.teacherProgByLevel(lv);
+    for (const r0 of rows) {
+      const q = await Q.teacherProgByPid(r0.pid);
+      if (!q) continue;
+      TEACHER_PROG[q.pid] = {
+        pid: q.pid, level: q.level, title: q.title, statement: q.statement,
+        solution: q.solution, time_limit: q.time_limit,
+        samples: q.samples ? JSON.parse(q.samples) : [], teacher: true,
+      };
+      const tcs = await Q.teacherTc(q.pid);
+      TEACHER_TC[q.pid] = tcs.map(t => ({ name: 'tc' + t.ord, input: t.input, expected: t.expected }));
+    }
+  }
+}
+PROG.setTeacherProgSource(pid => TEACHER_PROG[pid] || null, pid => TEACHER_TC[pid] || []);
 let TRAPS = null;
 try { TRAPS = require('./data/traps.json'); } catch (e) { TRAPS = { categories: [] }; }
 
@@ -101,7 +122,7 @@ app.get('/api/search', authRequired, wrap(async (req, res) => {
 /* ===== 做题 / 判分 ===== */
 app.post('/api/practice/start', authRequired, wrap(async (req, res) => {
   const { mode = 'random', id, count = 10, level = 1 } = req.body || {};
-  const n = Math.max(1, Math.min(50, count | 0));
+  const n = Math.max(1, Math.min(500, count | 0));  // 上限放宽,支持整章/整节全选
   let rows;
   if (mode === 'section')      rows = await Q.randomBySection(id, n);
   else if (mode === 'chapter') rows = await Q.randomByChapter(id, n);
@@ -402,6 +423,10 @@ app.get('/api/admin/users', adminRequired, wrap(async (req, res) => {
 app.get('/api/admin/users/:id', adminRequired, wrap(async (req, res) => {
   res.json({ detail: await Q.adminUserDetail(N(req.params.id)) });
 }));
+app.post('/api/admin/users/:id/disabled', adminRequired, wrap(async (req, res) => {
+  await Q.setDisabled(Number(req.params.id), (req.body || {}).disabled ? 1 : 0);
+  res.json({ ok: true });
+}));
 app.delete('/api/admin/users/:id', adminRequired, wrap(async (req, res) => {
   await deleteUserCascade(N(req.params.id));
   res.json({ ok: true });
@@ -483,6 +508,338 @@ app.get('/api/lessons/chapter', authRequired, wrap(async (req, res) => {
     prev: book.chapters[idx - 1] ? { id: book.chapters[idx - 1].id, title: book.chapters[idx - 1].title } : null,
     next: book.chapters[idx + 1] ? { id: book.chapters[idx + 1].id, title: book.chapters[idx + 1].title } : null,
   });
+}));
+
+
+/* ===== 授课系统 ===== */
+// 校验某作业是否对该用户可见(在班级内 且 target 命中)
+async function assignmentVisible(a, uid) {
+  const inClass = (await Q.myClasses(uid)).some(c => c.level === a.level);
+  if (!inClass) return false;
+  if (!a.target || a.target === 'class') return true;
+  return a.target.includes(',' + uid + ',');
+}
+// --- 学生端:加入/退出班级、我的课程与作业 ---
+app.post('/api/class/join', authRequired, wrap(async (req, res) => {
+  const level = Math.max(1, Math.min(8, Number((req.body || {}).level) || 0));
+  if (!level) return res.status(400).json({ error: '请选择 1-8 级' });
+  await Q.joinClass(level, req.user.id);
+  res.json({ ok: true, level });
+}));
+app.post('/api/class/leave', authRequired, wrap(async (req, res) => {
+  await Q.leaveClass(Number((req.body || {}).level) || 0, req.user.id);
+  res.json({ ok: true });
+}));
+app.get('/api/my/classes', authRequired, wrap(async (req, res) => {
+  res.json({ classes: (await Q.myClasses(req.user.id)).map(r => r.level) });
+}));
+app.get('/api/my/assignments', authRequired, wrap(async (req, res) => {
+  const rows = await Q.myAssignments(req.user.id);
+  res.json({ assignments: rows.map(a => ({
+    id: a.id, level: a.level, type: a.type, title: a.title, body: a.body,
+    payload: a.payload ? JSON.parse(a.payload) : null,
+    due_at: a.due_at, created_at: a.created_at,
+    status: a.status || 'assigned', score: a.score, comment: a.comment, done_at: a.done_at,
+  })) });
+}));
+// 学生取作业详情(题目内容,不含答案)
+app.get('/api/my/assignments/:id', authRequired, wrap(async (req, res) => {
+  const a = await Q.assignmentById(Number(req.params.id));
+  if (!a) return res.status(404).json({ error: '作业不存在' });
+  if (!(await assignmentVisible(a, req.user.id))) return res.status(403).json({ error: '无权访问该作业' });
+  const pl = a.payload ? JSON.parse(a.payload) : {};
+  let mcQuestions = [], progList = [];
+  if (a.type === 'homework') {
+    if (pl.mc && pl.mc.length) mcQuestions = (await questionsByQids(pl.mc)).map(r => shapeQuestion(r, { withAnswer: false }));
+    if (pl.prog && pl.prog.length) progList = pl.prog.map(pid => { const q = PROG.progByPid(pid); return q ? { pid, title: q.title } : null; }).filter(Boolean);
+  }
+  res.json({ id: a.id, level: a.level, type: a.type, title: a.title, body: a.body, due_at: a.due_at,
+    lesson: a.type === 'resource' ? pl : null, mcQuestions, progList });
+}));
+// 学生提交作业(客观题部分自动批改;编程题以 OJ 通过情况计)
+app.post('/api/my/assignments/:id/submit', authRequired, wrap(async (req, res) => {
+  const a = await Q.assignmentById(Number(req.params.id));
+  if (!a || a.type !== 'homework') return res.status(404).json({ error: '作业不存在' });
+  if (!(await assignmentVisible(a, req.user.id))) return res.status(403).json({ error: '无权访问该作业' });
+  const pl = a.payload ? JSON.parse(a.payload) : {};
+  const answers = (req.body || {}).answers || {}; // {qid: 'A'/'√'}
+  const detail = { mc: [], prog: [] };
+  let got = 0, total = 0;
+  if (pl.mc && pl.mc.length) {
+    const rows = await questionsByQids(pl.mc);
+    for (const r of rows) {
+      total++;
+      const ok = String(answers[r.qid] || '').trim() === String(r.answer).trim();
+      if (ok) got++;
+      detail.mc.push({ qid: r.qid, ok });
+    }
+  }
+  // 编程题:查该生是否已 AC 对应 pid
+  if (pl.prog && pl.prog.length) {
+    for (const pid of pl.prog) {
+      total++;
+      const subs = await Q.mySubmissions(req.user.id, pid);
+      const ac = subs.some(x => x.verdict === 'AC');
+      if (ac) got++;
+      detail.prog.push({ pid, ok: ac });
+    }
+  }
+  const score = total ? Math.round(got / total * 100) : 0;
+  await Q.setAssignmentProgress(a.id, req.user.id, 'done', score, JSON.stringify(detail));
+  res.json({ ok: true, score, got, total, detail });
+}));
+// 学生标记资源已读
+app.post('/api/my/assignments/:id/read', authRequired, wrap(async (req, res) => {
+  const a = await Q.assignmentById(Number(req.params.id));
+  if (!a) return res.status(404).json({ error: '不存在' });
+  await Q.setAssignmentProgress(a.id, req.user.id, 'done', null, null);
+  res.json({ ok: true });
+}));
+
+// 老师拉讲义目录(布置资源时勾选章节)
+app.get('/api/admin/lessons-toc', adminRequired, wrap(async (req, res) => {
+  const level = Number(req.query.level || 1);
+  const book = lessonBook(level);
+  if (!book) return res.json({ level, chapters: [] });
+  res.json({ level, title: book.title,
+    chapters: book.chapters.map(c => ({ id: c.id, num: c.num, title: c.title })) });
+}));
+
+// --- 老师端(admin):班级花名册、布置、统计 ---
+app.get('/api/admin/classes', adminRequired, wrap(async (req, res) => {
+  const counts = {}; (await Q.classCounts()).forEach(r => counts[r.level] = r.n);
+  res.json({ classes: [1,2,3,4,5,6,7,8].map(l => ({ level: l, students: counts[l] || 0 })) });
+}));
+app.get('/api/admin/classes/:level/roster', adminRequired, wrap(async (req, res) => {
+  res.json({ roster: await Q.classRoster(Number(req.params.level)) });
+}));
+app.get('/api/admin/classes/:level/assignments', adminRequired, wrap(async (req, res) => {
+  const list = await Q.listAssignments(Number(req.params.level));
+  for (const a of list) {
+    const st = {}; (await Q.assignmentStats(a.id)).forEach(r => st[r.status] = r);
+    a.done = (st.done && st.done.n) || 0;
+    a.avg = st.done && st.done.avg != null ? Math.round(st.done.avg) : null;
+    if (a.payload) a.payload = JSON.parse(a.payload);
+  }
+  res.json({ assignments: list });
+}));
+app.post('/api/admin/classes/:level/assign', adminRequired, wrap(async (req, res) => {
+  const level = Number(req.params.level);
+  const b = req.body || {};
+  const type = b.type === 'resource' ? 'resource' : 'homework';
+  const title = String(b.title || '').trim().slice(0, 80);
+  if (!title) return res.status(400).json({ error: '请填写标题' });
+
+  let payload = b.payload || {};
+  if (type === 'homework') {
+    // 收集题目:① 明确的 qids/pids ② 整范围(章/节/卷)展开
+    let mc = Array.isArray(payload.mc) ? payload.mc.slice() : [];
+    const prog = Array.isArray(payload.prog) ? payload.prog.slice() : [];
+    if (payload.range) {
+      const r = payload.range;
+      let rows = [];
+      if (r.kind === 'chapter') rows = await Q.qidsByChapter(r.id);
+      else if (r.kind === 'section') rows = await Q.qidsBySection(r.id);
+      else if (r.kind === 'paper') rows = await Q.qidsByPaper(level, r.id);
+      mc = mc.concat(rows.map(x => x.qid));
+    }
+    mc = [...new Set(mc)]; // 去重
+    if (!mc.length && !prog.length) return res.status(400).json({ error: '作业至少要包含一道题' });
+    payload = { mc, prog };
+  }
+
+  // target: 'class' 或 指定学生 [id,...] —— 存为 ,id,id, 便于 LIKE 匹配
+  let target = 'class';
+  if (Array.isArray(b.targetUsers) && b.targetUsers.length) {
+    target = ',' + b.targetUsers.map(Number).filter(Boolean).join(',') + ',';
+  }
+  await Q.createAssignment(level, type, title, String(b.body || '').slice(0, 2000),
+    JSON.stringify(payload), b.due_at || null, target);
+  res.json({ ok: true, count: type === 'homework' ? (payload.mc.length + payload.prog.length) : null });
+}));
+app.delete('/api/admin/assignments/:id', adminRequired, wrap(async (req, res) => {
+  await Q.deleteAssignment(Number(req.params.id));
+  res.json({ ok: true });
+}));
+
+// 学生错题清单(老师查看 + 个性化基础)
+app.get('/api/admin/students/:id/wrongbook', adminRequired, wrap(async (req, res) => {
+  const uid = Number(req.params.id);
+  const level = Number(req.query.level) || (await Q.myClasses(uid))[0]?.level || 1;
+  const rows = await Q.wrongbookDetailed(uid, level);
+  // 按章节聚合
+  const byChapter = {};
+  rows.forEach(r => { (byChapter[r.chapter_id] ||= { chapter_id: r.chapter_id, qids: [], count: 0 }); byChapter[r.chapter_id].qids.push(r.qid); byChapter[r.chapter_id].count++; });
+  const chapters = await Q.chaptersByLevel(level);
+  const chName = Object.fromEntries(chapters.map(c => [c.id, c.name]));
+  res.json({
+    level, total: rows.length,
+    byChapter: Object.values(byChapter).map(g => ({ ...g, name: chName[g.chapter_id] || g.chapter_id }))
+      .sort((a, b) => b.count - a.count),
+    qids: rows.map(r => r.qid),
+  });
+}));
+// 生成个性化练习作业:取该生错题所在章节,抽同章新题,布置给该生
+app.post('/api/admin/students/:id/personalized', adminRequired, wrap(async (req, res) => {
+  const uid = Number(req.params.id);
+  const level = Number((req.body || {}).level) || (await Q.myClasses(uid))[0]?.level || 1;
+  const n = Math.max(3, Math.min(30, Number((req.body || {}).count) || 10));
+  const wrong = await Q.wrongbookDetailed(uid, level);
+  if (!wrong.length) return res.status(400).json({ error: '该生暂无错题,无法生成针对性练习' });
+  const chapterIds = [...new Set(wrong.map(w => w.chapter_id))];
+  const sampled = await Q.sampleByChapters(uid, chapterIds, n);
+  if (!sampled.length) return res.status(400).json({ error: '同类新题不足,该生可能已练完这些章节' });
+  const mc = sampled.map(q => q.qid);
+  const u = await Q.userBasic(uid);
+  const title = (req.body || {}).title || `给${u.username}的巩固练习(${sampled.length}题)`;
+  await Q.createAssignment(level, 'homework', title.slice(0, 80),
+    '根据你的错题,我们从薄弱章节挑了一组同类新题,练一练巩固。', JSON.stringify({ mc, prog: [] }),
+    null, ',' + uid + ',');
+  res.json({ ok: true, count: sampled.length, chapters: chapterIds.length });
+}));
+// 错题重做:把该生错题原题打包成作业发给他
+app.post('/api/admin/students/:id/redo-wrong', adminRequired, wrap(async (req, res) => {
+  const uid = Number(req.params.id);
+  const level = Number((req.body || {}).level) || (await Q.myClasses(uid))[0]?.level || 1;
+  const wrong = await Q.wrongbookDetailed(uid, level);
+  if (!wrong.length) return res.status(400).json({ error: '该生暂无错题' });
+  const mc = wrong.map(w => w.qid).slice(0, 50);
+  const u = await Q.userBasic(uid);
+  await Q.createAssignment(level, 'homework', `${u.username}的错题重做(${mc.length}题)`.slice(0, 80),
+    '把之前做错的题再做一遍,检验是否真的掌握了。', JSON.stringify({ mc, prog: [] }), null, ',' + uid + ',');
+  res.json({ ok: true, count: mc.length });
+}));
+// 班级共性弱点
+app.get('/api/admin/classes/:level/weakness', adminRequired, wrap(async (req, res) => {
+  const level = Number(req.params.level);
+  res.json({ weakness: await Q.classWeakness(level) });
+}));
+
+/* ===== 教师出编程题(A模式:标程自动产出输出) ===== */
+// 按变量规格生成一组输入(每行一个变量,支持 int 范围 / 数组)
+function genInputs(spec, count) {
+  // spec: [{kind:'int',min,max} | {kind:'array',len:{min,max},elem:{min,max}, line:true}]
+  const rndInt = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
+  const oneCase = (extreme) => {
+    const lines = [];
+    for (const v of spec) {
+      if (v.kind === 'int') {
+        const val = extreme === 'min' ? v.min : extreme === 'max' ? v.max : rndInt(v.min, v.max);
+        lines.push(String(val));
+      } else if (v.kind === 'array') {
+        const len = extreme === 'min' ? v.len.min : extreme === 'max' ? v.len.max : rndInt(v.len.min, v.len.max);
+        const arr = [];
+        for (let i = 0; i < len; i++) arr.push(extreme === 'min' ? v.elem.min : extreme === 'max' ? v.elem.max : rndInt(v.elem.min, v.elem.max));
+        if (v.lenLine !== false) lines.push(String(len)); // 先输出长度
+        lines.push(arr.join(' '));
+      }
+    }
+    return lines.join('\n');
+  };
+  const cases = [oneCase('min'), oneCase('max')]; // 边界各一
+  while (cases.length < count) cases.push(oneCase('rand'));
+  return [...new Set(cases)]; // 去重
+}
+
+// 出题:验证标程 + 生成测试数据 + 入库
+app.post('/api/admin/teacher-prog', adminRequired, wrap(async (req, res) => {
+  const b = req.body || {};
+  const level = Math.max(1, Math.min(8, Number(b.level) || 1));
+  const title = String(b.title || '').trim().slice(0, 80);
+  const statement = String(b.statement || '').trim();
+  const solution = String(b.solution || '').trim();
+  const timeLimit = Math.min(Math.max(Number(b.time_limit) || 1, 1), 5);
+  const spec = Array.isArray(b.inputSpec) ? b.inputSpec : [];
+  const samples = Array.isArray(b.samples) ? b.samples : []; // 老师给的样例(可选)
+  if (!title || !statement || !solution) return res.status(400).json({ error: '标题、题干、参考程序都要填写' });
+  if (!spec.length && !samples.length) return res.status(400).json({ error: '请至少配置输入格式或填写样例' });
+  if (!PROG.judgeAvailable()) return res.status(503).json({ error: '判题服务未就绪,无法验证标程' });
+
+  // 1) 编译验证标程:先用第一个样例或生成一个输入跑
+  const probeInputs = samples.length ? samples.map(s => s.in) : genInputs(spec, 1);
+  let probe;
+  try { probe = await PROG.runOnce(solution, (probeInputs[0] || '') + '\n', timeLimit); }
+  catch (e) { return res.status(502).json({ error: '判题服务暂时不可用,请稍后再试:' + e.message }); }
+  if (probe.kind === 'CE') return res.status(400).json({ error: '参考程序编译失败,请修正:\n' + (probe.detail || '').slice(0, 800) });
+  if (probe.kind === 'RE') return res.status(400).json({ error: '参考程序运行出错(请检查是否匹配你描述的输入格式):' + (probe.detail || '').slice(0, 300) });
+  if (probe.kind === 'TLE') return res.status(400).json({ error: '参考程序超时,请检查算法或调高时限' });
+
+  // 2) 校验老师给的样例:标程输出须与样例输出一致(防止标程或样例错)
+  const norm = s => String(s || '').split('\n').map(l => l.replace(/[ \t\r]+$/, '')).join('\n').replace(/\n+$/, '');
+  for (const s of samples) {
+    const r = await PROG.runOnce(solution, s.in + '\n', timeLimit);
+    if (r.kind !== 'OK') return res.status(400).json({ error: '参考程序在你的样例上运行异常' });
+    if (s.out != null && String(s.out).trim() && norm(r.output) !== norm(s.out))
+      return res.status(400).json({ error: `参考程序输出与样例不符。样例输入「${s.in}」你填的输出「${s.out}」,但标程跑出「${r.output.trim()}」。请检查标程或样例。` });
+  }
+
+  // 3) 生成测试点:样例 + 按 spec 生成,逐个用标程产出输出
+  const pid = 't-' + level + '-' + Date.now().toString(36);
+  const inputs = [];
+  samples.forEach(s => inputs.push(s.in));
+  if (spec.length) genInputs(spec, 10).forEach(i => { if (!inputs.includes(i)) inputs.push(i); });
+  const tcs = [];
+  for (const inp of inputs.slice(0, 12)) {
+    const r = await PROG.runOnce(solution, inp + '\n', timeLimit);
+    if (r.kind === 'OK') tcs.push({ input: inp + '\n', expected: r.output });
+    // 跑挂的输入跳过(不计入)
+  }
+  if (tcs.length < 2) return res.status(400).json({ error: '可用测试点不足,请检查输入格式配置是否与标程匹配' });
+
+  // 4) 入库
+  await Q.createTeacherProg(pid, level, title, statement, solution, timeLimit,
+    JSON.stringify(samples.map(s => ({ in: s.in, out: s.out || '' }))));
+  for (let i = 0; i < tcs.length; i++) await Q.addTeacherTc(pid, i + 1, tcs[i].input, tcs[i].expected);
+  await refreshTeacherProg();
+  res.json({ ok: true, pid, testcases: tcs.length });
+}));
+app.get('/api/admin/teacher-prog', adminRequired, wrap(async (req, res) => {
+  const level = Number(req.query.level || 1);
+  res.json({ list: await Q.teacherProgByLevel(level) });
+}));
+app.delete('/api/admin/teacher-prog/:pid', adminRequired, wrap(async (req, res) => {
+  await Q.clearTeacherTc(req.params.pid);
+  await Q.deleteTeacherProg(req.params.pid);
+  delete TEACHER_PROG[req.params.pid]; delete TEACHER_TC[req.params.pid];
+  res.json({ ok: true });
+}));
+// 作业评语
+app.post('/api/admin/assignments/:id/comment', adminRequired, wrap(async (req, res) => {
+  const b = req.body || {};
+  await Q.setComment(Number(req.params.id), Number(b.user_id), String(b.comment || '').slice(0, 500));
+  res.json({ ok: true });
+}));
+// 班级名册(布置给个人时选学生用)——复用 classRoster
+app.get('/api/admin/students/:id', adminRequired, wrap(async (req, res) => {
+  const uid = Number(req.params.id);
+  const u = await Q.userBasic(uid);
+  if (!u) return res.status(404).json({ error: '学生不存在' });
+  const level = Number(req.query.level) || (await Q.myClasses(uid))[0]?.level || 1;
+  const [ov, byCh, recent, asg, prog] = await Promise.all([
+    Q.studentOverview(uid), Q.studentByChapter(uid, level),
+    Q.studentRecent(uid, 20), Q.studentAssignments(uid, level), Q.studentProgCount(uid),
+  ]);
+  res.json({
+    student: { id: u.id, username: u.username, avatar: u.avatar, created_at: u.created_at,
+               vip: vipActive(u) },
+    level,
+    overview: {
+      attempts: N(ov && ov.attempts), correct: N(ov && ov.correct),
+      distinct_q: N(ov && ov.distinct_q), last_active: ov && ov.last_active,
+      accuracy: ov && ov.attempts ? Math.round(ov.correct / ov.attempts * 100) : 0,
+      prog_ac: N(prog && prog.ac),
+    },
+    chapters: byCh.map(c => ({ id: c.chapter_id, name: c.name, total: N(c.total),
+      mastered: N(c.mastered), tried: N(c.tried),
+      pct: c.total ? Math.round(c.mastered / c.total * 100) : 0 })),
+    recent: recent.map(r => ({ qid: r.qid, correct: !!r.correct, type: r.type, at: r.created_at })),
+    assignments: asg,
+  });
+}));
+app.get('/api/admin/assignments/:id/roster', adminRequired, wrap(async (req, res) => {
+  const a = await Q.assignmentById(Number(req.params.id));
+  if (!a) return res.status(404).json({ error: '不存在' });
+  res.json({ assignment: { id: a.id, title: a.title, type: a.type }, roster: await Q.assignmentRoster(a.id, a.level) });
 }));
 
 /* ===== 编程题(在线评测) ===== */
@@ -641,5 +998,6 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.ht
 /* ===== 启动 ===== */
 (async () => {
   const r = await initDb();
+  await refreshTeacherProg();
   app.listen(PORT, () => console.log(`\n✅ GESP 多级别学习平台已启动: http://localhost:${PORT}  (内容版本 ${r.version}${r.migrated ? ', 已迁移/更新' : ''})\n`));
 })().catch(err => { console.error('❌ 启动失败:', err); process.exit(1); });

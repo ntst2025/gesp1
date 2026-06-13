@@ -96,6 +96,62 @@ textarea{resize:vertical;line-height:1.6}
 .empty{color:var(--muted);text-align:center;padding:30px}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#13182e;color:#fff;padding:10px 18px;border-radius:10px;font-size:18px;z-index:99;box-shadow:0 6px 20px rgba(0,0,0,.2)}
 @media(max-width:760px){.side{width:100%;position:static;display:flex;gap:6px;overflow:auto;padding:10px}.side a{white-space:nowrap;margin:0}.layout{flex-direction:column}}
+
+/* 用户管理增强样式 */
+.utbl td{vertical-align:middle}
+.utbl tr.u-off{opacity:.5}
+.u-av{width:26px;height:26px;border-radius:50%;vertical-align:middle;margin-right:4px}
+.u-av-e{font-size:18px;vertical-align:middle;margin-right:4px}
+.pill{display:inline-block;font-size:12px;font-weight:700;border-radius:99px;padding:2px 10px}
+.pill.vip{background:#fff3d6;color:#c98a12}
+.pill.free{background:#eef0f6;color:#7a8194}
+.pill.ok{background:#e3f6ec;color:#1f9d57}
+.pill.off{background:#fde4e4;color:#c0392b}
+.u-acts{white-space:nowrap}
+.u-acts .btn.sm{margin-left:4px}
+.btn.warn{background:#fff0e0;color:#c97a12;border-color:#f0c789}
+.btn.warn:hover{background:#ffe6cc}
+#u-count b{color:#13182e}
+
+.adm-modal-mask{position:fixed;inset:0;background:rgba(19,24,46,.45);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.adm-modal{background:#fff;border-radius:16px;padding:22px;max-width:640px;width:100%;max-height:80vh;overflow:auto;position:relative}
+.adm-x{position:absolute;top:14px;right:18px;font-size:24px;color:#999;cursor:pointer}
+select{padding:7px 10px;border:1px solid #d4d8e3;border-radius:8px;font-size:14px}
+textarea{font-family:inherit;padding:8px 10px;border:1px solid #d4d8e3;border-radius:8px;font-size:14px;box-sizing:border-box}
+
+.t-toc{display:flex;flex-direction:column;gap:6px;margin-top:6px;max-height:240px;overflow:auto;border:1px solid #e6e8f0;border-radius:10px;padding:10px}
+.toc-item{display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer}
+tr.clk{cursor:pointer}tr.clk:hover{background:#f6f8ff}
+.stat-row{display:flex;gap:10px;margin:6px 0 4px}
+.stat-box{flex:1;background:#f6f8ff;border-radius:12px;padding:12px;text-align:center}
+.stat-box .sv{font-size:24px;font-weight:800;color:#13182e;font-family:monospace}
+.stat-box .sl{font-size:12px;color:#7a8194;margin-top:2px}
+.mh{margin:18px 0 8px;font-size:15px;color:#13182e}
+.mini-bar{background:#eef0f6;border-radius:99px;height:8px;overflow:hidden}
+.mini-bar span{display:block;height:100%;background:linear-gradient(90deg,#7ed9b4,#35c191);border-radius:99px}
+.rec-row{display:flex;flex-wrap:wrap;gap:5px}
+.rec-dot{width:24px;height:24px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff}
+.rec-dot.ok{background:#2bb673}.rec-dot.no{background:#e4485f}
+
+/* 授课增强 */
+.t-picked{margin-top:8px}
+.pk-list{max-height:340px;overflow:auto;border:1px solid #e6e8f0;border-radius:10px;padding:8px}
+.pk-ch{margin-bottom:6px}
+.pk-ch-h{font-weight:700;font-size:14px;padding:6px 4px;display:flex;align-items:center;gap:8px}
+.pk-sec{display:flex;justify-content:space-between;align-items:center;padding:4px 12px;font-size:13px;color:#555}
+.pk-qlist{max-height:360px;overflow:auto;display:flex;flex-direction:column;gap:6px}
+.pk-q{display:flex;align-items:center;gap:8px;font-size:13px;padding:6px 8px;border:1px solid #eee;border-radius:8px;cursor:pointer}
+.pk-q:hover{background:#f6f8ff}
+.t-ops{display:flex;gap:8px;flex-wrap:wrap}
+.wrong-sum{font-size:13px;color:#555;margin:8px 0 6px}
+.qtype{font-size:11px;padding:1px 6px;border-radius:4px;background:#eef0f6}
+.type-mc{background:#e7f0ff;color:#2563c9}.type-tf{background:#fdeede;color:#c97a12}
+
+/* 出编程题 */
+.pm-sample{display:flex;gap:8px;align-items:flex-start;margin-bottom:6px}
+.pm-sample textarea{flex:1;font-family:monospace;font-size:13px}
+.pm-spec{border:1px solid #e6e8f0;border-radius:10px;padding:10px;margin-top:4px}
+.pm-spec-row{font-size:13px;margin:6px 0;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
 </style>
 <script src="/js/analytics.js" defer></script>
 </head>
@@ -124,6 +180,7 @@ textarea{resize:vertical;line-height:1.6}
       <a id="nav-c" onclick="nav('c')">🎟️ 兑换码</a>
       <a id="nav-b" onclick="nav('b')">🔍 百度推送</a>
       <a id="nav-r" onclick="nav('r')">🐞 题目报错</a>
+      <a id="nav-t" onclick="nav('t')">🎓 授课管理</a>
     </nav>
     <main class="main"><div id="view"></div></main>
   </div>

@@ -12,6 +12,10 @@ const path = require('path');
 
 const PROG_DIR = path.join(__dirname, '..', 'data', 'prog');
 const CACHE = {};
+// 教师题数据源(server 启动时注入 db 查询函数)
+let teacherProgLoader = null;       // (pid) => {pid,title,statement,solution,time_limit,samples,...} | null
+let teacherTcLoader = null;         // (pid) => [{name,input,expected}]
+function setTeacherProgSource(getQ, getTc) { teacherProgLoader = getQ; teacherTcLoader = getTc; }
 
 function progBank(level) {
   const n = Number(level);
@@ -23,11 +27,13 @@ function progBank(level) {
   return CACHE[n];
 }
 function progByPid(pid) {
+  if (String(pid).startsWith('t-')) return teacherProgLoader ? teacherProgLoader(pid) : null;
   const m = String(pid).match(/^(\d)-/);
   const bank = m && progBank(m[1]);
   return bank ? bank.questions.find(q => q.pid === pid) || null : null;
 }
 function testcases(pid) {
+  if (String(pid).startsWith('t-')) return teacherTcLoader ? teacherTcLoader(pid) : [];
   const m = String(pid).match(/^(\d)-/);
   if (!m) return [];
   const dir = path.join(PROG_DIR, 'tc', `level${m[1]}`, pid);
@@ -215,4 +221,15 @@ async function judgeSubmission(pid, code) {
   return { verdict, results, passed: results.filter(x => x.status === 'AC').length, total: tcs.length };
 }
 
-module.exports = { progBank, progByPid, testcases, judgeSubmission, judgeAvailable };
+// 单次运行一份代码(出题时验证标程/生成输出用):返回 {kind:'OK'|'CE'|'RE'|'TLE', output, detail}
+async function runOnce(code, input, timeLimit) {
+  const chain = backendChain();
+  let lastErr = null;
+  for (const run of chain) {
+    try { return await run(code, input, timeLimit || 1); }
+    catch (e) { lastErr = e; }
+  }
+  throw lastErr || new Error('判题服务不可用');
+}
+
+module.exports = { progBank, progByPid, testcases, judgeSubmission, judgeAvailable, runOnce, setTeacherProgSource };

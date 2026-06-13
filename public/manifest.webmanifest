@@ -1,0 +1,16 @@
+{
+  "name": "GESPPASS · GESP C++ 真题刷题",
+  "short_name": "GESPPASS",
+  "description": "CCF GESP C++ 等级认证备考:历年真题、逐题解析、编程题在线评测、限时模考",
+  "lang": "zh-CN",
+  "start_url": "/app?src=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#ffffff",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

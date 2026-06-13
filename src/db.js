@@ -50,6 +50,49 @@ CREATE TABLE IF NOT EXISTS bookmarks(
 );
 CREATE TABLE IF NOT EXISTS meta(k TEXT PRIMARY KEY, v TEXT);
 CREATE TABLE IF NOT EXISTS baidu_push(url TEXT PRIMARY KEY, ts TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS class_members(
+  level INTEGER NOT NULL,
+  user_id INTEGER NOT NULL,
+  joined_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY(level, user_id)
+);
+CREATE TABLE IF NOT EXISTS assignments(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  level INTEGER NOT NULL,
+  type TEXT NOT NULL,                 -- 'resource' 课程资源 | 'homework' 作业
+  title TEXT NOT NULL,
+  body TEXT,
+  payload TEXT,                       -- JSON
+  due_at TEXT,
+  target TEXT,                        -- NULL/'class'=全班; 否则 JSON 数组 [user_id,...] 指定学生
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE TABLE IF NOT EXISTS assignment_progress(
+  assignment_id INTEGER NOT NULL,
+  user_id INTEGER NOT NULL,
+  status TEXT NOT NULL DEFAULT 'assigned',  -- assigned|done
+  score INTEGER,                      -- 作业自动批改得分
+  detail TEXT,                        -- JSON:逐题对错
+  updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY(assignment_id, user_id)
+);
+CREATE TABLE IF NOT EXISTS teacher_prog(
+  pid TEXT PRIMARY KEY,
+  level INTEGER NOT NULL,
+  title TEXT NOT NULL,
+  statement TEXT NOT NULL,
+  solution TEXT NOT NULL,
+  time_limit REAL DEFAULT 1.0,
+  samples TEXT,                       -- JSON [{in,out}]
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE TABLE IF NOT EXISTS teacher_prog_tc(
+  pid TEXT NOT NULL,
+  ord INTEGER NOT NULL,
+  input TEXT NOT NULL,
+  expected TEXT NOT NULL,
+  PRIMARY KEY(pid, ord)
+);
 CREATE TABLE IF NOT EXISTS prog_submissions(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   pid TEXT NOT NULL, user_id INTEGER NOT NULL,
@@ -172,6 +215,9 @@ async function initDb() {
   await client.executeMultiple(USER_SCHEMA);
   // 迁移:为老库补充 avatar 列(已存在则忽略报错)
   try { await run("ALTER TABLE redeem_codes ADD COLUMN note TEXT"); } catch (e) { /* 列已存在 */ }
+  try { await run("ALTER TABLE users ADD COLUMN disabled INTEGER DEFAULT 0"); } catch (e) { /* 列已存在 */ }
+  try { await run("ALTER TABLE assignments ADD COLUMN target TEXT"); } catch (e) { /* 列已存在 */ }
+  try { await run("ALTER TABLE assignment_progress ADD COLUMN comment TEXT"); } catch (e) { /* 列已存在 */ }
   try { await run("ALTER TABLE users ADD COLUMN avatar TEXT"); } catch (e) { /* 列已存在 */ }
   try { await run("ALTER TABLE users ADD COLUMN tier TEXT DEFAULT 'free'"); } catch (e) { /* 列已存在 */ }
   try { await run("ALTER TABLE users ADD COLUMN vip_until TEXT"); } catch (e) { /* 列已存在 */ }
@@ -195,7 +241,7 @@ const Q = {
   // users
   createUser: (u, e, h, av) => run('INSERT INTO users(username,email,password_hash,avatar) VALUES(?,?,?,?)', [u, e, h, av || null]),
   userByName: (u) => get('SELECT * FROM users WHERE username = ?', [u]),
-  userById: (id) => get('SELECT id,username,email,avatar,tier,vip_until,created_at FROM users WHERE id = ?', [id]),
+  userById: (id) => get('SELECT id,username,email,avatar,tier,vip_until,created_at,disabled FROM users WHERE id = ?', [id]),
   setTier: (id, tier, until) => run('UPDATE users SET tier = ?, vip_until = ? WHERE id = ?', [tier, until, id]),
 
   // levels
@@ -221,6 +267,74 @@ const Q = {
   questionsByLevelPaper: (lv, paper) => all("SELECT qid, type, num FROM questions WHERE level = ? AND paper = ? ORDER BY (type='tf'), num", [lv, paper]),
   allQuestionRefs: () => all('SELECT qid, level, paper, type, num FROM questions ORDER BY level, paper, (type=\'tf\'), num'),
   setAvatar: (uid, av) => run('UPDATE users SET avatar = ? WHERE id = ?', [av, uid]),
+  setDisabled: (uid, v) => run('UPDATE users SET disabled = ? WHERE id = ?', [v ? 1 : 0, uid]),
+  // ---- 教师编程题 ----
+  createTeacherProg: (pid,level,title,statement,solution,tl,samples) => run('INSERT INTO teacher_prog(pid,level,title,statement,solution,time_limit,samples) VALUES(?,?,?,?,?,?,?)', [pid,level,title,statement,solution,tl,samples]),
+  teacherProgByPid: (pid) => get('SELECT * FROM teacher_prog WHERE pid=?', [pid]),
+  teacherProgByLevel: (level) => all('SELECT pid,level,title,time_limit,created_at FROM teacher_prog WHERE level=? ORDER BY created_at DESC', [level]),
+  deleteTeacherProg: (pid) => run('DELETE FROM teacher_prog WHERE pid=?', [pid]),
+  addTeacherTc: (pid,ord,input,expected) => run('INSERT INTO teacher_prog_tc(pid,ord,input,expected) VALUES(?,?,?,?)', [pid,ord,input,expected]),
+  clearTeacherTc: (pid) => run('DELETE FROM teacher_prog_tc WHERE pid=?', [pid]),
+  teacherTc: (pid) => all('SELECT ord,input,expected FROM teacher_prog_tc WHERE pid=? ORDER BY ord', [pid]),
+  // ---- 班级 ----
+  joinClass: (level, uid) => run('INSERT OR IGNORE INTO class_members(level,user_id) VALUES(?,?)', [level, uid]),
+  leaveClass: (level, uid) => run('DELETE FROM class_members WHERE level=? AND user_id=?', [level, uid]),
+  myClasses: (uid) => all('SELECT level FROM class_members WHERE user_id=? ORDER BY level', [uid]),
+  classRoster: (level) => all(`SELECT u.id,u.username,u.avatar,m.joined_at,
+      COUNT(a.id) attempts,
+      COALESCE(SUM(CASE WHEN a.correct=1 THEN 1 ELSE 0 END),0) correct
+    FROM class_members m JOIN users u ON u.id=m.user_id
+    LEFT JOIN attempts a ON a.user_id=u.id
+    WHERE m.level=? GROUP BY u.id ORDER BY m.joined_at DESC`, [level]),
+  classCounts: () => all('SELECT level, COUNT(*) n FROM class_members GROUP BY level'),
+  // ---- 作业/资源 ----
+  createAssignment: (level,type,title,body,payload,due,target) => run('INSERT INTO assignments(level,type,title,body,payload,due_at,target) VALUES(?,?,?,?,?,?,?)', [level,type,title,body,payload,due,target||null]),
+  listAssignments: (level) => all('SELECT * FROM assignments WHERE level=? ORDER BY id DESC', [level]),
+  assignmentById: (id) => get('SELECT * FROM assignments WHERE id=?', [id]),
+  deleteAssignment: (id) => run('DELETE FROM assignments WHERE id=?', [id]),
+  // 学生侧:本人所在班级的作业/资源 + 自己的完成状态
+  myAssignments: (uid) => all(`SELECT a.*, p.status, p.score, p.comment, p.updated_at done_at
+    FROM assignments a
+    JOIN class_members m ON m.level=a.level AND m.user_id=?
+    LEFT JOIN assignment_progress p ON p.assignment_id=a.id AND p.user_id=?
+    WHERE a.target IS NULL OR a.target='class' OR a.target LIKE ?
+    ORDER BY a.id DESC`, [uid, uid, '%,' + uid + ',%']),
+  setAssignmentProgress: (aid,uid,status,score,detail) => run(`INSERT INTO assignment_progress(assignment_id,user_id,status,score,detail,updated_at)
+    VALUES(?,?,?,?,?,datetime('now'))
+    ON CONFLICT(assignment_id,user_id) DO UPDATE SET status=excluded.status,score=excluded.score,detail=excluded.detail,updated_at=datetime('now')`, [aid,uid,status,score,detail]),
+  setComment: (aid,uid,comment) => run(`INSERT INTO assignment_progress(assignment_id,user_id,status,comment,updated_at)
+    VALUES(?,?,'assigned',?,datetime('now'))
+    ON CONFLICT(assignment_id,user_id) DO UPDATE SET comment=excluded.comment,updated_at=datetime('now')`, [aid,uid,comment]),
+  assignmentStats: (aid) => all('SELECT status, COUNT(*) n, AVG(score) avg FROM assignment_progress WHERE assignment_id=? GROUP BY status', [aid]),
+  // 单个学生学情(老师查看用)
+  studentOverview: (uid) => get(`SELECT
+      COUNT(a.id) attempts,
+      COALESCE(SUM(CASE WHEN a.correct=1 THEN 1 ELSE 0 END),0) correct,
+      COUNT(DISTINCT a.qid) distinct_q,
+      MAX(a.created_at) last_active
+    FROM attempts a WHERE a.user_id=?`, [uid]),
+  studentByChapter: (uid, level) => all(`SELECT c.id chapter_id, c.name,
+      COUNT(DISTINCT q.qid) total,
+      COUNT(DISTINCT CASE WHEN a.correct=1 THEN a.qid END) mastered,
+      COUNT(DISTINCT a.qid) tried
+    FROM chapters c
+    JOIN sections sec ON sec.chapter_id=c.id
+    JOIN questions q ON q.section_id=sec.id
+    LEFT JOIN attempts a ON a.qid=q.qid AND a.user_id=?
+    WHERE c.level=? GROUP BY c.id ORDER BY c.ord`, [uid, level]),
+  studentRecent: (uid, lim) => all(`SELECT a.qid, a.correct, a.created_at, q.type, q.level
+    FROM attempts a LEFT JOIN questions q ON q.qid=a.qid
+    WHERE a.user_id=? ORDER BY a.id DESC LIMIT ?`, [uid, lim]),
+  studentAssignments: (uid, level) => all(`SELECT a.id,a.title,a.type,a.due_at,p.status,p.score,p.updated_at
+    FROM assignments a
+    LEFT JOIN assignment_progress p ON p.assignment_id=a.id AND p.user_id=?
+    WHERE a.level=? ORDER BY a.id DESC`, [uid, level]),
+  studentProgCount: (uid) => get("SELECT COUNT(DISTINCT pid) ac FROM prog_submissions WHERE user_id=? AND verdict='AC'", [uid]),
+  userBasic: (uid) => get('SELECT id,username,avatar,tier,vip_until,created_at FROM users WHERE id=?', [uid]),
+  assignmentRoster: (aid, level) => all(`SELECT u.id,u.username,u.avatar,p.status,p.score,p.updated_at
+    FROM class_members m JOIN users u ON u.id=m.user_id
+    LEFT JOIN assignment_progress p ON p.assignment_id=? AND p.user_id=u.id
+    WHERE m.level=? ORDER BY p.score DESC NULLS LAST, u.username`, [aid, level]),
   addSubmission: (pid, uid, code, verdict, passed, total) => run('INSERT INTO prog_submissions(pid,user_id,code,verdict,passed,total) VALUES(?,?,?,?,?,?)', [pid, uid, code, verdict, passed, total]),
   mySubmissions: (uid, pid) => all('SELECT id, verdict, passed, total, created_at FROM prog_submissions WHERE user_id=? AND pid=? ORDER BY id DESC LIMIT 20', [uid, pid]),
   myLastCode: (uid, pid) => get('SELECT code FROM prog_submissions WHERE user_id=? AND pid=? ORDER BY id DESC LIMIT 1', [uid, pid]),
@@ -236,6 +350,9 @@ const Q = {
   randomByLevel: (lv, n) => all('SELECT * FROM questions WHERE level = ? ORDER BY RANDOM() LIMIT ?', [lv, n]),
   randomBySection: (sid, n) => all('SELECT * FROM questions WHERE section_id = ? ORDER BY RANDOM() LIMIT ?', [sid, n]),
   randomByChapter: (cid, n) => all('SELECT * FROM questions WHERE chapter_id = ? ORDER BY RANDOM() LIMIT ?', [cid, n]),
+  qidsByChapter: (cid) => all('SELECT qid FROM questions WHERE chapter_id = ? ORDER BY ord', [cid]),
+  qidsBySection: (sid) => all('SELECT qid FROM questions WHERE section_id = ? ORDER BY ord', [sid]),
+  qidsByPaper: (level, paper) => all('SELECT qid FROM questions WHERE level=? AND paper=? ORDER BY type DESC, num', [level, paper]),
   search: (like, lv) => all(`SELECT * FROM questions
     WHERE level = ? AND (stem LIKE ? ESCAPE '\\' OR code LIKE ? ESCAPE '\\' OR options_json LIKE ? ESCAPE '\\')
     ORDER BY chapter_id, ord LIMIT 80`, [lv, like, like, like]),
@@ -261,6 +378,26 @@ const Q = {
   setMastered: (m, uid, qid) => run(`UPDATE wrongbook SET mastered = ?, updated_at = datetime('now') WHERE user_id = ? AND qid = ?`, [m, uid, qid]),
   wrongbookQids: (uid) => all('SELECT qid, wrong_count, mastered FROM wrongbook WHERE user_id = ? AND mastered = 0 ORDER BY updated_at DESC', [uid]),
   wrongbookCount: (uid) => get('SELECT COUNT(*) c FROM wrongbook WHERE user_id = ? AND mastered = 0', [uid]),
+  // 错题带题目信息(老师查看 + 个性化用)
+  wrongbookDetailed: (uid, level) => all(`SELECT w.qid, w.wrong_count, q.chapter_id, q.section_id, q.type, q.level
+    FROM wrongbook w JOIN questions q ON q.qid=w.qid
+    WHERE w.user_id=? AND w.mastered=0 AND q.level=? ORDER BY w.wrong_count DESC, w.updated_at DESC`, [uid, level]),
+  // 个性化:按章节集合抽未做过/做错的同类新题,排除已在错题里的原题
+  sampleByChapters: (uid, chapterIds, n) => {
+    if (!chapterIds.length) return Promise.resolve([]);
+    const ph = chapterIds.map(() => '?').join(',');
+    return all(`SELECT q.* FROM questions q
+      WHERE q.chapter_id IN (${ph})
+        AND q.qid NOT IN (SELECT qid FROM wrongbook WHERE user_id=? AND mastered=0)
+      ORDER BY RANDOM() LIMIT ?`, [...chapterIds, uid, n]);
+  },
+  // 班级共性弱点:全班错题按章节聚合
+  classWeakness: (level) => all(`SELECT q.chapter_id, c.name, COUNT(*) wrong_total, COUNT(DISTINCT w.user_id) students
+    FROM wrongbook w
+    JOIN class_members m ON m.user_id=w.user_id AND m.level=?
+    JOIN questions q ON q.qid=w.qid AND q.level=?
+    JOIN chapters c ON c.id=q.chapter_id
+    WHERE w.mastered=0 GROUP BY q.chapter_id ORDER BY wrong_total DESC`, [level, level]),
   addBookmark: (uid, qid) => run('INSERT OR IGNORE INTO bookmarks(user_id,qid) VALUES(?,?)', [uid, qid]),
   delBookmark: (uid, qid) => run('DELETE FROM bookmarks WHERE user_id = ? AND qid = ?', [uid, qid]),
   bookmarkQids: (uid) => all('SELECT qid FROM bookmarks WHERE user_id = ? ORDER BY created_at DESC', [uid]),
@@ -314,7 +451,7 @@ const Q = {
   delQuestionOverride: (qid) => run('DELETE FROM question_overrides WHERE qid = ?', [qid]),
 
   // ===== 管理后台 · 用户 =====
-  adminListUsers: (like, lim) => all(`SELECT u.id,u.username,u.avatar,u.email,u.tier,u.vip_until,u.created_at,
+  adminListUsers: (like, lim) => all(`SELECT u.id,u.username,u.avatar,u.email,u.tier,u.vip_until,u.created_at,u.disabled,
       COALESCE(SUM(CASE WHEN a.correct=1 THEN (CASE WHEN q.type='mc' THEN 2 ELSE 1 END) ELSE 0 END),0) points,
       COUNT(a.id) attempts
     FROM users u LEFT JOIN attempts a ON a.user_id=u.id LEFT JOIN questions q ON q.qid=a.qid

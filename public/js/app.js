@@ -123,6 +123,7 @@ async function go(tab){
   else if(tab==='recommend'){ await ensureCatalog(); await renderRecommend(); }
   else if(tab==='mock'){ await ensureCatalog(); await renderMock(); }
   else if(tab==='prog'){ await renderProgList(); }
+  else if(tab==='course'){ await renderCourse(); }
   else if(tab==='progq'){ /* 由 renderProgQ 直接调用 */ }
   else if(tab==='wrong'){ await renderWrong(); }
   else if(tab==='progress'){ await renderProgress(); }
@@ -253,11 +254,16 @@ async function renderLessons(){
     <div class="learn-foot">建议每读完一章，到「真题精讲」做对应章节的真题。</div>`;
   window.scrollTo(0,0);
 }
-async function renderLessonChapter(cid){
+function openLessonChapter(level, cid){
+  // 老师推送的章节可能属于其他级别:带 level 参数渲染,不依赖全局 LEVEL
+  renderLessonChapter(cid, level);
+}
+async function renderLessonChapter(cid, lvOverride){
   setActiveTab('learn');
   C().innerHTML='<div class="empty"><div class="spinner"></div>正在加载章节…</div>';
+  const lv=lvOverride||LEVEL;
   let d;
-  try{ d=await api('/api/lessons/chapter?level='+LEVEL+'&id='+encodeURIComponent(cid)); }
+  try{ d=await api('/api/lessons/chapter?level='+lv+'&id='+encodeURIComponent(cid)); }
   catch(e){ C().innerHTML='<div class="empty">章节加载失败，请稍后再试。</div>'; return; }
   const nav=(cls)=>`<div class="ls-nav ${cls}">
     ${d.prev?`<a class="ls-navbtn" onclick="renderLessonChapter('${d.prev.id}')">← ${esc(d.prev.title)}</a>`:'<span></span>'}
@@ -395,6 +401,99 @@ function renderExamGuide(){
     <div class="learn-foot">信息整理自 CCF 公开资料，具体以 <b>gesp.ccf.org.cn</b> 当期通知为准。</div>`;
   window.scrollTo(0,0);
 }
+/* ===================== 📗 我的课程(授课/作业) ===================== */
+async function renderCourse(){
+  setActiveTab('course');
+  C().innerHTML='<div class="empty"><div class="spinner"></div>加载中…</div>';
+  let cls,asg;
+  try{
+    cls=(await api('/api/my/classes')).classes;
+    asg=(await api('/api/my/assignments')).assignments;
+  }catch(e){ C().innerHTML='<div class="empty">'+esc(e.message)+'</div>'; return; }
+  if(!cls.length){
+    C().innerHTML=`<div class="learn-hero"><h2>📗 我的课程</h2><p>加入班级后，老师推送的课程资源和作业会出现在这里。</p></div>
+      <div class="card"><div class="card-h">加入班级</div><div class="card-b">
+      <p style="color:var(--ink2);margin-bottom:12px">选择你正在备考的级别加入对应班级（每级一个班）：</p>
+      <div class="opt-group">${[1,2,3,4,5,6,7,8].map(l=>`<span class="chip" onclick="joinClass(${l})">C++ ${l} 级班</span>`).join('')}</div>
+      </div></div>`;
+    return;
+  }
+  const homework=asg.filter(a=>a.type==='homework');
+  const resources=asg.filter(a=>a.type==='resource');
+  const hwCards=homework.map(a=>{
+    const done=a.status==='done';
+    const overdue=a.due_at && new Date(a.due_at)<new Date() && !done;
+    return `<div class="cs-item ${done?'done':''}" onclick="openAssignment(${a.id})">
+      <div class="cs-ic">📝</div>
+      <div class="cs-main"><div class="cs-t">${esc(a.title)}</div>
+        <div class="cs-meta">C++ ${a.level}级 · ${a.due_at?('截止 '+a.due_at.slice(5,16).replace('T',' ')):'无截止'}${overdue?' <span class="cs-over">已逾期</span>':''}</div></div>
+      <div class="cs-st">${done?`<span class="cs-score">${a.score}分</span>`:'<span class="cs-todo">去完成 ›</span>'}</div>
+      ${done&&a.comment?`<div class="cs-comment">💬 老师评语:${esc(a.comment)}</div>`:''}</div>`;
+  }).join('')||'<div class="empty" style="padding:20px">暂无作业</div>';
+  const resCards=resources.map(a=>{
+    const done=a.status==='done';
+    return `<div class="cs-item ${done?'done':''}" onclick="openAssignment(${a.id})">
+      <div class="cs-ic">📎</div>
+      <div class="cs-main"><div class="cs-t">${esc(a.title)}</div><div class="cs-meta">C++ ${a.level}级 · 课程资源</div></div>
+      <div class="cs-st">${done?'<span class="cs-read">已读</span>':'<span class="cs-todo">查看 ›</span>'}</div></div>`;
+  }).join('')||'<div class="empty" style="padding:20px">暂无资源</div>';
+  C().innerHTML=`<div class="learn-hero"><h2>📗 我的课程</h2><p>已加入：${cls.map(l=>'C++ '+l+'级班').join('、')}</p></div>
+    <div class="card"><div class="card-h">📝 作业</div><div class="card-b" style="padding:8px">${hwCards}</div></div>
+    <div class="card"><div class="card-h">📎 课程资源</div><div class="card-b" style="padding:8px">${resCards}</div></div>
+    <div class="card"><div class="card-b" style="text-align:center"><span style="font-size:13px;color:var(--ink3)">想加入其他级别的班？</span> ${[1,2,3,4,5,6,7,8].filter(l=>!cls.includes(l)).map(l=>`<a class="mini-join" onclick="joinClass(${l})">+${l}级</a>`).join(' ')||'<span style="color:var(--ink3);font-size:13px">已加入全部</span>'}</div></div>`;
+  window.scrollTo(0,0);
+}
+async function joinClass(level){
+  try{ await api('/api/class/join',{method:'POST',body:JSON.stringify({level})}); toast('已加入 C++ '+level+'级班'); renderCourse(); }
+  catch(e){ toast(e.message,'err'); }
+}
+let CUR_ASG=null;
+async function openAssignment(id){
+  C().innerHTML='<div class="empty"><div class="spinner"></div>加载中…</div>';
+  let d; try{ d=await api('/api/my/assignments/'+id); }catch(e){ C().innerHTML='<div class="empty">'+esc(e.message)+'</div>'; return; }
+  CUR_ASG=d;
+  if(d.type==='resource'){
+    const ch=(d.lesson&&d.lesson.chapters)||[];
+    const chHtml=ch.length?`<div class="res-chs">${ch.map(c=>`<div class="res-ch" onclick="openLessonChapter(${d.lesson.level||d.level},'${c.id}')"><span class="res-ch-ic">📖</span><span>${esc(c.title)}</span><span class="res-ch-go">学习 ›</span></div>`).join('')}</div>`:'';
+    C().innerHTML=`<div class="tp-back"><a onclick="go('course')">← 返回我的课程</a></div>
+      <div class="card"><div class="card-h">📎 ${esc(d.title)}</div><div class="card-b">
+      ${d.body?`<div class="ls-body">${progMd(d.body)}</div>`:''}
+      ${chHtml?`<div class="field-label" style="margin-top:14px">老师推送的讲义章节</div>${chHtml}`:''}
+      <div style="margin-top:16px"><button class="btn" onclick="markRead(${d.id})">标记已读</button></div>
+      </div></div>`;
+    return;
+  }
+  // 作业:客观题 + 编程题
+  const mc=(d.mcQuestions||[]).map((q,i)=>{
+    const isMC=q.type==='mc';
+    const opts=isMC?['A','B','C','D'].filter(k=>q.options[k]!=null).map(k=>`<label class="hw-opt"><input type="radio" name="hw${q.qid}" value="${k}"><span class="hw-k">${k}</span> ${hlInline(q.options[k])}</label>`).join('')
+      :[['√','正确'],['×','错误']].map(([v,t])=>`<label class="hw-opt"><input type="radio" name="hw${q.qid}" value="${v}"><span class="hw-k">${v}</span> ${t}</label>`).join('');
+    return `<div class="hw-q"><div class="hw-qh">${i+1}. <span class="qtype type-${q.type}">${isMC?'单选':'判断'}</span></div>
+      <div class="q-stem">${hlInline(q.stem)}</div>${q.code?`<pre class="q-code">${hl(q.code)}</pre>`:''}
+      <div class="hw-opts">${opts}</div></div>`;
+  }).join('');
+  const prog=(d.progList||[]).map(p=>`<div class="hw-prog"><span>💻 ${esc(p.title)}</span><button class="btn sm solid" onclick="renderProgQ('${p.pid}')">去编程题作答</button></div>`).join('');
+  const progNote=d.progList&&d.progList.length?`<div class="notice">编程题请到「💻 编程题」栏目提交并通过评测，本作业会自动计入是否已通过。</div>`:'';
+  C().innerHTML=`<div class="tp-back"><a onclick="go('course')">← 返回我的课程</a></div>
+    <div class="learn-hero ls-hero"><h2>${esc(d.title)}</h2><p style="margin-top:4px;font-size:14px;color:var(--ink3)">C++ ${d.level}级作业${d.due_at?' · 截止 '+d.due_at.slice(5,16).replace('T',' '):''}</p></div>
+    ${d.body?`<div class="card"><div class="card-b"><div class="ls-body">${progMd(d.body)}</div></div></div>`:''}
+    ${mc?`<div class="card"><div class="card-h">客观题（${d.mcQuestions.length} 题）</div><div class="card-b">${mc}</div></div>`:''}
+    ${prog?`<div class="card"><div class="card-h">编程题（${d.progList.length} 题）</div><div class="card-b">${prog}${progNote}</div></div>`:''}
+    <div class="card"><div class="card-b" style="text-align:center"><button class="btn solid" style="padding:12px 36px;font-size:15px" onclick="submitAssignment(${d.id})">提交作业</button><div id="hw-result"></div></div></div>`;
+  window.scrollTo(0,0);
+}
+async function markRead(id){ try{ await api('/api/my/assignments/'+id+'/read',{method:'POST',body:'{}'}); toast('已标记已读'); go('course'); }catch(e){ toast(e.message); } }
+async function submitAssignment(id){
+  const answers={};
+  (CUR_ASG.mcQuestions||[]).forEach(q=>{ const el=document.querySelector('input[name="hw'+q.qid+'"]:checked'); if(el) answers[q.qid]=el.value; });
+  const out=document.getElementById('hw-result');
+  out.innerHTML='<div class="empty" style="padding:14px"><div class="spinner"></div>批改中…</div>';
+  try{
+    const r=await api('/api/my/assignments/'+id+'/submit',{method:'POST',body:JSON.stringify({answers})});
+    out.innerHTML=`<div class="hw-done">✅ 已提交，得分 <b>${r.score}</b> 分（${r.got}/${r.total}）<div style="margin-top:10px"><button class="btn" onclick="go('course')">返回课程</button></div></div>`;
+  }catch(e){ out.innerHTML='<div class="hw-err">'+esc(e.message||'提交失败')+'</div>'; }
+}
+
 /* ===================== 💻 编程题(在线评测) ===================== */
 async function renderProgList(){
   setActiveTab('prog');
@@ -581,7 +680,9 @@ function renderSection(cid,sid,data){
     for(let i=0;i<pages;i++)pager+=`<button class="${i===pg?'on':''}" onclick="setBrowsePage('${key}',${i})">${i+1}</button>`;
     pager+=`<button ${pg===pages-1?'disabled':''} onclick="setBrowsePage('${key}',${pg+1})">›</button></div>`; }
   const main=`<div class="crumb"><a onclick="goBrowse('overview')">首页</a> › <a onclick="goBrowse('chapter','${cid}')">第${short(cid).slice(1)}章 ${c.name}</a> › <span>${short(s.id)} ${s.name}</span></div>
-    <div class="card"><div class="card-h">${short(s.id)}　${s.name}</div><div class="card-b"><div class="stats">
+    <div class="card"><div class="card-h">${short(s.id)}　${s.name}
+      <span class="sec-acts"><a class="sec-btn lesson" onclick="renderLessons()">📖 看讲义</a><a class="sec-btn drill" onclick="drillSection('${sid}')">🎯 练本节</a></span>
+    </div><div class="card-b"><div class="stats">
       <div class="stat"><span class="lab">被考次数</span><span class="val red">${s.count}</span><span class="lab">题</span></div>
       <div class="stat"><span class="lab">题型</span><span class="val">单选 ${s.mc} / 判断 ${s.tf}</span></div>
       <div class="stat"><span class="lab">被考频率</span>${freqB(s.freq)}</div>
@@ -653,28 +754,81 @@ async function toggleStar(qid,idx){
 let quizCfg={mode:'random',id:null,count:10,level:LEVEL};
 let quiz=null;
 function renderPracticeSetup(){
-  const chapterChips=CATALOG.chapters.map(c=>`<span class="chip" data-mode="chapter" data-id="${c.id}" onclick="pickScope(this)">第${short(c.id).slice(1)}章 ${c.name}<span style="opacity:.6">(${c.count})</span></span>`).join('');
+  // 章节(可展开子节);每个子节带题量,可单独练,并链接对应讲义
+  const chapterBlocks=CATALOG.chapters.map(c=>{
+    const cn=short(c.id).slice(1);
+    const secs=(c.sections||[]).filter(s=>s.count>0).map(s=>{
+      const sn=short(s.id);
+      return `<span class="chip sub" data-mode="section" data-id="${s.id}" data-count="${s.count}" onclick="pickScope(this)">${esc(s.name)}<span style="opacity:.55">(${s.count})</span></span>`;
+    }).join('');
+    return `<div class="ch-block">
+      <div class="ch-row">
+        <span class="chip" data-mode="chapter" data-id="${c.id}" data-count="${c.count}" onclick="pickScope(this)">第${cn}章 ${esc(c.name)}<span style="opacity:.6">(${c.count})</span></span>
+      </div>
+      ${secs?`<div class="sub-row">${secs}</div>`:''}
+    </div>`;
+  }).join('');
   C().innerHTML=`<div class="card"><div class="card-h">🎯 刷题自测 · 组卷</div><div class="card-b quiz-setup">
     <div><div class="field-label">出题范围</div><div class="opt-group">
-      <span class="chip on" data-mode="random" onclick="pickScope(this)">全部随机</span>
+      <span class="chip on" data-mode="random" data-count="${CATALOG.meta.total}" onclick="pickScope(this)">全部随机</span>
       <span class="chip" data-mode="wrongbook" onclick="pickScope(this)">📕 错题重练</span></div></div>
-    <div><div class="field-label">按章节出题</div><div class="opt-group">${chapterChips}</div></div>
-    <div><div class="field-label">题量</div><div class="opt-group">
+    <div><div class="field-label">按章 / 子节出题（点章选整章，点子节只练该节）</div>
+      <div class="ch-list">${chapterBlocks}</div></div>
+    <div><div class="field-label">题量</div><div class="opt-group" id="count-opts">
       <span class="chip" data-n="5" onclick="pickCount(this)">5 题</span>
       <span class="chip on" data-n="10" onclick="pickCount(this)">10 题</span>
       <span class="chip" data-n="20" onclick="pickCount(this)">20 题</span>
-      <span class="chip" data-n="30" onclick="pickCount(this)">30 题</span></div></div>
+      <span class="chip" data-n="30" onclick="pickCount(this)">30 题</span>
+      <span class="chip" data-n="50" onclick="pickCount(this)">50 题</span>
+      <span class="chip hl" data-n="all" onclick="pickCount(this)">全部</span></div>
+      <div class="scope-hint" id="scope-hint">当前范围：全部随机（${CATALOG.meta.total} 题）</div></div>
     <div><button class="btn solid" style="padding:12px 28px;font-size:15px" onclick="startQuiz()">开始练习 ›</button></div>
-    <div class="notice">系统随机抽题、即时判分并显示解析;答错自动进错题本,答对则移出。</div>
+    <div class="notice">系统随机抽题、即时判分并显示解析;答错自动进错题本,答对则移出。选「全部」可一次练完所选范围的所有题。</div>
   </div></div>`;
 }
-function pickScope(el){ document.querySelectorAll('.opt-group .chip[data-mode]').forEach(c=>c.classList.remove('on'));
-  el.classList.add('on'); quizCfg.mode=el.dataset.mode; quizCfg.id=el.dataset.id||null; }
-function pickCount(el){ document.querySelectorAll('.chip[data-n]').forEach(c=>c.classList.remove('on')); el.classList.add('on'); quizCfg.count=+el.dataset.n; }
+function pickScope(el){ document.querySelectorAll('.ch-list .chip,.opt-group .chip[data-mode]').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on'); quizCfg.mode=el.dataset.mode; quizCfg.id=el.dataset.id||null;
+  quizCfg.scopeCount=+(el.dataset.count||0); quizCfg.scopeName=el.textContent.replace(/\(\d+\)$/,'').trim();
+  updateScopeHint();
+  // 子节范围:展示"查看本节讲义"入口
+  const box=document.getElementById('lesson-jump'); if(box) box.remove();
+  if(el.dataset.mode==='section'){
+    const sid=el.dataset.id;
+    const hint=document.getElementById('scope-hint');
+    const a=document.createElement('a'); a.id='lesson-jump'; a.className='lesson-jump';
+    a.textContent='📖 先看本节讲义再练 ›'; a.onclick=()=>openSectionLesson(sid);
+    hint.parentNode.insertBefore(a, hint.nextSibling);
+  }
+}
+function pickCount(el){ document.querySelectorAll('.chip[data-n]').forEach(c=>c.classList.remove('on')); el.classList.add('on');
+  quizCfg.count=el.dataset.n==='all'?'all':+el.dataset.n; updateScopeHint(); }
+function drillSection(sid){
+  let cnt=0;
+  CATALOG.chapters.forEach(c=>(c.sections||[]).forEach(s=>{ if(s.id===sid) cnt=s.count; }));
+  quizCfg={mode:'section',id:sid,count:cnt||100,scopeCount:cnt};
+  go('practice');
+  setTimeout(()=>{ if(typeof startQuiz==='function') startQuiz(); }, 50);
+}
+function openSectionLesson(sid){
+  // 题库子节与讲义章节非一一对应,跳到讲义目录由学生选择对应章节学习
+  PRACTICE_RETURN={mode:quizCfg.mode,id:quizCfg.id};
+  renderLessons();
+  setTimeout(()=>{ try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){} }, 60);
+}
+let PRACTICE_RETURN=null;
+function updateScopeHint(){
+  const h=document.getElementById('scope-hint'); if(!h)return;
+  const total=quizCfg.scopeCount||0;
+  const want=quizCfg.count==='all'?total:Math.min(quizCfg.count||10, total||999);
+  const nm=quizCfg.scopeName||'全部随机';
+  h.textContent=quizCfg.mode==='wrongbook'?'当前范围：错题重练':`当前范围：${nm}　出题 ${quizCfg.count==='all'?('全部 '+total):want} 题`;
+}
 async function startQuiz(){
   C().innerHTML='<div class="empty"><div class="spinner"></div>组卷中…</div>';
   try{
-    const d=await api('/api/practice/start',{method:'POST',body:JSON.stringify(quizCfg)});
+    const cfg=Object.assign({},quizCfg);
+    if(cfg.count==='all') cfg.count=cfg.scopeCount||500;
+    const d=await api('/api/practice/start',{method:'POST',body:JSON.stringify(cfg)});
     if(!d.questions.length){ C().innerHTML=`<div class="card"><div class="card-b empty"><div class="big">🤔</div>没有可练的题目${quizCfg.mode==='wrongbook'?'——你的错题本是空的,先去刷题吧!':''}<br><br><button class="btn solid" onclick="renderPracticeSetup()">返回</button></div></div>`; return; }
     quiz={questions:d.questions,idx:0,results:[],correct:0,kind:'practice'}; renderQuiz();
   }catch(e){ C().innerHTML=`<div class="empty">组卷失败：${esc(e.message)}</div>`; }
@@ -1038,7 +1192,7 @@ function renderUpgrade(){
   </div></div>`;
   window.scrollTo(0,0);
 }
-function howToVip(){ toast('加入「皮爸皮妈陪考星球」即可免费开通 VIP：私信星球主领取兑换码，在下方输入激活。也可通过页脚邮箱联系开通。','ok'); }
+function howToVip(){ toast('加入「皮爸皮妈讲信奥」即可免费开通 VIP：私信星球主领取兑换码，在下方输入激活。也可通过页脚邮箱联系开通。','ok'); }
 async function redeemCode(){
   const code=(document.getElementById('redeem-code').value||'').trim();
   const m=document.getElementById('redeem-msg'); if(!code)return;
@@ -1056,3 +1210,31 @@ document.getElementById('uname').textContent=USER;
 var _uav=document.getElementById('uavatar'); if(_uav){ _uav.innerHTML=avHtml(AVATAR); _uav.classList.add('av-click'); _uav.title='点击更换头像'; _uav.onclick=openAvatarDlg; }
 loadMe();
 go('browse');
+
+
+/* ===================== PWA:注册 + 添加到桌面引导 ===================== */
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js').catch(()=>{}); }
+(function(){
+  const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone===true;
+  if(standalone || localStorage.getItem('pwa_hide')) return;
+  const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  const isMobile = /Android|iPhone|iPad|iPod/.test(navigator.userAgent);
+  if(!isMobile) return;
+  let deferred=null;
+  function showBar(html){
+    if(document.getElementById('pwa-bar')) return;
+    const bar=document.createElement('div'); bar.id='pwa-bar';
+    bar.innerHTML=`<img src="/icon-192.png" alt=""><div class="pb-t">${html}</div><span class="pb-x" id="pwa-x">×</span>`;
+    document.body.appendChild(bar);
+    document.getElementById('pwa-x').onclick=()=>{ bar.remove(); localStorage.setItem('pwa_hide','1'); };
+    const btn=document.getElementById('pwa-go');
+    if(btn) btn.onclick=async()=>{ if(deferred){ deferred.prompt(); const r=await deferred.userChoice; if(r.outcome==='accepted'){ bar.remove(); localStorage.setItem('pwa_hide','1'); } } };
+  }
+  window.addEventListener('beforeinstallprompt',(e)=>{
+    e.preventDefault(); deferred=e;
+    showBar('把 GESPPASS 添加到桌面，下次一点就开 <button class="pb-btn" id="pwa-go">立即添加</button>');
+  });
+  if(isIOS){
+    setTimeout(()=>showBar('添加到主屏幕：点浏览器底部 <b>分享按钮</b> → 选「<b>添加到主屏幕</b>」'), 2500);
+  }
+})();

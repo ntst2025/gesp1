@@ -39,6 +39,7 @@ async function login({ username, password }) {
   if (!row || !bcrypt.compareSync(password || '', row.password_hash)) {
     throw httpErr(401, '用户名或密码错误');
   }
+  if (row.disabled) throw httpErr(403, '该账号已被停用,如有疑问请联系管理员');
   return { token: signToken(row), user: { id: row.id, username: row.username, avatar: row.avatar || 'a1' } };
 }
 
@@ -53,6 +54,7 @@ async function authRequired(req, res, next) {
   try {
     const user = await Q.userById(payload.uid);
     if (!user) return res.status(401).json({ error: '账号不存在' });
+    if (user.disabled) return res.status(403).json({ error: '该账号已被停用' });
     req.user = user;
     next();
   } catch (e) {

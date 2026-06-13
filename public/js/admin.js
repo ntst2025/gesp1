@@ -25,8 +25,8 @@ function adminLogout(){ localStorage.removeItem('gesp_admin_token'); show('login
 
 const V=()=>document.getElementById('view');
 function nav(v){
-  ['dash','q','u','c','b','r'].forEach(x=>{const el=document.getElementById('nav-'+x);if(el)el.classList.toggle('on',x===v);});
-  const fn={dash:renderDash,q:renderQ,u:renderU,c:renderC,b:renderBaidu,r:renderReports}[v];
+  ['dash','q','u','c','b','r','t'].forEach(x=>{const el=document.getElementById('nav-'+x);if(el)el.classList.toggle('on',x===v);});
+  const fn={dash:renderDash,q:renderQ,u:renderU,c:renderC,b:renderBaidu,r:renderReports,t:renderTeach}[v];
   Promise.resolve(fn&&fn()).catch(e=>{ if(e&&e.message!=='请重新登录') toast(e.message); });
 }
 
@@ -123,21 +123,34 @@ function findU(id){ return UData.find(x=>Number(x.id)===Number(id)); }
 async function loadU(){
   const q=(document.getElementById('u-search')||{}).value||'';
   const d=await aapi('/api/admin/users?q='+encodeURIComponent(q)); UData=d.users;
-  document.getElementById('u-count').textContent='共 '+d.users.length+' 人';
-  document.getElementById('u-list').innerHTML=`<table class="tbl"><thead><tr><th>用户</th><th>会员</th><th>到期</th><th class="right">积分</th><th class="right">答题</th><th>注册</th><th></th></tr></thead><tbody>${
+  const vips=d.users.filter(u=>u.tier==='vip'&&(!u.vip_until||new Date(u.vip_until)>new Date())).length;
+  const dis=d.users.filter(u=>u.disabled).length;
+  document.getElementById('u-count').innerHTML='共 <b>'+d.users.length+'</b> 人 · VIP <b style="color:#c98a12">'+vips+'</b> · 停用 <b style="color:#c0392b">'+dis+'</b>';
+  document.getElementById('u-list').innerHTML=`<table class="tbl utbl"><thead><tr><th>用户</th><th>会员</th><th>VIP 到期</th><th class="right">积分</th><th class="right">答题</th><th>注册</th><th>状态</th><th class="right">操作</th></tr></thead><tbody>${
     d.users.map(u=>{
       const vipOn=u.tier==='vip'&&(!u.vip_until||new Date(u.vip_until)>new Date());
       const until=u.vip_until?u.vip_until.slice(0,10):'永久';
-      return `<tr>
-        <td>${u.avatar||'🙂'} ${esc(u.username)} <span class="muted mono">#${u.id}</span></td>
-        <td><span class="pill ${vipOn?'vip':'free'}">${vipOn?'VIP':'免费'}</span></td>
-        <td class="muted">${vipOn?until:'—'}</td>
-        <td class="right">${u.points}</td><td class="right">${u.attempts}</td>
-        <td class="muted">${(u.created_at||'').slice(0,10)}</td>
-        <td class="right">
-          ${vipOn?`<button class="btn sm" onclick="setTierById(${u.id},'free',0)">取消VIP</button>`:`<button class="btn sm" onclick="grantVip(${u.id})">开通VIP</button>`}
+      const days=u.vip_until?Math.ceil((new Date(u.vip_until)-new Date())/86400000):null;
+      const av=(/^a([1-9]|1[0-2])$/.test(u.avatar||''))?`<img class="u-av" src="/avatars/${u.avatar}.svg">`:`<span class="u-av-e">${u.avatar||'🙂'}</span>`;
+      return `<tr class="${u.disabled?'u-off':''}">
+        <td>${av} <b>${esc(u.username)}</b> <span class="muted mono">#${u.id}</span></td>
+        <td><span class="pill ${vipOn?'vip':'free'}">${vipOn?'👑 VIP':'免费'}</span></td>
+        <td class="muted">${vipOn?(u.vip_until?until+(days!=null?` <span class="mono" style="font-size:11px">剩${days}天</span>`:''):'永久'):'—'}</td>
+        <td class="right mono">${u.points}</td><td class="right mono">${u.attempts}</td>
+        <td class="muted mono" style="font-size:12px">${(u.created_at||'').slice(0,10)}</td>
+        <td>${u.disabled?'<span class="pill off">已停用</span>':'<span class="pill ok">正常</span>'}</td>
+        <td class="right u-acts">
+          ${vipOn?`<button class="btn sm" onclick="grantVip(${u.id})">调整VIP</button><button class="btn sm gray" onclick="setTierById(${u.id},'free',0)">取消VIP</button>`:`<button class="btn sm solid" onclick="grantVip(${u.id})">开通VIP</button>`}
+          ${u.disabled?`<button class="btn sm" onclick="toggleDisabled(${u.id},0)">恢复</button>`:`<button class="btn sm warn" onclick="toggleDisabled(${u.id},1)">停用</button>`}
           <button class="btn sm danger" onclick="delUser(${u.id})">删除</button>
         </td></tr>`;}).join('')||'<tr><td class="empty">无用户</td></tr>'}</tbody></table>`;
+}
+async function toggleDisabled(id,v){
+  const u=findU(id); if(!u)return;
+  if(v && !confirm('停用「'+u.username+'」?\n停用后该账号无法登录、无法使用任何功能,可随时恢复。'))return;
+  try{ await aapi('/api/admin/users/'+id+'/disabled',{method:'POST',body:JSON.stringify({disabled:v})});
+    toast(v?'已停用':'已恢复'); loadU();
+  }catch(e){ toast(e.message); }
 }
 async function grantVip(id){ const u=findU(id); if(!u)return; const v=prompt('为「'+u.username+'」开通 VIP\n输入有效天数(留空或 0 = 永久):','365'); if(v===null)return; await setTierById(id,'vip',Number(v)||0); }
 async function setTierById(id,tier,days){
@@ -288,4 +301,360 @@ async function renderReports(st){
 async function setReport(id,st){
   try{ await api('/api/admin/reports/'+id+'/status',{method:'POST',body:JSON.stringify({status:st})}); renderReports(); }
   catch(e){ toast(e.message); }
+}
+
+
+/* ---------- 🎓 授课管理 ---------- */
+let TEACH_LV=1;
+async function renderTeach(lv){
+  TEACH_LV=lv||TEACH_LV;
+  V().innerHTML='<h1 class="page-h">🎓 授课管理</h1><div class="empty">加载中…</div>';
+  let cls;
+  try{ cls=(await aapi('/api/admin/classes')).classes; }catch(e){ V().innerHTML='<div class="empty">'+e.message+'</div>'; return; }
+  const tabs=cls.map(c=>`<span class="chip ${c.level===TEACH_LV?'on':''}" onclick="renderTeach(${c.level})">C++ ${c.level}级班 <b>${c.students}</b></span>`).join('');
+  let roster,asg;
+  try{
+    roster=(await aapi('/api/admin/classes/'+TEACH_LV+'/roster')).roster;
+    asg=(await aapi('/api/admin/classes/'+TEACH_LV+'/assignments')).assignments;
+  }catch(e){ V().innerHTML='<div class="empty">'+e.message+'</div>'; return; }
+  const rosterRows=roster.map(s=>`<tr class="clk" onclick="viewStudent(${s.id})"><td>${avA(s.avatar)} <b>${esc(s.username)}</b> <span class="muted mono">#${s.id}</span></td>
+    <td class="right mono">${s.attempts}</td><td class="right mono">${s.correct}</td>
+    <td class="muted mono" style="font-size:12px">${(s.joined_at||'').slice(0,10)}</td>
+    <td class="right"><span class="muted" style="font-size:12px">查看学情 ›</span></td></tr>`).join('')||'<tr><td class="empty">该班暂无学生(学生在前台「我的课程」加入)</td></tr>';
+  const asgRows=asg.map(a=>`<tr>
+    <td>${a.type==='homework'?'📝':'📎'} ${esc(a.title)}</td>
+    <td>${a.type==='homework'?'作业':'资源'}</td>
+    <td class="muted">${a.due_at?a.due_at.slice(0,16).replace('T',' '):'—'}</td>
+    <td class="right">${a.done} 人完成${a.avg!=null?` · 均分 ${a.avg}`:''}</td>
+    <td class="right"><button class="btn sm" onclick="viewAsgRoster(${a.id})">详情</button> <button class="btn sm danger" onclick="delAsg(${a.id})">删除</button></td>
+  </tr>`).join('')||'<tr><td class="empty">该班暂无作业/资源</td></tr>';
+  TEACH_ROSTER=roster;
+  setTimeout(loadMyProg, 50);
+  V().innerHTML=`<h1 class="page-h">🎓 授课管理</h1>
+    <div class="toolbar" style="flex-wrap:wrap">${tabs}</div>
+    <div class="card"><div class="card-h">布置新的作业 / 资源 <span class="sub">发给「C++ ${TEACH_LV}级班」全体</span></div><div class="card-b">
+      <div class="toolbar" style="flex-wrap:wrap">
+        <div><label class="muted" style="font-size:12px">类型</label><br>
+          <select id="t-type" onchange="teachTypeChange()"><option value="homework">📝 作业</option><option value="resource">📎 课程资源</option></select></div>
+        <div style="flex:1;min-width:200px"><label class="muted" style="font-size:12px">标题</label><br><input id="t-title" placeholder="如:第3章 if 语句练习" style="width:100%"></div>
+        <div id="t-due-wrap"><label class="muted" style="font-size:12px">截止时间(可空)</label><br><input id="t-due" type="datetime-local"></div>
+      </div>
+      <div style="margin-top:10px"><label class="muted" style="font-size:12px">说明 / 资源内容(支持简单文本,可粘贴讲义要点或链接)</label><br>
+        <textarea id="t-body" rows="3" style="width:100%" placeholder="给学生的说明文字"></textarea></div>
+      <div id="t-hw-fields">
+        <div style="margin-top:10px"><label class="muted" style="font-size:12px">题目</label><br>
+          <button class="btn" onclick="openPicker()">＋ 浏览题库选题</button>
+          <span class="muted" id="t-pick-summary" style="margin-left:10px;font-size:13px">未选题</span>
+          <div id="t-picked" class="t-picked"></div>
+        </div>
+      </div>
+      <div id="t-res-fields" style="display:none">
+        <div style="margin-top:10px"><label class="muted" style="font-size:12px">勾选要推送的讲义章节（与网站讲义同步，学生点开即看）</label>
+          <div id="t-lesson-toc" class="t-toc">加载中…</div></div>
+      </div>
+      <div style="margin-top:12px"><label class="muted" style="font-size:12px">发给谁</label><br>
+        <select id="t-target" onchange="teachTargetChange()"><option value="class">📢 全班</option><option value="some">👤 指定学生</option></select>
+        <div id="t-target-list" style="display:none;margin-top:8px" class="t-toc"></div>
+      </div>
+      <div style="margin-top:12px"><button class="btn solid" onclick="postAssign()">发布给全班</button></div>
+    </div></div>
+    <div class="card"><div class="card-h">💻 我出的编程题 <span class="sub">自己出原创编程题,布置作业时可选</span></div><div class="card-b">
+      <button class="btn solid" onclick="openProgMaker()">＋ 出一道编程题</button>
+      <div id="t-myprog" style="margin-top:10px">加载中…</div>
+    </div></div>
+    <div class="card"><div class="card-h">📉 班级共性弱点 <span class="sub">全班错得最多的章节,据此布置针对练习</span></div><div class="card-b"><div id="t-weakness">点击加载…<button class="btn sm" style="margin-left:8px" onclick="loadWeakness()">查看</button></div></div></div>
+    <div class="card" style="padding:6px"><div class="card-h" style="padding:12px 12px 0">已布置 (C++ ${TEACH_LV}级)</div>
+      <table class="tbl"><thead><tr><th>标题</th><th>类型</th><th>截止</th><th class="right">完成情况</th><th class="right">操作</th></tr></thead><tbody>${asgRows}</tbody></table></div>
+    <div class="card" style="padding:6px"><div class="card-h" style="padding:12px 12px 0">班级花名册 (${roster.length} 人)</div>
+      <table class="tbl"><thead><tr><th>学生</th><th class="right">答题数</th><th class="right">答对</th><th>加入时间</th><th></th></tr></thead><tbody>${rosterRows}</tbody></table></div>`;
+}
+function avA(av){ return /^a([1-9]|1[0-2])$/.test(av||'')?`<img class="u-av" src="/avatars/${av}.svg">`:`<span class="u-av-e">${av||'🙂'}</span>`; }
+let TEACH_ROSTER=[];
+let PICKED={mc:[],prog:[],range:null};  // 已选题
+function teachTypeChange(){
+  const t=document.getElementById('t-type').value;
+  document.getElementById('t-hw-fields').style.display=t==='homework'?'block':'none';
+  document.getElementById('t-res-fields').style.display=t==='resource'?'block':'none';
+  document.getElementById('t-due-wrap').style.display=t==='homework'?'block':'none';
+  if(t==='resource') loadLessonToc();
+}
+function teachTargetChange(){
+  const v=document.getElementById('t-target').value;
+  const box=document.getElementById('t-target-list');
+  if(v==='some'){
+    box.style.display='block';
+    box.innerHTML=TEACH_ROSTER.length?TEACH_ROSTER.map(s=>`<label class="toc-item"><input type="checkbox" class="t-stu" value="${s.id}"> ${avA(s.avatar)} ${esc(s.username)}</label>`).join(''):'<span class="muted">该班暂无学生</span>';
+  }else box.style.display='none';
+}
+/* ---- 可视化选题器 ---- */
+let PICKER_CAT=null;
+async function openPicker(){
+  if(!PICKER_CAT||PICKER_CAT._lv!==TEACH_LV){
+    try{ PICKER_CAT=await aapi('/api/catalog?level='+TEACH_LV); PICKER_CAT._lv=TEACH_LV; }
+    catch(e){ toast('该级别题库未就绪:'+e.message); return; }
+  }
+  const chs=PICKER_CAT.chapters.map(c=>{
+    const cn=short(c.id).slice(1);
+    const secs=(c.sections||[]).filter(s=>s.count>0).map(s=>
+      `<div class="pk-sec"><span>${esc(s.name)} <span class="muted">(${s.count})</span></span>
+        <span><button class="btn sm" onclick="pickRange('section','${s.id}','${esc(s.name)}',${s.count})">选整节</button>
+        <button class="btn sm" onclick="pickBrowse('${s.id}','${esc(s.name)}')">逐题选</button></span></div>`).join('');
+    return `<div class="pk-ch"><div class="pk-ch-h">第${cn}章 ${esc(c.name)} <span class="muted">(${c.count}题)</span>
+      <button class="btn sm" onclick="pickRange('chapter','${c.id}','第${cn}章 ${esc(c.name)}',${c.count})">选整章</button></div>${secs}</div>`;
+  }).join('');
+  const papers=(PICKER_CAT.meta.papers||[]).map(p=>`<button class="btn sm" onclick="pickRange('paper','${p}','${p} 整卷',0)">${p}</button>`).join(' ');
+  // 教师自出编程题
+  let myProgHtml = '';
+  try {
+    const tp = await aapi('/api/admin/teacher-prog?level='+TEACH_LV);
+    if (tp.list.length) myProgHtml = '<div style="margin:10px 0"><b style="font-size:13px">我出的编程题:</b><br>' +
+      tp.list.map(p=>`<label class="pk-q" style="display:inline-flex;margin:4px 6px 0 0"><input type="checkbox" class="pk-tprog" value="${p.pid}"> 💻 ${esc(p.title)}</label>`).join('') + '</div>';
+  } catch(e){}
+  showModal(`<h3 style="margin:0 0 10px">浏览题库选题 · C++ ${TEACH_LV}级</h3>
+    <div class="muted" style="font-size:13px;margin-bottom:10px">「选整章/整节/整卷」一键纳入全部题;「逐题选」可挑单题。编程题在下方单独添加。</div>
+    <div style="margin-bottom:10px"><b style="font-size:13px">按整卷:</b> ${papers||'<span class="muted">无</span>'}</div>
+    <div class="pk-list">${chs}</div>
+    ${myProgHtml}
+    <div style="margin-top:12px"><b style="font-size:13px">真题编程题 pid(可选,逗号分隔):</b><br><input id="pk-prog" placeholder="如 ${TEACH_LV}-2023-03-prog-1" style="width:100%;margin-top:4px"></div>
+    <div style="margin-top:14px;text-align:right"><button class="btn solid" onclick="confirmPicker()">确定选择</button></div>`);
+}
+function pickRange(kind,id,name,count){
+  PICKED.range={kind,id,name,count};
+  toast('已选'+(kind==='chapter'?'整章':kind==='section'?'整节':'整卷')+':'+name);
+}
+async function pickBrowse(sid,name){
+  let qs; try{ qs=(await aapi('/api/sections/'+encodeURIComponent(sid)+'/questions')).questions; }catch(e){ toast(e.message); return; }
+  const rows=qs.map((q,i)=>`<label class="pk-q"><input type="checkbox" class="pk-qchk" value="${q.qid}" ${PICKED.mc.includes(q.qid)?'checked':''}>
+    <span class="qtype type-${q.type}">${q.type==='mc'?'单选':'判断'}</span> ${i+1}. ${esc((q.stem||'').replace(/<[^>]+>/g,'').slice(0,50))}…</label>`).join('');
+  showModal(`<h3 style="margin:0 0 10px">${esc(name)} · 逐题选</h3><div class="pk-qlist">${rows}</div>
+    <div style="margin-top:12px;text-align:right"><button class="btn" onclick="openPicker()">← 返回</button>
+    <button class="btn solid" onclick="applyBrowsePick()">加入所选题</button></div>`);
+}
+function applyBrowsePick(){
+  document.querySelectorAll('.pk-qchk:checked').forEach(c=>{ if(!PICKED.mc.includes(c.value)) PICKED.mc.push(c.value); });
+  toast('已加入,共 '+PICKED.mc.length+' 道客观题'); openPicker();
+}
+function confirmPicker(){
+  const prog=(document.getElementById('pk-prog')?document.getElementById('pk-prog').value:'').split(/[\s,，]+/).filter(Boolean);
+  const tprog=[...document.querySelectorAll('.pk-tprog:checked')].map(c=>c.value);
+  PICKED.prog=[...new Set([...prog,...tprog])];
+  document.getElementById('adm-modal') && document.getElementById('adm-modal').remove();
+  renderPickedSummary();
+}
+function renderPickedSummary(){
+  const sm=document.getElementById('t-pick-summary'); const box=document.getElementById('t-picked');
+  if(!sm)return;
+  const parts=[];
+  if(PICKED.range) parts.push((PICKED.range.kind==='chapter'?'整章':PICKED.range.kind==='section'?'整节':'整卷')+'「'+PICKED.range.name+'」'+(PICKED.range.count?'约'+PICKED.range.count+'题':''));
+  if(PICKED.mc.length) parts.push(PICKED.mc.length+' 道单选/判断');
+  if(PICKED.prog.length) parts.push(PICKED.prog.length+' 道编程题');
+  sm.textContent=parts.length?('已选: '+parts.join(' + ')):'未选题';
+  box.innerHTML=(PICKED.mc.length||PICKED.prog.length||PICKED.range)?`<button class="btn sm gray" onclick="clearPicked()">清空已选</button>`:'';
+}
+function clearPicked(){ PICKED={mc:[],prog:[],range:null}; renderPickedSummary(); }
+async function loadLessonToc(){
+  const box=document.getElementById('t-lesson-toc'); if(!box) return;
+  try{
+    const d=await aapi('/api/admin/lessons-toc?level='+TEACH_LV);
+    if(!d.chapters.length){ box.innerHTML='<span class="muted">本级别暂无讲义</span>'; return; }
+    box.innerHTML=d.chapters.map(c=>`<label class="toc-item"><input type="checkbox" value="${c.id}" data-title="${esc(c.title)}"> ${esc(c.title)}</label>`).join('');
+  }catch(e){ box.innerHTML='<span class="muted">'+e.message+'</span>'; }
+}
+async function postAssign(){
+  const type=document.getElementById('t-type').value;
+  const title=document.getElementById('t-title').value.trim();
+  if(!title){ toast('请填写标题'); return; }
+  const body=document.getElementById('t-body').value;
+  const due=document.getElementById('t-due')?document.getElementById('t-due').value:'';
+  let payload={};
+  if(type==='homework'){
+    if(!PICKED.mc.length && !PICKED.prog.length && !PICKED.range){ toast('请先点「浏览题库选题」选好题目'); return; }
+    payload={mc:PICKED.mc,prog:PICKED.prog,range:PICKED.range};
+  }else{
+    const chapters=[...document.querySelectorAll('#t-lesson-toc input:checked')].map(c=>({id:c.value,title:c.dataset.title}));
+    if(!chapters.length && !body.trim()){ toast('请勾选讲义章节或填写资源说明'); return; }
+    payload={level:TEACH_LV,chapters};
+  }
+  // 发给谁
+  let targetUsers=null;
+  if(document.getElementById('t-target').value==='some'){
+    targetUsers=[...document.querySelectorAll('.t-stu:checked')].map(c=>Number(c.value));
+    if(!targetUsers.length){ toast('请勾选至少一名学生'); return; }
+  }
+  try{
+    const r=await aapi('/api/admin/classes/'+TEACH_LV+'/assign',{method:'POST',body:JSON.stringify({type,title,body,payload,due_at:due||null,targetUsers})});
+    toast('已发布'+(targetUsers?'给 '+targetUsers.length+' 名学生':'给全班')+(r.count?(' · '+r.count+'题'):''));
+    PICKED={mc:[],prog:[],range:null}; renderTeach(TEACH_LV);
+  }catch(e){ toast(e.message); }
+}
+async function loadMyProg(){
+  const box=document.getElementById('t-myprog'); if(!box)return;
+  try{
+    const d=await aapi('/api/admin/teacher-prog?level='+TEACH_LV);
+    if(!d.list.length){ box.innerHTML='<span class="muted">还没有自出的编程题</span>'; return; }
+    box.innerHTML='<table class="tbl"><thead><tr><th>题目</th><th>时限</th><th>创建</th><th></th></tr></thead><tbody>'+
+      d.list.map(p=>`<tr><td>💻 ${esc(p.title)} <span class="muted mono" style="font-size:11px">${p.pid}</span></td>
+        <td class="mono">${p.time_limit}s</td><td class="muted mono" style="font-size:12px">${(p.created_at||'').slice(0,10)}</td>
+        <td class="right"><button class="btn sm danger" onclick="delTeacherProg('${p.pid}')">删除</button></td></tr>`).join('')+'</tbody></table>';
+  }catch(e){ box.innerHTML='<span class="muted">'+e.message+'</span>'; }
+}
+async function delTeacherProg(pid){
+  if(!confirm('删除这道编程题?已布置的作业里它会失效。'))return;
+  await aapi('/api/admin/teacher-prog/'+encodeURIComponent(pid),{method:'DELETE'}); toast('已删除'); loadMyProg();
+}
+let PM_SAMPLES=[];
+function openProgMaker(){
+  PM_SAMPLES=[{in:'',out:''}];
+  showModal(progMakerHtml());
+}
+function progMakerHtml(){
+  const sampleRows=PM_SAMPLES.map((s,i)=>`<div class="pm-sample">
+    <textarea class="pm-in" data-i="${i}" rows="2" placeholder="样例输入${i+1}">${esc(s.in)}</textarea>
+    <textarea class="pm-out" data-i="${i}" rows="2" placeholder="对应正确输出${i+1}">${esc(s.out)}</textarea>
+    ${PM_SAMPLES.length>1?`<button class="btn sm gray" onclick="pmDelSample(${i})">×</button>`:''}</div>`).join('');
+  return `<h3 style="margin:0 0 6px">💻 出一道编程题(C++ ${TEACH_LV}级)</h3>
+    <div class="muted" style="font-size:13px;margin-bottom:12px">你只需写一份<b>正确的参考程序</b>,系统会自动用它生成测试数据。建议至少填 1~2 个样例,系统会校验你的标程是否正确。</div>
+    <label class="muted" style="font-size:12px">题目标题</label><br><input id="pm-title" placeholder="如:计算阶乘" style="width:100%;margin-bottom:10px">
+    <label class="muted" style="font-size:12px">题干(题目描述、输入格式、输出格式)</label><br>
+    <textarea id="pm-stmt" rows="5" style="width:100%;margin-bottom:10px" placeholder="描述题目。例:输入一个正整数 n(1≤n≤1000),输出 1 到 n 的和。"></textarea>
+    <label class="muted" style="font-size:12px">参考程序(C++,必须正确,系统会编译验证)</label><br>
+    <textarea id="pm-sol" rows="9" style="width:100%;margin-bottom:10px;font-family:monospace;font-size:13px" placeholder="#include <iostream>\nusing namespace std;\nint main(){ ... }"></textarea>
+    <label class="muted" style="font-size:12px">时间限制(秒)</label><br><input id="pm-tl" type="number" value="1" min="1" max="5" style="width:90px;margin-bottom:12px"><br>
+    <label class="muted" style="font-size:12px">输入格式配置(系统据此自动生成更多测试数据)</label>
+    <div id="pm-spec" class="pm-spec">
+      <div class="muted" style="font-size:12px;margin:6px 0">添加输入变量(按你题目读取的顺序):</div>
+      <div id="pm-spec-list"></div>
+      <button class="btn sm" onclick="pmAddSpec('int')">+ 整数变量</button>
+      <button class="btn sm" onclick="pmAddSpec('array')">+ 数组(先读长度再读元素)</button>
+    </div>
+    <label class="muted" style="font-size:12px;display:block;margin-top:12px">样例(系统会用标程验证你填的输出是否正确)</label>
+    <div id="pm-samples">${sampleRows}</div>
+    <button class="btn sm" onclick="pmAddSample()" style="margin-top:6px">+ 加一个样例</button>
+    <div style="margin-top:16px;text-align:right"><button class="btn solid" onclick="submitProgMaker()">验证标程并保存</button></div>
+    <div id="pm-result" style="margin-top:10px"></div>`;
+}
+let PM_SPEC=[];
+function pmAddSpec(kind){
+  PM_SPEC.push(kind==='int'?{kind:'int',min:1,max:1000}:{kind:'array',len:{min:1,max:100},elem:{min:1,max:1000}});
+  pmRenderSpec();
+}
+function pmRenderSpec(){
+  const box=document.getElementById('pm-spec-list'); if(!box)return;
+  box.innerHTML=PM_SPEC.map((v,i)=>v.kind==='int'
+    ? `<div class="pm-spec-row">整数 ${i+1}: 范围 <input type="number" value="${v.min}" onchange="PM_SPEC[${i}].min=+this.value" style="width:80px"> ~ <input type="number" value="${v.max}" onchange="PM_SPEC[${i}].max=+this.value" style="width:90px"> <button class="btn sm gray" onclick="pmDelSpec(${i})">×</button></div>`
+    : `<div class="pm-spec-row">数组 ${i+1}: 长度 <input type="number" value="${v.len.min}" onchange="PM_SPEC[${i}].len.min=+this.value" style="width:60px">~<input type="number" value="${v.len.max}" onchange="PM_SPEC[${i}].len.max=+this.value" style="width:70px">, 元素 <input type="number" value="${v.elem.min}" onchange="PM_SPEC[${i}].elem.min=+this.value" style="width:70px">~<input type="number" value="${v.elem.max}" onchange="PM_SPEC[${i}].elem.max=+this.value" style="width:80px"> <button class="btn sm gray" onclick="pmDelSpec(${i})">×</button></div>`
+  ).join('');
+}
+function pmDelSpec(i){ PM_SPEC.splice(i,1); pmRenderSpec(); }
+function pmCollectSamples(){
+  const ins=[...document.querySelectorAll('.pm-in')], outs=[...document.querySelectorAll('.pm-out')];
+  PM_SAMPLES=ins.map((el,i)=>({in:el.value.trim(),out:(outs[i]||{}).value.trim()})).filter(s=>s.in);
+}
+function pmAddSample(){ pmCollectSamples(); PM_SAMPLES.push({in:'',out:''}); document.getElementById('pm-samples').innerHTML=PM_SAMPLES.map((s,i)=>`<div class="pm-sample"><textarea class="pm-in" rows="2" placeholder="样例输入${i+1}">${esc(s.in)}</textarea><textarea class="pm-out" rows="2" placeholder="对应正确输出${i+1}">${esc(s.out)}</textarea>${PM_SAMPLES.length>1?`<button class="btn sm gray" onclick="pmDelSample(${i})">×</button>`:''}</div>`).join(''); }
+function pmDelSample(i){ pmCollectSamples(); PM_SAMPLES.splice(i,1); if(!PM_SAMPLES.length)PM_SAMPLES=[{in:'',out:''}]; document.getElementById('pm-samples').innerHTML=PM_SAMPLES.map((s,j)=>`<div class="pm-sample"><textarea class="pm-in" rows="2" placeholder="样例输入${j+1}">${esc(s.in)}</textarea><textarea class="pm-out" rows="2" placeholder="对应正确输出${j+1}">${esc(s.out)}</textarea>${PM_SAMPLES.length>1?`<button class="btn sm gray" onclick="pmDelSample(${j})">×</button>`:''}</div>`).join(''); }
+async function submitProgMaker(){
+  pmCollectSamples();
+  const title=document.getElementById('pm-title').value.trim();
+  const statement=document.getElementById('pm-stmt').value.trim();
+  const solution=document.getElementById('pm-sol').value.trim();
+  const time_limit=Number(document.getElementById('pm-tl').value)||1;
+  const out=document.getElementById('pm-result');
+  if(!title||!statement||!solution){ out.innerHTML='<span style="color:#c0392b">标题、题干、参考程序都要填</span>'; return; }
+  if(!PM_SPEC.length && !PM_SAMPLES.length){ out.innerHTML='<span style="color:#c0392b">请配置输入格式或至少填一个样例</span>'; return; }
+  out.innerHTML='<div class="muted">正在编译验证标程并生成测试数据,请稍候(约 10~30 秒)…</div>';
+  try{
+    const r=await aapi('/api/admin/teacher-prog',{method:'POST',body:JSON.stringify({level:TEACH_LV,title,statement,solution,time_limit,inputSpec:PM_SPEC,samples:PM_SAMPLES})});
+    out.innerHTML=`<span style="color:#1f9d57">✅ 已保存!生成了 ${r.testcases} 个测试点。现在可在「布置作业」时把它加入编程题。</span>`;
+    PM_SPEC=[]; PM_SAMPLES=[{in:'',out:''}];
+    setTimeout(()=>{ document.getElementById('adm-modal')&&document.getElementById('adm-modal').remove(); loadMyProg(); }, 1800);
+  }catch(e){ out.innerHTML='<span style="color:#c0392b;white-space:pre-wrap">❌ '+esc(e.message)+'</span>'; }
+}
+async function loadWeakness(){
+  const box=document.getElementById('t-weakness'); box.innerHTML='加载中…';
+  try{
+    const d=await aapi('/api/admin/classes/'+TEACH_LV+'/weakness');
+    if(!d.weakness.length){ box.innerHTML='<span class="muted">暂无错题数据(学生还没开始练或没有错题)</span>'; return; }
+    box.innerHTML='<table class="tbl"><thead><tr><th>章节</th><th class="right">累计错题</th><th class="right">涉及人数</th></tr></thead><tbody>'+
+      d.weakness.map(w=>`<tr><td>${esc(w.name)}</td><td class="right mono">${w.wrong_total}</td><td class="right mono">${w.students}</td></tr>`).join('')+'</tbody></table>';
+  }catch(e){ box.innerHTML='<span class="muted">'+e.message+'</span>'; }
+}
+async function delAsg(id){ if(!confirm('删除该作业/资源?学生端将不再显示。'))return; await aapi('/api/admin/assignments/'+id,{method:'DELETE'}); toast('已删除'); renderTeach(TEACH_LV); }
+async function viewAsgRoster(id){
+  let d; try{ d=await aapi('/api/admin/assignments/'+id+'/roster'); }catch(e){ toast(e.message); return; }
+  CUR_ASG_ID=id;
+  const rows=d.roster.map(s=>`<tr><td>${avA(s.avatar)} ${esc(s.username)}</td>
+    <td>${s.status==='done'?'<span class="pill ok">已完成</span>':'<span class="pill off">未完成</span>'}</td>
+    <td class="right mono">${s.score!=null?s.score+'分':'—'}</td>
+    <td class="muted mono" style="font-size:12px">${(s.updated_at||'').slice(0,16).replace('T',' ')}</td>
+    <td><button class="btn sm" onclick="writeComment(${id},${s.id},'${esc(s.username)}')">评语</button></td></tr>`).join('');
+  showModal(`<h3 style="margin:0 0 12px">${esc(d.assignment.title)} · 完成情况</h3>
+    <table class="tbl"><thead><tr><th>学生</th><th>状态</th><th class="right">得分</th><th>提交时间</th><th></th></tr></thead><tbody>${rows||'<tr><td class="empty">暂无学生</td></tr>'}</tbody></table>`);
+}
+let CUR_ASG_ID=null;
+async function writeComment(aid,uid,name){
+  const v=prompt('给「'+name+'」的评语:','');
+  if(v===null)return;
+  try{ await aapi('/api/admin/assignments/'+aid+'/comment',{method:'POST',body:JSON.stringify({user_id:uid,comment:v})}); toast('评语已保存'); }
+  catch(e){ toast(e.message); }
+}
+async function viewStudent(uid){
+  let d; try{ d=await aapi('/api/admin/students/'+uid+'?level='+TEACH_LV); }catch(e){ toast(e.message); return; }
+  const o=d.overview;
+  const chRows=d.chapters.map(c=>`<tr><td>${esc(c.name)}</td><td class="right mono">${c.mastered}/${c.total}</td>
+    <td style="width:140px"><div class="mini-bar"><span style="width:${c.pct}%"></span></div></td>
+    <td class="right mono">${c.pct}%</td></tr>`).join('')||'<tr><td class="empty">暂无数据</td></tr>';
+  const asgRows=d.assignments.map(a=>`<tr><td>${a.type==='homework'?'📝':'📎'} ${esc(a.title)}</td>
+    <td>${a.status==='done'?'<span class="pill ok">已完成</span>':'<span class="pill off">未做</span>'}</td>
+    <td class="right mono">${a.score!=null?a.score+'分':'—'}</td></tr>`).join('')||'<tr><td class="empty">暂无作业</td></tr>';
+  const recent=d.recent.slice(0,16).map(r=>`<span class="rec-dot ${r.correct?'ok':'no'}" title="${r.qid} ${r.correct?'✓':'✗'}">${r.correct?'✓':'✗'}</span>`).join('');
+  showModal(`<h3 style="margin:0 0 4px">${avA(d.student.avatar)} ${esc(d.student.username)} 的学情 <span class="muted" style="font-size:13px">· C++ ${d.level}级</span></h3>
+    <div class="muted" style="font-size:12px;margin-bottom:14px">注册 ${(d.student.created_at||'').slice(0,10)} · ${d.student.vip?'👑 VIP':'免费用户'} · 最近活跃 ${(o.last_active||'—').slice(0,10)}</div>
+    <div class="stat-row">
+      <div class="stat-box"><div class="sv">${o.attempts}</div><div class="sl">总答题</div></div>
+      <div class="stat-box"><div class="sv">${o.accuracy}%</div><div class="sl">正确率</div></div>
+      <div class="stat-box"><div class="sv">${o.distinct_q}</div><div class="sl">做过题数</div></div>
+      <div class="stat-box"><div class="sv">${o.prog_ac}</div><div class="sl">编程AC</div></div>
+    </div>
+    <h4 class="mh">各章掌握度</h4>
+    <table class="tbl"><thead><tr><th>章节</th><th class="right">掌握/总</th><th>进度</th><th class="right">%</th></tr></thead><tbody>${chRows}</tbody></table>
+    <h4 class="mh">作业完成情况</h4>
+    <table class="tbl"><thead><tr><th>作业/资源</th><th>状态</th><th class="right">得分</th></tr></thead><tbody>${asgRows}</tbody></table>
+    <h4 class="mh">最近答题(新→旧)</h4><div class="rec-row">${recent||'<span class="muted">暂无</span>'}</div>
+    <h4 class="mh">针对性教学</h4>
+    <div class="t-ops">
+      <button class="btn sm" onclick="viewWrongbook(${d.student.id},${d.level})">查看错题清单</button>
+      <button class="btn sm solid" onclick="genPersonalized(${d.student.id},${d.level})">生成个性化练习</button>
+      <button class="btn sm" onclick="genRedo(${d.student.id},${d.level})">布置错题重做</button>
+    </div>
+    <div id="t-wrongbox"></div>`);
+}
+async function viewWrongbook(uid,level){
+  const box=document.getElementById('t-wrongbox'); box.innerHTML='<div class="muted">加载中…</div>';
+  try{
+    const d=await aapi('/api/admin/students/'+uid+'/wrongbook?level='+level);
+    if(!d.total){ box.innerHTML='<div class="muted" style="margin-top:8px">该生暂无错题 🎉</div>'; return; }
+    box.innerHTML=`<div class="wrong-sum">共 ${d.total} 道错题,分布在 ${d.byChapter.length} 个章节:</div>`+
+      '<table class="tbl"><thead><tr><th>章节</th><th class="right">错题数</th></tr></thead><tbody>'+
+      d.byChapter.map(c=>`<tr><td>${esc(c.name)}</td><td class="right mono">${c.count}</td></tr>`).join('')+'</tbody></table>';
+  }catch(e){ box.innerHTML='<div class="muted">'+e.message+'</div>'; }
+}
+async function genPersonalized(uid,level){
+  if(!confirm('根据该生错题所在的薄弱章节,自动抽一组同类新题,作为个性化练习发给他。继续?'))return;
+  try{
+    const r=await aapi('/api/admin/students/'+uid+'/personalized',{method:'POST',body:JSON.stringify({level,count:10})});
+    toast('已生成 '+r.count+' 题的个性化练习,来自 '+r.chapters+' 个薄弱章节,已发给该生');
+  }catch(e){ toast(e.message); }
+}
+async function genRedo(uid,level){
+  if(!confirm('把该生的全部错题打包成「错题重做」作业发给他?'))return;
+  try{
+    const r=await aapi('/api/admin/students/'+uid+'/redo-wrong',{method:'POST',body:JSON.stringify({level})});
+    toast('已布置错题重做,共 '+r.count+' 题');
+  }catch(e){ toast(e.message); }
+}
+function showModal(html){
+  let m=document.getElementById('adm-modal');
+  if(!m){ m=document.createElement('div'); m.id='adm-modal'; m.className='adm-modal-mask'; document.body.appendChild(m); }
+  m.innerHTML=`<div class="adm-modal"><span class="adm-x" onclick="document.getElementById('adm-modal').remove()">×</span>${html}</div>`;
+  m.onclick=e=>{ if(e.target===m) m.remove(); };
 }
