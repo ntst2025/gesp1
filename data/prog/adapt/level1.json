@@ -250,6 +250,649 @@
    ],
    "base_pid": "1-2026-03-prog-1",
    "level": 1
+  },
+  "1-2023-03-prog-1": {
+   "base_title": "每月天数",
+   "kps": [
+    "分支结构",
+    "闰年判断",
+    "逻辑运算"
+   ],
+   "variants": [
+    {
+     "title": "这个月有几天",
+     "story": "小杨想知道某年某月一共有多少天(注意闰年的2月是29天)。给定年份和月份,请输出这个月的天数。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main() {\n    int y = 0, m = 0;\n    cin >> y >> m;                    // 读入年份 y 和月份 m\n    bool leap = false;                // 闰年标志,先假设不是闰年\n    if (y % 400 == 0)                 // 规则一:能被 400 整除 → 闰年(如 2000)\n        leap = true;\n    if (y % 4 == 0 && y % 100 != 0)   // 规则二:能被 4 整除但不能被 100 整除 → 闰年\n        leap = true;                  // (1900 被 100 整除,所以不是闰年)\n    if (m ==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12)\n        cout << 31 << endl;           // 大月:1、3、5、7、8、10、12 月都是 31 天\n    else if (m == 4 || m == 6 || m == 9 || m == 11)\n        cout << 30 << endl;           // 小月:4、6、9、11 月都是 30 天\n    else if (leap)                    // 剩下的只能是 2 月:闰年 29 天\n        cout << 29 << endl;\n    else                              // 平年 2 月 28 天\n        cout << 28 << endl;\n    return 0;\n}",
+     "io": "#### 输入格式\n\n输入一行,两个整数:年份 y 和月份 m。\n\n#### 输出格式\n\n输出该月的天数。",
+     "analysis": "**思路**:先判断闰年(能被4整除但不被100整除,或能被400整除),再分类:1/3/5/7/8/10/12月是31天,4/6/9/11月是30天,2月看闰年(闰年29天,平年28天)。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 2000,
+     "max": 2030
+    },
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 12
+    }
+   ],
+   "base_pid": "1-2023-03-prog-1",
+   "level": 1
+  },
+  "1-2023-03-prog-2": {
+   "base_title": "长方形面积",
+   "kps": [
+    "循环枚举",
+    "整除与取余",
+    "计数器"
+   ],
+   "variants": [
+    {
+     "title": "长方形拼法",
+     "story": "用边长为1的小正方形拼成面积为 S 的长方形,长和宽都是整数。问有多少种不同的拼法(长≥宽算同一种)。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main() {\n    int area = 0, cnt = 0;            // area:面积  cnt:方案计数器\n    cin >> area;                      // 读入长方形面积\n    for (int w = 1; w * w <= area; w++) {  // 枚举宽 w;条件 w*w<=area 保证 宽≤长,不重复计数\n        if (area % w == 0)            // w 能整除面积 → 对应的长是 area/w,是一种合法方案\n            cnt++;                    // 计数加一\n    }\n    cout << cnt << endl;              // 输出方案总数\n    return 0;\n}",
+     "io": "#### 输入格式\n\n输入一个正整数 S,表示面积。\n\n#### 输出格式\n\n输出不同长方形方案的个数。",
+     "analysis": "**思路**:枚举宽 w(从1开始),只要 w×w≤S 且 S 能被 w 整除,就对应一种合法的长方形(长=S/w)。条件 w×w≤S 保证不重复计数。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 10000
+    }
+   ],
+   "base_pid": "1-2023-03-prog-2",
+   "level": 1
+  },
+  "1-2023-06-prog-1": {
+   "base_title": "时间规划",
+   "kps": [
+    "算术运算",
+    "单位换算"
+   ],
+   "variants": [
+    {
+     "title": "经过多少分钟",
+     "story": "给定同一天的开始时刻和结束时刻(24小时制),请计算从开始到结束一共经过了多少分钟。保证开始时刻在结束时刻之前。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main() {\n    int h1 = 0, m1 = 0, h2 = 0, m2 = 0;\n    cin >> h1 >> m1;                  // 读入开始时刻的 时、分\n    cin >> h2 >> m2;                  // 读入结束时刻的 时、分\n    cout << (h2 - h1) * 60 + (m2 - m1) << endl;\n    // 核心:小时差换算成分钟 (h2-h1)*60,再加上分钟差 (m2-m1)\n    // 即使 m2 < m1(比如 9:50 到 10:10),负的分钟差会被小时差自动抵消,结果仍正确\n    return 0;\n}",
+     "io": "#### 输入格式\n\n输入4行:开始时刻的小时、开始时刻的分钟、结束时刻的小时、结束时刻的分钟。\n\n#### 输出格式\n\n输出经过的总分钟数。",
+     "analysis": "**思路**:总分钟 = 小时差×60 + 分钟差,即 (h2-h1)×60+(m2-m1)。即使分钟差为负,小时差也会自动补偿,结果正确。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "kind": "int",
+     "min": 0,
+     "max": 30
+    },
+    {
+     "kind": "int",
+     "min": 15,
+     "max": 20
+    },
+    {
+     "kind": "int",
+     "min": 0,
+     "max": 59
+    }
+   ],
+   "base_pid": "1-2023-06-prog-1",
+   "level": 1
+  },
+  "1-2023-09-prog-1": {
+   "base_pid": "1-2023-09-prog-1",
+   "level": 1,
+   "base_title": "买文具",
+   "kps": [
+    "算术运算",
+    "分支结构"
+   ],
+   "variants": [
+    {
+     "title": "够不够买文具",
+     "story": "小明来文具店买文具:签字笔 2 元一支,他要买 X 支;记事本 5 元一本,要买 Y 本;直尺 3 元一把,要买 Z 把。小明有 Q 元钱。请判断他的钱够不够。",
+     "io": "#### 输入格式\n\n输入 4 行,分别是:签字笔数量 X、记事本数量 Y、直尺数量 Z、手里的钱 Q。\n\n#### 输出格式\n\n输出 2 行。够买:第一行 Yes,第二行剩余的钱;不够:第一行 No,第二行还缺的钱。",
+     "analysis": "**思路**:先算总价 = 2×X + 5×Y + 3×Z。再用分支判断:钱 Q 够(Q≥总价)就输出 Yes 和找零(Q-总价);不够就输出 No 和差额(总价-Q)。",
+     "solution": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 0, y = 0, z = 0, q = 0;\n    cin >> x >> y >> z >> q;          // 读入:签字笔 x 支、记事本 y 本、直尺 z 把、手里的钱 q 元\n    int t = x * 2 + y * 5 + z * 3;    // 总价 = 2元×x + 5元×y + 3元×z\n    if (q >= t) {                     // 钱够买\n        cout << \"Yes\" << endl;\n        cout << q - t << endl;        // 输出找零(剩余的钱)\n    } else {                          // 钱不够\n        cout << \"No\" << endl;\n        cout << t - q << endl;        // 输出还差多少钱\n    }\n    return 0;\n}"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 10
+    },
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 10
+    },
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 10
+    },
+    {
+     "kind": "int",
+     "min": 10,
+     "max": 100
+    }
+   ]
+  },
+  "1-2023-12-prog-2": {
+   "base_title": "小杨报数",
+   "kps": [
+    "循环",
+    "取余判断",
+    "continue"
+   ],
+   "variants": [
+    {
+     "title": "跳过倍数报数",
+     "story": "从 1 报到 n,但凡是 k 的倍数都跳过不报。请依次输出小杨报出的所有数(用空格隔开)。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ int n,k; cin>>n>>k; bool first=true; for(int i=1;i<=n;i++){ if(i%k==0)continue; if(!first)cout<<\" \"; cout<<i; first=false; } cout<<endl; return 0; }",
+     "io": "#### 输入格式\n\n输入两个整数 n 和 k。\n\n#### 输出格式\n\n输出报出的所有数,用空格隔开。",
+     "analysis": "**思路**:循环 1 到 n,遇到 k 的倍数用 continue 跳过。注意输出格式:数字之间用空格隔开,可用标志变量控制空格位置。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 10,
+     "max": 30
+    },
+    {
+     "kind": "int",
+     "min": 2,
+     "max": 5
+    }
+   ],
+   "base_pid": "1-2023-12-prog-2",
+   "level": 1
+  },
+  "1-2024-03-prog-1": {
+   "base_title": "小杨买书",
+   "kps": [
+    "整除与取余"
+   ],
+   "variants": [
+    {
+     "title": "装书问题",
+     "story": "有 n 本书,每个书架最多放 m 本。请问需要多少个书架才能放下所有书?",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ int n,m; cin>>n>>m; int c=n/m; if(n%m!=0)c++; cout<<c<<endl; return 0; }",
+     "io": "#### 输入格式\n\n输入两个整数 n(书的数量)和 m(每架容量)。\n\n#### 输出格式\n\n输出需要的书架数。",
+     "analysis": "**思路**:向上取整。先用整除得到能放满的书架数,如果有余数(放不满的零头),还需要再加一个书架。即 n/m,若 n%m!=0 则加1。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 1000
+    },
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 50
+    }
+   ],
+   "base_pid": "1-2024-03-prog-1",
+   "level": 1
+  },
+  "1-2024-06-prog-1": {
+   "base_title": "休息时间",
+   "kps": [
+    "进位处理",
+    "取余运算",
+    "单位换算"
+   ],
+   "variants": [
+    {
+     "title": "秒换算时分秒",
+     "story": "给定总秒数,请把它换算成「时:分:秒」的形式分别输出。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ int s; cin>>s; int h=s/3600; int m=(s%3600)/60; int sec=s%60; cout<<h<<\" \"<<m<<\" \"<<sec<<endl; return 0; }",
+     "io": "#### 输入格式\n\n输入一个整数,表示总秒数。\n\n#### 输出格式\n\n输出三个整数(空格隔开):小时、分钟、秒。",
+     "analysis": "**思路**:单位换算。小时=总秒数/3600;剩下的秒数对3600取余后,再/60得分钟;最后对60取余得秒。整除取余配合做进位换算。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 100000
+    }
+   ],
+   "base_pid": "1-2024-06-prog-1",
+   "level": 1
+  },
+  "1-2024-06-prog-2": {
+   "base_title": "立方数",
+   "kps": [
+    "循环枚举",
+    "标志变量"
+   ],
+   "variants": [
+    {
+     "title": "判断立方数",
+     "story": "给定正整数 n,判断它是不是某个正整数的立方(即是否存在整数 i 使 i×i×i=n)。是输出 Yes,否输出 No。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ int n; cin>>n; int fl=0; for(int i=1;i*i*i<=n;i++) if(i*i*i==n){fl=1;break;} cout<<(fl?\"Yes\":\"No\")<<endl; return 0; }",
+     "io": "#### 输入格式\n\n输入一个正整数 n。\n\n#### 输出格式\n\n是立方数输出 Yes,否则输出 No。",
+     "analysis": "**思路**:枚举 i,检查 i³ 是否等于 n。用标志变量记录是否找到,找到就 break 提前退出。注意循环条件 i³≤n 可以减少枚举次数。"
+    },
+    {
+     "title": "判断平方数",
+     "story": "给定正整数 n,判断它是不是某个正整数的平方(完全平方数)。是输出 Yes,否输出 No。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ int n; cin>>n; int fl=0; for(int i=1;i*i<=n;i++) if(i*i==n){fl=1;break;} cout<<(fl?\"Yes\":\"No\")<<endl; return 0; }",
+     "io": "#### 输入格式\n\n输入一个正整数 n。\n\n#### 输出格式\n\n是完全平方数输出 Yes,否则输出 No。",
+     "analysis": "**思路**:枚举 i,检查 i² 是否等于 n。用标志变量记录,找到就 break。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 1000
+    }
+   ],
+   "base_pid": "1-2024-06-prog-2",
+   "level": 1
+  },
+  "1-2024-09-prog-1": {
+   "base_title": "小杨购物",
+   "kps": [
+    "整除运算"
+   ],
+   "variants": [
+    {
+     "title": "分糖果",
+     "story": "有 n 颗糖,平均分给 m 个小朋友,每人分一样多,多余的留下。请输出每人分到几颗、还剩几颗。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ int n,m; cin>>n>>m; cout<<n/m<<\" \"<<n%m<<endl; return 0; }",
+     "io": "#### 输入格式\n\n输入两个整数 n(糖果数)和 m(人数)。\n\n#### 输出格式\n\n输出两个整数:每人分到的数量、剩余的数量。",
+     "analysis": "**思路**:平均分用整除 n/m,剩余用取余 n%m。这是整除取余最基本的应用。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 1000
+    },
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 20
+    }
+   ],
+   "base_pid": "1-2024-09-prog-1",
+   "level": 1
+  },
+  "1-2024-09-prog-2": {
+   "base_title": "美丽数字",
+   "kps": [
+    "循环",
+    "取余判断",
+    "逻辑与"
+   ],
+   "variants": [
+    {
+     "title": "统计美丽数",
+     "story": "既能被 a 整除、又能被 b 整除的数,叫\"美丽数\"。给定 n,统计 1~n 中美丽数的个数。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ int n,a,b; cin>>n>>a>>b; int c=0; for(int i=1;i<=n;i++) if(i%a==0&&i%b==0)c++; cout<<c<<endl; return 0; }",
+     "io": "#### 输入格式\n\n输入三个整数 n、a、b。\n\n#### 输出格式\n\n输出 1~n 中美丽数的个数。",
+     "analysis": "**思路**:枚举 1~n,用逻辑与判断\"能被a整除 且 能被b整除\"。逻辑与 && 要求两个条件同时成立。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 10,
+     "max": 1000
+    },
+    {
+     "kind": "int",
+     "min": 2,
+     "max": 6
+    },
+    {
+     "kind": "int",
+     "min": 2,
+     "max": 6
+    }
+   ],
+   "base_pid": "1-2024-09-prog-2",
+   "level": 1
+  },
+  "1-2023-12-prog-1": {
+   "base_title": "小杨的考试",
+   "kps": [
+    "取余运算",
+    "周期问题"
+   ],
+   "variants": [
+    {
+     "title": "N天后星期几",
+     "story": "今天是星期 x(1~7,7表示周日),请问 n 天后是星期几?",
+     "solution": "#include <stdio.h>\n\nint main(int argc, char **argv)\n{\n    int x, n;\n    scanf(\"%d%d\", &x, &n);            // 读入今天星期 x 和距考试天数 n\n    printf(\"%d\\n\", (x-1+n%7)%7+1);\n    // 核心一行,拆开看:\n    //   x-1      → 把星期 1~7 映射到 0~6,方便取余\n    //   + n%7    → 加上 n 天的有效偏移(整周不影响星期)\n    //   %7       → 对 7 取余,回到 0~6\n    //   +1       → 映射回 1~7(题目用 7 表示星期日)\n    // \"先减一、取余、再加一\"是处理 1 开头编号周期问题的标准手法\n    return 0;\n}",
+     "io": "#### 输入格式\n\n输入两个整数:今天星期 x 和天数 n。\n\n#### 输出格式\n\n输出 n 天后是星期几(1~7)。",
+     "analysis": "**思路**:周期问题。星期以7为周期,先把1~7映射到0~6(减1),加上n%7,再对7取余,最后映射回1~7(加1)。\"先减一取余再加一\"是处理从1开始编号的周期问题的标准手法。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 7
+    },
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 1000
+    }
+   ],
+   "base_pid": "1-2023-12-prog-1",
+   "level": 1
+  },
+  "1-2024-12-prog-1": {
+   "base_title": "温度转换",
+   "kps": [
+    "浮点运算",
+    "格式化输出",
+    "分支结构"
+   ],
+   "variants": [
+    {
+     "title": "开尔文转华氏",
+     "story": "输入开尔文温度,先转成摄氏(减273.15),再转成华氏(摄氏×1.8+32)。如果华氏超过212度,输出\"Temperature is too high!\",否则输出华氏温度(保留两位小数)。",
+     "solution": "#include <cstdio>\nusing namespace std;\nint main() {\n    double K; scanf(\"%lf\", &K);       // 用 double 读入开尔文温度(实数必须用浮点类型)\n    double C = K - 273.15;            // 公式一:摄氏 = 开尔文 - 273.15\n    double F = 32 + C * 1.8;          // 公式二:华氏 = 摄氏 × 1.8 + 32\n    if (F > 212)                      // 华氏温度超过 212 → 输出警告语\n        printf(\"Temperature is too high!\\n\");  // 必须一字不差(包括感叹号)\n    else\n        printf(\"%.2f %.2f\\n\", C, F); // %.2f 保留两位小数,中间一个空格\n    return 0;\n}",
+     "io": "#### 输入格式\n\n输入一个实数:开尔文温度。\n\n#### 输出格式\n\n按题意输出警告语或华氏温度。",
+     "analysis": "**思路**:浮点运算要用 double。两步换算:摄氏=开尔文-273.15,华氏=摄氏×1.8+32。再用分支判断是否超过212度。输出格式(警告语、小数位数)要严格对照题目。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 200,
+     "max": 400
+    }
+   ],
+   "base_pid": "1-2024-12-prog-1",
+   "level": 1
+  },
+  "1-2025-03-prog-1": {
+   "base_title": "图书馆里的老鼠",
+   "kps": [
+    "整除与取余",
+    "向上取整思想"
+   ],
+   "variants": [
+    {
+     "title": "还剩多少本书",
+     "story": "图书馆有 n 本书,一只老鼠每 x 小时啃光一本。经过 y 小时后,还剩多少本完好的书?(正在啃的那本不算完好)",
+     "solution": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n    int n, x, y, ans;\n    cin >> n >> x >> y;               // 读入书的总数 n、啃光一本要 x 小时、经过 y 小时\n    assert(1 <= n && n <= 1000 && 1 <= x && x <= 1000 && 1 <= y && y <= 1000);\n                                      // assert 是数据校验,阅读时可忽略\n    ans = n - y / x - 1 + (y % x == 0);\n    // 拆开理解:y/x 是已经啃光的整本数\n    //   若 y%x != 0:还有一本正被啃(不完整),要再减 1 → n - y/x - 1\n    //   若 y%x == 0:恰好啃完、没碰下一本,(y%x==0) 为 1,把多减的 1 补回来\n    // 整体等价于 n - ⌈y/x⌉(向上取整),一个表达式同时处理两种情况\n    assert(ans >= 1);                 // 题目保证至少剩一本完整的书\n    cout << ans << '\\n';\n    return 0;\n}",
+     "io": "#### 输入格式\n\n输入三个整数 n、x、y。\n\n#### 输出格式\n\n输出剩余完好的书的本数。",
+     "analysis": "**思路**:y/x 是已经完全啃光的本数。如果 y 不是 x 的整数倍,说明还有一本正在被啃(不完好)。所以剩余 = n - 啃光的 - 正在啃的。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 10,
+     "max": 100
+    },
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 10
+    },
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 50
+    }
+   ],
+   "base_pid": "1-2025-03-prog-1",
+   "level": 1
+  },
+  "1-2025-03-prog-2": {
+   "base_title": "四舍五入",
+   "kps": [
+    "整除运算",
+    "循环"
+   ],
+   "variants": [
+    {
+     "title": "四舍五入到整十",
+     "story": "给定 n 个整数,把每个数四舍五入到最接近的整十数后输出(如58→60,53→50)。",
+     "solution": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n    int n; cin >> n; assert(1 <= n && n <= 100);   // 读入数字个数(assert 是校验,可忽略)\n    for (int i = 1, x; i <= n; i++) {\n        cin >> x; assert(1 <= x && x <= 10000);    // 逐个读入待处理的数\n        cout << (x + 5) / 10 * 10 << '\\n';\n        // 四舍五入到整十数的一行公式:\n        //   x+5     → 个位 ≥5 时,加 5 会让十位进一(如 58+5=63)\n        //   /10     → 整数除法砍掉个位(63/10=6)\n        //   *10     → 乘回来得整十数(6*10=60)\n        // 个位 <5 时加 5 不会进位,自动舍去(43+5=48 → 4 → 40)\n    }\n    return 0;\n}",
+     "io": "#### 输入格式\n\n第一行 n,之后 n 行每行一个整数。\n\n#### 输出格式\n\n输出 n 行,每行一个四舍五入后的整十数。",
+     "analysis": "**思路**:四舍五入到整十的技巧:(x+5)/10*10。加5让个位≥5时进位,整除10去掉个位,再乘10补零。利用整数除法的截断特性。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "array",
+     "len": {
+      "min": 3,
+      "max": 8
+     },
+     "elem": {
+      "min": 1,
+      "max": 1000
+     },
+     "lenLine": true
+    }
+   ],
+   "base_pid": "1-2025-03-prog-2",
+   "level": 1
+  },
+  "1-2025-06-prog-1": {
+   "base_title": "假期阅读",
+   "kps": [
+    "取小值",
+    "乘法溢出意识"
+   ],
+   "variants": [
+    {
+     "title": "假期能读多少页",
+     "story": "一本书共 n 页,小杨每天最多读 k 页,假期有 t 天。请问假期里他最多能读多少页?(读完整本就不再读了)",
+     "solution": "#include <cstdio>\nusing namespace std;\nint n, k, t;                          // n:书的总页数  k:每天最多读 k 页  t:假期天数\nint ans;\nint main() {\n    scanf(\"%d\", &n);\n    scanf(\"%d\", &k);\n    scanf(\"%d\", &t);                  // 依次读入三个数\n    ans = k * t;                      // 假期里\"最多能读\"的页数 = 每天 k 页 × t 天\n    if (n < ans)                      // 但书一共只有 n 页\n        ans = n;                      // 读不了比书更多的页数 → 取两者较小值\n    printf(\"%d\\n\", ans);             // 即 ans = min(n, k*t)\n    return 0;\n}",
+     "io": "#### 输入格式\n\n输入三个整数:n(总页数)、k(每天最多读)、t(天数)。\n\n#### 输出格式\n\n输出最多能读的页数。",
+     "analysis": "**思路**:理论上能读 k×t 页,但书只有 n 页。所以答案是 k×t 和 n 中的较小值。注意 k×t 可能较大,要有溢出意识(本题范围内 int 够用)。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 50,
+     "max": 1000
+    },
+    {
+     "kind": "int",
+     "min": 5,
+     "max": 50
+    },
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 30
+    }
+   ],
+   "base_pid": "1-2025-06-prog-1",
+   "level": 1
+  },
+  "1-2025-06-prog-2": {
+   "base_title": "值日",
+   "kps": [
+    "最小公倍数",
+    "循环枚举"
+   ],
+   "variants": [
+    {
+     "title": "下次相遇",
+     "story": "小明每 m 天去一次图书馆,小红每 n 天去一次。今天两人都在图书馆,请问最少过多少天,两人会再次在同一天去图书馆?",
+     "solution": "#include <cstdio>\n#include <algorithm>\n#include <iostream>\nusing namespace std;\nint main() {\n    int m, n;\n    cin >> m >> n;                    // 读入两人的值日周期 m 和 n\n    for (int i = max(m, n); ; i++)    // 从较大的周期开始往上找(答案不可能比它小)\n        if (i % m == 0 && i % n == 0) {\n            // i 同时是 m 和 n 的倍数 → 这就是最小公倍数,即下次同天值日\n            cout << i << endl;\n            break;                    // 找到第一个就停,保证\"最小\"\n        }\n    return 0;\n    // 注意:答案不是 m*n!m=4、n=6 时答案是 12 而不是 24\n}",
+     "io": "#### 输入格式\n\n输入两个整数 m 和 n。\n\n#### 输出格式\n\n输出最少天数(即 m 和 n 的最小公倍数)。",
+     "analysis": "**思路**:求最小公倍数。从较大的周期开始往上枚举,找到第一个能同时被 m 和 n 整除的数,就是最小公倍数。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 2,
+     "max": 12
+    },
+    {
+     "kind": "int",
+     "min": 2,
+     "max": 12
+    }
+   ],
+   "base_pid": "1-2025-06-prog-2",
+   "level": 1
+  },
+  "1-2025-09-prog-1": {
+   "base_title": "商店折扣",
+   "kps": [
+    "分支结构",
+    "方案比较",
+    "整数运算"
+   ],
+   "variants": [
+    {
+     "title": "哪种更划算",
+     "story": "买一件原价 p 元的商品,有两种优惠:方案一满 x 减 y;方案二打 n 折(n 折即按 n/10 收费)。请输出两种方案中实付较少的金额(保留一位小数)。",
+     "solution": "#include <algorithm>\n#include <cstdio>\nusing namespace std;\nint x, y, n, p;                       // 方案一:满 x 减 y;方案二:打 n 折;p:商品原价\ndouble a1, a2;                        // 两种方案的实付金额\nint main() {\n    scanf(\"%d%d%d%d\", &x, &y, &n, &p);\n    a1 = p;                           // 方案一:先按原价\n    if (a1 >= x) a1 -= y;             // 满足\"满 x\"门槛才能减 y;不满足就是原价\n    a2 = p * 0.1 * n;                 // 方案二:打 n 折 = 原价 × n/10\n                                      // 写成 p*0.1*n 用浮点算,避免整数除法截断\n    printf(\"%.2lf\\n\", min(a1, a2));  // 输出更便宜的那个,保留两位小数\n    return 0;\n}",
+     "io": "#### 输入格式\n\n输入四个整数:x、y、n、p。\n\n#### 输出格式\n\n输出较划算方案的实付金额。",
+     "analysis": "**思路**:分别算两种方案的实付:方案一若达到满减门槛(p≥x)则减y,否则原价;方案二是 p×n/10。最后取两者较小值。注意打折涉及小数,用 double。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 50,
+     "max": 200
+    },
+    {
+     "kind": "int",
+     "min": 10,
+     "max": 50
+    },
+    {
+     "kind": "int",
+     "min": 5,
+     "max": 9
+    },
+    {
+     "kind": "int",
+     "min": 30,
+     "max": 300
+    }
+   ],
+   "base_pid": "1-2025-09-prog-1",
+   "level": 1
+  },
+  "1-2025-09-prog-2": {
+   "base_title": "金字塔",
+   "kps": [
+    "循环累加",
+    "平方和"
+   ],
+   "variants": [
+    {
+     "title": "金字塔石块",
+     "story": "建一座 n 层的金字塔,从上往下第 i 层需要 i×i 块石头。请计算一共需要多少块石头。",
+     "solution": "#include <algorithm>\n#include <cstdio>\nusing namespace std;\nint n, ans;                           // n:金字塔层数  ans:石块总数\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= n; i++) ans += i * i;\n    // 从上往下第 i 层需要 i×i 块,总数就是平方和 1²+2²+...+n²\n    // n ≤ 50 时总和最大约 4.3 万,int 完全够用\n    printf(\"%d\\n\", ans);\n    return 0;\n}",
+     "io": "#### 输入格式\n\n输入一个正整数 n,表示层数。\n\n#### 输出格式\n\n输出石块总数。",
+     "analysis": "**思路**:第 i 层是 i² 块,总数就是平方和 1²+2²+...+n²。用循环累加每层的 i×i 即可。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 50
+    }
+   ],
+   "base_pid": "1-2025-09-prog-2",
+   "level": 1
+  },
+  "1-2025-12-prog-1": {
+   "base_title": "小杨的爱心快递",
+   "kps": [
+    "浮点运算",
+    "多分支",
+    "格式化输出"
+   ],
+   "variants": [
+    {
+     "title": "快递费计算",
+     "story": "寄快递按重量 w 公斤计费:首重1公斤 a 元,超过部分每公斤 b 元(不足1公斤按1公斤算)。请计算总费用。",
+     "solution": "#include <iostream>\n#include <cmath>\nusing namespace std;\nint main(){ double w; int a,b; cin>>w>>a>>b; int kg=(int)ceil(w); int cost=a+(kg-1)*b; cout<<cost<<endl; return 0; }",
+     "io": "#### 输入格式\n\n输入重量 w(实数)和两个整数 a(首重价)、b(续重单价)。\n\n#### 输出格式\n\n输出总费用。",
+     "analysis": "**思路**:不足1公斤按1公斤算→向上取整 ceil。首重1公斤算 a 元,剩下的 (kg-1) 公斤每公斤 b 元。总费用 = a + (kg-1)×b。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "int",
+     "min": 1,
+     "max": 20
+    },
+    {
+     "kind": "int",
+     "min": 5,
+     "max": 15
+    },
+    {
+     "kind": "int",
+     "min": 2,
+     "max": 8
+    }
+   ],
+   "base_pid": "1-2025-12-prog-1",
+   "level": 1
+  },
+  "1-2025-12-prog-2": {
+   "base_title": "手机电量显示",
+   "kps": [
+    "多组数据",
+    "多分支",
+    "边界判断"
+   ],
+   "variants": [
+    {
+     "title": "电量图标",
+     "story": "根据手机电量百分比 p 显示图标:p≥75 显示\"满\",50≤p&lt;75 显示\"高\",25≤p&lt;50 显示\"中\",p&lt;25 显示\"低\"。给定 n 个电量值,依次输出对应图标。",
+     "solution": "#include <iostream>\nusing namespace std;\nint main(){ int n; cin>>n; for(int i=0;i<n;i++){ int p; cin>>p; if(p>=75)cout<<\"man\"; else if(p>=50)cout<<\"gao\"; else if(p>=25)cout<<\"zhong\"; else cout<<\"di\"; cout<<\"\\n\"; } return 0; }",
+     "io": "#### 输入格式\n\n第一行 n,之后 n 行每行一个电量百分比。\n\n#### 输出格式\n\n每行输出对应档位(man/gao/zhong/di)。",
+     "analysis": "**思路**:多分支判断。用 if-else if 按从高到低的顺序判断区间,注意边界值(如75算\"满\")。多组数据用循环逐个处理。"
+    }
+   ],
+   "spec_template": [
+    {
+     "kind": "array",
+     "len": {
+      "min": 3,
+      "max": 6
+     },
+     "elem": {
+      "min": 0,
+      "max": 100
+     },
+     "lenLine": true
+    }
+   ],
+   "base_pid": "1-2025-12-prog-2",
+   "level": 1
   }
  }
 }

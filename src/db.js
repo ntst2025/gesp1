@@ -304,6 +304,7 @@ const Q = {
   setAssignmentProgress: (aid,uid,status,score,detail) => run(`INSERT INTO assignment_progress(assignment_id,user_id,status,score,detail,updated_at)
     VALUES(?,?,?,?,?,datetime('now'))
     ON CONFLICT(assignment_id,user_id) DO UPDATE SET status=excluded.status,score=excluded.score,detail=excluded.detail,updated_at=datetime('now')`, [aid,uid,status,score,detail]),
+  assignmentProgress: (aid,uid) => get('SELECT status,score,detail FROM assignment_progress WHERE assignment_id=? AND user_id=? AND status=?', [aid,uid,'done']),
   setComment: (aid,uid,comment) => run(`INSERT INTO assignment_progress(assignment_id,user_id,status,comment,updated_at)
     VALUES(?,?,'assigned',?,datetime('now'))
     ON CONFLICT(assignment_id,user_id) DO UPDATE SET comment=excluded.comment,updated_at=datetime('now')`, [aid,uid,comment]),
