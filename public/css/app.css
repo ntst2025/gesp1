@@ -682,8 +682,9 @@ th.num,td.num{width:80px;white-space:nowrap}
 .ls-sec-h:first-child{margin-top:6px}
 
 /* 真题子节讲义弹窗 */
-.sl-mask{display:none;position:fixed;inset:0;background:rgba(19,24,46,.5);z-index:300;align-items:center;justify-content:center;padding:20px}
-.sl-box{background:#fff;border-radius:18px;max-width:720px;width:100%;max-height:86vh;overflow:auto;position:relative;padding:0}
+.sl-mask{display:none;position:fixed;inset:0;background:rgba(19,24,46,.5);z-index:300;align-items:center;justify-content:center;padding:0}
+.sl-box{background:#fff;border-radius:0;max-width:900px;width:100%;height:100vh;max-height:100vh;overflow:auto;position:relative;padding:0}
+@media(min-width:940px){.sl-box{border-radius:16px;height:94vh;max-height:94vh;margin:3vh 0}}
 .sl-x{position:absolute;top:14px;right:18px;font-size:26px;color:#9aa0b4;cursor:pointer;z-index:2;line-height:1}
 .sl-load{padding:60px;text-align:center;color:var(--ink3)}
 .sl-head{padding:24px 28px 14px;border-bottom:1px solid var(--line2);position:sticky;top:0;background:#fff;border-radius:18px 18px 0 0}
@@ -695,3 +696,6 @@ th.num,td.num{width:80px;white-space:nowrap}
 .sl-empty .big{font-size:48px;margin-bottom:12px}
 .sl-empty b{font-size:18px;color:var(--ink);display:block;margin-bottom:8px}
 .sl-empty p{color:var(--ink3);margin-bottom:18px;line-height:1.7}
+
+/* 讲义示意图 */
+.ls-svg{display:block;width:100%;max-width:640px;margin:18px auto;border:1px solid var(--line2);border-radius:12px;background:#fff;padding:6px}

@@ -181,6 +181,31 @@ tr.clk{cursor:pointer}tr.clk:hover{background:#f6f8ff}
 .cp-secs{display:flex;flex-wrap:wrap;gap:6px}
 .cp-sec{background:#fff;border:1px solid #d8dce6;border-radius:8px;padding:5px 11px;font-size:12.5px;cursor:pointer;color:#444}
 .cp-sec:hover{background:#eef2ff;border-color:#aebef0}
+
+/* ===== 授课管理布局修正 ===== */
+.chip{display:inline-flex;align-items:center;gap:5px;padding:7px 15px;border:1px solid #d4d8e3;border-radius:99px;background:#fff;font-size:14px;color:#444;cursor:pointer;transition:.15s;white-space:nowrap}
+.chip:hover{border-color:#aebef0;background:#f6f8ff}
+.chip.on{background:#ef3b57;color:#fff;border-color:#ef3b57}
+.chip b{font-weight:700}
+.chip.on b{color:#fff}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+/* 级别班按钮排整齐一行 */
+.lv-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+/* 表单控件不被全局width:100%撑乱 */
+.form-grid select,.form-grid input[type=datetime-local]{width:auto;min-width:160px;max-width:100%}
+.form-grid .grow input,.form-grid .grow textarea,.form-grid textarea{width:100%}
+.fg-col select{width:auto;min-width:160px}
+.t-toc{display:flex;flex-direction:column;gap:8px;margin-top:6px;max-height:280px;overflow:auto;border:1px solid #e6e8f0;border-radius:10px;padding:12px;background:#fafbfd}
+.toc-item{display:flex;align-items:center;gap:9px;font-size:14px;cursor:pointer;padding:4px 0}
+.toc-item input{width:auto;margin:0;flex:none}
+.t-toc input[type=checkbox]{width:auto}
+/* 选题/章节弹窗内的输入框不撑满异常 */
+.adm-modal input,.adm-modal select{width:100%;box-sizing:border-box}
+.adm-modal input[type=checkbox]{width:auto}
+.pk-q input,.pk-tprog,.add-stu,.t-stu{width:auto!important;margin:0;flex:none}
+/* 表格操作列按钮不换行挤压 */
+.tbl td .btn.sm{font-size:12.5px;padding:4px 10px}
+.u-acts,.t-ops{white-space:normal}
 </style>
 <script src="/js/analytics.js" defer></script>
 </head>

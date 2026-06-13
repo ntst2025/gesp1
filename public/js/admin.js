@@ -317,7 +317,7 @@ async function renderTeach(lv,tab){
   const subTabs=[['assign','📚 布置教学'],['students','👥 班级学生'],['posted','📋 已布置'],['progbank','💻 我的题库']]
     .map(([k,label])=>`<a class="t-subtab ${TEACH_TAB===k?'on':''}" onclick="switchTeachTab('${k}')">${label}</a>`).join('');
   V().innerHTML=`<h1 class="page-h">🎓 授课管理</h1>
-    <div class="toolbar" style="flex-wrap:wrap;margin-bottom:6px">${lvTabs}</div>
+    <div class="lv-tabs">${lvTabs}</div>
     <div class="t-subtabs">${subTabs}</div>
     <div id="t-panel"><div class="empty">加载中…</div></div>`;
   renderTeachPanel();
