@@ -152,6 +152,35 @@ tr.clk{cursor:pointer}tr.clk:hover{background:#f6f8ff}
 .pm-sample textarea{flex:1;font-family:monospace;font-size:13px}
 .pm-spec{border:1px solid #e6e8f0;border-radius:10px;padding:10px;margin-top:4px}
 .pm-spec-row{font-size:13px;margin:6px 0;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+
+/* 授课子标签 */
+.t-subtabs{display:flex;gap:4px;border-bottom:2px solid #e6e8f0;margin-bottom:16px;flex-wrap:wrap}
+.t-subtab{padding:9px 18px;font-size:14px;font-weight:600;color:#7a8194;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px}
+.t-subtab:hover{color:#13182e}
+.t-subtab.on{color:#ef3b57;border-bottom-color:#ef3b57}
+/* 布置表单 */
+.form-grid{display:flex;flex-direction:column;gap:14px}
+.fg-row{display:flex;gap:14px;flex-wrap:wrap}
+.fg-col{display:flex;flex-direction:column;gap:4px}
+.fg-col.grow{flex:1;min-width:200px}
+.fg-block{display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:1px solid #f0f1f5}
+.fl{font-size:12px;color:#7a8194;font-weight:600}
+.form-grid input,.form-grid select,.form-grid textarea{padding:8px 10px;border:1px solid #d4d8e3;border-radius:8px;font-size:14px;font-family:inherit;box-sizing:border-box}
+.form-grid input:focus,.form-grid textarea:focus,.form-grid select:focus{outline:2px solid #c9d6f5;border-color:#a9bde8}
+
+/* 真题章节快捷布置 */
+.t-quick{display:flex;gap:8px;flex-wrap:wrap}
+.picked-chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.pchip{display:inline-flex;align-items:center;gap:6px;background:#eef2ff;color:#3a4d8f;border-radius:99px;padding:3px 10px;font-size:12.5px}
+.pchip span{cursor:pointer;font-weight:700;color:#8a93b8}
+.cp-live{background:#f6f8ff;border-radius:10px;padding:10px 12px;font-size:13px;min-height:20px}
+.cp-list{max-height:380px;overflow:auto;margin-top:6px}
+.cp-ch{border:1px solid #e6e8f0;border-radius:10px;padding:10px;margin-bottom:8px}
+.cp-ch-h{display:flex;align-items:center;gap:8px;font-size:14px;margin-bottom:8px;flex-wrap:wrap}
+.cp-ch-h .btn{margin-left:auto}
+.cp-secs{display:flex;flex-wrap:wrap;gap:6px}
+.cp-sec{background:#fff;border:1px solid #d8dce6;border-radius:8px;padding:5px 11px;font-size:12.5px;cursor:pointer;color:#444}
+.cp-sec:hover{background:#eef2ff;border-color:#aebef0}
 </style>
 <script src="/js/analytics.js" defer></script>
 </head>

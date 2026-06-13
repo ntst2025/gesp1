@@ -632,11 +632,12 @@ app.post('/api/admin/classes/:level/assign', adminRequired, wrap(async (req, res
 
   let payload = b.payload || {};
   if (type === 'homework') {
-    // 收集题目:① 明确的 qids/pids ② 整范围(章/节/卷)展开
+    // 收集题目:① 明确的 qids/pids ② 整范围(章/节/卷)展开,支持多个范围
     let mc = Array.isArray(payload.mc) ? payload.mc.slice() : [];
     const prog = Array.isArray(payload.prog) ? payload.prog.slice() : [];
-    if (payload.range) {
-      const r = payload.range;
+    // 兼容旧的单个 range 与新的 ranges 数组
+    const ranges = Array.isArray(payload.ranges) ? payload.ranges : (payload.range ? [payload.range] : []);
+    for (const r of ranges) {
       let rows = [];
       if (r.kind === 'chapter') rows = await Q.qidsByChapter(r.id);
       else if (r.kind === 'section') rows = await Q.qidsBySection(r.id);
@@ -713,6 +714,18 @@ app.post('/api/admin/students/:id/redo-wrong', adminRequired, wrap(async (req, r
 app.get('/api/admin/classes/:level/weakness', adminRequired, wrap(async (req, res) => {
   const level = Number(req.params.level);
   res.json({ weakness: await Q.classWeakness(level) });
+}));
+// 老师把注册用户加入/移出班级
+app.post('/api/admin/classes/:level/add-student', adminRequired, wrap(async (req, res) => {
+  const level = Number(req.params.level);
+  const ids = Array.isArray((req.body || {}).userIds) ? req.body.userIds.map(Number).filter(Boolean) : [];
+  if (!ids.length) return res.status(400).json({ error: '请选择学生' });
+  for (const id of ids) await Q.joinClass(level, id);
+  res.json({ ok: true, added: ids.length });
+}));
+app.post('/api/admin/classes/:level/remove-student', adminRequired, wrap(async (req, res) => {
+  await Q.leaveClass(Number(req.params.level), Number((req.body || {}).userId));
+  res.json({ ok: true });
 }));
 
 /* ===== 教师出编程题(A模式:标程自动产出输出) ===== */

@@ -306,71 +306,137 @@ async function setReport(id,st){
 
 /* ---------- 🎓 授课管理 ---------- */
 let TEACH_LV=1;
-async function renderTeach(lv){
+let TEACH_TAB='assign';
+async function renderTeach(lv,tab){
   TEACH_LV=lv||TEACH_LV;
+  if(tab) TEACH_TAB=tab;
   V().innerHTML='<h1 class="page-h">🎓 授课管理</h1><div class="empty">加载中…</div>';
   let cls;
   try{ cls=(await aapi('/api/admin/classes')).classes; }catch(e){ V().innerHTML='<div class="empty">'+e.message+'</div>'; return; }
-  const tabs=cls.map(c=>`<span class="chip ${c.level===TEACH_LV?'on':''}" onclick="renderTeach(${c.level})">C++ ${c.level}级班 <b>${c.students}</b></span>`).join('');
-  let roster,asg;
-  try{
-    roster=(await aapi('/api/admin/classes/'+TEACH_LV+'/roster')).roster;
-    asg=(await aapi('/api/admin/classes/'+TEACH_LV+'/assignments')).assignments;
-  }catch(e){ V().innerHTML='<div class="empty">'+e.message+'</div>'; return; }
-  const rosterRows=roster.map(s=>`<tr class="clk" onclick="viewStudent(${s.id})"><td>${avA(s.avatar)} <b>${esc(s.username)}</b> <span class="muted mono">#${s.id}</span></td>
+  const lvTabs=cls.map(c=>`<span class="chip ${c.level===TEACH_LV?'on':''}" onclick="renderTeach(${c.level})">C++ ${c.level}级班 <b>${c.students}</b></span>`).join('');
+  const subTabs=[['assign','📚 布置教学'],['students','👥 班级学生'],['posted','📋 已布置'],['progbank','💻 我的题库']]
+    .map(([k,label])=>`<a class="t-subtab ${TEACH_TAB===k?'on':''}" onclick="switchTeachTab('${k}')">${label}</a>`).join('');
+  V().innerHTML=`<h1 class="page-h">🎓 授课管理</h1>
+    <div class="toolbar" style="flex-wrap:wrap;margin-bottom:6px">${lvTabs}</div>
+    <div class="t-subtabs">${subTabs}</div>
+    <div id="t-panel"><div class="empty">加载中…</div></div>`;
+  renderTeachPanel();
+}
+function switchTeachTab(k){ TEACH_TAB=k; document.querySelectorAll('.t-subtab').forEach(e=>e.classList.toggle('on',e.textContent.includes(({assign:'布置',students:'班级',posted:'已布置',progbank:'题库'})[k]))); renderTeachPanel(); }
+async function renderTeachPanel(){
+  const p=document.getElementById('t-panel'); if(!p)return;
+  p.innerHTML='<div class="empty">加载中…</div>';
+  if(TEACH_TAB==='assign') return renderAssignPanel(p);
+  if(TEACH_TAB==='students') return renderStudentsPanel(p);
+  if(TEACH_TAB==='posted') return renderPostedPanel(p);
+  if(TEACH_TAB==='progbank') return renderProgbankPanel(p);
+}
+
+// —— 面板1:布置教学 ——
+async function renderAssignPanel(p){
+  let roster=[]; try{ roster=(await aapi('/api/admin/classes/'+TEACH_LV+'/roster')).roster; }catch(e){}
+  TEACH_ROSTER=roster;
+  p.innerHTML=`
+    <div class="card"><div class="card-h">布置作业 / 推送资源 <span class="sub">C++ ${TEACH_LV}级班</span></div><div class="card-b">
+      <div class="form-grid">
+        <div class="fg-row">
+          <div class="fg-col"><label class="fl">类型</label><select id="t-type" onchange="teachTypeChange()"><option value="homework">📝 作业</option><option value="resource">📎 课程资源</option></select></div>
+          <div class="fg-col grow"><label class="fl">标题</label><input id="t-title" placeholder="如:第3章 if 语句练习"></div>
+          <div class="fg-col" id="t-due-wrap"><label class="fl">截止时间(可空)</label><input id="t-due" type="datetime-local"></div>
+        </div>
+        <div class="fg-row"><div class="fg-col grow"><label class="fl">说明(给学生的话,可空)</label><textarea id="t-body" rows="2" placeholder="说明文字"></textarea></div></div>
+        <div id="t-hw-fields" class="fg-block">
+          <label class="fl">题目内容</label>
+          <div class="t-quick">
+            <button class="btn solid" onclick="openChapterPicker()">📚 按真题章节布置</button>
+            <button class="btn" onclick="openPicker()">＋ 浏览题库 / 逐题选 / 编程题</button>
+          </div>
+          <span class="muted" id="t-pick-summary" style="display:block;margin-top:8px;font-size:13px">未选题</span>
+          <div id="t-picked" class="t-picked"></div>
+        </div>
+        <div id="t-res-fields" class="fg-block" style="display:none">
+          <label class="fl">勾选讲义章节(与网站同步,学生点开即看)</label>
+          <div id="t-lesson-toc" class="t-toc">加载中…</div>
+        </div>
+        <div class="fg-block">
+          <label class="fl">发给谁</label>
+          <select id="t-target" onchange="teachTargetChange()"><option value="class">📢 全班</option><option value="some">👤 指定学生</option></select>
+          <div id="t-target-list" style="display:none;margin-top:8px" class="t-toc"></div>
+        </div>
+        <div><button class="btn solid" onclick="postAssign()">发布</button></div>
+      </div>
+    </div></div>
+    <div class="card"><div class="card-h">📉 班级共性弱点 <span class="sub">全班错最多的章节</span></div><div class="card-b">
+      <div id="t-weakness"><button class="btn sm" onclick="loadWeakness()">点击查看</button></div></div></div>`;
+}
+
+// —— 面板2:班级学生(含拉人进班) ——
+async function renderStudentsPanel(p){
+  let roster; try{ roster=(await aapi('/api/admin/classes/'+TEACH_LV+'/roster')).roster; }catch(e){ p.innerHTML='<div class="empty">'+e.message+'</div>'; return; }
+  TEACH_ROSTER=roster;
+  const rows=roster.map(s=>`<tr><td class="clk" onclick="viewStudent(${s.id})">${avA(s.avatar)} <b>${esc(s.username)}</b> <span class="muted mono">#${s.id}</span></td>
     <td class="right mono">${s.attempts}</td><td class="right mono">${s.correct}</td>
     <td class="muted mono" style="font-size:12px">${(s.joined_at||'').slice(0,10)}</td>
-    <td class="right"><span class="muted" style="font-size:12px">查看学情 ›</span></td></tr>`).join('')||'<tr><td class="empty">该班暂无学生(学生在前台「我的课程」加入)</td></tr>';
-  const asgRows=asg.map(a=>`<tr>
-    <td>${a.type==='homework'?'📝':'📎'} ${esc(a.title)}</td>
+    <td class="right"><button class="btn sm" onclick="viewStudent(${s.id})">学情</button> <button class="btn sm danger" onclick="removeStudent(${s.id},'${esc(s.username)}')">移出</button></td></tr>`).join('')||'<tr><td class="empty" colspan="5">该班暂无学生</td></tr>';
+  p.innerHTML=`
+    <div class="card"><div class="card-h">班级花名册 <span class="sub">C++ ${TEACH_LV}级 · ${roster.length} 人</span>
+      <button class="btn sm solid" style="float:right" onclick="openAddStudent()">＋ 添加学生</button></div>
+      <table class="tbl"><thead><tr><th>学生</th><th class="right">答题数</th><th class="right">答对</th><th>加入</th><th class="right">操作</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+async function openAddStudent(){
+  let users; try{ users=(await aapi('/api/admin/users?limit=200')).users; }catch(e){ toast(e.message); return; }
+  const inClass=new Set(TEACH_ROSTER.map(s=>s.id));
+  const candidates=users.filter(u=>!inClass.has(u.id));
+  if(!candidates.length){ toast('没有可添加的注册用户(都已在班里)'); return; }
+  const rows=candidates.map(u=>`<label class="toc-item"><input type="checkbox" class="add-stu" value="${u.id}"> ${avA(u.avatar)} ${esc(u.username)} <span class="muted mono" style="font-size:11px">#${u.id}</span></label>`).join('');
+  showModal(`<h3 style="margin:0 0 6px">添加学生到 C++ ${TEACH_LV}级班</h3>
+    <div class="muted" style="font-size:13px;margin-bottom:10px">从注册用户里勾选,加入后他们在「我的课程」即可看到本班作业与资源。</div>
+    <input id="add-search" placeholder="搜索昵称…" style="width:100%;margin-bottom:8px" oninput="filterAddStu(this.value)">
+    <div class="t-toc" id="add-list" style="max-height:320px">${rows}</div>
+    <div style="margin-top:14px;text-align:right"><button class="btn solid" onclick="confirmAddStudent()">加入所选</button></div>`);
+}
+function filterAddStu(q){
+  q=q.toLowerCase();
+  document.querySelectorAll('#add-list .toc-item').forEach(el=>{ el.style.display=el.textContent.toLowerCase().includes(q)?'flex':'none'; });
+}
+async function confirmAddStudent(){
+  const ids=[...document.querySelectorAll('.add-stu:checked')].map(c=>Number(c.value));
+  if(!ids.length){ toast('请勾选学生'); return; }
+  try{ const r=await aapi('/api/admin/classes/'+TEACH_LV+'/add-student',{method:'POST',body:JSON.stringify({userIds:ids})});
+    toast('已加入 '+r.added+' 名学生'); document.getElementById('adm-modal').remove(); renderTeach(TEACH_LV); }
+  catch(e){ toast(e.message); }
+}
+async function removeStudent(uid,name){
+  if(!confirm('把「'+name+'」移出本班?(其学习记录保留,只是不再属于本班)'))return;
+  await aapi('/api/admin/classes/'+TEACH_LV+'/remove-student',{method:'POST',body:JSON.stringify({userId:uid})});
+  toast('已移出'); renderStudentsPanel(document.getElementById('t-panel'));
+}
+
+// —— 面板3:已布置 ——
+async function renderPostedPanel(p){
+  let asg; try{ asg=(await aapi('/api/admin/classes/'+TEACH_LV+'/assignments')).assignments; }catch(e){ p.innerHTML='<div class="empty">'+e.message+'</div>'; return; }
+  const rows=asg.map(a=>`<tr>
+    <td>${a.type==='homework'?'📝':'📎'} ${esc(a.title)}${a.target&&a.target!=='class'?' <span class="pill" style="background:#eef;color:#558">指定</span>':''}</td>
     <td>${a.type==='homework'?'作业':'资源'}</td>
     <td class="muted">${a.due_at?a.due_at.slice(0,16).replace('T',' '):'—'}</td>
     <td class="right">${a.done} 人完成${a.avg!=null?` · 均分 ${a.avg}`:''}</td>
     <td class="right"><button class="btn sm" onclick="viewAsgRoster(${a.id})">详情</button> <button class="btn sm danger" onclick="delAsg(${a.id})">删除</button></td>
-  </tr>`).join('')||'<tr><td class="empty">该班暂无作业/资源</td></tr>';
-  TEACH_ROSTER=roster;
-  setTimeout(loadMyProg, 50);
-  V().innerHTML=`<h1 class="page-h">🎓 授课管理</h1>
-    <div class="toolbar" style="flex-wrap:wrap">${tabs}</div>
-    <div class="card"><div class="card-h">布置新的作业 / 资源 <span class="sub">发给「C++ ${TEACH_LV}级班」全体</span></div><div class="card-b">
-      <div class="toolbar" style="flex-wrap:wrap">
-        <div><label class="muted" style="font-size:12px">类型</label><br>
-          <select id="t-type" onchange="teachTypeChange()"><option value="homework">📝 作业</option><option value="resource">📎 课程资源</option></select></div>
-        <div style="flex:1;min-width:200px"><label class="muted" style="font-size:12px">标题</label><br><input id="t-title" placeholder="如:第3章 if 语句练习" style="width:100%"></div>
-        <div id="t-due-wrap"><label class="muted" style="font-size:12px">截止时间(可空)</label><br><input id="t-due" type="datetime-local"></div>
-      </div>
-      <div style="margin-top:10px"><label class="muted" style="font-size:12px">说明 / 资源内容(支持简单文本,可粘贴讲义要点或链接)</label><br>
-        <textarea id="t-body" rows="3" style="width:100%" placeholder="给学生的说明文字"></textarea></div>
-      <div id="t-hw-fields">
-        <div style="margin-top:10px"><label class="muted" style="font-size:12px">题目</label><br>
-          <button class="btn" onclick="openPicker()">＋ 浏览题库选题</button>
-          <span class="muted" id="t-pick-summary" style="margin-left:10px;font-size:13px">未选题</span>
-          <div id="t-picked" class="t-picked"></div>
-        </div>
-      </div>
-      <div id="t-res-fields" style="display:none">
-        <div style="margin-top:10px"><label class="muted" style="font-size:12px">勾选要推送的讲义章节（与网站讲义同步，学生点开即看）</label>
-          <div id="t-lesson-toc" class="t-toc">加载中…</div></div>
-      </div>
-      <div style="margin-top:12px"><label class="muted" style="font-size:12px">发给谁</label><br>
-        <select id="t-target" onchange="teachTargetChange()"><option value="class">📢 全班</option><option value="some">👤 指定学生</option></select>
-        <div id="t-target-list" style="display:none;margin-top:8px" class="t-toc"></div>
-      </div>
-      <div style="margin-top:12px"><button class="btn solid" onclick="postAssign()">发布给全班</button></div>
-    </div></div>
-    <div class="card"><div class="card-h">💻 我出的编程题 <span class="sub">自己出原创编程题,布置作业时可选</span></div><div class="card-b">
-      <button class="btn solid" onclick="openProgMaker()">＋ 出一道编程题</button>
-      <div id="t-myprog" style="margin-top:10px">加载中…</div>
-    </div></div>
-    <div class="card"><div class="card-h">📉 班级共性弱点 <span class="sub">全班错得最多的章节,据此布置针对练习</span></div><div class="card-b"><div id="t-weakness">点击加载…<button class="btn sm" style="margin-left:8px" onclick="loadWeakness()">查看</button></div></div></div>
-    <div class="card" style="padding:6px"><div class="card-h" style="padding:12px 12px 0">已布置 (C++ ${TEACH_LV}级)</div>
-      <table class="tbl"><thead><tr><th>标题</th><th>类型</th><th>截止</th><th class="right">完成情况</th><th class="right">操作</th></tr></thead><tbody>${asgRows}</tbody></table></div>
-    <div class="card" style="padding:6px"><div class="card-h" style="padding:12px 12px 0">班级花名册 (${roster.length} 人)</div>
-      <table class="tbl"><thead><tr><th>学生</th><th class="right">答题数</th><th class="right">答对</th><th>加入时间</th><th></th></tr></thead><tbody>${rosterRows}</tbody></table></div>`;
+  </tr>`).join('')||'<tr><td class="empty" colspan="5">该班暂无作业/资源</td></tr>';
+  p.innerHTML=`<div class="card"><div class="card-h">已布置 <span class="sub">C++ ${TEACH_LV}级</span></div>
+    <table class="tbl"><thead><tr><th>标题</th><th>类型</th><th>截止</th><th class="right">完成情况</th><th class="right">操作</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
+
+// —— 面板4:我的题库 ——
+async function renderProgbankPanel(p){
+  p.innerHTML=`<div class="card"><div class="card-h">💻 我出的编程题 <span class="sub">C++ ${TEACH_LV}级 · 布置作业时可选</span>
+    <button class="btn sm solid" style="float:right" onclick="openProgMaker()">＋ 出一道编程题</button></div><div class="card-b">
+    <div id="t-myprog">加载中…</div></div></div>`;
+  loadMyProg();
+}
+
 function avA(av){ return /^a([1-9]|1[0-2])$/.test(av||'')?`<img class="u-av" src="/avatars/${av}.svg">`:`<span class="u-av-e">${av||'🙂'}</span>`; }
 let TEACH_ROSTER=[];
-let PICKED={mc:[],prog:[],range:null};  // 已选题
+let PICKED={mc:[],prog:[],ranges:[]};  // 已选题(ranges 可多个)
 function teachTypeChange(){
   const t=document.getElementById('t-type').value;
   document.getElementById('t-hw-fields').style.display=t==='homework'?'block':'none';
@@ -385,6 +451,34 @@ function teachTargetChange(){
     box.style.display='block';
     box.innerHTML=TEACH_ROSTER.length?TEACH_ROSTER.map(s=>`<label class="toc-item"><input type="checkbox" class="t-stu" value="${s.id}"> ${avA(s.avatar)} ${esc(s.username)}</label>`).join(''):'<span class="muted">该班暂无学生</span>';
   }else box.style.display='none';
+}
+/* ---- 按真题章节快捷布置(可多选累加) ---- */
+async function openChapterPicker(){
+  if(!PICKER_CAT||PICKER_CAT._lv!==TEACH_LV){
+    try{ PICKER_CAT=await aapi('/api/catalog?level='+TEACH_LV); PICKER_CAT._lv=TEACH_LV; }
+    catch(e){ toast('该级别题库未就绪:'+e.message); return; }
+  }
+  const chs=PICKER_CAT.chapters.map(c=>{
+    const cn=short(c.id).slice(1);
+    const secs=(c.sections||[]).filter(s=>s.count>0).map(s=>
+      `<button class="cp-sec" onclick="pickRange('section','${s.id}','${esc(s.name)}',${s.count})">${esc(s.name)} <span class="muted">${s.count}</span></button>`).join('');
+    return `<div class="cp-ch">
+      <div class="cp-ch-h"><b>第${cn}章 ${esc(c.name)}</b> <span class="muted">${c.count}题</span>
+        <button class="btn sm solid" onclick="pickRange('chapter','${c.id}','第${cn}章 ${esc(c.name)}',${c.count})">布置整章</button></div>
+      <div class="cp-secs">${secs}</div></div>`;
+  }).join('');
+  const papers=(PICKER_CAT.meta.papers||[]).map(p=>`<button class="cp-sec" onclick="pickRange('paper','${p}','${p} 整卷',0)">${p}</button>`).join('');
+  showModal(`<h3 style="margin:0 0 6px">📚 按真题章节布置 · C++ ${TEACH_LV}级</h3>
+    <div class="muted" style="font-size:13px;margin-bottom:10px">点「布置整章」或某个子节即加入(可连续点多个,累加);也可按整卷布置。选完关闭本窗即可。</div>
+    <div id="cp-live" class="cp-live"></div>
+    <div style="margin:10px 0 6px"><b style="font-size:13px">按整卷:</b> ${papers||'无'}</div>
+    <div class="cp-list">${chs}</div>
+    <div style="margin-top:14px;text-align:right"><button class="btn solid" onclick="document.getElementById('adm-modal').remove();renderPickedSummary()">完成</button></div>`);
+  updateCpLive();
+}
+function updateCpLive(){
+  const el=document.getElementById('cp-live'); if(!el)return;
+  el.innerHTML=PICKED.ranges.length?('已选: '+PICKED.ranges.map((r,i)=>`<span class="pchip">${esc(r.name)} <span onclick="rmRange(${i});updateCpLive()">×</span></span>`).join('')):'<span class="muted">尚未选择,点下方章节添加</span>';
 }
 /* ---- 可视化选题器 ---- */
 let PICKER_CAT=null;
@@ -419,8 +513,10 @@ async function openPicker(){
     <div style="margin-top:14px;text-align:right"><button class="btn solid" onclick="confirmPicker()">确定选择</button></div>`);
 }
 function pickRange(kind,id,name,count){
-  PICKED.range={kind,id,name,count};
-  toast('已选'+(kind==='chapter'?'整章':kind==='section'?'整节':'整卷')+':'+name);
+  if(PICKED.ranges.some(r=>r.kind===kind&&r.id===id)){ toast('已在列表中'); return; }
+  PICKED.ranges.push({kind,id,name,count});
+  toast('已添加:'+name);
+  renderPickedSummary(); updateCpLive();
 }
 async function pickBrowse(sid,name){
   let qs; try{ qs=(await aapi('/api/sections/'+encodeURIComponent(sid)+'/questions')).questions; }catch(e){ toast(e.message); return; }
@@ -445,13 +541,15 @@ function renderPickedSummary(){
   const sm=document.getElementById('t-pick-summary'); const box=document.getElementById('t-picked');
   if(!sm)return;
   const parts=[];
-  if(PICKED.range) parts.push((PICKED.range.kind==='chapter'?'整章':PICKED.range.kind==='section'?'整节':'整卷')+'「'+PICKED.range.name+'」'+(PICKED.range.count?'约'+PICKED.range.count+'题':''));
+  PICKED.ranges.forEach(r=>parts.push((r.kind==='chapter'?'整章':r.kind==='section'?'整节':'整卷')+'「'+r.name+'」'+(r.count?r.count+'题':'')));
   if(PICKED.mc.length) parts.push(PICKED.mc.length+' 道单选/判断');
   if(PICKED.prog.length) parts.push(PICKED.prog.length+' 道编程题');
   sm.textContent=parts.length?('已选: '+parts.join(' + ')):'未选题';
-  box.innerHTML=(PICKED.mc.length||PICKED.prog.length||PICKED.range)?`<button class="btn sm gray" onclick="clearPicked()">清空已选</button>`:'';
+  const has=PICKED.mc.length||PICKED.prog.length||PICKED.ranges.length;
+  box.innerHTML=has?`<div class="picked-chips">${PICKED.ranges.map((r,i)=>`<span class="pchip">${esc(r.name)} <span onclick="rmRange(${i})">×</span></span>`).join('')}</div><button class="btn sm gray" onclick="clearPicked()">清空已选</button>`:'';
 }
-function clearPicked(){ PICKED={mc:[],prog:[],range:null}; renderPickedSummary(); }
+function rmRange(i){ PICKED.ranges.splice(i,1); renderPickedSummary(); }
+function clearPicked(){ PICKED={mc:[],prog:[],ranges:[]}; renderPickedSummary(); }
 async function loadLessonToc(){
   const box=document.getElementById('t-lesson-toc'); if(!box) return;
   try{
@@ -468,8 +566,8 @@ async function postAssign(){
   const due=document.getElementById('t-due')?document.getElementById('t-due').value:'';
   let payload={};
   if(type==='homework'){
-    if(!PICKED.mc.length && !PICKED.prog.length && !PICKED.range){ toast('请先点「浏览题库选题」选好题目'); return; }
-    payload={mc:PICKED.mc,prog:PICKED.prog,range:PICKED.range};
+    if(!PICKED.mc.length && !PICKED.prog.length && !PICKED.ranges.length){ toast('请先选好题目(可按真题章节,或浏览题库选题)'); return; }
+    payload={mc:PICKED.mc,prog:PICKED.prog,ranges:PICKED.ranges};
   }else{
     const chapters=[...document.querySelectorAll('#t-lesson-toc input:checked')].map(c=>({id:c.value,title:c.dataset.title}));
     if(!chapters.length && !body.trim()){ toast('请勾选讲义章节或填写资源说明'); return; }
@@ -484,7 +582,7 @@ async function postAssign(){
   try{
     const r=await aapi('/api/admin/classes/'+TEACH_LV+'/assign',{method:'POST',body:JSON.stringify({type,title,body,payload,due_at:due||null,targetUsers})});
     toast('已发布'+(targetUsers?'给 '+targetUsers.length+' 名学生':'给全班')+(r.count?(' · '+r.count+'题'):''));
-    PICKED={mc:[],prog:[],range:null}; renderTeach(TEACH_LV);
+    PICKED={mc:[],prog:[],ranges:[]}; renderTeach(TEACH_LV,"posted");
   }catch(e){ toast(e.message); }
 }
 async function loadMyProg(){

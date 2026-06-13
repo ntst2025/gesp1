@@ -676,3 +676,7 @@ th.num,td.num{width:80px;white-space:nowrap}
 /* 课程作业评语 */
 .cs-item{flex-wrap:wrap}
 .cs-comment{flex-basis:100%;margin-top:8px;font-size:13px;color:#8a5a12;background:#fff8ec;border-radius:8px;padding:7px 10px}
+
+/* 讲义:真题子节标题 */
+.ls-sec-h{font-size:21px;font-weight:800;color:var(--ink);margin:34px 0 14px;padding-bottom:10px;border-bottom:3px solid var(--brand);scroll-margin-top:80px}
+.ls-sec-h:first-child{margin-top:6px}
